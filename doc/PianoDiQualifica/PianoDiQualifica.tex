@@ -14,25 +14,41 @@ Il presente documento definisce il livello di qualit\`a atteso del prodotto e de
 Il prodotto intende permettere la realizzazione di \underline{grafica vettoriale} tramite una comoda interfaccia web.
 
 \subsection{Glossario}
-Si veda \ref{Glossario.pdf}
+Si veda \textit{Glossario.pdf}
 
 \subsection{Riferimenti}
-
 
 \section{Visione generale della strategia di verifica}
 
 \subsection{Organizzazione, pianificazione strategica e temporale, responsabilit\`a}
 Le attivit\`a di verifica si dovranno svolgere immediatamente in seguito ad una modifica, o ad un insieme di modifiche. Qualora sia possibile svolgere l'attivit\`a in modo automatico, essa dovr\`a essere applicata in seguito ad ogni singolo cambiamento. I test automatici saranno predisposti dai verificatori. Negli altri casi, onde evitare di attivare un'intero ciclo di verifica con gli annessi costi per delle modifiche di scarso rilievo, l'attivit\`a sar\`a svolta quando le differenze tra la versione attuale del prodotto e la versione su cui \'e stata applicata l'ultima verifica sono sufficientemente rilevanti. \'E compito di chi effettua le modifiche di segnalare ai verificatori la necessit\`a di un'attivit\`a di verifica. Il responsabile della qualifica dovr\`a accertarsi che il tutto si svolga correttamente e che segua quanto descritto nel presente documento.
+\paragraph{Verifica dei documenti} Il revisore, attraverso un'attenta lettura del documento, deve controllare, in ordine crescente di importanza, che:
+\begin{enumerate}
+\item la grammatica e la sintassi siano corrette
+\item la formattazione del documento sia corretta e segua gli standard contenuti nelle \textit{norme di progetto}
+\item i concetti vengano espressi in modo chiaro e non ambiguo
+\item i concetti espressi siano corretti
+\item il documento sia completo
+\item il documento risolva il problema corretto
+\end{enumerate}
+\paragraph{Verifica del codice}
+La verifica del codice si compone dei seguenti aspetti:
+\begin{enumerate}
+\item Verifica automatica: verr\'a effettuata tramite test di unit\`a predisposti dai verificatori. I test dovranno coprire tutto il codice, a eccezzione delle parti il cui funzionamento dipende da input esterni non simulabili in un test di unit\`a, come ad esempio il codice che gestisce gli eventi generati dal movimento del mouse, oppure da effetti secondari i cui risultati non siano facilmente confrontabili in modo automatico, ad esempio come appare l'aspetto grafico del programma sullo schermo dell'utente. I test dovranno accertare il corretto funzionamento delle unit\`a di codice anche con input limite.
+\item Prova del prodotto: sar\`a effettuata eseguendo l'applicazione e interagendo con essa, assicurandosi che corrisponda a quanto progettato.
+\item Confronto con altri software gi\`a esistenti: requisito fondamentale del prodotto \'e la capacit\`a di generare immagini in formato \underline{SVG}. Per assicurarsi che i file generati siano corretti, si caricheranno su software la cui correttezza \'e nota (ad esempio \textit{Inkscape}) e ci si assicurer\`a che le immagini visualizzate corrispondano con quanto disegnato dall'utente. 
+\item Lettura del codice per controllare che le norme di codifica siano rispettate
+\item Analisi del codice alla ricerca di eventuali errori. Vista la particolare dispendiosit\`a di questa modalit\`a di verifica, essa verr\'a applicata unicamente a sezioni critiche del codice.
+\end{enumerate}
+
 
 \subsection{Risorse necessarie, risorse disponibili}
 \paragraph{Documenti} Ogni documento sar\`a verificato da un revisore. Sarebbe auspicabile che a documenti particolarmente importanti, come ad esempio la definizione di prodotto, venissero assegnati due revisori, ma i costi eccessivi associati a una tale scelta non lo permettono.
 \paragraph{Codice} Il numero di verificatori da assegnare ad un dato modulo di codice varieranno in base alle esigenze del modulo stesso.
 
 \subsection{Strumenti, tecniche, metodi}
-Per il tracciamento degli errori e delle loro soluzioni ci si avvarr\`a degli strumenti di bug tracking messi a disposizione da \textit{SourceForge} e dagli strumenti di versionamento in uso. \linebreak
-Le discussioni tra i verificatori e gli autori delle modifiche avverrano tramite il sistema di commenti di \textit{GitHub} qualora si tratti di annotazioni di scarsa entit\`a, mentre discussioni pi\`u rilevanti avverranno nel gruppo di discussione interno all'azienda. Entrambi i sistemi mantengono in modo persistente le informazioni, permettendo dei riferimenti futuri alle stesse.
-\linebreak
-I verificatori saranno avvisati della necessit\`a di un'attivit\`a di verifica tramite un messaggio nel gruppo di discussione interno. 
+Per il tracciamento degli errori e delle loro soluzioni ci si avvarr\`a degli strumenti di bug tracking messi a disposizione da \textit{SourceForge} e dagli strumenti di versionamento in uso.
+Le discussioni tra i verificatori e gli autori delle modifiche avverrano tramite il sistema di commenti di \textit{GitHub} qualora si tratti di annotazioni di scarsa entit\`a, mentre discussioni pi\`u rilevanti avverranno nel gruppo di discussione interno all'azienda. Entrambi i sistemi mantengono in modo persistente le informazioni, permettendo dei riferimenti futuri alle stesse. I verificatori saranno avvisati della necessit\`a di un'attivit\`a di verifica tramite un messaggio nel gruppo di discussione interno. 
 
 
 \section{Gestione amministrativa della revisione}
