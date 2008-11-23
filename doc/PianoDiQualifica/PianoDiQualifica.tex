@@ -8,6 +8,7 @@
 \begin{tabular}{|c|c|c|c|}
 \hline
 Versione & Data & Descrizione & Autore \\ \hline 
+0.1 & 23/11/2008 & Piano di qualifica per la progettazione & Dissegna Stefano \\ \hline
 0.0 & 22/11/2008 & Bozza iniziale & Dissegna Stefano \\ \hline 
 \end{tabular} 
 
@@ -38,7 +39,22 @@ Le attivit\`a di verifica si dovranno svolgere immediatamente in seguito ad una 
 \item il documento risolva il problema corretto
 \end{enumerate}
 \paragraph{Verifica del progetto architetturale}
-
+Il progetto architetturale dovr\`a essere controllato secondo le seguenti caratteristiche:
+\begin{enumerate}
+\item Aderenza alle norme di progetto.
+\item Completezza: per controllare l'aderenza ai requisiti, dovr\`a essere verificata la tracciabilit\`a tra ogni requisito e la parte, o le parti, che lo soddisfano nel progetto.
+\item Sufficienza: ogni elemento del progetto dovr\`a o soddissfare un requisito o essere una dipendenza, diretta o indiretta, di un elemento necessario a soddisfare un requisito, in modo che nessuna parte del progetto risulti superflua.
+\item Estendibilit\`a e manutenabilit\`a: il progetto dovr\`a prevedere la possibilt\`a che il prodotto possa essere facilmente esteso e manutenuto in futuro.
+\item Efficienza: sebbene si ritenga che l'ottimizzazione prematura vada evitata il pi\`u possibile, considerata la necessit\`a da parte dell'applicazione di un server, la fase di progettazione dovr\`a assicurare che il server sia in grado di gestire un numero elevato di client contemporaneamente senza che l'utente noti problemi di performance.
+\end{enumerate}
+\paragraph{Verifica del progetto di dettaglio}
+Il progetto di dettaglio dovr\`a soddisfare i seguenti aspetti:
+\begin{enumerate}
+\item Aderenza alle norme di progetto.
+\item Completezza: ogni elemento presente nel progetto architetturale dovr\`a essere presente anche nel progetto di dettaglio. Non dovranno inoltre essere presenti delle lacune tra un elemento del progetto e la sua effettiva realizzazione.
+\item Sufficienza: non dovranno essere presenti elementi non strettamente necessari alla realizzazione del progetto architetturale.
+\item Applicabilit\`a: il progetto dovr\`a essere realizzabile dai programmatori usando le tecnologie previste.
+\end{enumerate}
 \paragraph{Verifica del codice}
 La verifica del codice si compone dei seguenti aspetti:
 \begin{enumerate}
