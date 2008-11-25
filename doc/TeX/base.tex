@@ -7,6 +7,7 @@
 \usepackage{amsfonts}
 \usepackage{amssymb}
 \usepackage{color}
+\usepackage{xcolor}
 \usepackage{hyperref}
 \usepackage[all]{hypcap}
 \usepackage{ifthen}
@@ -16,6 +17,8 @@
 \usepackage{graphicx}
 \DeclareGraphicsExtensions{.jpg,.png}
 
+\newcommand{\ajax}{AJAXDRAW}
+\newcommand{\sito}{\href{http://ajaxdraw.sourceforge.net}{http://ajaxdraw.sourceforge.net}}
 
 \setlength{\parindent}{0pt} %settato indentazione di default 
 \setlength{\headheight}{3cm} %settato grandezza header...in altre parole, quanto distanzio il doc dall'intestazione
@@ -39,12 +42,13 @@
 \newcommand{\insertversion}{0.0} %definisco il nuovo comando per inserire la versione
 
 
-\lhead{  \begin{Huge}AjaxDraw \end{Huge} \\ 
-					\begin{Large}	Software per il Disegno Grafico\\ in Tecnologie Web \end{Large}  
-			\\ versione documento: \insertversion\ del \today} %setto l'intestazione sx
-
+\lhead{  \begin{Huge} \ajax \end{Huge} \\  %intestazione di sinistra
+					%\begin{Large}	Software per il Disegno Grafico\\ in Tecnologie Web \end{Large}  
+					\begin{normalsize}\sito \end{normalsize}
+			%\\ versione documento: \insertversion\ del \today} %setto l'intestazione sx
+		}
 \rhead{ %includo logo nell'intestazione dx
-	 	\includegraphics[scale=0.5]{logo} 
+	 	\includegraphics[scale=0.5]{logo}  
 }
 
 
@@ -86,8 +90,8 @@
 
 \newcommand{\TITOLODOC}{Titolo}
 
-
-\cfoot{ \TITOLODOC \\ AjaxDraw | e-mail:    \href{ mailto:webshape.contact@gmail.com}{ webshape.contact@gmail.com}  }
+%footer centrale
+\cfoot{ \TITOLODOC \\  E-mail:    \href{ mailto:webshape.contact@gmail.com}{ webshape.contact@gmail.com}  }
 
 %INSERIMENTO IMMAGINI
 \newcommand{\imagerealsize}[1]{\vspace{20pt} \includegraphics{#1} }
@@ -98,20 +102,20 @@
 
 \hypersetup{
     %bookmarks=true,         % show bookmarks bar?
-   % unicode=false,          % non-Latin characters in Acrobat’s bookmarks
-%    pdftoolbar=true,        % show Acrobat’s toolbar?
- %   pdfmenubar=true,        % show Acrobat’s menu?
-   % pdffitwindow=true,      % page fit to window when opened
+    %unicode=false,          % non-Latin characters in Acrobat’s bookmarks
+	%pdftoolbar=true,        % show Acrobat’s toolbar?
+	%pdfmenubar=true,        % show Acrobat’s menu?
+    %pdffitwindow=true,      % page fit to window when opened
     %pdftitle={My title},    % title
     %pdfauthor={Author},     % author
     %pdfsubject={Subject},   % subject of the document
     %pdfnewwindow=true,      % links in new window
     %pdfkeywords={keywords}, % list of keywords
-    colorlinks=true,       % false: boxed links; true: colored links
-    linkcolor=red,          % color of internal links
+    colorlinks=true,         % false: boxed links; true: colored links
+    linkcolor=black,           % color of internal links
     %citecolor=green,        % color of links to bibliography
     %filecolor=magenta,      % color of file links
-    urlcolor=cyan           % color of external links
+    urlcolor=teal    % color of external links
 %	linktocpage=false;
 }
 
