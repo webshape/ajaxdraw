@@ -1,8 +1,49 @@
-\documentclass[a4paper]{article}
-
+\input{base} %BASE!!!
+\usepackage{multirow}
 \begin{document}
 
-\title{Aspettative}
+\renewcommand{\insertversion}{0.3} %INSERIRE LA VERSIONE QUI DENTRO STILE x.x.xx
+\renewcommand{\TITOLODOC}{Decomposizione del Capitolato in Aspettative} %INSERIRE IL TITOLO DEL DOCUMENTO DA FAR COMPARIRE A PIE PAGINA
+
+\begin{titlepage}
+\begin{center}
+	\begin{Large}	\today \end{Large}
+\end{center}
+
+\vspace{20pt}
+
+\begin{center}
+	\begin{Huge}
+				\textbf{AJAXDRAW}
+	\end{Huge}
+\end{center}			
+
+\begin{center}
+	\begin{large}
+				\textbf{Software per il Disegno Grafico\\ in Tecnologie Web}
+	\end{large}
+\end{center}			
+
+\vspace{20pt}
+
+\begin{center}
+\includegraphics[width=150pt]{logo}
+\end{center}
+
+\vspace{160pt}
+\begin{center} %INSERIRE ALL'INTERNO IL TITOLO DOCUMENTO CHE COMPARIRA NELLA PAGINA INIZIALE				
+	\begin{Huge}
+				\textbf{\TITOLODOC}
+	\end{Huge}
+			\\
+\end{center}
+\vspace{100pt}
+\begin{center}
+Versione: \insertversion
+\end{center}
+\end{titlepage}
+
+\newpage
 
 \section{Decomposizione del Capitolato in Aspettative}
 
@@ -11,7 +52,7 @@
 \item Il sistema AJAXDRAW dovra' avere caratteristiche atte a poter elaborare figure/linee/testi vettoriali di vario genere.
 \item Il sistema sara' in grado di fornire all'utente le seguenti funzioni:
 
-\begin{list}{}{}
+\begin{list}{-}{}
 \item selezione
 \item linea retta/curva
 \item zoom
@@ -21,35 +62,35 @@
 \item testo
 \end{list}
 
-\item Il sistema permetterà all'utente di:
+\item Il sistema permettera' all'utente di:
 
-\begin{list}{}{}
+\begin{list}{-}{}
 \item cambiare il colore di riempimento
 \item cambiare il colore del bordo
 \item cambiare il colore della linea
-\item cambiare l'opacità
+\item cambiare l'opacita'
 \item cambiare il posizionamento all'interno dell'area di disegno
 \item ridimensionare gli oggetti
 \end{list}
 
-\item Il sistema sarà in grado di leggere e salvare il contenuto dell'area di disegno in formato SVG.
-\item Il sistema sarà implementato seguendo gli standard del linguaggio di markup HTML 5. Il software dovrà quindi essere in grado di funzionare perfettamente in quei browser che implementano gli standard HTML 5 (Firefox, Safari, Opera e Chrome). 
-\item Il software utilizzerà il tag “canvas” appositamente creato per l'elaborazione del disegno vettoriale su web.
-\item Il software AJAXDRAW deve fornire la possibilità di attivare un aiuto (manuale), per l’utilizzazione del sistema. 
+\item Il sistema sara' in grado di leggere e salvare il contenuto dell'area di disegno in formato SVG.
+\item Il sistema sara' implementato seguendo gli standard del linguaggio di markup HTML 5. Il software dovra' quindi essere in grado di funzionare perfettamente in quei browser che implementano gli standard HTML 5 (Firefox, Safari, Opera e Chrome). 
+\item Il software utilizzera' il tag "canvas" appositamente creato per l'elaborazione del disegno vettoriale su web.
+\item Il software AJAXDRAW deve fornire la possibilita' di attivare un aiuto (manuale), per l'utilizzazione del sistema. 
 \item Il sistema AJAXDRAW deve fornire un manuale per chiunque voglia estendere l'applicazione. 
 \end{enumerate}
 
 \subsection{Altamente Desiderabili}
 \begin{enumerate}
-\item Il sistema sarà pubblicato sul sito “www.sourceforge.net”, in conformità con i relativi requisiti di natura open-source, per favorire la continuità del prodotto risultante.
+\item Il sistema prevede la pubblicazione sul sito "www.sourceforge.net", in conformita' con i relativi requisiti di natura open-source, per favorire la continuita' del prodotto risultante.
 \end{enumerate}
 
 \subsection{Facolative}
 \begin{enumerate}
-\item Il sistema AJAXDRAW prevede di avvicinarsi il più possibile al programma client (open e free) “Inkscape”. 
+\item Il sistema AJAXDRAW prevede di avvicinarsi il piu' possibile al programma client (open e free) "Inkscape". 
 \item Il sistema AJAXDRAW prevede di implementare le seguenti funzioni:
 
-\begin{list}{}{}
+\begin{list}{-}{}
 \item disegno a mano libera
 \item spirali
 \item disegno calligrafico
@@ -57,8 +98,8 @@
 \item curve di bezier
 \end{list}
 
-\item Il sistema  AJAxDraw prevede di implementare l'utilizzo della libreria “excanvas”, open source disponibile su googlecode, la compatibilità con i browser che non implementano a pieno HTML 5 (p. es. Internet Explorer).
-         Usufruendo della libreria“excanvas”, open source disponibile su googlecode, creata appositamente per la simulazione degli oggetti canvas, sarà possibile far funzionare il disegnatore web su questi browser. 
+\item Il sistema  AJAXDRAW prevede di implementare l'utilizzo della libreria "excanvas", open source disponibile su googlecode, la compatibilita' con i browser che non implementano a pieno HTML 5 (p. es. Internet Explorer).
+         Usufruendo della libreria "excanvas", open source disponibile su googlecode, creata appositamente per la simulazione degli oggetti canvas, sara' possibile far funzionare il disegnatore web su questi browser. 
 \end{enumerate}
 
 \end{document}
