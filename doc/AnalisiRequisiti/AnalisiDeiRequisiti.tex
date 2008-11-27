@@ -1,0 +1,260 @@
+\input{base} %BASE!!!
+\usepackage{multirow}
+\begin{document}
+
+\renewcommand{\insertversion}{0.0} %INSERIRE LA VERSIONE QUI DENTRO STILE x.x.xx
+\renewcommand{\TITOLODOC}{Analisi dei Requisiti} %INSERIRE IL TITOLO DEL DOCUMENTO DA FAR COMPARIRE A PIE PAGINA
+
+\begin{titlepage}
+\begin{center}
+	\begin{Large}	\today \end{Large}
+\end{center}
+
+\vspace{20pt}
+
+\begin{center}
+	\begin{Huge}
+				\textbf{AJAXDRAW}
+	\end{Huge}
+\end{center}			
+
+\begin{center}
+	\begin{large}
+				\textbf{Software per il Disegno Grafico\\ in Tecnologie Web}
+	\end{large}
+\end{center}			
+
+\vspace{20pt}
+
+\begin{center}
+\includegraphics[width=150pt]{logo}
+\end{center}
+
+\vspace{160pt}
+\begin{center} %INSERIRE ALL'INTERNO IL TITOLO DOCUMENTO CHE COMPARIRA NELLA PAGINA INIZIALE				
+	\begin{Huge}
+				\textbf{\TITOLODOC}
+	\end{Huge}
+			\\
+\end{center}
+\vspace{220pt}
+\begin{center}
+Versione: \insertversion
+\end{center}
+\end{titlepage}
+
+\newpage
+
+
+\begin{center} %INSERIRE ALL'INTERNO IL TITOLO DOCUMENTO CHE COMPARIRA NELLA PAGINA INIZIALE
+	\begin{Huge}	
+				\textbf{\TITOLODOC}
+			\\
+	\end{Huge}
+\end{center}
+\parindent=18pt %settato indentazione di default 
+\section*{\LARGE Sommario:} %SEZIONE SOMMARIO
+Questo documento si prefigge di presentare lo studio effettuato da WebShape riguardo al prodotto software relativo al capitolato d'appalto denominato C04 (\blue{\ajax}, Software per il Disegno Grafico in Tecnologie Web).\\
+Tale studio \`e mirato alla comprensione dei bisogni espressi nel capitolato e alla loro formalizzazione e classificazione in requisiti informatici. In particolare quelli funzionali individuati nel documento verranno espressi anche mediante casi d'uso, sia narrativi che grafici. Questo documento avr\`a valore contrattuale.
+
+\section*{\LARGE Stato del documento:}
+	Formale Esterno
+\hangindent=0pt
+
+\section*{\LARGE Redazione:}
+	\begin{table}[!h]
+		\begin{center}
+			\begin{tabular}
+				{|c|c|}
+				\hline
+				%%%%%%%%%%%%%%INTESTAZIONE COLONNE%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+				\multicolumn{2}{|c|}{ \textbf{Redazione} } \\
+				\hline
+				\textbf{Fase} & \textbf{Redattori} \\
+				%%%%%%%%%%%%%%FINE INTESTAZIONE COLONNE%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+				\hline
+				%%%%%%%%%%% PARTE DA MODIFICARE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%		
+				\multirow{2}{*}{Pre-RR} & Bizzotto Piero\\
+										& Dissegna Stefano\\
+				\hline
+				\multirow{2}{*}{RR-RPP} & Ciccozzi Michele\\
+										& Marangoni Andrea\\
+				\hline
+				%%%%%%%%%%% FINE PARTE DA MODIFICARE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+			\end{tabular}
+			\caption{Lista Redattori} %INSERIRE DIDASCALIA - SE NECESSARIA - 
+			\label{tabredazione}
+		\end{center}
+	\end{table}	
+\section*{\LARGE Approvazione:}
+%	\begin{elencopuntato}[\normindent]
+%		\item Beggiato Alessandro
+%		\item Bragagnolo Emanuele
+%	\end{elencopuntato}
+\begin{table}[!h]
+	\begin{center}
+		\begin{tabular}
+			{|c|c|}
+			\hline
+			%%%%%%%%%%%%%%INTESTAZIONE COLONNE%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+			\multicolumn{2}{|c|}{ \textbf{Approvazione} } \\
+			\hline
+			\textbf{Fase} & \textbf{Approvatori} \\
+			%%%%%%%%%%%%%%FINE INTESTAZIONE COLONNE%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+			\hline
+			%%%%%%%%%%% PARTE DA MODIFICARE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%		
+			\multirow{2}{*}{Pre-RR} &  \\
+									&  \\
+			\hline
+			\multirow{2}{*}{RR-RPP} & \\
+									& \\
+			\hline
+			%%%%%%%%%%% FINE PARTE DA MODIFICARE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+		\end{tabular}
+		\caption{Lista Approvatori} %INSERIRE DIDASCALIA - SE NECESSARIA - 
+		\label{tabapprovazione}
+	\end{center}
+\end{table}
+\textbf{}
+
+\section*{\LARGE Lista di Distribuzione:}
+
+	\begin{elenconumerato}{\normindent}
+		\item WebShape \footnote{Il termine WebShape designa una collettivit\`a di individui come da organigramma contenuto nel piano di progetto fornito in allegato al presente documento}
+		\item I committenti Vardanega Tullio e Conte Renato in rappresentanza \\  dell'azienda proponente Zucchetti SPA
+	\end{elenconumerato}
+
+\newpage
+
+\section*{\LARGE Registro delle Modifiche:}
+
+\begin{center}
+	\begin{table}[h]
+		  \begin{tabular*}
+			{1\textwidth}%
+					 {@{\extracolsep{\fill}}|p{0.1\textwidth}|p{0.55\textwidth}|p{0.25\textwidth}|}
+		 \hline
+%%%%%%%%%%%%%%INTESTAZIONE COLONNE%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+			\textbf{Versione}  & \textbf{Descrizione} & \textbf{Autore} \\
+%%%%%%%%%%%%%%FINE INTESTAZIONE COLONNE%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+		 \hline
+%%%%%%%%%%% PARTE DA MODIFICARE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+		
+		\hline	
+    	 	0.0 & 		 26$\slash$11$\slash$2008 Strutturazione del documento. & Bizzotto Piero \\
+
+		\hline %%FINE RIGA
+%%%%%%%%%%% FINE PARTE DA MODIFICARE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+		\end{tabular*}
+	\caption{Registro delle modifiche} %INSERIRE DIDASCALIA - SE NECESSARIA - 
+	\label{tab:modifiche}
+	\end{table}
+\end{center}
+
+\newpage
+\thispagestyle{fancy}
+\tableofcontents
+\thispagestyle{fancy}
+\newpage
+\parskip=-5pt
+
+\sezione{Introduzione}
+
+\subsezione{Scopo del documento}
+Il presente documento \`e indirizzato a fornire una descrizione in grado di identificare il prodotto software AJAXDRAW, soggetto a gara d'appalto a cui WebShape intende concorrere.\\
+Il documento elenca pertanto i requisiti, impliciti, espliciti, funzionali e non funzionali, individuati per il prodotto di cui sopra.
+%Si intende anche fornire una base per definire gli accordi con il cliente.
+
+\subsezione{Scopo del prodotto}
+AJAXDRAW \`e inteso principalmente come "Proof of Concept", ossia un'incompleta realizzazione di uno strumento grafico completamente basato sul web, con lo scopo di dimostrarne la fattibilit\`a o la fondatezza di alcuni principi o concetti costituenti. In particolare permetter\`a a chiunque di poter disegnare, tramite dei tools appositamente forniti, delle immagini sulla falsariga del software open-source per il disegno vettoriale Inkscape.
+
+\subsezione{Riferimenti normativi}
+
+Il presente documento \`e redatto in accordo con le norme interne di WebShape, raccolte nel documento NormeDiProgetto.pdf, consultabile per conoscenza dal repository pubblico al quale WebShape si appoggia per i suoi progetti.
+
+\sezione{Descrizione generale}
+
+\subsezione{Contesto d'uso del prodotto}
+
+\subsubsezione{Processi produttivi e modalit\`a d'uso}
+Il sistema sar\`a costituito da una pagina web eseguibile con uno qualsiasi dei pi\`u diffusi browsers attualmente esistenti.
+
+\subsubsezione{Piattaforme d'esecuzione,\\ interfacciamento con l'ambiente di installazione e uso}
+Il prodotto \`e destinato all'uso da parte di qualunque persona abbia installato nel proprio computer uno dei principali internet browsers, quindi \`e possibile garantire il funzionamento su ogni ambiente di esecuzione. (Si rimanda alla lista dei requisiti in sezione \ref{listarequisiti}).
+
+\subsezione{Funzioni del prodotto}
+AJAXDRAW permetter\`a di avere un software di disegno grafico in grado di poter elaborare figure vettoriali e complesse direttamente sul proprio browser web. Le caratteristiche di tale applicazione saranno facilmente utilizzabili dall'utente, che in particolare potr\`a scegliere, tramite pulsanti posizionati su una toolbar, quali azioni effettuare, come disegno di primitive, inserimento di testo, spostamento degli oggetti.\\
+WebShape si riserva di decidere in un secondo momento se implementare funzionalit\`a aggiuntive pi\`u complesse.\\
+L'applicativo permetter\`a l'esportazione del disegno creato nel formato SVG, diventato una raccomandazione (standard) del World Wide Web Consortium.
+
+\subsezione{Caratteristiche degli utenti}
+\label{definizione_utente}
+Gli utenti previsti per AJAXDRAW sono normali utilizzatori di Internet, quindi persone dalle varie capacit\`a tecniche, dalle pi\`u basse alle pi\`u alte. Si assume che l'utente finale conosca le funzioni basilari di un software di grafica, quindi si danno per noti concetti di disegno di primitive, inserimento di testo, selezione di oggetti, in quanto contenuti al giorno d\'oggi nella stragrande maggioranza dei software pi\`u usati.
+
+\subsezione{Vincoli generali}
+Il software che WebShape si impegna a sviluppare sar\`a soggetto a licenza \blue{GPL}.
+
+\subsezione{Dipendenze}
+Si assume che i sistemi in cui verr\`a eseguito AJAXDRAW siano dotati di uno tra i browsers Mozilla Firefox, Google Chrome, Apple Safari, Opera e Internet Explorer nelle loro pi\`u recenti incarnazioni.
+
+\sezione{Glossario}
+Come previsto dalle norme interne di WebShape, tutti i documenti fanno riferimento ad un unico glossario (Glossario.), fornito in allegato al presente documento.
+
+\sezione{Casi d'uso}
+Vengono riportati di seguito i casi d'uso, sia grafici che narrativi, utilizzati durante l'analisi dei requisiti effettuata da WebShape. Lo scopo dei casi d'uso \`e quello di permettere una chiara e semplice comprensione dei bisogni del cliente percepiti dall'azienda. Per una lista esaustiva dei requisiti individuati si rimanda comunque alla lista dei requisiti di sezione \ref{listarequisiti}, cui faranno riferimento anche gli stessi casi d'uso narrativi.
+
+\subsezione{Vista UC0 - toplevel}
+Il grafico di figura \ref{uc0} illustra le funzionalit\`a di AJAXDRAW a livello di astrazione massimo. I paragrafi seguenti descrivono narrativamente ogni caso d'uso. I casi d'uso pi\`u rilevanti saranno espansi in grafici pi\`u dettagliati, a loro volta corredati di casi d'uso narrativi.
+
+\begin{figure}[!ht]
+\centering
+\vspace{20pt} 
+%\includegraphics[width=1\textwidth]{UC0}
+\caption{UC0 - funzionalit\`a dell'applicazione}
+\label{uc0}
+\end{figure}
+
+%\baselineskip=-10pt
+%\baselinestretch=0pt
+
+
+
+\
+%inizio requisiti
+\sezione{Lista dei requisiti}
+\label{listarequisiti}
+I requisiti qui elencati sono suddivisi per tipologia (funzionale, di qualit\`a, d'ambiente); 
+per ogni tipologia \`e presente un'ulteriore classificazione per classe di spazio di negoziato (obbligatorio, desiderabile, facoltativo). 
+\subsezione{Requisiti funzionali (RF)}
+\subsubsezione{Obbligatori (RFO)}
+\begin{elenconumerato}[\textbf{RFO-}]{\subsubsecindent}
+\item{AJAXDRAW permette di disegnare linee rette.}
+\item{AJAXDRAW permette di disegnare curve.}
+\item{AJAXDRAW permette di effettuare uno zoom in avanti e all'indietro nel disegno.}
+\item{Per ogni elemento disegnato, AJAXDRAW permette all'utente di selezionare e spostare tale elemento.}
+\item{AJAXDRAW permette di disegnare quadrilateri di qualsiasi dimensione(quadrata o rettangolare.}
+\item{AJAXDRAW permette all'utente di disegnare cerchi o ellissi.}
+\item{AJAXDRAW permette di disegnare poligoni regolari di qualsiasi dimensione e numero di lati.}
+\item{AJAXDRAW permette di aggiungere caselle di testo al documento. }
+\item{AJAXDRAW permette all'utente di salvare le configurazioni che crea nel formato SVG.}
+\item{AJAXDRAW permette di cambiare il colore di riempimento, del bordo, delle linee, dell'opacità degli oggetti disegnati.}
+\item{AJAXDRAW permette il ridimensionamento degli oggetti disegnati.}
+\item{AJAXDRAW permette all'utente di selezionare ognuna delle funzionalit\`a suddette tramite una comoda barra degli strumenti.}
+\item{Qualora suddette funzioni siano regolate da parametri, AJAXDRAW permette all'utente di impostarli.}
+\item{SiGeM mostra l'evolvere della simulazione in modo dettagliato all'utente, attraverso un sistema testuale.}
+\item{SiGeM permette, quando la simulazione non sia attiva ,di ottenere ulteriori statistiche sulla sua esecuzione. Tali statistiche sono riportate in tabella \ref{tabstatistiche}.}
+\end{elenconumerato}
+
+%requisiti desiderabili
+\subsubsezione{Desiderabili (RFD)}
+\begin{elenconumerato}[\textbf{RFD-}]{\subsubsecindent}
+\item{AJAXDRAW }
+\end{elenconumerato}
+\subsubsezione{Facoltativi (RFF)}
+\begin{elenconumerato}[\textbf{RFF-}]{\subsubsecindent}
+\item{AJAXDRAW}
+\end{elenconumerato}
+
+
+\newpage
+\end{document}
