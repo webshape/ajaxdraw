@@ -349,7 +349,7 @@ Si rimanda a \ref{ucselezionaemodifica} per una descrizione approfondita.
 %inizio requisiti
 \sezione{Lista dei requisiti}
 \label{listarequisiti}
-I requisiti qui elencati sono suddivisi per tipologia (funzionale, di qualit\`a, d'ambiente); 
+I requisiti qui elencati sono suddivisi per tipologia (funzionale, prestazionale, di qualit\`a, di interfacciamento, d'ambiente); 
 per ogni tipologia \`e presente un'ulteriore classificazione per classe di spazio di negoziato (obbligatorio, desiderabile, facoltativo). 
 \subsezione{Requisiti funzionali (RF)}
 \subsubsezione{Obbligatori (RFO)}
@@ -385,6 +385,13 @@ per ogni tipologia \`e presente un'ulteriore classificazione per classe di spazi
 \begin{elenconumerato}[\textbf{RFF-}]{\subsubsecindent}
 \end{elenconumerato}
 
+%requisiti prestazionali
+\subsezione{Requisiti prestazionali}
+\subsubsezione{Obbligatori (RPO)}
+\begin{elenconumerato}[\textbf{RPO-}]{\subsubsecindent}
+\item L'utente non deve notare rallentamenti durante l'utilizzo dell'applicazione che non siano direttamente imputabili alla lentezza della connessione.
+\end{elenconumerato}
+
 %Requisiti di Qualità
 \subsezione{Requisiti di qualit\`a (RQ)}	
 \subsubsezione{Obbligatori (RQO)}
@@ -398,7 +405,6 @@ per ogni tipologia \`e presente un'ulteriore classificazione per classe di spazi
 \item Il prodotto non necessita di nessuna installazione, basandosi su una pagina web HTML.
 \item Il server dev'essere in grado di gestire pi\`u utenti in parallelo in modo indipendente.
 \item L'eventuale richiesta di uscita dal programma da parte dell'utente deve avere sempre la precedenza sulle altre attivit\`a che il programma deve compiere.
-\item L'utente non deve notare rallentamenti durante l'utilizzo dell'applicazione che non siano direttamente imputabili alla lentezza della connessione.
 \item Il funzionamento dell'applicazione dev'essere indipendente dalla risoluzione dello schermo dell'utente.
 \end{elenconumerato}
 
@@ -418,7 +424,7 @@ per ogni tipologia \`e presente un'ulteriore classificazione per classe di spazi
 \end{elenconumerato}
 
 %inizio requisiti d'ambiente
-\subsezione{Requisiti di ambiente (RA)}
+\subsezione{Requisiti d'ambiente (RA)}
 \subsubsezione{Obbligatori (RAO)}
 \begin{elenconumerato}[\textbf{RAO-}]{\subsubsecindent}
 \item Il prodotto \`e pensato per funzionare su un internet browser.
