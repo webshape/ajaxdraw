@@ -121,7 +121,7 @@ Tale studio \`e mirato alla comprensione dei bisogni espressi nel capitolato e a
 
 	\begin{elenconumerato}{\normindent}
 		\item WebShape \footnote{Il termine WebShape designa una collettivit\`a di individui come da organigramma contenuto nel piano di progetto fornito in allegato al presente documento}
-		\item I committenti Vardanega Tullio e Conte Renato in rappresentanza \\  dell'azienda proponente Zucchetti SPA
+		\item I committenti Conte Renato e Vardanega Tullio in rappresentanza \\  dell'azienda proponente Zucchetti SPA
 	\end{elenconumerato}
 
 \newpage
@@ -203,7 +203,7 @@ Come previsto dalle norme interne di WebShape, tutti i documenti fanno riferimen
 \sezione{Casi d'uso}
 Vengono riportati di seguito i casi d'uso, sia grafici che narrativi, utilizzati durante l'analisi dei requisiti effettuata da WebShape. Lo scopo dei casi d'uso \`e quello di permettere una chiara e semplice comprensione dei bisogni del cliente percepiti dall'azienda. Per una lista esaustiva dei requisiti individuati si rimanda comunque alla lista dei requisiti di sezione \ref{listarequisiti}, cui faranno riferimento anche gli stessi casi d'uso narrativi.
 
-\subsezione{Interazione con l'applicazione}
+\subsezione{Vista UC0 - Interazione con l'applicazione}
 Il seguente grafico descrive le interazioni tra l'utente finale e l'applicazione da un punto di vista ad alto livello. Le interazioni principali verranno poi espanse.
 \begin{figure}[!ht]
 \centering
@@ -212,101 +212,101 @@ Il seguente grafico descrive le interazioni tra l'utente finale e l'applicazione
 \caption{funzionalit\`a dell'applicazione}
 \end{figure}
 
-Segue ora una descrizione testuale dei casi d'uso presentati dal grafico.
+\paragraph{Segue ora una descrizione testuale dei casi d'uso presentati dal grafico.}
 
-\subsubsezione{Caso d'uso: pulisci \underline{canvas}}
+\subsubsezione{UC1 Caso d'uso: pulisci \underline{canvas}}
 \paragraph{Attori coinvolti} Utente
 \paragraph{Scopo e descrizione sintetica}
 L'utente pu\`o cancellare totalmente quanto finora disegnato.
 \paragraph{Flusso di eventi}
-\begin{enumerate}
+\begin{elenconumerato}[\textbf{}]{\subsubsecindent}
 \item L'utente seleziona il comando per pulire il canvas. 
 \item Il canvas viene completamente cancellato.
-\end{enumerate}
+\end{elenconumerato}
 \paragraph{Precondizioni} Il canvas \'e visibile.
 \paragraph{Postcondizioni} Il canvas \'e vuoto.
 
-\subsubsezione{Caso d'uso: visualizza manuale}
+\subsubsezione{UC2 Caso d'uso: visualizza manuale}
 \paragraph{Attori coinvolti} Utente
 \paragraph{Scopo e descrizione sintetica}
 L'utente pu\`o visualizzare il manuale dell'applicazione in linea.
 \paragraph{Flusso di eventi}
-\begin{enumerate}
+\begin{elenconumerato}[\textbf{}]{\subsubsecindent}
 \item L'utente seleziona il comando per visualizzare il manuale. 
 \item Il manuale viene visualizzato
-\end{enumerate}
+\end{elenconumerato}
 \paragraph{Precondizioni}
 \paragraph{Postcondizioni} Il manuale utente \'e visualizzato
 
-\subsubsezione{Caso d'uso: richiedi manuale}
+\subsubsezione{UC3 Caso d'uso: richiedi manuale}
 \paragraph{Attori coinvolti} Server HTTP
 \paragraph{Scopo e descrizione sintetica}
 La/le pagina/e web contenenti il manuale utente sono gestite dal server HTTP.
 \paragraph{Flusso di eventi}
-\begin{enumerate}
+\begin{elenconumerato}[\textbf{}]{\subsubsecindent}
 \item Il sistema richiede la pagina web contenente il manuale utente al server HTTP.
 \item Il server HTTP ritorna la pagina richiesta
-\end{enumerate}
+\end{elenconumerato}
 \paragraph{Precondizioni} L'utente ha richiesto al sistema la visualizzazione del manuale o di parte di esso.
 \paragraph{Postcondizioni} Il sistema dispone della pagina web richiesta.
 
-\subsubsezione{Caso d'uso: sposta visualizzazione}
+\subsubsezione{UC4 Caso d'uso: sposta visualizzazione}
 \paragraph{Attori coinvolti} Utente
 \paragraph{Scopo e descrizione sintetica}
 Quando il canvas \'e troppo grande per essere completamente visualizzato, l'utente pu\`o spostare la visualizzazione per vedere le diverse parti del canvas.
 \paragraph{Flusso di eventi}
-\begin{enumerate}
+\begin{elenconumerato}[\textbf{}]{\subsubsecindent}
 \item L'utente seleziona la parte del canvas da visualizzare
 \item Il sistema visualizza la parte di canvas selezionata al centro dello schermo.
-\end{enumerate}
+\end{elenconumerato}
 \paragraph{Precondizioni} Il canvas non \'e completamente visualizzato a schermo.
 \paragraph{Postcondizioni} L'utente vede su schermo la parte di canvas desiderata.
 
-\subsubsezione{Caso d'uso: aumenta zoom}
+\subsubsezione{UC5 Caso d'uso: aumenta zoom}
 \paragraph{Attori coinvolti} Utente
 \paragraph{Scopo e descrizione sintetica} 
 Il sistema permette all'utente di ingrandire il canvas ed il suo contenuto mantendendo le proporzioni.
 \paragraph{Flusso di eventi}
-\begin{enumerate}
+\begin{elenconumerato}[\textbf{}]{\subsubsecindent}
 \item L'utente seleziona, esplicitamente o implicitamente, la parte di canvas da mantenere al centro della visualizzazione.
 \item L'utente seleziona di quanto aumentare lo zoom.
 \item Il sistema ingrandisce il canvas di quanto richiesto
 \item Il sistema accentra la visualizzazione dove richiesto dall'utente
-\end{enumerate}
+\end{elenconumerato}
 \paragraph{Precondizioni} Il canvas \'e visualizzato
 \paragraph{Postcondizioni} Il canvas \'e ingrandito
 
-\subsubsezione{Caso d'uso: diminuisci zoom}
+\subsubsezione{UC6 Caso d'uso: diminuisci zoom}
 \paragraph{Attori coinvolti} Utente
 \paragraph{Scopo e descrizione sintetica} 
 Il sistema permette all'utente di rimpicciolire il canvas ed il suo contenuto mantendendo le proporzioni.
 \paragraph{Flusso di eventi}
-\begin{enumerate}
+\begin{elenconumerato}[\textbf{}]{\subsubsecindent}
 \item L'utente seleziona, esplicitamente o implicitamente, la parte di canvas da mantenere al centro della visualizzazione.
 \item L'utente seleziona di quanto diminuire lo zoom.
 \item Il sistema rimpicciolisce il canvas di quanto richiesto
 \item Il sistema accentra la visualizzazione dove richiesto dall'utente
-\end{enumerate}
+\end{elenconumerato}
 \paragraph{Precondizioni} Il canvas \'e visualizzato
 \paragraph{Postcondizioni} Il canvas \'e rimpicciolito
 
-\subsubsezione{Caso d'uso: esporta in SVG}
+\subsubsezione{UC7 Caso d'uso: esporta in SVG}
 \paragraph{Attori coinvolti} Utente
 \paragraph{Scopo e descrizione sintetica} 
 Il sistema permette all'utente di esportare in formato SVG il contenuto del canvas.
 \paragraph{Flusso di eventi}
-\begin{enumerate}
+\begin{elenconumerato}[\textbf{}]{\subsubsecindent}
 \item L'utente seleziona il comando per esportare il canvas in formato SVG.
 \item Il sistema genera un file SVG il cui contenuto corrisponde a quanto correntemente visualizzato nel canvas.
 \item Il sistema rende disponibile all'utente il file generato.
-\end{enumerate}
-\paragraph{Precondizioni} Il canvas \'e visualizzato
+\end{elenconumerato}
+\paragraph{Precondizioni} Il canvas \'e visualizzato.
 \paragraph{Postcondizioni} Il file SVG \'e disponibile all'utente e contiene quanto visualizzato nel canvas.
 
-\subsubsezione{Caso d'uso: disegna}
+\subsubsezione{UC8 Caso d'uso: disegna}
 Si rimanda a \ref{ucdisegna} per una descrizione approfondita.
 
-\subsubsezione{Caso d'uso: seleziona e modifica}
+\subsubsezione{UC9 Caso d'uso: seleziona e modifica}
 Si rimanda a \ref{ucselezionaemodifica} per una descrizione approfondita.
 
 %inizio requisiti
@@ -321,7 +321,7 @@ per ogni tipologia \`e presente un'ulteriore classificazione per classe di spazi
 \item{AJAXDRAW permette di disegnare curve.}
 \item{AJAXDRAW permette di effettuare uno zoom in avanti e all'indietro nel disegno.}
 \item{Per ogni elemento disegnato, AJAXDRAW permette all'utente di selezionare e spostare tale elemento.}
-\item{AJAXDRAW permette di disegnare quadrilateri di qualsiasi dimensione(quadrata o rettangolare.}
+\item{AJAXDRAW permette di disegnare quadrilateri di qualsiasi dimensione(quadrata o rettangolare).}
 \item{AJAXDRAW permette all'utente di disegnare cerchi o ellissi.}
 \item{AJAXDRAW permette di disegnare poligoni regolari di qualsiasi dimensione e numero di lati.}
 \item{AJAXDRAW permette di aggiungere caselle di testo al documento. }
@@ -343,12 +343,9 @@ per ogni tipologia \`e presente un'ulteriore classificazione per classe di spazi
 \end{elenconumerato}
 
 %facoltativi
-\subsubsezione{Facoltativi (RFF)}
-\begin{elenconumerato}[\textbf{RFF-}]{\subsubsecindent}
-
-\item{SiGeM permette all'utente di caricare le configurazioni dei processi generate da SGPEMv2, semplificando la preparazione di simulazioni complesse.}
-\item{SiGeM permette all'utente di scegliere la \blue{politica di schedulazione} dei processi in modo da determinare automaticamente come questi si avvicendano in esecuzione.}
-\end{elenconumerato}
+%\subsubsezione{Facoltativi (RFF)}
+%\begin{elenconumerato}[\textbf{RFF-}]{\subsubsecindent}
+%\end{elenconumerato}
 
 %Requisiti di Qualità
 \subsezione{Requisiti di qualit\`a (RQ)}	
@@ -364,11 +361,11 @@ per ogni tipologia \`e presente un'ulteriore classificazione per classe di spazi
 \end{elenconumerato}
 
 %requisiti di qualita' desiderabili
-\subsubsezione{Desiderabili (RQD)}
-\begin{elenconumerato}[\textbf{RQD-}]{\subsubsecindent}
-\item Nel caso l'utente decida di continuare la sessione di lavoro, il sistema ritorner\`a allo stato in cui era al momento della richiesta di chiusura.
+%\subsubsezione{Desiderabili (RQD)}
+%\begin{elenconumerato}[\textbf{RQD-}]{\subsubsecindent}
+%\item 
 
-\end{elenconumerato}
+%\end{elenconumerato}
 
 
 
