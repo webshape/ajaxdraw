@@ -203,23 +203,67 @@ Come previsto dalle norme interne di WebShape, tutti i documenti fanno riferimen
 \sezione{Casi d'uso}
 Vengono riportati di seguito i casi d'uso, sia grafici che narrativi, utilizzati durante l'analisi dei requisiti effettuata da WebShape. Lo scopo dei casi d'uso \`e quello di permettere una chiara e semplice comprensione dei bisogni del cliente percepiti dall'azienda. Per una lista esaustiva dei requisiti individuati si rimanda comunque alla lista dei requisiti di sezione \ref{listarequisiti}, cui faranno riferimento anche gli stessi casi d'uso narrativi.
 
-\subsezione{Vista UC0 - toplevel}
-Il grafico di figura \ref{uc0} illustra le funzionalit\`a di AJAXDRAW a livello di astrazione massimo. I paragrafi seguenti descrivono narrativamente ogni caso d'uso. I casi d'uso pi\`u rilevanti saranno espansi in grafici pi\`u dettagliati, a loro volta corredati di casi d'uso narrativi.
-
+\subsezione{Interazione con l'applicazione}
+Il seguente grafico descrive le interazioni tra l'utente finale e l'applicazione da un punto di vista ad alto livello. Le interazioni principali verranno poi espanse.
 \begin{figure}[!ht]
 \centering
 \vspace{20pt} 
 %\includegraphics[width=1\textwidth]{UC0}
-\caption{UC0 - funzionalit\`a dell'applicazione}
-\label{uc0}
+\caption{funzionalit\`a dell'applicazione}
 \end{figure}
 
-%\baselineskip=-10pt
-%\baselinestretch=0pt
+Segue ora una descrizione testuale dei casi d'uso presentati dal grafico.
 
+\subsubsezione{Caso d'uso: pulisci \underline{canvas}}
+\paragraph{Attori coinvolti} Utente
+\paragraph{Scopo e descrizione sintetica}
+L'utente pu\`o cancellare totalmente quanto finora disegnato.
+\paragraph{Flusso di eventi}
+\begin{enumerate}
+\item L'utente seleziona il comando per pulire il canvas. 
+\item Il canvas viene completamente cancellato.
+\end{enumerate}
+\paragraph{Precondizioni} Il canvas \'e visibile.
+\paragraph{Postcondizioni} Il canvas \'e vuoto.
 
+\subsubsezione{Caso d'uso: visualizza manuale}
+\paragraph{Attori coinvolti} Utente
+\paragraph{Scopo e descrizione sintetica}
+L'utente pu\`o visualizzare il manuale dell'applicazione in linea.
+\paragraph{Flusso di eventi}
+\begin{enumerate}
+\item L'utente seleziona il comando per visualizzare il manuale. 
+\item Il manuale viene visualizzato
+\end{enumerate}
+\paragraph{Precondizioni}
+\paragraph{Postcondizioni} Il manuale utente \'e visualizzato
 
-\
+\subsubsezione{Caso d'uso: richiedi manuale}
+\paragraph{Attori coinvolti} Server HTTP
+\paragraph{Scopo e descrizione sintetica}
+La/le pagina/e web contenenti il manuale utente sono gestite dal server HTTP.
+\paragraph{Flusso di eventi}
+\begin{enumerate}
+\item Il sistema richiede la pagina web contenente il manuale utente al server HTTP.
+\item Il server HTTP ritorna la pagina richiesta
+\end{enumerate}
+\paragraph{Precondizioni} L'utente ha richiesto al sistema la visualizzazione del manuale o di parte di esso.
+\paragraph{Postcondizioni} Il sistema dispone della pagina web richiesta.
+
+\subsubsezione{Caso d'uso: sposta visualizzazione}
+\paragraph{Attori coinvolti} Utente
+\paragraph{Scopo e descrizione sintetica}
+Quando il canvas \'e troppo grande per essere completamente visualizzato, l'utente pu\`o spostare la visualizzazione per vedere le diverse parti del canvas.
+\paragraph{Flusso di eventi}
+\begin{enumerate}
+\item L'utente seleziona la parte del canvas da visualizzare
+\item Il sistema visualizza la parte di canvas selezionata al centro dello schermo.
+\end{enumerate}
+\paragraph{Precondizioni} Il canvas non \'e completamente visualizzato a schermo.
+\paragraph{Postcondizioni} L'utente vede su schermo la parte di canvas desiderata.
+
+\subsubsezione{Caso d'uso: aumenta zoom}
+
 %inizio requisiti
 \sezione{Lista dei requisiti}
 \label{listarequisiti}
