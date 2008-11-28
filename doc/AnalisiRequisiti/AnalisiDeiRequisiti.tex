@@ -1,4 +1,4 @@
-\input{base} %BASE!!!
+\input{../TeX/base} %BASE!!!
 \usepackage{multirow}
 \begin{document}
 
@@ -27,7 +27,7 @@
 \vspace{20pt}
 
 \begin{center}
-\includegraphics[width=150pt]{logo}
+\includegraphics[width=150pt]{../logo/logo}
 \end{center}
 
 \vspace{160pt}
@@ -77,8 +77,8 @@ Tale studio \`e mirato alla comprensione dei bisogni espressi nel capitolato e a
 				\multirow{2}{*}{Pre-RR} & Bizzotto Piero\\
 										& Dissegna Stefano\\
 				\hline
-				\multirow{2}{*}{RR-RPP} & Ciccozzi Michele\\
-										& Marangoni Andrea\\
+				\multirow{2}{*}{RR-RPP} & \\
+										& \\
 				\hline
 				%%%%%%%%%%% FINE PARTE DA MODIFICARE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 			\end{tabular}
@@ -325,23 +325,77 @@ per ogni tipologia \`e presente un'ulteriore classificazione per classe di spazi
 \item{AJAXDRAW permette all'utente di disegnare cerchi o ellissi.}
 \item{AJAXDRAW permette di disegnare poligoni regolari di qualsiasi dimensione e numero di lati.}
 \item{AJAXDRAW permette di aggiungere caselle di testo al documento. }
-\item{AJAXDRAW permette all'utente di salvare le configurazioni che crea nel formato SVG.}
 \item{AJAXDRAW permette di cambiare il colore di riempimento, del bordo, delle linee, dell'opacità degli oggetti disegnati.}
 \item{AJAXDRAW permette il ridimensionamento degli oggetti disegnati.}
 \item{AJAXDRAW permette all'utente di selezionare ognuna delle funzionalit\`a suddette tramite una comoda barra degli strumenti.}
 \item{Qualora suddette funzioni siano regolate da parametri, AJAXDRAW permette all'utente di impostarli.}
-\item{SiGeM mostra l'evolvere della simulazione in modo dettagliato all'utente, attraverso un sistema testuale.}
-\item{SiGeM permette, quando la simulazione non sia attiva ,di ottenere ulteriori statistiche sulla sua esecuzione. Tali statistiche sono riportate in tabella \ref{tabstatistiche}.}
+\item{AJAXDRAW \`e in grado di leggere e salvare le configurazioni create dell'utente nel formato SVG.}
 \end{elenconumerato}
 
 %requisiti desiderabili
 \subsubsezione{Desiderabili (RFD)}
 \begin{elenconumerato}[\textbf{RFD-}]{\subsubsecindent}
-\item{AJAXDRAW }
+\item{AJAXDRAW permette di disegnare a mano libera.}
+\item{AJAXDRAW permette la creazione di spirali.}
+\item{AJAXDRAW permette di utilizzare il disegno calligrafico o pennellato.}
+\item{AJAXDRAW permette di disegnare connettori per diagrammi.}
+\item{AJAXDRAW permette di disegnare curve di Bezier.}
 \end{elenconumerato}
+
+%facoltativi
 \subsubsezione{Facoltativi (RFF)}
 \begin{elenconumerato}[\textbf{RFF-}]{\subsubsecindent}
-\item{AJAXDRAW}
+
+\item{SiGeM permette all'utente di caricare le configurazioni dei processi generate da SGPEMv2, semplificando la preparazione di simulazioni complesse.}
+\item{SiGeM permette all'utente di scegliere la \blue{politica di schedulazione} dei processi in modo da determinare automaticamente come questi si avvicendano in esecuzione.}
+\end{elenconumerato}
+
+%Requisiti di Qualità
+\subsezione{Requisiti di qualit\`a (RQ)}	
+\subsubsezione{Obbligatori (RQO)}
+\begin{elenconumerato}[\textbf{RQO-}]{\subsubsecindent}
+\item Il codice sorgente rispetta lo standard di codifica interno all'azienda.
+\item Il codice sorgente \`e scritto in accordo con i paradigmi dell'orientamento agli oggetti.
+\item Il codice sorgente \`e corredato di documentazione completa.
+\item La progettazione sar\`a orientata alla flessibilit\`a del codice.
+\item Lo sviluppo del prodotto sar\`a accompagnato da fasi di test opportunamente documentate.
+\item Il prodotto non necessita di nessuna installazione, basandosi su una pagina web HTML.
+\item L'eventuale richiesta di uscita dal programma da parte dell'utente deve avere sempre la precedenza sulle altre attivit\`a che il programma deve compiere.
+\end{elenconumerato}
+
+%requisiti di qualita' desiderabili
+\subsubsezione{Desiderabili (RQD)}
+\begin{elenconumerato}[\textbf{RQD-}]{\subsubsecindent}
+\item Nel caso l'utente decida di continuare la sessione di lavoro, il sistema ritorner\`a allo stato in cui era al momento della richiesta di chiusura.
+
+\end{elenconumerato}
+
+
+
+%inizio requisiti di interfacciamento
+\subsezione{Requisiti di interfacciamento (RI)}
+\subsubsezione{Obbligatori (RIO)}
+\begin{elenconumerato}[\textbf{RIO-}]{\subsubsecindent}
+\item L'utilizzo del prodotto risulta semplice ed intuitivo grazie ad un'interfaccia grafica basata sull'uso di una toolbar.
+\item La guida in linea \`e completa e di facile utilizzo per permettere all'utente di apprendere velocemente le funzionalit\`a del prodotto.
+\item La guida in linea \`e richiamabile in qualsiasi momento, in modo sensibile al contesto.
+\item L'uso della guida in linea non influenza il corretto funzionamento del programma. 
+\end{elenconumerato}
+
+%inizio requisiti d'ambiente
+\subsezione{Requisiti di ambiente (RA)}
+\subsubsezione{Obbligatori (RAO)}
+\begin{elenconumerato}[\textbf{RAO-}]{\subsubsecindent}
+\item Il prodotto \`e pensato per funzionare su un internet browser.
+\item Il prodotto dovr\` a essere implementato seguendo gli standard del linguaggio di markup HTML 5.
+\item Il prodotto in particolare dovr\` a utilizzare il tag "canvas" appositamente creato per l'elaborazione del disegno vettoriale sul web.
+\item Il software di supporto per lo sviluppo del prodotto \`e di tipo Open Source e freeware.
+\item Il prodotto realizzato dovr\`a essere pubblicato sul sito "www.sourceforge.net", in conformit\` a con i relativi requisiti di natura Open Source, per favorire la continuit\` a del prodotto risultante.
+\item Il prodotto \`e sviluppato e testato sui principali internet browsers: Mozilla Firefox, Google Chrome, Opera ed Apple Safari.
+\end{elenconumerato}
+\subsubsezione{Facoltativi (RAF)}
+\begin{elenconumerato}[\textbf{RAF-}]{\subsubsecindent}
+\item{AJAXDRAW garantisce la compatibilit\` a con il browser Microsoft Internet Explorer, il quale non implementa a pieno HTML 5, tramite la libreria \H{}excanvas\H{} creata da Google.}
 \end{elenconumerato}
 
 
