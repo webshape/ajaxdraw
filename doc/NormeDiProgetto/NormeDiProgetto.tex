@@ -1,0 +1,143 @@
+	\input{../TeX/base} %BASE!!!
+
+\title{\TITOLODOC}
+\author{Piero Bizzotto}
+
+\begin{document}
+
+\renewcommand{\insertversion}{0.0} %INSERIRE LA VERSIONE QUI DENTRO STILE x.x.xx
+\renewcommand{\TITOLODOC}{Norme di Progetto} %INSERIRE IL TITOLO DEL DOCUMENTO DA FAR COMPARIRE A PIE PAGINA
+\renewcommand{\glosspath}{.\glossario} %INSERIRE PERCORSO RELATIVO
+
+%%%%%%%%%%%%%%%%%%%%%%PARTE DA NON MODIFICARE%%%%%%%%%%%%%%%%%
+\begin{titlepage}
+\begin{center}
+	\begin{Large}	\today \end{Large}
+\end{center}
+
+\vspace{20pt}
+
+\begin{center}
+	\begin{Huge}
+				\textbf{\ajax}
+	\end{Huge}
+\end{center}			
+
+\begin{center}
+	\begin{large}
+				\textbf{Software per il Disegno Grafico in Tecnologie Web}
+	\end{large}
+\end{center}			
+
+\vspace{20pt}
+
+\begin{center}
+\includegraphics[width=150pt]{../logo/logo}
+\end{center}
+
+\vspace{170pt}
+\begin{center} %INSERIRE ALL'INTERNO IL TITOLO DOCUMENTO CHE COMPARIRA NELLA PAGINA INIZIALE				
+	\begin{Huge}
+				\textbf{\TITOLODOC}
+	\end{Huge}
+			\\
+\end{center}
+\vspace{210pt}
+\begin{center}
+Versione: \insertversion
+\end{center}
+\end{titlepage}
+
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%FINE PARTE DA NON MODIFICARE%%%%%%%%%%%%%%%%%
+
+\begin{center} %INSERIRE ALL'INTERNO IL TITOLO DOCUMENTO CHE COMPARIRA NELLA PAGINA INIZIALE
+	\begin{Huge}	
+				\textbf{\TITOLODOC}
+			\\
+	\end{Huge}
+\end{center}
+
+%\setlength{\parindent}{18pt} %settato indentazione di default 
+\section*{\Large Sommario:} %SEZIONE SOMMARIO
+\indent \indent
+Questo documento definisce le linee guida da seguire per la stesura della documentazione e indica gli strumenti software da utilizzare e le modalit\`a di comunicazione all'interno dell'azienda.
+
+\section*{\Large Stato del documento:}
+\indent \indent
+	Formale Interno
+
+\section*{\Large Redazione:}
+	\begin{elencopuntato}[\normindent]
+		\item[-] Mirco Geremia
+	\end{elencopuntato}
+
+\section*{\Large Approvazione:}
+	\begin{elencopuntato}[\normindent]
+		\item Approvatore N. 1
+		\item Approvatore N. 2
+		\item Approvatore N. 3
+	\end{elencopuntato}
+
+\section*{\LARGE Lista di Distribuzione:}
+
+	\begin{elenconumerato}{\normindent}
+		\item WebShape \footnote{Il termine WebShape designa una collettivit\`a di individui come da organigramma contenuto nel piano di progetto fornito in allegato al presente documento}
+		\item I committenti Conte Renato e Vardanega Tullio in rappresentanza \\  dell'azienda proponente Zucchetti SPA
+	\end{elenconumerato}
+
+\newpage
+
+
+
+\section*{\Large Registro delle Modifiche:}
+
+
+\begin{center}
+	\begin{table}[h]
+		  \begin{tabular*}
+			{1\textwidth}%
+				{@{\extracolsep{\fill}}|p{0.1\textwidth}|p{0.54\textwidth}|p{0.26\textwidth}|}
+			 \hline
+%%%%%%%%%%%%%%INTESTAZIONE COLONNE%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+			\textbf{Versione}  & \textbf{Descrizione} & \textbf{Autore} \\
+%%%%%%%%%%%%%%FINE INTESTAZIONE COLONNE%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+		 \hline
+%%%%%%%%%%% PARTE DA MODIFICARE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%		
+    	 	\insertversion & 	 28$\slash$11$\slash$2008 Prima stesura & Mirco Geremia \\
+
+		\hline %%FINE RIGA
+%%%%%%%%%%% FINE PARTE DA MODIFICARE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+		\end{tabular*}
+	\caption{didascalia tabella 	MODIFICHE} %INSERIRE DIDASCALIA - SE NECESSARIA - 
+	\label{tab:modifiche}
+	\end{table}
+\end{center}
+
+
+\newpage
+\thispagestyle{fancy}
+\tableofcontents
+\thispagestyle{fancy}
+\newpage
+
+%qui inizia l'indice, che viene creato automaticamente
+\sezione{Redazione dei Documenti}
+	I documenti sono redatti in lingua italiana e presentano termini in inglese solamente nel caso di riferimenti al codice o a termini tecnici. Le parole presenti nel glossario sono sottolineate alla prima occorrenza nel documento.\\
+	Per la redazione dei documenti si \`e scelto di usare il linguaggio di markup \LaTeX, che gestisce automaticamente la formattazione del testo permettendo agli autori di concentrarsi maggiormente sui contenuti. Per  la creazione di un documento si utilizzano i template di base presenti nel repository dell'azienda.\\
+	I nomi dei documenti seguono le seguenti regole:
+	\begin{elencopuntato}[\normindent]
+		\item[-] Devono iniziare con una lettera in maiuscolo.
+		\item[-] Non si possono usare spazi o altri caratteri speciali tra le parole.
+		\item[-] Ogni parola deve iniziare con una lettera in maiuscolo (ad esempio NormeDiProgetto).
+		\item[-] I documenti interni non prevedono riferimenti alla versione, che sar\`a invece presente nei documenti formali esterni.
+	\end{elencopuntato}
+	
+\sezione{Modifiche}
+	Le modifica pu\`o essere effettuata solamente dai redattori del documento, che avranno anche l'obbligo di aggiornare la tabella delle modifiche. Ogni voce di questa tabella deve comprendere il numero di versione, la data, un breve commento che indichi i principali cambiamenti e l'autore della modifica.
+	Gli approvatori possono segnalare gli eventuali cambiamenti da apportare al documento tramite i sistemi di comunicazione interni all'azienda.
+	
+\sezione{Versionamento}
+	La numerazione delle versioni dei documenti \`e composta da due cifre separate da un punto, che partono entrambe da 0. La prima cifra rappresenta il numero dei rilasci esterni e viene quindi aumentata quando si consegna il documento per una revisione; la seconda sta ad indicare le versioni interne, viene incrementata ad ogni cambiamento del documento ed \`e posta a 0 ogniqualvolta si cambi la prima cifra. 
+		
+\end{document}

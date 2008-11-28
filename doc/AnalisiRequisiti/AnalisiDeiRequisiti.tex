@@ -121,7 +121,7 @@ Tale studio \`e mirato alla comprensione dei bisogni espressi nel capitolato e a
 
 	\begin{elenconumerato}{\normindent}
 		\item WebShape \footnote{Il termine WebShape designa una collettivit\`a di individui come da organigramma contenuto nel piano di progetto fornito in allegato al presente documento}
-		\item I committenti Vardanega Tullio e Conte Renato in rappresentanza \\  dell'azienda proponente Zucchetti SPA
+		\item I committenti Conte Renato e Vardanega Tullio in rappresentanza \\  dell'azienda proponente Zucchetti SPA
 	\end{elenconumerato}
 
 \newpage
@@ -203,6 +203,30 @@ Come previsto dalle norme interne di WebShape, tutti i documenti fanno riferimen
 \sezione{Casi d'uso}
 Vengono riportati di seguito i casi d'uso, sia grafici che narrativi, utilizzati durante l'analisi dei requisiti effettuata da WebShape. Lo scopo dei casi d'uso \`e quello di permettere una chiara e semplice comprensione dei bisogni del cliente percepiti dall'azienda. Per una lista esaustiva dei requisiti individuati si rimanda comunque alla lista dei requisiti di sezione \ref{listarequisiti}, cui faranno riferimento anche gli stessi casi d'uso narrativi.
 
+\subsezione{Avvio}
+Il seguente grafico descrive come ci si attende l'utente avvii l'applicazione.
+\begin{figure}
+\centering
+%\includegraphics{}
+\caption{avvio dell'applicazione}
+\end{figure}
+
+Segue ora una descrizione testuale del caso d'uso presentato dal grafico.
+
+\subsubsezione{UC0 Caso d'uso: richiedi pagina web}
+\paragraph{Attori coinvolti} Utente, browser, server HTTP
+\paragraph{Scopo e descrizione sintetica}
+L'utente avvia l'applicazione visualizzandone la relativa pagina web attraverso il browser, che richiede la relativa pagina al server HTTP.
+\paragraph{Flusso di eventi}
+\begin{enumerate}
+\item L'utente inserisce l'URL relativo all'applicazione nel browser.
+\item Il browser richiede la pagina al server HTTP
+\item Il server HTTP invia la pagina.
+\item Il browser visualizza la pagina.
+\end{enumerate}
+\paragraph{Precondizioni} Il browser \'e avviato.
+\paragraph{Postcondizioni} L'applicazione \'e avviata.
+
 \subsezione{Interazione con l'applicazione}
 Il seguente grafico descrive le interazioni tra l'utente finale e l'applicazione da un punto di vista ad alto livello. Le interazioni principali verranno poi espanse.
 \begin{figure}[!ht]
@@ -212,107 +236,120 @@ Il seguente grafico descrive le interazioni tra l'utente finale e l'applicazione
 \caption{funzionalit\`a dell'applicazione}
 \end{figure}
 
-Segue ora una descrizione testuale dei casi d'uso presentati dal grafico.
+\paragraph{Segue ora una descrizione testuale dei casi d'uso presentati dal grafico.}
 
-\subsubsezione{Caso d'uso: pulisci \underline{canvas}}
+\subsubsezione{UC1 Caso d'uso: pulisci \underline{canvas}}
 \paragraph{Attori coinvolti} Utente
 \paragraph{Scopo e descrizione sintetica}
 L'utente pu\`o cancellare totalmente quanto finora disegnato.
 \paragraph{Flusso di eventi}
-\begin{enumerate}
+\begin{elenconumerato}[\textbf{}]{\subsubsecindent}
 \item L'utente seleziona il comando per pulire il canvas. 
 \item Il canvas viene completamente cancellato.
-\end{enumerate}
+\end{elenconumerato}
 \paragraph{Precondizioni} Il canvas \'e visibile.
 \paragraph{Postcondizioni} Il canvas \'e vuoto.
 
-\subsubsezione{Caso d'uso: visualizza manuale}
+\subsubsezione{UC2 Caso d'uso: visualizza manuale}
 \paragraph{Attori coinvolti} Utente
 \paragraph{Scopo e descrizione sintetica}
 L'utente pu\`o visualizzare il manuale dell'applicazione in linea.
 \paragraph{Flusso di eventi}
-\begin{enumerate}
+\begin{elenconumerato}[\textbf{}]{\subsubsecindent}
 \item L'utente seleziona il comando per visualizzare il manuale. 
 \item Il manuale viene visualizzato
-\end{enumerate}
+\end{elenconumerato}
 \paragraph{Precondizioni}
 \paragraph{Postcondizioni} Il manuale utente \'e visualizzato
 
-\subsubsezione{Caso d'uso: richiedi manuale}
+\subsubsezione{UC3 Caso d'uso: richiedi manuale}
 \paragraph{Attori coinvolti} Server HTTP
 \paragraph{Scopo e descrizione sintetica}
 La/le pagina/e web contenenti il manuale utente sono gestite dal server HTTP.
 \paragraph{Flusso di eventi}
-\begin{enumerate}
+\begin{elenconumerato}[\textbf{}]{\subsubsecindent}
 \item Il sistema richiede la pagina web contenente il manuale utente al server HTTP.
 \item Il server HTTP ritorna la pagina richiesta
-\end{enumerate}
+\end{elenconumerato}
 \paragraph{Precondizioni} L'utente ha richiesto al sistema la visualizzazione del manuale o di parte di esso.
 \paragraph{Postcondizioni} Il sistema dispone della pagina web richiesta.
 
-\subsubsezione{Caso d'uso: sposta visualizzazione}
+\subsubsezione{UC4 Caso d'uso: sposta visualizzazione}
 \paragraph{Attori coinvolti} Utente
 \paragraph{Scopo e descrizione sintetica}
 Quando il canvas \'e troppo grande per essere completamente visualizzato, l'utente pu\`o spostare la visualizzazione per vedere le diverse parti del canvas.
 \paragraph{Flusso di eventi}
-\begin{enumerate}
+\begin{elenconumerato}[\textbf{}]{\subsubsecindent}
 \item L'utente seleziona la parte del canvas da visualizzare
 \item Il sistema visualizza la parte di canvas selezionata al centro dello schermo.
-\end{enumerate}
+\end{elenconumerato}
 \paragraph{Precondizioni} Il canvas non \'e completamente visualizzato a schermo.
 \paragraph{Postcondizioni} L'utente vede su schermo la parte di canvas desiderata.
 
-\subsubsezione{Caso d'uso: aumenta zoom}
+\subsubsezione{UC5 Caso d'uso: aumenta zoom}
 \paragraph{Attori coinvolti} Utente
 \paragraph{Scopo e descrizione sintetica} 
 Il sistema permette all'utente di ingrandire il canvas ed il suo contenuto mantendendo le proporzioni.
 \paragraph{Flusso di eventi}
-\begin{enumerate}
+\begin{elenconumerato}[\textbf{}]{\subsubsecindent}
 \item L'utente seleziona, esplicitamente o implicitamente, la parte di canvas da mantenere al centro della visualizzazione.
 \item L'utente seleziona di quanto aumentare lo zoom.
 \item Il sistema ingrandisce il canvas di quanto richiesto
 \item Il sistema accentra la visualizzazione dove richiesto dall'utente
-\end{enumerate}
+\end{elenconumerato}
 \paragraph{Precondizioni} Il canvas \'e visualizzato
 \paragraph{Postcondizioni} Il canvas \'e ingrandito
 
-\subsubsezione{Caso d'uso: diminuisci zoom}
+\subsubsezione{UC6 Caso d'uso: diminuisci zoom}
 \paragraph{Attori coinvolti} Utente
 \paragraph{Scopo e descrizione sintetica} 
 Il sistema permette all'utente di rimpicciolire il canvas ed il suo contenuto mantendendo le proporzioni.
 \paragraph{Flusso di eventi}
-\begin{enumerate}
+\begin{elenconumerato}[\textbf{}]{\subsubsecindent}
 \item L'utente seleziona, esplicitamente o implicitamente, la parte di canvas da mantenere al centro della visualizzazione.
 \item L'utente seleziona di quanto diminuire lo zoom.
 \item Il sistema rimpicciolisce il canvas di quanto richiesto
 \item Il sistema accentra la visualizzazione dove richiesto dall'utente
-\end{enumerate}
+\end{elenconumerato}
 \paragraph{Precondizioni} Il canvas \'e visualizzato
 \paragraph{Postcondizioni} Il canvas \'e rimpicciolito
 
-\subsubsezione{Caso d'uso: esporta in SVG}
+\subsubsezione{UC7 Caso d'uso: esporta in SVG}
 \paragraph{Attori coinvolti} Utente
 \paragraph{Scopo e descrizione sintetica} 
 Il sistema permette all'utente di esportare in formato SVG il contenuto del canvas.
 \paragraph{Flusso di eventi}
-\begin{enumerate}
+\begin{elenconumerato}[\textbf{}]{\subsubsecindent}
 \item L'utente seleziona il comando per esportare il canvas in formato SVG.
 \item Il sistema genera un file SVG il cui contenuto corrisponde a quanto correntemente visualizzato nel canvas.
 \item Il sistema rende disponibile all'utente il file generato.
-\end{enumerate}
-\paragraph{Precondizioni} Il canvas \'e visualizzato
+\end{elenconumerato}
+\paragraph{Precondizioni} Il canvas \'e visualizzato.
 \paragraph{Postcondizioni} Il file SVG \'e disponibile all'utente e contiene quanto visualizzato nel canvas.
 
-\subsubsezione{Caso d'uso: disegna}
+\subsubsezione{UC8 Caso d'uso: carica file SVG}
+\paragraph{Attori coinvolti} Utente
+\paragraph{Scopo e descrizione sintetica} 
+Il sistema permette all'utente di caricare file in formato SVG nel canvas.
+\paragraph{Flusso di eventi}
+\begin{enumerate}
+\item L'utente seleziona il comando per caricare il file SVG.
+\item L'utente seleziona il file SVG.
+\item Il sistema visualizza il file SVG nel canvas. Se il file contiene elementi o attributi non supportati, essi saranno ignorati.
+\end{enumerate}
+\paragraph{Precondizioni} Il canvas \'e visualizzato.
+\paragraph{Postcondizioni} Il canvas contiene la visualizzazione del file SVG selezionato dall'utente ed \'e modificabile.
+
+\subsubsezione{UC9 Caso d'uso: disegna}
 Si rimanda a \ref{ucdisegna} per una descrizione approfondita.
 
-\subsubsezione{Caso d'uso: seleziona e modifica}
+\subsubsezione{UC10 Caso d'uso: seleziona e modifica}
 Si rimanda a \ref{ucselezionaemodifica} per una descrizione approfondita.
 
 %inizio requisiti
 \sezione{Lista dei requisiti}
 \label{listarequisiti}
-I requisiti qui elencati sono suddivisi per tipologia (funzionale, di qualit\`a, d'ambiente); 
+I requisiti qui elencati sono suddivisi per tipologia (funzionale, prestazionale, di qualit\`a, di interfacciamento, d'ambiente); 
 per ogni tipologia \`e presente un'ulteriore classificazione per classe di spazio di negoziato (obbligatorio, desiderabile, facoltativo). 
 \subsezione{Requisiti funzionali (RF)}
 \subsubsezione{Obbligatori (RFO)}
@@ -321,7 +358,7 @@ per ogni tipologia \`e presente un'ulteriore classificazione per classe di spazi
 \item{AJAXDRAW permette di disegnare curve.}
 \item{AJAXDRAW permette di effettuare uno zoom in avanti e all'indietro nel disegno.}
 \item{Per ogni elemento disegnato, AJAXDRAW permette all'utente di selezionare e spostare tale elemento.}
-\item{AJAXDRAW permette di disegnare quadrilateri di qualsiasi dimensione(quadrata o rettangolare.}
+\item{AJAXDRAW permette di disegnare quadrilateri di qualsiasi dimensione(quadrata o rettangolare).}
 \item{AJAXDRAW permette all'utente di disegnare cerchi o ellissi.}
 \item{AJAXDRAW permette di disegnare poligoni regolari di qualsiasi dimensione e numero di lati.}
 \item{AJAXDRAW permette di aggiungere caselle di testo al documento. }
@@ -329,7 +366,8 @@ per ogni tipologia \`e presente un'ulteriore classificazione per classe di spazi
 \item{AJAXDRAW permette il ridimensionamento degli oggetti disegnati.}
 \item{AJAXDRAW permette all'utente di selezionare ognuna delle funzionalit\`a suddette tramite una comoda barra degli strumenti.}
 \item{Qualora suddette funzioni siano regolate da parametri, AJAXDRAW permette all'utente di impostarli.}
-\item{AJAXDRAW \`e in grado di leggere e salvare le configurazioni create dell'utente nel formato SVG.}
+\item{AJAXDRAW \`e in grado di salvare le immagini create dall'utente nel formato SVG.}
+\item{AJAXDRAW permette di caricare immagini in formato SVG che utilizzano il sottoinsieme che AJAXDRAW \'e in grado di generare.}
 \end{elenconumerato}
 
 %requisiti desiderabili
@@ -345,32 +383,37 @@ per ogni tipologia \`e presente un'ulteriore classificazione per classe di spazi
 %facoltativi
 \subsubsezione{Facoltativi (RFF)}
 \begin{elenconumerato}[\textbf{RFF-}]{\subsubsecindent}
+\end{elenconumerato}
 
-\item{SiGeM permette all'utente di caricare le configurazioni dei processi generate da SGPEMv2, semplificando la preparazione di simulazioni complesse.}
-\item{SiGeM permette all'utente di scegliere la \blue{politica di schedulazione} dei processi in modo da determinare automaticamente come questi si avvicendano in esecuzione.}
+%requisiti prestazionali
+\subsezione{Requisiti prestazionali}
+\subsubsezione{Obbligatori (RPO)}
+\begin{elenconumerato}[\textbf{RPO-}]{\subsubsecindent}
+\item L'utente non deve notare rallentamenti durante l'utilizzo dell'applicazione che non siano direttamente imputabili alla lentezza della connessione.
 \end{elenconumerato}
 
 %Requisiti di Qualità
 \subsezione{Requisiti di qualit\`a (RQ)}	
 \subsubsezione{Obbligatori (RQO)}
 \begin{elenconumerato}[\textbf{RQO-}]{\subsubsecindent}
+\item Il lato client dell'applicativo dev'essere realizzato usando tecnologie web standard\footnote{con il termine ``standard'' si intendono tecnologie o effettivamente standardizzate come l'\underline{ECMAScript} o tecnologie considerate standard \textitalic{de facto} come quelle raccomandata dal \textitalic{W3C}}.
 \item Il codice sorgente rispetta lo standard di codifica interno all'azienda.
 \item Il codice sorgente \`e scritto in accordo con i paradigmi dell'orientamento agli oggetti.
 \item Il codice sorgente \`e corredato di documentazione completa.
 \item La progettazione sar\`a orientata alla flessibilit\`a del codice.
 \item Lo sviluppo del prodotto sar\`a accompagnato da fasi di test opportunamente documentate.
 \item Il prodotto non necessita di nessuna installazione, basandosi su una pagina web HTML.
+\item Il server dev'essere in grado di gestire pi\`u utenti in parallelo in modo indipendente.
 \item L'eventuale richiesta di uscita dal programma da parte dell'utente deve avere sempre la precedenza sulle altre attivit\`a che il programma deve compiere.
+\item Il funzionamento dell'applicazione dev'essere indipendente dalla risoluzione dello schermo dell'utente.
 \end{elenconumerato}
 
 %requisiti di qualita' desiderabili
-\subsubsezione{Desiderabili (RQD)}
-\begin{elenconumerato}[\textbf{RQD-}]{\subsubsecindent}
-\item Nel caso l'utente decida di continuare la sessione di lavoro, il sistema ritorner\`a allo stato in cui era al momento della richiesta di chiusura.
+%\subsubsezione{Desiderabili (RQD)}
+%\begin{elenconumerato}[\textbf{RQD-}]{\subsubsecindent}
+%\item 
 
-\end{elenconumerato}
-
-
+%\end{elenconumerato}
 
 %inizio requisiti di interfacciamento
 \subsezione{Requisiti di interfacciamento (RI)}
@@ -378,24 +421,24 @@ per ogni tipologia \`e presente un'ulteriore classificazione per classe di spazi
 \begin{elenconumerato}[\textbf{RIO-}]{\subsubsecindent}
 \item L'utilizzo del prodotto risulta semplice ed intuitivo grazie ad un'interfaccia grafica basata sull'uso di una toolbar.
 \item La guida in linea \`e completa e di facile utilizzo per permettere all'utente di apprendere velocemente le funzionalit\`a del prodotto.
-\item La guida in linea \`e richiamabile in qualsiasi momento, in modo sensibile al contesto.
+\item La guida in linea \`e richiamabile in qualsiasi momento.
 \item L'uso della guida in linea non influenza il corretto funzionamento del programma. 
 \end{elenconumerato}
 
 %inizio requisiti d'ambiente
-\subsezione{Requisiti di ambiente (RA)}
+\subsezione{Requisiti d'ambiente (RA)}
 \subsubsezione{Obbligatori (RAO)}
 \begin{elenconumerato}[\textbf{RAO-}]{\subsubsecindent}
 \item Il prodotto \`e pensato per funzionare su un internet browser.
-\item Il prodotto dovr\` a essere implementato seguendo gli standard del linguaggio di markup HTML 5.
+\item Il prodotto dovr\`a essere implementato seguendo gli standard del linguaggio di markup HTML 5.
 \item Il prodotto in particolare dovr\` a utilizzare il tag "canvas" appositamente creato per l'elaborazione del disegno vettoriale sul web.
 \item Il software di supporto per lo sviluppo del prodotto \`e di tipo Open Source e freeware.
-\item Il prodotto realizzato dovr\`a essere pubblicato sul sito "www.sourceforge.net", in conformit\` a con i relativi requisiti di natura Open Source, per favorire la continuit\` a del prodotto risultante.
+\item Il prodotto realizzato dovr\`a essere pubblicato sul sito "www.sourceforge.net", in conformit\`a con i relativi requisiti di natura Open Source, per favorire la continuit\`a del prodotto risultante.
 \item Il prodotto \`e sviluppato e testato sui principali internet browsers: Mozilla Firefox, Google Chrome, Opera ed Apple Safari.
 \end{elenconumerato}
-\subsubsezione{Facoltativi (RAF)}
-\begin{elenconumerato}[\textbf{RAF-}]{\subsubsecindent}
-\item{AJAXDRAW garantisce la compatibilit\` a con il browser Microsoft Internet Explorer, il quale non implementa a pieno HTML 5, tramite la libreria \H{}excanvas\H{} creata da Google.}
+\subsubsezione{Desiderabili (DAF)}
+\begin{elenconumerato}[\textbf{DAF-}]{\subsubsecindent}
+\item{AJAXDRAW garantisce la compatibilit\`a con il browser Microsoft Internet Explorer, il quale non implementa a pieno HTML 5, tramite la libreria \H{}excanvas\H{} creata da Google.}
 \end{elenconumerato}
 
 
