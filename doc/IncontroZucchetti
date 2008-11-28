@@ -1,0 +1,21 @@
+INCONTRO ZUCCHETTI
+
+ecco piu o meno un resoconto dell'incontro con la Zucchetti (gli appunti che ho preso insomma),utile per chi deve fare la relazione.
+
+
+creare un disegnatore di figure vettoriali in ambiente web utilizzando HTML 5 e in particloare l'elemento CANVAS.
+Il salvataggio dovrà essere effettuato in formato SVG.
+Requisiti obbligatori sono la compatibilità con FireFox (3.0),Safari (ultima),Chrome (ultima),Opera (9.5).
+Requisito opzionale è la compatibilità con Internet Explorer (7).
+
+Il tutto deve avere un DOM del documento HTML pilotato da JavaScript.
+
+Ecco alcune considerazioni venute fuori dalle domande:
+
+- non è necessario avere una compatibilità con versioni dei browser piu vecchie (d'altronde si parla di HTML 5!)
+- utilizzo delle specifiche di HTML 5
+- possibilità di utilizzare qualsiasi libreria JavaScript
+- non sono importanti le prestazioni (anche perchè il Canvas è cmq veloce)
+- il server deve essere minimale (fornire il file ed eventuali salvataggi)
+- no bitmap
+- eventuali immagini PNG salvabili a scelta (il consiglio era cmq sul server)
