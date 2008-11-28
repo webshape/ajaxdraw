@@ -327,10 +327,23 @@ Il sistema permette all'utente di esportare in formato SVG il contenuto del canv
 \paragraph{Precondizioni} Il canvas \'e visualizzato
 \paragraph{Postcondizioni} Il file SVG \'e disponibile all'utente e contiene quanto visualizzato nel canvas.
 
-\subsubsezione{Caso d'uso 9: disegna}
+\subsubsezione{Caso d'uso 9: carica file SVG}
+\paragraph{Attori coinvolti} Utente
+\paragraph{Scopo e descrizione sintetica} 
+Il sistema permette all'utente di caricare file in formato SVG nel canvas.
+\paragraph{Flusso di eventi}
+\begin{enumerate}
+\item L'utente seleziona il comando per caricare il file SVG.
+\item L'utente seleziona il file SVG.
+\item Il sistema visualizza il file SVG nel canvas. Se il file contiene elementi o attributi non supportati, essi saranno ignorati.
+\end{enumerate}
+\paragraph{Precondizioni} Il canvas \'e visualizzato.
+\paragraph{Postcondizioni} Il canvas contiene la visualizzazione del file SVG selezionato dall'utente ed \'e modificabile.
+
+\subsubsezione{Caso d'uso 10: disegna}
 Si rimanda a \ref{ucdisegna} per una descrizione approfondita.
 
-\subsubsezione{Caso d'uso 10: seleziona e modifica}
+\subsubsezione{Caso d'uso 11: seleziona e modifica}
 Si rimanda a \ref{ucselezionaemodifica} per una descrizione approfondita.
 
 %inizio requisiti
