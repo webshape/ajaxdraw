@@ -203,7 +203,31 @@ Come previsto dalle norme interne di WebShape, tutti i documenti fanno riferimen
 \sezione{Casi d'uso}
 Vengono riportati di seguito i casi d'uso, sia grafici che narrativi, utilizzati durante l'analisi dei requisiti effettuata da WebShape. Lo scopo dei casi d'uso \`e quello di permettere una chiara e semplice comprensione dei bisogni del cliente percepiti dall'azienda. Per una lista esaustiva dei requisiti individuati si rimanda comunque alla lista dei requisiti di sezione \ref{listarequisiti}, cui faranno riferimento anche gli stessi casi d'uso narrativi.
 
-\subsezione{Vista UC0 - Interazione con l'applicazione}
+\subsezione{Avvio}
+Il seguente grafico descrive come ci si attende l'utente avvii l'applicazione.
+\begin{figure}
+\centering
+%\includegraphics{}
+\caption{avvio dell'applicazione}
+\end{figure}
+
+Segue ora una descrizione testuale del caso d'uso presentato dal grafico.
+
+\subsubsezione{UC0 Caso d'uso: richiedi pagina web}
+\paragraph{Attori coinvolti} Utente, browser, server HTTP
+\paragraph{Scopo e descrizione sintetica}
+L'utente avvia l'applicazione visualizzandone la relativa pagina web attraverso il browser, che richiede la relativa pagina al server HTTP.
+\paragraph{Flusso di eventi}
+\begin{enumerate}
+\item L'utente inserisce l'URL relativo all'applicazione nel browser.
+\item Il browser richiede la pagina al server HTTP
+\item Il server HTTP invia la pagina.
+\item Il browser visualizza la pagina.
+\end{enumerate}
+\paragraph{Precondizioni} Il browser \'e avviato.
+\paragraph{Postcondizioni} L'applicazione \'e avviata.
+
+\subsezione{Interazione con l'applicazione}
 Il seguente grafico descrive le interazioni tra l'utente finale e l'applicazione da un punto di vista ad alto livello. Le interazioni principali verranno poi espanse.
 \begin{figure}[!ht]
 \centering
@@ -303,10 +327,23 @@ Il sistema permette all'utente di esportare in formato SVG il contenuto del canv
 \paragraph{Precondizioni} Il canvas \'e visualizzato.
 \paragraph{Postcondizioni} Il file SVG \'e disponibile all'utente e contiene quanto visualizzato nel canvas.
 
-\subsubsezione{UC8 Caso d'uso: disegna}
+\subsubsezione{UC8 Caso d'uso: carica file SVG}
+\paragraph{Attori coinvolti} Utente
+\paragraph{Scopo e descrizione sintetica} 
+Il sistema permette all'utente di caricare file in formato SVG nel canvas.
+\paragraph{Flusso di eventi}
+\begin{enumerate}
+\item L'utente seleziona il comando per caricare il file SVG.
+\item L'utente seleziona il file SVG.
+\item Il sistema visualizza il file SVG nel canvas. Se il file contiene elementi o attributi non supportati, essi saranno ignorati.
+\end{enumerate}
+\paragraph{Precondizioni} Il canvas \'e visualizzato.
+\paragraph{Postcondizioni} Il canvas contiene la visualizzazione del file SVG selezionato dall'utente ed \'e modificabile.
+
+\subsubsezione{UC9 Caso d'uso: disegna}
 Si rimanda a \ref{ucdisegna} per una descrizione approfondita.
 
-\subsubsezione{UC9 Caso d'uso: seleziona e modifica}
+\subsubsezione{UC10 Caso d'uso: seleziona e modifica}
 Si rimanda a \ref{ucselezionaemodifica} per una descrizione approfondita.
 
 \subsezione{Vista UC8 - Disegna}
@@ -369,7 +406,7 @@ Il sistema permette all'utente di disegnare una casella di testo.
 %inizio requisiti
 \sezione{Lista dei requisiti}
 \label{listarequisiti}
-I requisiti qui elencati sono suddivisi per tipologia (funzionale, di qualit\`a, d'ambiente); 
+I requisiti qui elencati sono suddivisi per tipologia (funzionale, prestazionale, di qualit\`a, di interfacciamento, d'ambiente); 
 per ogni tipologia \`e presente un'ulteriore classificazione per classe di spazio di negoziato (obbligatorio, desiderabile, facoltativo). 
 \subsezione{Requisiti funzionali (RF)}
 \subsubsezione{Obbligatori (RFO)}
@@ -386,7 +423,8 @@ per ogni tipologia \`e presente un'ulteriore classificazione per classe di spazi
 \item{AJAXDRAW permette il ridimensionamento degli oggetti disegnati.}
 \item{AJAXDRAW permette all'utente di selezionare ognuna delle funzionalit\`a suddette tramite una comoda barra degli strumenti.}
 \item{Qualora suddette funzioni siano regolate da parametri, AJAXDRAW permette all'utente di impostarli.}
-\item{AJAXDRAW \`e in grado di leggere e salvare le configurazioni create dell'utente nel formato SVG.}
+\item{AJAXDRAW \`e in grado di salvare le immagini create dall'utente nel formato SVG.}
+\item{AJAXDRAW permette di caricare immagini in formato SVG che utilizzano il sottoinsieme che AJAXDRAW \'e in grado di generare.}
 \end{elenconumerato}
 
 %requisiti desiderabili
@@ -400,21 +438,31 @@ per ogni tipologia \`e presente un'ulteriore classificazione per classe di spazi
 \end{elenconumerato}
 
 %facoltativi
-%\subsubsezione{Facoltativi (RFF)}
-%\begin{elenconumerato}[\textbf{RFF-}]{\subsubsecindent}
-%\end{elenconumerato}
+\subsubsezione{Facoltativi (RFF)}
+\begin{elenconumerato}[\textbf{RFF-}]{\subsubsecindent}
+\end{elenconumerato}
+
+%requisiti prestazionali
+\subsezione{Requisiti prestazionali}
+\subsubsezione{Obbligatori (RPO)}
+\begin{elenconumerato}[\textbf{RPO-}]{\subsubsecindent}
+\item L'utente non deve notare rallentamenti durante l'utilizzo dell'applicazione che non siano direttamente imputabili alla lentezza della connessione.
+\end{elenconumerato}
 
 %Requisiti di Qualità
 \subsezione{Requisiti di qualit\`a (RQ)}	
 \subsubsezione{Obbligatori (RQO)}
 \begin{elenconumerato}[\textbf{RQO-}]{\subsubsecindent}
+\item Il lato client dell'applicativo dev'essere realizzato usando tecnologie web standard\footnote{con il termine ``standard'' si intendono tecnologie o effettivamente standardizzate come l'\underline{ECMAScript} o tecnologie considerate standard \textitalic{de facto} come quelle raccomandata dal \textitalic{W3C}}.
 \item Il codice sorgente rispetta lo standard di codifica interno all'azienda.
 \item Il codice sorgente \`e scritto in accordo con i paradigmi dell'orientamento agli oggetti.
 \item Il codice sorgente \`e corredato di documentazione completa.
 \item La progettazione sar\`a orientata alla flessibilit\`a del codice.
 \item Lo sviluppo del prodotto sar\`a accompagnato da fasi di test opportunamente documentate.
 \item Il prodotto non necessita di nessuna installazione, basandosi su una pagina web HTML.
+\item Il server dev'essere in grado di gestire pi\`u utenti in parallelo in modo indipendente.
 \item L'eventuale richiesta di uscita dal programma da parte dell'utente deve avere sempre la precedenza sulle altre attivit\`a che il programma deve compiere.
+\item Il funzionamento dell'applicazione dev'essere indipendente dalla risoluzione dello schermo dell'utente.
 \end{elenconumerato}
 
 %requisiti di qualita' desiderabili
@@ -424,32 +472,30 @@ per ogni tipologia \`e presente un'ulteriore classificazione per classe di spazi
 
 %\end{elenconumerato}
 
-
-
 %inizio requisiti di interfacciamento
 \subsezione{Requisiti di interfacciamento (RI)}
 \subsubsezione{Obbligatori (RIO)}
 \begin{elenconumerato}[\textbf{RIO-}]{\subsubsecindent}
 \item L'utilizzo del prodotto risulta semplice ed intuitivo grazie ad un'interfaccia grafica basata sull'uso di una toolbar.
 \item La guida in linea \`e completa e di facile utilizzo per permettere all'utente di apprendere velocemente le funzionalit\`a del prodotto.
-\item La guida in linea \`e richiamabile in qualsiasi momento, in modo sensibile al contesto.
+\item La guida in linea \`e richiamabile in qualsiasi momento.
 \item L'uso della guida in linea non influenza il corretto funzionamento del programma. 
 \end{elenconumerato}
 
 %inizio requisiti d'ambiente
-\subsezione{Requisiti di ambiente (RA)}
+\subsezione{Requisiti d'ambiente (RA)}
 \subsubsezione{Obbligatori (RAO)}
 \begin{elenconumerato}[\textbf{RAO-}]{\subsubsecindent}
 \item Il prodotto \`e pensato per funzionare su un internet browser.
-\item Il prodotto dovr\` a essere implementato seguendo gli standard del linguaggio di markup HTML 5.
+\item Il prodotto dovr\`a essere implementato seguendo gli standard del linguaggio di markup HTML 5.
 \item Il prodotto in particolare dovr\` a utilizzare il tag "canvas" appositamente creato per l'elaborazione del disegno vettoriale sul web.
 \item Il software di supporto per lo sviluppo del prodotto \`e di tipo Open Source e freeware.
-\item Il prodotto realizzato dovr\`a essere pubblicato sul sito "www.sourceforge.net", in conformit\` a con i relativi requisiti di natura Open Source, per favorire la continuit\` a del prodotto risultante.
+\item Il prodotto realizzato dovr\`a essere pubblicato sul sito "www.sourceforge.net", in conformit\`a con i relativi requisiti di natura Open Source, per favorire la continuit\`a del prodotto risultante.
 \item Il prodotto \`e sviluppato e testato sui principali internet browsers: Mozilla Firefox, Google Chrome, Opera ed Apple Safari.
 \end{elenconumerato}
-\subsubsezione{Facoltativi (RAF)}
-\begin{elenconumerato}[\textbf{RAF-}]{\subsubsecindent}
-\item{AJAXDRAW garantisce la compatibilit\` a con il browser Microsoft Internet Explorer, il quale non implementa a pieno HTML 5, tramite la libreria \H{}excanvas\H{} creata da Google.}
+\subsubsezione{Desiderabili (DAF)}
+\begin{elenconumerato}[\textbf{DAF-}]{\subsubsecindent}
+\item{AJAXDRAW garantisce la compatibilit\`a con il browser Microsoft Internet Explorer, il quale non implementa a pieno HTML 5, tramite la libreria \H{}excanvas\H{} creata da Google.}
 \end{elenconumerato}
 
 
