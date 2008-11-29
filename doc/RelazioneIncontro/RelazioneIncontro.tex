@@ -1,0 +1,164 @@
+	\input{../TeX/base} %BASE!!!
+
+\title{\TITOLODOC}
+\author{Bizzotto Piero}
+
+\begin{document}
+
+\renewcommand{\insertversion}{0.0} %INSERIRE LA VERSIONE QUI DENTRO STILE x.x.xx
+\renewcommand{\TITOLODOC}{Relazione Incontro Zucchetti} %INSERIRE IL TITOLO DEL DOCUMENTO DA FAR COMPARIRE A PIE PAGINA
+\renewcommand{\glosspath}{.\glossario} %INSERIRE PERCORSO RELATIVO
+
+%%%%%%%%%%%%%%%%%%%%%%PARTE DA NON MODIFICARE%%%%%%%%%%%%%%%%%
+\begin{titlepage}
+\begin{center}
+	\begin{Large}	\today \end{Large}
+\end{center}
+
+\vspace{20pt}
+
+\begin{center}
+	\begin{Huge}
+				\textbf{\ajax}
+	\end{Huge}
+\end{center}			
+
+\begin{center}
+	\begin{large}
+				\textbf{Software per il Disegno Grafico\\ in Tecnologie Web}
+	\end{large}
+\end{center}			
+
+\vspace{20pt}
+
+\begin{center}
+\includegraphics[width=150pt]{../logo/logo}
+\end{center}
+
+\vspace{160pt}
+\begin{center} %INSERIRE ALL'INTERNO IL TITOLO DOCUMENTO CHE COMPARIRA NELLA PAGINA INIZIALE				
+	\begin{Huge}
+				\textbf{\TITOLODOC}
+	\end{Huge}
+\end{center}
+\vspace{210pt}
+\begin{center}
+Versione: \insertversion
+\end{center}
+\end{titlepage}
+
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%FINE PARTE DA NON MODIFICARE%%%%%%%%%%%%%%%%%
+
+\begin{center} %INSERIRE ALL'INTERNO IL TITOLO DOCUMENTO CHE COMPARIRA NELLA PAGINA INIZIALE
+	\begin{Huge}	
+				\textbf{\TITOLODOC}			\\
+	\end{Huge}
+\end{center}
+
+%\setlength{\parindent}{18pt} %settato indentazione di default 
+\section*{\Large Sommario:} %SEZIONE SOMMARIO
+\indent \indent
+Questa \`e la relazione dell'incontro svoltosi il 25$\slash$11$\slash$2008 tra alcuni rappresentanti della Zucchetti SPA e il gruppo WebShape.
+\section*{\Large Stato del documento:}
+\indent \indent
+	Formale Esterno
+
+\section*{\Large Redazione:}
+	\begin{elencopuntato}[\normindent]
+		\item[-] Bizzotto Piero
+	\end{elencopuntato}
+
+\section*{\Large Approvazione:}
+	\begin{elencopuntato}[\normindent]
+		\item Dal Bosco Davide
+	\end{elencopuntato}
+		
+\section*{\Large Lista di Distribuzione:}
+\indent \indent I committenti del progetto e i dipendenti e collaboratori dell'azienda WeShape per il progetto "AJAXDRAW":	
+
+\begin{elenconumerato}{\normindent}
+		\item WebShape \footnote{Il termine WebShape designa una collettivit\`a di individui come da organigramma contenuto nel piano di progetto fornito in allegato al presente documento}
+		\item I committenti Conte Renato e Vardanega Tullio in rappresentanza \\  dell'azienda proponente Zucchetti SPA
+	\end{elenconumerato}
+
+\newpage
+
+
+
+\section*{\Large Registro delle Modifiche:}
+
+
+\begin{center}
+	\begin{table}[h]
+		  \begin{tabular*}
+			{1\textwidth}%
+					 {@{\extracolsep{\fill}}|p{0.1\textwidth}|p{0.55\textwidth}|p{0.25\textwidth}|}
+		 \hline
+%%%%%%%%%%%%%%INTESTAZIONE COLONNE%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+			\textbf{Versione}  & \textbf{Descrizione} & \textbf{Autore} \\
+%%%%%%%%%%%%%%FINE INTESTAZIONE COLONNE%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+		 \hline
+%%%%%%%%%%% PARTE DA MODIFICARE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+			
+	 	    	0.0    & 29$\slash$11$\slash$2008 Prima stesura Documento   & Bizzotto Piero  \\
+
+		\hline %%FINE RIGA
+%%%%%%%%%%% FINE PARTE DA MODIFICARE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+		\end{tabular*}
+	\caption{Tabella 	MODIFICHE} %INSERIRE DIDASCALIA - SE NECESSARIA - 
+	\label{tab:modifiche}
+	\end{table}
+\end{center}
+
+
+\newpage
+\thispagestyle{fancy}
+\tableofcontents
+\thispagestyle{fancy}
+\newpage
+
+	\sezione{Introduzione}
+	{
+	Questa relazione cerca di riassumere e descrivere formalmente ci\`o che \`e emerso dall'incontro avvenuto il 25$\slash$11$\slash$2008 tra WebShape e la rappresentanza della ditta Zucchetti SPA nella figura di committente. Si ricorda che questo documento ha valore contrattuale ed che integra e corregge quanto espresso nel capitolato d'appalto. 
+	}
+
+	\sezione{Argomenti trattati}
+	{
+	Vengono elencati gli argomenti trattati e le relative risposte che ha fornito il committente.
+	
+	\subsezione{Web browsers supportati}
+	{
+	La compatibilit\` a deve essere garantita con le ultime versioni dei principali browsers, nella fattispecie Google Chrome(ultima beta), Mozilla Firefox(v.3 o superiore), Apple Safari(3.2) e Opera(v.9.50 o superiore). Il funzionamento su vecchie versioni di questi non \` e necessaria, considerata l'appartenenza del tag CANVAS alla specifica di HTML 5, supportata solo recentemente. \` E opzionale la realizzazione della compatibilit\` a con Internet Explorer, tramite la libreria \"{}excanvas\"{}, che comunque garantisce prestazioni minime.
+	}
+
+	\subsezione{Utilizzo del tag CANVAS di HTML 5}
+	{
+	\`E appunto obbligatorio utilizzare le specifiche HTML 5, che prevedono appunto l'introduzione dell'elemento CANVAS, indispensabile per poter svolgere il progetto.
+	}
+
+	\subsezione{Librerie da utilizzare}
+	{
+	 \`E emersa la possibilit\` a di utilizzare qualsiasi libreria JavaScript(JQuery, QooxDoo,ecc.) al fine di 
+	 realizzare il progetto.
+	 }
+
+	\subsezione{Prestazioni}
+	{
+	Le prestazioni non sono un'aspetto rilevante nella creazione di AJAXDRAW, data soprattutto la sua natura di progetto "Proof of Concept", ma il problema non dovrebbe comunque presentarsi, date le buone prestazioni dell'elemento CANVAS in s\` e, che a detta dei rappresentanti della Zucchetti \` e pi\` u veloce delle implementazioni software.
+	}
+
+	\subsezione{Programmazione lato server}
+	{
+	\` E prevista un'implementazione minimale del server, per permettere al massimo le parti di salvataggio del disegno effettuato. La maggioranza del sistema quindi funzioner\` a tranquillamente lato client.
+	}
+
+	\subsezione{Esportazione in altri formati}
+	{
+	Il committente conferma che l'unico formato nel quale dovr\` a essere esportata l'immagine creata resta l'SVG, escludendo quindi, tra gli altri, bitmap e compressione JPEG.
+	}
+	
+
+
+\end{document}
