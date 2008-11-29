@@ -1,7 +1,7 @@
 	\input{../TeX/base} %BASE!!!
 
 \title{\TITOLODOC}
-\author{Piero Bizzotto}
+\author{Mirco Geremia}
 
 \begin{document}
 
@@ -104,7 +104,8 @@ Questo documento definisce le linee guida da seguire per la stesura della docume
 %%%%%%%%%%%%%%FINE INTESTAZIONE COLONNE%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 		 \hline
 %%%%%%%%%%% PARTE DA MODIFICARE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%		
-    	 	\insertversion & 	 28$\slash$11$\slash$2008 Prima stesura & Mirco Geremia \\
+			0.1 & 	 29$\slash$11$\slash$2008 Aggiunto Risorse e Comunicazione & Mirco Geremia \\
+    	 	0.0 & 	 28$\slash$11$\slash$2008 Prima stesura & Mirco Geremia \\
 
 		\hline %%FINE RIGA
 %%%%%%%%%%% FINE PARTE DA MODIFICARE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -122,7 +123,14 @@ Questo documento definisce le linee guida da seguire per la stesura della docume
 \newpage
 
 %qui inizia l'indice, che viene creato automaticamente
-\sezione{Redazione dei Documenti}
+\sezione{Risorse}
+	\begin{elencopuntato}[\normindent]
+		\item[-] Sito del progetto: \sito
+		\item[-] Repository Git: \href{http://github.com/stefano/ajaxdraw/tree/master}{http://github.com/stefano/ajaxdraw/tree/master}
+		\item[-] Contatto e-mail: \href{mailto:webshape.contact@gmail.com}{webshape.contact@gmail.com}
+	\end{elencopuntato}
+
+\sezione{Redazione dei documenti}
 	I documenti sono redatti in lingua italiana e presentano termini in inglese solamente nel caso di riferimenti al codice o a termini tecnici. Le parole presenti nel glossario sono sottolineate alla prima occorrenza nel documento.\\
 	Per la redazione dei documenti si \`e scelto di usare il linguaggio di markup \LaTeX, che gestisce automaticamente la formattazione del testo permettendo agli autori di concentrarsi maggiormente sui contenuti. Per  la creazione di un documento si utilizzano i template di base presenti nel repository dell'azienda.\\
 	I nomi dei documenti seguono le seguenti regole:
@@ -139,5 +147,22 @@ Questo documento definisce le linee guida da seguire per la stesura della docume
 	
 \sezione{Versionamento}
 	La numerazione delle versioni dei documenti \`e composta da due cifre separate da un punto, che partono entrambe da 0. La prima cifra rappresenta il numero dei rilasci esterni e viene quindi aumentata quando si consegna il documento per una revisione; la seconda sta ad indicare le versioni interne, viene incrementata ad ogni cambiamento del documento ed \`e posta a 0 ogniqualvolta si cambi la prima cifra. 
-		
+
+\sezione{Comunicazione interna}
+Il gruppo si incontra settimanalmente per aggiornarsi e verificare lo stato di avanzamento del progetto. Le riunioni non sono fissate per un giorno preciso della settimana, ma in base alla disponibilit\`a dei componenti del gruppo.\\
+L'azienda si serve del sistema di mailing-list offerto da Google (\href{http://groups.google.it/}{http://groups.google.it/}) per discutere le diverse problematiche inerenti al progetto e per aggiornamenti di ogni tipo.
+
+\sezione{Strumenti di sviluppo}
+L'azienda sceglie di utilizzare software con licenze OpenSource poich\`e rispecchiano le linee di pensiero dei componenti del gruppo. Inoltre tutto il software utilizzato \`e disponibile gratuitamente, per non gravare sui costi finali del prodotto.
+\subsezione{Sistema di versionamento}
+Git e github
+\subsezione{Bug tracking}
+Tracker di sourceforge
+\subsezione{Modellazione UML}
+ArgoUML
+\subsezione{Pianificazione delle attivit\`a}
+GanttProject
+\subsezione{Editor \LaTeX}
+Libero
+
 \end{document}

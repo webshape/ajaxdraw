@@ -88,8 +88,8 @@ Tale studio \`e mirato alla comprensione dei bisogni espressi nel capitolato e a
 	\end{table}	
 \section*{\LARGE Approvazione:}
 %	\begin{elencopuntato}[\normindent]
-%		\item Beggiato Alessandro
-%		\item Bragagnolo Emanuele
+%		\item 
+%		\item 
 %	\end{elencopuntato}
 \begin{table}[!h]
 	\begin{center}
@@ -312,11 +312,11 @@ Il sistema permette all'utente di rimpicciolire il canvas ed il suo contenuto ma
 \begin{elenconumerato}[\textbf{}]{\subsubsecindent}
 \item L'utente seleziona, esplicitamente o implicitamente, la parte di canvas da mantenere al centro della visualizzazione.
 \item L'utente seleziona di quanto diminuire lo zoom.
-\item Il sistema rimpicciolisce il canvas di quanto richiesto
-\item Il sistema accentra la visualizzazione dove richiesto dall'utente
+\item Il sistema rimpicciolisce il canvas di quanto richiesto.
+\item Il sistema accentra la visualizzazione dove richiesto dall'utente.
 \end{elenconumerato}
-\paragraph{Precondizioni} Il canvas \'e visualizzato
-\paragraph{Postcondizioni} Il canvas \'e rimpicciolito
+\paragraph{Precondizioni} Il canvas \'e visualizzato.
+\paragraph{Postcondizioni} Il canvas \'e rimpicciolito.
 
 \subsubsezione{UC7 Caso d'uso: esporta in SVG}
 \paragraph{Attori coinvolti} Utente
@@ -352,6 +352,63 @@ Si rimanda a \ref{ucdisegna} per una descrizione approfondita.
 \subsubsezione{UC10 Caso d'uso: seleziona e modifica}
 Si rimanda a \ref{ucselezionaemodifica} per una descrizione approfondita.
 
+\subsezione{Vista UC8 - Disegna}
+\label{ucdisegna}
+Il seguente grafico illustra le interazioni tra l'utente e il sistema per disegnare un oggetto sul canvas.
+\label{ucdisegna}
+
+\subsubsezione{UC8.1 Caso d'uso: disegna linea retta/curva di Bezier}
+\paragraph{Attori coinvolti} Utente.
+\paragraph{Scopo e descrizione sintetica} 
+Il sistema permette all'utente di disegnare una linea retta o una curva di Bezier.
+\paragraph{Flusso di eventi}
+\begin{elenconumerato}[\textbf{}]{\subsubsecindent}
+\item L'utente seleziona il comando per disegnare una linea retta o una curva di Bezier.
+\item L'utente disegna sul canvas la linea retta con due clic distinti, oppure la curva di Bezier tenendo premuto il pulsante sinistro del mouse.
+\item Il sistema disegna la linea/curva.
+\end{elenconumerato}
+\paragraph{Precondizioni} Il canvas \'e visualizzato.
+\paragraph{Postcondizioni} Il canvas mostra la nuova retta/curva disegnata.
+
+\subsubsezione{UC8.2 Caso d'uso: disegna quadrato/rettangolo}
+\paragraph{Attori coinvolti} Utente.
+\paragraph{Scopo e descrizione sintetica} 
+Il sistema permette all'utente di disegnare un quadrato o un rettangolo di qualsiasi dimensione.
+\paragraph{Flusso di eventi}
+\begin{elenconumerato}[\textbf{}]{\subsubsecindent}
+\item L'utente seleziona il comando per disegnare un quadrato o un rettangolo.
+\item L'utente disegna sul canvas il quadrato o il rettangolo, scegliendo col cursore la sua dimensione.
+\item Il sistema disegna il quadrato/rettangolo.
+\end{elenconumerato}
+\paragraph{Precondizioni} Il canvas \'e visualizzato.
+\paragraph{Postcondizioni} Il canvas mostra il nuovo quadrato/rettangolo disegnato.
+
+\subsubsezione{UC8.3 Caso d'uso: disegna poligono}
+\paragraph{Attori coinvolti} Utente.
+\paragraph{Scopo e descrizione sintetica} 
+Il sistema permette all'utente di disegnare un poligono di qualsiasi dimensione.
+\paragraph{Flusso di eventi}
+\begin{elenconumerato}[\textbf{}]{\subsubsecindent}
+\item L'utente seleziona il comando per disegnare un quadrato o un rettangolo.
+\item L'utente disegna sul canvas il quadrato o il rettangolo, scegliendo col cursore la sua dimensione.
+\item Il sistema disegna il quadrato/rettangolo.
+\end{elenconumerato}
+\paragraph{Precondizioni} Il canvas \'e visualizzato.
+\paragraph{Postcondizioni} Il canvas mostra il nuovo quadrato/rettangolo disegnato.
+
+\subsubsezione{UC8.4 Caso d'uso: disegna casella di testo}
+\paragraph{Attori coinvolti} Utente.
+\paragraph{Scopo e descrizione sintetica} 
+Il sistema permette all'utente di disegnare una casella di testo.
+\paragraph{Flusso di eventi}
+\begin{elenconumerato}[\textbf{}]{\subsubsecindent}
+\item L'utente seleziona il comando per disegnare una casella di testo.
+\item L'utente disegna sul canvas la casella, scegliendo col cursore la sua dimensione.
+\item L'utente scrive il testo all'interno della casella.
+\item Il sistema disegna la casella di testo.
+\end{elenconumerato}
+\paragraph{Precondizioni} Il canvas \'e visualizzato.
+\paragraph{Postcondizioni} Il canvas mostra la nuova casella di testo disegnata.
 %inizio requisiti
 \sezione{Lista dei requisiti}
 \label{listarequisiti}
