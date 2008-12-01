@@ -2,7 +2,7 @@
 \usepackage{multirow}
 \begin{document}
 
-\renewcommand{\insertversion}{0.0} %INSERIRE LA VERSIONE QUI DENTRO STILE x.x.xx
+\renewcommand{\insertversion}{0.1} %INSERIRE LA VERSIONE QUI DENTRO STILE x.x.xx
 \renewcommand{\TITOLODOC}{Analisi dei Requisiti} %INSERIRE IL TITOLO DEL DOCUMENTO DA FAR COMPARIRE A PIE PAGINA
 
 \begin{titlepage}
@@ -191,7 +191,7 @@ L'applicativo permetter\`a l'esportazione del disegno creato nel formato SVG, di
 
 \subsezione{Caratteristiche degli utenti}
 \label{definizione_utente}
-Gli utenti previsti per AJAXDRAW sono normali utilizzatori di Internet, quindi persone dalle varie capacit\`a tecniche, dalle pi\`u basse alle pi\`u alte. Si assume che l'utente finale conosca le funzioni basilari di un software di grafica, quindi si danno per noti concetti di disegno di primitive, inserimento di testo, selezione di oggetti, in quanto contenuti al giorno d\'oggi nella stragrande maggioranza dei software pi\`u usati.
+Gli utenti previsti per AJAXDRAW sono normali utilizzatori di Internet, quindi persone dalle varie capacit\`a tecniche, dalle pi\`u basse alle pi\`u alte. Si assume che l'utente finale conosca le funzioni basilari di un software di grafica, quindi si danno per noti concetti di disegno di primitive, inserimento di testo, selezione di oggetti, in quanto contenuti al giorno d'oggi nella stragrande maggioranza dei software pi\`u usati.
 
 \subsezione{Vincoli generali}
 Il software che WebShape si impegna a sviluppare sar\`a soggetto a licenza \blue{GPL}.
@@ -354,12 +354,20 @@ Si rimanda a \ref{ucdisegna} per una descrizione approfondita.
 \subsubsezione{UC10 Caso d'uso: seleziona e modifica}
 Si rimanda a \ref{ucselezionaemodifica} per una descrizione approfondita.
 
-\subsezione{Vista UC8 - Disegna}
+\subsezione{Vista UC9 - Disegna}
 \label{ucdisegna}
 Il seguente grafico illustra le interazioni tra l'utente e il sistema per disegnare un oggetto sul canvas.
-\label{ucdisegna}
 
-\subsubsezione{UC8.1 Caso d'uso: disegna linea retta/curva di Bezier}
+\begin{figure}[!ht]
+\centering
+\vspace{20pt} 
+\includegraphics{UC9Espanso}
+\caption{UC9 Caso d'uso: disegna}
+\label{uc9}
+\end{figure}
+
+
+\subsubsezione{UC9.1 Caso d'uso: disegna linea retta/curva di Bezier}
 \paragraph{Attori coinvolti} Utente.
 \paragraph{Scopo e descrizione sintetica} 
 Il sistema permette all'utente di disegnare una linea retta o una curva di Bezier.
@@ -372,7 +380,7 @@ Il sistema permette all'utente di disegnare una linea retta o una curva di Bezie
 \paragraph{Precondizioni} Il canvas \'e visualizzato.
 \paragraph{Postcondizioni} Il canvas mostra la nuova retta/curva disegnata.
 
-\subsubsezione{UC8.2 Caso d'uso: disegna quadrato/rettangolo}
+\subsubsezione{UC9.2 Caso d'uso: disegna quadrato/rettangolo}
 \paragraph{Attori coinvolti} Utente.
 \paragraph{Scopo e descrizione sintetica} 
 Il sistema permette all'utente di disegnare un quadrato o un rettangolo di qualsiasi dimensione.
@@ -385,7 +393,7 @@ Il sistema permette all'utente di disegnare un quadrato o un rettangolo di quals
 \paragraph{Precondizioni} Il canvas \'e visualizzato.
 \paragraph{Postcondizioni} Il canvas mostra il nuovo quadrato/rettangolo disegnato.
 
-\subsubsezione{UC8.3 Caso d'uso: disegna poligono}
+\subsubsezione{UC9.3 Caso d'uso: disegna poligono}
 \paragraph{Attori coinvolti} Utente.
 \paragraph{Scopo e descrizione sintetica} 
 Il sistema permette all'utente di disegnare un poligono di qualsiasi dimensione.
@@ -398,7 +406,7 @@ Il sistema permette all'utente di disegnare un poligono di qualsiasi dimensione.
 \paragraph{Precondizioni} Il canvas \'e visualizzato.
 \paragraph{Postcondizioni} Il canvas mostra il nuovo quadrato/rettangolo disegnato.
 
-\subsubsezione{UC8.4 Caso d'uso: disegna casella di testo}
+\subsubsezione{UC9.4 Caso d'uso: disegna casella di testo}
 \paragraph{Attori coinvolti} Utente.
 \paragraph{Scopo e descrizione sintetica} 
 Il sistema permette all'utente di disegnare una casella di testo.
@@ -411,6 +419,8 @@ Il sistema permette all'utente di disegnare una casella di testo.
 \end{elenconumerato}
 \paragraph{Precondizioni} Il canvas \'e visualizzato.
 \paragraph{Postcondizioni} Il canvas mostra la nuova casella di testo disegnata.
+
+
 %inizio requisiti
 \sezione{Lista dei requisiti}
 \label{listarequisiti}
@@ -439,15 +449,16 @@ per ogni tipologia \`e presente un'ulteriore classificazione per classe di spazi
 \subsubsezione{Desiderabili (RFD)}
 \begin{elenconumerato}[\textbf{RFD-}]{\subsubsecindent}
 \item{AJAXDRAW permette di disegnare a mano libera.}
-\item{AJAXDRAW permette la creazione di spirali.}
-\item{AJAXDRAW permette di utilizzare il disegno calligrafico o pennellato.}
+
 \item{AJAXDRAW permette di disegnare connettori per diagrammi.}
-\item{AJAXDRAW permette di disegnare curve di Bezier.}
+%\item{AJAXDRAW permette di disegnare curve di Bezier.}
 \end{elenconumerato}
 
 %facoltativi
 \subsubsezione{Facoltativi (RFF)}
 \begin{elenconumerato}[\textbf{RFF-}]{\subsubsecindent}
+\item{AJAXDRAW permette la creazione di spirali.}
+\item{AJAXDRAW permette di utilizzare il disegno calligrafico o pennellato.}
 \end{elenconumerato}
 
 %requisiti prestazionali
@@ -461,7 +472,9 @@ per ogni tipologia \`e presente un'ulteriore classificazione per classe di spazi
 \subsezione{Requisiti di qualit\`a (RQ)}	
 \subsubsezione{Obbligatori (RQO)}
 \begin{elenconumerato}[\textbf{RQO-}]{\subsubsecindent}
-\item Il lato client dell'applicativo dev'essere realizzato usando tecnologie web standard\footnote{con il termine ``standard'' si intendono tecnologie o effettivamente standardizzate come l'\underline{ECMAScript} o tecnologie considerate standard \textitalic{de facto} come quelle raccomandata dal \textitalic{W3C}}.
+\item Il lato client dell'applicativo dev'essere realizzato usando tecnologie web standard
+\footnote{con il termine \"{}standard\" {} si intendono tecnologie o effettivamente standardizzate come l'
+\underline{ECMAScript} o tecnologie considerate standard \textit{de facto} come quelle raccomandata dal \textit{W3C}}.
 \item Il codice sorgente rispetta lo standard di codifica interno all'azienda.
 \item Il codice sorgente \`e scritto in accordo con i paradigmi dell'orientamento agli oggetti.
 \item Il codice sorgente \`e corredato di documentazione completa.
@@ -501,8 +514,8 @@ per ogni tipologia \`e presente un'ulteriore classificazione per classe di spazi
 \item Il prodotto realizzato dovr\`a essere pubblicato sul sito "www.sourceforge.net", in conformit\`a con i relativi requisiti di natura Open Source, per favorire la continuit\`a del prodotto risultante.
 \item Il prodotto \`e sviluppato e testato sui principali internet browsers: Mozilla Firefox, Google Chrome, Opera ed Apple Safari.
 \end{elenconumerato}
-\subsubsezione{Desiderabili (DAF)}
-\begin{elenconumerato}[\textbf{DAF-}]{\subsubsecindent}
+\subsubsezione{Desiderabili (RAD)}
+\begin{elenconumerato}[\textbf{RAD-}]{\subsubsecindent}
 \item{AJAXDRAW garantisce la compatibilit\`a con il browser Microsoft Internet Explorer, il quale non implementa a pieno HTML 5, tramite la libreria \H{}excanvas\H{} creata da Google.}
 \end{elenconumerato}
 
