@@ -1,11 +1,11 @@
-	\input{base} %BASE!!!
+	\input{../TeX/base} %BASE!!!
 
 \title{\TITOLODOC}
 \author{Piero Bizzotto}
 
 \begin{document}
 
-\renewcommand{\insertversion}{0.0} %INSERIRE LA VERSIONE QUI DENTRO STILE x.x.xx
+\renewcommand{\insertversion}{0.1} %INSERIRE LA VERSIONE QUI DENTRO STILE x.x.xx
 \renewcommand{\TITOLODOC}{Studio di Fattibilit\`{a}} %INSERIRE IL TITOLO DEL DOCUMENTO DA FAR COMPARIRE A PIE PAGINA
 \renewcommand{\glosspath}{.\glossario} %INSERIRE PERCORSO RELATIVO
 
@@ -32,7 +32,7 @@
 \vspace{20pt}
 
 \begin{center}
-\includegraphics[width=150pt]{logo}
+\includegraphics[width=150pt]{../logo/logo}
 \end{center}
 
 \vspace{170pt}
@@ -108,7 +108,8 @@ Software per il Disegno Grafico in Tecnologie Web (in sigla AjaxDraw).
 %%%%%%%%%%%%%%FINE INTESTAZIONE COLONNE%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 		 \hline
 %%%%%%%%%%% PARTE DA MODIFICARE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%		
-    	 	\insertversion & 	 19$\slash$11$\slash$2008 Prima bozza & Mirco Geremia \\
+    	 	\insertversion & 	 21$\slash$11$\slash$2008 Aggiornato Fattiblit\`a tecnologica & Mirco Geremia \\
+    	 	0.0 & 	 19$\slash$11$\slash$2008 Prima bozza & Mirco Geremia \\
 
 		\hline %%FINE RIGA
 %%%%%%%%%%% FINE PARTE DA MODIFICARE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -132,14 +133,19 @@ dai docenti Conte Renato e Vardanega Tullio, il gruppo WebShape ha deciso di pro
 fornitore per il capitolato C04 (\H{}AJAXDRAW\H{}), che consiste nella creazione di un software 
 per il disegno grafico in tecnologie web.
 Tale scelta si basa prevalentemente sui seguenti punti:
-	\begin{elencopuntato}[\normindent]
+	\begin{elenconumerato}{\normindent}
 		\item interesse e capacit\`{a}: i membri del gruppo condividono lo stesso interesse nei confronti delle tecnologie web e delle applicazioni grafiche; inoltre alcuni componenti sono in possesso delle conoscenze necessarie per comprendere a fondo il dominio del problema, in quanto hanno gi\`{a} superato l'esame di Tecnologie Web della Laurea Triennale di Informatica dell'Universit\`{a} di Padova, mentre per gli altri tale esame rappresenta ulteriore stimolo di interesse nei riguardi del progetto.
 		\item aspetto commerciale: il capitolato in oggetto rappresenta secondo il gruppo un buon prodotto 
-		poich\`{e} l'utilizzo del software risulta pi\`{u}  semplice e immediato rispetto alla stessa applicazione desktop	(i.e. esenta l'utente da oneri come l'installazione e l'aggiornamento del prodotto).
+		poich\`{e} l'utilizzo del software risulta pi\`{u}  semplice e immediato rispetto alla stessa applicazione desktop	(ad esempio esenta l'utente da oneri come l'installazione e l'aggiornamento del prodotto).
 		E' da notare inoltre l'attuale orientamento del mercato informatico verso le tecnologie web, 
 		che si stanno indubbiamente rivelando sempre pi\`{u} interessanti.
-		\item fattibilit\`{a} tecnologica: i componenti del gruppo hanno accertato l'esistenza di strumenti software adatti alla realizzazione del progetto.
-	\end{elencopuntato}
+		\item fattibilit\`{a} tecnologica: i componenti del gruppo hanno accertato l'esistenza di strumenti software adatti alla realizzazione del progetto: 
+				\begin{elencopuntato}[\normindent]
+					\item l'oggetto "canvas" che su richiesta del cliente si andrà ad utilizzare rende disponibili le funzionalità di base del prodotto.
+					\item il formato SVG richiesto per rappresentare le immagini, essendo un linguaggio derivato dall'XML, è facilmente utilizzabile senza dover ricorrere a librerie grafiche specifiche.
+					\item il JavaScript è un linguaggio di programmazione semplice e completo, adatto a scrivere anche applicazioni di un certo rilievo, e non solo semplici script web; queste sue caratteristiche facilitano la realizzazione del progetto.
+				\end{elencopuntato}
+\end{elenconumerato}
 
 Pertanto il gruppo WebShape si dichiara disponibile per la creazione e lo sviluppo del capitolato d\'{}appalto C04.
 
