@@ -2,7 +2,7 @@
 \usepackage{multirow}
 \begin{document}
 
-\renewcommand{\insertversion}{0.1} %INSERIRE LA VERSIONE QUI DENTRO STILE x.x.xx
+\renewcommand{\insertversion}{0.2} %INSERIRE LA VERSIONE QUI DENTRO STILE x.x.xx
 \renewcommand{\TITOLODOC}{Analisi dei Requisiti} %INSERIRE IL TITOLO DEL DOCUMENTO DA FAR COMPARIRE A PIE PAGINA
 
 \begin{titlepage}
@@ -76,6 +76,7 @@ Tale studio \`e mirato alla comprensione dei bisogni espressi nel capitolato e a
 				%%%%%%%%%%% PARTE DA MODIFICARE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%		
 				\multirow{2}{*}{Pre-RR} & Bizzotto Piero\\
 										& Dissegna Stefano\\
+										& Carollo Mirko\\
 				\hline
 				\multirow{2}{*}{RR-RPP} & \\
 										& \\
@@ -120,7 +121,7 @@ Tale studio \`e mirato alla comprensione dei bisogni espressi nel capitolato e a
 \section*{\LARGE Lista di Distribuzione:}
 
 	\begin{elenconumerato}{\normindent}
-		\item WebShape \footnote{Il termine WebShape designa una collettivit\`a di individui come da organigramma contenuto nel piano di progetto fornito in allegato al presente documento}
+		\item WebShape
 		\item I committenti Conte Renato e Vardanega Tullio in rappresentanza \\  dell'azienda proponente Zucchetti SPA
 	\end{elenconumerato}
 
@@ -139,7 +140,8 @@ Tale studio \`e mirato alla comprensione dei bisogni espressi nel capitolato e a
 %%%%%%%%%%%%%%FINE INTESTAZIONE COLONNE%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 		 \hline
 %%%%%%%%%%% PARTE DA MODIFICARE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-		
+				\hline
+				0.2 & 02$\slash$12$\slash$2008 Altri casi d'uso e qualche requisito aggiunti. & Bizzotto Piero \\
                 \hline
                 0.1 & 30$\slash$11$\slash$2008 Casi d'uso relativi ad avvio e interazione con l'applicazione. Aggiunti requisiti. & Dissegna Stefano \\
 		\hline	
@@ -450,12 +452,148 @@ Il sistema permette all'utente di selezionare il colore di riempimento del polig
 Il sistema permette all'utente di selezionare il tipo e la dimensione del carattere da disegnare.
 \paragraph{Flusso di eventi}
 \begin{elenconumerato}[\textbf{}]{\subsubsecindent}
-\item L'utente seleziona il il tipo di carattere e la sua dimensione.
+\item L'utente seleziona il tipo di carattere e la sua dimensione.
 \item Il sistema imposta i valori dati dall'utente come base per la figura da disegnare.
 \end{elenconumerato}
 \paragraph{Precondizioni} Il canvas \'e visualizzato.
 \paragraph{Postcondizioni} Il canvas \'e visualizzato.
 
+\subsubsezione{UC9.8 Caso d'uso: disegna spirale}
+\paragraph{Attori coinvolti} Utente.
+\paragraph{Scopo e descrizione sintetica} 
+Il sistema permette all'utente di disegnare una spirale.
+\paragraph{Flusso di eventi}
+\begin{elenconumerato}[\textbf{}]{\subsubsecindent}
+\item L'utente seleziona il comando per disegnare una spirale.
+\item L'utente disegna la spirale sul canvas, regolando col cursore la sua dimensione.
+\item Il sistema disegna la spirale.
+\end{elenconumerato}
+\paragraph{Precondizioni} Il canvas \'e visualizzato.
+\paragraph{Postcondizioni} Il canvas mostra la nuova spirale disegnata.
+
+\subsubsezione{UC9.9 Caso d'uso: disegno di linee a mano libera}
+\paragraph{Attori coinvolti} Utente.
+\paragraph{Scopo e descrizione sintetica} 
+Il sistema permette all'utente di disegnare linee a mano libera.
+\paragraph{Flusso di eventi}
+\begin{elenconumerato}[\textbf{}]{\subsubsecindent}
+\item L'utente seleziona il comando per disegnare linee a mano libera.
+\item L'utente disegna la linea a mano libera sul canvas, trascinando il cursore.
+\item Il sistema disegna la linea creata.
+\end{elenconumerato}
+\paragraph{Precondizioni} Il canvas \'e visualizzato.
+\paragraph{Postcondizioni} Il canvas mostra la nuova linea a mano libera.
+
+\subsubsezione{UC9.10 Caso d'uso: disegno calligrafico}
+\paragraph{Attori coinvolti} Utente.
+\paragraph{Scopo e descrizione sintetica} 
+Il sistema permette all'utente di disegnare una linea a mano libera con stile calligrafico.
+\paragraph{Flusso di eventi}
+\begin{elenconumerato}[\textbf{}]{\subsubsecindent}
+\item L'utente seleziona il comando per disegnare linee calligrafiche.
+\item L'utente disegna la linea calligrafica sul canvas, trascinando il cursore.
+\item Il sistema disegna la linea creata.
+\end{elenconumerato}
+\paragraph{Precondizioni} Il canvas \'e visualizzato.
+\paragraph{Postcondizioni} Il canvas mostra la nuova linea calligrafica.
+
+\subsubsezione{UC9.10 Caso d'uso: disegno connettori di diagrammi}
+\paragraph{Attori coinvolti} Utente.
+\paragraph{Scopo e descrizione sintetica} 
+Il sistema permette all'utente di disegnare dei connettori di diagrammi.
+\paragraph{Flusso di eventi}
+\begin{elenconumerato}[\textbf{}]{\subsubsecindent}
+\item L'utente seleziona il comando per disegnare connettori di diagrammi.
+\item L'utente disegna il connettore sul canvas, cliccando su punto d'inizio e punto di fine linea desiderati.
+\item Il sistema disegna il connettore creato.
+\end{elenconumerato}
+\paragraph{Precondizioni} Il canvas \'e visualizzato.
+\paragraph{Postcondizioni} Il canvas mostra il nuovo connettore creato.
+
+\subsezione{Vista UC10 - Seleziona e Modifica}
+\label{ucselezionaemodifica}
+Il seguente grafico illustra le interazioni tra l'utente e il sistema per selezionare e modificare un oggetto sul canvas.
+
+%\begin{figure}[!ht]
+%\centering
+%\vspace{20pt} 
+%\includegraphics{UC10Espanso}
+%\caption{UC9 Caso d'uso: disegna}
+%\label{uc9}
+%\end{figure}
+
+\subsubsezione{UC10.1 Caso d'uso: imposta font casella di testo}
+\paragraph{Attori coinvolti} Utente.
+\paragraph{Scopo e descrizione sintetica} 
+Il sistema consente all'utente di impostare il font del testo presente all'interno di una casella di testo..
+\paragraph{Flusso di eventi}
+\begin{elenconumerato}[\textbf{}]{\subsubsecindent}
+\item L'utente seleziona una casella di testo.
+\item Il sistema evidenzia l'etichetta di testo selezionata e mostra un pannello con i relativi stili grafici.
+\item L'utente porta il cursore nella sezione/scheda del pannello relativa al font
+\item L'utente seleziona il font scelto nel combobox apposito all'interno di tale pannello.
+\end{elenconumerato}
+\paragraph{Precondizioni} L'utente ha scelto una casella di testo presente nel canvas.
+\paragraph{Postcondizioni} Le propriet\` a degli stili grafici della casella di testo indicano che il font usato \` e quello selezionato (la casella potrebbe essere vuota e quindi non visibile dall'utente all'interno del canvas).
+
+\subsubsezione{UC10.2 Caso d'uso: imposta dimensione dei caratteri}
+\paragraph{Attori coinvolti} Utente.
+\paragraph{Scopo e descrizione sintetica} 
+Il sistema consente di modificare la dimensione dei caratteri del testo di una casella.
+\paragraph{Flusso di eventi}
+\begin{elenconumerato}[\textbf{}]{\subsubsecindent}
+\item L'utente seleziona una casella di testo.
+\item Il sistema evidenzia l'etichetta di testo selezionata e mostra un pannello con i relativi stili grafici.
+\item L'utente porta il cursore nella sezione/scheda del pannello relativa alla dimensione carattere.
+\item L'utente seleziona la dimensione scelta nel combobox apposito all'interno di tale pannello, o inserisce un numero intero valido.
+\end{elenconumerato}
+\paragraph{Precondizioni}L'utente ha scelto una casella di testo presente nel canvas.
+\paragraph{Postcondizioni}Le proprietà degli stili grafici della casella di testo indicano che la dimensione del font \` e quella selezionata (parte del testo potrebbe essere troncata o non visibile)
+
+\subsubsezione{UC10.3  Caso d'uso: imposta colore di riempimento}
+\paragraph{Attori coinvolti} Utente.
+\paragraph{Scopo e descrizione sintetica}   Il sistema consente di personalizzare il colore dello spazio appartenente ad un qualsiasi oggetto presente nel canvas. Sono disponibili colori campione, e colori personalizzati (mixando le componenti RGB che producono il corrispondente codice esadecimale del colore a 6 cifre).
+\paragraph{Flusso di eventi}
+\begin{elenconumerato}[\textbf{}]{\subsubsecindent}
+\item L'utente seleziona un oggetto valido.
+\item Il sistema evidenzia l'oggetto selezionato e mostra un pannello con i relativi stili grafici.
+\item L'utente porta il cursore nella sezione/scheda del pannello relativa al colore di riempimento.
+\item  L'utente seleziona un colore  nel menu a tendina apposito all'interno di tale pannello (caso colore campione).
+\item L'utente si reca nel menu a tendina apposito all'interno di tale pannello. Clicca sulla a scheda alternativa e mixa il colore impostando i valori rosso, blu, verde. (caso colore personalizzato).
+\end{elenconumerato}
+\paragraph{Precondizioni}L'utente ha scelto un oggetto colorabile presente nel canvas.
+\paragraph{Postcondizioni}Le propriet\` a degli stili grafici della casella di testo indicano che il colore di riempimento \` e  quello selezionato (il colore potrebbe essere uguale allo sfondo del canvas e quindi non visibile dall'utente).
+
+
+\subsubsezione{UC10.4  Caso d'uso:   imposta colore del bordo}
+\paragraph{Attori coinvolti} Utente.
+\paragraph{Scopo e descrizione sintetica} Il sistema consente di personalizzare il colore di tutto il bordo appartenente ad un qualsiasi oggetto presente nel canvas.
+Sono disponibili colori campione, e colori personalizzati (mixando le componenti RGB che producono il corrispondente codice esadecimale del colore a 6 cifre).
+\paragraph{Flusso di eventi}
+\begin{elenconumerato}[\textbf{}]{\subsubsecindent}
+\item L'utente seleziona un oggetto valido.
+\item Il sistema evidenzia l'oggetto selezionato e mostra un pannello con i relativi stili grafici.
+\item L'utente  porta  il cursore nella sezione/scheda del pannello relativa al colore del bordo.
+\item L'utente seleziona un colore  nel menu a tendina apposito all'interno di tale pannello(caso colore campione).
+\item L'utente si reca nel menu a tendina apposito all'interno di tale pannello. Clicca sulla a scheda alternativa e mixa il colore impostando i valori rosso, blu, verde (caso colore personalizzato).
+\end{elenconumerato}
+\paragraph{Precondizioni} L'utente ha scelto un oggetto colorabile presente nel canvas.
+\paragraph{Postcondizioni} Le propriet\` a degli stili grafici della casella di testo indicano che il colore del bordo\` e quello selezionato (il colore potrebbe essere uguale allo sfondo del canvas e quindi il bordo potrebbe diventare non visibile dall'utente).
+
+
+\subsubsezione{UC10.5  Caso d'uso:   imposta l'opacit\` a}
+\paragraph{Attori coinvolti} Utente.
+\paragraph{Scopo e descrizione sintetica}  Il sistema consente di modificare il livello di opacit\` a di un qualsiasi oggetto presente nel canvas. Il valore si esprime in \%.   \` E quindi possibile rendere un oggetto pienamente visibile (100\%), non visibile (0\%), e situazioni intermedie.
+\paragraph{Flusso di eventi}
+\begin{elenconumerato}[\textbf{}]{\subsubsecindent}
+\item L'utente seleziona un oggetto valido.
+\item Il sistema evidenzia l'oggetto selezionato e mostra un pannello con i relativi stili grafici.
+\item  L'utente porta  il cursore nella sezione/scheda del pannello relativa all'opacit\` a.
+\item  L'utente regola l'opacit\` a inserendo un valore intero tra 0 a 100 o trascinando col cursore l'apposito mixer.
+\end{elenconumerato}
+\paragraph{Precondizioni} L'utente ha scelto un oggetto  presente nel canvas.
+\paragraph{Postcondizioni} Le propriet\` a degli stili grafici della casella di testo indicano che l'opacit\` a dell'oggetto corrisponde al valore intero selezionato.
+$  $
 %inizio requisiti
 \sezione{Lista dei requisiti}
 \label{listarequisiti}
@@ -465,17 +603,17 @@ per ogni tipologia \`e presente un'ulteriore classificazione per classe di spazi
 \subsubsezione{Obbligatori (RFO)}
 \begin{elenconumerato}[\textbf{RFO-}]{\subsubsecindent}
 \item{AJAXDRAW permette di disegnare linee rette.}
-\item{AJAXDRAW permette di disegnare curve.}
-\item{AJAXDRAW permette di effettuare uno zoom in avanti e all'indietro nel disegno.}
-\item{Per ogni elemento disegnato, AJAXDRAW permette all'utente di selezionare e spostare tale elemento.}
+\item{AJAXDRAW permette di disegnare curve di Bezier.}
 \item{AJAXDRAW permette di disegnare quadrilateri di qualsiasi dimensione(quadrata o rettangolare).}
-\item{AJAXDRAW permette all'utente di disegnare cerchi o ellissi.}
 \item{AJAXDRAW permette di disegnare poligoni regolari di qualsiasi dimensione e numero di lati.}
+\item{AJAXDRAW permette all'utente di disegnare cerchi o ellissi.}
 \item{AJAXDRAW permette di aggiungere caselle di testo al documento. }
+\item{Per ogni elemento disegnato, AJAXDRAW permette all'utente di selezionare e spostare tale elemento.}
 \item{AJAXDRAW permette di cambiare il colore di riempimento, del bordo, delle linee, dell'opacità degli oggetti disegnati.}
 \item{AJAXDRAW permette il ridimensionamento degli oggetti disegnati.}
 \item{AJAXDRAW permette all'utente di selezionare ognuna delle funzionalit\`a suddette tramite una comoda barra degli strumenti.}
 \item{Qualora suddette funzioni siano regolate da parametri, AJAXDRAW permette all'utente di impostarli.}
+\item{AJAXDRAW permette di effettuare uno zoom in avanti e all'indietro nel disegno.}
 \item{AJAXDRAW \`e in grado di salvare le immagini create dall'utente nel formato SVG.}
 \item{AJAXDRAW permette di caricare immagini in formato SVG che utilizzano il sottoinsieme che AJAXDRAW \'e in grado di generare.}
 \end{elenconumerato}
@@ -484,9 +622,8 @@ per ogni tipologia \`e presente un'ulteriore classificazione per classe di spazi
 \subsubsezione{Desiderabili (RFD)}
 \begin{elenconumerato}[\textbf{RFD-}]{\subsubsecindent}
 \item{AJAXDRAW permette di disegnare a mano libera.}
-
 \item{AJAXDRAW permette di disegnare connettori per diagrammi.}
-%\item{AJAXDRAW permette di disegnare curve di Bezier.}
+
 \end{elenconumerato}
 
 %facoltativi
