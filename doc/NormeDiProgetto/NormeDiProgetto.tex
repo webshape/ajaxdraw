@@ -5,7 +5,7 @@
 
 \begin{document}
 
-\renewcommand{\insertversion}{0.0} %INSERIRE LA VERSIONE QUI DENTRO STILE x.x.xx
+\renewcommand{\insertversion}{0.2} %INSERIRE LA VERSIONE QUI DENTRO STILE x.x.xx
 \renewcommand{\TITOLODOC}{Norme di Progetto} %INSERIRE IL TITOLO DEL DOCUMENTO DA FAR COMPARIRE A PIE PAGINA
 \renewcommand{\glosspath}{.\glossario} %INSERIRE PERCORSO RELATIVO
 
@@ -82,7 +82,7 @@ Questo documento definisce le linee guida da seguire per la stesura della docume
 \section*{\LARGE Lista di Distribuzione:}
 
 	\begin{elenconumerato}{\normindent}
-		\item WebShape \footnote{Il termine WebShape designa una collettivit\`a di individui come da organigramma contenuto nel piano di progetto fornito in allegato al presente documento}
+		\item WebShape 
 		\item I committenti Conte Renato e Vardanega Tullio in rappresentanza \\  dell'azienda proponente Zucchetti SPA
 	\end{elenconumerato}
 
@@ -104,6 +104,7 @@ Questo documento definisce le linee guida da seguire per la stesura della docume
 %%%%%%%%%%%%%%FINE INTESTAZIONE COLONNE%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 		 \hline
 %%%%%%%%%%% PARTE DA MODIFICARE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%		
+			0.2 & 	 02$\slash$12$\slash$2008 Aggiunto Strumenti di sviluppo & Mirco Geremia \\
 			0.1 & 	 29$\slash$11$\slash$2008 Aggiunto Risorse e Comunicazione & Mirco Geremia \\
     	 	0.0 & 	 28$\slash$11$\slash$2008 Prima stesura & Mirco Geremia \\
 
@@ -126,7 +127,7 @@ Questo documento definisce le linee guida da seguire per la stesura della docume
 \sezione{Risorse}
 	\begin{elencopuntato}[\normindent]
 		\item[-] Sito del progetto: \sito
-		\item[-] Repository Git: \href{http://github.com/stefano/ajaxdraw/tree/master}{http://github.com/stefano/ajaxdraw/tree/master}
+		\item[-] Repository Git: \href{http://github.com/webshape/ajaxdraw/tree/master}{http://github.com/webshape/ajaxdraw/tree/master}
 		\item[-] Contatto e-mail: \href{mailto:webshape.contact@gmail.com}{webshape.contact@gmail.com}
 	\end{elencopuntato}
 
@@ -154,15 +155,22 @@ L'azienda si serve del sistema di mailing-list offerto da Google (\href{http://g
 
 \sezione{Strumenti di sviluppo}
 L'azienda sceglie di utilizzare software con licenze OpenSource poich\`e rispecchiano le linee di pensiero dei componenti del gruppo. Inoltre tutto il software utilizzato \`e disponibile gratuitamente, per non gravare sui costi finali del prodotto.
+
 \subsezione{Sistema di versionamento}
-Git e github
+Per il versionamento si usa il sistema Git (\href{http://git.or.cz/}{http://git.or.cz/}) nella sua ultima versione disponibile (1.6.0.4) e come repository comune GitHub (\href{http://github.com}{http://github.com}) poich\`e offre una comoda interfaccia grafica per visualizzare le modifiche effettuate, e non aggiunge costi in quanto gratuito nella sua versione base. GitHub offre inoltre un \underline{wiki} utilizzabile all'occorrenza.\\
+Git \`e preferito ad Svn o ad altri sistemi in quanto \`e decentralizzato, quindi nel caso in cui il repository comune non fosse pi\`u raggiungibile per qualsiasi motivo, ogni membro disporr\`a comunque di una copia totale del progetto e di tutta la storia in ogni sua parte.\\
+Git \`e un sistema di comprovata qualit\`a, utilizzato da progetti del calibro del kernel Linux.
+
 \subsezione{Bug tracking}
-Tracker di sourceforge
+Considerato il prerequisito del capitolato d'appalto di pubblicare il progetto su \href{http://sourceforge.net}{SourceForge}, per il tracciamento dei bug si utilizza il sistema \href{https://sourceforge.net/tracker/?group_id=245619}{Tracker} messo a disposizione dallo stesso.
+
 \subsezione{Modellazione UML}
-ArgoUML
+Per la creazione di diagrammi UML l'azienda si serve del software ArgoUML v0.26.2 (\href{http://argouml.tigris.org/}{http://argouml.tigris.org/}), scelto principalmente per la semplicit\`a di utilizzo e per la possibilit\`a di esportare le immagini in formato \underline{PNG}.
+
 \subsezione{Pianificazione delle attivit\`a}
-GanttProject
+Per pianificare le attivit\`a il gruppo ha deciso di di adottare i diagrammi di Gantt perch\`e ritenuti pi\`u immediati; pertanto si \`e scelto di usare il software GanttProject (\href{http://ganttproject.biz/}{http://ganttproject.biz/}) nella versione 2.0.8.
+
 \subsezione{Editor \LaTeX}
-Libero
+L'ambiente di sviluppo \LaTeX \ non \`e definito poich\`e non influisce nel risultato finale, e perch\`e si preferisce lasciare i membri del gruppo liberi di utilizzare l'editor che ritengono pi\`u adatto alle loro caratteristiche.
 
 \end{document}
