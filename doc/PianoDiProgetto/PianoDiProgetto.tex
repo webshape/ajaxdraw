@@ -5,7 +5,7 @@
 
 \begin{document}
 
-\renewcommand{\insertversion}{0.2} %INSERIRE LA VERSIONE QUI DENTRO STILE x.x.xx
+\renewcommand{\insertversion}{0.3} %INSERIRE LA VERSIONE QUI DENTRO STILE x.x.xx
 \renewcommand{\TITOLODOC}{Piano di Progetto} %INSERIRE IL TITOLO DEL DOCUMENTO DA FAR COMPARIRE A PIE PAGINA
 \renewcommand{\glosspath}{.\glossario} %INSERIRE PERCORSO RELATIVO
 
@@ -108,6 +108,7 @@ Il presente documento descrive l'anailisi dei costi e delle risorse effettuata d
 %%%%%%%%%%%%%%FINE INTESTAZIONE COLONNE%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 		 \hline
 %%%%%%%%%%% PARTE DA MODIFICARE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%		
+          0.3 & 04/12/2008 Inserimento intero capitolo Pianificazione con relative sottosezioni,tabelle e grafici & Dal Bosco Davide \\
     	  0.2 & 01/12/2008 Inserimento capitoli Introduzione,Organigramma,Pianificazione(inizio) & Dal Bosco Davide \\
     	  0.1 & 25/11/2008 Adattamento al template scelto & Dal Bosco Davide \\
     	  0.0 & 22/11/2008 Bozza iniziale & Dal Bosco Davide \\
@@ -115,7 +116,7 @@ Il presente documento descrive l'anailisi dei costi e delle risorse effettuata d
 		\hline %%FINE RIGA
 %%%%%%%%%%% FINE PARTE DA MODIFICARE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 		\end{tabular*}
-	\caption{didascalia tabella 	MODIFICHE} %INSERIRE DIDASCALIA - SE NECESSARIA - 
+	\caption{Registro delle modifiche} %INSERIRE DIDASCALIA - SE NECESSARIA - 
 	\label{tab:modifiche}
 	\end{table}
 \end{center}
@@ -164,8 +165,8 @@ Vedere Tabella: (\ref{tab:tabella_componenti}) della pagina ~\pageref{tab:tabell
 \subsezione{Assunzioni Iniziali}
 Regole da rispettare per la realizzazione del progetto didattico:
 \begin{elenconumerato}{\normindent}
-				\item Importo complessivo (da inserire).\\
-				\item Numero totale di ore dedicate alla realizzazione del progetto (da inserire).\\
+				\item L'importo totale stimato \`e di 13059 euro.\\
+				\item Sono state previste 630 ore di lavoro.\\
 				\item L'impegno individuale di ogni componente varia da un minimo di 85 ore ad un massimo di 105 ore.\\
 			\end{elenconumerato}
 
@@ -211,14 +212,14 @@ In questa sottosezione presenteremo il nostro preventivo totale, comprendente i 
 		 \hline 
 		 \textbf{Ruolo} & \textbf{Ore di lavoro} & \textbf{Costo in euro}\\
 		 \hline
-		Responsabile & 89 & 2670 \\
-		Amministratore & 94 & 1880\\
-		Analista & 45 & 1125\\
-		Progettista & 150 & 3300\\
+		Responsabile & 69 & 2070 \\
+		Amministratore & 93 & 1860\\
+		Analista & 93 & 2325\\
+		Progettista & 134 & 2948\\
 		Programmtore & 90 & 1440 \\
-		Verificatore & 162 & 2592\\
+		Verificatore & 151 & 2416\\
         \hline
-        \textbf{Totale} & \textbf{630} & \textbf{13007}\\
+        \textbf{Totale} & \textbf{630} & \textbf{13059}\\
 		\hline
 		\end{tabular}
 	\caption{Preventivo totale} 
@@ -226,34 +227,111 @@ In questa sottosezione presenteremo il nostro preventivo totale, comprendente i 
 	\end{center}	
 \end{table}
 
-\begin{center}
-\includegraphics[width=300pt]{grafico}
+
+\begin{center}\textbf{Ore/Ruolo}
 \end{center}
+\includegraphics[width=300pt]{OreTotali}
+\newpage
+\begin{center}\textbf{Costo/Ruolo}
+\end{center}
+\includegraphics[width=350pt]{CostiTotali}
 
-
-da completare\\
 \subsezione{Pianificazione economico-temporale RR-RPP}
-da completare\\
-\subsezione{Pianificazione economico-temporale RPP-RQ}
-\begin{figure}[!ht]
-\centering
-\vspace{20pt} 
-\includegraphics{RPP-RQ}
-\caption{RPP-RQ: costi/ruoli}
-\label{RPP-RQ}
-\end{figure}
+Preventivo relativo alla fase Revisione dei requisiti-Revisione del progetto preliminare.
+\begin{table}[h]
+	\begin{center}
+		  \begin{tabular}{|c|c|c|c|}
+		 \hline 
+		 \textbf{Ruolo} & \textbf{Ore di lavoro} & \textbf{Costo in euro}\\
+		 \hline
+		Responsabile & 25 & 750 \\
+		Amministratore & 40 & 800\\
+		Analista & 73 & 1825\\
+		Progettista & 50 & 1100\\
+		Programmtore & 0 & 0 \\
+		Verificatore & 35 & 560\\
+        \hline
+        \textbf{Totale} & \textbf{223} & \textbf{5035}\\
+		\hline
+		\end{tabular}
+	\caption{Preventivo RR-RPP} 
+	\label{tab:tabella_RR-RPP}
+	\end{center}	
+\end{table}
 
-\begin{figure}[!ht]
-\centering
-\vspace{20pt} 
-\includegraphics{RPP-RQ-torta}
-\caption{RPP-RQ: ore/ruoli}
-\label{RPP-RQ ore}
-\end{figure}
-da notare che i grafici sono una prova, infatti i nomi sono sbagliati!\\
-da completare\\
+
+\begin{center}\textbf{Ore/Ruolo}
+\end{center}
+\includegraphics[width=300pt]{RR-RPP_Ore}
+\newpage
+\begin{center}\textbf{Costo/Ruolo}
+\end{center}
+\includegraphics[width=350pt]{RR-RPP_Costi}
+
+
+\subsezione{Pianificazione economico-temporale RPP-RQ}
+Preventivo relativo alla fase Revisione del progetto preliminare-Revisione di qualifica.
+\begin{table}[h]
+	\begin{center}
+		  \begin{tabular}{|c|c|c|c|}
+		 \hline 
+		 \textbf{Ruolo} & \textbf{Ore di lavoro} & \textbf{Costo in euro}\\
+		 \hline
+		Responsabile & 32 & 960 \\
+		Amministratore & 35 & 700\\
+		Analista & 20 & 500\\
+		Progettista & 84 & 1848\\
+		Programmtore & 90 & 1440 \\
+		Verificatore & 101 & 1616\\
+        \hline
+        \textbf{Totale} & \textbf{362} & \textbf{7064}\\
+		\hline
+		\end{tabular}
+	\caption{Preventivo RPP-RQ} 
+	\label{tab:tabella_RPP-RQ}
+	\end{center}	
+\end{table}
+
+
+\begin{center}\textbf{Ore/Ruolo}
+\end{center}
+\includegraphics[width=300pt]{RPP-RQ_Ore}
+\newpage
+\begin{center}\textbf{Costo/Ruolo}
+\end{center}
+\includegraphics[width=350pt]{RPP-RQ_Costi}
+
 \subsezione{Pianificazione economico-temporale RQ-RA}
-da completare\\
+Preventivo relativo alla fase Revisione di qualifica-Revisione di accettazione.
+\begin{table}[h]
+	\begin{center}
+		  \begin{tabular}{|c|c|c|c|}
+		 \hline 
+		 \textbf{Ruolo} & \textbf{Ore di lavoro} & \textbf{Costo in euro}\\
+		 \hline
+		Responsabile & 12 & 750 \\
+		Amministratore & 18 & 800\\
+		Analista & 0 & 1825\\
+		Progettista & 0 & 1100\\
+		Programmtore & 0 & 0 \\
+		Verificatore & 15 & 560\\
+        \hline
+        \textbf{Totale} & \textbf{45} & \textbf{960}\\
+		\hline
+		\end{tabular}
+	\caption{Preventivo RQ-RA} 
+	\label{tab:tabella_RQ-RA}
+	\end{center}	
+\end{table}
+
+
+\begin{center}\textbf{Ore/Ruolo}
+\end{center}
+\includegraphics[width=300pt]{RQ-RA_Ore}
+\newpage
+\begin{center}\textbf{Costo/Ruolo}
+\end{center}
+\includegraphics[width=350pt]{RQ-RA_Costi}
 \subsezione{Distribuzione dei ruoli}
 da completare\\
 \subsubsezione{Distribuzione per fase di progetto}

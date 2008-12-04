@@ -1,7 +1,7 @@
 	\input{../TeX/base} %BASE!!!
 
 \title{\TITOLODOC}
-\author{Piero Bizzotto}
+\author{Mirco Geremia}
 
 \begin{document}
 
@@ -25,7 +25,7 @@
 
 \begin{center}
 	\begin{large}
-				\textbf{Software per il Disegno Grafico in Tecnologie Web}
+				\textbf{Software per il Disegno Grafico\\ in Tecnologie Web}
 	\end{large}
 \end{center}			
 
@@ -59,28 +59,65 @@ Versione: \insertversion
 \end{center}
 
 %\setlength{\parindent}{18pt} %settato indentazione di default 
-\section*{\Large Sommario:} %SEZIONE SOMMARIO
+\section*{\LARGE Sommario:} %SEZIONE SOMMARIO
 \indent \indent
-Considerazioni ricavate dallo studio di fattibilit\`{a} del capitolato d\'{}appalto C04, 
+Considerazioni ricavate dallo studio di fattibilit\`a del capitolato d'appalto C04, 
 Software per il Disegno Grafico in Tecnologie Web (in sigla AJAXDRAW).
 
 
-\section*{\Large Stato del documento:}
+\section*{\LARGE Stato del documento:}
 \indent \indent
 	Formale Interno
 
-\section*{\Large Redazione:}
-	\begin{elencopuntato}[\normindent]
-		\item[-] Mirco Geremia
+\section*{\LARGE Redazione:}
+	\begin{table}[!h]
+		\begin{center}
+			\begin{tabular}
+				{|c|c|}
+				\hline
+				%%%%%%%%%%%%%%INTESTAZIONE COLONNE%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+				\multicolumn{2}{|c|}{ \textbf{Redazione} } \\
+				\hline
+				\textbf{Fase} & \textbf{Redattori} \\
+				%%%%%%%%%%%%%%FINE INTESTAZIONE COLONNE%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+				\hline
+				%%%%%%%%%%% PARTE DA MODIFICARE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%		
+				{Pre-RR} & Mirco Geremia \\
+				\hline
+				{RR-RPP} & \\
+				\hline
+				%%%%%%%%%%% FINE PARTE DA MODIFICARE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+			\end{tabular}
+			\caption{Lista Redattori} %INSERIRE DIDASCALIA - SE NECESSARIA - 
+			\label{tabredazione}
+		\end{center}
+	\end{table}
 	
-	\end{elencopuntato}
+\section*{\LARGE Approvazione:}
 
-\section*{\Large Approvazione:}
-	\begin{elencopuntato}[\normindent]
-		\item Approvatore N. 1
-		\item Approvatore N. 2
-		\item Approvatore N. 3
-	\end{elencopuntato}
+\begin{table}[!h]
+	\begin{center}
+		\begin{tabular}
+			{|c|c|}
+			\hline
+			%%%%%%%%%%%%%%INTESTAZIONE COLONNE%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+			\multicolumn{2}{|c|}{ \textbf{Approvazione} } \\
+			\hline
+			\textbf{Fase} & \textbf{Approvatori} \\
+			%%%%%%%%%%%%%%FINE INTESTAZIONE COLONNE%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+			\hline
+			%%%%%%%%%%% PARTE DA MODIFICARE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%		
+			{Pre-RR} & Stefano Dissegna \\
+			\hline
+			{RR-RPP} & \\
+			\hline
+			%%%%%%%%%%% FINE PARTE DA MODIFICARE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+		\end{tabular}
+		\caption{Lista Approvatori} %INSERIRE DIDASCALIA - SE NECESSARIA - 
+		\label{tabapprovazione}
+	\end{center}
+\end{table}
+\textbf{}
 
 \section*{\LARGE Lista di Distribuzione:}
 
@@ -92,9 +129,7 @@ Software per il Disegno Grafico in Tecnologie Web (in sigla AJAXDRAW).
 \newpage
 
 
-
-\section*{\Large Registro delle Modifiche:}
-
+\section*{\LARGE Registro delle Modifiche:}
 
 \begin{center}
 	\begin{table}[h]
@@ -107,7 +142,8 @@ Software per il Disegno Grafico in Tecnologie Web (in sigla AJAXDRAW).
 %%%%%%%%%%%%%%FINE INTESTAZIONE COLONNE%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 		 \hline
 %%%%%%%%%%% PARTE DA MODIFICARE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%		
-    	 	\insertversion & 	 21$\slash$11$\slash$2008 Aggiornato Fattiblit\`a tecnologica & Mirco Geremia \\
+    	 	0.1 & 	 21$\slash$11$\slash$2008 Aggiornato Fattiblit\`a tecnologica & Mirco Geremia \\
+    	 	\hline
     	 	0.0 & 	 19$\slash$11$\slash$2008 Prima bozza & Mirco Geremia \\
 
 		\hline %%FINE RIGA
@@ -125,11 +161,11 @@ Software per il Disegno Grafico in Tecnologie Web (in sigla AJAXDRAW).
 \thispagestyle{fancy}
 \newpage
 
-\section{\Large Analisi Fattibilit\`{a}:}
+\section{Analisi Fattibilit\`{a}:}
 \indent \indent
 Dopo aver analizzato i cinque capitolati d'appalto presentati in data 12 Novembre 2008 
 dai docenti Conte Renato e Vardanega Tullio, il gruppo WebShape ha deciso di proporsi come 
-fornitore per il capitolato C04 (\H{}AJAXDRAW\H{}), che consiste nella creazione di un software 
+fornitore per il capitolato C04 (AJAXDRAW), che consiste nella creazione di un software 
 per il disegno grafico in tecnologie web.
 Tale scelta si basa prevalentemente sui seguenti punti:
 	\begin{elenconumerato}{\normindent}
@@ -140,12 +176,12 @@ Tale scelta si basa prevalentemente sui seguenti punti:
 		che si stanno indubbiamente rivelando sempre pi\`{u} interessanti.
 		\item fattibilit\`{a} tecnologica: i componenti del gruppo hanno accertato l'esistenza di strumenti software adatti alla realizzazione del progetto: 
 				\begin{elencopuntato}[\normindent]
-					\item l'oggetto "canvas" che su richiesta del cliente si andrà ad utilizzare rende disponibili le funzionalità di base del prodotto.
-					\item il formato SVG richiesto per rappresentare le immagini, essendo un linguaggio derivato dall'XML, è facilmente utilizzabile senza dover ricorrere a librerie grafiche specifiche.
-					\item il JavaScript è un linguaggio di programmazione semplice e completo, adatto a scrivere anche applicazioni di un certo rilievo, e non solo semplici script web; queste sue caratteristiche facilitano la realizzazione del progetto.
+					\item l'oggetto "canvas" che su richiesta del cliente si andr\`a ad utilizzare rende disponibili le funzionalit\`a di base del prodotto.
+					\item il formato SVG richiesto per rappresentare le immagini, essendo un linguaggio derivato dall'XML, \`e facilmente utilizzabile senza dover ricorrere a librerie grafiche specifiche.
+					\item il JavaScript \`e un linguaggio di programmazione semplice e completo, adatto a scrivere anche applicazioni di un certo rilievo, e non solo semplici script web; queste sue caratteristiche facilitano la realizzazione del progetto.
 				\end{elencopuntato}
 \end{elenconumerato}
 
-Pertanto il gruppo WebShape si dichiara disponibile per la creazione e lo sviluppo del capitolato d\'{}appalto C04.
+Pertanto il gruppo WebShape si dichiara disponibile per la creazione e lo sviluppo del capitolato d'appalto C04.
 
 \end{document}
