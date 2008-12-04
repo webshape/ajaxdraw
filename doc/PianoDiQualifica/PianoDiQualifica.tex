@@ -1,11 +1,11 @@
 	\input{../TeX/base} %BASE!!!
 
 \title{\TITOLODOC}
-\author{Piero Bizzotto}
+\author{Dissegna Stefano}
 
 \begin{document}
 
-\renewcommand{\insertversion}{0.0} %INSERIRE LA VERSIONE QUI DENTRO STILE x.x.xx
+\renewcommand{\insertversion}{0.1} %INSERIRE LA VERSIONE QUI DENTRO STILE x.x.xx
 \renewcommand{\TITOLODOC}{Piano di qualifica} %INSERIRE IL TITOLO DEL DOCUMENTO DA FAR COMPARIRE A PIE PAGINA
 \renewcommand{\glosspath}{.\glossario} %INSERIRE PERCORSO RELATIVO
 
@@ -75,14 +75,12 @@ Il presente documento descrive le strategie per la gestione della qualit\`a adot
 \section*{\Large Approvazione:}
 	\begin{elencopuntato}[\normindent]
 		\item Approvatore N. 1
-		\item Approvatore N. 2
-		\item Approvatore N. 3
 	\end{elencopuntato}
 
 \section*{\LARGE Lista di Distribuzione:}
 
 	\begin{elenconumerato}{\normindent}
-		\item WebShape \footnote{Il termine WebShape designa una collettivit\`a di individui come da organigramma contenuto nel piano di progetto fornito in allegato al presente documento}
+		\item WebShape
 		\item I committenti Vardanega Tullio e Conte Renato in rappresentanza \\  dell'azienda proponente Zucchetti SPA
 		%\item Il committente Conte Renato
 	\end{elenconumerato}
@@ -106,11 +104,10 @@ Il presente documento descrive le strategie per la gestione della qualit\`a adot
 		 \hline
 %%%%%%%%%%% PARTE DA MODIFICARE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
                  0.1 & 23/11/2008 Piano di qualifica per la progettazione & Dissegna Stefano \\ \hline
-                 0.0 & 22/11/2008 Bozza iniziale & Dissegna Stefano \\ \hline 		
-		\hline %%FINE RIGA
+                 0.0 & 22/11/2008 Bozza iniziale & Dissegna Stefano \\ \hline 
 %%%%%%%%%%% FINE PARTE DA MODIFICARE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 		\end{tabular*}
-	\caption{didascalia tabella 	MODIFICHE} %INSERIRE DIDASCALIA - SE NECESSARIA - 
+	\caption{tabella delle modifiche} %INSERIRE DIDASCALIA - SE NECESSARIA - 
 	\label{tab:modifiche}
 	\end{table}
 \end{center}
@@ -128,7 +125,7 @@ Il presente documento descrive le strategie per la gestione della qualit\`a adot
 Il presente documento definisce il livello di qualit\`a atteso del prodotto e del processo di realizzazione dello stesso, indica le metodologie da adottare per assicurare la qualit\`a e riporta le attivit\`a svolte inerenti la gestione della qualit\`a.
 
 \subsezione{Scopo del prodotto}
-Il prodotto intende permettere la realizzazione di \underline{grafica vettoriale} tramite una comoda interfaccia web.
+Il prodotto intende permettere la realizzazione di grafica vettoriale tramite una comoda interfaccia web.
 
 \subsezione{Glossario}
 Si veda \textit{Glossario.pdf}
@@ -170,7 +167,7 @@ La verifica del codice si compone dei seguenti aspetti:
 \begin{elenconumerato}[\textbf{}]{\subsubsecindent}
 \item Verifica automatica: verr\`a effettuata tramite test di unit\`a predisposti dai verificatori. I test dovranno coprire tutto il codice, a eccezzione delle parti il cui funzionamento dipende da input esterni non simulabili in un test di unit\`a, come ad esempio il codice che gestisce gli eventi generati dal movimento del mouse, oppure da effetti secondari i cui risultati non siano facilmente confrontabili in modo automatico, ad esempio come appare l'aspetto grafico del programma sullo schermo dell'utente. I test dovranno accertare il corretto funzionamento delle unit\`a di codice anche con input limite.
 \item Prova del prodotto: sar\`a effettuata eseguendo l'applicazione e interagendo con essa, assicurandosi che corrisponda a quanto progettato.
-\item Confronto con altri software gi\`a esistenti: requisito fondamentale del prodotto \'e la capacit\`a di generare immagini in formato \underline{SVG}. Per assicurarsi che i file generati siano corretti, si caricheranno su software la cui correttezza \'e nota (ad esempio \textit{Inkscape}) e ci si assicurer\`a che le immagini visualizzate corrispondano con quanto disegnato dall'utente. 
+\item Confronto con altri software gi\`a esistenti: requisito fondamentale del prodotto \'e la capacit\`a di generare immagini in formato \gloss{SVG}. Per assicurarsi che i file generati siano corretti, si caricheranno su software la cui correttezza \'e nota (ad esempio \textit{Inkscape}) e ci si assicurer\`a che le immagini visualizzate corrispondano con quanto disegnato dall'utente. 
 \item Lettura del codice per controllare che le norme di codifica siano rispettate
 \item Analisi del codice tramite walkthrough alla ricerca di eventuali errori. Vista la particolare dispendiosit\`a di questa modalit\`a di verifica, essa verr\`a applicata unicamente a sezioni critiche del codice.
 \end{elenconumerato}
@@ -210,8 +207,8 @@ L'amministratore del progetto deve assicurarsi che gli standard descritti nelle 
 \subsezione{Specifica della campagna di validazione (collaudo incluso)}
 La campagna di validazione si svolger\`a in due fasi distinte:
 \begin{elenconumerato}[\textbf{}]{\subsubsecindent}
-\item Alpha test: verr\`a eseguito internamente all'azienda. Il test consister\`a nell'esecuzione dell'applicativo per controllare che quanto descritto nell'analisi dei requisiti, la quale ha valore contrattuale, sia presente nel prodotto. Il test sar\`a guidato dagli \textit{use case} presenti nell'analisi dei requisiti.
-\item Beta test: il prodotto verr\`a distribuito al committente a fini di test.
+\item \textit{Alpha test}: verr\`a eseguito internamente all'azienda. Il test consister\`a nell'esecuzione dell'applicativo per controllare che quanto descritto nell'analisi dei requisiti, la quale ha valore contrattuale, sia presente nel prodotto. Il test sar\`a guidato dagli \textit{use case} presenti nell'analisi dei requisiti.
+\item \textit{Beta test}: il prodotto verr\`a distribuito al committente a fini di test.
 \end{elenconumerato}
 \subsezione{Dettaglio dell'esito della campagna di validazione}
 
