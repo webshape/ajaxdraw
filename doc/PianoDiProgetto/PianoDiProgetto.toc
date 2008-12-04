@@ -1,0 +1,20 @@
+\select@language {italian}
+\contentsline {section}{\numberline {1}Introduzione}{4}{section.1}
+\contentsline {subsection}{\numberline {1.1}Scopo del documento}{4}{subsection.1.1}
+\contentsline {section}{\numberline {2}Organigramma}{4}{section.2}
+\contentsline {subsection}{\numberline {2.1}Accettazione}{4}{subsection.2.1}
+\contentsline {subsection}{\numberline {2.2}Descrizione Componenti}{4}{subsection.2.2}
+\contentsline {subsection}{\numberline {2.3}Assunzioni Iniziali}{4}{subsection.2.3}
+\contentsline {subsection}{\numberline {2.4}Attribuzione dei Ruoli}{5}{subsection.2.4}
+\contentsline {section}{\numberline {3}Pianificazione}{5}{section.3}
+\contentsline {subsection}{\numberline {3.1}Ore e costi totali}{6}{subsection.3.1}
+\contentsline {subsection}{\numberline {3.2}Pianificazione economico-temporale RR-RPP}{6}{subsection.3.2}
+\contentsline {subsection}{\numberline {3.3}Pianificazione economico-temporale RPP-RPD}{6}{subsection.3.3}
+\contentsline {subsection}{\numberline {3.4}Pianificazione economico-temporale RPD-RQ}{6}{subsection.3.4}
+\contentsline {subsection}{\numberline {3.5}Pianificazione economico-temporale RQ-RA}{6}{subsection.3.5}
+\contentsline {subsection}{\numberline {3.6}Distribuzione dei ruoli}{6}{subsection.3.6}
+\contentsline {subsubsection}{\numberline {3.6.1}Distribuzione per fase di progetto}{6}{subsubsection.3.6.1}
+\contentsline {subsubsection}{\numberline {3.6.2}Distribuzione dei carichi di lavoro}{7}{subsubsection.3.6.2}
+\contentsline {section}{\numberline {4}Gestione del Piano di Progetto}{7}{section.4}
+\contentsline {subsection}{\numberline {4.1}Obiettivi}{7}{subsection.4.1}
+\contentsline {section}{\numberline {5}Analisi e Gestione dei Rischi}{7}{section.5}
