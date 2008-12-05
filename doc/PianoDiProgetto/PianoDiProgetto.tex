@@ -1,11 +1,11 @@
 	\input{../TeX/base} %BASE!!!
 
 \title{\TITOLODOC}
-\author{Dal Bosco Davide}
+\author{Cunico Marco}
 
 \begin{document}
 
-\renewcommand{\insertversion}{0.3} %INSERIRE LA VERSIONE QUI DENTRO STILE x.x.xx
+\renewcommand{\insertversion}{0.5} %INSERIRE LA VERSIONE QUI DENTRO STILE x.x.xx
 \renewcommand{\TITOLODOC}{Piano di Progetto} %INSERIRE IL TITOLO DEL DOCUMENTO DA FAR COMPARIRE A PIE PAGINA
 \renewcommand{\glosspath}{.\glossario} %INSERIRE PERCORSO RELATIVO
 
@@ -106,7 +106,9 @@ Il presente documento descrive l'anailisi dei costi e delle risorse effettuata d
 			\textbf{Versione}  & \textbf{Descrizione} & \textbf{Autore} \\
 %%%%%%%%%%%%%%FINE INTESTAZIONE COLONNE%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 		 \hline
-%%%%%%%%%%% PARTE DA MODIFICARE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%		
+%%%%%%%%%%% PARTE DA MODIFICARE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+          0.5 & 05/12/2008 Inserimento Preventivo Rotazione Ruoli per fase di progetto & Cunico Marco \\         
+          0.4 & 04/12/2008 Inserimento attribuzione ruoli & Cunico Marco \\	
           0.3 & 04/12/2008 Inserimento intero capitolo Pianificazione con relative sottosezioni,tabelle e grafici & Dal Bosco Davide \\
     	  0.2 & 01/12/2008 Inserimento capitoli Introduzione,Organigramma,Pianificazione(inizio) & Dal Bosco Davide \\
     	  0.1 & 25/11/2008 Adattamento al template scelto & Dal Bosco Davide \\
@@ -196,13 +198,14 @@ Regole da rispettare per la realizzazione del progetto didattico:
 
 
 \subsezione{Attribuzione dei Ruoli}
-Date le Assunzioni Iniziali precedentemente descritte, ed essendo il gruppo WebShape costituito da sei membri, si avr\`a una media di circa 105 ore di lavoro per persona. La durata complessiva del progetto sar\`a di circa ? ore, ogni componente lavorer\`a quindi una media di 2,5 ore giornaliere. Sono previste altre 3 revisioni:
+Date le Assunzioni Iniziali precedentemente descritte, ed essendo il gruppo WebShape costituito da sei membri, si avr\`a una media di circa 105 ore di lavoro per persona. La durata complessiva del progetto sar\`a di circa 630 ore, ogni componente lavorer\`a quindi una media di 3 ore giornaliere. Sono previste altre 3 revisioni:
 \begin{elenconumerato}{\normindent}
 				\item Revisione di Progetto Preliminare (RPP)
 				\item Revisione di Qualifica (RQ)
 				\item Revisione di Accettazione (RA)
 			\end{elenconumerato}
-La rotazione dei ruoli avviene come da tabella ?. Dato che ogni componente del gruppo dovr\`a assumere tutti i ruoli,\`e previsto che nelle varie fasi del progetto i membri della societ\`a si assumano piu' incarichi. Non \`e permesso che uno stesso membro ricopra ruoli in conflitto di interessi tra loro.\\
+La rotazione dei ruoli avviene come da tabella (\ref{tab:tavprevrotazione}) della pagina ~\pageref{tab:tabprevrotazione}.\\
+Dato che ogni componente del gruppo dovr\`a assumere tutti i ruoli,\`e previsto che nelle varie fasi del progetto i membri della societ\`a si assumano piu' incarichi. Non \`e permesso che uno stesso membro ricopra ruoli in conflitto di interessi tra loro.\\
 
 \sezione{Pianificazione}
 Per la realizzazione del progetto l'azienda WebShape ha valutato con attenzione i possibili modelli di cicli di vita da utilizzare, tenendo conto di eventuali pregi e difetti. 
@@ -313,12 +316,12 @@ Preventivo relativo alla fase Revisione di qualifica-Revisione di accettazione.
 		 \hline 
 		 \textbf{Ruolo} & \textbf{Ore di lavoro} & \textbf{Costo in euro}\\
 		 \hline
-		Responsabile & 12 & 360 \\
-		Amministratore & 18 & 360\\
-		Analista & 0 & 0\\
-		Progettista & 0 & 0\\
+		Responsabile & 12 & 750 \\
+		Amministratore & 18 & 800\\
+		Analista & 0 & 1825\\
+		Progettista & 0 & 1100\\
 		Programmtore & 0 & 0 \\
-		Verificatore & 15 & 240\\
+		Verificatore & 15 & 560\\
         \hline
         \textbf{Totale} & \textbf{45} & \textbf{960}\\
 		\hline
@@ -338,14 +341,88 @@ Preventivo relativo alla fase Revisione di qualifica-Revisione di accettazione.
 \includegraphics[width=350pt]{RQ-RA_Costi}
 \subsezione{Distribuzione dei ruoli}
 da completare\\
+
 \subsubsezione{Distribuzione per fase di progetto}
-da completare\\
+\begin{table}[!h]
+	\begin{center}
+		  \begin{tabular}
+			  {|c|c|c|c|}
+		 \hline
+%%%%%%%%%%%%%%INTESTAZIONE COLONNE%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+			\multicolumn{4}{|c|}{ \textbf{Preventivo rotazione ruoli per fase di progetto} } \\
+			\hline
+			& \multicolumn{3}{|c|}{ \textbf{FASE} } \\
+			\hline
+			& \textbf{RR-RPP} & \textbf{RPP-RQ} & \textbf{RQ-RA} \\
+			\hline
+%%%%%%%%%%%%%%FINE INTESTAZIONE COLONNE%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+								     %  RR -RPP % RPP-RPD  %  RPD-RQ  % RQ-RA % 
+			Bizzotto Piero & Resp.-Amm.-Progett.  & Analis.-Program.-Verif.   & -   \\
+			\hline
+			Carollo Mirko & Resp.-Amm.-Progett.  & Analis.-Program.-Verif.   \\
+			\hline
+			Cunico Marco & Analis.  & Resp.-Amm.-Progett.-Program.  & Verif.-Amm.   \\
+			\hline
+			Dal Bosco Davide & Analis.  & Resp.-Amm.-Progett.-Program.-Verif.  & -   \\
+			\hline
+			Dissegna Stefano & Analis.  & Resp.-Amm.-Progett.-Program.  & Verif.-Amm.   \\
+			\hline
+			Geremia Mirco & Resp.-Amm.-Analis.-Verif.  & Progett.-Program.  & Resp.   \\
+			\hline
+
+%%%%%%%%%%% FINE PARTE DA MODIFICARE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+		\end{tabular}
+	\caption{Preventivo rotazione ruoli per fase di progetto} %INSERIRE DIDASCALIA - SE NECESSARIA - 
+	\label{tabprevrotazione}
+	\end{center}	
+\end{table}
+
 \subsubsezione{Distribuzione dei carichi di lavoro}
-da completare\\
+
+\begin{table}[!h]
+	\begin{center}
+		  \begin{tabular}
+			  {|c|c|c|c|c|c|c|}
+		 \hline
+%%%%%%%%%%%%%%INTESTAZIONE COLONNE%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%			\multicolumn{3}{|c|}{ \multirow{2}{*}{ FASE RR - RPP } } \\
+			\multicolumn{7}{|c|}{ \textbf{Preventivo carico persona ore} } \\
+			\hline
+			& \multicolumn{6}{|c|}{ \textbf{RUOLO} } \\
+			\hline
+			& \textbf{Resp.} & \textbf{Amm.} & \textbf{Analis.} & \textbf{Progett.} & \textbf{Program.} & \textbf{Verif.} \\
+			\hline
+%%%%%%%%%%%%%%FINE INTESTAZIONE COLONNE%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+								     %  RESP    % AMMIN  %  ANALISTA  %  PROGET. %  PROGRAM %    VERIF.   %
+			Bizzotto Piero &  11   &  15 &  10   &   25  &  11   &  33   \\ % R4
+			\hline
+			Carollo Mirko &  12   &  15  &  10  &  25   &  9   &  34   \\ % R5
+			\hline
+			Cunico Marco    &  11   &  20  &  23   &  24   &  20   &  7   \\ % R2
+			\hline
+			Dal Bosco Davide        &  10   &  15   &  10   &  21   &   15  &  34  \\ % R1
+			\hline
+			Dissegna Stefano        &  11  &  18   & 22  &  26   &  20  &  8  \\ % R6
+			\hline
+			Geremia Mirco   &   14  &  10   &  18   &  13  &  15   &  35   \\ % R7
+			\hline		
+%%%%%%%%%%% FINE PARTE DA MODIFICARE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+		\end{tabular}
+	\caption{Preventivo carico persona in ore} %INSERIRE DIDASCALIA - SE NECESSARIA - 
+	\label{tabprevcaricopersonaore}
+	\end{center}	
+\end{table}
+
 \sezione{Gestione del Piano di Progetto}
 da completare\\
-\subsezione{Obiettivi}
-da completare\\
+\subsezione{Obiettivi} PROBE si rende disponibile ad accogliere 
+eventuali obiezioni che emergessero nel corso delle revisioni.
+
+L'obiettivo del documento denominato "Piano di Progetto" \`e di distribuire le risorse durante l'arco temporale 
+contenente lo sviluppo del capitolato d'appalto. Questa distribuzione ovviamente deve rispettare i vincoli presentati 
+nella sezione "Assunzioni Iniziali". Data l'inesperienza dei membri della societ\`a \`e possibile che ci sia una 
+discrepanza tra le ore preventivate e quelle presenti nel consuntivo.
+
 \sezione{Analisi e Gestione dei Rischi}
 da completare\\
 
