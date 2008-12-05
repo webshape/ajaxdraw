@@ -2,7 +2,7 @@
 \usepackage{multirow}
 \begin{document}
 
-\renewcommand{\insertversion}{0.2} %INSERIRE LA VERSIONE QUI DENTRO STILE x.x.xx
+\renewcommand{\insertversion}{0.3} %INSERIRE LA VERSIONE QUI DENTRO STILE x.x.xx
 \renewcommand{\TITOLODOC}{Analisi dei Requisiti} %INSERIRE IL TITOLO DEL DOCUMENTO DA FAR COMPARIRE A PIE PAGINA
 
 \begin{titlepage}
@@ -67,13 +67,13 @@ Tale studio \`e mirato alla comprensione dei bisogni espressi nel capitolato e a
 			\begin{tabular}
 				{|c|c|}
 				\hline
-				%%%%%%%%%%%%%%INTESTAZIONE COLONNE%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+				%%%%%%%%%%%%%%INTESTAZIONE COLONNE%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 				\multicolumn{2}{|c|}{ \textbf{Redazione} } \\
 				\hline
 				\textbf{Fase} & \textbf{Redattori} \\
-				%%%%%%%%%%%%%%FINE INTESTAZIONE COLONNE%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+				%%%%%%%%%%%%%%FINE INTESTAZIONE COLONNE%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 				\hline
-				%%%%%%%%%%% PARTE DA MODIFICARE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%		
+				%%%%%%%%%%% PARTE DA MODIFICARE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%		
 				\multirow{2}{*}{Pre-RR} & Bizzotto Piero\\
 										& Dissegna Stefano\\
 										& Carollo Mirko\\
@@ -81,41 +81,41 @@ Tale studio \`e mirato alla comprensione dei bisogni espressi nel capitolato e a
 				\multirow{2}{*}{RR-RPP} & \\
 										& \\
 				\hline
-				%%%%%%%%%%% FINE PARTE DA MODIFICARE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+				%%%%%%%%%%% FINE PARTE DA MODIFICARE %%%%%%%%%%%%%%%%%%%%%%%%%%%
 			\end{tabular}
 			\caption{Lista Redattori} %INSERIRE DIDASCALIA - SE NECESSARIA - 
 			\label{tabredazione}
 		\end{center}
 	\end{table}	
+
+\newpage
+%tabella approvazione
 \section*{\LARGE Approvazione:}
-%	\begin{elencopuntato}[\normindent]
-%		\item 
-%		\item 
-%	\end{elencopuntato}
 \begin{table}[!h]
 	\begin{center}
 		\begin{tabular}
 			{|c|c|}
 			\hline
-			%%%%%%%%%%%%%%INTESTAZIONE COLONNE%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+			%%%%%INTESTAZIONE COLONNE%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 			\multicolumn{2}{|c|}{ \textbf{Approvazione} } \\
 			\hline
 			\textbf{Fase} & \textbf{Approvatori} \\
-			%%%%%%%%%%%%%%FINE INTESTAZIONE COLONNE%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+			%%%%%%%%%%%%%%FINE INTESTAZIONE COLONNE%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 			\hline
-			%%%%%%%%%%% PARTE DA MODIFICARE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%		
+			%%%%%%%%%%% PARTE DA MODIFICARE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%		
 			\multirow{2}{*}{Pre-RR} &  \\
 									&  \\
 			\hline
 			\multirow{2}{*}{RR-RPP} & \\
 									& \\
 			\hline
-			%%%%%%%%%%% FINE PARTE DA MODIFICARE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+			%%%%%%%%%%% FINE PARTE DA MODIFICARE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 		\end{tabular}
 		\caption{Lista Approvatori} %INSERIRE DIDASCALIA - SE NECESSARIA - 
 		\label{tabapprovazione}
 	\end{center}
 \end{table}
+
 \textbf{}
 
 \section*{\LARGE Lista di Distribuzione:}
@@ -125,7 +125,7 @@ Tale studio \`e mirato alla comprensione dei bisogni espressi nel capitolato e a
 		\item I committenti Conte Renato e Vardanega Tullio in rappresentanza \\  dell'azienda proponente Zucchetti SPA
 	\end{elenconumerato}
 
-\newpage
+%\newpage
 
 \section*{\LARGE Registro delle Modifiche:}
 
@@ -135,20 +135,22 @@ Tale studio \`e mirato alla comprensione dei bisogni espressi nel capitolato e a
 			{1\textwidth}%
 					 {@{\extracolsep{\fill}}|p{0.1\textwidth}|p{0.55\textwidth}|p{0.25\textwidth}|}
 		 \hline
-%%%%%%%%%%%%%%INTESTAZIONE COLONNE%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%INTESTAZIONE COLONNE%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 			\textbf{Versione}  & \textbf{Descrizione} & \textbf{Autore} \\
-%%%%%%%%%%%%%%FINE INTESTAZIONE COLONNE%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%FINE INTESTAZIONE COLONNE%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 		 \hline
-%%%%%%%%%%% PARTE DA MODIFICARE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%% PARTE DA MODIFICARE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 				\hline
-				0.2 & 02$\slash$12$\slash$2008 Altri casi d'uso e qualche requisito aggiunti. & Bizzotto Piero \\
+				0.3 & 05$\slash$12$\slash$2008 Modifiche sintattiche e correzioni ortografiche. & Bizzotto Piero \\
+				\hline
+				0.2 & 02$\slash$12$\slash$2008 Altri casi d'uso e qualche requisito aggiunti. & Carollo Mirko \\
                 \hline
                 0.1 & 30$\slash$11$\slash$2008 Casi d'uso relativi ad avvio e interazione con l'applicazione. Aggiunti requisiti. & Dissegna Stefano \\
-		\hline	
-    	 	0.0 & 		 26$\slash$11$\slash$2008 Strutturazione del documento. & Bizzotto Piero \\
+				\hline	
+    	 	     0.0 & 		 26$\slash$11$\slash$2008 Strutturazione del documento. & Bizzotto Piero \\
 
 		\hline %%FINE RIGA
-%%%%%%%%%%% FINE PARTE DA MODIFICARE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%% FINE PARTE DA MODIFICARE %%%%%%%%%%%%%%%%%%%%%%%%%%%
 		\end{tabular*}
 	\caption{Registro delle modifiche} %INSERIRE DIDASCALIA - SE NECESSARIA - 
 	\label{tab:modifiche}
@@ -165,15 +167,13 @@ Tale studio \`e mirato alla comprensione dei bisogni espressi nel capitolato e a
 \sezione{Introduzione}
 
 \subsezione{Scopo del documento}
-Il presente documento \`e indirizzato a fornire una descrizione in grado di identificare il prodotto software AJAXDRAW, soggetto a gara d'appalto a cui WebShape intende concorrere.\\
+Il presente documento \`e votato a fornire una descrizione in grado di identificare il prodotto software AJAXDRAW, soggetto a gara d'appalto a cui WebShape intende concorrere.\\
 Il documento elenca pertanto i requisiti, impliciti, espliciti, funzionali e non funzionali, individuati per il prodotto di cui sopra.
-%Si intende anche fornire una base per definire gli accordi con il cliente.
 
 \subsezione{Scopo del prodotto}
 AJAXDRAW \`e inteso principalmente come "Proof of Concept", ossia un'incompleta realizzazione di uno strumento grafico completamente basato sul web, con lo scopo di dimostrarne la fattibilit\`a o la fondatezza di alcuni principi o concetti costituenti. In particolare permetter\`a a chiunque di poter disegnare, tramite dei tools appositamente forniti, delle immagini sulla falsariga del software open-source per il disegno vettoriale Inkscape.
 
 \subsezione{Riferimenti normativi}
-
 Il presente documento \`e redatto in accordo con le norme interne di WebShape, raccolte nel documento NormeDiProgetto.pdf, consultabile per conoscenza dal repository pubblico al quale WebShape si appoggia per i suoi progetti.
 
 \sezione{Descrizione generale}
@@ -181,38 +181,38 @@ Il presente documento \`e redatto in accordo con le norme interne di WebShape, r
 \subsezione{Contesto d'uso del prodotto}
 
 \subsubsezione{Processi produttivi e modalit\`a d'uso}
-Il sistema sar\`a costituito da una pagina web eseguibile con uno qualsiasi dei pi\`u diffusi browsers attualmente esistenti.
+Il sistema sar\`a composto da una pagina web visualizzabile con uno qualsiasi dei pi\`u diffusi internet browsers attualmente esistenti.
 
-\subsubsezione{Piattaforme d'esecuzione,\\ interfacciamento con l'ambiente di installazione e uso}
-Il prodotto \`e destinato all'uso da parte di qualunque persona abbia installato nel proprio computer uno dei principali internet browsers, quindi \`e possibile garantire il funzionamento su ogni ambiente di esecuzione. (Si rimanda alla lista dei requisiti in sezione \ref{listarequisiti}).
+\subsubsezione{Piattaforme d'esecuzione,\\ interfacciamento con l'ambiente utilizzato}
+Il prodotto \`e destinato all'uso da parte di qualunque persona abbia installato nel proprio computer uno dei principali internet browsers, quindi \`e possibile garantirne il funzionamento su ogni ambiente d'esecuzione. (Si rimanda alla lista dei requisiti nella sezione \ref{listarequisiti}).
 
 \subsezione{Funzioni del prodotto}
-AJAXDRAW permetter\`a di avere un software di disegno grafico in grado di poter elaborare figure vettoriali e complesse direttamente sul proprio browser web. Le caratteristiche di tale applicazione saranno facilmente utilizzabili dall'utente, che in particolare potr\`a scegliere, tramite pulsanti posizionati su una toolbar, quali azioni effettuare, come disegno di primitive, inserimento di testo, spostamento degli oggetti.\\
-WebShape si riserva di decidere in un secondo momento se implementare funzionalit\`a aggiuntive pi\`u complesse.\\
-L'applicativo permetter\`a l'esportazione del disegno creato nel formato SVG, diventato una raccomandazione (standard) del World Wide Web Consortium.
+AJAXDRAW permetter\`a l'utilizzo di un software di disegno grafico in grado di elaborare figure vettoriali e complesse direttamente sul proprio browser web. Le caratteristiche di tale applicazione saranno facilmente utilizzabili dall'utente, che in particolare potr\`a scegliere, tramite pulsanti posizionati su una toolbar facilmente accessibile, quali azioni effettuare, come disegno di primitive, inserimento di testo, spostamento degli oggetti.\\
+WebShape si riserva di decidere in un secondo momento se implementare funzionalit\`a aggiuntive.\\%frase da verificare
+L'applicativo permetter\`a l'esportazione del disegno creato nel formato di immagini \underline{SVG}, diventato una raccomandazione (standard) del World Wide Web Consortium.
 
 \subsezione{Caratteristiche degli utenti}
 \label{definizione_utente}
-Gli utenti previsti per AJAXDRAW sono normali utilizzatori di Internet, quindi persone dalle varie capacit\`a tecniche, dalle pi\`u basse alle pi\`u alte. Si assume che l'utente finale conosca le funzioni basilari di un software di grafica, quindi si danno per noti concetti di disegno di primitive, inserimento di testo, selezione di oggetti, in quanto contenuti al giorno d'oggi nella stragrande maggioranza dei software pi\`u usati.
+Gli utenti previsti per AJAXDRAW sono normali utilizzatori di internet, quindi persone dalle varie competenze tecniche, dalle pi\`u basse alle pi\`u alte. Si assume che l'utente finale sia a conoscenza delle funzioni basilari di un software di grafica, quindi si danno per noti concetti di disegno di primitive, inserimento di testo, selezione di oggetti o altri, in quanto contenuti al giorno d'oggi nella stragrande maggioranza dei software pi\`u usati.
 
 \subsezione{Vincoli generali}
-Il software che WebShape si impegna a sviluppare sar\`a soggetto a licenza \blue{GPL}.
+Il software che WebShape intende sviluppare sar\`a assoggettato dalla licenza \underline{GPL}.
 
 \subsezione{Dipendenze}
-Si assume che i sistemi in cui verr\`a eseguito AJAXDRAW siano dotati di uno tra i browsers Mozilla Firefox, Google Chrome, Apple Safari, Opera e Internet Explorer nelle loro pi\`u recenti incarnazioni.
+Si assume che i sistemi sui quali verr\`a eseguito AJAXDRAW siano dotati di uno tra i browsers Mozilla Firefox, Google Chrome, Apple Safari, Opera e Internet Explorer nelle loro pi\`u recenti incarnazioni.
 
 \sezione{Glossario}
-Come previsto dalle norme interne di WebShape, tutti i documenti fanno riferimento ad un unico glossario (Glossario.), fornito in allegato al presente documento.
+Come specificato nelle norme di progetto (NormeDiProgetto.pdf) di WebShape, la totalit\` a dei documenti fa riferimento ad un unico glossario (Glossario.pdf), allegato al presente documento.
 
 \sezione{Casi d'uso}
-Vengono riportati di seguito i casi d'uso, sia grafici che narrativi, utilizzati durante l'analisi dei requisiti effettuata da WebShape. Lo scopo dei casi d'uso \`e quello di permettere una chiara e semplice comprensione dei bisogni del cliente percepiti dall'azienda. Per una lista esaustiva dei requisiti individuati si rimanda comunque alla lista dei requisiti di sezione \ref{listarequisiti}, cui faranno riferimento anche gli stessi casi d'uso narrativi.
+Al seguito di questo paragrafo vengono illustrati i casi d'uso, sia grafici che narrativi, utilizzati nell'analisi dei requisiti effettuata da WebShape. Lo scopo dei casi d'uso \`e quello di consentire una comprensione rapida ed efficace dei bisogni del cliente percepiti dall'azienda. Per una lista completa dei requisiti individuati si rimanda comunque alla lista dei requisiti di sezione \ref{listarequisiti}, cui faranno riferimento anche gli stessi casi d'uso narrativi.
 
 \subsezione{Avvio}
 Il seguente grafico descrive come ci si attende l'utente avvii l'applicazione.
 \begin{figure}[!ht]
 \centering
 \includegraphics{UCAvvio.png}
-\caption{avvio dell'applicazione}
+\caption{Avvio dell'applicazione}
 \end{figure}
 
 Segue ora una descrizione testuale del caso d'uso presentato dal grafico.
@@ -224,12 +224,12 @@ L'utente avvia l'applicazione visualizzandone la relativa pagina web attraverso 
 \paragraph{Flusso di eventi}
 \begin{enumerate}
 \item L'utente inserisce l'URL relativo all'applicazione nel browser.
-\item Il browser richiede la pagina al server HTTP
+\item Il browser richiede la pagina al server HTTP.
 \item Il server HTTP invia la pagina.
 \item Il browser visualizza la pagina.
 \end{enumerate}
 \paragraph{Flusso alternativo}
-Se viene rilevato un browser non supportato, l'utente viene avvisato. L'utente pu\`o decidere di continuare lo stesso senza nessuna garanzia di corretto funzionamento.
+Se viene rilevato un browser non supportato, l'utente viene avvisato. L'utente pu\`o decidere di continuare ugualmente senza nessuna garanzia di corretto funzionamento.
 \paragraph{Precondizioni} Il browser \'e avviato.
 \paragraph{Postcondizioni} L'applicazione \'e avviata.
 
@@ -239,7 +239,7 @@ Il seguente grafico descrive le interazioni tra l'utente finale e l'applicazione
 \centering
 \vspace{20pt} 
 \includegraphics{UCInterazione.png}
-\caption{funzionalit\`a dell'applicazione}
+\caption{Funzionalit\`a dell'applicazione}
 \end{figure}
 
 \paragraph{Segue ora una descrizione testuale dei casi d'uso presentati dal grafico.}
@@ -247,7 +247,7 @@ Il seguente grafico descrive le interazioni tra l'utente finale e l'applicazione
 \subsubsezione{UC1 Caso d'uso: pulisci \underline{canvas}}
 \paragraph{Attori coinvolti} Utente
 \paragraph{Scopo e descrizione sintetica}
-L'utente pu\`o cancellare totalmente quanto finora disegnato.
+L'utente pu\`o cancellare totalmente quanto fino a quel momento disegnato.
 \paragraph{Flusso di eventi}
 \begin{elenconumerato}[\textbf{}]{\subsubsecindent}
 \item L'utente seleziona il comando per pulire il canvas. 
@@ -263,7 +263,7 @@ L'utente pu\`o visualizzare il manuale dell'applicazione in linea.
 \paragraph{Flusso di eventi}
 \begin{elenconumerato}[\textbf{}]{\subsubsecindent}
 \item L'utente seleziona il comando per visualizzare il manuale. 
-\item Il manuale viene visualizzato
+\item Il manuale viene visualizzato mediante l'apertura di una nuova pagina HTML.
 \end{elenconumerato}
 \paragraph{Precondizioni}
 \paragraph{Postcondizioni} Il manuale utente \'e visualizzato
@@ -275,7 +275,7 @@ La/le pagina/e web contenenti il manuale utente sono gestite dal server HTTP.
 \paragraph{Flusso di eventi}
 \begin{elenconumerato}[\textbf{}]{\subsubsecindent}
 \item Il sistema richiede la pagina web contenente il manuale utente al server HTTP.
-\item Il server HTTP ritorna la pagina richiesta
+\item Il server HTTP ritorna la pagina richiesta.
 \end{elenconumerato}
 \paragraph{Flusso alternativo}
 Se il server HTTP non \'e disponibile o vi \'e un errore di comunicazione, l'utente viene avvisato.
@@ -285,28 +285,28 @@ Se il server HTTP non \'e disponibile o vi \'e un errore di comunicazione, l'ute
 \subsubsezione{UC4 Caso d'uso: sposta visualizzazione}
 \paragraph{Attori coinvolti} Utente
 \paragraph{Scopo e descrizione sintetica}
-Quando il canvas \'e troppo grande per essere completamente visualizzato, l'utente pu\`o spostare la visualizzazione per vedere le diverse parti del canvas.
+Quando il canvas appare troppo grande per essere completamente visualizzato, l'utente pu\`o spostare la visualizzazione per scorrerne le sue diverse parti.
 \paragraph{Flusso di eventi}
 \begin{elenconumerato}[\textbf{}]{\subsubsecindent}
-\item L'utente seleziona la parte del canvas da visualizzare
+\item L'utente seleziona la parte del canvas da visualizzare.
 \item Il sistema visualizza la parte di canvas selezionata al centro dello schermo.
 \end{elenconumerato}
 \paragraph{Precondizioni} Il canvas non \'e completamente visualizzato a schermo.
 \paragraph{Postcondizioni} L'utente vede su schermo la parte di canvas desiderata.
 
-\subsubsezione{UC5 Caso d'uso: aumenta zoom}
+\subsubsezione{UC5 Caso d'uso: aumenta livello di zoom}
 \paragraph{Attori coinvolti} Utente
 \paragraph{Scopo e descrizione sintetica} 
 Il sistema permette all'utente di ingrandire il canvas ed il suo contenuto mantendendo le proporzioni.
 \paragraph{Flusso di eventi}
 \begin{elenconumerato}[\textbf{}]{\subsubsecindent}
 \item L'utente seleziona, esplicitamente o implicitamente, la parte di canvas da mantenere al centro della visualizzazione.
-\item L'utente seleziona di quanto aumentare lo zoom.
-\item Il sistema ingrandisce il canvas di quanto richiesto
-\item Il sistema accentra la visualizzazione dove richiesto dall'utente
+\item L'utente seleziona il livello di aumento dello zoom.
+\item Il sistema ingrandisce il canvas di quanto richiesto.
+\item Il sistema centra la visualizzazione nel punto richiesto dall'utente.
 \end{elenconumerato}
-\paragraph{Precondizioni} Il canvas \'e visualizzato
-\paragraph{Postcondizioni} Il canvas \'e ingrandito
+\paragraph{Precondizioni} Il canvas \'e visualizzato.
+\paragraph{Postcondizioni} Il canvas \'e ingrandito nel punto selezionato.
 
 \subsubsezione{UC6 Caso d'uso: diminuisci zoom}
 \paragraph{Attori coinvolti} Utente
@@ -315,7 +315,7 @@ Il sistema permette all'utente di rimpicciolire il canvas ed il suo contenuto ma
 \paragraph{Flusso di eventi}
 \begin{elenconumerato}[\textbf{}]{\subsubsecindent}
 \item L'utente seleziona, esplicitamente o implicitamente, la parte di canvas da mantenere al centro della visualizzazione.
-\item L'utente seleziona di quanto diminuire lo zoom.
+\item L'utente seleziona di che livello diminuire lo zoom.
 \item Il sistema rimpicciolisce il canvas di quanto richiesto.
 \item Il sistema accentra la visualizzazione dove richiesto dall'utente.
 \end{elenconumerato}
@@ -325,7 +325,7 @@ Il sistema permette all'utente di rimpicciolire il canvas ed il suo contenuto ma
 \subsubsezione{UC7 Caso d'uso: esporta in SVG}
 \paragraph{Attori coinvolti} Utente
 \paragraph{Scopo e descrizione sintetica} 
-Il sistema permette all'utente di esportare in formato SVG il contenuto del canvas.
+Il sistema permette all'utente di esportare in formato di immagine SVG il contenuto del canvas.
 \paragraph{Flusso di eventi}
 \begin{elenconumerato}[\textbf{}]{\subsubsecindent}
 \item L'utente seleziona il comando per esportare il canvas in formato SVG.
@@ -346,7 +346,7 @@ Il sistema permette all'utente di caricare file in formato SVG nel canvas.
 \item Il sistema visualizza il file SVG nel canvas. Se il file contiene elementi o attributi non supportati, essi saranno ignorati.
 \end{elenconumerato}
 \paragraph{Flusso alternativo}
-Se il file non pu\`o essere caricato o a causa di un errore in lettura o perch\`e non \'e un file SVG, l'utente viene avvisato dell'errore e l'applicazione ritorna allo stato precedente l'esecuzione del comando.
+Se il file non pu\`o essere caricato a causa di un errore in lettura o perch\`e non \'e un file SVG, l'utente viene avvisato dell'errore e l'applicazione ritorna allo stato precedente l'esecuzione del comando.
 \paragraph{Precondizioni} Il canvas \'e visualizzato.
 \paragraph{Postcondizioni} Il canvas contiene la visualizzazione del file SVG selezionato dall'utente ed \'e modificabile.
 
@@ -401,7 +401,7 @@ Il sistema permette all'utente di disegnare un quadrato o un rettangolo di quals
 Il sistema permette all'utente di disegnare un poligono di qualsiasi dimensione e numero di vertici.
 \paragraph{Flusso di eventi}
 \begin{elenconumerato}[\textbf{}]{\subsubsecindent}
-\item L'utente seleziona il comando per disegnare poligono.
+\item L'utente seleziona il comando per disegnare un poligono.
 \item L'utente seleziona il numero di vertici del poligono che intende disegnare.
 \item L'utente disegna sul canvas il poligono, scegliendo col cursore la sua dimensione.
 \item Il sistema disegna il poligono.
@@ -426,14 +426,14 @@ Il sistema permette all'utente di disegnare una casella di testo.
 \subsubsezione{UC9.5 Caso d'uso: seleziona colore bordo/linea}
 \paragraph{Attori coinvolti} Utente.
 \paragraph{Scopo e descrizione sintetica} 
-Il sistema permette all'utente di selezionare il colore del bordo del poligono da disegnare, della linea oppure del testo da scrivere.
+Il sistema permette all'utente di selezionare il colore del bordo della figura da disegnare, oppure del testo da scrivere.
 \paragraph{Flusso di eventi}
 \begin{elenconumerato}[\textbf{}]{\subsubsecindent}
 \item L'utente seleziona il colore dalla paletta.
 \item Il sistema imposta il colore dato dall'utente come base per la figura da disegnare.
 \end{elenconumerato}
 \paragraph{Precondizioni} Il canvas \'e visualizzato.
-\paragraph{Postcondizioni} Il canvas \'e visualizzato.
+\paragraph{Postcondizioni} Il canvas \'e visualizzato. La prossima figura verr\` a disegnata con il colore del bordo selezionato.
 
 \subsubsezione{UC9.6 Caso d'uso: seleziona colore riempimento}
 \paragraph{Attori coinvolti} Utente.
@@ -445,7 +445,7 @@ Il sistema permette all'utente di selezionare il colore di riempimento del polig
 \item Il sistema imposta il colore dato dall'utente come base per la figura da disegnare.
 \end{elenconumerato}
 \paragraph{Precondizioni} Il canvas \'e visualizzato.
-\paragraph{Postcondizioni} Il canvas \'e visualizzato.
+\paragraph{Postcondizioni} Il canvas \'e visualizzato. La prossima figura verr\` a disegnata con il colore di riempimento selezionato.
 
 \subsubsezione{UC9.7 Caso d'uso: selezione font e dimensione carattere}
 \paragraph{Attori coinvolti} Utente.
@@ -457,7 +457,7 @@ Il sistema permette all'utente di selezionare il tipo e la dimensione del caratt
 \item Il sistema imposta i valori dati dall'utente come base per la figura da disegnare.
 \end{elenconumerato}
 \paragraph{Precondizioni} Il canvas \'e visualizzato.
-\paragraph{Postcondizioni} Il canvas \'e visualizzato.
+\paragraph{Postcondizioni} Il canvas \'e visualizzato. La prossima casella di testo verr\` a disegnata con i parametri selezionati.
 
 \subsubsezione{UC9.8 Caso d'uso: disegna spirale}
 \paragraph{Attori coinvolti} Utente.
@@ -466,7 +466,7 @@ Il sistema permette all'utente di disegnare una spirale.
 \paragraph{Flusso di eventi}
 \begin{elenconumerato}[\textbf{}]{\subsubsecindent}
 \item L'utente seleziona il comando per disegnare una spirale.
-\item L'utente disegna la spirale sul canvas, regolando col cursore la sua dimensione.
+\item L'utente disegna la spirale sul canvas, regolando col cursore la sua ampiezza.
 \item Il sistema disegna la spirale.
 \end{elenconumerato}
 \paragraph{Precondizioni} Il canvas \'e visualizzato.
@@ -526,12 +526,12 @@ Il seguente grafico illustra le interazioni tra l'utente e il sistema per selezi
 \subsubsezione{UC10.1 Caso d'uso: imposta font casella di testo}
 \paragraph{Attori coinvolti} Utente.
 \paragraph{Scopo e descrizione sintetica} 
-Il sistema consente all'utente di impostare il font del testo presente all'interno di una casella di testo..
+Il sistema consente all'utente di impostare il font del testo presente all'interno di una casella di testo.
 \paragraph{Flusso di eventi}
 \begin{elenconumerato}[\textbf{}]{\subsubsecindent}
 \item L'utente seleziona una casella di testo.
 \item Il sistema evidenzia l'etichetta di testo selezionata e mostra un pannello con i relativi stili grafici.
-\item L'utente porta il cursore nella sezione/scheda del pannello relativa al font
+\item L'utente porta il cursore nella sezione/scheda del pannello relativa al font.
 \item L'utente seleziona il font scelto nel combobox apposito all'interno di tale pannello.
 \end{elenconumerato}
 \paragraph{Precondizioni} L'utente ha scelto una casella di testo presente nel canvas.
@@ -559,7 +559,7 @@ Il sistema consente di modificare la dimensione dei caratteri del testo di una c
 \item L'utente seleziona un oggetto valido.
 \item Il sistema evidenzia l'oggetto selezionato e mostra un pannello con i relativi stili grafici.
 \item L'utente porta il cursore nella sezione/scheda del pannello relativa al colore di riempimento.
-\item  L'utente seleziona un colore  nel menu a tendina apposito all'interno di tale pannello (caso colore campione).
+\item L'utente seleziona un colore nel menu a tendina apposito all'interno di tale pannello (caso colore campione).
 \item L'utente si reca nel menu a tendina apposito all'interno di tale pannello. Clicca sulla a scheda alternativa e mixa il colore impostando i valori rosso, blu, verde. (caso colore personalizzato).
 \end{elenconumerato}
 \paragraph{Precondizioni}L'utente ha scelto un oggetto colorabile presente nel canvas.
@@ -568,8 +568,7 @@ Il sistema consente di modificare la dimensione dei caratteri del testo di una c
 
 \subsubsezione{UC10.4  Caso d'uso: imposta colore del bordo}
 \paragraph{Attori coinvolti} Utente.
-\paragraph{Scopo e descrizione sintetica} Il sistema consente di personalizzare il colore di tutto il bordo appartenente ad un qualsiasi oggetto presente nel canvas.
-Sono disponibili colori campione, e colori personalizzati (mixando le componenti RGB che producono il corrispondente codice esadecimale del colore a 6 cifre).
+\paragraph{Scopo e descrizione sintetica} Il sistema consente di personalizzare il colore di tutto il bordo appartenente ad un qualsiasi oggetto presente nel canvas. Sono disponibili colori campione, e colori personalizzati (mixando le componenti RGB che producono il corrispondente codice esadecimale del colore a 6 cifre).
 \paragraph{Flusso di eventi}
 \begin{elenconumerato}[\textbf{}]{\subsubsecindent}
 \item L'utente seleziona un oggetto valido.
@@ -589,49 +588,49 @@ Sono disponibili colori campione, e colori personalizzati (mixando le componenti
 \begin{elenconumerato}[\textbf{}]{\subsubsecindent}
 \item L'utente seleziona un oggetto valido.
 \item Il sistema evidenzia l'oggetto selezionato e mostra un pannello con i relativi stili grafici.
-\item  L'utente porta  il cursore nella sezione/scheda del pannello relativa all'opacit\` a.
-\item  L'utente regola l'opacit\` a inserendo un valore intero tra 0 a 100 o trascinando col cursore l'apposito mixer.
+\item L'utente porta  il cursore nella sezione/scheda del pannello relativa all'opacit\` a.
+\item L'utente regola l'opacit\` a inserendo un valore intero tra 0 a 100 o trascinando col cursore l'apposito mixer.
 \end{elenconumerato}
-\paragraph{Precondizioni} L'utente ha scelto un oggetto  presente nel canvas.
+\paragraph{Precondizioni} L'utente ha scelto un oggetto presente nel canvas.
 \paragraph{Postcondizioni} Le propriet\` a degli stili grafici della casella di testo indicano che l'opacit\` a dell'oggetto corrisponde al valore intero selezionato.
 
 \subsubsezione{UC10.6   Caso d'uso: imposta la posizione dell'oggetto}
 \paragraph{Attori coinvolti} Utente.
-\paragraph{Scopo e descrizione sintetica}  Il sistema consente di modificare la posizione  di un qualsiasi oggetto presente nel canvas.  L'utente pu\` o utilizzare il cursore per trascinare l'oggetto dove desidera. 
-Tuttavia, è possibile impostare la posizione in modo assoluto. Ogni oggetto infatti, di qualsiasi forma esso sia, occupa un area rettangolare. La posizione di tale area è descritta da 4 valori interi che rappresentano le coordinate dei suoi vertici significativi. I primi 2 interi per ordinata/ascissa del vertice in alto a sinistra. Il 3o e 4o valore rispettivamente per ordinata/ascissa del vertice in basso a destra.
+\paragraph{Scopo e descrizione sintetica} Il sistema consente di modificare la posizione di un qualsiasi oggetto presente nel canvas.  L'utente pu\` o utilizzare il cursore per trascinare l'oggetto dove desidera. 
+Tuttavia, è possibile impostare la posizione in modo assoluto. Ogni oggetto infatti, di qualsiasi forma esso sia, occupa un area rettangolare. La posizione di tale area è descritta da quattro valori interi che rappresentano le coordinate dei suoi vertici significativi. I primi due interi per ordinata/ascissa del vertice in alto a sinistra. Il terzo e quarto valore rispettivamente per ordinata/ascissa del vertice in basso a destra.
 \paragraph{Flusso di eventi}
 \begin{elenconumerato}[\textbf{}]{\subsubsecindent}
 \item L'utente seleziona una oggetto valido.
 \item Il sistema evidenzia l'oggetto selezionato e mostra un pannello con i relativi stili grafici.
 \item L'utente trascina l'oggetto in una posizione valida all'interno dell'area del canvas usando il cursore.
 \item  L'utente porta  il cursore nella sezione/scheda del pannello relativa alla posizione dell'oggetto.
-\item  L'utente imposta manualmente i 4 valori della posizione assoluta dell'oggetto.
+\item  L'utente imposta manualmente i quattro valori della posizione assoluta dell'oggetto.
 \end{elenconumerato}
-\paragraph{Precondizioni} L'utente ha scelto un oggetto  presente nel canvas. Se l'utente sceglie una posizione non valida (in quanto l'oggetto uscirebbe dal canvas) il sistema posiziona l'oggetto nel valore valido pi\` u vicino a quello selezionato (ad esempio sul bordo estremo del canvas). Valori negativi sono ignorati.
-\paragraph{Postcondizioni} Le proprietà degli stili grafici della casella di testo indicano che l'oggetto è nella nuova posizione. Il canvas visualizza l'oggetto nella nuova posizione.
+\paragraph{Precondizioni} L'utente ha scelto un oggetto presente nel canvas. Se l'utente sceglie una posizione non valida (in quanto l'oggetto uscirebbe dal canvas) il sistema posiziona l'oggetto nella posizione con valore valido pi\` u vicino a quello selezionato (ad esempio sul bordo estremo del canvas). Valori negativi sono ignorati.
+\paragraph{Postcondizioni} Le propriet\` a degli stili grafici della casella di testo indicano che l'oggetto \` e nella nuova posizione. Il canvas visualizza l'oggetto nella nuova posizione.
  
 
-\subsubsezione{UC10.7   Caso d'uso: imposta le due dimensioni dell'oggetto}
+\subsubsezione{UC10.7 Caso d'uso: imposta le due dimensioni dell'oggetto}
 \paragraph{Attori coinvolti} Utente.
-\paragraph{Scopo e descrizione sintetica}   Il sistema consente di modificare le dimensioni  di un qualsiasi oggetto presente nel canvas.  Ogni oggetto, di qualsiasi forma esso sia, occupa un area rettangolare. Quindi ogni oggetto possiede 2 valori interi che rappresentano le 2 dimensioni (base, altezza). Quadrato e cerchio presentano solo un unica dimensione.
+\paragraph{Scopo e descrizione sintetica}   Il sistema consente di modificare le dimensioni di un qualsiasi oggetto presente nel canvas. Ogni oggetto, di qualsiasi forma esso sia, occupa un area rettangolare. Quindi ogni oggetto possiede due valori interi che rappresentano le due dimensioni (base, altezza). Quadrato e cerchio presentano una dimensione unica.
 \paragraph{Flusso di eventi}
 \begin{elenconumerato}[\textbf{}]{\subsubsecindent}
-\item  L'utente seleziona una oggetto valido
-\item.  Il sistema evidenzia l'oggetto selezionato e mostra un pannello con i relativi stili grafici
+\item  L'utente seleziona una oggetto valido.
+\item  Il sistema evidenzia l'oggetto selezionato e mostra un pannello con i relativi stili grafici.
 \item  L'utente usa il cursore con puntatore specifico per modificare la posizione dell'oggetto. 
-\item  L'utente porta  il cursore nella sezione/scheda del pannello relativa alla dimensione dell'oggetto
-\item  L'utente imposta manualmente i 2 valori della dimensione dell'oggetto (base e altezza).
-\item  Nel caso di cerchio e quadrato c'\` e un solo intero da impostare (dimensione unica)
+\item  L'utente porta  il cursore nella sezione/scheda del pannello relativa alla dimensione dell'oggetto.
+\item  L'utente imposta manualmente i due valori della dimensione dell'oggetto (base e altezza).
+\item  Nel caso di cerchio e quadrato c'\` e un solo intero da impostare (dimensione unica).
 \end{elenconumerato}
 \paragraph{Precondizioni} L'utente ha scelto un oggetto presente nel canvas.
-Non si accettano valori negativi o pari a zero. Se le dimensione sono superiori a un massimo relativo alla dimensione del canvas il sistema le imposta alla massima dimensione consentita.
-\paragraph{Postcondizioni} Le proprietà degli stili grafici della casella di testo indicano che le dimensioni dell'oggetto  sono quelle selezionate. L'oggetto si ingrandir\` a/rimpicciolir\` a a seconda dei  movimenti del cursore o dei valori/e interi inseriti.
+Non si accettano valori negativi o pari a zero. Se le dimensioni sono superiori a un massimo relativo alla dimensione del canvas il sistema le imposta alla massima dimensione consentita.
+\paragraph{Postcondizioni} Le propriet\`a degli stili grafici della casella di testo indicano che le dimensioni dell'oggetto sono quelle selezionate. L'oggetto si ingrandir\` a/rimpicciolir\` a a seconda dei movimenti del cursore o dei valori interi inseriti.
 
 %inizio requisiti
 \sezione{Lista dei requisiti}
 \label{listarequisiti}
-I requisiti qui elencati sono suddivisi per tipologia (funzionale, prestazionale, di qualit\`a, di interfacciamento, d'ambiente); 
-per ogni tipologia \`e presente un'ulteriore classificazione per classe di spazio di negoziato (obbligatorio, desiderabile, facoltativo). 
+I requisiti elencati in seguito si dividono per tipologia (funzionale, prestazionale, di qualit\`a, di interfacciamento, d'ambiente); 
+per ognuna \`e presente una classificazione per classe di importanza (obbligatorio, desiderabile, facoltativo). 
 \subsezione{Requisiti funzionali (RF)}
 \subsubsezione{Obbligatori (RFO)}
 \begin{elenconumerato}[\textbf{RFO-}]{\subsubsecindent}
@@ -641,6 +640,7 @@ per ogni tipologia \`e presente un'ulteriore classificazione per classe di spazi
 \item{AJAXDRAW permette di disegnare poligoni regolari di qualsiasi dimensione e numero di lati.}
 \item{AJAXDRAW permette all'utente di disegnare cerchi o ellissi.}
 \item{AJAXDRAW permette di aggiungere caselle di testo al documento. }
+\item{AJAXDRAW permette la modifica del font e della dimensione del testo presente nelle caselle disegnate.}
 \item{Per ogni elemento disegnato, AJAXDRAW permette all'utente di selezionare e spostare tale elemento.}
 \item{AJAXDRAW permette di cambiare il colore di riempimento, del bordo, delle linee, dell'opacità degli oggetti disegnati.}
 \item{AJAXDRAW permette il ridimensionamento degli oggetti disegnati.}
@@ -648,7 +648,7 @@ per ogni tipologia \`e presente un'ulteriore classificazione per classe di spazi
 \item{Qualora suddette funzioni siano regolate da parametri, AJAXDRAW permette all'utente di impostarli.}
 \item{AJAXDRAW permette di effettuare uno zoom in avanti e all'indietro nel disegno.}
 \item{AJAXDRAW \`e in grado di salvare le immagini create dall'utente nel formato SVG.}
-\item{AJAXDRAW permette di caricare immagini in formato SVG che utilizzano il sottoinsieme che AJAXDRAW \'e in grado di generare.}
+\item{AJAXDRAW permette di caricare immagini in formato SVG che utilizzano il sottoinsieme che AJAXDRAW \`e in grado di generare.}
 \end{elenconumerato}
 
 %requisiti desiderabili
@@ -656,7 +656,6 @@ per ogni tipologia \`e presente un'ulteriore classificazione per classe di spazi
 \begin{elenconumerato}[\textbf{RFD-}]{\subsubsecindent}
 \item{AJAXDRAW permette di disegnare a mano libera.}
 \item{AJAXDRAW permette di disegnare connettori per diagrammi.}
-
 \end{elenconumerato}
 
 %facoltativi
