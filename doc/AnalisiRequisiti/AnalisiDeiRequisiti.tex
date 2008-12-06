@@ -222,12 +222,12 @@ Segue ora una descrizione testuale del caso d'uso presentato dal grafico.
 \paragraph{Scopo e descrizione sintetica}
 L'utente avvia l'applicazione visualizzandone la relativa pagina web attraverso il browser, che richiede la relativa pagina al server HTTP.
 \paragraph{Flusso di eventi}
-\begin{elenconumerato}[\textbf{}]{\subsubsecindent}
+\begin{enumerate}
 \item L'utente inserisce l'URL relativo all'applicazione nel browser.
 \item Il browser richiede la pagina al server HTTP.
 \item Il server HTTP invia la pagina.
 \item Il browser visualizza la pagina.
-\end{elenconumerato}
+\end{enumerate}
 \paragraph{Flusso alternativo}
 Se viene rilevato un browser non supportato, l'utente viene avvisato. L'utente pu\`o decidere di continuare ugualmente senza nessuna garanzia di corretto funzionamento.
 \paragraph{Precondizioni} Il browser \'e avviato.
@@ -242,7 +242,7 @@ Il seguente grafico descrive le interazioni tra l'utente finale e l'applicazione
 \caption{Funzionalit\`a dell'applicazione}
 \end{figure}
 
-Segue ora una descrizione testuale dei casi d'uso presentati dal grafico.
+\paragraph{Segue ora una descrizione testuale dei casi d'uso presentati dal grafico.}
 
 \subsubsezione{UC1 Caso d'uso: pulisci \underline{canvas}}
 \paragraph{Attori coinvolti} Utente
@@ -594,37 +594,82 @@ Il sistema consente di modificare la dimensione dei caratteri del testo di una c
 \paragraph{Precondizioni} L'utente ha scelto un oggetto presente nel canvas.
 \paragraph{Postcondizioni} Le propriet\` a degli stili grafici della casella di testo indicano che l'opacit\` a dell'oggetto corrisponde al valore intero selezionato.
 
-\subsubsezione{UC10.6   Caso d'uso: imposta la posizione dell'oggetto}
+\subsubsezione{UC10.6   Caso d'uso: imposta la posizione trascinando l'oggetto}
 \paragraph{Attori coinvolti} Utente.
-\paragraph{Scopo e descrizione sintetica} Il sistema consente di modificare la posizione di un qualsiasi oggetto presente nel canvas.  L'utente pu\` o utilizzare il cursore per trascinare l'oggetto dove desidera. 
-Tuttavia, è possibile impostare la posizione in modo assoluto. Ogni oggetto infatti, di qualsiasi forma esso sia, occupa un area rettangolare. La posizione di tale area è descritta da quattro valori interi che rappresentano le coordinate dei suoi vertici significativi. I primi due interi per ordinata/ascissa del vertice in alto a sinistra. Il terzo e quarto valore rispettivamente per ordinata/ascissa del vertice in basso a destra.
+\paragraph{Scopo e descrizione sintetica} Il sistema consente di modificare la posizione di un qualsiasi oggetto presente nel canvas. L'utente utilizza il cursore per trascinare l'oggetto dove desidera.
 \paragraph{Flusso di eventi}
 \begin{elenconumerato}[\textbf{}]{\subsubsecindent}
 \item L'utente seleziona una oggetto valido.
 \item Il sistema evidenzia l'oggetto selezionato e mostra un pannello con i relativi stili grafici.
 \item L'utente trascina l'oggetto in una posizione valida all'interno dell'area del canvas usando il cursore.
-\item  L'utente porta  il cursore nella sezione/scheda del pannello relativa alla posizione dell'oggetto.
-\item  L'utente imposta manualmente i quattro valori della posizione assoluta dell'oggetto.
 \end{elenconumerato}
-\paragraph{Precondizioni} L'utente ha scelto un oggetto presente nel canvas. Se l'utente sceglie una posizione non valida (in quanto l'oggetto uscirebbe dal canvas) il sistema posiziona l'oggetto nella posizione con valore valido pi\` u vicino a quello selezionato (ad esempio sul bordo estremo del canvas). Valori negativi sono ignorati.
+\paragraph{Precondizioni} L'utente ha scelto un oggetto presente nel canvas. L'utente non pu\` o trascinare l'oggetto fuori dal canvas.
 \paragraph{Postcondizioni} Le propriet\` a degli stili grafici della casella di testo indicano che l'oggetto \` e nella nuova posizione. Il canvas visualizza l'oggetto nella nuova posizione.
  
 
-\subsubsezione{UC10.7 Caso d'uso: imposta le due dimensioni dell'oggetto}
+\subsubsezione{UC10.7 Caso d'uso: imposta la posizione dell'oggetto tramite coordinate}
 \paragraph{Attori coinvolti} Utente.
-\paragraph{Scopo e descrizione sintetica}   Il sistema consente di modificare le dimensioni di un qualsiasi oggetto presente nel canvas. Ogni oggetto, di qualsiasi forma esso sia, occupa un area rettangolare. Quindi ogni oggetto possiede due valori interi che rappresentano le due dimensioni (base, altezza). Quadrato e cerchio presentano una dimensione unica.
+\paragraph{Scopo e descrizione sintetica}   Il sistema consente di modificare la posizione di un qualsiasi oggetto tramite coordinate.  L'utente  imposta la posizione in modo assoluto. Ogni oggetto infatti, di qualsiasi forma esso sia, occupa un'area rettangolare. La posizione di tale area \`e descritta da quattro valori interi che rappresentano le coordinate dei suoi vertici significativi. I primi due interi per ordinata/ascissa del vertice in alto a sinistra. Il terzo e quarto valore rispettivamente per ordinata/ascissa del vertice in basso a destra.
 \paragraph{Flusso di eventi}
 \begin{elenconumerato}[\textbf{}]{\subsubsecindent}
 \item  L'utente seleziona una oggetto valido.
 \item  Il sistema evidenzia l'oggetto selezionato e mostra un pannello con i relativi stili grafici.
-\item  L'utente usa il cursore con puntatore specifico per modificare la posizione dell'oggetto. 
 \item  L'utente porta  il cursore nella sezione/scheda del pannello relativa alla dimensione dell'oggetto.
-\item  L'utente imposta manualmente i due valori della dimensione dell'oggetto (base e altezza).
-\item  Nel caso di cerchio e quadrato c'\` e un solo intero da impostare (dimensione unica).
+\item  L'utente imposta manualmente i quattro valori della dimensione dell'oggetto.
 \end{elenconumerato}
-\paragraph{Precondizioni} L'utente ha scelto un oggetto presente nel canvas.
-Non si accettano valori negativi o pari a zero. Se le dimensioni sono superiori a un massimo relativo alla dimensione del canvas il sistema le imposta alla massima dimensione consentita.
-\paragraph{Postcondizioni} Le propriet\`a degli stili grafici della casella di testo indicano che le dimensioni dell'oggetto sono quelle selezionate. L'oggetto si ingrandir\` a/rimpicciolir\` a a seconda dei movimenti del cursore o dei valori interi inseriti.
+\paragraph{Precondizioni} L'utente ha scelto un oggetto  presente nel canvas. Se l'utente sceglie una posizione non valida (in quanto l'oggetto uscirebbe dal canvas) il sistema posiziona l'oggetto nel valore valido pi\` u vicino a quello selezionato (ad esempio sul bordo estremo del canvas). Valori negativi sono ignorati.
+\paragraph{Postcondizioni} Le propriet\`  a degli stili grafici della casella di testo indicano che l'oggetto \`e nella nuova posizione. Il canvas visualizza l'oggetto nella nuova posizione.
+
+\subsubsezione{UC10.8 Caso d'uso: ridimensiona l'oggetto tramite cursore}
+\paragraph{Attori coinvolti} Utente.
+\paragraph{Scopo e descrizione sintetica}  Il sistema consente di modificare le dimensioni  di un qualsiasi oggetto presente nel canvas.  L'utente utilizza il cursore per ingrandire / rimpicciolire a piacere l'oggetto.
+\paragraph{Flusso di eventi}
+\begin{elenconumerato}[\textbf{}]{\subsubsecindent}
+\item  L'utente seleziona una oggetto valido.
+\item  Il sistema evidenzia l'oggetto selezionato e mostra un pannello con i relativi stili grafici.
+\item  L'utente usa il cursore con puntatore specifico per modificare le dimensioni dell'oggetto.
+\end{elenconumerato}
+\paragraph{Precondizioni} L'utente ha scelto un oggetto  presente nel canvas. Se le dimensioni sono superiori a un massimo relativo alla dimensione del canvas il sistema le imposta alla massima dimensione consentita
+\paragraph{Postcondizioni} Le propriet\`a  degli stili grafici della casella di testo indicano che le dimensioni dell'oggetto sono quelle selezionate. L'oggetto si ingrandir\` a/rimpicciolir\`a  a seconda dei movimenti del cursore.
+
+
+\subsubsezione{UC10.9 Caso d'uso: ridimensiona l'oggetto tramite coordinate assolute}
+\paragraph{Attori coinvolti} Utente.
+\paragraph{Scopo e descrizione sintetica} Il sistema consente di modificare le dimensioni  di un qualsiasi oggetto presente nel canvas tramite l'inserimento di coordinate assolute.  Ogni oggetto, di qualsiasi forma esso sia, occupa un area rettangolare. Quindi ogni oggetto possiede due valori interi che rappresentano le due dimensioni (base, altezza). Quadrato e cerchio presentano solo un unica dimensione.
+\paragraph{Flusso di eventi}
+\begin{elenconumerato}[\textbf{}]{\subsubsecindent}
+\item  L'utente seleziona un oggetto valido.
+\item.  Il sistema evidenzia l'oggetto selezionato e mostra un pannello con i relativi stili grafici.
+\item  L'utente porta il cursore nella sezione/scheda del pannello relativa alla dimensione dell'oggetto.
+\item  L'utente imposta manualmente i due valori della dimensione dell'oggetto.
+(base e altezza). Nel caso di cerchio e quadrato  \`e  presente un solo intero da impostare (dimensione unica).
+\end{elenconumerato}
+\paragraph{Precondizioni} L'utente ha scelto un oggetto presente nel canvas. Non si accettano valori negativi o pari a zero. Se le dimensioni sono superiori a un massimo relativo alla dimensione del canvas il sistema le imposta alla massima dimensione consentita.
+\paragraph{Postcondizioni} Le propriet\` a degli stili grafici della casella di testo indicano che le dimensioni dell'oggetto  sono quelle selezionate. L'oggetto si ingrandir\`a/rimpicciolir\`a  a seconda dei valori interi inseriti.
+                   
+\subsubsezione{UC10.10 Caso d'uso: seleziona oggetto}
+\paragraph{Attori coinvolti} Utente.
+\paragraph{Scopo e descrizione sintetica}   Il sistema consente di selezionare un qualsiasi oggetto presente nel canvas.
+\paragraph{Flusso di eventi}
+\begin{elenconumerato}[\textbf{}]{\subsubsecindent}
+\item  L'utente seleziona il comando per la selezione di un oggetto.
+\item  L'utente usa il cursore per selezionare l'oggetto in questione.
+\end{elenconumerato}
+\paragraph{Precondizioni} Il canvas \` e visualizzato. L'utente ha selezionato un oggetto presente nel canvas.
+\paragraph{Postcondizioni} Il sistema evidenzia l'oggetto selezionato e mostra un pannello con i relativi stili grafici.
+
+\subsubsezione{UC10.11 Caso d'uso: elimina oggetto}
+\paragraph{Attori coinvolti} Utente.
+\paragraph{Scopo e descrizione sintetica} Il sistema consente di eliminare dal canvas un qualsiasi oggetto.
+\paragraph{Flusso di eventi}
+\begin{elenconumerato}[\textbf{}]{\subsubsecindent}
+\item  L'utente seleziona il comando per la selezione di un oggetto.
+\item  L'utente usa il cursore per selezionare l'oggetto in questione.
+\item  L'utente seleziona il comando per la cancellazione di un oggetto.
+\end{elenconumerato}
+\paragraph{Precondizioni} Il canvas \`e visualizzato. L'utente ha selezionato un oggetto presente nel canvas.
+\paragraph{Postcondizioni} Il canvas non visualizza l'oggetto cancellato.
+
 
 %inizio requisiti
 \sezione{Lista dei requisiti}
