@@ -1,11 +1,11 @@
 	\input{../TeX/base} %BASE!!!
-
+\usepackage{multirow}
 \title{\TITOLODOC}
-\author{Cunico Marco}
+\author{Dal Bosco Davide}
 
 \begin{document}
 
-\renewcommand{\insertversion}{0.7} %INSERIRE LA VERSIONE QUI DENTRO STILE x.x.xx
+\renewcommand{\insertversion}{0.9} %INSERIRE LA VERSIONE QUI DENTRO STILE x.x.xx
 \renewcommand{\TITOLODOC}{Piano di Progetto} %INSERIRE IL TITOLO DEL DOCUMENTO DA FAR COMPARIRE A PIE PAGINA
 \renewcommand{\glosspath}{.\glossario} %INSERIRE PERCORSO RELATIVO
 
@@ -25,7 +25,7 @@
 
 \begin{center}
 	\begin{large}
-				\textbf{Software per il Disegno Grafico in Tecnologie Web}
+				\textbf{Software per il Disegno Grafico\\ in Tecnologie Web}
 	\end{large}
 \end{center}			
 
@@ -59,34 +59,77 @@ Versione: \insertversion
 \end{center}
 
 %\setlength{\parindent}{18pt} %settato indentazione di default 
-\section*{\Large Sommario:}
+\section*{\LARGE Sommario:}
 Il presente documento descrive l'analisi dei costi e delle risorse effettuata dall'azienda WebShape per lo sviluppo del Capitolato C04.
 
  %SEZIONE SOMMARIO
 \indent \indent
 
-\section*{\Large Stato del documento:}
+\section*{\LARGE Stato del documento:}
 \indent \indent
 	Formale Esterno
 
-\section*{\Large Redazione:}
-	\begin{elencopuntato}[\normindent]
-		\item Cunico Marco
-		\item Dal Bosco Davide
-	\end{elencopuntato}
+\section*{\LARGE Redazione:}
+	\begin{table}[!h]
+		\begin{center}
+			\begin{tabular}
+				{|c|c|}
+				\hline
+				%%%%%%%%%%%%%%INTESTAZIONE COLONNE%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+				\multicolumn{2}{|c|}{ \textbf{Redazione} } \\
+				\hline
+				\textbf{Fase} & \textbf{Redattori} \\
+				%%%%%%%%%%%%%%FINE INTESTAZIONE COLONNE%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+				\hline
+				%%%%%%%%%%% PARTE DA MODIFICARE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%		
+				\multirow{2}{*}{Pre-RR} & Cunico Marco\\
+										& Dal Bosco Davide\\
+				\hline
+				\multirow{2}{*}{RR-RPP} & \\
+										& \\
+				\hline
+				%%%%%%%%%%% FINE PARTE DA MODIFICARE %%%%%%%%%%%%%%%%%%%%%%%%%%%
+			\end{tabular}
+			\caption{Lista Redattori} %INSERIRE DIDASCALIA - SE NECESSARIA - 
+			\label{tabredazione}
+		\end{center}
+	\end{table}
+	
+\newpage	
+	
+\section*{\LARGE Approvazione:}
+\begin{table}[!h]
+	\begin{center}
+		\begin{tabular}
+			{|c|c|}
+			\hline
+			%%%%%INTESTAZIONE COLONNE%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+			\multicolumn{2}{|c|}{ \textbf{Approvazione} } \\
+			\hline
+			\textbf{Fase} & \textbf{Approvatori} \\
+			%%%%%%%%%%%%%%FINE INTESTAZIONE COLONNE%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+			\hline
+			%%%%%%%%%%% PARTE DA MODIFICARE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%		
+			\multirow{2}{*}{Pre-RR} &  \\
+									&  \\
+			\hline
+			\multirow{2}{*}{RR-RPP} & \\
+									& \\
+			\hline
+			%%%%%%%%%%% FINE PARTE DA MODIFICARE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+		\end{tabular}
+		\caption{Lista Approvatori} %INSERIRE DIDASCALIA - SE NECESSARIA - 
+		\label{tabapprovazione}
+	\end{center}
+\end{table}
 
-\section*{\Large Approvazione:}
-	\begin{elencopuntato}[\normindent]
-		\item Approvatore N. 1
-		\item Approvatore N. 2
-		\item Approvatore N. 3
-	\end{elencopuntato}
+\textbf{}
 
 \section*{\LARGE Lista di Distribuzione:}
 
 	\begin{elenconumerato}{\normindent}
 		\item WebShape 
-		\item I committenti Vardanega Tullio e Conte Renato in rappresentanza \\  dell'azienda proponente Zucchetti SPA
+		\item I committenti Conte Renato e Vardanega Tullio in rappresentanza \\  dell'azienda proponente Zucchetti SPA
 	\end{elenconumerato}
 
 \newpage
@@ -107,15 +150,24 @@ Il presente documento descrive l'analisi dei costi e delle risorse effettuata da
 %%%%%%%%%%%%%%FINE INTESTAZIONE COLONNE%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 		 \hline
 %%%%%%%%%%% PARTE DA MODIFICARE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+          0.9 & 06/12/2008 Inserito secondo incremento e fine stesura del documento & Dal Bosco Davide\\
+          \hline
+          0.8 & 06/12/2008 Corretti errori di sintassi, impaginazione e inserito il primo incremento & Cunico Marco \\
+		 \hline
           0.7 & 05/12/2008 Inserimento Distribuzione Ruoli e Gestione del Piano di Progetto & Cunico Marco \\
+          \hline
           0.6 & 05/12/2008 Inserimento Preventivo Rotazione Ruoli per fase di progetto & Cunico Marco \\
-          0.5 & 05/12/2008 Inserimento della sezione relativa all'Analisi e Gestione dei Rischi & Dal Bosco Davide \\         
-          0.4 & 04/12/2008 Inserimento attribuzione ruoli & Cunico Marco \\	
-%%%%%%%%%%% PARTE DA MODIFICARE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%		
-          
-          0.3 & 04/12/2008 Inserimento intero capitolo Pianificazione con relative sottosezioni,tabelle e grafici & Dal Bosco Davide \\
-    	  0.2 & 01/12/2008 Inserimento capitoli Introduzione,Organigramma,Pianificazione(inizio) & Dal Bosco Davide \\
+          \hline
+          0.5 & 05/12/2008 Inserimento della sezione relativa all'Analisi e Gestione dei Rischi & Dal Bosco Davide \\
+          \hline         
+          0.4 & 04/12/2008 Inserimento attribuzione ruoli & Cunico Marco \\
+          \hline	          
+          0.3 & 04/12/2008 Inserimento intero capitolo Pianificazione con relative sottosezioni, tabelle e grafici & Dal Bosco Davide \\
+          \hline
+    	  0.2 & 01/12/2008 Inserimento capitoli Introduzione, Organigramma, Pianificazione(inizio) & Dal Bosco Davide \\
+    	  \hline
     	  0.1 & 25/11/2008 Adattamento al template scelto & Dal Bosco Davide \\
+    	  \hline
     	  0.0 & 22/11/2008 Bozza iniziale & Dal Bosco Davide \\
 
 		\hline %%FINE RIGA
@@ -173,12 +225,11 @@ I ruoli saranno assegnati a rotazione nell'arco dello sviluppo del progetto, in 
 Vedere Tabella: (\ref{tab:tabella_componenti}) della pagina ~\pageref{tab:tabella_componenti}\\
 
 \subsezione{Assunzioni Iniziali}
-Regole da rispettare per la realizzazione del progetto didattico:
-\begin{elenconumerato}{\normindent}
-				\item L'importo totale stimato \`e di 13059 euro.\\
-				\item Sono state previste 630 ore di lavoro.\\
-				\item L'impegno individuale di ogni componente varia da un minimo di 85 ore ad un massimo di 105 ore.\\
-			\end{elenconumerato}
+\begin{itemize}
+\item Il costo totale stimato \`e di 13059 euro. Eventuali costi aggiuntivi non saranno a carico del committente ma saranno coperti dall'azienda.
+\item Sono previste 630 ore di lavoro totali per la realizzazione del progetto.\\ 
+\item L'impegno individuale di ogni componente varia da un minimo di 85 ore ad un massimo di 105 ore.\\
+\end{itemize}
 
 \begin{table}[h]
 	\begin{center}
@@ -187,10 +238,15 @@ Regole da rispettare per la realizzazione del progetto didattico:
 		 \textbf{Cognome e Nome} & \textbf{Matricola} & \textbf{E-mail}\\
 		 \hline
 		Bizzotto Piero & 540804 & piero.bizzotto@gmail.com \\
+		\hline
 		Carollo Mirko & 542902 & mirko.carollo@gmail.com\\
+		\hline
 		Cunico Marco & 540754 & marco.cunico@gmail.com\\
+		\hline
 		Dal Bosco Davide & 539402 & mrdavi86@gmail.com\\
+		\hline
 		Dissegna Stefano & 561011 & stefano.dissegna@gmail.com \\
+		\hline
 		Geremia Mirco & 563665 & crittico@gmail.com\\
 		\hline
 		\end{tabular}
@@ -202,7 +258,7 @@ Regole da rispettare per la realizzazione del progetto didattico:
 
 
 \subsezione{Attribuzione dei Ruoli}
-Date le Assunzioni Iniziali precedentemente descritte, ed essendo il gruppo WebShape costituito da sei membri, si avr\`a una media di circa 105 ore di lavoro per persona. La durata complessiva del progetto sar\`a di circa 630 ore, ogni componente lavorer\`a quindi una media di 3 ore giornaliere. Sono previste altre 3 revisioni:
+Date le Assunzioni Iniziali precedentemente descritte, ed essendo il gruppo WebShape costituito da sei membri, si avr\`a una media di circa 105 ore di lavoro per persona. La durata complessiva del progetto sar\`a di circa 630 ore, ogni componente lavorer\`a quindi una media di circa 2 ore giornaliere. Sono previste altre tre revisioni:
 \begin{elenconumerato}{\normindent}
 				\item Revisione di Progetto Preliminare (RPP)
 				\item Revisione di Qualifica (RQ)
@@ -210,15 +266,13 @@ Date le Assunzioni Iniziali precedentemente descritte, ed essendo il gruppo WebS
 			\end{elenconumerato}
 
 La rotazione dei ruoli avviene come da tabella (\ref{tab:TabellaRotazRuoli}) della pagina ~\pageref{tab:TabellaRotazRuoli}.\\
-Dato che ogni componente del gruppo dovr\`a assumere tutti i ruoli,\`e previsto che nelle varie fasi del progetto i membri della societ\`a si assumano piu' incarichi. Non \`e permesso che uno stesso membro ricopra ruoli in conflitto di interessi tra loro.\\
-La rotazione dei ruoli avviene come da tabella (\ref{tab:tavprevrotazione}) della pagina ~\pageref{tab:tabprevrotazione}.\\
-Dato che ogni componente del gruppo dovr\`a assumere tutti i ruoli, \`e previsto che nelle varie fasi del progetto i membri della societ\`a si assumano piu' incarichi. Non \`e permesso che uno stesso membro ricopra ruoli in conflitto di interessi tra loro.\\
+Dato che ogni componente del gruppo dovr\`a assumere tutti i ruoli, \`e previsto che nelle varie fasi del progetto i membri della societ\`a si assumano pi\`u incarichi. Non \`e permesso che uno stesso membro ricopra ruoli in conflitto di interessi tra loro.\\
 
 \sezione{Pianificazione}
 Per la realizzazione del progetto l'azienda WebShape ha valutato con attenzione i possibili modelli di cicli di vita da utilizzare, tenendo conto di eventuali pregi e difetti. 
 La scelta \`e ricaduta sul modello incrementale, in quanto, vista la tipologia modulare del progetto, si adatta meglio alle esigenze dell'azienda stessa. Con il modello incrementale si ha la possibilit\`a di effettuare dei rilasci di versioni parziali in modo da avvicinarsi incrementalmente al prodotto finale ed effettuare una pianificazione ben definita, che sono dei vantaggi importanti per una nuova azienda. Sono stati invece scartati gli altri modelli: il modello sequenziale, perch\`e troppo orientato ai documenti e per il fatto che il primo prodotto del progetto \` e visionabile solo al termine della Fase di Qualifica; il modello evolutivo, per la necessit\`a di un costante rilascio di versioni; infine il modello a spirale, per l'esigenza di avere continui contatti col cliente.\\
 \subsezione{Ore e costi totali}
-In questa sottosezione verr\` a il preventivo totale, comprendente i costi e le ore stimate, necessarie per la realizzazione del progetto. Il preventivo considera tutte le fasi di progettazione sostenute dall'Azienda.
+In questa sottosezione verr\` a il preventivo totale, comprendente i costi e le ore stimate, necessarie per la realizzazione del progetto. Il preventivo considera tutte le fasi di progettazione sostenute dall'azienda.
 
 \begin{table}[h]
 	\begin{center}
@@ -251,6 +305,31 @@ In questa sottosezione verr\` a il preventivo totale, comprendente i costi e le 
 \includegraphics[width=350pt]{CostiTotali}
 
 \subsezione{Pianificazione economico-temporale RR-RPP}
+All'interno di questa fase avverr\`a la prima iterazione prevista dal modello di ciclo di vita.
+Al termine dell'iterazione verr\`a rilasciato un prototipo che soddisfer\`a i seguenti requisiti:\\
+
+%%\begin{enumerate}
+\begin{elenconumerato}[\textbf{}]{\subsubsecindent}
+\item RFO-1
+\item RFO-2
+\item RFO-3
+\item RFO-4
+\item RFO-5
+\item RFO-6
+\item RFO-7
+\item RFO-8
+\item RFO-9
+\item RFO-10
+\item RFO-11
+\item RFO-12
+\item RFO-13
+\item RFO-14
+\item RFO-15
+\item RFD-1
+\item RFD-2
+\item RFD-3
+\end{elenconumerato}
+
 Preventivo relativo alla fase Revisione dei requisiti-Revisione del progetto preliminare.
 \begin{table}[h]
 	\begin{center}
@@ -284,6 +363,35 @@ Preventivo relativo alla fase Revisione dei requisiti-Revisione del progetto pre
 
 
 \subsezione{Pianificazione economico-temporale RPP-RQ}
+All'interno di questa fase avverr\`a la seconda iterazione prevista dal modello di ciclo di vita.
+Al termine dell'iterazione verr\`a rilasciato un prototipo che soddisfer\`a i seguenti requisiti:\\
+
+%%\begin{enumerate}
+\begin{elenconumerato}[\textbf{}]{\subsubsecindent}
+\item RPO-1
+\item RQO-1
+\item RQO-2
+\item RQO-3
+\item RQO-4
+\item RQO-5
+\item RQO-6
+\item RQO-7
+\item RQO-8
+\item RQO-9
+\item RQO-10
+\item RIO-1
+\item RIO-2
+\item RIO-3
+\item RIO-4
+\item RAO-1
+\item RAO-2
+\item RAO-3
+\item RAO-4
+\item RAO-5
+\item RAO-6
+\item RAD-1
+\end{elenconumerato}
+
 Preventivo relativo alla fase Revisione del progetto preliminare-Revisione di qualifica.
 \begin{table}[h]
 	\begin{center}
@@ -348,9 +456,9 @@ Preventivo relativo alla fase Revisione di qualifica-Revisione di accettazione.
 \includegraphics[width=350pt]{RQ-RA_Costi}
 
 \subsezione{Distribuzione dei ruoli}
-La distribuzione dei ruoli all'interno dell'azienda e' stata realizzata in modo da permettere a tutti i membri di Webshape di ricoprire tutti i ruoli richiesti dal progetto, distribuendoli nel modo pi\`u equo possibile, rispettando i vincoli previsti dalle Assunzioni Iniziali. La distribuzione dei ruoli \`e meglio descritta nella tabella (\ref{tab:TabellaRotazRuoli}) della pagina ~\pageref{tab:TabellaRotazRuoli} , \`e anche descritto il carico di lavoro/persona in ore nella tabella (\ref{tab:TabellaPrevPersOre}) della pagina ~\pageref{tab:TabellaPrevPersOre}.
+La distribuzione dei ruoli all'interno dell'azienda \`e stata realizzata in modo da permettere a tutti i membri di Webshape di ricoprire tutti i ruoli richiesti dal progetto, distribuendoli nel modo pi\`u equo possibile, rispettando i vincoli previsti dalle Assunzioni Iniziali. La distribuzione dei ruoli \`e meglio descritta nella tabella (\ref{tab:TabellaRotazRuoli}) della pagina ~\pageref{tab:TabellaRotazRuoli} ; \`e anche descritto il carico di lavoro/persona in ore nella tabella (\ref{tab:TabellaPrevPersOre}) della pagina ~\pageref{tab:TabellaPrevPersOre}.
 
-Per conoscenza del cliente, \`e fornita anche una stima approssimativa dell'impiego orario rispetto ad ogni ruolo nella fase antecedente la RR. La remunerazione di tali ore non \`e a carico del committente, ma WebShape desidera mostrare quanto impegno sia stato investito nel progetto. La maggior parte degli sforzi \`e stata indirizzata nel dotare Webshape di metodi di lavoro adatti allo svolgimento del progetto e per meglio padroneggiare tali tecnologie.\\
+Per conoscenza del cliente, \`e fornita anche una stima approssimativa dell'impiego orario rispetto ad ogni ruolo nella fase antecedente la RR. La retribuzione di tali ore non \`e a carico del committente, ma WebShape desidera mostrare quanto impegno sia stato investito nel progetto. La maggior parte degli sforzi \`e stata indirizzata nel dotare Webshape di metodi di lavoro adatti allo svolgimento del progetto, e per padroneggiare meglio con tali tecnologie.\\
 
 \begin{table}[h]
 	\begin{center}
@@ -385,7 +493,7 @@ Per conoscenza del cliente, \`e fornita anche una stima approssimativa dell'impi
 %%%%%%%%%%%%%%INTESTAZIONE COLONNE%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 			\multicolumn{3}{|c|}{ \textbf{Preventivo rotazione ruoli per fase di progetto} } \\
 			\hline
-			& \multicolumn{2}{|c|}{ \textbf{FASE} } \\
+			\textbf{Componente} & \multicolumn{2}{|c|}{ \textbf{FASE} } \\
 			\hline
 			& \textbf{RR-RPP} & \textbf{RPP-RQ} \\
 			\hline
@@ -415,11 +523,11 @@ Per conoscenza del cliente, \`e fornita anche una stima approssimativa dell'impi
 	\begin{center}
 		  \begin{tabular}
 			  {|c|c|c|c|}
-		 \hline
+		 %\hline
 %%%%%%%%%%%%%%INTESTAZIONE COLONNE%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 			%%\multicolumn{2}{|c|}{ \textbf{Preventivo rotazione ruoli per fase di progetto} } \\
 			\hline
-			& \multicolumn{1}{|c|}{ \textbf{FASE} } \\
+			\textbf{Componente} & \multicolumn{1}{|c|}{ \textbf{FASE} } \\
 			\hline
 			& \textbf{RQ-RA} \\
 			\hline
@@ -446,7 +554,7 @@ Per conoscenza del cliente, \`e fornita anche una stima approssimativa dell'impi
 \end{table}
 
 \subsubsezione{Distribuzione dei carichi di lavoro}
-In questa sezione e' presente l'intera distribuzione del carico di lavoro per membro del gruppo.\\
+%Distribuzione del carico di lavoro per membro del gruppo.\\
 
 \begin{table}[!h]
 	\begin{center}
@@ -457,7 +565,7 @@ In questa sezione e' presente l'intera distribuzione del carico di lavoro per me
 %			\multicolumn{3}{|c|}{ \multirow{2}{*}{ FASE RR - RPP } } \\
 			\multicolumn{7}{|c|}{ \textbf{Preventivo carico persona ore} } \\
 			\hline
-			& \multicolumn{6}{|c|}{ \textbf{RUOLO} } \\
+			\textbf{Componente} & \multicolumn{6}{|c|}{ \textbf{RUOLO} } \\
 			\hline
 			& \textbf{Resp.} & \textbf{Amm.} & \textbf{Analis.} & \textbf{Progett.} & \textbf{Program.} & \textbf{Verif.} \\
 			\hline
@@ -490,18 +598,18 @@ nella sezione "Assunzioni Iniziali".
 
 \sezione{Analisi e Gestione dei Rischi}
 In questa sezione saranno presi in considerazione i possibili problemi che potrebbero sorgere durante la realizzazione del progetto, sia dal punto di vista della pianificazione delle fasi di lavoro, che da quello di eventuali rischi relativi alla tecnologia usata.\\
-I punti di rischio da noi identificati e valutati sono i seguenti:
+I punti di rischio da noi identificati e valutati sono i seguenti:\\
 \begin{itemize}
-\item \textbf{Rischi inerenti al modello di ciclo di vita evolutivo}\\
-\`E molto importante effettuare una corretta scelta delle attivit\`a, da coordinare durante le varie fasi di lavoro.\\
-\item \textbf{Pianificazione e distribuzione dei ruoli}\\ 
-Un punto fondamentale al quale bisogna prestare molta attenzione \`e la suddivisione dei ruoli e la sua gestione. Ogni componente dovr\`a assumere tutti i ruoli durante le varie fasi di progetto. Questo pu\`o portare ad una scarsa specializzazione dei membri dell'azienda, ma si tratta di un vincolo didattico indispensabile.\\
+\item \textbf{Rischi inerenti al modello di ciclo di vita incrementale}\\
+\`E molto importante effettuare una corretta scelta delle attivit\`a, da coordinare durante le varie fasi di lavoro.
+\item \textbf{Pianificazione e distribuzione dei ruoli}\\
+Un punto fondamentale al quale bisogna prestare molta attenzione \`e la suddivisione dei ruoli e la sua gestione. Ogni componente dovr\`a assumere tutti i ruoli durante le varie fasi di progetto. Questo pu\`o portare ad una scarsa specializzazione dei membri dell'azienda, ma si tratta di un vincolo didattico indispensabile.
 \item \textbf{Mancanza del personale}\\
-Essendo l'azienda composta da sei membri, nell'eventualit\`a che uno di questi non possa pi\`u partecipare alle attivit\`a di progetto, c'\`e un possibile rischio che l'azienda abbia un numero insufficiente di persone per continuare il lavoro sotto le ipotesi e le stime preventivate. In questo caso, l'azienda WebShape porter\`a comunque a termine il suo lavoro.\\
+Essendo l'azienda composta da sei membri, nell'eventualit\`a che uno di questi non possa pi\`u partecipare alle attivit\`a di progetto, c'\`e un possibile rischio che l'azienda abbia un numero insufficiente di persone per continuare il lavoro sotto le ipotesi e le stime preventivate. In questo caso, l'azienda WebShape porter\`a comunque a termine il suo lavoro.
 \item \textbf{Compatibilit\`a e portabilit\`a del prodotto}\\
-Il prodotto finale, come da Requisiti, dovr\`a risultare funzionante sui pi\`u moderni browser in circolazione. Questo fatto \`e per\`o  a discrezione dell'utente finale, il quale deve essere consapevole della non retrocompatibilit\`a del prodotto, e quindi anche la portabilit\`a risulta essere  a sua discrezione.\\
+Il prodotto finale, come da Requisiti, dovr\`a risultare funzionante sui pi\`u moderni browser in circolazione. Questo fatto \`e per\`o  a discrezione dell'utente finale, il quale deve essere consapevole della non retrocompatibilit\`a del prodotto, e quindi anche la portabilit\`a risulta essere  a sua discrezione.
 \item \textbf{Funzionalit\`a del prodotto}\\
-Essendo il prodotto finale utilizzato da un qualsiasi tipo di utente finale, \`e necessario prestare attenzione alla presentazione del prodotto, rendendo l'accessibilit\`a per tutte le sue funzioni semplice e immediata.
+Essendo il prodotto finale utilizzato da un qualsiasi tipo di utente finale, \`e necessario prestare attenzione a come il prodotto si presenta, rendendo l'accessibilit\`a a tutte le sue funzioni, semplice e immediata.
 \end{itemize}			
 
 \end{document}
