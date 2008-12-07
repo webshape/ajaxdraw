@@ -5,7 +5,7 @@
 
 \begin{document}
 
-\renewcommand{\insertversion}{0.2} %INSERIRE LA VERSIONE QUI DENTRO STILE x.x.xx
+\renewcommand{\insertversion}{0.3} %INSERIRE LA VERSIONE QUI DENTRO STILE x.x.xx
 \renewcommand{\TITOLODOC}{Piano di qualifica} %INSERIRE IL TITOLO DEL DOCUMENTO DA FAR COMPARIRE A PIE PAGINA
 \renewcommand{\glosspath}{.\glossario} %INSERIRE PERCORSO RELATIVO
 
@@ -106,7 +106,7 @@ Il presente documento descrive le strategie per la gestione della qualit\`a adot
 			%%%%%%%%%%%%%%FINE INTESTAZIONE COLONNE%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 			\hline
 			%%%%%%%%%%% PARTE DA MODIFICARE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%		
-			Pre-RR  &  ???\\
+			Pre-RR  &  Dal Bosco Davide\\
 									&  \\
 			\hline
 			RR-RPP & \\
@@ -146,6 +146,8 @@ Il presente documento descrive le strategie per la gestione della qualit\`a adot
 %%%%%%%%%%%%%%FINE INTESTAZIONE COLONNE%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 		 \hline
 %%%%%%%%%%% PARTE DA MODIFICARE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+                 0.3 & 7/12/2008 Correzioni in seguito a revisione & Dissegna Stefano \\
+		 \hline
                  0.2 & 7/12/2008 Impaginazione e modifiche minori & Dissegna Stefano \\
 		 \hline
                  0.1 & 23/11/2008 Piano di qualifica per la progettazione & Dissegna Stefano \\ \hline
@@ -215,7 +217,7 @@ La verifica del codice si compone dei seguenti aspetti:
 \item Prova del prodotto: sar\`a effettuata eseguendo l'applicazione e interagendo con essa, assicurandosi che corrisponda a quanto progettato.
 \item Confronto con altri software gi\`a esistenti: requisito fondamentale del prodotto \`e la capacit\`a di generare immagini in formato \underline{SVG}. Per assicurarsi che i file generati siano corretti, si caricheranno su software la cui correttezza \`e nota (ad esempio \textit{Inkscape}) e ci si assicurer\`a che le immagini visualizzate corrispondano con quanto disegnato dall'utente. 
 \item Lettura del codice per controllare che le norme di codifica siano rispettate
-\item Analisi del codice tramite walkthrough alla ricerca di eventuali errori. Vista la particolare dispendiosit\`a di questa modalit\`a di verifica, essa verr\`a applicata unicamente a sezioni critiche del codice.
+\item Analisi del codice tramite \textit{walkthrough}, alla ricerca di eventuali errori. Vista la particolare dispendiosit\`a di questa modalit\`a di verifica, essa verr\`a applicata unicamente a sezioni critiche del codice.
 \end{elenconumerato}
 
 
@@ -234,10 +236,10 @@ Le discussioni tra i verificatori e gli autori delle modifiche avverrano tramite
 Quando un'anomalia viene riscontrata durante una verifica, il verificatore provveder\`a ad aggiungere un ticket al sistema di bug tracking e a segnalarlo, usando i metodi sopra esposti, a chi dovr\`a correggere il problema. La segnalazione dell'errore dovr\`a contenere una descrizione chiara del problema riscontrato. Qualora il correttore trovasse poco chiara o ambigua la descrizione, o fosse in disaccordo con la stessa, aprir\`a una discussione con il verificatore nel gruppo di discussione interno. A correzione avvenuta, questo sar\`a segnalato al verificatore tramite il gruppo di discussione. Il verificatore applicher\`a nuovamente il procedimento di verifica alla correzione. Se quest'ultimo passo va a buon fine, il correttore porr\`a come risolto il ticket nel sistema di bug tracking.
 
 \subsezione{Trattamento delle discrepanze}
-Qualora un prodotto si discostasse da quanto descritto nell'analisi dei requisiti, il responsabile della qualit\`a provveder\`a a individuare la causa e il colpevole. Il responsabile della qualit\`a, dopo averne discusso con il colpevole, traccier\`a delle azioni correttive e si assicurer\`a che vengano attuate.
+Qualora un prodotto si discostasse da quanto descritto nell'analisi dei requisiti, il responsabile della qualit\`a provveder\`a a individuare la causa e la persona, o le persone, imputabili per la discrepanza. Il responsabile della qualit\`a, dopo averne discusso con lui, o loro, traccier\`a delle azioni correttive e si assicurer\`a che vengano attuate.
 
 \subsezione{Procedure di controllo di qualit\`a di processo}
-L'amministratore del progetto deve assicurarsi che gli standard descritti nelle \textit{NormeDiProgetto} siano rispettati, e deve segnalare eventuali infrazioni al responsabile, in modo che provveda a risolverle. Il responsabile della qualit\`a controlla che le attivit\`a di verifica vengano svolte e che seguano le procedure descritte in questo documento.
+L'amministratore del progetto deve assicurarsi che gli standard descritti nelle \textit{NormeDiProgetto} siano rispettati, e deve segnalare eventuali infrazioni al responsabile, in modo che provveda a risolverle. Il responsabile della qualit\`a controlla che le attivit\`a di verifica vengano svolte, e che seguano le procedure descritte in questo documento.
 
 
 \sezione{Resoconto delle attivit\`a di verifica}
