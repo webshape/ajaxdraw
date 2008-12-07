@@ -232,8 +232,8 @@ L'utente avvia l'applicazione visualizzandone la relativa pagina web attraverso 
 \end{elenconumerato}
 \paragraph{Flusso alternativo}
 Se viene rilevato un browser non supportato, l'utente viene avvisato. L'utente pu\`o decidere di continuare ugualmente senza nessuna garanzia di corretto funzionamento.
-\paragraph{Precondizioni} Il browser \'e avviato.
-\paragraph{Postcondizioni} L'applicazione \'e avviata.
+\paragraph{Precondizioni} Il browser \`e avviato.
+\paragraph{Postcondizioni} L'applicazione \`e avviata.
 
 \subsezione{Interazione con l'applicazione}
 Il seguente grafico descrive le interazioni tra l'utente finale e l'applicazione da un punto di vista ad alto livello. Le interazioni principali verranno poi espanse.
@@ -249,14 +249,14 @@ Il seguente grafico descrive le interazioni tra l'utente finale e l'applicazione
 \subsubsezione{UC1 Caso d'uso: pulisci \underline{canvas}}
 \paragraph{Attori coinvolti} Utente
 \paragraph{Scopo e descrizione sintetica}
-L'utente pu\`o cancellare totalmente quanto fino a quel momento \'e stato disegnato.
+L'utente pu\`o cancellare totalmente quanto fino a quel momento \`e stato disegnato.
 \paragraph{Flusso di eventi}
 \begin{elenconumerato}[\textbf{}]{\subsubsecindent}
 \item L'utente seleziona il comando per pulire il canvas. 
 \item Il canvas viene completamente cancellato.
 \end{elenconumerato}
-\paragraph{Precondizioni} Il canvas \'e visibile.
-\paragraph{Postcondizioni} Il canvas \'e vuoto.
+\paragraph{Precondizioni} Il canvas \`e visibile.
+\paragraph{Postcondizioni} Il canvas \`e vuoto.
 
 \subsubsezione{UC2 Caso d'uso: visualizza manuale}
 \paragraph{Attori coinvolti} Utente
@@ -268,7 +268,7 @@ L'utente pu\`o visualizzare il manuale dell'applicazione in linea.
 \item Il manuale viene visualizzato mediante l'apertura di una nuova pagina HTML.
 \end{elenconumerato}
 \paragraph{Precondizioni} La toolbar \`e visualizzata.
-\paragraph{Postcondizioni} Il manuale utente \'e visualizzato.
+\paragraph{Postcondizioni} Il manuale utente \`e visualizzato.
 
 \subsubsezione{UC3 Caso d'uso: richiedi manuale}
 \paragraph{Attori coinvolti} Server HTTP
@@ -280,7 +280,7 @@ La/le pagina/e web contenenti il manuale utente sono gestite dal server HTTP.
 \item Il server HTTP ritorna la pagina richiesta.
 \end{elenconumerato}
 \paragraph{Flusso alternativo}
-Se il server HTTP non \'e disponibile o vi \'e un errore di comunicazione, l'utente viene avvisato.
+Se il server HTTP non \`e disponibile o vi \`e un errore di comunicazione, l'utente viene avvisato.
 \paragraph{Precondizioni} L'utente ha richiesto al sistema la visualizzazione del manuale o di parte di esso.
 \paragraph{Postcondizioni} Il sistema dispone della pagina web richiesta.
 
@@ -293,7 +293,7 @@ Quando il canvas appare troppo grande per essere completamente visualizzato, l'u
 \item L'utente seleziona la parte del canvas da visualizzare.
 \item Il sistema visualizza la parte di canvas selezionata al centro dello schermo.
 \end{elenconumerato}
-\paragraph{Precondizioni} Il canvas non \'e completamente visualizzato a schermo.
+\paragraph{Precondizioni} Il canvas non \`e completamente visualizzato a schermo.
 \paragraph{Postcondizioni} L'utente vede su schermo la parte di canvas desiderata.
 
 \subsubsezione{UC5 Caso d'uso: aumenta livello di zoom}
@@ -307,8 +307,8 @@ Il sistema permette all'utente di ingrandire il canvas ed il suo contenuto mante
 \item Il sistema ingrandisce il canvas di quanto richiesto.
 \item Il sistema centra la visualizzazione nel punto richiesto dall'utente.
 \end{elenconumerato}
-\paragraph{Precondizioni} Il canvas \'e visualizzato.
-\paragraph{Postcondizioni} Il canvas \'e ingrandito nel punto selezionato.
+\paragraph{Precondizioni} Il canvas \`e visualizzato.
+\paragraph{Postcondizioni} Il canvas \`e ingrandito nel punto selezionato.
 
 \subsubsezione{UC6 Caso d'uso: diminuisci zoom}
 \paragraph{Attori coinvolti} Utente
@@ -321,8 +321,8 @@ Il sistema permette all'utente di rimpicciolire il canvas ed il suo contenuto ma
 \item Il sistema rimpicciolisce il canvas di quanto richiesto.
 \item Il sistema accentra la visualizzazione dove richiesto dall'utente.
 \end{elenconumerato}
-\paragraph{Precondizioni} Il canvas \'e visualizzato.
-\paragraph{Postcondizioni} Il canvas \'e rimpicciolito nel punto selezionato.
+\paragraph{Precondizioni} Il canvas \`e visualizzato.
+\paragraph{Postcondizioni} Il canvas \`e rimpicciolito nel punto selezionato.
 
 \subsubsezione{UC7 Caso d'uso: esporta in SVG}
 \paragraph{Attori coinvolti} Utente
@@ -334,8 +334,8 @@ Il sistema permette all'utente di esportare in formato di immagine SVG il conten
 \item Il sistema genera un file SVG il cui contenuto corrisponde a quanto correntemente visualizzato nel canvas.
 \item Il sistema rende disponibile all'utente il file generato.
 \end{elenconumerato}
-\paragraph{Precondizioni} Il canvas \'e visualizzato.
-\paragraph{Postcondizioni} Il file SVG \'e disponibile all'utente e contiene quanto visualizzato nel canvas.
+\paragraph{Precondizioni} Il canvas \`e visualizzato.
+\paragraph{Postcondizioni} Il file SVG \`e disponibile all'utente e contiene quanto visualizzato nel canvas.
 
 \subsubsezione{UC8 Caso d'uso: carica file SVG}
 \paragraph{Attori coinvolti} Utente
@@ -348,9 +348,9 @@ Il sistema permette all'utente di caricare file in formato SVG nel canvas.
 \item Il sistema visualizza il file SVG nel canvas. Se il file contiene elementi o attributi non supportati, essi saranno ignorati.
 \end{elenconumerato}
 \paragraph{Flusso alternativo}
-Se il file non pu\`o essere caricato a causa di un errore in lettura o perch\`e non \'e un file SVG, l'utente verr\`a avvisato dell'errore e l'applicazione ritorner\`a allo stato precedente l'esecuzione del comando.
-\paragraph{Precondizioni} Il canvas \'e visualizzato.
-\paragraph{Postcondizioni} Il canvas contiene la visualizzazione del file SVG selezionato dall'utente ed \'e modificabile.
+Se il file non pu\`o essere caricato a causa di un errore in lettura o perch\`e non \`e un file SVG, l'utente verr\`a avvisato dell'errore e l'applicazione ritorner\`a allo stato precedente l'esecuzione del comando.
+\paragraph{Precondizioni} Il canvas \`e visualizzato.
+\paragraph{Postcondizioni} Il canvas contiene la visualizzazione del file SVG selezionato dall'utente ed \`e modificabile.
 
 \subsubsezione{UC9 Caso d'uso: disegna}
 Si rimanda a \ref{ucdisegna} per una descrizione approfondita.
@@ -381,7 +381,7 @@ Il sistema permette all'utente di disegnare una linea retta o una curva di Bezie
 \item L'utente disegna sul canvas la linea retta con due clic distinti, oppure la curva di Bezier tenendo premuto il pulsante sinistro del mouse.
 \item Il sistema disegna la linea/curva.
 \end{elenconumerato}
-\paragraph{Precondizioni} Il canvas \'e visualizzato.
+\paragraph{Precondizioni} Il canvas \`e visualizzato.
 \paragraph{Postcondizioni} Il canvas mostra la nuova retta/curva disegnata.
 
 \subsubsezione{UC9.2 Caso d'uso: disegna quadrato/rettangolo}
@@ -394,7 +394,7 @@ Il sistema permette all'utente di disegnare un quadrato o un rettangolo di quals
 \item L'utente disegna sul canvas il quadrato o il rettangolo, scegliendo col cursore la sua dimensione.
 \item Il sistema disegna il quadrato/rettangolo.
 \end{elenconumerato}
-\paragraph{Precondizioni} Il canvas \'e visualizzato.
+\paragraph{Precondizioni} Il canvas \`e visualizzato.
 \paragraph{Postcondizioni} Il canvas mostra il nuovo quadrato/rettangolo disegnato.
 
 \subsubsezione{UC9.3 Caso d'uso: disegna poligono}
@@ -408,7 +408,7 @@ Il sistema permette all'utente di disegnare un poligono di qualsiasi dimensione 
 \item L'utente disegna sul canvas il poligono, scegliendo col cursore la sua dimensione.
 \item Il sistema disegna il poligono.
 \end{elenconumerato}
-\paragraph{Precondizioni} Il canvas \'e visualizzato.
+\paragraph{Precondizioni} Il canvas \`e visualizzato.
 \paragraph{Postcondizioni} Il canvas mostra il nuovo poligono disegnato.
 
 \subsubsezione{UC9.4 Caso d'uso: disegna casella di testo}
@@ -422,7 +422,7 @@ Il sistema permette all'utente di disegnare una casella di testo.
 \item L'utente scrive il testo all'interno della casella.
 \item Il sistema disegna la casella di testo.
 \end{elenconumerato}
-\paragraph{Precondizioni} Il canvas \'e visualizzato.
+\paragraph{Precondizioni} Il canvas \`e visualizzato.
 \paragraph{Postcondizioni} Il canvas mostra la nuova casella di testo disegnata.
 
 \subsubsezione{UC9.5 Caso d'uso: seleziona colore bordo/linea}
@@ -434,8 +434,8 @@ Il sistema permette all'utente di selezionare il colore del bordo della figura d
 \item L'utente seleziona il colore dalla paletta.
 \item Il sistema imposta il colore dato dall'utente come base per la figura da disegnare.
 \end{elenconumerato}
-\paragraph{Precondizioni} Il canvas \'e visualizzato.
-\paragraph{Postcondizioni} Il canvas \'e visualizzato. La prossima figura verr\` a disegnata con il colore del bordo selezionato.
+\paragraph{Precondizioni} Il canvas \`e visualizzato.
+\paragraph{Postcondizioni} Il canvas \`e visualizzato. La prossima figura verr\` a disegnata con il colore del bordo selezionato.
 
 \subsubsezione{UC9.6 Caso d'uso: seleziona colore riempimento}
 \paragraph{Attori coinvolti} Utente.
@@ -446,8 +446,8 @@ Il sistema permette all'utente di selezionare il colore di riempimento del polig
 \item L'utente seleziona il colore di riempimento del poligono dalla paletta.
 \item Il sistema imposta il colore dato dall'utente come base per la figura da disegnare.
 \end{elenconumerato}
-\paragraph{Precondizioni} Il canvas \'e visualizzato.
-\paragraph{Postcondizioni} Il canvas \'e visualizzato. La prossima figura verr\` a disegnata con il colore di riempimento selezionato.
+\paragraph{Precondizioni} Il canvas \`e visualizzato.
+\paragraph{Postcondizioni} Il canvas \`e visualizzato. La prossima figura verr\` a disegnata con il colore di riempimento selezionato.
 
 \subsubsezione{UC9.7 Caso d'uso: selezione font e dimensione carattere}
 \paragraph{Attori coinvolti} Utente.
@@ -458,8 +458,8 @@ Il sistema permette all'utente di selezionare il tipo e la dimensione del caratt
 \item L'utente seleziona il tipo di carattere e la sua dimensione.
 \item Il sistema imposta i valori dati dall'utente come base per la prossima casella di testo da disegnare.
 \end{elenconumerato}
-\paragraph{Precondizioni} Il canvas \'e visualizzato.
-\paragraph{Postcondizioni} Il canvas \'e visualizzato. La prossima casella di testo verr\` a disegnata con i parametri selezionati.
+\paragraph{Precondizioni} Il canvas \`e visualizzato.
+\paragraph{Postcondizioni} Il canvas \`e visualizzato. La prossima casella di testo verr\` a disegnata con i parametri selezionati.
 
 \subsubsezione{UC9.8 Caso d'uso: disegna spirale}
 \paragraph{Attori coinvolti} Utente.
@@ -471,7 +471,7 @@ Il sistema permette all'utente di disegnare una spirale.
 \item L'utente disegna la spirale sul canvas, regolando col cursore la sua ampiezza.
 \item Il sistema disegna la spirale.
 \end{elenconumerato}
-\paragraph{Precondizioni} Il canvas \'e visualizzato.
+\paragraph{Precondizioni} Il canvas \`e visualizzato.
 \paragraph{Postcondizioni} Il canvas mostra la nuova spirale disegnata.
 
 \subsubsezione{UC9.9 Caso d'uso: disegno di linee a mano libera}
@@ -484,7 +484,7 @@ Il sistema permette all'utente di disegnare linee a mano libera.
 \item L'utente disegna la linea a mano libera sul canvas, trascinando il cursore.
 \item Il sistema disegna la linea creata.
 \end{elenconumerato}
-\paragraph{Precondizioni} Il canvas \'e visualizzato.
+\paragraph{Precondizioni} Il canvas \`e visualizzato.
 \paragraph{Postcondizioni} Il canvas mostra la nuova linea a mano libera.
 
 \subsubsezione{UC9.10 Caso d'uso: disegno calligrafico}
@@ -497,7 +497,7 @@ Il sistema permette all'utente di disegnare una linea a mano libera con stile ca
 \item L'utente disegna la linea calligrafica sul canvas, trascinando il cursore.
 \item Il sistema disegna la linea creata.
 \end{elenconumerato}
-\paragraph{Precondizioni} Il canvas \'e visualizzato.
+\paragraph{Precondizioni} Il canvas \`e visualizzato.
 \paragraph{Postcondizioni} Il canvas mostra la nuova linea calligrafica.
 
 \subsubsezione{UC9.11 Caso d'uso: disegno connettori di diagrammi}
@@ -510,7 +510,7 @@ Il sistema permette all'utente di disegnare dei connettori di diagrammi.
 \item L'utente disegna il connettore sul canvas, cliccando su punto d'inizio e punto di fine linea desiderati.
 \item Il sistema disegna il connettore creato.
 \end{elenconumerato}
-\paragraph{Precondizioni} Il canvas \'e visualizzato.
+\paragraph{Precondizioni} Il canvas \`e visualizzato.
 \paragraph{Postcondizioni} Il canvas mostra il nuovo connettore creato.
 \newpage
 \subsezione{Vista UC10 - Seleziona e Modifica}
