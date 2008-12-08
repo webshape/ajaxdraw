@@ -411,7 +411,20 @@ Il sistema permette all'utente di disegnare un poligono di qualsiasi dimensione 
 \paragraph{Precondizioni} Il canvas \`e visualizzato.
 \paragraph{Postcondizioni} Il canvas mostra il nuovo poligono disegnato.
 
-\subsubsezione{UC9.4 Caso d'uso: disegna casella di testo}
+\subsubsezione{UC9.4 Caso d'uso: disegna cerchio/ellisse}
+\paragraph{Attori coinvolti} Utente.
+\paragraph{Scopo e descrizione sintetica} 
+Il sistema permette all'utente di disegnare un cerchio o un'ellisse di qualsiasi dimensione.
+\paragraph{Flusso di eventi}
+\begin{elenconumerato}[\textbf{}]{\subsubsecindent}
+\item L'utente seleziona il comando per disegnare un cerchio o un'ellisse.
+\item L'utente disegna sul canvas il cerchio o l'ellisse, regolando col cursore la sua dimensione.
+\item Il sistema disegna il cerchio o l'ellisse.
+\end{elenconumerato}
+\paragraph{Precondizioni} Il canvas \`e visualizzato.
+\paragraph{Postcondizioni} Il canvas mostra il nuovo cerchio o la nuova ellisse disegnato/a.
+
+\subsubsezione{UC9.5 Caso d'uso: disegna casella di testo}
 \paragraph{Attori coinvolti} Utente.
 \paragraph{Scopo e descrizione sintetica} 
 Il sistema permette all'utente di disegnare una casella di testo.
@@ -425,7 +438,7 @@ Il sistema permette all'utente di disegnare una casella di testo.
 \paragraph{Precondizioni} Il canvas \`e visualizzato.
 \paragraph{Postcondizioni} Il canvas mostra la nuova casella di testo disegnata.
 
-\subsubsezione{UC9.5 Caso d'uso: seleziona colore bordo/linea}
+\subsubsezione{UC9.6 Caso d'uso: seleziona colore bordo/linea}
 \paragraph{Attori coinvolti} Utente.
 \paragraph{Scopo e descrizione sintetica} 
 Il sistema permette all'utente di selezionare il colore del bordo della figura da disegnare, oppure del testo da scrivere.
@@ -437,7 +450,7 @@ Il sistema permette all'utente di selezionare il colore del bordo della figura d
 \paragraph{Precondizioni} Il canvas \`e visualizzato.
 \paragraph{Postcondizioni} Il canvas \`e visualizzato. La prossima figura verr\` a disegnata con il colore del bordo selezionato.
 
-\subsubsezione{UC9.6 Caso d'uso: seleziona colore riempimento}
+\subsubsezione{UC9.7 Caso d'uso: seleziona colore riempimento}
 \paragraph{Attori coinvolti} Utente.
 \paragraph{Scopo e descrizione sintetica} 
 Il sistema permette all'utente di selezionare il colore di riempimento del poligono da disegnare.
@@ -449,7 +462,7 @@ Il sistema permette all'utente di selezionare il colore di riempimento del polig
 \paragraph{Precondizioni} Il canvas \`e visualizzato.
 \paragraph{Postcondizioni} Il canvas \`e visualizzato. La prossima figura verr\` a disegnata con il colore di riempimento selezionato.
 
-\subsubsezione{UC9.7 Caso d'uso: selezione font e dimensione carattere}
+\subsubsezione{UC9.8 Caso d'uso: selezione font e dimensione carattere}
 \paragraph{Attori coinvolti} Utente.
 \paragraph{Scopo e descrizione sintetica} 
 Il sistema permette all'utente di selezionare il tipo e la dimensione del carattere da disegnare.
@@ -461,7 +474,7 @@ Il sistema permette all'utente di selezionare il tipo e la dimensione del caratt
 \paragraph{Precondizioni} Il canvas \`e visualizzato.
 \paragraph{Postcondizioni} Il canvas \`e visualizzato. La prossima casella di testo verr\` a disegnata con i parametri selezionati.
 
-\subsubsezione{UC9.8 Caso d'uso: disegna spirale}
+\subsubsezione{UC9.9 Caso d'uso: disegna spirale}
 \paragraph{Attori coinvolti} Utente.
 \paragraph{Scopo e descrizione sintetica} 
 Il sistema permette all'utente di disegnare una spirale.
@@ -474,7 +487,7 @@ Il sistema permette all'utente di disegnare una spirale.
 \paragraph{Precondizioni} Il canvas \`e visualizzato.
 \paragraph{Postcondizioni} Il canvas mostra la nuova spirale disegnata.
 
-\subsubsezione{UC9.9 Caso d'uso: disegno di linee a mano libera}
+\subsubsezione{UC9.10 Caso d'uso: disegno di linee a mano libera}
 \paragraph{Attori coinvolti} Utente.
 \paragraph{Scopo e descrizione sintetica} 
 Il sistema permette all'utente di disegnare linee a mano libera.
@@ -487,7 +500,7 @@ Il sistema permette all'utente di disegnare linee a mano libera.
 \paragraph{Precondizioni} Il canvas \`e visualizzato.
 \paragraph{Postcondizioni} Il canvas mostra la nuova linea a mano libera.
 
-\subsubsezione{UC9.10 Caso d'uso: disegno calligrafico}
+\subsubsezione{UC9.11 Caso d'uso: disegno calligrafico}
 \paragraph{Attori coinvolti} Utente.
 \paragraph{Scopo e descrizione sintetica} 
 Il sistema permette all'utente di creare linee calligrafiche che emulano l'azione dell'inchiostro su carta.
@@ -500,7 +513,7 @@ Il sistema permette all'utente di creare linee calligrafiche che emulano l'azion
 \paragraph{Precondizioni} Il canvas \`e visualizzato.
 \paragraph{Postcondizioni} Il canvas mostra la nuova linea calligrafica.
 
-\subsubsezione{UC9.11 Caso d'uso: disegno connettori di diagrammi}
+\subsubsezione{UC9.12 Caso d'uso: disegno connettori di diagrammi}
 \paragraph{Attori coinvolti} Utente.
 \paragraph{Scopo e descrizione sintetica} 
 Il sistema permette all'utente di disegnare dei connettori di diagrammi.
@@ -693,6 +706,7 @@ per ognuna \`e presente una classificazione per classe di importanza (obbligator
 \item{AJAXDRAW permette il ridimensionamento degli oggetti disegnati.}
 \item{AJAXDRAW permette all'utente di selezionare ognuna delle funzionalit\`a suddette tramite una comoda barra degli strumenti.}
 \item{Qualora suddette funzioni siano regolate da parametri, AJAXDRAW permette all'utente di impostarli.}
+\item {Qualora il canvas risulti troppo grande per essere mostrato completamente su schermo, l'utente pu\`o spostare la visualizzazione per scorrerne le sue diverse parti.}
 \item{AJAXDRAW permette di effettuare uno zoom in avanti e all'indietro nel disegno.}
 \item{AJAXDRAW \`e in grado di salvare le immagini create dall'utente nel formato SVG.}
 \item{AJAXDRAW permette di caricare immagini in formato SVG che utilizzano il sottoinsieme che AJAXDRAW \`e in grado di generare.}
