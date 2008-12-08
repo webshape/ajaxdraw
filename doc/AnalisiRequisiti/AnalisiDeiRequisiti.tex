@@ -176,7 +176,7 @@ Il documento elenca pertanto i requisiti, impliciti, espliciti, funzionali e non
 AJAXDRAW \`e inteso principalmente come \H{}Proof of Concept\H{}, ossia un'incompleta realizzazione di uno strumento grafico completamente basato sul web, con lo scopo di dimostrarne la fattibilit\`a o la fondatezza di alcuni principi o concetti costituenti. In particolare si avviciner\` a alle funzionalit\`a  del software \underline{OpenSource} per il disegno vettoriale Inkscape.
 
 \subsezione{Riferimenti normativi}
-Il presente documento \`e redatto in accordo con le norme interne di WebShape, raccolte nel documento NormeDiProgetto.pdf consegnato assieme a questo documento, e consultabile inoltre dal repository pubblico al quale WebShape si appoggia per i suoi progetti.
+Il presente documento \`e redatto in accordo con le norme interne di WebShape, raccolte in NormeDiProgetto.pdf, consegnato assieme a questo documento, e consultabile inoltre dal repository pubblico al quale WebShape si appoggia per i suoi progetti.
 
 \sezione{Descrizione generale}
 
@@ -220,7 +220,7 @@ Il seguente grafico descrive come ci si attende l'utente avvii l'applicazione.
 Segue ora una descrizione testuale del caso d'uso presentato dal grafico.
 
 \subsubsezione{UC0 Caso d'uso: richiedi pagina web}
-\paragraph{Attori coinvolti} Utente, browser, server HTTP
+\paragraph{Attori coinvolti} Utente, browser, server HTTP.
 \paragraph{Scopo e descrizione sintetica}
 L'utente avvia l'applicazione visualizzandone la relativa pagina web attraverso il browser, che richiede la relativa pagina al server HTTP.
 \paragraph{Flusso di eventi}
@@ -247,7 +247,7 @@ Il seguente grafico descrive le interazioni tra l'utente finale e l'applicazione
 \paragraph{Segue ora una descrizione testuale dei casi d'uso presentati dal grafico.}
 
 \subsubsezione{UC1 Caso d'uso: pulisci \underline{canvas}}
-\paragraph{Attori coinvolti} Utente
+\paragraph{Attori coinvolti} Utente.
 \paragraph{Scopo e descrizione sintetica}
 L'utente pu\`o cancellare totalmente quanto fino a quel momento \`e stato disegnato.
 \paragraph{Flusso di eventi}
@@ -259,7 +259,7 @@ L'utente pu\`o cancellare totalmente quanto fino a quel momento \`e stato disegn
 \paragraph{Postcondizioni} Il canvas \`e vuoto.
 
 \subsubsezione{UC2 Caso d'uso: visualizza manuale}
-\paragraph{Attori coinvolti} Utente
+\paragraph{Attori coinvolti} Utente.
 \paragraph{Scopo e descrizione sintetica}
 L'utente pu\`o visualizzare il manuale dell'applicazione in linea.
 \paragraph{Flusso di eventi}
@@ -271,7 +271,7 @@ L'utente pu\`o visualizzare il manuale dell'applicazione in linea.
 \paragraph{Postcondizioni} Il manuale utente \`e visualizzato.
 
 \subsubsezione{UC3 Caso d'uso: richiedi manuale}
-\paragraph{Attori coinvolti} Server HTTP
+\paragraph{Attori coinvolti} Server HTTP.
 \paragraph{Scopo e descrizione sintetica}
 La/le pagina/e web contenenti il manuale utente sono gestite dal server HTTP.
 \paragraph{Flusso di eventi}
@@ -285,7 +285,7 @@ Se il server HTTP non \`e disponibile o vi \`e un errore di comunicazione, l'ute
 \paragraph{Postcondizioni} Il sistema dispone della pagina web richiesta.
 
 \subsubsezione{UC4 Caso d'uso: sposta visualizzazione}
-\paragraph{Attori coinvolti} Utente
+\paragraph{Attori coinvolti} Utente.
 \paragraph{Scopo e descrizione sintetica}
 Quando il canvas appare troppo grande per essere completamente visualizzato, l'utente pu\`o spostare la visualizzazione per scorrerne le sue diverse parti.
 \paragraph{Flusso di eventi}
@@ -297,13 +297,13 @@ Quando il canvas appare troppo grande per essere completamente visualizzato, l'u
 \paragraph{Postcondizioni} L'utente vede su schermo la parte di canvas desiderata.
 
 \subsubsezione{UC5 Caso d'uso: aumenta livello di zoom}
-\paragraph{Attori coinvolti} Utente
+\paragraph{Attori coinvolti} Utente.
 \paragraph{Scopo e descrizione sintetica} 
 Il sistema permette all'utente di ingrandire il canvas ed il suo contenuto mantendendo le proporzioni.
 \paragraph{Flusso di eventi}
 \begin{elenconumerato}[\textbf{}]{\subsubsecindent}
 \item L'utente seleziona, esplicitamente o implicitamente, la parte di canvas da mantenere al centro della visualizzazione.
-\item L'utente seleziona il livello di aumento dello zoom.
+\item L'utente sceglie di quale percentuale aumentare lo zoom.
 \item Il sistema ingrandisce il canvas di quanto richiesto.
 \item Il sistema centra la visualizzazione nel punto richiesto dall'utente.
 \end{elenconumerato}
@@ -311,13 +311,13 @@ Il sistema permette all'utente di ingrandire il canvas ed il suo contenuto mante
 \paragraph{Postcondizioni} Il canvas \`e ingrandito nel punto selezionato.
 
 \subsubsezione{UC6 Caso d'uso: diminuisci zoom}
-\paragraph{Attori coinvolti} Utente
+\paragraph{Attori coinvolti} Utente.
 \paragraph{Scopo e descrizione sintetica} 
 Il sistema permette all'utente di rimpicciolire il canvas ed il suo contenuto mantendendo le proporzioni.
 \paragraph{Flusso di eventi}
 \begin{elenconumerato}[\textbf{}]{\subsubsecindent}
 \item L'utente seleziona, esplicitamente o implicitamente, la parte di canvas da mantenere al centro della visualizzazione.
-\item L'utente seleziona di che livello diminuire lo zoom.
+\item L'utente sceglie di quale percentuale diminuire lo zoom.
 \item Il sistema rimpicciolisce il canvas di quanto richiesto.
 \item Il sistema accentra la visualizzazione dove richiesto dall'utente.
 \end{elenconumerato}
@@ -325,7 +325,7 @@ Il sistema permette all'utente di rimpicciolire il canvas ed il suo contenuto ma
 \paragraph{Postcondizioni} Il canvas \`e rimpicciolito nel punto selezionato.
 
 \subsubsezione{UC7 Caso d'uso: esporta in SVG}
-\paragraph{Attori coinvolti} Utente
+\paragraph{Attori coinvolti} Utente.
 \paragraph{Scopo e descrizione sintetica} 
 Il sistema permette all'utente di esportare in formato di immagine SVG il contenuto del canvas.
 \paragraph{Flusso di eventi}
@@ -338,7 +338,7 @@ Il sistema permette all'utente di esportare in formato di immagine SVG il conten
 \paragraph{Postcondizioni} Il file SVG \`e disponibile all'utente e contiene quanto visualizzato nel canvas.
 
 \subsubsezione{UC8 Caso d'uso: carica file SVG}
-\paragraph{Attori coinvolti} Utente
+\paragraph{Attori coinvolti} Utente.
 \paragraph{Scopo e descrizione sintetica} 
 Il sistema permette all'utente di caricare file in formato SVG nel canvas.
 \paragraph{Flusso di eventi}
@@ -391,7 +391,7 @@ Il sistema permette all'utente di disegnare un quadrato o un rettangolo di quals
 \paragraph{Flusso di eventi}
 \begin{elenconumerato}[\textbf{}]{\subsubsecindent}
 \item L'utente seleziona il comando per disegnare un quadrato o un rettangolo.
-\item L'utente disegna sul canvas il quadrato o il rettangolo, scegliendo col cursore la sua dimensione.
+\item L'utente disegna sul canvas il quadrato o il rettangolo, regolando col cursore la sua dimensione.
 \item Il sistema disegna il quadrato/rettangolo.
 \end{elenconumerato}
 \paragraph{Precondizioni} Il canvas \`e visualizzato.
@@ -405,7 +405,7 @@ Il sistema permette all'utente di disegnare un poligono di qualsiasi dimensione 
 \begin{elenconumerato}[\textbf{}]{\subsubsecindent}
 \item L'utente seleziona il comando per disegnare un poligono.
 \item L'utente seleziona il numero di vertici del poligono che intende disegnare.
-\item L'utente disegna sul canvas il poligono, scegliendo col cursore la sua dimensione.
+\item L'utente disegna sul canvas il poligono, regolando col cursore la sua dimensione.
 \item Il sistema disegna il poligono.
 \end{elenconumerato}
 \paragraph{Precondizioni} Il canvas \`e visualizzato.
@@ -418,7 +418,7 @@ Il sistema permette all'utente di disegnare una casella di testo.
 \paragraph{Flusso di eventi}
 \begin{elenconumerato}[\textbf{}]{\subsubsecindent}
 \item L'utente seleziona il comando per disegnare una casella di testo.
-\item L'utente disegna sul canvas la casella, scegliendo col cursore la sua dimensione.
+\item L'utente disegna sul canvas la casella, regolando col cursore la sua dimensione.
 \item L'utente scrive il testo all'interno della casella.
 \item Il sistema disegna la casella di testo.
 \end{elenconumerato}
@@ -490,7 +490,7 @@ Il sistema permette all'utente di disegnare linee a mano libera.
 \subsubsezione{UC9.10 Caso d'uso: disegno calligrafico}
 \paragraph{Attori coinvolti} Utente.
 \paragraph{Scopo e descrizione sintetica} 
-Il sistema permette all'utente di disegnare una linea a mano libera con stile calligrafico.
+Il sistema permette all'utente di creare linee calligrafiche che emulano l'azione dell'inchiostro su carta.
 \paragraph{Flusso di eventi}
 \begin{elenconumerato}[\textbf{}]{\subsubsecindent}
 \item L'utente seleziona il comando per disegnare linee calligrafiche.
@@ -551,7 +551,7 @@ Il sistema consente di modificare la dimensione dei caratteri del testo di una c
 \item L'utente seleziona la dimensione scelta nel combobox apposito all'interno di tale pannello, o inserisce un numero intero valido.
 \end{elenconumerato}
 \paragraph{Precondizioni}L'utente ha scelto una casella di testo presente nel canvas.
-\paragraph{Postcondizioni}Le propriet\`a degli stili grafici della casella di testo indicano che la dimensione del font \` e quella selezionata (parte del testo potrebbe essere troncata o non visibile)
+\paragraph{Postcondizioni}Le propriet\`a degli stili grafici della casella di testo indicano che la dimensione del font \` e quella selezionata (parte del testo potrebbe essere troncata o non visibile).
 
 \subsubsezione{UC10.3  Caso d'uso: imposta colore di riempimento}
 \paragraph{Attori coinvolti} Utente.
@@ -580,7 +580,7 @@ Il sistema consente di modificare la dimensione dei caratteri del testo di una c
 \item L'utente si reca nel menu a tendina apposito all'interno di tale pannello. Clicca sulla scheda alternativa e mixa il colore impostando i valori rosso, blu, verde (caso colore personalizzato).
 \end{elenconumerato}
 \paragraph{Precondizioni} L'utente ha scelto un oggetto colorabile presente nel canvas.
-\paragraph{Postcondizioni} Le propriet\` a degli stili grafici della casella di testo indicano che il colore del bordo\` e quello selezionato (il colore potrebbe essere uguale allo sfondo del canvas e quindi il bordo potrebbe diventare non visibile dall'utente).
+\paragraph{Postcondizioni} Le propriet\` a degli stili grafici della casella di testo indicano che il colore del bordo \`e quello selezionato (il colore potrebbe essere uguale allo sfondo del canvas e quindi il bordo potrebbe diventare non visibile dall'utente).
 
 
 \subsubsezione{UC10.5  Caso d'uso: imposta l'opacit\` a}
