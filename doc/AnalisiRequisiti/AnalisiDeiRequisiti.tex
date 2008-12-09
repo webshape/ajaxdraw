@@ -2,7 +2,7 @@
 \usepackage{multirow}
 \begin{document}
 
-\renewcommand{\insertversion}{0.4} %INSERIRE LA VERSIONE QUI DENTRO STILE x.x.xx
+\renewcommand{\insertversion}{1.0} %INSERIRE LA VERSIONE QUI DENTRO STILE x.x.xx
 \renewcommand{\TITOLODOC}{Analisi dei Requisiti} %INSERIRE IL TITOLO DEL DOCUMENTO DA FAR COMPARIRE A PIE PAGINA
 
 \begin{titlepage}
@@ -54,7 +54,7 @@ Versione: \insertversion
 \end{center}
 \parindent=18pt %settato indentazione di default 
 \section*{\LARGE Sommario:} %SEZIONE SOMMARIO
-Questo documento si prefigge di presentare lo studio effettuato da WebShape riguardo al prodotto software relativo al capitolato d'appalto denominato C04 (\blue{\ajax}, Software per il Disegno Grafico in Tecnologie Web).\\
+Questo documento si prefigge di presentare lo studio effettuato da WebShape riguardo al prodotto software relativo al capitolato d'appalto denominato C04 {\ajax}, Software per il Disegno Grafico in Tecnologie Web).\\
 Tale studio \`e mirato alla comprensione dei bisogni espressi nel capitolato e alla loro formalizzazione e classificazione in requisiti informatici. In particolare quelli funzionali individuati nel documento verranno espressi anche mediante casi d'uso, sia narrativi che grafici. Questo documento avr\`a valore contrattuale.
 
 \section*{\LARGE Stato del documento:}
@@ -141,7 +141,9 @@ Tale studio \`e mirato alla comprensione dei bisogni espressi nel capitolato e a
 
 %%%%%%%%%%% PARTE DA MODIFICARE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 				\hline
-				0.4 & 06$\slash$12$\slash$2008 Modifiche eseguite su segnalazione verificatore. & Bizzotto Piero \\
+				1.0 & 09$\slash$12$\slash$2008  Verifica finale in preparazione al rilascio. & Bizzotto Piero \\
+				\hline
+				0.4 & 06$\slash$12$\slash$2008 Modifiche eseguite su segnalazione verificatore. & Dissegna Stefano \\
 				\hline
 				0.3 & 05$\slash$12$\slash$2008 Modifiche sintattiche e correzioni ortografiche. & Bizzotto Piero \\
 				\hline
@@ -149,7 +151,7 @@ Tale studio \`e mirato alla comprensione dei bisogni espressi nel capitolato e a
                 \hline
                 0.1 & 30$\slash$11$\slash$2008 Casi d'uso relativi ad avvio e interazione con l'applicazione. Aggiunti requisiti. & Dissegna Stefano \\
 				\hline	
-    	 	     0.0 & 		 26$\slash$11$\slash$2008 Strutturazione del documento. & Bizzotto Piero \\
+    	 	     0.0 & 26$\slash$11$\slash$2008 Strutturazione del documento. & Bizzotto Piero \\
 
 		\hline %%FINE RIGA
 %%%%%%%%%%% FINE PARTE DA MODIFICARE %%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -244,7 +246,7 @@ Il seguente grafico descrive le interazioni tra l'utente finale e l'applicazione
 \caption{Funzionalit\`a dell'applicazione}
 \end{figure}
 
-\paragraph{Segue ora una descrizione testuale dei casi d'uso presentati dal grafico.}
+\text{Segue ora una descrizione testuale dei casi d'uso presentati dal grafico.}
 
 \subsubsezione{UC1 Caso d'uso: pulisci \underline{canvas}}
 \paragraph{Attori coinvolti} Utente.
@@ -568,7 +570,7 @@ Il sistema consente di modificare la dimensione dei caratteri del testo di una c
 
 \subsubsezione{UC10.3  Caso d'uso: imposta colore di riempimento}
 \paragraph{Attori coinvolti} Utente.
-\paragraph{Scopo e descrizione sintetica}   Il sistema consente di personalizzare il colore dello spazio appartenente ad un qualsiasi oggetto presente nel canvas. Sono disponibili colori campione, e colori personalizzati (mixando le componenti RGB che producono il corrispondente codice esadecimale del colore a 6 cifre).
+\paragraph{Scopo e descrizione sintetica}   Il sistema consente di personalizzare il colore dello spazio appartenente ad un qualsiasi oggetto presente nel canvas. Sono disponibili colori campione, e colori personalizzati (mixando le componenti \underline{RGB} che producono il corrispondente codice esadecimale del colore a 6 cifre).
 \paragraph{Flusso di eventi}
 \begin{elenconumerato}[\textbf{}]{\subsubsecindent}
 \item L'utente seleziona un oggetto valido.
@@ -776,7 +778,7 @@ per ognuna \`e presente una classificazione per classe di importanza (obbligator
 \item Il prodotto dovr\`a essere implementato seguendo gli standard del \underline{linguaggio di markup} HTML 5.
 \item Il prodotto in particolare dovr\` a utilizzare il tag "canvas" appositamente creato per l'elaborazione del disegno vettoriale sul web.
 \item Il software di supporto per lo sviluppo del prodotto \`e di tipo Open Source e freeware.
-\item Il prodotto realizzato dovr\`a essere pubblicato sul sito "www.sourceforge.net", in conformit\`a con i relativi requisiti di natura Open Source, per favorire la continuit\`a del prodotto risultante.
+\item Il prodotto realizzato dovr\`a essere pubblicato sul sito \href{www.sourceforge.net}{www.sourceforge.net}, in conformit\`a con i relativi requisiti di natura Open Source, per favorire la continuit\`a del prodotto risultante.
 \item Il prodotto \`e sviluppato e testato sui principali internet browsers: Mozilla Firefox, Google Chrome, Opera ed Apple Safari.
 \end{elenconumerato}
 \subsubsezione{Desiderabili (RAD)}
