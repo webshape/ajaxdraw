@@ -57,36 +57,75 @@ Versione: \insertversion
 \end{center}
 
 %\setlength{\parindent}{18pt} %settato indentazione di default 
-\section*{\Large Sommario:} %SEZIONE SOMMARIO
+\section*{\LARGE Sommario:} %SEZIONE SOMMARIO
 \indent \indent
 Questa \`e la relazione dell'incontro svoltosi il 25$\slash$11$\slash$2008 tra alcuni rappresentanti della Zucchetti SPA e il gruppo WebShape.
-\section*{\Large Stato del documento:}
+\section*{\LARGE Stato del documento:}
 \indent \indent
 	Formale Esterno
 
-\section*{\Large Redazione:}
-	\begin{elencopuntato}[\normindent]
-		\item[-] Bizzotto Piero
-	\end{elencopuntato}
+\section*{\LARGE Redazione:}
+	\begin{table}[!h]
+		\begin{center}
+			\begin{tabular}
+				{|c|c|}
+				\hline
+				%%%%%%%%%%%%%%INTESTAZIONE COLONNE%%%%%%%%%%%%%%%%%%%
+				\multicolumn{2}{|c|}{ \textbf{Redazione} } \\
+				\hline
+				\textbf{Fase} & \textbf{Redattori} \\
+				%%%%%%%%%%%%%%FINE INTESTAZIONE COLONNE%%%%%%%%%%%%%%%%
+				\hline
+				%%%%%%%%%%% PARTE DA MODIFICARE %%%%%%%%%%%%%%%%%%%%%%%
+				{Pre-RR} &Bizzotto Piero \\
+				\hline
+				{RR-RPP} & \\
+				\hline
+				%%%%%%%%%%% FINE PARTE DA MODIFICARE %%%%%%%%%%%%%%%%%%%%
+			\end{tabular}
+			\caption{Lista Redattori} %INSERIRE DIDASCALIA - SE NECESSARIA - 
+		\label{tabredazione}
+		\end{center}
+	\end{table}
+	
+\section*{\LARGE Approvazione:}
 
-\section*{\Large Approvazione:}
-	\begin{elencopuntato}[\normindent]
-		\item Dal Bosco Davide
-	\end{elencopuntato}
+\begin{table}[!h]
+	\begin{center}
+		\begin{tabular}
+			{|c|c|}
+			\hline
+			%%%%%%%%%%%%%%INTESTAZIONE COLONNE%%%%%%%%%%%%%%%%%%%%
+			\multicolumn{2}{|c|}{ \textbf{Approvazione} } \\
+			\hline
+			\textbf{Fase} & \textbf{Approvatori} \\
+			%%%%%%%%%%%%%%FINE INTESTAZIONE COLONNE%%%%%%%%%%%%%%%%%
+			\hline
+			%%%%%%%%%%% PARTE DA MODIFICARE %%%%%%%%%%%%%%%%%%%%%%%%
+			{Pre-RR} & Dal Bosco Davide \\
+			\hline
+			{RR-RPP} & \\
+			\hline
+			%%%%%%%%%%% FINE PARTE DA MODIFICARE %%%%%%%%%%%%%%%%%%%%%
+		\end{tabular}
+		\caption{Lista Approvatori} %INSERIRE DIDASCALIA - SE NECESSARIA - 
+		\label{tabapprovazione}
+	\end{center}
+\end{table}
+\textbf{}
 		
-\section*{\Large Lista di Distribuzione:}
+\newpage 
+
+\section*{\LARGE Lista di Distribuzione:}
 \indent \indent I committenti del progetto e i dipendenti e collaboratori dell'azienda WeShape per il progetto "AJAXDRAW":	
 
 \begin{elenconumerato}{\normindent}
-		\item WebShape \footnote{Il termine WebShape designa una collettivit\`a di individui come da organigramma contenuto nel piano di progetto fornito in allegato al presente documento}
+		\item WebShape 
 		\item I committenti Conte Renato e Vardanega Tullio in rappresentanza \\  dell'azienda proponente Zucchetti SPA
 	\end{elenconumerato}
 
-\newpage
 
-
-
-\section*{\Large Registro delle Modifiche:}
+\section*{\LARGE Registro delle Modifiche:}
 
 
 \begin{center}
@@ -130,23 +169,23 @@ Questa \`e la relazione dell'incontro svoltosi il 25$\slash$11$\slash$2008 tra a
 	
 	\subsezione{Web browsers supportati}
 	{
-	La compatibilit\` a deve essere garantita con le ultime versioni dei principali browsers, nella fattispecie Google Chrome(ultima beta), Mozilla Firefox(v.3 o superiore), Apple Safari(3.2) e Opera(v.9.50 o superiore). Il funzionamento su vecchie versioni di questi non \` e necessaria, considerata l'appartenenza del tag CANVAS alla specifica di HTML 5, supportata solo recentemente. \` E opzionale la realizzazione della compatibilit\` a con Internet Explorer, tramite la libreria \"{}excanvas\"{}, che comunque garantisce prestazioni minime.
+	La compatibilit\` a deve essere garantita con le ultime versioni dei principali browsers, nella fattispecie Google Chrome (ultima beta), Mozilla Firefox (v.3 o superiore), Apple Safari (3.2) e Opera (v.9.50 o superiore). Il funzionamento su vecchie versioni di questi non \` e necessaria, considerata l'appartenenza del tag \underline{canvas} alla specifica di HTML 5, supportata solo recentemente. \` E opzionale la realizzazione della compatibilit\` a con Internet Explorer, tramite la libreria \"{}excanvas\"{}, che comunque garantisce prestazioni minime.
 	}
 
-	\subsezione{Utilizzo del tag CANVAS di HTML 5}
+	\subsezione{Utilizzo del tag canvas di HTML 5}
 	{
-	\`E appunto obbligatorio utilizzare le specifiche HTML 5, che prevedono appunto l'introduzione dell'elemento CANVAS, indispensabile per poter svolgere il progetto.
+	\`E appunto obbligatorio utilizzare le specifiche HTML 5, che prevedono appunto l'introduzione dell'elemento canvas, indispensabile per poter svolgere il progetto.
 	}
 
 	\subsezione{Librerie da utilizzare}
 	{
-	 \`E emersa la possibilit\` a di utilizzare qualsiasi libreria JavaScript(JQuery, QooxDoo,ecc.) al fine di 
+	 \`E emersa la possibilit\` a di utilizzare qualsiasi libreria \underline{JavaScript} (JQuery, QooxDoo, ...) al fine di 
 	 realizzare il progetto.
 	 }
 
 	\subsezione{Prestazioni}
 	{
-	Le prestazioni non sono un'aspetto rilevante nella creazione di AJAXDRAW, data soprattutto la sua natura di progetto "Proof of Concept", ma il problema non dovrebbe comunque presentarsi, date le buone prestazioni dell'elemento CANVAS in s\` e, che a detta dei rappresentanti della Zucchetti \` e pi\` u veloce di Inkscape.
+	Le prestazioni non sono un'aspetto rilevante nella creazione di AJAXDRAW, data soprattutto la sua natura di progetto "Proof of Concept", ma il problema non dovrebbe comunque presentarsi, date le buone prestazioni dell'elemento canvas in s\` e, che a detta dei rappresentanti della Zucchetti \` e pi\` u veloce di Inkscape.
 	}
 
 	\subsezione{Programmazione lato server}
@@ -156,7 +195,7 @@ Questa \`e la relazione dell'incontro svoltosi il 25$\slash$11$\slash$2008 tra a
 
 	\subsezione{Esportazione in altri formati}
 	{
-	Il committente conferma che l'unico formato nel quale dovr\` a essere esportata l'immagine creata resta l'SVG, escludendo quindi, tra gli altri, bitmap e compressione JPEG.
+	Il committente conferma che l'unico formato nel quale dovr\` a essere esportata l'immagine creata resta l'\underline{SVG}, escludendo quindi, tra gli altri, bitmap e compressione JPEG.
 	}
 	
 
