@@ -1,7 +1,16 @@
 Javascript tutorial: http://www.w3schools.com/js/default.asp
 
+Javascript guide: https://developer.mozilla.org/en/Core_JavaScript_1.5_Guide
+
 Javascript standard: http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf
 
 Emacs mode for javascript: http://code.google.com/p/js2-mode/
 
 Server side javascript: http://www.mozilla.org/rhino/
+
+Javascript syntax checker: http://www.jslint.com/
+
+Javascript code documentation: http://jsdoc.sourceforge.net/
+
+Javascript/HTML/CSS debugger: http://www.getfirebug.com
+
