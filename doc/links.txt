@@ -14,3 +14,4 @@ Javascript code documentation: http://jsdoc.sourceforge.net/
 
 Javascript/HTML/CSS debugger: http://www.getfirebug.com
 
+Javascript coverage tool: http://siliconforks.com/jscoverage/
