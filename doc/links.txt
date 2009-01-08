@@ -15,3 +15,5 @@ Javascript code documentation: http://jsdoc.sourceforge.net/
 Javascript/HTML/CSS debugger: http://www.getfirebug.com
 
 Javascript coverage tool: http://siliconforks.com/jscoverage/
+
+Javascript unit testing: http://docs.jquery.com/QUnit , http://ejohn.org/blog/fireunit/ 
