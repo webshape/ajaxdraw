@@ -269,7 +269,7 @@ L'utente pu\`o visualizzare il manuale dell'applicazione in linea.
 \item L'utente seleziona il comando per visualizzare il manuale. 
 \item Il manuale viene visualizzato mediante l'apertura di una nuova pagina HTML.
 \end{elenconumerato}
-\paragraph{Precondizioni} La toolbar \`e visualizzata.
+\paragraph{Precondizioni} Il manuale utente non \`e visualizzato.
 \paragraph{Postcondizioni} Il manuale utente \`e visualizzato.
 
 \subsubsezione{UC3 Caso d'uso: richiedi manuale}
@@ -283,8 +283,8 @@ La/le pagina/e web contenenti il manuale utente sono gestite dal server HTTP.
 \end{elenconumerato}
 \paragraph{Flusso alternativo}
 Se il server HTTP non \`e disponibile o vi \`e un errore di comunicazione, l'utente viene avvisato.
-\paragraph{Precondizioni} L'utente ha richiesto al sistema la visualizzazione del manuale o di parte di esso.
-\paragraph{Postcondizioni} Il sistema dispone della pagina web richiesta.
+\paragraph{Precondizioni} L'utente ha richiesto al sistema la visualizzazione del manuale o di parte di esso. \`E possibile connettersi al server.
+\paragraph{Postcondizioni} Il sistema dispone del manuale.
 
 \subsubsezione{UC4 Caso d'uso: sposta visualizzazione}
 \paragraph{Attori coinvolti} Utente.
