@@ -2,7 +2,7 @@
 \usepackage{multirow}
 \begin{document}
 
-\renewcommand{\insertversion}{1.0} %INSERIRE LA VERSIONE QUI DENTRO STILE x.x.xx
+\renewcommand{\insertversion}{1.1} %INSERIRE LA VERSIONE QUI DENTRO STILE x.x.xx
 \renewcommand{\TITOLODOC}{Analisi dei Requisiti} %INSERIRE IL TITOLO DEL DOCUMENTO DA FAR COMPARIRE A PIE PAGINA
 
 \begin{titlepage}
@@ -78,7 +78,7 @@ Tale studio \`e mirato alla comprensione dei bisogni espressi nel capitolato e a
 										& Dissegna Stefano\\
 										& Carollo Mirko\\
 				\hline
-				\multirow{2}{*}{RR-RPP} & \\
+				\multirow{2}{*}{RR-RPP} & Cunico Marco\\
 										& \\
 				\hline
 				%%%%%%%%%%% FINE PARTE DA MODIFICARE %%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -140,6 +140,8 @@ Tale studio \`e mirato alla comprensione dei bisogni espressi nel capitolato e a
 %%%%%%%%%%%%%%FINE INTESTAZIONE COLONNE%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%% PARTE DA MODIFICARE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+                \hline
+				1.1 & 14$\slash$01$\slash$2009 Inserita tabella tracciamento "Requisiti-Casi d'uso" e modifiche a U.C.10 & Cunico Marco \\
 				\hline
 				1.0 & 09$\slash$12$\slash$2008  Verifica finale in preparazione al rilascio. & Bizzotto Piero \\
 				\hline
@@ -786,6 +788,68 @@ per ognuna \`e presente una classificazione per classe di importanza (obbligator
 \item{ACF-3 - AJAXDRAW garantisce la compatibilit\`a con il browser Microsoft Internet Explorer, il quale non implementa a pieno HTML 5, tramite la libreria \H{}excanvas\H{} creata da Google.}
 \end{elenconumerato}
 
-
 \newpage
+
+ \subsezione{Tracciamento Requisiti - Use Case}
+\begin{table}[h]
+\begin{center}
+     \begin{tabular}
+           {@{\extracolsep{\fill}}|c|c|}
+     \hline
+%%%%%%%%%%%%%%INTESTAZIONE COLONNE%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+      \textbf{Requisiti} & \textbf{Use Case} \\
+%%%%%%%%%%%%%%FINE INTESTAZIONE COLONNE%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+      \hline
+     RA0-1 & UC0 \\
+     \hline
+     RFD-3 & UC1  \\
+     \hline
+     RIO-2  RIO-4 & UC2\\
+     \hline
+     RIO-3 & UC3 \\
+     \hline
+     RFO-13 & UC4 \\
+     \hline
+     RFO-14 & UC5 UC6 \\
+      \hline
+     RFO-15 RFO-16 & UC7 UC8 \\
+     \hline
+     RFO-1 RFO-2 RFO-9 & UC9.1 \\
+     \hline
+     RFO-3 RFO-9 &  UC9.2 \\
+     \hline
+     RFO-4 RFO-9 & UC9.3 \\
+     \hline
+     RFO-5 RFO-9 & UC9.4 \\
+     \hline
+     RFO-6 RFO-7 RFO-9 & UC9.5 \\
+     \hline
+     RFO-9 & UC9.6 UC9.7 \\
+     \hline
+     RFF-1 RFO-9 & UC9.9 \\
+     \hline
+     RFD-1 RFO-9 & UC9.10 \\
+     \hline
+     RFF-2 RFO-9 & UC9.11 \\
+     \hline 
+     RFD-2 RFO-9 & UC9.12 \\
+     \hline
+     RFO-7 & UC 9.8 UC10.1 UC10.2 \\
+     \hline
+     RFO-9 & UC10.3 UC10.4 UC10.5 \\
+     \hline
+     RFO-8 & UC10.5 UC10.7 UC10.10 \\
+     \hline
+     RFO-10 & UC10.8 UC10.9 \\
+     \hline
+     RFD-4 & UC10.11 \\
+     
+%%%%%%%%%%% PARTE DA MODIFICARE %%%%%%%%%%%%%%%%
+    \hline %%FINE RIGA
+%%%%%%%%%%% FINE PARTE DA MODIFICARE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \end{tabular}
+  \caption{Requisiti - Use Case} %INSERIRE DIDASCALIA - SE NECESSARIA -
+  \label{tab:requisiti}
+  \end{center}
+\end{table}
 \end{document}
