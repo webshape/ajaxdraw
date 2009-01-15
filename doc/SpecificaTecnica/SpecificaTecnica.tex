@@ -1,0 +1,194 @@
+	\input{../TeX/base} %BASE!!!
+\usepackage{multirow}
+\title{\TITOLODOC}
+\author{Dal Bosco Davide}
+
+\begin{document}
+
+\renewcommand{\insertversion}{0.0} %INSERIRE LA VERSIONE QUI DENTRO STILE x.x.xx
+\renewcommand{\TITOLODOC}{Specifica Tecnica} %INSERIRE IL TITOLO DEL DOCUMENTO DA FAR COMPARIRE A PIE PAGINA
+\renewcommand{\glosspath}{.\glossario} %INSERIRE PERCORSO RELATIVO
+
+%%%%%%%%%%%%%%%%%%%%%%PARTE DA NON MODIFICARE%%%%%%%%%%%%%%%%%
+\begin{titlepage}
+\begin{center}
+	\begin{Large}	\today \end{Large}
+\end{center}
+
+\vspace{20pt}
+
+\begin{center}
+	\begin{Huge}
+				\textbf{\ajax}
+	\end{Huge}
+\end{center}			
+
+\begin{center}
+	\begin{large}
+				\textbf{Software per il Disegno Grafico\\ in Tecnologie Web}
+	\end{large}
+\end{center}			
+
+\vspace{20pt}
+
+\begin{center}
+\includegraphics[width=150pt]{../logo/logo}
+\end{center}
+
+\vspace{170pt}
+\begin{center} %INSERIRE ALL'INTERNO IL TITOLO DOCUMENTO CHE COMPARIRA NELLA PAGINA INIZIALE				
+	\begin{Huge}
+				\textbf{\TITOLODOC}
+	\end{Huge}
+			\\
+\end{center}
+\vspace{210pt}
+\begin{center}
+Versione: \insertversion
+\end{center}
+\end{titlepage}
+
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%FINE PARTE DA NON MODIFICARE%%%%%%%%%%%%%%%%%
+
+\begin{center} %INSERIRE ALL'INTERNO IL TITOLO DOCUMENTO CHE COMPARIRA NELLA PAGINA INIZIALE
+	\begin{Huge}	
+				\textbf{\TITOLODOC}
+			\\
+	\end{Huge}
+\end{center}
+
+%\setlength{\parindent}{18pt} %settato indentazione di default 
+\section*{\LARGE Sommario:}
+Il presente documento descrive le scelte tecniche, architetturali e tecnologiche effettuate dall'azienda WebShape per lo sviluppo del Capitolato C04.
+
+ %SEZIONE SOMMARIO
+\indent \indent
+
+\section*{\LARGE Stato del documento:}
+\indent \indent
+	Formale Esterno
+
+\section*{\LARGE Redazione:}
+	\begin{table}[!h]
+		\begin{center}
+			\begin{tabular}
+				{|c|c|}
+				\hline
+				%%%%%%%%%%%%%%INTESTAZIONE COLONNE%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+				\multicolumn{2}{|c|}{ \textbf{Redazione} } \\
+				\hline
+				\textbf{Fase} & \textbf{Redattori} \\
+				%%%%%%%%%%%%%%FINE INTESTAZIONE COLONNE%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+				\hline
+				%%%%%%%%%%% PARTE DA MODIFICARE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%		
+				\multirow{3}{*}{RR-RPP} & Bizzotto Piero\\
+										& Dal Bosco Davide\\
+										& Dissegna Stefano\\
+				\hline
+				%%%%%%%%%%% FINE PARTE DA MODIFICARE %%%%%%%%%%%%%%%%%%%%%%%%%%%
+			\end{tabular}
+			\caption{Lista Redattori} %INSERIRE DIDASCALIA - SE NECESSARIA - 
+			\label{tabredazione}
+		\end{center}
+	\end{table}
+	
+\newpage	
+	
+\section*{\LARGE Approvazione:}
+\begin{table}[!h]
+	\begin{center}
+		\begin{tabular}
+			{|c|c|}
+			\hline
+			%%%%%INTESTAZIONE COLONNE%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+			\multicolumn{2}{|c|}{ \textbf{Approvazione} } \\
+			\hline
+			\textbf{Fase} & \textbf{Approvatori} \\
+			%%%%%%%%%%%%%%FINE INTESTAZIONE COLONNE%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+			\hline
+			%%%%%%%%%%% PARTE DA MODIFICARE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%		
+			\multirow{2}{*}{RR-RPP} & \\
+									& \\
+			\hline
+			%%%%%%%%%%% FINE PARTE DA MODIFICARE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+		\end{tabular}
+		\caption{Lista Approvatori} %INSERIRE DIDASCALIA - SE NECESSARIA - 
+		\label{tabapprovazione}
+	\end{center}
+\end{table}
+
+\textbf{}
+
+\section*{\LARGE Lista di Distribuzione:}
+
+	\begin{elenconumerato}{\normindent}
+		\item WebShape 
+		\item I committenti Conte Renato e Vardanega Tullio in rappresentanza \\  dell'azienda proponente Zucchetti SPA
+	\end{elenconumerato}
+
+\newpage
+
+
+
+\section*{\Large Registro delle Modifiche:}
+
+
+\begin{center}
+	\begin{table}[h]
+		  \begin{tabular*}
+			{1\textwidth}%
+				{@{\extracolsep{\fill}}|p{0.1\textwidth}|p{0.54\textwidth}|p{0.26\textwidth}|}
+			 \hline
+%%%%%%%%%%%%%%INTESTAZIONE COLONNE%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+			\textbf{Versione}  & \textbf{Descrizione} & \textbf{Autore} \\
+%%%%%%%%%%%%%%FINE INTESTAZIONE COLONNE%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+		 \hline
+%%%%%%%%%%% PARTE DA MODIFICARE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    	  0.0 & 15/01/2009 Bozza iniziale & Dal Bosco Davide \\
+		\hline %%FINE RIGA
+%%%%%%%%%%% FINE PARTE DA MODIFICARE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+		\end{tabular*}
+	\caption{Registro delle modifiche} %INSERIRE DIDASCALIA - SE NECESSARIA - 
+	\label{tab:modifiche}
+	\end{table}
+\end{center}
+
+
+\newpage
+\thispagestyle{fancy}
+\tableofcontents
+\thispagestyle{fancy}
+\newpage
+
+\sezione{Introduzione}
+
+\subsezione{Scopo del documento}
+Il documento si propone di presentare ai Committenti le scelte riguardanti la progettazione architetturale del capitolato d'appalto C04. In particolare viene presentata la struttura dei package e le loro relazioni, le unit\`a che compongono i package stessi e uno schema generale dell'interfaccia grafica.
+
+\sezione{Scopo del prodotto}
+Il software AJAXDRAW \`e proposto per verificare e dimostrare la fattibilit\`a di realizzazione di un'applicazione di disegno grafico, in grado di poter elaborare figure vettoriali primitive e complesse utilizzando le tecnologie web.
+
+\subsezione{Glossario}
+All'interno del documento \textit{Glossario}, sono presentati i termini tecnici utilizzati in tutti i documenti. Il glossario \`e fornito in allegato al presente documento.
+\subsubsezione{Definizioni}
+\subsubsezione{Acronimi}
+\subsubsezione{Abbreviazioni}
+\subsezione{Riferimenti}
+Il presente documento \`e redatto utilizzando le convenzioni inserite nel documento \textit{NormeDiProgetto}, consultabile dal repository pubblico al quale WebShape si appoggia per i suoi progetti.
+\subsubsezione{Normativi}
+\subsubsezione{Informativi}
+\sezione{Definizione del prodotto}
+\subsezione{Metodo e formalismo di specifica}
+\subsezione{Presentazione dell'architettura generale del sistema}
+\subsezione{Identificazione dei componenti architetturali di alto livello}
+\sezione{Descrizione dei singoli componenti}
+\subsezione{Tipo, obiettivo e funzione del componente}
+\subsezione{Relazioni d'uso di altre componenti}
+\subsezione{Interfacce e relazioni di uso da altre componenti}
+\subsezione{Attivit\`a svolte e dati trattati}
+\sezione{Stime di fattibilit\`a e di bisogno di risorse}
+\sezione{Tracciamento della relazione componenti-requisiti}
+			
+
+\end{document}
