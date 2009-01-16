@@ -57,7 +57,7 @@
 			UML 1.4
 		</plugin>
 </profile>
-<XMI xmi.version = '1.2' xmlns:UML = 'org.omg.xmi.namespace.UML' timestamp = 'Wed Jan 14 17:38:34 CET 2009'>
+<XMI xmi.version = '1.2' xmlns:UML = 'org.omg.xmi.namespace.UML' timestamp = 'Fri Jan 16 16:46:39 CET 2009'>
   <XMI.header>    <XMI.documentation>
       <XMI.exporter>ArgoUML (using Netbeans XMI Writer version 1.0)</XMI.exporter>
       <XMI.exporterVersion>0.26.2(6) revised on $Date: 2007-05-12 08:08:08 +0200 (Sat, 12 May 2007) $ </XMI.exporterVersion>
@@ -1982,7 +1982,7 @@
     </group>
   </group>
   <group name="Fig17"
-       description="org.argouml.uml.diagram.use_case.ui.FigUseCase[888, 320, 302, 60]pathVisible=false;stereotypeView=0;extensionPointVisible=false"
+       description="org.argouml.uml.diagram.use_case.ui.FigUseCase[624, 232, 302, 60]pathVisible=false;stereotypeView=0;extensionPointVisible=false"
        href="127-0-1-1--53e90f34:11e0bddd89f:-8000:0000000000000DF8"
        fill="1"
        fillcolor="white"
@@ -1993,8 +1993,8 @@
     </private>
     
     <ellipse name="Fig17.0"
-      x="1039"
-      y="350"
+      x="775"
+      y="262"
       rx="151"
       ry="30"
       fill="1"
@@ -2003,8 +2003,8 @@
       strokecolor="black"
     />
     <ellipse name="Fig17.1"
-      x="1039"
-      y="350"
+      x="775"
+      y="262"
       rx="151"
       ry="30"
       fill="1"
@@ -2013,8 +2013,8 @@
       strokecolor="black"
     />
     <text name="Fig17.2"
-      x="977"
-      y="335"
+      x="713"
+      y="247"
       width="123"
       height="29"
       fill="0"
@@ -2029,7 +2029,7 @@
       justification="Center"
     >UC10.10 seleziona</text>
     <group name="Fig17.3"
-         description="org.argouml.uml.diagram.ui.FigStereotypesCompartment[1039, 380, 0, 0]"
+         description="org.argouml.uml.diagram.ui.FigStereotypesCompartment[775, 292, 0, 0]"
          href="127-0-1-1--53e90f34:11e0bddd89f:-8000:0000000000000DF8"
          fill="0"
          fillcolor="white"
@@ -2040,8 +2040,8 @@
       </private>
       
       <rectangle name="Fig17.3.0"
-        x="1039"
-        y="380"
+        x="775"
+        y="292"
         width="0"
         height="0"
         fill="0"
@@ -2058,13 +2058,13 @@
       strokecolor="black"
       visibility="0"
     >
-      <moveto x="0"
-              y="30" />
-      <lineto x="120"
-              y="30" />
+      <moveto x="-264"
+              y="-58" />
+      <lineto x="-144"
+              y="-58" />
     </path>
     <group name="Fig17.5"
-         description="org.tigris.gef.presentation.FigGroup[0, 0, 0, 0]"
+         description="org.tigris.gef.presentation.FigGroup[-264, -88, 0, 0]"
          fill="0"
          fillcolor="white"
          stroke="0"
@@ -2075,8 +2075,8 @@
       </private>
       
       <rectangle name="Fig17.5.0"
-        x="58"
-        y="33"
+        x="-206"
+        y="-55"
         width="4"
         height="4"
         fill="0"
@@ -2164,13 +2164,13 @@
       strokecolor="black"
       visibility="0"
     >
-      <moveto x="120"
-              y="-34" />
-      <lineto x="240"
-              y="-34" />
+      <moveto x="0"
+              y="30" />
+      <lineto x="120"
+              y="30" />
     </path>
     <group name="Fig18.5"
-         description="org.tigris.gef.presentation.FigGroup[120, -64, 0, 0]"
+         description="org.tigris.gef.presentation.FigGroup[0, 0, 0, 0]"
          fill="0"
          fillcolor="white"
          stroke="0"
@@ -2181,8 +2181,8 @@
       </private>
       
       <rectangle name="Fig18.5.0"
-        x="178"
-        y="-31"
+        x="58"
+        y="33"
         width="4"
         height="4"
         fill="0"
@@ -2295,12 +2295,12 @@
       stroke="1"
       strokecolor="black"
     >
-      <moveto x="465"
-              y="46" />
-      <lineto x="912"
-              y="48" />
-      <lineto x="1026"
-              y="320" />
+      <moveto x="431"
+              y="62" />
+      <lineto x="760"
+              y="96" />
+      <lineto x="772"
+              y="232" />
     </path>
   </group>
   <group name="Fig23"
@@ -2316,18 +2316,18 @@
       destFigNode="Fig17"
     </private>
     <path name="Fig23.0"
-      description="org.tigris.gef.presentation.FigPoly"
+      description="org.argouml.gefext.ArgoFigPoly"
       fill="0"
       fillcolor="white"
       stroke="1"
       strokecolor="black"
     >
-      <moveto x="576"
-              y="107" />
-      <lineto x="824"
-              y="104" />
-      <lineto x="1013"
-              y="320" />
+      <moveto x="532"
+              y="128" />
+      <lineto x="688"
+              y="144" />
+      <lineto x="753"
+              y="232" />
     </path>
   </group>
   <group name="Fig24"
@@ -2343,18 +2343,18 @@
       destFigNode="Fig17"
     </private>
     <path name="Fig24.0"
-      description="org.tigris.gef.presentation.FigPoly"
+      description="org.argouml.gefext.ArgoFigPoly"
       fill="0"
       fillcolor="white"
       stroke="1"
       strokecolor="black"
     >
-      <moveto x="552"
-              y="167" />
-      <lineto x="808"
-              y="160" />
-      <lineto x="1003"
-              y="320" />
+      <moveto x="542"
+              y="183" />
+      <lineto x="688"
+              y="192" />
+      <lineto x="738"
+              y="232" />
     </path>
   </group>
   <group name="Fig25"
@@ -2370,18 +2370,18 @@
       destFigNode="Fig17"
     </private>
     <path name="Fig25.0"
-      description="org.tigris.gef.presentation.FigPoly"
+      description="org.argouml.gefext.ArgoFigPoly"
       fill="0"
       fillcolor="white"
       stroke="1"
       strokecolor="black"
     >
-      <moveto x="543"
-              y="224" />
-      <lineto x="800"
-              y="208" />
-      <lineto x="991"
-              y="321" />
+      <moveto x="555"
+              y="233" />
+      <lineto x="648"
+              y="232" />
+      <lineto x="677"
+              y="239" />
     </path>
   </group>
   <group name="Fig26"
@@ -2397,18 +2397,16 @@
       destFigNode="Fig17"
     </private>
     <path name="Fig26.0"
-      description="org.tigris.gef.presentation.FigPoly"
+      description="org.argouml.gefext.ArgoFigPoly"
       fill="0"
       fillcolor="white"
       stroke="1"
       strokecolor="black"
     >
-      <moveto x="502"
+      <moveto x="503"
               y="283" />
-      <lineto x="800"
-              y="256" />
-      <lineto x="970"
-              y="323" />
+      <lineto x="634"
+              y="272" />
     </path>
   </group>
   <group name="Fig27"
@@ -2424,16 +2422,18 @@
       destFigNode="Fig17"
     </private>
     <path name="Fig27.0"
-      description="org.tigris.gef.presentation.FigPoly"
+      description="org.argouml.gefext.ArgoFigPoly"
       fill="0"
       fillcolor="white"
       stroke="1"
       strokecolor="black"
     >
-      <moveto x="718"
-              y="353" />
-      <lineto x="888"
-              y="351" />
+      <moveto x="575"
+              y="332" />
+      <lineto x="696"
+              y="312" />
+      <lineto x="729"
+              y="290" />
     </path>
   </group>
   <group name="Fig28"
@@ -2449,18 +2449,18 @@
       destFigNode="Fig17"
     </private>
     <path name="Fig28.0"
-      description="org.tigris.gef.presentation.FigPoly"
+      description="org.argouml.gefext.ArgoFigPoly"
       fill="0"
       fillcolor="white"
       stroke="1"
       strokecolor="black"
     >
-      <moveto x="713"
-              y="423" />
-      <lineto x="816"
-              y="424" />
-      <lineto x="961"
-              y="375" />
+      <moveto x="689"
+              y="410" />
+      <lineto x="752"
+              y="408" />
+      <lineto x="770"
+              y="291" />
     </path>
   </group>
   <group name="Fig29"
@@ -2476,18 +2476,18 @@
       destFigNode="Fig17"
     </private>
     <path name="Fig29.0"
-      description="org.tigris.gef.presentation.FigPoly"
+      description="org.argouml.gefext.ArgoFigPoly"
       fill="0"
       fillcolor="white"
       stroke="1"
       strokecolor="black"
     >
-      <moveto x="635"
-              y="487" />
-      <lineto x="864"
-              y="488" />
-      <lineto x="1002"
-              y="379" />
+      <moveto x="600"
+              y="470" />
+      <lineto x="808"
+              y="456" />
+      <lineto x="780"
+              y="291" />
     </path>
   </group>
   <group name="Fig30"
@@ -2503,18 +2503,18 @@
       destFigNode="Fig17"
     </private>
     <path name="Fig30.0"
-      description="org.tigris.gef.presentation.FigPoly"
+      description="org.argouml.gefext.ArgoFigPoly"
       fill="0"
       fillcolor="white"
       stroke="1"
       strokecolor="black"
     >
-      <moveto x="721"
-              y="551" />
-      <lineto x="928"
-              y="552" />
-      <lineto x="1022"
-              y="379" />
+      <moveto x="687"
+              y="536" />
+      <lineto x="864"
+              y="528" />
+      <lineto x="785"
+              y="291" />
     </path>
   </group>
   <group name="Fig31"
@@ -2530,7 +2530,7 @@
       destFigNode="Fig17"
     </private>
     <path name="Fig31.0"
-      description="org.tigris.gef.presentation.FigPoly"
+      description="org.argouml.gefext.ArgoFigPoly"
       fill="0"
       fillcolor="white"
       stroke="1"
@@ -2538,10 +2538,10 @@
     >
       <moveto x="541"
               y="612" />
-      <lineto x="960"
+      <lineto x="968"
               y="608" />
-      <lineto x="1029"
-              y="379" />
+      <lineto x="791"
+              y="291" />
     </path>
   </group>
 </pgml>
