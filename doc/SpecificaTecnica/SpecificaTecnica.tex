@@ -183,6 +183,19 @@ Il presente documento \`e redatto utilizzando le convenzioni inserite nel docume
 L'architettura del sistema \`e stata sviluppata secondo un paradigma orientato agli oggetti. Le componenti del sistema e le loro relazioni verranno presentate in questo documento tramite diagrammi standard UML. Verranno presentate prima le componenti ad alto livello, le quali saranno poi descritte in maggiore dettaglio. Saranno inoltre descritti i pattern progettuali utilizzati.
 \subsezione{Presentazione dell'architettura generale del sistema}
 \subsezione{Identificazione dei componenti architetturali di alto livello}
+\subsubsezione{Logica interna}
+Questo sottosistema si divide in tre ulteriori sottosistemi
+\subsubsubsezione{Gestione figure}
+[inserire diagramma delle classi] \\
+Si occupa della gestione interna delle figure disegnabili e manipolabili dall'utente e delle relative propriet\`a. Il termine \textit{figura} in questo contesto include anche i testi disegnati sul canvas. La classe \textit{Figure} rappresenta una figura qualsiasi. Ogni figura contiene un \textit{BoundingRectangle} che rappresenta la cornice entro cui la figura \`e completamente contenuta. Una figura pu\`o essere selezionata oppure no. Le classi che implementano \textit{Figure} sono responsabili di disegnarsi sul canvas implementando il metodo \textit{draw}. In questo metodo, non si dovr\`a tener conto dell'area correntemente visualizzata o del livello di zoom, in quanto gestiti in modo trasparente dalla classe \textit{Visualization}. Ad ogni figura \`e associato un insieme di punti significativi, come ad esempio i vertici in un quadrato, ottenibili tramite il metodo \textit{getMainPoints}. Ogni figura mantiene un colore del bordo, rappresentato dalla class \textit{Colour}. Le classi \textit{Circle} e \textit{Polygon} aggiungono un ulteriore colore per il riempimento, rappresentato dalla classe \textit{FillColour}. La classe \textit{Text} rappresenta un testo disegnato dall'utente, e mantiene delle propriet\`a aggregate dalla classe \textit{TextStyle}. A fini implementativi, le propriet\`a del testo e del colore andranno rappresentate secondo lo standard \textit{CSS}, quindi le suddette propriet\`a dovranno implementare l'interfaccia \textit{CSSProperty} che offre il metodo \textit{toCSS} responsabile della conversione dalla rappresentazione interna a quella \textit{CSS}. La classe \textit{FigureSet} mantiene l'insieme delle istanze di \textit{Figure} correntemente disegnate dall'utente e offre la possibilit\`a di selezionarne una a partire da un punto sul canvas.
+\subsubsubsezione{Conversione in \textit{SVG}}
+[inserire diagramma delle classi] \\
+Si occupa di trasformare il \textit{FigureSet} corrente in una stringa 
+contenente un documento SVG valido e viceversa. 
+\paragraph{Da \textit{FigureSet} a SVG}
+Sia \textit{FigureSet} sia \textit{Figure} implementano l'interfaccia \textit{SVGWritable}, che rappresenta un qualsiasi elemento, o insieme di elementi, convertibile in SVG. La conversione avviene tramite il metodo \textit{toSVG}. La conversione dipende dalla classe coinvolta. La classe \textit{FigureSet} dovr\`a creare un documento SVG vuoto e richiamare il metodo \textit{toSVG} su tutte le figure contenute, le quali genereranno gli elementi SVG necessari alla propria rappresentazione. Per creare un documento SVG si istanzia la classe \textit{SVGGenerator}, la quale offre dei metodi per generare comandi SVG. Quando tutte le figure hanno avuto la possibilit\`a di inserirsi nel documento SVG, il metodo \textit{flush} chiude il documento e lo ritorna sotto forma di stringa.
+\paragraph{Da SVG a \textit{FigureSet}}
+
 \sezione{Descrizione dei singoli componenti}
 \subsezione{Tipo, obiettivo e funzione del componente}
 \subsezione{Relazioni d'uso di altre componenti}
