@@ -229,6 +229,67 @@ Usata dalla classe \textit{SVGWriter} per serializzare in SVG le figure correnti
 \item \textit{rem} rimuove una figura dall'insieme se presente
 \end{elencopuntato}
 
+\subsezione{Property}
+\subsubsezione{Tipo, obiettivo e funzione del componente}
+Rappresenta una propriet\`a generica di una figura.
+\subsubsezione{Relazioni d'uso di altre componenti}
+Nessuna.
+\subsubsezione{Interfacce e relazioni di uso da altre componenti}
+Implementata da tutte le propriet\`a concrete delle diverse figure.
+\subsubsezione{Attivit\`a svolte e dati trattati}
+
+\subsezione{CSSProperty}
+\subsubsezione{Tipo, obiettivo e funzione del componente}
+Rappresenta una propriet\`a di una figura che necessita di una rappresentazione conforme ai CSS.
+\subsubsezione{Relazioni d'uso di altre componenti}
+Nessuna.
+\subsubsezione{Interfacce e relazioni di uso da altre componenti}
+Implementata da \textit{Colour}, \textit{TextFont} e \textit{TextSize}. 
+\subsubsezione{Attivit\`a svolte e dati trattati}
+\begin{elencopuntato}[\textbf{}]{\subsubsecindent}
+\item \textit{toCSS} genera una stringa che rappresenta la propriet\`a come propriet\`a CSS.
+\end{elencopuntato}
+
+\subsezione{Opacity}
+\subsubsezione{Tipo, obiettivo e funzione del componente}
+Rappresenta l'opacit\`a di una figura.
+\subsubsezione{Relazioni d'uso di altre componenti}
+Implementa \textit{Property}.
+\subsubsezione{Interfacce e relazioni di uso da altre componenti}
+\textit{Figure} ne mantiene un'istanza.
+\subsubsezione{Attivit\`a svolte e dati trattati}
+Nessuna a questo livello.
+
+\subsezione{EdgeNumber}
+\subsubsezione{Tipo, obiettivo e funzione del componente}
+Rappresenta il numero degli spigoli di un poligono.
+\subsubsezione{Relazioni d'uso di altre componenti}
+Implementa \textit{Property}.
+\subsubsezione{Interfacce e relazioni di uso da altre componenti}
+\textit{Polygon} ne mantiene un'istanza.
+\subsubsezione{Attivit\`a svolte e dati trattati}
+Nessuna a questo livello.
+
+\subsezione{Colour}
+\subsubsezione{Tipo, obiettivo e funzione del componente}
+Rappresenta un colore.
+\subsubsezione{Relazioni d'uso di altre componenti}
+Implementa \textit{Property} e \textit{CSSProperty}.
+\subsubsezione{Interfacce e relazioni di uso da altre componenti}
+\textit{Figure} ne mantiene un'istanza per rappresentare il colore del bordo.
+\subsubsezione{Attivit\`a svolte e dati trattati}
+Nessuna a questo livello.
+
+\subsezione{FillColour}
+\subsubsezione{Tipo, obiettivo e funzione del componente}
+Rappresenta un colore di riempimento.
+\subsubsezione{Relazioni d'uso di altre componenti}
+Deriva da \textit{Colour}.
+\subsubsezione{Interfacce e relazioni di uso da altre componenti}
+\textit{Circle}, \textit{Polygon} e \textit{Rectangle} ne mantengono un'istanza.
+\subsubsezione{Attivit\`a svolte e dati trattati}
+Nessuna a questo livello.
+
 \subsezione{Tipo, obiettivo e funzione del componente}
 \subsezione{Relazioni d'uso di altre componenti}
 \subsezione{Interfacce e relazioni di uso da altre componenti}
