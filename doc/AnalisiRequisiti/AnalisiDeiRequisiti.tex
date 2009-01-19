@@ -689,6 +689,18 @@ Il sistema consente di modificare la dimensione dei caratteri del testo di una c
 \paragraph{Precondizioni} Il canvas \`e visualizzato. L'utente ha selezionato un oggetto presente nel canvas.
 \paragraph{Postcondizioni} Il canvas non visualizza l'oggetto cancellato.
 
+\subsubsezione{UC10.12 Caso d'uso: ridimensiona l'oggetto}
+\paragraph{Attori coinvolti} Utente.
+\paragraph{Scopo e descrizione sintetica}  Il sistema consente di modificare le dimensioni  di un qualsiasi oggetto presente nel canvas.  L'utente utilizza pu\`o utilizzare il cursore o le coordinate assolute per ingrandire / rimpicciolire a piacere l'oggetto.
+\paragraph{Flusso di eventi}
+\begin{elenconumerato}[\textbf{}]{\subsubsecindent}
+\item  L'utente seleziona un oggetto valido.
+\item  Il sistema evidenzia l'oggetto selezionato e mostra un pannello con i relativi stili grafici.
+\item  L'utente usa il cursore o le coordinate assolute per modificare le dimensioni dell'oggetto.
+\end{elenconumerato}
+\paragraph{Precondizioni} L'utente ha scelto un oggetto presente nel canvas. Se le dimensioni sono superiori a un valore massimo relativo della dimensione del canvas, il sistema le imposta alla massima dimensione consentita.
+\paragraph{Postcondizioni} Le propriet\`a  degli stili grafici della casella di testo indicano che le dimensioni dell'oggetto sono quelle selezionate. L'oggetto si ingrandir\` a/rimpicciolir\`a  seconda dell'input.
+
 
 %%%%%%%%%%%%%%%%inizio requisiti%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \sezione{Lista dei requisiti}
