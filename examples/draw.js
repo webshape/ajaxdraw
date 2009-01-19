@@ -36,8 +36,8 @@ var DrawLine = {
 
 function draw() {
   var canvas = document.getElementById('cv');
-  canvas.height = 400;
-  canvas.width = 600;
+  //canvas.height = 540;
+  //canvas.width = 720;
   var liner = {
     __proto__ : DrawLine,
     state : NONE,

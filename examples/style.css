@@ -1,3 +1,8 @@
 canvas {
   background-color: rgb(230, 240, 230);
+  margin-left: 8em;
 }
+
+#tool{
+	margin-left: 2em;
+	}
