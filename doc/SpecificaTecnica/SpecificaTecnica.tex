@@ -237,6 +237,9 @@ Nessuna.
 \subsubsezione{Interfacce e relazioni di uso da altre componenti}
 Implementata da tutte le propriet\`a concrete delle diverse figure.
 \subsubsezione{Attivit\`a svolte e dati trattati}
+\begin{elencopuntato}[\textbf{}]{\subsubsecindent}
+\item \textit{createWidget} crea un widget grafico che permetter\`a di modificare la propriet\`a all'utente.
+\end{elencopuntato}
 
 \subsezione{CSSProperty}
 \subsubsezione{Tipo, obiettivo e funzione del componente}
@@ -289,6 +292,119 @@ Deriva da \textit{Colour}.
 \textit{Circle}, \textit{Polygon} e \textit{Rectangle} ne mantengono un'istanza.
 \subsubsezione{Attivit\`a svolte e dati trattati}
 Nessuna a questo livello.
+
+\subsezione{TextProperty}
+\subsubsezione{Tipo, obiettivo e funzione del componente}
+Propriet\`a di un testo grafico.
+\subsubsezione{Relazioni d'uso di altre componenti}
+Deriva da \textit{Property}.
+\subsubsezione{Interfacce e relazioni di uso da altre componenti}
+\textit{Text} ne mantiene delle istanze.
+\subsubsezione{Attivit\`a svolte e dati trattati}
+Nessuna a questo livello.
+
+\subsezione{TextColour}
+\subsubsezione{Tipo, obiettivo e funzione del componente}
+Rappresenta il colore di un testo.
+\subsubsezione{Relazioni d'uso di altre componenti}
+Deriva da \textit{Colour} e da \textit{TextProperty}.
+\subsubsezione{Interfacce e relazioni di uso da altre componenti}
+\subsubsezione{Attivit\`a svolte e dati trattati}
+Nessuna a questo livello.
+
+\subsezione{TextFont}
+\subsubsezione{Tipo, obiettivo e funzione del componente}
+Rappresenta il font di un testo.
+\subsubsezione{Relazioni d'uso di altre componenti}
+Deriva da \textit{TextProperty} e implementa \textit{CSSProperty}.
+\subsubsezione{Interfacce e relazioni di uso da altre componenti}
+\subsubsezione{Attivit\`a svolte e dati trattati}
+Nessuna a questo livello.
+
+\subsezione{TextSize}
+\subsubsezione{Tipo, obiettivo e funzione del componente}
+Rappresenta la grandezza di un testo.
+\subsubsezione{Relazioni d'uso di altre componenti}
+Deriva da \textit{TextProperty} e implementa \textit{CSSProperty}.
+\subsubsezione{Interfacce e relazioni di uso da altre componenti}
+\subsubsezione{Attivit\`a svolte e dati trattati}
+Nessuna a questo livello.
+
+\subsezione{BoundingRectangle}
+\subsubsezione{Tipo, obiettivo e funzione del componente}
+Rappresenta la posizione e le dimensioni massime di una figura.
+\subsubsezione{Relazioni d'uso di altre componenti}
+Implementa \textit{Property}. Ogni istanza di \textit{Figure} ne mantiene un'istanza.
+\subsubsezione{Interfacce e relazioni di uso da altre componenti}
+\subsubsezione{Attivit\`a svolte e dati trattati}
+Nessuna a questo livello.
+
+\subsezione{Circle}
+\subsubsezione{Tipo, obiettivo e funzione del componente}
+Rappresenta un cerchio o un'ellisse.
+\subsubsezione{Relazioni d'uso di altre componenti}
+Deriva da \textit{Figure} e ne implementa i metodi astratti. Mantiene un'istanza di \textit{FillColour}.
+\subsubsezione{Interfacce e relazioni di uso da altre componenti}
+\subsubsezione{Attivit\`a svolte e dati trattati}
+Nessuna a questo livello.
+
+\subsezione{Rectangle}
+\subsubsezione{Tipo, obiettivo e funzione del componente}
+Rappresenta un rettangolo o un quadrato.
+\subsubsezione{Relazioni d'uso di altre componenti}
+Deriva da \textit{Figure} e ne implementa i metodi astratti. Mantiene un'istanza di \textit{FillColour}.
+\subsubsezione{Interfacce e relazioni di uso da altre componenti}
+\subsubsezione{Attivit\`a svolte e dati trattati}
+Nessuna a questo livello.
+
+\subsezione{Line}
+\subsubsezione{Tipo, obiettivo e funzione del componente}
+Rappresenta una linea generica.
+\subsubsezione{Relazioni d'uso di altre componenti}
+Deriva da \textit{Figure}.
+\subsubsezione{Interfacce e relazioni di uso da altre componenti}
+\subsubsezione{Attivit\`a svolte e dati trattati}
+Nessuna a questo livello.
+
+\subsezione{StraightLine}
+\subsubsezione{Tipo, obiettivo e funzione del componente}
+Rappresenta una linea diritta.
+\subsubsezione{Relazioni d'uso di altre componenti}
+Deriva da \textit{Line} e ne implementa i metodi astratti.
+\subsubsezione{Interfacce e relazioni di uso da altre componenti}
+\subsubsezione{Attivit\`a svolte e dati trattati}
+Nessuna a questo livello.
+
+\subsezione{FreeLine}
+\subsubsezione{Tipo, obiettivo e funzione del componente}
+Rappresenta una linea a mano libera.
+\subsubsezione{Relazioni d'uso di altre componenti}
+Deriva da \textit{Line} e ne implementa i metodi astratti. Mantiene una lista di punti.
+\subsubsezione{Interfacce e relazioni di uso da altre componenti}
+Usata come base da \textit{BezierCurve}.
+\subsubsezione{Attivit\`a svolte e dati trattati}
+\begin{elencopuntato}[\textbf{}]{\subsubsecindent}
+\item \textit{eachPoint} applica una funzione ad ogni nodo della linea.
+\end{elencopuntato}
+
+\subsezione{BezierCurve}
+\subsubsezione{Tipo, obiettivo e funzione del componente}
+Rappresenta una linea curva.
+\subsubsezione{Relazioni d'uso di altre componenti}
+Deriva da \textit{FreeLine}.
+\subsubsezione{Interfacce e relazioni di uso da altre componenti}
+\subsubsezione{Attivit\`a svolte e dati trattati}
+Nessuna a questo livello.
+
+\subsezione{Polygon}
+\subsubsezione{Tipo, obiettivo e funzione del componente}
+Rappresenta un poligono regolare.
+\subsubsezione{Relazioni d'uso di altre componenti}
+Deriva da \textit{Figure} e ne implementa i metodi astratti. Mantiene un'istanza di \textit{FillColour} e di \textit{EdgeNumber} che ne identifica il numero di lati.
+\subsubsezione{Interfacce e relazioni di uso da altre componenti}
+\subsubsezione{Attivit\`a svolte e dati trattati}
+Nessuna a questo livello.
+
 
 \subsezione{Tipo, obiettivo e funzione del componente}
 \subsezione{Relazioni d'uso di altre componenti}
