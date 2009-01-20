@@ -5,4 +5,11 @@ canvas {
 
 #tool{
 	margin-left: 2em;
+	position: fixed;
 	}
+
+
+#paletta{
+	margin-left: 5em;
+	margin-top: 0.1em;
+}
