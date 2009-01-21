@@ -27,7 +27,7 @@
       <fontsize>12</fontsize>
       <defaultstereotypeview>0</defaultstereotypeview>
       <generationoutputdir>C:\Users\pieno\AppData\Local\Temp\</generationoutputdir>
-      <activediagram>Diagramma di Classe 1</activediagram>
+      <activediagram>Lettura SVG</activediagram>
     </settings>
     <searchpath href="PROJECT_DIR" />
     <members>
@@ -57,7 +57,7 @@
 			UML 1.4
 		</plugin>
 </profile>
-<XMI xmi.version = '1.2' xmlns:UML = 'org.omg.xmi.namespace.UML' timestamp = 'Wed Jan 21 16:57:54 CET 2009'>
+<XMI xmi.version = '1.2' xmlns:UML = 'org.omg.xmi.namespace.UML' timestamp = 'Wed Jan 21 17:16:06 CET 2009'>
   <XMI.header>    <XMI.documentation>
       <XMI.exporter>ArgoUML (using Netbeans XMI Writer version 1.0)</XMI.exporter>
       <XMI.exporterVersion>0.26.2(6) revised on $Date: 2007-05-12 08:08:08 +0200 (Sat, 12 May 2007) $ </XMI.exporterVersion>
@@ -3104,7 +3104,8 @@ chiamando il metodo fromSVG() l&apos;elemento viene inizializzato in base ai con
             <UML:CallAction xmi.id = '127-0-0-1-4ca1ed83:11ef564c17d:-8000:0000000000000FFF'
               isSpecification = 'false' isAsynchronous = 'false'/>
             <UML:ClassifierRole xmi.id = '127-0-0-1-4ca1ed83:11ef564c17d:-8000:0000000000001004'
-              name = 'f' isSpecification = 'false' isRoot = 'false' isLeaf = 'false' isAbstract = 'false'>
+              name = 'figure' isSpecification = 'false' isRoot = 'false' isLeaf = 'false'
+              isAbstract = 'false'>
               <UML:ClassifierRole.multiplicity>
                 <UML:Multiplicity xmi.id = '127-0-0-1-4ca1ed83:11ef564c17d:-8000:0000000000001006'>
                   <UML:Multiplicity.range>
@@ -3280,7 +3281,7 @@ chiamando il metodo fromSVG() l&apos;elemento viene inizializzato in base ai con
                   </UML:Message.action>
                 </UML:Message>
                 <UML:Message xmi.id = '127-0-0-1-4ca1ed83:11ef564c17d:-8000:0000000000001003'
-                  name = '[for all tag] makeFigureClassFromTag' isSpecification = 'false'>
+                  name = 'makeFigureClassFromTag(tag)' isSpecification = 'false'>
                   <UML:Message.activator>
                     <UML:Message xmi.idref = '127-0-0-1-4ca1ed83:11ef564c17d:-8000:0000000000000FFE'/>
                   </UML:Message.activator>
@@ -3319,7 +3320,7 @@ chiamando il metodo fromSVG() l&apos;elemento viene inizializzato in base ai con
                   </UML:Message.action>
                 </UML:Message>
                 <UML:Message xmi.id = '127-0-0-1-4ca1ed83:11ef564c17d:-8000:000000000000100D'
-                  name = '[for all figure] fromSVG(tag)' isSpecification = 'false'>
+                  name = 'fromSVG(tag)' isSpecification = 'false'>
                   <UML:Message.activator>
                     <UML:Message xmi.idref = '127-0-0-1-4ca1ed83:11ef564c17d:-8000:0000000000001008'/>
                   </UML:Message.activator>
@@ -3358,7 +3359,7 @@ chiamando il metodo fromSVG() l&apos;elemento viene inizializzato in base ai con
                   </UML:Message.action>
                 </UML:Message>
                 <UML:Message xmi.id = '127-0-0-1-4ca1ed83:11ef564c17d:-8000:0000000000001017'
-                  name = '[for all figure] add' isSpecification = 'false'>
+                  name = 'add(figure)' isSpecification = 'false'>
                   <UML:Message.activator>
                     <UML:Message xmi.idref = '127-0-0-1-4ca1ed83:11ef564c17d:-8000:0000000000001008'/>
                   </UML:Message.activator>
@@ -11297,7 +11298,7 @@ chiamando il metodo fromSVG() l&apos;elemento viene inizializzato in base ai con
       name="Lettura SVG"
 >
   <group name="Fig0"
-       description="org.argouml.uml.diagram.sequence.ui.FigClassifierRole[50, 50, 116, 1075]pathVisible=false;stereotypeView=0;"
+       description="org.argouml.uml.diagram.sequence.ui.FigClassifierRole[50, 50, 112, 1075]pathVisible=false;stereotypeView=0;"
        href="127-0-0-1-4ca1ed83:11ef564c17d:-8000:0000000000000FE2"
        fill="1"
        fillcolor="white"
@@ -11308,7 +11309,7 @@ chiamando il metodo fromSVG() l&apos;elemento viene inizializzato in base ai con
     </private>
     
     <group name="Fig0.0"
-         description="org.argouml.uml.diagram.sequence.ui.FigLifeLine[98, 125, 20, 1000]"
+         description="org.argouml.uml.diagram.sequence.ui.FigLifeLine[96, 125, 20, 1000]"
          fill="1"
          fillcolor="white"
          stroke="1"
@@ -11318,7 +11319,7 @@ chiamando il metodo fromSVG() l&apos;elemento viene inizializzato in base ai con
       </private>
       
       <rectangle name="Fig0.0.0"
-        x="98"
+        x="96"
         y="125"
         width="20"
         height="1000"
@@ -11334,13 +11335,13 @@ chiamando il metodo fromSVG() l&apos;elemento viene inizializzato in base ai con
         stroke="1"
         strokecolor="black"
       >
-        <moveto x="108"
+        <moveto x="106"
                 y="125" />
-        <lineto x="108"
+        <lineto x="106"
                 y="1050" />
       </path>
       <group name="Fig0.0.2"
-           description="org.argouml.uml.diagram.sequence.ui.FigMessagePort[98, 205, 20, 1]"
+           description="org.argouml.uml.diagram.sequence.ui.FigMessagePort[96, 205, 20, 1]"
            href="127-0-0-1-4ca1ed83:11ef564c17d:-8000:0000000000000FEF"
            fill="1"
            fillcolor="white"
@@ -11359,14 +11360,14 @@ chiamando il metodo fromSVG() l&apos;elemento viene inizializzato in base ai con
           strokecolor="black"
           visibility="0"
         >
-          <moveto x="98"
+          <moveto x="96"
                   y="205" />
-          <lineto x="118"
+          <lineto x="116"
                   y="205" />
         </path>
       </group>
       <group name="Fig0.0.3"
-           description="org.argouml.uml.diagram.sequence.ui.FigMessagePort[98, 173, 20, 1]"
+           description="org.argouml.uml.diagram.sequence.ui.FigMessagePort[96, 173, 20, 1]"
            href="127-0-0-1-4ca1ed83:11ef564c17d:-8000:0000000000000FF1"
            fill="1"
            fillcolor="white"
@@ -11385,14 +11386,14 @@ chiamando il metodo fromSVG() l&apos;elemento viene inizializzato in base ai con
           strokecolor="black"
           visibility="0"
         >
-          <moveto x="98"
+          <moveto x="96"
                   y="173" />
-          <lineto x="118"
+          <lineto x="116"
                   y="173" />
         </path>
       </group>
       <group name="Fig0.0.4"
-           description="org.argouml.uml.diagram.sequence.ui.FigMessagePort[98, 237, 20, 1]"
+           description="org.argouml.uml.diagram.sequence.ui.FigMessagePort[96, 237, 20, 1]"
            href="127-0-0-1-4ca1ed83:11ef564c17d:-8000:0000000000000FFC"
            fill="1"
            fillcolor="white"
@@ -11411,14 +11412,14 @@ chiamando il metodo fromSVG() l&apos;elemento viene inizializzato in base ai con
           strokecolor="black"
           visibility="0"
         >
-          <moveto x="98"
+          <moveto x="96"
                   y="237" />
-          <lineto x="118"
+          <lineto x="116"
                   y="237" />
         </path>
       </group>
       <group name="Fig0.0.5"
-           description="org.argouml.uml.diagram.sequence.ui.FigMessagePort[98, 269, 20, 1]"
+           description="org.argouml.uml.diagram.sequence.ui.FigMessagePort[96, 269, 20, 1]"
            href="127-0-0-1-4ca1ed83:11ef564c17d:-8000:0000000000000FFE"
            fill="1"
            fillcolor="white"
@@ -11437,14 +11438,14 @@ chiamando il metodo fromSVG() l&apos;elemento viene inizializzato in base ai con
           strokecolor="black"
           visibility="0"
         >
-          <moveto x="98"
+          <moveto x="96"
                   y="269" />
-          <lineto x="118"
+          <lineto x="116"
                   y="269" />
         </path>
       </group>
       <group name="Fig0.0.6"
-           description="org.argouml.uml.diagram.sequence.ui.FigMessagePort[98, 301, 20, 1]"
+           description="org.argouml.uml.diagram.sequence.ui.FigMessagePort[96, 301, 20, 1]"
            href="127-0-0-1-4ca1ed83:11ef564c17d:-8000:0000000000001003"
            fill="1"
            fillcolor="white"
@@ -11463,14 +11464,14 @@ chiamando il metodo fromSVG() l&apos;elemento viene inizializzato in base ai con
           strokecolor="black"
           visibility="0"
         >
-          <moveto x="98"
+          <moveto x="96"
                   y="301" />
-          <lineto x="118"
+          <lineto x="116"
                   y="301" />
         </path>
       </group>
       <group name="Fig0.0.7"
-           description="org.argouml.uml.diagram.sequence.ui.FigMessagePort[98, 333, 20, 1]"
+           description="org.argouml.uml.diagram.sequence.ui.FigMessagePort[96, 333, 20, 1]"
            href="127-0-0-1-4ca1ed83:11ef564c17d:-8000:0000000000001008"
            fill="1"
            fillcolor="white"
@@ -11489,14 +11490,14 @@ chiamando il metodo fromSVG() l&apos;elemento viene inizializzato in base ai con
           strokecolor="black"
           visibility="0"
         >
-          <moveto x="98"
+          <moveto x="96"
                   y="333" />
-          <lineto x="118"
+          <lineto x="116"
                   y="333" />
         </path>
       </group>
       <group name="Fig0.0.8"
-           description="org.argouml.uml.diagram.sequence.ui.FigMessagePort[98, 365, 20, 1]"
+           description="org.argouml.uml.diagram.sequence.ui.FigMessagePort[96, 365, 20, 1]"
            href="127-0-0-1-4ca1ed83:11ef564c17d:-8000:000000000000100D"
            fill="1"
            fillcolor="white"
@@ -11515,14 +11516,14 @@ chiamando il metodo fromSVG() l&apos;elemento viene inizializzato in base ai con
           strokecolor="black"
           visibility="0"
         >
-          <moveto x="98"
+          <moveto x="96"
                   y="365" />
-          <lineto x="118"
+          <lineto x="116"
                   y="365" />
         </path>
       </group>
       <group name="Fig0.0.9"
-           description="org.argouml.uml.diagram.sequence.ui.FigMessagePort[98, 141, 20, 1]"
+           description="org.argouml.uml.diagram.sequence.ui.FigMessagePort[96, 141, 20, 1]"
            href="127-0-0-1-4ca1ed83:11ef564c17d:-8000:0000000000001015"
            fill="1"
            fillcolor="white"
@@ -11541,14 +11542,14 @@ chiamando il metodo fromSVG() l&apos;elemento viene inizializzato in base ai con
           strokecolor="black"
           visibility="0"
         >
-          <moveto x="98"
+          <moveto x="96"
                   y="141" />
-          <lineto x="118"
+          <lineto x="116"
                   y="141" />
         </path>
       </group>
       <group name="Fig0.0.10"
-           description="org.argouml.uml.diagram.sequence.ui.FigMessagePort[98, 397, 20, 1]"
+           description="org.argouml.uml.diagram.sequence.ui.FigMessagePort[96, 397, 20, 1]"
            href="127-0-0-1-4ca1ed83:11ef564c17d:-8000:0000000000001017"
            fill="1"
            fillcolor="white"
@@ -11567,14 +11568,14 @@ chiamando il metodo fromSVG() l&apos;elemento viene inizializzato in base ai con
           strokecolor="black"
           visibility="0"
         >
-          <moveto x="98"
+          <moveto x="96"
                   y="397" />
-          <lineto x="118"
+          <lineto x="116"
                   y="397" />
         </path>
       </group>
       <rectangle name="Fig0.0.11"
-        x="98"
+        x="96"
         y="125"
         width="20"
         height="1056"
@@ -11585,7 +11586,7 @@ chiamando il metodo fromSVG() l&apos;elemento viene inizializzato in base ai con
       />
     </group>
     <group name="Fig0.1"
-         description="org.argouml.uml.diagram.sequence.ui.FigHead[50, 50, 116, 75]"
+         description="org.argouml.uml.diagram.sequence.ui.FigHead[50, 50, 112, 75]"
          href="127-0-0-1-4ca1ed83:11ef564c17d:-8000:0000000000000FE2"
          fill="1"
          fillcolor="white"
@@ -11598,7 +11599,7 @@ chiamando il metodo fromSVG() l&apos;elemento viene inizializzato in base ai con
       <rectangle name="Fig0.1.0"
         x="50"
         y="50"
-        width="116"
+        width="112"
         height="75"
         fill="1"
         fillcolor="white"
@@ -11608,7 +11609,7 @@ chiamando il metodo fromSVG() l&apos;elemento viene inizializzato in base ai con
       <text name="Fig0.1.1"
         x="50"
         y="50"
-        width="116"
+        width="112"
         height="25"
         fill="0"
         fillcolor="white"
@@ -11622,7 +11623,7 @@ chiamando il metodo fromSVG() l&apos;elemento viene inizializzato in base ai con
         justification="Center"
       >reader:SVGReader</text>
       <group name="Fig0.1.2"
-           description="org.argouml.uml.diagram.ui.FigStereotypesCompartment[50, 50, 116, 0]"
+           description="org.argouml.uml.diagram.ui.FigStereotypesCompartment[50, 50, 112, 0]"
            href="127-0-0-1-4ca1ed83:11ef564c17d:-8000:0000000000000FE2"
            fill="0"
            fillcolor="white"
@@ -11635,7 +11636,7 @@ chiamando il metodo fromSVG() l&apos;elemento viene inizializzato in base ai con
         <rectangle name="Fig0.1.2.0"
           x="50"
           y="50"
-          width="116"
+          width="112"
           height="0"
           fill="0"
           fillcolor="white"
@@ -11833,7 +11834,7 @@ chiamando il metodo fromSVG() l&apos;elemento viene inizializzato in base ai con
     >
       <moveto x="451"
               y="205" />
-      <lineto x="118"
+      <lineto x="116"
               y="205" />
     </path>
   </group>
@@ -11856,14 +11857,14 @@ chiamando il metodo fromSVG() l&apos;elemento viene inizializzato in base ai con
       stroke="1"
       strokecolor="black"
     >
-      <moveto x="118"
+      <moveto x="116"
               y="173" />
       <lineto x="451"
               y="173" />
     </path>
   </group>
   <group name="Fig4"
-       description="org.argouml.uml.diagram.sequence.ui.FigClassifierRole[689, 50, 146, 1075]pathVisible=false;stereotypeView=0;"
+       description="org.argouml.uml.diagram.sequence.ui.FigClassifierRole[689, 50, 147, 1075]pathVisible=false;stereotypeView=0;"
        href="127-0-0-1-4ca1ed83:11ef564c17d:-8000:0000000000000FF2"
        fill="1"
        fillcolor="white"
@@ -11969,7 +11970,7 @@ chiamando il metodo fromSVG() l&apos;elemento viene inizializzato in base ai con
       />
     </group>
     <group name="Fig4.1"
-         description="org.argouml.uml.diagram.sequence.ui.FigHead[689, 50, 146, 75]"
+         description="org.argouml.uml.diagram.sequence.ui.FigHead[689, 50, 147, 75]"
          href="127-0-0-1-4ca1ed83:11ef564c17d:-8000:0000000000000FF2"
          fill="1"
          fillcolor="white"
@@ -11982,7 +11983,7 @@ chiamando il metodo fromSVG() l&apos;elemento viene inizializzato in base ai con
       <rectangle name="Fig4.1.0"
         x="689"
         y="50"
-        width="146"
+        width="147"
         height="75"
         fill="1"
         fillcolor="white"
@@ -11992,7 +11993,7 @@ chiamando il metodo fromSVG() l&apos;elemento viene inizializzato in base ai con
       <text name="Fig4.1.1"
         x="689"
         y="50"
-        width="146"
+        width="147"
         height="25"
         fill="0"
         fillcolor="white"
@@ -12006,7 +12007,7 @@ chiamando il metodo fromSVG() l&apos;elemento viene inizializzato in base ai con
         justification="Center"
       >reg:SVGElementRegistry</text>
       <group name="Fig4.1.2"
-           description="org.argouml.uml.diagram.ui.FigStereotypesCompartment[689, 50, 146, 0]"
+           description="org.argouml.uml.diagram.ui.FigStereotypesCompartment[689, 50, 147, 0]"
            href="127-0-0-1-4ca1ed83:11ef564c17d:-8000:0000000000000FF2"
            fill="0"
            fillcolor="white"
@@ -12019,7 +12020,7 @@ chiamando il metodo fromSVG() l&apos;elemento viene inizializzato in base ai con
         <rectangle name="Fig4.1.2.0"
           x="689"
           y="50"
-          width="146"
+          width="147"
           height="0"
           fill="0"
           fillcolor="white"
@@ -12215,7 +12216,7 @@ chiamando il metodo fromSVG() l&apos;elemento viene inizializzato in base ai con
       stroke="1"
       strokecolor="black"
     >
-      <moveto x="118"
+      <moveto x="116"
               y="237" />
       <lineto x="593"
               y="237" />
@@ -12242,7 +12243,7 @@ chiamando il metodo fromSVG() l&apos;elemento viene inizializzato in base ai con
     >
       <moveto x="593"
               y="269" />
-      <lineto x="118"
+      <lineto x="116"
               y="269" />
     </path>
   </group>
@@ -12265,14 +12266,14 @@ chiamando il metodo fromSVG() l&apos;elemento viene inizializzato in base ai con
       stroke="1"
       strokecolor="black"
     >
-      <moveto x="118"
+      <moveto x="116"
               y="301" />
       <lineto x="752"
               y="301" />
     </path>
   </group>
   <group name="Fig9"
-       description="org.argouml.uml.diagram.sequence.ui.FigClassifierRole[843, 50, 112, 1075]pathVisible=false;stereotypeView=0;"
+       description="org.argouml.uml.diagram.sequence.ui.FigClassifierRole[866, 50, 122, 1075]pathVisible=false;stereotypeView=0;"
        href="127-0-0-1-4ca1ed83:11ef564c17d:-8000:0000000000001004"
        fill="1"
        fillcolor="white"
@@ -12283,7 +12284,7 @@ chiamando il metodo fromSVG() l&apos;elemento viene inizializzato in base ai con
     </private>
     
     <group name="Fig9.0"
-         description="org.argouml.uml.diagram.sequence.ui.FigLifeLine[889, 125, 20, 1000]"
+         description="org.argouml.uml.diagram.sequence.ui.FigLifeLine[917, 125, 20, 1000]"
          fill="1"
          fillcolor="white"
          stroke="1"
@@ -12293,7 +12294,7 @@ chiamando il metodo fromSVG() l&apos;elemento viene inizializzato in base ai con
       </private>
       
       <rectangle name="Fig9.0.0"
-        x="889"
+        x="917"
         y="125"
         width="20"
         height="1000"
@@ -12309,13 +12310,13 @@ chiamando il metodo fromSVG() l&apos;elemento viene inizializzato in base ai con
         stroke="1"
         strokecolor="black"
       >
-        <moveto x="899"
+        <moveto x="927"
                 y="125" />
-        <lineto x="899"
+        <lineto x="927"
                 y="1050" />
       </path>
       <group name="Fig9.0.2"
-           description="org.argouml.uml.diagram.sequence.ui.FigMessagePort[889, 365, 20, 1]"
+           description="org.argouml.uml.diagram.sequence.ui.FigMessagePort[917, 365, 20, 1]"
            href="127-0-0-1-4ca1ed83:11ef564c17d:-8000:000000000000100D"
            fill="1"
            fillcolor="white"
@@ -12334,14 +12335,14 @@ chiamando il metodo fromSVG() l&apos;elemento viene inizializzato in base ai con
           strokecolor="black"
           visibility="0"
         >
-          <moveto x="889"
+          <moveto x="917"
                   y="365" />
-          <lineto x="909"
+          <lineto x="937"
                   y="365" />
         </path>
       </group>
       <rectangle name="Fig9.0.3"
-        x="889"
+        x="917"
         y="365"
         width="20"
         height="16"
@@ -12352,7 +12353,7 @@ chiamando il metodo fromSVG() l&apos;elemento viene inizializzato in base ai con
       />
     </group>
     <group name="Fig9.1"
-         description="org.argouml.uml.diagram.sequence.ui.FigHead[843, 50, 112, 75]"
+         description="org.argouml.uml.diagram.sequence.ui.FigHead[866, 50, 122, 75]"
          href="127-0-0-1-4ca1ed83:11ef564c17d:-8000:0000000000001004"
          fill="1"
          fillcolor="white"
@@ -12363,9 +12364,9 @@ chiamando il metodo fromSVG() l&apos;elemento viene inizializzato in base ai con
       </private>
       
       <rectangle name="Fig9.1.0"
-        x="843"
+        x="866"
         y="50"
-        width="112"
+        width="122"
         height="75"
         fill="1"
         fillcolor="white"
@@ -12373,9 +12374,9 @@ chiamando il metodo fromSVG() l&apos;elemento viene inizializzato in base ai con
         strokecolor="black"
       />
       <text name="Fig9.1.1"
-        x="843"
+        x="866"
         y="50"
-        width="112"
+        width="122"
         height="25"
         fill="0"
         fillcolor="white"
@@ -12387,9 +12388,9 @@ chiamando il metodo fromSVG() l&apos;elemento viene inizializzato in base ai con
         bold="false"
         textsize="12"
         justification="Center"
-      >f:SVGReadable</text>
+      >figure:SVGReadable</text>
       <group name="Fig9.1.2"
-           description="org.argouml.uml.diagram.ui.FigStereotypesCompartment[843, 50, 112, 0]"
+           description="org.argouml.uml.diagram.ui.FigStereotypesCompartment[866, 50, 122, 0]"
            href="127-0-0-1-4ca1ed83:11ef564c17d:-8000:0000000000001004"
            fill="0"
            fillcolor="white"
@@ -12400,9 +12401,9 @@ chiamando il metodo fromSVG() l&apos;elemento viene inizializzato in base ai con
         </private>
         
         <rectangle name="Fig9.1.2.0"
-          x="843"
+          x="866"
           y="50"
-          width="112"
+          width="122"
           height="0"
           fill="0"
           fillcolor="white"
@@ -12433,7 +12434,7 @@ chiamando il metodo fromSVG() l&apos;elemento viene inizializzato in base ai con
     >
       <moveto x="752"
               y="333" />
-      <lineto x="118"
+      <lineto x="116"
               y="333" />
     </path>
   </group>
@@ -12456,9 +12457,9 @@ chiamando il metodo fromSVG() l&apos;elemento viene inizializzato in base ai con
       stroke="1"
       strokecolor="black"
     >
-      <moveto x="118"
+      <moveto x="116"
               y="365" />
-      <lineto x="889"
+      <lineto x="917"
               y="365" />
     </path>
   </group>
@@ -12658,7 +12659,7 @@ chiamando il metodo fromSVG() l&apos;elemento viene inizializzato in base ai con
       stroke="1"
       strokecolor="black"
     >
-      <moveto x="118"
+      <moveto x="116"
               y="141" />
       <lineto x="270"
               y="141" />
@@ -12683,7 +12684,7 @@ chiamando il metodo fromSVG() l&apos;elemento viene inizializzato in base ai con
       stroke="1"
       strokecolor="black"
     >
-      <moveto x="118"
+      <moveto x="116"
               y="397" />
       <lineto x="270"
               y="397" />
