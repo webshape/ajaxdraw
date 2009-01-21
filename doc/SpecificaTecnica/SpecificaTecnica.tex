@@ -184,6 +184,38 @@ L'architettura del sistema \`e stata sviluppata secondo un paradigma orientato a
 \subsezione{Presentazione dell'architettura generale del sistema}
 [inserire diagramma ad alto livello]
 Il sistema si compone, al massimo livello di astrazione, di tre componenti: il primo si occupa dell'interfaccia utente, il secondo gestisce la logica interna, ovvero la gestione in memoria di quanto disegnato e della conversione tra rappresentazione interna e rappresentazione in SVG, e il terzo si occupa del salvataggio e del caricamento di file testuali.
+\subsubsezione{Design Pattern usati}
+\paragraph{Facade (Document):}
+Permette di salvare/caricare file senza conoscere il sottosistema che implementa le funzionalit\`a.
+\subparagraph{Subsystem} Il sottosistema \`e composto [@bosco: inserisci nome del tuo sottosistema]
+
+\paragraph{Facade (StaticDocument):}
+Permette di ottenere un file statico senza conoscere il sottosistema che implementa le funzionalit\`a.
+\subparagraph{Subsystem} Il sottosistema \`e composto [@bosco: inserisci nome del tuo sottosistema]
+
+\paragraph{Template Method:}
+\subparagraph{Algoritmo parametrizzato:}
+Il metodo \textit{setSelection} di \textit{FigureSet} implementa la logica di selezione di una figura a partire da un punto.
+\subparagraph{Metodo astratto da implementare:}
+Implementando il metodo astratto \textit{getMainPoints} di \textit{Figure} \`e possibile parametrizzare l'algoritmo generale adattandolo alla figura specifica.
+
+\paragraph{Abstract Factory:}
+\subparagraph{Factory:} \textit{SVGElementRegistry} permette di generare oggetti la cui classe deriva da \textit{SVGReadable} a partire dal nome di un tag, e il cui tipo quindi non pu\`o essere conosciuto solo a runtime.
+\subparagraph{Concrete Factory:} Invece che utilizzare un insieme statico di possibili associazioni tra nome tag e classe da costruire, si utilizza una tabella dinamica in cui le classi devono registrarsi. Le fabbriche concrete sono quindi tutte le classi che si registrano al sistema, in particolare tutte le classi che derivano da \textit{Figure}.
+\subparagraph{Abstract Product:} Un'istanza di una classe che implementa \textit{SVGReadable}.
+\subparagraph{Concrete Product:} Un'istanza di una classe registrata nel sistema.
+\subparagraph{Client:} \textit{SVGReader}
+
+\paragraph{Abstract Factory:} 
+\subparagraph{Factory:} \textit{Property} genera un elemento grafico per modificare una propriet\`a specifica.
+\subparagraph{Concrete Factory:} tutte le classi che derivano da \textit{Property}
+\subparagraph{Abstract Product:} \textit{Widget}
+\subparagraph{Concrete Product:} un particolare elemento grafico a seconda della propriet\`a coinvolta.
+\subparagraph{Client:} \textit{PropertiesDialog}
+
+%\paragraph{Iterator:}
+%Viene usata una variante pi\`u semplice, anche se meno flessibile. 
+
 \subsezione{Identificazione dei componenti architetturali di alto livello}
 \subsubsezione{Logica interna}
 Questo sottosistema si divide in tre ulteriori sottosistemi
