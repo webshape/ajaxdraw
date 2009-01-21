@@ -178,36 +178,49 @@ All'interno del documento \textit{Glossario}, sono presentati i termini tecnici 
 Il presente documento \`e redatto utilizzando le convenzioni inserite nel documento \textit{NormeDiProgetto}, consultabile dal repository pubblico al quale WebShape si appoggia per i suoi progetti.
 \subsubsezione{Normativi}
 \subsubsezione{Informativi}
+
+
+%Inizio definizione del prodotto %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \sezione{Definizione del prodotto}
 \subsezione{Metodo e formalismo di specifica}
 L'architettura del sistema \`e stata sviluppata secondo un paradigma orientato agli oggetti. Le componenti del sistema e le loro relazioni verranno presentate in questo documento tramite diagrammi standard UML. Verranno presentate prima le componenti ad alto livello, le quali saranno poi descritte in maggiore dettaglio. Saranno inoltre descritti i pattern progettuali utilizzati.
 \subsezione{Presentazione dell'architettura generale del sistema}
-[inserire diagramma ad alto livello]
-Il sistema si compone, al massimo livello di astrazione, di tre componenti: il primo si occupa dell'interfaccia utente, il secondo gestisce la logica interna, ovvero la gestione in memoria di quanto disegnato e della conversione tra rappresentazione interna e rappresentazione in SVG, e il terzo si occupa del salvataggio e del caricamento di file testuali.
+
 \subsezione{Identificazione dei componenti architetturali di alto livello}
+\subsubsezione{Intefaccia Grafica (GUI)}
+[inserire diagramma delle classi] \\
+La GUI \` e ovviamente il client che verr\` a utilizzato nel sistema AJAXDRAW, e verr\` a descritta brevemente, in quanto rappresenta solo una 
+unit\` a che andr\`  a  a lavorare sulle altre componenti di sistema. \` E costruita nella sua totalit\` a nella pagina web caricata dal browser, pagina rappresentata dalla classe \textit{Page}, sulla quale vengono creati tutti i widgets con i quali interagire (che implementano tutti l'interfaccia generica \textit{Widget}).  I widgets si suddividono in \textit{Toolbar}(barra degli strumenti), \textit{Button} (pulsante generico
+
+
+ Permette all'utente di disegnare e manipolare le figure gi\` a presenti sul canvas, selezionando gli strumenti necessari tramite una apposita toolbar, rappresentata dalla classe \textit{Toolbar}.   
 \subsubsezione{Logica interna}
-Questo sottosistema si divide in tre ulteriori sottosistemi
+Questo sottosistema si divide in tre ulteriori sottosistemi:
 \subsubsezione{Gestione figure}
 [inserire diagramma delle classi] \\
-Si occupa della gestione interna delle figure disegnabili e manipolabili dall'utente e delle relative propriet\`a. Il termine \textit{figura} in questo contesto include anche i testi disegnati sul canvas. La classe \textit{Figure} rappresenta una figura qualsiasi. Una figura \`e caratterizzata da delle propriet\`a derivate dalla classe \textit{Property}. La suddetta classe contiene un metodo \textit{createWidget} per fabbricare un elemento grafico che permette all'utente di modificare la propriet\`a che lo ha generato. Ogni figura contiene un \textit{BoundingRectangle} che rappresenta la cornice entro cui la figura \`e completamente contenuta. Una figura pu\`o essere selezionata oppure no. Le classi che implementano \textit{Figure} sono responsabili di disegnarsi sul canvas implementando il metodo \textit{draw}. In questo metodo, non si dovr\`a tener conto dell'area correntemente visualizzata o del livello di zoom, in quanto gestiti in modo trasparente dalla classe \textit{Visualization}. Ad ogni figura \`e associato un insieme di punti significativi, come ad esempio i vertici in un quadrato, ottenibili tramite il metodo \textit{getMainPoints}. Ogni figura mantiene un colore del bordo, rappresentato dalla classe \textit{Colour}. Le classi \textit{Circle}, \textit{Polygon} e \textit{Rectangle} aggiungono un ulteriore colore per il riempimento, rappresentato dalla classe \textit{FillColour}. La classe \textit{Text} rappresenta un testo disegnato dall'utente, e mantiene delle propriet\`a derivate dalla classe \textit{TextProperty}. A fini implementativi, le propriet\`a del testo e del colore andranno rappresentate secondo lo standard \textit{CSS}, quindi le suddette propriet\`a dovranno implementare l'interfaccia \textit{CSSProperty} che offre il metodo \textit{toCSS} responsabile della conversione dalla rappresentazione interna a quella \textit{CSS}. La classe \textit{FigureSet} mantiene l'insieme delle istanze di \textit{Figure} correntemente disegnate dall'utente e offre la possibilit\`a di selezionarne una a partire da un punto sul canvas.
+Si occupa della gestione interna delle figure disegnabili e manipolabili dall'utente e delle relative propriet\`a. Il termine \textit{figura} in questo contesto include anche i testi disegnati sul canvas. La classe \textit{Figure} rappresenta una figura qualsiasi. Ogni figura contiene un \textit{BoundingRectangle} che rappresenta la cornice entro cui la figura \`e completamente contenuta. Una figura pu\`o essere selezionata oppure no. Le classi che implementano \textit{Figure} sono responsabili di disegnarsi sul canvas implementando il metodo \textit{draw}. In questo metodo, non si dovr\`a tener conto dell'area correntemente visualizzata o del livello di zoom, in quanto gestiti in modo trasparente dalla classe \textit{Visualization}. Ad ogni figura \`e associato un insieme di punti significativi, come ad esempio i vertici in un quadrato, ottenibili tramite il metodo \textit{getMainPoints}. Ogni figura mantiene un colore del bordo, rappresentato dalla class \textit{Colour}. Le classi \textit{Circle} e \textit{Polygon} aggiungono un ulteriore colore per il riempimento, rappresentato dalla classe \textit{FillColour}. La classe \textit{Text} rappresenta un testo disegnato dall'utente, e mantiene delle propriet\`a aggregate dalla classe \textit{TextStyle}. A fini implementativi, le propriet\`a del testo e del colore andranno rappresentate secondo lo standard \textit{CSS}, quindi le suddette propriet\`a dovranno implementare l'interfaccia \textit{CSSProperty} che offre il metodo \textit{toCSS} responsabile della conversione dalla rappresentazione interna a quella \textit{CSS}. La classe \textit{FigureSet} mantiene l'insieme delle istanze di \textit{Figure} correntemente disegnate dall'utente e offre la possibilit\`a di selezionarne una a partire da un punto sul canvas.
+
 \subsubsezione{Conversione in \textit{SVG}}
 [inserire diagramma delle classi] \\
 Si occupa di trasformare il \textit{FigureSet} corrente in una stringa 
 contenente un documento SVG valido e viceversa. 
 \paragraph{Da \textit{FigureSet} a SVG}
-[inserire diagramma di stato]
-Le classi derivanti da \textit{Figure} implementano l'interfaccia \textit{SVGWritable}, che rappresenta un qualsiasi elemento convertibile in SVG. La conversione avviene tramite il metodo \textit{toSVG}. La classe \textit{SVGWriter} dovr\`a, nel metodo \textit{write}, creare un documento SVG vuoto e richiamare il metodo \textit{toSVG} su tutte le figure contenute, le quali genereranno gli elementi SVG necessari alla propria rappresentazione. Per creare un documento SVG si istanzia la classe \textit{SVGGenerator}, la quale offre dei metodi per generare comandi SVG. Quando tutte le figure hanno avuto la possibilit\`a di inserirsi nel documento SVG, il metodo \textit{flush} chiude il documento e lo ritorna sotto forma di stringa.
+Sia \textit{FigureSet} sia \textit{Figure} implementano l'interfaccia \textit{SVGWritable}, che rappresenta un qualsiasi elemento, o insieme di elementi, convertibile in SVG. La conversione avviene tramite il metodo \textit{toSVG}. La conversione dipende dalla classe coinvolta. La classe \textit{FigureSet} dovr\`a creare un documento SVG vuoto e richiamare il metodo \textit{toSVG} su tutte le figure contenute, le quali genereranno gli elementi SVG necessari alla propria rappresentazione. Per creare un documento SVG si istanzia la classe \textit{SVGGenerator}, la quale offre dei metodi per generare comandi SVG. Quando tutte le figure hanno avuto la possibilit\`a di inserirsi nel documento SVG, il metodo \textit{flush} chiude il documento e lo ritorna sotto forma di stringa.
 \paragraph{Da SVG a \textit{FigureSet}}
-[inserire diagramma di stato]
 L'importazione di un file SVG viene gestita dalla classe \textit{SVGReader} attraverso il metodo \textit{read}, che riceve un documento SVG valido sotto forma di stringa e restituisce un'istanza di \textit{FigureSet} corrispondente. Viene fatto il parsing del documento come \textit{XML} attraverso la classe \textit{XMLParser}, e per ogni comando SVG viene creato un'istanza di \textit{SVGTag} che lo rappresenta. Il nome del tag verr\`a usato come indice dal metodo \textit{makeFigureClassFromTag} della classe \textit{SVGElementRegistry}, che costruir\`a un'istanza della classe corrispondente. Su quest'istanza verr\`a invocato il metodo \textit{fromSVG}, il quale \`e responsabile di inizializzare la classe a partire dal tag. Per associare una classe al nome di un tag si usa il metodo \textit{register}. La classe registrata deve implementare l'interfaccia \textit{SVGReadable}. 
 
+
+
+
+
+%Inizio sezione di descrizione specifica dei componenti
 \sezione{Descrizione dei singoli componenti}
 
 \subsezione{Figure}
 \subsubsezione{Tipo, obiettivo e funzione del componente}
 Classe astratta che rappresenta una figura generica nel sistema, ovvero un oggetto disegnabile nel canvas.
 \subsubsezione{Relazioni d'uso di altre componenti}
-Mantiene un'istanza della classe \textit{BoundingRectangle} per rappresentare i limiti della figura. Contiene anche un'istanza di \textit{Colour} che rappresenta il colore del bordo. Deriva, ma non implementa, l'interfaccia \textit{SVGReadable} e l'interfaccia \textit{SVGWritable}, in quanto le sue sottoclassi dovranno essere serializzabili e deserializabili in file SVG.
+Mantiene un'istanza della classe \textit{BoundingRectangle} per rappresentare i limiti della figura. Contiene anche un'istanza di \textit{Colour} che rappresenta il colore del bordo, e un'istanza di \textit{Opacity} che rappresenta l'opacit\`a della figura. Deriva, ma non implementa, l'interfaccia \textit{SVGReadable} e l'interfaccia \textit{SVGWritable}, in quanto le sue sottoclassi dovranno essere serializzabili e deserializabili in file SVG.
 \subsubsezione{Interfacce e relazioni di uso da altre componenti}
 Viene aggregata dalla classe \textit{FigureSet}.
 \subsubsezione{Attivit\`a svolte e dati trattati}
@@ -260,10 +273,11 @@ Implementata da \textit{Colour}, \textit{TextFont} e \textit{TextSize}.
 
 \subsezione{Opacity}
 \subsubsezione{Tipo, obiettivo e funzione del componente}
-Rappresenta l'opacit\`a di un colore.
+Rappresenta l'opacit\`a di una figura.
 \subsubsezione{Relazioni d'uso di altre componenti}
+Implementa \textit{Property}.
 \subsubsezione{Interfacce e relazioni di uso da altre componenti}
-\textit{Colour} ne mantiene un'istanza.
+\textit{Figure} ne mantiene un'istanza.
 \subsubsezione{Attivit\`a svolte e dati trattati}
 Nessuna a questo livello.
 
@@ -281,7 +295,7 @@ Nessuna a questo livello.
 \subsubsezione{Tipo, obiettivo e funzione del componente}
 Rappresenta un colore.
 \subsubsezione{Relazioni d'uso di altre componenti}
-Implementa \textit{Property} e \textit{CSSProperty}. Mantiene un'istanza di \textit{Opacity} che rappresenta l'opacit\`a del colore.
+Implementa \textit{Property} e \textit{CSSProperty}.
 \subsubsezione{Interfacce e relazioni di uso da altre componenti}
 \textit{Figure} ne mantiene un'istanza per rappresentare il colore del bordo.
 \subsubsezione{Attivit\`a svolte e dati trattati}
@@ -408,145 +422,6 @@ Deriva da \textit{Figure} e ne implementa i metodi astratti. Mantiene un'istanza
 \subsubsezione{Interfacce e relazioni di uso da altre componenti}
 \subsubsezione{Attivit\`a svolte e dati trattati}
 Nessuna a questo livello.
-
-\subsezione{SVGWriter}
-\subsubsezione{Tipo, obiettivo e funzione del componente}
-Permette di creare un documento SVG.
-\subsubsezione{Relazioni d'uso di altre componenti}
-Accede alle figure correnti attraverso un'istanza di \textit{FigureSet}.
-\subsubsezione{Interfacce e relazioni di uso da altre componenti}
-\subsubsezione{Attivit\`a svolte e dati trattati}
-\begin{elencopuntato}[\textbf{}]{\subsubsecindent}
-\item \textit{write} crea un documento SVG che contiene le figure correntemente disegnate.
-\end{elencopuntato}
-
-\subsezione{SVGWritable}
-\subsubsezione{Tipo, obiettivo e funzione del componente}
-Rappresenta un oggetto convertibile in SVG.
-\subsubsezione{Relazioni d'uso di altre componenti}
-Usa \textit{SVGGenerator} per generare i comandi SVG.
-\subsubsezione{Interfacce e relazioni di uso da altre componenti}
-Implementata dalle classi che rappresentano figure.
-\subsubsezione{Attivit\`a svolte e dati trattati}
-\begin{elencopuntato}[\textbf{}]{\subsubsecindent}
-\item \textit{toSVG} converte in SVG.
-\end{elencopuntato}
-
-\subsezione{SVGGenerator}
-\subsubsezione{Tipo, obiettivo e funzione del componente}
-Rappresenta un documento SVG in costruzione.
-\subsubsezione{Relazioni d'uso di altre componenti}
-\subsubsezione{Interfacce e relazioni di uso da altre componenti}
-Usato da \textit{SVGWriter} e dalle classi che implementano \textit{SVGWritable} per realizzare un documento SVG.
-\subsubsezione{Attivit\`a svolte e dati trattati}
-\begin{elencopuntato}[\textbf{}]{\subsubsecindent}
-\item \textit{startCommand} apre un comando con il nome dato.
-\item \textit{attr} aggiunge un attributo con il nome e il valore dato al comando corrente.
-\item \textit{endCommand} chiude il comando corrente.
-\end{elencopuntato}
-
-\subsezione{XMLParser}
-\subsubsezione{Tipo, obiettivo e funzione del componente}
-Un parser SVG.
-\subsubsezione{Relazioni d'uso di altre componenti}
-\subsubsezione{Interfacce e relazioni di uso da altre componenti}
-Usato da \textit{SVGReader}.
-\subsubsezione{Attivit\`a svolte e dati trattati}
-
-\subsezione{SVGTag}
-\subsubsezione{Tipo, obiettivo e funzione del componente}
-Rappresenta un tag (ovvero un comando) SVG.
-\subsubsezione{Relazioni d'uso di altre componenti}
-\subsubsezione{Interfacce e relazioni di uso da altre componenti}
-Usato da \textit{SVGReader} e dalle classi che implementano \textit{SVGReadable}.
-\subsubsezione{Attivit\`a svolte e dati trattati}
-
-\subsezione{SVGReadable}
-\subsubsezione{Tipo, obiettivo e funzione del componente}
-Rappresenta un oggetto caricabile da un documento SVG.
-\subsubsezione{Relazioni d'uso di altre componenti}
-\subsubsezione{Interfacce e relazioni di uso da altre componenti}
-Implementata dalle classi che rappresentano figure.
-\subsubsezione{Attivit\`a svolte e dati trattati}
-\begin{elencopuntato}[\textbf{}]{\subsubsecindent}
-\item \textit{fromSVG} inizializza l'oggetto a partire da un tag SVG.
-\end{elencopuntato}
-
-\subsezione{SVGReadableClass}
-\subsubsezione{Tipo, obiettivo e funzione del componente}
-Metaclasse di \textit{SVGReadable}.
-\subsubsezione{Relazioni d'uso di altre componenti}
-\subsubsezione{Interfacce e relazioni di uso da altre componenti}
-Usata da \textit{SVGElementRegistry} per associare il nome di un tag a una classe che implementa \textit{SVGReadable}.
-\subsubsezione{Attivit\`a svolte e dati trattati}
-
-\subsezione{SVGReader}
-\subsubsezione{Tipo, obiettivo e funzione del componente}
-Permette di caricare un documento SVG.
-\subsubsezione{Relazioni d'uso di altre componenti}
-Usa \textit{XMLParser} per fare il parsing del documento testuale, crea \textit{SVGTag} e usa \textit{SVGElementRegistry} per creare una figura a partire da un tag SVG.
-\subsubsezione{Interfacce e relazioni di uso da altre componenti}
-\subsubsezione{Attivit\`a svolte e dati trattati}
-\begin{elencopuntato}[\textbf{}]{\subsubsecindent}
-\item \textit{read} prende un documento SVG e ritorna un'istanza di \textit{FigureSet} che lo rappresenta.
-\end{elencopuntato}
-
-\subsezione{SVGElementRegistry}
-\subsubsezione{Tipo, obiettivo e funzione del componente}
-Associa nomi di tag SVG a classi (non istanze) che implementano \textit{SVGReadable} e ne permette l'istanziazione. 
-\subsubsezione{Relazioni d'uso di altre componenti}
-Usa \textit{SVGReadableClass} per mantenere un riferimento ad una classe per poterla poi istanziare.
-\subsubsezione{Interfacce e relazioni di uso da altre componenti}
-Usata da \textit{SVGReader} durante la conversione di un documento SVG. Ogni classe che implementa \textit{SVGReadable} deve registrarsi.
-\subsubsezione{Attivit\`a svolte e dati trattati}
-\begin{elencopuntato}[\textbf{}]{\subsubsecindent}
-\item \textit{register} associa il nome di un tag SVG ad una classe che implementa \textit{SVGReadable}.
-\item \textit{makeFigureClassFromTag} crea un'istanza della classe associata al nome di tag passato come parametro.
-\end{elencopuntato}
-
-\subsezione{Manual}
-\subsubsezione{Tipo, obiettivo e funzione del componente}
-Rappresenta il manuale utente.
-\subsubsezione{Relazioni d'uso di altre componenti}
-Usa \textit{StaticDocument} per ottenere il file contenente il manuale.
-\subsubsezione{Interfacce e relazioni di uso da altre componenti}
-\subsubsezione{Attivit\`a svolte e dati trattati}
-\begin{elencopuntato}[\textbf{}]{\subsubsecindent}
-\item \textit{get} ritorna il manuale.
-\end{elencopuntato}
-
-\subsezione{Point}
-\subsubsezione{Tipo, obiettivo e funzione del componente}
-Un punto sul piano.
-\subsubsezione{Relazioni d'uso di altre componenti}
-\subsubsezione{Interfacce e relazioni di uso da altre componenti}
-\subsubsezione{Attivit\`a svolte e dati trattati}
-
-\subsezione{PointSeq}
-\subsubsezione{Tipo, obiettivo e funzione del componente}
-Una sequenza di \textit{Point}.
-\subsubsezione{Relazioni d'uso di altre componenti}
-\subsubsezione{Interfacce e relazioni di uso da altre componenti}
-\subsubsezione{Attivit\`a svolte e dati trattati}
-
-\subsezione{Object}
-\subsubsezione{Tipo, obiettivo e funzione del componente}
-Superclasse di ogni classe.
-\subsubsezione{Relazioni d'uso di altre componenti}
-\subsubsezione{Interfacce e relazioni di uso da altre componenti}
-Ereditata automaticamente da ogni classe.
-\subsubsezione{Attivit\`a svolte e dati trattati}
-
-\subsezione{Function}
-\subsubsezione{Tipo, obiettivo e funzione del componente}
-Una funzione di prima classe che accetta un argomento di tipo qualsiasi. La funzione pu\`o essere anonima o no.
-\subsubsezione{Relazioni d'uso di altre componenti}
-\subsubsezione{Interfacce e relazioni di uso da altre componenti}
-Usata dai metodi di iterazione, come ad esempio \textit{each} di \textit{FigureSet}, per applicare una certa operazione ad ogni elemento di una collezione.
-\subsubsezione{Attivit\`a svolte e dati trattati}
-\begin{elencopuntato}[\textbf{}]{\subsubsecindent}
-\item \textit{call} richiama la funzione.
-\end{elencopuntato}
 
 
 \subsezione{Tipo, obiettivo e funzione del componente}
