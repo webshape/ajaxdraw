@@ -244,7 +244,7 @@ Il seguente grafico descrive le interazioni tra l'utente finale e l'applicazione
 \begin{figure}[!ht]
 \centering
 \vspace{20pt} 
-\includegraphics{UCInterazione.png}
+\includegraphics{UCInterazione.jpg}
 \caption{Funzionalit\`a dell'applicazione}
 \end{figure}
 
@@ -361,7 +361,22 @@ Si rimanda a \ref{ucdisegna} per una descrizione approfondita.
 
 \subsubsezione{UC10 Caso d'uso: seleziona e modifica}
 Si rimanda a \ref{ucselezionaemodifica} per una descrizione approfondita.
+
+\subsubsezione{UC11 Caso d'uso: zoom}
+\paragraph{Attori coinvolti} Utente.
+\paragraph{Scopo e descrizione sintetica} 
+Il sistema permette all'utente di rimpicciolire o aumentare il canvas ed il suo contenuto mantenendo le proporzioni.
+\paragraph{Flusso di eventi}
+\begin{elenconumerato}[\textbf{}]{\subsubsecindent}
+\item L'utente seleziona, esplicitamente o implicitamente, la parte di canvas da mantenere al centro della visualizzazione.
+\item L'utente sceglie se aumentare o diminuire lo zoom.
+\item L'utente sceglie di quale percentuale diminuire o aumentare lo zoom.
+\item Il sistema accentra la visualizzazione dove richiesto dall'utente.
+\end{elenconumerato}
+\paragraph{Precondizioni} Il canvas \`e visualizzato all'utente ad una certa grandezza.
+\paragraph{Postcondizioni} Il canvas \`e rimpicciolito o aumentato nel punto selezionato di una certa grandezza, a partire dalla grandezza iniziale.
 \newpage
+
 \subsezione{Vista UC9 - Disegna}
 \label{ucdisegna}
 Il seguente grafico illustra le interazioni tra l'utente e il sistema per disegnare un oggetto sul canvas.
@@ -707,6 +722,7 @@ Il sistema consente di modificare la dimensione dei caratteri del testo di una c
 \label{listarequisiti}
 I requisiti elencati in seguito si dividono per tipologia (funzionale, prestazionale, di qualit\`a, di interfacciamento, d'ambiente); 
 per ognuna \`e presente una classificazione per classe di importanza (obbligatorio, desiderabile, facoltativo). Viene inoltre indicata la fonte usando un riferimento alle aspettative descritte in \textit{Aspettative.pdf}.
+Tutti i requisiti elencati in seguito sono espliciti del capitolato. 
 \subsezione{Requisiti funzionali (RF)}
 \subsubsezione{Obbligatori (RFO)}
 \begin{elenconumerato}[\textbf{RFO-}]{\subsubsecindent}
