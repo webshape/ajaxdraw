@@ -448,12 +448,16 @@ Usato da \textit{SVGWriter} e dalle classi che implementano \textit{SVGWritable}
 Un parser SVG.
 \subsubsezione{Relazioni d'uso di altre componenti}
 \subsubsezione{Interfacce e relazioni di uso da altre componenti}
-
+Usato da \textit{SVGReader}.
 \subsubsezione{Attivit\`a svolte e dati trattati}
-\begin{elencopuntato}[\textbf{}]{\subsubsecindent}
-\item \textit{toSVG} converte in SVG.
-\end{elencopuntato}
 
+\subsezione{SVGTag}
+\subsubsezione{Tipo, obiettivo e funzione del componente}
+Rappresenta un tag (ovvero un comando) SVG.
+\subsubsezione{Relazioni d'uso di altre componenti}
+\subsubsezione{Interfacce e relazioni di uso da altre componenti}
+Usato da \textit{SVGReader} e dalle classi che implementano \textit{SVGReadable}.
+\subsubsezione{Attivit\`a svolte e dati trattati}
 
 \subsezione{SVGReadable}
 \subsubsezione{Tipo, obiettivo e funzione del componente}
@@ -464,6 +468,38 @@ Implementata dalle classi che rappresentano figure.
 \subsubsezione{Attivit\`a svolte e dati trattati}
 \begin{elencopuntato}[\textbf{}]{\subsubsecindent}
 \item \textit{fromSVG} inizializza l'oggetto a partire da un tag SVG.
+\end{elencopuntato}
+
+\subsezione{SVGReadableClass}
+\subsubsezione{Tipo, obiettivo e funzione del componente}
+Metaclasse di \textit{SVGReadable}.
+\subsubsezione{Relazioni d'uso di altre componenti}
+\subsubsezione{Interfacce e relazioni di uso da altre componenti}
+Usata da \textit{SVGElementRegistry} per associare il nome di un tag a una classe che implementa \textit{SVGReadable}.
+\subsubsezione{Attivit\`a svolte e dati trattati}
+
+\subsezione{SVGReader}
+\subsubsezione{Tipo, obiettivo e funzione del componente}
+Permette di caricare un documento SVG.
+\subsubsezione{Relazioni d'uso di altre componenti}
+Usa \textit{XMLParser} per fare il parsing del documento testuale, crea \textit{SVGTag} e usa \textit{SVGElementRegistry} per creare una figura a partire da un tag SVG.
+\subsubsezione{Interfacce e relazioni di uso da altre componenti}
+\subsubsezione{Attivit\`a svolte e dati trattati}
+\begin{elencopuntato}[\textbf{}]{\subsubsecindent}
+\item \textit{read} prende un documento SVG e ritorna un'istanza di \textit{FigureSet} che lo rappresenta.
+\end{elencopuntato}
+
+\subsezione{SVGElementRegistry}
+\subsubsezione{Tipo, obiettivo e funzione del componente}
+Associa nomi di tag SVG a classi (non istanze) che implementano \textit{SVGReadable} e ne permette l'istanziazione. 
+\subsubsezione{Relazioni d'uso di altre componenti}
+Usa \textit{SVGReadableClass} per mantenere un riferimento ad una classe per poterla poi istanziare.
+\subsubsezione{Interfacce e relazioni di uso da altre componenti}
+Usata da \textit{SVGReader} durante la conversione di un documento SVG. Ogni classe che implementa \textit{SVGReadable} deve registrarsi.
+\subsubsezione{Attivit\`a svolte e dati trattati}
+\begin{elencopuntato}[\textbf{}]{\subsubsecindent}
+\item \textit{register} associa il nome di un tag SVG ad una classe che implementa \textit{SVGReadable}.
+\item \textit{makeFigureClassFromTag} crea un'istanza della classe associata al nome di tag passato come parametro.
 \end{elencopuntato}
 
 \subsezione{Tipo, obiettivo e funzione del componente}
