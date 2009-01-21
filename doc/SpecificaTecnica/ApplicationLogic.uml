@@ -57,7 +57,7 @@
 			UML 1.4
 		</plugin>
 </profile>
-<XMI xmi.version = '1.2' xmlns:UML = 'org.omg.xmi.namespace.UML' timestamp = 'Wed Jan 21 15:54:50 CET 2009'>
+<XMI xmi.version = '1.2' xmlns:UML = 'org.omg.xmi.namespace.UML' timestamp = 'Wed Jan 21 16:05:31 CET 2009'>
   <XMI.header>    <XMI.documentation>
       <XMI.exporter>ArgoUML (using Netbeans XMI Writer version 1.0)</XMI.exporter>
       <XMI.exporterVersion>0.26.2(6) revised on $Date: 2007-05-12 08:08:08 +0200 (Sat, 12 May 2007) $ </XMI.exporterVersion>
@@ -771,15 +771,6 @@
           name = 'SVGGenerator' visibility = 'public' isSpecification = 'false' isRoot = 'false'
           isLeaf = 'false' isAbstract = 'false' isActive = 'false'>
           <UML:Classifier.feature>
-            <UML:Operation xmi.id = '127-0-0-1--b80ec67:11ed5acdd93:-8000:0000000000000E73'
-              name = 'header' visibility = 'public' isSpecification = 'false' ownerScope = 'instance'
-              isQuery = 'false' concurrency = 'sequential' isRoot = 'false' isLeaf = 'false'
-              isAbstract = 'false'>
-              <UML:BehavioralFeature.parameter>
-                <UML:Parameter xmi.id = '127-0-0-1--b80ec67:11ed5acdd93:-8000:0000000000000E74'
-                  name = 'return' isSpecification = 'false' kind = 'return'/>
-              </UML:BehavioralFeature.parameter>
-            </UML:Operation>
             <UML:Operation xmi.id = '127-0-0-1--b80ec67:11ed5acdd93:-8000:0000000000000E75'
               name = 'flush' visibility = 'public' isSpecification = 'false' ownerScope = 'instance'
               isQuery = 'false' concurrency = 'sequential' isRoot = 'false' isLeaf = 'false'
@@ -4314,7 +4305,7 @@ chiamando il metodo fromSVG() l&apos;elemento viene inizializzato in base ai con
     />
   </group>
   <group name="Fig6"
-       description="org.argouml.uml.diagram.static_structure.ui.FigClass[456, 416, 200, 110]pathVisible=false;stereotypeView=0;operationsVisible=true;attributesVisible=false;"
+       description="org.argouml.uml.diagram.static_structure.ui.FigClass[472, 424, 200, 95]pathVisible=false;stereotypeView=0;operationsVisible=true;attributesVisible=false;"
        href="127-0-0-1--b80ec67:11ed5acdd93:-8000:0000000000000E6A"
        fill="1"
        fillcolor="white"
@@ -4325,17 +4316,17 @@ chiamando il metodo fromSVG() l&apos;elemento viene inizializzato in base ai con
     </private>
     
     <rectangle name="Fig6.0"
-      x="456"
-      y="416"
+      x="472"
+      y="424"
       width="200"
-      height="110"
+      height="95"
       fill="1"
       fillcolor="white"
       stroke="0"
       strokecolor="black"
     />
     <group name="Fig6.1"
-         description="org.argouml.uml.diagram.ui.FigStereotypesCompartment[456, 416, 200, 0]"
+         description="org.argouml.uml.diagram.ui.FigStereotypesCompartment[472, 424, 200, 0]"
          href="127-0-0-1--b80ec67:11ed5acdd93:-8000:0000000000000E6A"
          fill="1"
          fillcolor="white"
@@ -4346,8 +4337,8 @@ chiamando il metodo fromSVG() l&apos;elemento viene inizializzato in base ai con
       </private>
       
       <rectangle name="Fig6.1.0"
-        x="456"
-        y="416"
+        x="472"
+        y="424"
         width="200"
         height="0"
         fill="1"
@@ -4357,8 +4348,8 @@ chiamando il metodo fromSVG() l&apos;elemento viene inizializzato in base ai con
       />
     </group>
     <text name="Fig6.2"
-      x="456"
-      y="416"
+      x="472"
+      y="424"
       width="200"
       height="22"
       fill="1"
@@ -4373,7 +4364,7 @@ chiamando il metodo fromSVG() l&apos;elemento viene inizializzato in base ai con
       justification="Center"
     >SVGGenerator</text>
     <group name="Fig6.3"
-         description="org.argouml.uml.diagram.ui.FigOperationsCompartment[457, 439, 199, 86]"
+         description="org.argouml.uml.diagram.ui.FigOperationsCompartment[473, 447, 199, 71]"
          fill="1"
          fillcolor="white"
          stroke="0"
@@ -4383,10 +4374,10 @@ chiamando il metodo fromSVG() l&apos;elemento viene inizializzato in base ai con
       </private>
       
       <rectangle name="Fig6.3.0"
-        x="457"
-        y="439"
+        x="473"
+        y="447"
         width="199"
-        height="86"
+        height="71"
         fill="1"
         fillcolor="white"
         stroke="0"
@@ -4399,31 +4390,15 @@ chiamando il metodo fromSVG() l&apos;elemento viene inizializzato in base ai con
         stroke="1"
         strokecolor="black"
       >
-        <moveto x="457"
-                y="439" />
-        <lineto x="656"
-                y="439" />
+        <moveto x="473"
+                y="447" />
+        <lineto x="672"
+                y="447" />
       </path>
       <text name="Fig6.3.2"
-        x="457"
-        y="440"
-        width="55"
-        height="15"
-        fill="0"
-        fillcolor="white"
-        stroke="0"
-        strokecolor="black"
-        textcolor="black"
-        font="Dialog"
-        italic="false"
-        bold="false"
-        textsize="12"
-        justification="Left"
-      >header()</text>
-      <text name="Fig6.3.3"
-        x="457"
-        y="455"
-        width="85"
+        x="473"
+        y="448"
+        width="88"
         height="15"
         fill="0"
         fillcolor="white"
@@ -4436,10 +4411,10 @@ chiamando il metodo fromSVG() l&apos;elemento viene inizializzato in base ai con
         textsize="12"
         justification="Left"
       >flush() : String</text>
-      <text name="Fig6.3.4"
-        x="457"
-        y="470"
-        width="175"
+      <text name="Fig6.3.3"
+        x="473"
+        y="463"
+        width="178"
         height="15"
         fill="0"
         fillcolor="white"
@@ -4452,9 +4427,9 @@ chiamando il metodo fromSVG() l&apos;elemento viene inizializzato in base ai con
         textsize="12"
         justification="Left"
       >startCommand(name : String)</text>
-      <text name="Fig6.3.5"
-        x="457"
-        y="485"
+      <text name="Fig6.3.4"
+        x="473"
+        y="478"
         width="95"
         height="15"
         fill="0"
@@ -4468,10 +4443,10 @@ chiamando il metodo fromSVG() l&apos;elemento viene inizializzato in base ai con
         textsize="12"
         justification="Left"
       >endCommand()</text>
-      <text name="Fig6.3.6"
-        x="457"
-        y="500"
-        width="188"
+      <text name="Fig6.3.5"
+        x="473"
+        y="493"
+        width="192"
         height="21"
         fill="0"
         fillcolor="white"
@@ -4486,7 +4461,7 @@ chiamando il metodo fromSVG() l&apos;elemento viene inizializzato in base ai con
       >attr(name : String,value : String)</text>
     </group>
     <group name="Fig6.4"
-         description="org.argouml.uml.diagram.ui.FigAttributesCompartment[457, 439, 199, 20]"
+         description="org.argouml.uml.diagram.ui.FigAttributesCompartment[473, 447, 199, 20]"
          fill="1"
          fillcolor="white"
          stroke="0"
@@ -4497,8 +4472,8 @@ chiamando il metodo fromSVG() l&apos;elemento viene inizializzato in base ai con
       </private>
       
       <rectangle name="Fig6.4.0"
-        x="457"
-        y="439"
+        x="473"
+        y="447"
         width="199"
         height="20"
         fill="1"
@@ -4515,17 +4490,17 @@ chiamando il metodo fromSVG() l&apos;elemento viene inizializzato in base ai con
         strokecolor="black"
         visibility="0"
       >
-        <moveto x="457"
-                y="439" />
-        <lineto x="656"
-                y="439" />
+        <moveto x="473"
+                y="447" />
+        <lineto x="672"
+                y="447" />
       </path>
     </group>
     <rectangle name="Fig6.5"
-      x="456"
-      y="416"
+      x="472"
+      y="424"
       width="200"
-      height="110"
+      height="95"
       fill="0"
       fillcolor="white"
       stroke="1"
@@ -7753,7 +7728,7 @@ chiamando il metodo fromSVG() l&apos;elemento viene inizializzato in base ai con
         x="265"
         y="409"
         width="162"
-        height="21"
+        height="24"
         fill="0"
         fillcolor="white"
         stroke="0"
@@ -7823,7 +7798,7 @@ chiamando il metodo fromSVG() l&apos;elemento viene inizializzato in base ai con
     >
       <moveto x="427"
               y="435" />
-      <lineto x="456"
+      <lineto x="472"
               y="435" />
     </path>
   </group>
@@ -10440,7 +10415,7 @@ chiamando il metodo fromSVG() l&apos;elemento viene inizializzato in base ai con
     >
       <moveto x="215"
               y="472" />
-      <lineto x="456"
+      <lineto x="472"
               y="472" />
     </path>
   </group>
