@@ -452,8 +452,8 @@ Permette di creare un documento SVG.
 Accede alle figure correnti attraverso un'istanza di \textit{FigureSet}.
 \subsubsezione{Interfacce e relazioni di uso da altre componenti}
 \subsubsezione{Attivit\`a svolte e dati trattati}
-\begin{elencopuntato}[\textbf{}]{\subsubsecindent}
-\item \textit{write} crea un documento SVG che contiene le figure correntemente disegnate.
+\begin{elencopuntato}[\normindent]
+\item[-] \textit{write} crea un documento SVG che contiene le figure correntemente disegnate.
 \end{elencopuntato}
 
 \subsezione{SVGWritable}
@@ -464,8 +464,8 @@ Usa \textit{SVGGenerator} per generare i comandi SVG.
 \subsubsezione{Interfacce e relazioni di uso da altre componenti}
 Implementata dalle classi che rappresentano figure.
 \subsubsezione{Attivit\`a svolte e dati trattati}
-\begin{elencopuntato}[\textbf{}]{\subsubsecindent}
-\item \textit{toSVG} converte in SVG.
+\begin{elencopuntato}[\normindent]
+\item[-] \textit{toSVG} converte in SVG.
 \end{elencopuntato}
 
 \subsezione{SVGGenerator}
@@ -475,10 +475,10 @@ Rappresenta un documento SVG in costruzione.
 \subsubsezione{Interfacce e relazioni di uso da altre componenti}
 Usato da \textit{SVGWriter} e dalle classi che implementano \textit{SVGWritable} per realizzare un documento SVG.
 \subsubsezione{Attivit\`a svolte e dati trattati}
-\begin{elencopuntato}[\textbf{}]{\subsubsecindent}
-\item \textit{startCommand} apre un comando con il nome dato.
-\item \textit{attr} aggiunge un attributo con il nome e il valore dato al comando corrente.
-\item \textit{endCommand} chiude il comando corrente.
+\begin{elencopuntato}[\normindent]
+\item[-] \textit{startCommand} apre un comando con il nome dato.
+\item[-] \textit{attr} aggiunge un attributo con il nome e il valore dato al comando corrente.
+\item[-] \textit{endCommand} chiude il comando corrente.
 \end{elencopuntato}
 
 \subsezione{XMLParser}
@@ -504,8 +504,8 @@ Rappresenta un oggetto caricabile da un documento SVG.
 \subsubsezione{Interfacce e relazioni di uso da altre componenti}
 Implementata dalle classi che rappresentano figure.
 \subsubsezione{Attivit\`a svolte e dati trattati}
-\begin{elencopuntato}[\textbf{}]{\subsubsecindent}
-\item \textit{fromSVG} inizializza l'oggetto a partire da un tag SVG.
+\begin{elencopuntato}[\normindent]
+\item[-] \textit{fromSVG} inizializza l'oggetto a partire da un tag SVG.
 \end{elencopuntato}
 
 \subsezione{SVGReadableClass}
@@ -523,8 +523,8 @@ Permette di caricare un documento SVG.
 Usa \textit{XMLParser} per fare il parsing del documento testuale, crea \textit{SVGTag} e usa \textit{SVGElementRegistry} per creare una figura a partire da un tag SVG.
 \subsubsezione{Interfacce e relazioni di uso da altre componenti}
 \subsubsezione{Attivit\`a svolte e dati trattati}
-\begin{elencopuntato}[\textbf{}]{\subsubsecindent}
-\item \textit{read} prende un documento SVG e ritorna un'istanza di \textit{FigureSet} che lo rappresenta.
+\begin{elencopuntato}[\normindent]
+\item[-] \textit{read} prende un documento SVG e ritorna un'istanza di \textit{FigureSet} che lo rappresenta.
 \end{elencopuntato}
 
 \subsezione{SVGElementRegistry}
@@ -535,9 +535,9 @@ Usa \textit{SVGReadableClass} per mantenere un riferimento ad una classe per pot
 \subsubsezione{Interfacce e relazioni di uso da altre componenti}
 Usata da \textit{SVGReader} durante la conversione di un documento SVG. Ogni classe che implementa \textit{SVGReadable} deve registrarsi.
 \subsubsezione{Attivit\`a svolte e dati trattati}
-\begin{elencopuntato}[\textbf{}]{\subsubsecindent}
-\item \textit{register} associa il nome di un tag SVG ad una classe che implementa \textit{SVGReadable}.
-\item \textit{makeFigureClassFromTag} crea un'istanza della classe associata al nome di tag passato come parametro.
+\begin{elencopuntato}[\normindent]
+\item[-] \textit{register} associa il nome di un tag SVG ad una classe che implementa \textit{SVGReadable}.
+\item[-] \textit{makeFigureClassFromTag} crea un'istanza della classe associata al nome di tag passato come parametro.
 \end{elencopuntato}
 
 \subsezione{Manual}
@@ -547,8 +547,8 @@ Rappresenta il manuale utente.
 Usa \textit{StaticDocument} per ottenere il file contenente il manuale.
 \subsubsezione{Interfacce e relazioni di uso da altre componenti}
 \subsubsezione{Attivit\`a svolte e dati trattati}
-\begin{elencopuntato}[\textbf{}]{\subsubsecindent}
-\item \textit{get} ritorna il manuale.
+\begin{elencopuntato}[\normindent]
+\item[-] \textit{get} ritorna il manuale.
 \end{elencopuntato}
 
 \subsezione{Point}
@@ -580,8 +580,8 @@ Una funzione di prima classe che accetta un argomento di tipo qualsiasi. La funz
 \subsubsezione{Interfacce e relazioni di uso da altre componenti}
 Usata dai metodi di iterazione, come ad esempio \textit{each} di \textit{FigureSet}, per applicare una certa operazione ad ogni elemento di una collezione.
 \subsubsezione{Attivit\`a svolte e dati trattati}
-\begin{elencopuntato}[\textbf{}]{\subsubsecindent}
-\item \textit{call} richiama la funzione.
+\begin{elencopuntato}[\normindent]
+\item[-] \textit{call} richiama la funzione.
 \end{elencopuntato}
 
 
