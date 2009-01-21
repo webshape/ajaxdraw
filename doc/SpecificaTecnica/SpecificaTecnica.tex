@@ -202,7 +202,7 @@ L'importazione di un file SVG viene gestita dalla classe \textit{SVGReader} attr
 \subsubsezione{Tipo, obiettivo e funzione del componente}
 Classe astratta che rappresenta una figura generica nel sistema, ovvero un oggetto disegnabile nel canvas.
 \subsubsezione{Relazioni d'uso di altre componenti}
-Mantiene un'istanza della classe \textit{BoundingRectangle} per rappresentare i limiti della figura. Contiene anche un'istanza di \textit{Colour} che rappresenta il colore del bordo, e un'istanza di \textit{Opacity} che rappresenta l'opacit\`a della figura. Deriva, ma non implementa, l'interfaccia \textit{SVGReadable} e l'interfaccia \textit{SVGWritable}, in quanto le sue sottoclassi dovranno essere serializzabili e deserializabili in file SVG.
+Mantiene un'istanza della classe \textit{BoundingRectangle} per rappresentare i limiti della figura. Contiene anche un'istanza di \textit{Colour} che rappresenta il colore del bordo. Deriva, ma non implementa, l'interfaccia \textit{SVGReadable} e l'interfaccia \textit{SVGWritable}, in quanto le sue sottoclassi dovranno essere serializzabili e deserializabili in file SVG.
 \subsubsezione{Interfacce e relazioni di uso da altre componenti}
 Viene aggregata dalla classe \textit{FigureSet}.
 \subsubsezione{Attivit\`a svolte e dati trattati}
@@ -255,11 +255,10 @@ Implementata da \textit{Colour}, \textit{TextFont} e \textit{TextSize}.
 
 \subsezione{Opacity}
 \subsubsezione{Tipo, obiettivo e funzione del componente}
-Rappresenta l'opacit\`a di una figura.
+Rappresenta l'opacit\`a di un colore.
 \subsubsezione{Relazioni d'uso di altre componenti}
-Implementa \textit{Property}.
 \subsubsezione{Interfacce e relazioni di uso da altre componenti}
-\textit{Figure} ne mantiene un'istanza.
+\textit{Colour} ne mantiene un'istanza.
 \subsubsezione{Attivit\`a svolte e dati trattati}
 Nessuna a questo livello.
 
@@ -277,7 +276,7 @@ Nessuna a questo livello.
 \subsubsezione{Tipo, obiettivo e funzione del componente}
 Rappresenta un colore.
 \subsubsezione{Relazioni d'uso di altre componenti}
-Implementa \textit{Property} e \textit{CSSProperty}.
+Implementa \textit{Property} e \textit{CSSProperty}. Mantiene un'istanza di \textit{Opacity} che rappresenta l'opacit\`a del colore.
 \subsubsezione{Interfacce e relazioni di uso da altre componenti}
 \textit{Figure} ne mantiene un'istanza per rappresentare il colore del bordo.
 \subsubsezione{Attivit\`a svolte e dati trattati}
