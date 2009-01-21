@@ -209,12 +209,12 @@ Mantiene un'istanza della classe \textit{BoundingRectangle} per rappresentare i 
 \subsubsezione{Interfacce e relazioni di uso da altre componenti}
 Viene aggregata dalla classe \textit{FigureSet}.
 \subsubsezione{Attivit\`a svolte e dati trattati}
-\begin{elencopuntato}[\textbf{}]{\subsubsecindent}
-\item \textit{draw} metodo astratto per disegnare la figura sul canvas
-\item \textit{getMainPoints} metodo astratto per ottenere i punti della figura manipolabili dall'utente.
-\item \textit{setSelection} permette di selezionare/deselezionare la figura.
-\item \textit{isSelected} dice se la figura \`e correntemente selezionata.
-\item \textit{eachProperty} applica la funzione fn ad ogni propriet\`a della figura.
+\begin{elencopuntato}[\normindent]
+\item[-]  \textit{draw} metodo astratto per disegnare la figura sul canvas
+\item[-]  \textit{getMainPoints} metodo astratto per ottenere i punti della figura manipolabili dall'utente.
+\item[-]  \textit{setSelection} permette di selezionare/deselezionare la figura.
+\item[-]  \textit{isSelected} dice se la figura \`e correntemente selezionata.
+\item[-]  \textit{eachProperty} applica la funzione fn ad ogni propriet\`a della figura.
 \end{elencopuntato}
 
 \subsezione{FigureSet}
@@ -225,11 +225,11 @@ Contiene le istanze di \textit{Figure} correntemente attive.
 \subsubsezione{Interfacce e relazioni di uso da altre componenti}
 Usata dalla classe \textit{SVGWriter} per serializzare in SVG le figure correnti a dall'interfaccia utente per accedere alle figure. Pu\`o venire generata dalla classe \textit{SVGReader} dopo la deserializzazione di un file SVG.
 \subsubsezione{Attivit\`a svolte e dati trattati}
-\begin{elencopuntato}[\textbf{}]{\subsubsecindent}
-\item \textit{selectFigure} permette di selezionare una figura contenente il punto passato come argomento, se tale figura esiste.
-\item \textit{each} permette di applicare una funzione ad ogni figura.
-\item \textit{add} aggiunge una figura all'insieme
-\item \textit{rem} rimuove una figura dall'insieme se presente
+\begin{elencopuntato}[\normindent]
+\item[-]  \textit{selectFigure} permette di selezionare una figura contenente il punto passato come argomento, se tale figura esiste.
+\item[-]  \textit{each} permette di applicare una funzione ad ogni figura.
+\item[-]  \textit{add} aggiunge una figura all'insieme
+\item[-]  \textit{rem} rimuove una figura dall'insieme se presente
 \end{elencopuntato}
 
 \subsezione{Property}
@@ -240,8 +240,8 @@ Nessuna.
 \subsubsezione{Interfacce e relazioni di uso da altre componenti}
 Implementata da tutte le propriet\`a concrete delle diverse figure.
 \subsubsezione{Attivit\`a svolte e dati trattati}
-\begin{elencopuntato}[\textbf{}]{\subsubsecindent}
-\item \textit{createWidget} crea un widget grafico che permetter\`a di modificare la propriet\`a all'utente.
+\begin{elencopuntato}[\normindent]
+\item[-] \textit{createWidget} crea un widget grafico che permetter\`a di modificare la propriet\`a all'utente.
 \end{elencopuntato}
 
 \subsezione{CSSProperty}
@@ -252,8 +252,8 @@ Nessuna.
 \subsubsezione{Interfacce e relazioni di uso da altre componenti}
 Implementata da \textit{Colour}, \textit{TextFont} e \textit{TextSize}. 
 \subsubsezione{Attivit\`a svolte e dati trattati}
-\begin{elencopuntato}[\textbf{}]{\subsubsecindent}
-\item \textit{toCSS} genera una stringa che rappresenta la propriet\`a come propriet\`a CSS.
+\begin{elencopuntato}[\normindent]
+\item[-] \textit{toCSS} genera una stringa che rappresenta la propriet\`a come propriet\`a CSS.
 \end{elencopuntato}
 
 \subsezione{Opacity}
@@ -385,8 +385,8 @@ Deriva da \textit{Line} e ne implementa i metodi astratti. Mantiene una lista di
 \subsubsezione{Interfacce e relazioni di uso da altre componenti}
 Usata come base da \textit{BezierCurve}.
 \subsubsezione{Attivit\`a svolte e dati trattati}
-\begin{elencopuntato}[\textbf{}]{\subsubsecindent}
-\item \textit{eachPoint} applica una funzione ad ogni nodo della linea.
+\begin{elencopuntato}[\normindent]
+\item[-] \textit{eachPoint} applica una funzione ad ogni nodo della linea.
 \end{elencopuntato}
 
 \subsezione{BezierCurve}
