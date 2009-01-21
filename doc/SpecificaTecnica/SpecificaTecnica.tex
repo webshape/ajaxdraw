@@ -407,6 +407,42 @@ Deriva da \textit{Figure} e ne implementa i metodi astratti. Mantiene un'istanza
 \subsubsezione{Attivit\`a svolte e dati trattati}
 Nessuna a questo livello.
 
+\subsezione{SVGWriter}
+\subsubsezione{Tipo, obiettivo e funzione del componente}
+Permette di creare un documento SVG.
+\subsubsezione{Relazioni d'uso di altre componenti}
+Accede alle figure correnti attraverso un'istanza di \textit{FigureSet}.
+\subsubsezione{Interfacce e relazioni di uso da altre componenti}
+\subsubsezione{Attivit\`a svolte e dati trattati}
+\begin{elencopuntato}[\textbf{}]{\subsubsecindent}
+\item \textit{write} crea un documento SVG che contiene le figure correntemente disegnate.
+\end{elencopuntato}
+
+\subsezione{SVGWritable}
+\subsubsezione{Tipo, obiettivo e funzione del componente}
+Rappresenta un oggetto convertibile in SVG.
+\subsubsezione{Relazioni d'uso di altre componenti}
+Usa \textit{SVGGenerator} per generare i comandi SVG.
+\subsubsezione{Interfacce e relazioni di uso da altre componenti}
+Implementata dalle classi che rappresentano figure.
+\subsubsezione{Attivit\`a svolte e dati trattati}
+\begin{elencopuntato}[\textbf{}]{\subsubsecindent}
+\item \textit{toSVG} converte in SVG.
+\end{elencopuntato}
+
+\subsezione{SVGGenerator}
+\subsubsezione{Tipo, obiettivo e funzione del componente}
+Rappresenta un documento SVG in costruzione.
+\subsubsezione{Relazioni d'uso di altre componenti}
+\subsubsezione{Interfacce e relazioni di uso da altre componenti}
+Usato da \textit{SVGWriter} e dalle classi che implementano \textit{SVGWritable} per realizzare un documento SVG.
+\subsubsezione{Attivit\`a svolte e dati trattati}
+\begin{elencopuntato}[\textbf{}]{\subsubsecindent}
+\item \textit{startCommand} apre un comando con il nome dato.
+\item \textit{attr} aggiunge un attributo con il nome e il valore dato al comando corrente.
+\item \textit{endCommand} chiude il comando corrente.
+\end{elencopuntato}
+
 
 \subsezione{Tipo, obiettivo e funzione del componente}
 \subsezione{Relazioni d'uso di altre componenti}
