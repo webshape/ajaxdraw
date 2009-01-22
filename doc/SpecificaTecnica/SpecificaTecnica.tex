@@ -245,7 +245,222 @@ Le classi derivanti da \textit{Figure} implementano l'interfaccia \textit{SVGWri
 L'importazione di un file SVG viene gestita dalla classe \textit{SVGReader} attraverso il metodo \textit{read}, che riceve un documento SVG valido sotto forma di stringa e restituisce un'istanza di \textit{FigureSet} corrispondente. Viene fatto il parsing del documento come \textit{XML} attraverso la classe \textit{XMLParser}, e per ogni comando SVG viene creato un'istanza di \textit{SVGTag} che lo rappresenta. Il nome del tag verr\`a usato come indice dal metodo \textit{makeFigureClassFromTag} della classe \textit{SVGElementRegistry}, che costruir\`a un'istanza della classe corrispondente. Su quest'istanza verr\`a invocato il metodo \textit{fromSVG}, il quale \`e responsabile di inizializzare la classe a partire dal tag. Per associare una classe al nome di un tag si usa il metodo \textit{register}. La classe registrata deve implementare l'interfaccia \textit{SVGReadable}. 
 
 \sezione{Descrizione dei singoli componenti}
+%Parte Piero
+\subsezione{Widget}
+\subsubsezione{Tipo, obiettivo e funzione del componente}
+Rappresenta un generico oggetto grafico presente nella GUI.
+\subsubsezione{Relazioni d'uso di altre componenti}
+Nessuna.
+\subsubsezione{Interfacce e relazioni di uso da altre componenti}
+Implementata da tutti gli oggetti grafici concreti presenti nella pagina.
+\subsubsezione{Attivit\`a svolte e dati trattati}
+Nessuna a questo livello.
 
+\subsezione{Toolbar}
+\subsubsezione{Tipo, obiettivo e funzione del componente}
+Classe concreta che rappresenta la toolbar dalla quale scegliere la funzione desiderata.
+\subsubsezione{Relazioni d'uso di altre componenti}
+\` E formata da pi\` u istanze aggregate della classe \textit{Button}, per rappresentare ciascun tool selezionabile. Oltre a \textit{Widget}, implementa l'interfaccia \textit{UserClickEvent} per la gestione dei click del mouse. 
+\subsubsezione{Interfacce e relazioni di uso da altre componenti}
+\textit{Page} ne mantiene un'istanza.
+\subsubsezione{Attivit\`a svolte e dati trattati}
+Nessuna a questo livello.
+
+\subsezione{Button}
+\subsubsezione{Tipo, obiettivo e funzione del componente}
+Classe concreta che rappresenta un generico pulsante tramite il quale effettuare l'operazione desiderata.
+\subsubsezione{Relazioni d'uso di altre componenti}
+Oltre a \textit{Widget}, implementa l'interfaccia \textit{UserClickEvent} per la gestione dei click del mouse.  
+\subsubsezione{Interfacce e relazioni di uso da altre componenti}
+\textit{Page} e \textit{Toolbar }ne mantengono una o pi\` u istanze.
+\subsubsezione{Attivit\`a svolte e dati trattati}
+\begin{elencopuntato}[\normindent]
+\item[-]  \textit{setPressed} metodo che valuta la pressione del bottone per decidere le operazioni da effettuare.
+\end{elencopuntato}
+
+\subsezione{Palette}
+\subsubsezione{Tipo, obiettivo e funzione del componente}
+Classe concreta che rappresenta la paletta dei colori principali da utilizzare sulle figure disegnate e da disegnare.
+\subsubsezione{Relazioni d'uso di altre componenti}
+Oltre a \textit{Widget}, implementa l'interfaccia \textit{UserClickEvent} per la gestione dei click del mouse. Usa il metodo setColor della classe \textit{ColourDialog} per effettuare il cambiamento di colore alla figura.
+\subsubsezione{Interfacce e relazioni di uso da altre componenti}
+\textit{Page} ne mantiene un'istanza.
+\subsubsezione{Attivit\`a svolte e dati trattati}
+Nessuna a questo livello.
+
+\subsezione{ColourDialog}
+\subsubsezione{Tipo, obiettivo e funzione del componente}
+Classe concreta che rappresenta il menu di modifica dei colori di riempimento e dei bordi delle figure disegnate e da disegnare.
+\subsubsezione{Relazioni d'uso di altre componenti}
+Implementa \textit{Widget}.
+\subsubsezione{Interfacce e relazioni di uso da altre componenti}
+\textit{Page} ne mantiene un'istanza.
+\subsubsezione{Attivit\`a svolte e dati trattati}
+\begin{elencopuntato}[\normindent]
+\item[-]  \textit{setColour} metodo che setta il colore scelto sulla figura da disegnare o selezionata sul canvas.
+\end{elencopuntato}
+
+\subsezione{PropertiesDialog}
+\subsubsezione{Tipo, obiettivo e funzione del componente}
+Classe concreta che rappresenta  il menu di modifica delle propriet\` a di un oggetto selezionato o da disegnare sul canvas.
+\subsubsezione{Relazioni d'uso di altre componenti}
+\` E formata da pi\` u istanze aggregate tra cui \textit{BoundingRectagleSetter}, \textit{EdgeNumberSetter} e \textit{FontSetter}. Implementa \textit{Widget}.
+\subsubsezione{Interfacce e relazioni di uso da altre componenti}
+\textit{Page} ne mantiene un'istanza.
+\subsubsezione{Attivit\`a svolte e dati trattati}
+Nessuna a questo livello.
+
+\subsezione{BoundingRectagleSetter}
+\subsubsezione{Tipo, obiettivo e funzione del componente}
+Classe concreta che rappresenta l'oggetto che si occupa di modificare le coordinate del rettangolo contenente la figura.
+\subsubsezione{Relazioni d'uso di altre componenti}
+Nessuna.
+\subsubsezione{Interfacce e relazioni di uso da altre componenti}
+\textit{PropertiesDialog} ne mantiene un'istanza.
+\subsubsezione{Attivit\`a svolte e dati trattati}
+Nessuna a questo livello.
+
+\subsezione{EdgeNumberSetter}
+\subsubsezione{Tipo, obiettivo e funzione del componente}
+Classe concreta che rappresenta l'oggetto che si occupa di modificare il numero di lati della figura da disegnare o selezionata.
+\subsubsezione{Relazioni d'uso di altre componenti}
+Nessuna.
+\subsubsezione{Interfacce e relazioni di uso da altre componenti}
+\textit{PropertiesDialog} ne mantiene un'istanza.
+\subsubsezione{Attivit\`a svolte e dati trattati}
+Nessuna a questo livello.
+
+\subsezione{FontSetter}
+\subsubsezione{Tipo, obiettivo e funzione del componente}
+Classe concreta che rappresenta l'oggetto che si occupa di modificare il font di una casella di testo da disegnare o selezionata.
+\subsubsezione{Relazioni d'uso di altre componenti}
+\` E formata dalle istanze aggregate di \textit{FontSizeSetter} e \textit{FontTypeSetter}.
+\subsubsezione{Interfacce e relazioni di uso da altre componenti}
+\textit{PropertiesDialog} ne mantiene un'istanza.
+\subsubsezione{Attivit\`a svolte e dati trattati}
+Nessuna a questo livello.
+
+\subsezione{FontSizeSetter}
+\subsubsezione{Tipo, obiettivo e funzione del componente}
+Classe concreta che rappresenta l'oggetto che si occupa di modificare la dimensione del carattere di una casella di testo da disegnare o selezionata.
+\subsubsezione{Relazioni d'uso di altre componenti}
+Nessuna.
+\subsubsezione{Interfacce e relazioni di uso da altre componenti}
+\textit{FontSetter} ne mantiene un'istanza.
+\subsubsezione{Attivit\`a svolte e dati trattati}
+Nessuna a questo livello.
+
+\subsezione{FontTypeSetter}
+\subsubsezione{Tipo, obiettivo e funzione del componente}
+Classe concreta che rappresenta l'oggetto che si occupa di modificare il tipo di carattere di una casella di testo da disegnare o selezionata.
+\subsubsezione{Relazioni d'uso di altre componenti}
+Nessuna.
+\subsubsezione{Interfacce e relazioni di uso da altre componenti}
+\textit{FontSetter} ne mantiene un'istanza.
+\subsubsezione{Attivit\`a svolte e dati trattati}
+Nessuna a questo livello.
+
+\subsezione{UserClickEvent}
+\subsubsezione{Tipo, obiettivo e funzione del componente}
+Rappresenta la risposta ad un click dell'utente su un oggetto che implementa tale intefaccia.
+\subsubsezione{Relazioni d'uso di altre componenti}
+Utilizza un generico evento, istanza della classe \textit{Event}, per la gestione del click del mouse.
+\subsubsezione{Interfacce e relazioni di uso da altre componenti}
+\`E implementata dalle classi \textit{Toolbar}, \textit{Palette}, \textit{Canvas}, e \textit{Button}. 
+\subsubsezione{Attivit\`a svolte e dati trattati}
+\begin{elencopuntato}[\normindent]
+\item[-]  \textit{onclick} gestisce la pressione del pulsante del mouse su un oggetto che implementa l'interfaccia.
+\end{elencopuntato}
+
+\subsezione{Canvas}
+\subsubsezione{Tipo, obiettivo e funzione del componente}
+Classe che rappresenta il canvas, oggetto sul quale verrano disegnate le figure dall'utente.
+\subsubsezione{Relazioni d'uso di altre componenti}
+Implementa le interfacce \textit{MouseMovePressed} e \textit{MouseMoveReleased}, per tenere traccia della pressione del pulsante sinistro del mouse e del suo trascinamento, oltre a \textit{Widget}.
+\subsubsezione{Interfacce e relazioni di uso da altre componenti}
+Compone un'istanza di \textit{Visualization}, che si occupa della sua visualizzazione su schermo.
+\subsubsezione{Attivit\`a svolte e dati trattati}
+\begin{elencopuntato}[\normindent]
+\item[-]  \textit{clear} imposta il canvas alla sua condizione iniziale.
+\end{elencopuntato}
+
+\subsezione{OnMouseMove}
+\subsubsezione{Tipo, obiettivo e funzione del componente}
+Rappresenta un generico stato di utilizzo del mouse.
+\subsubsezione{Relazioni d'uso di altre componenti}
+Utilizza un'istanza della classe \textit{Event}.
+\subsubsezione{Interfacce e relazioni di uso da altre componenti}
+\` E esteso dalle interfacce \textit{MouseMovePressed} e \textit{MouseMoveReleased}, per la gestione pi\` u specifica della pressione del pulsante sinistro del mouse.
+\subsubsezione{Attivit\`a svolte e dati trattati}
+\begin{elencopuntato}[\normindent]
+\item[-]  \textit{onclick} gestisce il generico click del mouse.
+\end{elencopuntato}
+
+\subsezione{MouseMovePressed}
+\subsubsezione{Tipo, obiettivo e funzione del componente}
+Rappresenta lo stato di pressione del pulsante sinistro del mouse.
+\subsubsezione{Relazioni d'uso di altre componenti}
+Estende \textit{OnMouseMove}.
+\subsubsezione{Interfacce e relazioni di uso da altre componenti}
+Viene implementato dall'istanza della classe \textit{Canvas}, per gestire il caso del pulsante del mouse premuto.
+\subsubsezione{Attivit\`a svolte e dati trattati}
+Nessuna a questo livello.
+
+\subsezione{MouseMoveReleased}
+\subsubsezione{Tipo, obiettivo e funzione del componente}
+Rappresenta lo stato di rilascio del pulsante sinistro del mouse a seguito della sua pressione.
+\subsubsezione{Relazioni d'uso di altre componenti}
+Estende \textit{OnMouseMovePressed}.
+\subsubsezione{Interfacce e relazioni di uso da altre componenti}
+Viene implementato dall'istanza della classe \textit{Canvas}, per gestire il caso del pulsante del mouse premuto.
+\subsubsezione{Attivit\`a svolte e dati trattati}
+Nessuna a questo livello.
+
+\subsezione{Event}
+\subsubsezione{Tipo, obiettivo e funzione del componente}
+Classe che rappresenta un generico evento generato da un'azione prestabilita.
+\subsubsezione{Relazioni d'uso di altre componenti}
+Nessuna.
+\subsubsezione{Interfacce e relazioni di uso da altre componenti}
+Viene utilizzato dalle interfacce \textit{OnMouseMove} e \textit{UserClickEvent}, a seguito dell'utilizzo del mouse per effettuare qualche operazione.
+\subsubsezione{Attivit\`a svolte e dati trattati}
+Nessuna a questo livello.
+
+\subsezione{Page}
+\subsubsezione{Tipo, obiettivo e funzione del componente}
+Classe concreta che rappresenta la pagina web visualizzata dall'utente tramite l'internet browser.
+\subsubsezione{Relazioni d'uso di altre componenti}
+\` E composta da istanze delle classi \textit{Toolbar}, \textit{Button}, \textit{Palette}, \textit{ColourDialog}, \textit{PropertiesDialog} e \textit{Visualization}.
+\subsubsezione{Interfacce e relazioni di uso da altre componenti}
+Nessuna.
+\subsubsezione{Attivit\`a svolte e dati trattati}
+Nessuna a questo livello.
+
+\subsezione{Visualization}
+\subsubsezione{Tipo, obiettivo e funzione del componente}
+Classe concreta che si occupa delle operazioni di visualizzazione del canvas su schermo. 
+\subsubsezione{Relazioni d'uso di altre componenti}
+\` E composta da un'istanza della classe \textit{Canvas}. Utilizza istanze di \textit{Scale} e \textit{BoundingRectangle}.
+\subsubsezione{Interfacce e relazioni di uso da altre componenti}
+\textit{Page} ne mantiene un'istanza.
+\subsubsezione{Attivit\`a svolte e dati trattati}
+\begin{elencopuntato}[\normindent]
+\item[-]  \textit{zoom} metodo che si occupa del riscalamento a seguito di uno zoom sul canvas.
+\item[-]  \textit{setVisibleRect} metodo usato per settare l'area di canvas visualizzata.
+\item[-]  \textit{refresh} si occupa dell'aggiornamento della situazione del canvas visualizzato.
+\end{elencopuntato}
+
+\subsezione{Scale}
+\subsubsezione{Tipo, obiettivo e funzione del componente}
+Classe concreta che si occupa delle operazioni di riscalamento del canvas su schermo. 
+\subsubsezione{Relazioni d'uso di altre componenti}
+Nessuna.
+\subsubsezione{Interfacce e relazioni di uso da altre componenti}
+\textit{Visualization} ne utilizza un'istanza.
+\subsubsezione{Attivit\`a svolte e dati trattati}
+Nessuna a questo livello.
+
+%Parte Dissegna
 \subsezione{Figure}
 \subsubsezione{Tipo, obiettivo e funzione del componente}
 Classe astratta che rappresenta una figura generica nel sistema, ovvero un oggetto disegnabile nel canvas.
@@ -255,7 +470,7 @@ Mantiene un'istanza della classe \textit{BoundingRectangle} per rappresentare i 
 Viene aggregata dalla classe \textit{FigureSet}.
 \subsubsezione{Attivit\`a svolte e dati trattati}
 \begin{elencopuntato}[\normindent]
-\item[-]  \textit{draw} metodo astratto per disegnare la figura sul canvas
+\item[-]  \textit{draw} metodo astratto per disegnare la figura sul canvas.
 \item[-]  \textit{getMainPoints} metodo astratto per ottenere i punti della figura manipolabili dall'utente.
 \item[-]  \textit{setSelection} permette di selezionare/deselezionare la figura.
 \item[-]  \textit{isSelected} dice se la figura \`e correntemente selezionata.
@@ -591,11 +806,11 @@ Usata dai metodi di iterazione, come ad esempio \textit{each} di \textit{FigureS
 \item[-] \textit{call} richiama la funzione.
 \end{elencopuntato}
 
-
-\subsezione{Tipo, obiettivo e funzione del componente}
-\subsezione{Relazioni d'uso di altre componenti}
-\subsezione{Interfacce e relazioni di uso da altre componenti}
-\subsezione{Attivit\`a svolte e dati trattati}
+\subsezione{}
+\subsubsezione{Tipo, obiettivo e funzione del componente}
+\subsubsezione{Relazioni d'uso di altre componenti}
+\subsubsezione{Interfacce e relazioni di uso da altre componenti}
+\subsubsezione{Attivit\`a svolte e dati trattati}
 \sezione{Stime di fattibilit\`a e di bisogno di risorse}
 \sezione{Tracciamento della relazione componenti-requisiti}
 			
