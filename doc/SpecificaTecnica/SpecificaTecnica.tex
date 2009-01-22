@@ -183,15 +183,15 @@ Il presente documento \`e redatto utilizzando le convenzioni inserite nel docume
 L'architettura del sistema \`e stata sviluppata secondo un paradigma orientato agli oggetti. Le componenti del sistema e le loro relazioni verranno presentate in questo documento tramite diagrammi standard UML. Verranno presentate prima le componenti ad alto livello, le quali saranno poi descritte in maggiore dettaglio. Saranno inoltre descritti i pattern progettuali utilizzati.
 \subsezione{Presentazione dell'architettura generale del sistema}
 [inserire diagramma ad alto livello]
-Il sistema si compone, al massimo livello di astrazione, di tre componenti: il primo si occupa dell'interfaccia utente, il secondo gestisce la logica interna, ovvero la gestione in memoria di quanto disegnato e della conversione tra rappresentazione interna e rappresentazione in SVG, e il terzo si occupa del salvataggio e del caricamento di file testuali.
+Il sistema si compone, al massimo livello di astrazione, di tre componenti: il primo, contenuto nel package \textit{UI}, si occupa dell'interfaccia utente, il secondo, contenuto nel package \textit{ApplicationLogic}, gestisce la logica interna, ovvero la gestione in memoria di quanto disegnato e della conversione tra rappresentazione interna e rappresentazione in SVG, e il terzo, contenuto nel package \textit{DocBackend}, si occupa del salvataggio e del caricamento di file testuali e dell'accesso a file statici, come ad esempio il manuale.
 \subsubsezione{Design Pattern usati}
 \paragraph{Facade (Document):}
 Permette di salvare/caricare file senza conoscere il sottosistema che implementa le funzionalit\`a.
-\subparagraph{Subsystem} Il sottosistema \`e composto [@bosco: inserisci nome del tuo sottosistema]
+\subparagraph{Subsystem} Il sottosistema \`e composto dal package \textit{DocBackend}
 
 \paragraph{Facade (StaticDocument):}
 Permette di ottenere un file statico senza conoscere il sottosistema che implementa le funzionalit\`a.
-\subparagraph{Subsystem} Il sottosistema \`e composto [@bosco: inserisci nome del tuo sottosistema]
+\subparagraph{Subsystem} Il sottosistema \`e composto dal package \textit{DocBackend}
 
 \paragraph{Template Method:}
 \subparagraph{Algoritmo parametrizzato:}
@@ -217,11 +217,11 @@ Implementando il metodo astratto \textit{getMainPoints} di \textit{Figure} \`e p
 %Viene usata una variante pi\`u semplice, anche se meno flessibile. 
 
 \subsezione{Identificazione dei componenti architetturali di alto livello}
-\subsubsezione{Intefaccia Grafica (GUI)}
+\subsubsezione{UI - Intefaccia Grafica}
 [inserire diagramma delle classi] \\
 La GUI \` e ovviamente il client che verr\` a utilizzato nel sistema AJAXDRAW, e verr\` a descritta brevemente, in quanto rappresenta solo una 
 unit\` a che andr\`  a  a lavorare sulle altre componenti di sistema. \` E costruita nella sua totalit\` a nella pagina web caricata dal browser, pagina rappresentata dalla classe \textit{Page}, sulla quale vengono creati tutti i widgets con i quali interagire (che implementano tutti l'interfaccia generica \textit{Widget}).  I widgets si suddividono in \textit{Toolbar}(barra degli strumenti), \textit{Button} (pulsante generico
-\subsubsezione{Logica interna}
+\subsubsezione{ApplicationLogic - Logica interna}
 Questo sottosistema si divide in tre ulteriori sottosistemi
 \subsubsezione{Gestione figure}
 [inserire diagramma delle classi] \\
