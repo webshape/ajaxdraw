@@ -184,7 +184,13 @@ Il presente documento \`e redatto utilizzando le convenzioni inserite nel docume
 \subsezione{Metodo e formalismo di specifica}
 L'architettura del sistema \`e stata sviluppata secondo un paradigma orientato agli oggetti. Le componenti del sistema e le loro relazioni verranno presentate in questo documento tramite diagrammi standard UML. Verranno presentate prima le componenti ad alto livello, le quali saranno poi descritte in maggiore dettaglio. Saranno inoltre descritti i pattern progettuali utilizzati.
 \subsezione{Presentazione dell'architettura generale del sistema}
-[inserire diagramma ad alto livello]
+
+\begin{figure}[!ht]
+\centering
+\includegraphics{MainView.jpg}
+\caption{Package principali}
+\end{figure}
+
 Il sistema si compone, al massimo livello di astrazione, di tre componenti: il primo, contenuto nel package \textit{UI}, si occupa dell'interfaccia utente, il secondo, contenuto nel package \textit{ApplicationLogic}, gestisce la logica interna, ovvero la gestione in memoria di quanto disegnato e della conversione tra rappresentazione interna e rappresentazione in SVG, e il terzo, contenuto nel package \textit{DocBackend}, si occupa del salvataggio e del caricamento di file testuali e dell'accesso a file statici, come ad esempio il manuale.
 \subsubsezione{Design Pattern usati}
 \paragraph{Facade (Document):}
