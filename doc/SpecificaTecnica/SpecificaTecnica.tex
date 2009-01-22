@@ -835,7 +835,6 @@ Usa \textit{Request} per effettuare una richiesta al server.
 \item[-] \textit{load} chiede il caricamento di un file.
 \end{elencopuntato}
 
-<<<< HEAD:doc/SpecificaTecnica/SpecificaTecnica.tex
 \subsezione{Request}
 \subsubsezione{Tipo, obiettivo e funzione del componente}
 Contatta il server per una operazione richiesta dal client.
@@ -939,21 +938,6 @@ Usata da \textit{File} nel caso non venga trovato su disco un file richiesto.
 \item[-] \textit{getFileError} permette di restituire un errore di file su disco non trovato.
 \end{elencopuntato}
 
-
-
-
-
-
-
-
-
-
-\subsezione{Tipo, obiettivo e funzione del componente}
-\subsezione{Relazioni d'uso di altre componenti}
-\subsezione{Interfacce e relazioni di uso da altre componenti}
-\subsezione{Attivit\`a svolte e dati trattati}
-=======
->>>>>>> 1a7e85f48c93282db267be5c729f1bc671551775:doc/SpecificaTecnica/SpecificaTecnica.tex
 \sezione{Stime di fattibilit\`a e di bisogno di risorse}
 Il maggiore collo di bottiglia del sistema \`e rappresentato dal server, in quanto una singola macchina pu\`o trovarsi a gestire un numero elevato di richieste. Non dovrebbero comunque esserci problemi in quanto le funzionalit\`a implementate lato server sono minime, e quindi ogni singolo client comporta un dispendio di risorse, in termini di tempo di calcolo, di spazio su disco e di banda, minimo. 
 Un secondo problema prestazionale \`e rappresentato dal fatto che l'applicazione sar\`a forzatamente scritta in \underline{JavaScript}, la cui implementazione \`e estremamente scadente dal punto di vista delle prestazioni in quasi tutti i browser, fatta eccezione per Google Chrome, l'unico a fornire un sistema di compilazione \underline{JIT}. Per questo, durante l'implementazione si dovr\`a porre una costante attenzione alle risorse richieste dai diversi metodi.
