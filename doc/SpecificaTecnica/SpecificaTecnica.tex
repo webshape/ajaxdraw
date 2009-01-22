@@ -257,7 +257,7 @@ Le classi derivanti da \textit{Figure} implementano l'interfaccia \textit{SVGWri
 \paragraph{Da SVG a \textit{FigureSet}}
 L'importazione di un file SVG viene gestita dalla classe \textit{SVGReader} attraverso il metodo \textit{read}, che riceve un documento SVG valido sotto forma di stringa e restituisce un'istanza di \textit{FigureSet} corrispondente. Viene fatto il parsing del documento come \textit{XML} attraverso la classe \textit{XMLParser}, e per ogni comando SVG viene creato un'istanza di \textit{SVGTag} che lo rappresenta. Il nome del tag verr\`a usato come indice dal metodo \textit{makeFigureClassFromTag} della classe \textit{SVGElementRegistry}, che costruir\`a un'istanza della classe corrispondente. Su quest'istanza verr\`a invocato il metodo \textit{fromSVG}, il quale \`e responsabile di inizializzare la classe a partire dal tag. Per associare una classe al nome di un tag si usa il metodo \textit{register}. La classe registrata deve implementare l'interfaccia \textit{SVGReadable}.
 \subsubsezione{DocBackend - Lato Server}
-[inserire diagramma delle classi] \\
+\includegraphics[width=450pt]{ServerLogic.jpeg}\\
 In AJAXDRAW \`e necessaria la presenza di una parte server, visto il modello client-server dell'applicazione. La parte server, ha funzionalit\`a minimali, ma fondamentali per permettere il funzionamento dell'intero sistema. Le sue funzioni, oltre a quella di essere un webserver e fornire la pagina HTML al client, sono esclusivamente quelle di permettere un salvataggio in formato SVG del disegno effettuato sul client, effettuare il caricamento di un file risiedente su disco e avere accesso al manuale utente dell'applicazione. Come da figura [inserire numero figura], \`e composto da una classe \textit{Document} che rappresenta il disegno effettuato sul canvas, nella quale sono presenti i metodi \textit{save} e \textit{load}. L'uso di questi metodi permettono l'invio di una richiesta al server (classe \textit{Request}, tramite il metodo \textit{acceptRequest}). La classe \textit{Server} contiene tre metodi: \textit{getSave} che permette di salvare un file su disco, \textit{getLoad} che permette di caricare un file e \textit{getHTML} che ha il compito di ottenere la pagina HTML da fornire al client e di prelevare il manuale utente. La classe \textit{File} rappresenta un file che risiede su disco, il quale \`e possibile prelevarlo (\textit{getFile}) o cancellarlo (\textit{deleteFile}). La classe \textit{Clean} contiene il metodo \textit{sweeper} il quale elimina i file che sono gia stati scaricati o i file di client che abbandonano la connessione con il server, in modo da evitare che quesi file presenti temporaneamente sul server non lo intasino. La classe \textit{StaticDocument}, tramite il suo metodo \textit{get} permette di inviare una richiesta al server per ottenere il manuale utente. Sono presenti inoltre delle classi che permettono la gestione di eccezioni: pu\`o verificarsi un errore di comunicazione (rappresentato dall'interfaccia \textit{CommunicationError} e dalle classi \textit{ConnectionError} e \textit{ServerError} con relativi metodi che la implementano, o un errore di file non trovato (perch\`e su disco non \`e presente il file). Questo tipo di eccezione \`e rappresentato dalla classe \textit{FileNotFound} con il relativo metodo \textit{getFileError}. 
 
 
@@ -839,9 +839,9 @@ Usa \textit{Request} per effettuare una richiesta al server.
 \subsubsezione{Tipo, obiettivo e funzione del componente}
 Contatta il server per una operazione richiesta dal client.
 \subsubsezione{Relazioni d'uso di altre componenti}
-Usa \textit{Server} per inoltrare una richiesta.
+Usa \textit{Server} per inoltrare una richiesta e usa \textit{ConnectionError} in caso di errore di connessione.
 \subsubsezione{Interfacce e relazioni di uso da altre componenti}
-Usata da \textit{Document} per effettuare una richiesta al server.
+Usata da \textit{Document} e da \textit{StaticDocument} per effettuare una richiesta al server.
 \subsubsezione{Attivit\`a svolte e dati trattati}
 \begin{elencopuntato}[\normindent]
 \item[-] \textit{acceptRequest} contatta il server in base alla richiesta ricevuta.
@@ -865,9 +865,9 @@ Usata da \textit{Request} per inoltrare una richiesta del client.
 \subsubsezione{Tipo, obiettivo e funzione del componente}
 Rappresenta un file su disco.
 \subsubsezione{Relazioni d'uso di altre componenti}
-Usa \textit{FileNotFound} gestire un errore di file non trovato su disco.
+Usa \textit{FileNotFound} per gestire un errore di file non trovato su disco.
 \subsubsezione{Interfacce e relazioni di uso da altre componenti}
-Usata da \textit{Server} per restituire un file a seguito di una richiesta e uasat da \textit{Clean} per eliminare un file su disco.
+Usata da \textit{Server} per restituire un file a seguito di una richiesta e usata da \textit{Clean} per eliminare un file su disco.
 \subsubsezione{Attivit\`a svolte e dati trattati}
 \begin{elencopuntato}[\normindent]
 \item[-] \textit{getFile} restitusice un file su disco.
@@ -875,7 +875,7 @@ Usata da \textit{Server} per restituire un file a seguito di una richiesta e uas
 \end{elencopuntato}
 
 \subsezione{Clean}
-\subsubsezione{Tipo, obiettivo e funzione del componente}.
+\subsubsezione{Tipo, obiettivo e funzione del componente}
 Permette di eliminare i file in eccesso sul server per evitare un suo intasamento.
 \subsubsezione{Relazioni d'uso di altre componenti}
 Usa \textit{File} per ricevere un file da eliminare.
@@ -887,7 +887,7 @@ Usata da \textit{Server} quando sono presenti file in eccesso.
 \end{elencopuntato}
 
 \subsezione{StaticDocument}
-\subsubsezione{Tipo, obiettivo e funzione del componente}.
+\subsubsezione{Tipo, obiettivo e funzione del componente}
 Permette di richiedere il manuale utente.
 \subsubsezione{Relazioni d'uso di altre componenti}
 Usa \textit{Request} per effettuare la richiesta al server.
@@ -898,7 +898,7 @@ Usa \textit{Request} per effettuare la richiesta al server.
 \end{elencopuntato}
 
 \subsezione{CommunicationError}
-\subsubsezione{Tipo, obiettivo e funzione del componente}.
+\subsubsezione{Tipo, obiettivo e funzione del componente}
 Rappresenta un errore di comunicazione.
 \subsubsezione{Relazioni d'uso di altre componenti}
 \subsubsezione{Interfacce e relazioni di uso da altre componenti}
@@ -906,29 +906,31 @@ Implementata da \textit{ConnectionError} e da \textit{ServerError} per la getion
 \subsubsezione{Attivit\`a svolte e dati trattati}
 
 \subsezione{ConnectionError}
-\subsubsezione{Tipo, obiettivo e funzione del componente}.
+\subsubsezione{Tipo, obiettivo e funzione del componente}
 Rappresenta un errore di connessione.
 \subsubsezione{Relazioni d'uso di altre componenti}
 Implementa \textit{CommunicationError}.
 \subsubsezione{Interfacce e relazioni di uso da altre componenti}
+Usata da \textit{Request} nel caso non riesca a gestire una richiesta del client.
 \subsubsezione{Attivit\`a svolte e dati trattati}
 \begin{elencopuntato}[\normindent]
 \item[-] \textit{getConnectionError} permette di restituire un errore di connessione.
 \end{elencopuntato}
 
 \subsezione{ServerError}
-\subsubsezione{Tipo, obiettivo e funzione del componente}.
+\subsubsezione{Tipo, obiettivo e funzione del componente}
 Rappresenta un errore del server.
 \subsubsezione{Relazioni d'uso di altre componenti}
 Implementa \textit{CommunicationError}.
 \subsubsezione{Interfacce e relazioni di uso da altre componenti}
+Usata da \textit{Server} nel caso non riesca ad accettare altre richieste.
 \subsubsezione{Attivit\`a svolte e dati trattati}
 \begin{elencopuntato}[\normindent]
 \item[-] \textit{getServerError} permette di restituire un errore del server.
 \end{elencopuntato}
 
 \subsezione{FileNotFound}
-\subsubsezione{Tipo, obiettivo e funzione del componente}.
+\subsubsezione{Tipo, obiettivo e funzione del componente}
 Rappresenta un errore di file non trovato su disco.
 \subsubsezione{Relazioni d'uso di altre componenti}
 \subsubsezione{Interfacce e relazioni di uso da altre componenti}
