@@ -49,7 +49,7 @@
 			UML 1.4
 		</plugin>
 </profile>
-<XMI xmi.version = '1.2' xmlns:UML = 'org.omg.xmi.namespace.UML' timestamp = 'Thu Jan 22 16:29:15 CET 2009'>
+<XMI xmi.version = '1.2' xmlns:UML = 'org.omg.xmi.namespace.UML' timestamp = 'Thu Jan 22 18:09:46 CET 2009'>
   <XMI.header>    <XMI.documentation>
       <XMI.exporter>ArgoUML (using Netbeans XMI Writer version 1.0)</XMI.exporter>
       <XMI.exporterVersion>0.26.2(6) revised on $Date: 2007-05-12 08:08:08 +0200 (Sat, 12 May 2007) $ </XMI.exporterVersion>
@@ -826,7 +826,7 @@
           </UML:ModelElement.clientDependency>
           <UML:Classifier.feature>
             <UML:Operation xmi.id = '127-0-1-1--17d95801:11ef9792757:-8000:0000000000001A73'
-              name = 'onclick' visibility = 'public' isSpecification = 'false' ownerScope = 'instance'
+              name = 'onClick' visibility = 'public' isSpecification = 'false' ownerScope = 'instance'
               isQuery = 'false' concurrency = 'sequential' isRoot = 'false' isLeaf = 'false'
               isAbstract = 'false'>
               <UML:BehavioralFeature.parameter>
@@ -886,7 +886,7 @@
           </UML:ModelElement.clientDependency>
           <UML:Classifier.feature>
             <UML:Operation xmi.id = '127-0-1-1--17d95801:11ef9792757:-8000:0000000000001A78'
-              name = 'onclick' visibility = 'public' isSpecification = 'false' ownerScope = 'instance'
+              name = 'onMove' visibility = 'public' isSpecification = 'false' ownerScope = 'instance'
               isQuery = 'false' concurrency = 'sequential' isRoot = 'false' isLeaf = 'false'
               isAbstract = 'false'>
               <UML:BehavioralFeature.parameter>
@@ -3595,8 +3595,8 @@
       <text name="Fig21.3.2"
         x="377"
         y="417"
-        width="125"
-        height="33"
+        width="126"
+        height="43"
         fill="0"
         fillcolor="white"
         stroke="0"
@@ -3607,7 +3607,7 @@
         bold="false"
         textsize="12"
         justification="Left"
-      >onclick(evt : Event)</text>
+      >onClick(evt : Event)</text>
     </group>
     <rectangle name="Fig21.4"
       x="376"
@@ -3671,7 +3671,7 @@
     </path>
   </group>
   <group name="Fig24"
-       description="org.argouml.uml.diagram.static_structure.ui.FigInterface[192, 560, 126, 108]pathVisible=false;stereotypeView=0;operationsVisible=true;operationsVisible=true"
+       description="org.argouml.uml.diagram.static_structure.ui.FigInterface[192, 560, 132, 108]pathVisible=false;stereotypeView=0;operationsVisible=true;operationsVisible=true"
        href="127-0-1-1--17d95801:11ef9792757:-8000:0000000000000E84"
        fill="1"
        fillcolor="white"
@@ -3684,7 +3684,7 @@
     <rectangle name="Fig24.0"
       x="192"
       y="560"
-      width="126"
+      width="132"
       height="108"
       fill="1"
       fillcolor="white"
@@ -3692,7 +3692,7 @@
       strokecolor="black"
     />
     <group name="Fig24.1"
-         description="org.argouml.uml.diagram.ui.FigStereotypesCompartment[192, 560, 126, 29]"
+         description="org.argouml.uml.diagram.ui.FigStereotypesCompartment[192, 560, 132, 29]"
          href="127-0-1-1--17d95801:11ef9792757:-8000:0000000000000E84"
          fill="1"
          fillcolor="white"
@@ -3705,7 +3705,7 @@
       <rectangle name="Fig24.1.0"
         x="192"
         y="560"
-        width="126"
+        width="132"
         height="29"
         fill="1"
         fillcolor="white"
@@ -3715,7 +3715,7 @@
       <text name="Fig24.1.1"
         x="193"
         y="561"
-        width="124"
+        width="130"
         height="27"
         fill="0"
         fillcolor="white"
@@ -3732,7 +3732,7 @@
     <text name="Fig24.2"
       x="192"
       y="589"
-      width="126"
+      width="132"
       height="34"
       fill="1"
       fillcolor="white"
@@ -3746,7 +3746,7 @@
       justification="Center"
     >OnMouseMove</text>
     <group name="Fig24.3"
-         description="org.argouml.uml.diagram.ui.FigOperationsCompartment[193, 624, 125, 43]"
+         description="org.argouml.uml.diagram.ui.FigOperationsCompartment[193, 624, 131, 43]"
          fill="1"
          fillcolor="white"
          stroke="0"
@@ -3758,7 +3758,7 @@
       <rectangle name="Fig24.3.0"
         x="193"
         y="624"
-        width="125"
+        width="131"
         height="43"
         fill="1"
         fillcolor="white"
@@ -3774,13 +3774,13 @@
       >
         <moveto x="193"
                 y="624" />
-        <lineto x="318"
+        <lineto x="324"
                 y="624" />
       </path>
       <text name="Fig24.3.2"
         x="193"
         y="625"
-        width="125"
+        width="130"
         height="33"
         fill="0"
         fillcolor="white"
@@ -3792,12 +3792,12 @@
         bold="false"
         textsize="12"
         justification="Left"
-      >onclick(evt : Event)</text>
+      >onMove(evt : Event)</text>
     </group>
     <rectangle name="Fig24.4"
       x="192"
       y="560"
-      width="126"
+      width="132"
       height="108"
       fill="0"
       fillcolor="white"
@@ -4095,7 +4095,7 @@
     >
       <moveto x="368"
               y="640" />
-      <lineto x="318"
+      <lineto x="324"
               y="640" />
     </path>
   </group>
