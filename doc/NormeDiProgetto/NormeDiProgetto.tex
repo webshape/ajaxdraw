@@ -6,7 +6,7 @@
 \begin{document}
  
 \renewcommand{\insertversion}{1.1} %INSERIRE LA VERSIONE QUI DENTRO STILE x.x.xx
-\renewcommand{\TITOLODOC}{Norme di Progetto} %INSERIRE IL TITOLO DEL DOCUMENTO DA FAR COMPARIRE A PIE PAGINA
+\renewcommand{\TITOLODOC}{Norme d.0i Progetto} %INSERIRE IL TITOLO DEL DOCUMENTO DA FAR COMPARIRE A PIE PAGINA
 \renewcommand{\glosspath}{.\glossario} %INSERIRE PERCORSO RELATIVO
  
 %%%%%%%%%%%%%%%%%%%%%%PARTE DA NON MODIFICARE%%%%%%%%%%%%%%%%%
@@ -42,7 +42,7 @@
   \end{Huge}
       \\
 \end{center}
-\vspace{210pt}
+\vspace{190pt}
 \begin{center}
 Versione: \insertversion
 \end{center}
@@ -218,18 +218,18 @@ Per pianificare le attivit\`a il gruppo ha deciso di adottare i diagrammi di Gan
 L'ambiente di sviluppo \LaTeX \ non \`e definito poich\`e non influisce nel risultato finale, e perch\`e si preferisce lasciare i membri del gruppo liberi di utilizzare l'editor che ritengono pi\`u adatto alle loro caratteristiche.
  
 \subsezione{Editor di testo}
-L'editor utilizzato per il codice JavaScript \`e \underline{emacs} con  \underline{js2-mode}, quest'ultimo permette di catturare la maggior parte degli errori di battitura e suggerisce la sintassi corretta mentre il codice viene digitato. 
+L'editor utilizzato per la scrittura del codice JavaScript \`e Emacs con js2-mode; quest'ultimo permette di catturare la maggior parte degli errori di battitura e suggerisce la sintassi corretta mentre il codice viene digitato. 
  
 \subsezione{Ricerca di errori}
-Oltre alle utili funzionalit\`a di \underline{js2-mode}, l'azienda utilizza il programma \underline{JSLint}, un noto verificatore di codice Javascript, il quale rilevera' tutti gli altri errori.
+Oltre alle utili funzionalit\`a di js2-mode, l'azienda utilizza il programma \underline{JSLint}, un noto verificatore di codice JavaScript, il quale rilevera' tutti gli altri errori.
 
 \subsezione{Copertura del codice}
-Si utilizza lo strumento JSCoverage, che offre informazioni utili per la construzione di un test di copertura, ed \`e compatibile con tutti i morderni browser. Grazie ad esso sar\`a possibile determinare quali righe di codice non saranno eseguite dai test di unit\`a
+Si utilizza lo strumento JSCoverage, che offre informazioni utili per la construzione di un test di copertura, ed \`e compatibile con tutti i morderni browser. Grazie ad esso sar\`a possibile determinare quali righe di codice non saranno eseguite dai test di unit\`a.
 
 \subsezione{Test di unit\`a}
-L'azienda utilizza il software QUnit. \`E molto stabile e, avendo una buona copertura di unità,  \`e possibile eseguire i test di regressione dopo ogni piccolo passo, sempre. Ci\`o comporta un notevole risparmio di tempo.
+L'azienda utilizza il software QUnit. \`E molto stabile e, avendo una completa copertura di unit\`a,  \`e possibile eseguire i test di regressione dopo ogni piccolo passo. Ci\`o comporta un notevole risparmio di tempo.
 
 \subsezione{Debug codice tramite browser}
-Si utilizza Firebug, la famosa estensione di Firefox che consente di effettuare il debug di codice HTML e JavaScript direttamente dal browser.
+Si utilizza Firebug, un estensione di Firefox che consente di effettuare il debug di codice HTML e JavaScript direttamente dal browser.
 \end{document}
  
