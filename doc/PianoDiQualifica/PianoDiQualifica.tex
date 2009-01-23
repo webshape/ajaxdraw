@@ -1,192 +1,194 @@
-	\input{../TeX/base} %BASE!!!
-
+\input{../TeX/base} %BASE!!!
+ 
 \title{\TITOLODOC}
-\author{Dissegna Stefano}
-
+\author{Carollo Mirko}
+ 
 \begin{document}
-
-\renewcommand{\insertversion}{1.0} %INSERIRE LA VERSIONE QUI DENTRO STILE x.x.xx
+ 
+\renewcommand{\insertversion}{1.1} %INSERIRE LA VERSIONE QUI DENTRO STILE x.x.xx
 \renewcommand{\TITOLODOC}{Piano di qualifica} %INSERIRE IL TITOLO DEL DOCUMENTO DA FAR COMPARIRE A PIE PAGINA
 \renewcommand{\glosspath}{.\glossario} %INSERIRE PERCORSO RELATIVO
-
+ 
 %%%%%%%%%%%%%%%%%%%%%%PARTE DA NON MODIFICARE%%%%%%%%%%%%%%%%%
 \begin{titlepage}
 \begin{center}
-	\begin{Large}	\today \end{Large}
+  \begin{Large}  \today \end{Large}
 \end{center}
-
+ 
 \vspace{20pt}
-
+ 
 \begin{center}
-	\begin{Huge}
-				\textbf{\ajax}
-	\end{Huge}
-\end{center}			
-
+  \begin{Huge}
+        \textbf{\ajax}
+  \end{Huge}
+\end{center}      
+ 
 \begin{center}
-	\begin{large}
-				\textbf{Software per il Disegno Grafico\\ in Tecnologie Web}
-	\end{large}
-\end{center}			
-
+  \begin{large}
+        \textbf{Software per il Disegno Grafico\\ in Tecnologie Web}
+  \end{large}
+\end{center}      
+ 
 \vspace{20pt}
-
+ 
 \begin{center}
 \includegraphics[width=150pt]{../logo/logo}
 \end{center}
-
+ 
 \vspace{170pt}
-\begin{center} %INSERIRE ALL'INTERNO IL TITOLO DOCUMENTO CHE COMPARIRA NELLA PAGINA INIZIALE				
-	\begin{Huge}
-				\textbf{\TITOLODOC}
-	\end{Huge}
-			\\
+\begin{center} %INSERIRE ALL'INTERNO IL TITOLO DOCUMENTO CHE COMPARIRA NELLA PAGINA INIZIALE        
+  \begin{Huge}
+        \textbf{\TITOLODOC}
+  \end{Huge}
+      \\
 \end{center}
 \vspace{210pt}
 \begin{center}
 Versione: \insertversion
 \end{center}
 \end{titlepage}
-
+ 
 \newpage
 %%%%%%%%%%%%%%%%%%%%%%FINE PARTE DA NON MODIFICARE%%%%%%%%%%%%%%%%%
-
+ 
 \begin{center} %INSERIRE ALL'INTERNO IL TITOLO DOCUMENTO CHE COMPARIRA NELLA PAGINA INIZIALE
-	\begin{Huge}	
-				\textbf{\TITOLODOC}
-			\\
-	\end{Huge}
+  \begin{Huge}  
+        \textbf{\TITOLODOC}
+      \\
+  \end{Huge}
 \end{center}
-
-%\setlength{\parindent}{18pt} %settato indentazione di default 
+ 
+%\setlength{\parindent}{18pt} %settato indentazione di default
 \section*{\LARGE Sommario:} %SEZIONE SOMMARIO
 \indent \indent
 Il presente documento descrive le strategie per la gestione della qualit\`a adottate dall'azienda WebShape, e comprende un resoconto delle relative attivit\`a effettivamente svolte.
-
+ 
 \section*{\LARGE Stato del documento:}
 \indent \indent
-	Formale Esterno
-
+  Formale Esterno
+ 
 \section*{\LARGE Redazione:}
-	\begin{table}[!h]
-		\begin{center}
-			\begin{tabular}
-				{|c|c|}
-				\hline
-				%%%%%%%%%%%%%%INTESTAZIONE COLONNE%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-				\multicolumn{2}{|c|}{ \textbf{Redazione} } \\
-				\hline
-				\textbf{Fase} & \textbf{Redattori} \\
-				%%%%%%%%%%%%%%FINE INTESTAZIONE COLONNE%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-				\hline
-				%%%%%%%%%%% PARTE DA MODIFICARE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%		
-				Pre-RR & Dissegna Stefano\\
-				\hline
-				RR-RPP & \\
-										& \\
-				\hline
-				%%%%%%%%%%% FINE PARTE DA MODIFICARE %%%%%%%%%%%%%%%%%%%%%%%%%%%
-			\end{tabular}
-			\caption{Lista Redattori} %INSERIRE DIDASCALIA - SE NECESSARIA - 
-			\label{tabredazione}
-		\end{center}
-	\end{table}	
-
+  \begin{table}[!h]
+    \begin{center}
+      \begin{tabular}
+        {|c|c|}
+        \hline
+        %%%%%%%%%%%%%%INTESTAZIONE COLONNE%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+        \multicolumn{2}{|c|}{ \textbf{Redazione} } \\
+        \hline
+        \textbf{Fase} & \textbf{Redattori} \\
+        %%%%%%%%%%%%%%FINE INTESTAZIONE COLONNE%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+        \hline
+        %%%%%%%%%%% PARTE DA MODIFICARE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    
+        Pre-RR & Dissegna Stefano\\
+        \hline
+        RR-RPP & Carollo Mirko\\
+                    & \\
+        \hline
+        %%%%%%%%%%% FINE PARTE DA MODIFICARE %%%%%%%%%%%%%%%%%%%%%%%%%%%
+      \end{tabular}
+      \caption{Lista Redattori} %INSERIRE DIDASCALIA - SE NECESSARIA -
+      \label{tabredazione}
+    \end{center}
+  \end{table}  
+ 
 \newpage
 \section*{\LARGE Approvazione:}
 \begin{table}[!h]
-	\begin{center}
-		\begin{tabular}
-			{|c|c|}
-			\hline
-			%%%%%INTESTAZIONE COLONNE%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-			\multicolumn{2}{|c|}{ \textbf{Approvazione} } \\
-			\hline
-			\textbf{Fase} & \textbf{Approvatori} \\
-			%%%%%%%%%%%%%%FINE INTESTAZIONE COLONNE%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-			\hline
-			%%%%%%%%%%% PARTE DA MODIFICARE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%		
-			Pre-RR  &  Dal Bosco Davide\\
-									&  \\
-			\hline
-			RR-RPP & \\
-									& \\
-			\hline
-			%%%%%%%%%%% FINE PARTE DA MODIFICARE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-		\end{tabular}
-		\caption{Lista Approvatori} %INSERIRE DIDASCALIA - SE NECESSARIA - 
-		\label{tabapprovazione}
-	\end{center}
+  \begin{center}
+    \begin{tabular}
+      {|c|c|}
+      \hline
+      %%%%%INTESTAZIONE COLONNE%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+      \multicolumn{2}{|c|}{ \textbf{Approvazione} } \\
+      \hline
+      \textbf{Fase} & \textbf{Approvatori} \\
+      %%%%%%%%%%%%%%FINE INTESTAZIONE COLONNE%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+      \hline
+      %%%%%%%%%%% PARTE DA MODIFICARE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    
+      Pre-RR & Dal Bosco Davide\\
+                  & \\
+      \hline
+      RR-RPP & Geremia Mirco \\
+                  & \\
+      \hline
+      %%%%%%%%%%% FINE PARTE DA MODIFICARE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \end{tabular}
+    \caption{Lista Approvatori} %INSERIRE DIDASCALIA - SE NECESSARIA -
+    \label{tabapprovazione}
+  \end{center}
 \end{table}
-
-
+ 
+ 
 \section*{\LARGE Lista di Distribuzione:}
-
-	\begin{elenconumerato}{\normindent}
-		\item WebShape
-		\item I committenti Conte Renato e Vardanega Tullio in rappresentanza \\  dell'azienda proponente Zucchetti SPA
-	\end{elenconumerato}
-
+ 
+  \begin{elenconumerato}{\normindent}
+    \item WebShape
+    \item I committenti Conte Renato e Vardanega Tullio in rappresentanza \\ dell'azienda proponente Zucchetti SPA
+  \end{elenconumerato}
+ 
 \newpage
-
-
-
+ 
+ 
+ 
 \section*{\LARGE Registro delle Modifiche:}
-
-
+ 
+ 
 \begin{center}
-	\begin{table}[h]
-		  \begin{tabular*}
-			{1\textwidth}%
-				{@{\extracolsep{\fill}}|p{0.1\textwidth}|p{0.54\textwidth}|p{0.26\textwidth}|}
-			 \hline
+  \begin{table}[h]
+     \begin{tabular*}
+      {1\textwidth}%
+        {@{\extracolsep{\fill}}|p{0.1\textwidth}|p{0.54\textwidth}|p{0.26\textwidth}|}
+       \hline
 %%%%%%%%%%%%%%INTESTAZIONE COLONNE%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-			\textbf{Versione}  & \textbf{Descrizione} & \textbf{Autore} \\
+      \textbf{Versione} & \textbf{Descrizione} & \textbf{Autore} \\
 %%%%%%%%%%%%%%FINE INTESTAZIONE COLONNE%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-		 \hline
+     \hline
 %%%%%%%%%%% PARTE DA MODIFICARE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-			1.0 & 	 09$\slash$12$\slash$2008 Verifica finale in preparazione al rilascio & Dissegna Stefano\\
-			\hline
+      1.1 &    09$\slash$12$\slash$2008 Aggiornamento in preparazione RPP & Carollo Mirko\\
+      \hline
+      1.0 &    09$\slash$12$\slash$2008 Verifica finale in preparazione al rilascio & Dissegna Stefano\\
+      \hline
              0.3 & 7/12/2008 Correzioni in seguito a revisione & Dissegna Stefano \\
-			 \hline
+       \hline
             0.2 & 7/12/2008 Impaginazione e modifiche minori & Dissegna Stefano \\
-		 	\hline
-            0.1 & 23/11/2008 Piano di qualifica per la progettazione & Dissegna Stefano \\ 
+       \hline
+            0.1 & 23/11/2008 Piano di qualifica per la progettazione & Dissegna Stefano \\
             \hline
             0.0 & 22/11/2008 Bozza iniziale & Dissegna Stefano \\
-             \hline 
+             \hline
 %%%%%%%%%%% FINE PARTE DA MODIFICARE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-		\end{tabular*}
-	\caption{tabella delle modifiche} %INSERIRE DIDASCALIA - SE NECESSARIA - 
-	\label{tab:modifiche}
-	\end{table}
+    \end{tabular*}
+  \caption{tabella delle modifiche} %INSERIRE DIDASCALIA - SE NECESSARIA -
+  \label{tab:modifiche}
+  \end{table}
 \end{center}
-
-
+ 
+ 
 \newpage
 \thispagestyle{fancy}
 \tableofcontents
 \thispagestyle{fancy}
 \newpage
-
+ 
 \sezione{Introduzione}
-
+ 
 \subsezione{Scopo del documento}
 Il presente documento definisce il livello di qualit\`a atteso del prodotto e del processo di realizzazione dello stesso, indica le metodologie da adottare per assicurare la qualit\`a e riporta le attivit\`a svolte inerenti la gestione della qualit\`a.
-
+ 
 \subsezione{Scopo del prodotto}
 Il prodotto intende permettere la realizzazione di grafica vettoriale tramite una comoda interfaccia web.
-
+ 
 \subsezione{Glossario}
 Si veda il \textit{Glossario}.
-
+ 
 \subsezione{Riferimenti normativi}
 Il presente documento \`e redatto in accordo con le norme interne di WebShape, raccolte nel documento \textit{NormeDiProgetto} consegnato assieme a questo documento, e consultabile inoltre dal repository pubblico al quale WebShape si appoggia per i suoi progetti.
-
+ 
 \sezione{Visione generale della strategia di verifica}
-
+ 
 \subsezione{Organizzazione, pianificazione strategica e temporale, responsabilit\`a}
-Le attivit\`a di verifica si dovranno svolgere immediatamente in seguito ad una modifica, o ad un insieme di modifiche. Qualora sia possibile svolgere l'attivit\`a in modo automatico, essa dovr\`a essere applicata in seguito ad ogni singolo cambiamento. I test automatici saranno predisposti dai verificatori. Negli altri casi, onde evitare di attivare un'intero ciclo di verifica con gli annessi costi per delle modifiche di scarso rilievo, l'attivit\`a sar\`a svolta quando le differenze tra la versione attuale del prodotto e la versione su cui \`e stata applicata l'ultima verifica sono sufficientemente rilevanti. \`E compito di chi effettua le modifiche di segnalare ai verificatori la necessit\`a di un'attivit\`a di verifica. Il responsabile della qualifica dovr\`a accertarsi che il tutto si svolga correttamente e che segua quanto descritto nel presente documento.
+Le attivit\`a di verifica si dovranno svolgere immediatamente in seguito ad una modifica, o ad un insieme di modifiche. Qualora non sia possibile svolgere l'attivit\`a in modo automatico, onde evitare di attivare un'intero ciclo di verifica con gli annessi costi per delle modifiche di scarso rilievo, l'attivit\`a sar\`a svolta quando le differenze tra la versione attuale del prodotto e la versione su cui \`e stata applicata l'ultima verifica sono sufficientemente rilevanti. \`E compito di chi effettua le modifiche di segnalare ai verificatori la necessit\`a di un'attivit\`a di verifica. Il responsabile della qualifica dovr\`a accertarsi che il tutto si svolga correttamente e che segua quanto descritto nel presente documento.
 \paragraph{Verifica dei documenti} Il revisore, attraverso un'attenta lettura del documento, deve controllare, in ordine crescente di importanza, che:
 \begin{elenconumerato}[\textbf{}]{\subsubsecindent}
 \item la grammatica e la sintassi siano corrette
@@ -203,7 +205,7 @@ Il progetto architetturale dovr\`a essere controllato secondo le seguenti caratt
 \item Completezza: per controllare l'aderenza ai requisiti, dovr\`a essere verificata la tracciabilit\`a tra ogni requisito e la parte, o le parti, che lo soddisfano nel progetto.
 \item Sufficienza: ogni elemento del progetto dovr\`a, o soddissfare un requisito, o essere una dipendenza, diretta o indiretta, di un elemento necessario a soddisfare un requisito, in modo che nessuna parte del progetto risulti superflua.
 \item Estendibilit\`a e manutenibilit\`a: il progetto dovr\`a prevedere la possibilit\`a che il prodotto possa essere facilmente esteso e mantenuto in futuro.
-\item Efficienza: sebbene si ritenga che l'ottimizzazione prematura vada evitata il pi\`u possibile, considerata la necessit\`a da parte dell'applicazione di un {\underline{server}}, la fase di progettazione dovr\`a assicurare che il server sia in grado di gestire un numero elevato di {\underline{client}} contemporaneamente senza che l'utente noti problemi di performance.
+\item Efficienza: sebbene si ritenga che l'ottimizzazione prematura vada evitata il pi\`u possibile, considerata la necessit\`a da parte dell'applicazione di un server, la fase di progettazione dovr\`a assicurare che il server sia in grado di gestire un numero elevato di client contemporaneamente senza che l'utente noti problemi di performance.
 \end{elenconumerato}
 \paragraph{Verifica del progetto di dettaglio}
 Il progetto di dettaglio dovr\`a soddisfare i seguenti aspetti:
@@ -218,150 +220,47 @@ La verifica del codice si compone dei seguenti aspetti:
 \begin{elenconumerato}[\textbf{}]{\subsubsecindent}
 \item Verifica automatica: verr\`a effettuata tramite test di unit\`a predisposti dai verificatori. I test dovranno coprire tutto il codice, a eccezione delle parti il cui funzionamento dipende da input esterni non simulabili in un test di unit\`a, come ad esempio il codice che gestisce gli eventi generati dal movimento del mouse, oppure da effetti secondari i cui risultati non siano facilmente confrontabili in modo automatico, ad esempio come appare l'aspetto grafico del programma sullo schermo dell'utente. I test dovranno accertare il corretto funzionamento delle unit\`a di codice anche con input limite. Per effettuare i test di unit\`a ci si avvarr\`a del software \textit{QUnit}. Per controllare che i test coprano il codice nella sua interezza (salvo le eccezioni gi\`a descritte) si utilizzer\`a \textit{JSCoverage} per controllare quali linee non vengono eseguite durante i test di unit\`a. Una pi\`u dettagliata descrizione di questi strumenti \`e disponibile nelle \textit{NormeDiProgetto}.
 \item Prova del prodotto: sar\`a effettuata eseguendo l'applicazione e interagendo con essa, assicurandosi che corrisponda a quanto progettato.
-\item Confronto con altri software gi\`a esistenti: requisito fondamentale del prodotto \`e la capacit\`a di generare immagini in formato \underline{SVG}. Per assicurarsi che i file generati siano corretti, si caricheranno su software la cui correttezza \`e nota (ad esempio \textit{Inkscape}) e ci si assicurer\`a che le immagini visualizzate corrispondano con quanto disegnato dall'utente. 
-\item Analisi statica del codice per controllare che le norme di codifica siano rispettate ed alla ricerca degli errori pi\`u comuni. L'editor JavaScript utilizzato, \textit{js2-mode}, permette di catturare la maggior parte di questi errori mentre il codice viene digitato, mentre altri errori verranno ricercati tramite il programma \textit{JSLint}.
-\item Analisi del codice tramite \textit{walkthrough}, alla ricerca di eventuali errori. Vista la particolare dispendiosit\`a di questa modalit\`a di verifica, essa verr\`a applicata unicamente a sezioni critiche del codice.
+\item Confronto con altri software gi\`a esistenti: requisito fondamentale del prodotto \`e la capacit\`a di generare immagini in formato \underline{SVG}. Per assicurarsi che i file generati siano corretti, si caricheranno su software la cui correttezza \`e nota (ad esempio \textit{Inkscape}) e ci si assicurer\`a che le immagini visualizzate corrispondano con quanto disegnato dall'utente.
+\item Analisi statica del codice per controllare che le norme di codifica siano rispettate ed alla ricerca degli errori pi\`u comuni. L'editor JavaScript utilizzato, \textit{emacs} con \textit{js2-mode}, permette di catturare la maggior parte di questi errori mentre il codice viene digitato, mentre altri errori verranno ricercati tramite il programma \textit{JSLint}.
+\item Analisi del codice tramite \textit{walkthrough}, alla ricerca di eventuali errori. Questa modalit\`a di verifica  verr\`a applicata su tutto il codice al termine di ogni iterazione.
 \end{elenconumerato}
-
-
+ 
+ 
 \subsezione{Risorse necessarie, risorse disponibili}
 \paragraph{Documenti} Ogni documento sar\`a verificato da un revisore. Sarebbe auspicabile che a documenti particolarmente importanti, come ad esempio la definizione di prodotto, venissero assegnati due revisori, ma i costi eccessivi associati a una tale scelta non lo permettono.
 \paragraph{Codice} Il numero di verificatori da assegnare ad un dato modulo di codice varieranno in base alle esigenze del modulo stesso.
-
+ 
 \subsezione{Strumenti, tecniche, metodi}
-Per il tracciamento degli errori e delle loro soluzioni ci si avvarr\`a degli strumenti di bug tracking messi a disposizione da \textit{SourceForge} e dagli strumenti di versionamento in uso.
-Le discussioni tra i verificatori e gli autori delle modifiche avverrano tramite il sistema di commenti di \textit{GitHub} qualora si tratti di annotazioni di scarsa entit\`a, mentre discussioni pi\`u rilevanti avverranno nel gruppo di discussione interno all'azienda. Entrambi i sistemi mantengono in modo persistente le informazioni, permettendo dei riferimenti futuri alle stesse. I verificatori saranno avvisati della necessit\`a di un'attivit\`a di verifica tramite un messaggio nel gruppo di discussione interno. 
+Per il tracciamento degli errori e delle loro soluzioni ci si avvarr\`a degli strumenti di bug tracking messi a disposizione da \textit{SourceForge} e dagli strumenti di versionamento in uso. Per il debug del codice Javascript direttamente da browser si utilizzer\`a Firebug, la famosa estensione di Firefox. Le discussioni tra i verificatori e gli autori delle modifiche avverrano tramite il sistema di commenti di \textit{GitHub} qualora si tratti di annotazioni di scarsa entit\`a, mentre discussioni pi\`u rilevanti avverranno nel gruppo di discussione interno all'azienda. Entrambi i sistemi mantengono in modo persistente le informazioni, permettendo dei riferimenti futuri alle stesse. I verificatori saranno avvisati della necessit\`a di un'attivit\`a di verifica tramite un messaggio nel gruppo di discussione interno.
 
-
+\subsezione{Infrastrutture e procedure di automazione} 
+Hanno lo scopo di accelerare tutte le attivit\`a di verifica e impedire errori umani.
+Tali attivit\`a potranno quindi essere svolte dopo ogni singolo cambiamento, anche di piccola entit\`a. Saranno predisposte dai verificatori. 
+Verrano usati i seguenti prodotti: \textit{QUnit , JSCoverage, js2-mode, JSLint}. Tutti i dettagli delle attivit\`a di verifica sono gi\`a stati esposti nel paragrafo 2.1
+ 
 \sezione{Gestione amministrativa della revisione}
-
+ 
 \subsezione{Comunicazione e risoluzione di anomalie}
 Quando un'anomalia viene riscontrata durante una verifica, il verificatore provveder\`a ad aggiungere un ticket al sistema di bug tracking e a segnalarlo, usando i metodi sopra esposti, a chi dovr\`a correggere il problema. La segnalazione dell'errore dovr\`a contenere una descrizione chiara del problema riscontrato. Qualora il correttore trovasse poco chiara o ambigua la descrizione, o fosse in disaccordo con la stessa, aprir\`a una discussione con il verificatore nel gruppo di discussione interno. A correzione avvenuta, questo sar\`a segnalato al verificatore tramite il gruppo di discussione. Il verificatore applicher\`a nuovamente il procedimento di verifica alla correzione. Se quest'ultimo passo va a buon fine, il correttore porr\`a come risolto il ticket nel sistema di bug tracking.
-
+ 
 \subsezione{Trattamento delle discrepanze}
 Qualora un prodotto si discostasse da quanto descritto nell'analisi dei requisiti, il responsabile della qualit\`a provveder\`a a individuare la causa e la persona, o le persone, imputabili per la discrepanza. Il responsabile della qualit\`a, dopo averne discusso con lui, o loro, traccier\`a delle azioni correttive e si assicurer\`a che vengano attuate.
-
+ 
 \subsezione{Procedure di controllo di qualit\`a di processo}
 L'amministratore del progetto deve assicurarsi che gli standard descritti nelle \textit{NormeDiProgetto} siano rispettati, e deve segnalare eventuali infrazioni al responsabile, in modo che provveda a risolverle. Il responsabile della qualit\`a controlla che le attivit\`a di verifica vengano svolte, e che seguano le procedure descritte in questo documento.
 \newpage
-
+ 
 \sezione{Resoconto delle attivit\`a di verifica}
+ 
 
-\subsezione{Tracciamento Aspettative - Requisiti}
-\begin{table}[h]
-\begin{center}
-     \begin{tabular}
-           {@{\extracolsep{\fill}}|c|c|}
-     \hline
-%%%%%%%%%%%%%%INTESTAZIONE COLONNE%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-      \textbf{Aspettative} & \textbf{Requisiti} \\
-%%%%%%%%%%%%%%FINE INTESTAZIONE COLONNE%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-      \hline
-     ACO-1 & RPO-1 RQO-9 \\
-     \hline
-     ACO-2 & RFO-1 RFO-2 RFO-3 RFO-4\\ & RFO-5 RFO-6 RFO-7 RFO-8\\ & RFO-11 RF0-12 RFO-13 RFO-14 \\
-     \hline
-     ACO-3 & RFO-8 RFO-9 RFO-10 \\
-     \hline
-     ACO-4 & RFO-15 RFO-16 \\
-     \hline
-     ACO-5 & RQO-1 RQO-7 RQO-8 RAO-1 RAO-2 RAO-6 \\
-     \hline
-     ACO-6 & RAO-3 \\
-     \hline
-     ACO-7 & RIO-1 RIO-2 RIO-3 RIO-4 \\
-     \hline
-     ACO-8 & RAO-4 RQO-2 RQO-3 RQO-4 RQO-5 RQO-6 \\
-     \hline
-     ACD-1 & RAO-5 \\
-     \hline
-     ACF-1 & RFD-3 RFD-4 \\
-     \hline
-     ACF-2 & RFD-1 RFD-2 RFF-1 RFF-2 \\
-     \hline
-     ACF-3 & RAD-1 \\
-%%%%%%%%%%% PARTE DA MODIFICARE %%%%%%%%%%%%%%%%
-    \hline %%FINE RIGA
-%%%%%%%%%%% FINE PARTE DA MODIFICARE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    \end{tabular}
-  \caption{Aspettative - Requisiti} %INSERIRE DIDASCALIA - SE NECESSARIA -
-  \label{tab:aspettative}
-  \end{center}
-\end{table}
- \newpage
- 
- \subsezione{Tracciamento Use Case - Requisiti}
-\begin{table}[h]
-\begin{center}
-     \begin{tabular}
-           {@{\extracolsep{\fill}}|c|c|}
-     \hline
-%%%%%%%%%%%%%%INTESTAZIONE COLONNE%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-      \textbf{Aspettative} & \textbf{Requisiti} \\
-%%%%%%%%%%%%%%FINE INTESTAZIONE COLONNE%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-      \hline
-     UC0 & RA0-1 \\
-     \hline
-     UC1 & RFD-3  \\
-     \hline
-     UC2 & RIO-2  RIO-4\\
-     \hline
-     UC3 & RIO-3 \\
-     \hline
-     UC4 & RFO-13 \\
-     \hline
-     UC5 UC6 & RFO-14 \\
-      \hline
-     UC7 UC8 & RFO-15 RFO-16 \\
-     \hline
-     UC9.1 & RFO-1 RFO-2 RFO-9\\
-     \hline
-     UC9.2 &  RFO-3 RFO-9\\
-     \hline
-     UC9.3 & RFO-4 RFO-9\\
-     \hline
-     UC9.4 & RFO-5 RFO-9\\
-     \hline
-     UC9.5 & RFO-6 RFO-7 RFO-9\\
-     \hline
-     UC9.6 UC9.7 & RFO-9 \\
-     \hline
-     UC9.9 & RFF-1 RFO-9 \\
-     \hline
-     UC9.10 & RFD-1 RFO-9\\
-     \hline
-     UC9.11 & RFF-2 RFO-9 \\
-     \hline 
-     UC9.12 & RFD-2 RFO-9 \\
-     \hline
-     UC 9.8 UC10.1 UC10.2 &  RFO-7 \\
-     \hline
-     UC10.3 UC10.4 UC10.5 & RFO-9 \\
-     \hline
-     UC10.5 UC10.7 UC10.10 &  RFO-8 \\
-     \hline
-     UC10.8 UC10.9 & RFO-10 \\
-     \hline
-     UC10.11 & RFD-4 \\
-     
-%%%%%%%%%%% PARTE DA MODIFICARE %%%%%%%%%%%%%%%%
-    \hline %%FINE RIGA
-%%%%%%%%%%% FINE PARTE DA MODIFICARE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    \end{tabular}
-  \caption{Use Case - Requisiti} %INSERIRE DIDASCALIA - SE NECESSARIA -
-  \label{tab:aspettative}
-  \end{center}
-\end{table}
- \newpage
- 
  
 \subsezione{Dettaglio delle verifiche tramite analisi}
 \subsezione{Dettaglio delle verifiche tramite prove (test)}
 \subsezione{Dettaglio dell'esito delle revisioni}
-
-
+ 
+ 
 \sezione{Pianificazione ed esecuzione del collaudo}
-
+ 
 \subsezione{Specifica della campagna di validazione (collaudo incluso)}
 La campagna di validazione si svolger\`a in due fasi distinte:
 \begin{elenconumerato}[\textbf{}]{\subsubsecindent}
@@ -369,5 +268,6 @@ La campagna di validazione si svolger\`a in due fasi distinte:
 \item \textit{Beta test}: il prodotto verr\`a distribuito al committente a fini di test.
 \end{elenconumerato}
 \subsezione{Dettaglio dell'esito della campagna di validazione}
-
+ 
 \end{document}
+ 
