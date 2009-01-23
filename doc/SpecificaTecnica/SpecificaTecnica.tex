@@ -975,5 +975,106 @@ Il maggiore collo di bottiglia del sistema \`e rappresentato dal server, in quan
 Un secondo problema prestazionale \`e rappresentato dal fatto che l'applicazione sar\`a forzatamente scritta in \underline{JavaScript}, la cui implementazione \`e estremamente scadente dal punto di vista delle prestazioni in quasi tutti i browser, fatta eccezione per Google Chrome, l'unico a fornire un sistema di compilazione \underline{JIT}. Per questo, durante l'implementazione si dovr\`a porre una costante attenzione alle risorse richieste dai diversi metodi.
 
 \sezione{Tracciamento della relazione componenti-requisiti}
+\begin{table}[h]
+\begin{center}
+     \begin{tabular}
+           {@{\extracolsep{\fill}}|c|c|}
+     \hline
+     \multicolumn{2}{|c|}{ \textbf{Componenti GUI} } \\
+     \hline
+%%%%%%%%%%%%%%INTESTAZIONE COLONNE%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+      \textbf{Componenti} & \textbf{Requisiti} \\
+%%%%%%%%%%%%%%FINE INTESTAZIONE COLONNE%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+      \hline
+     FontSetter & RFO-7 \\
+     \hline
+     ColourDialog & RFO-9 \\
+     \hline
+     Palette & RFO-9 \\
+     \hline
+     Visualization & RFO-13, RFO-14 \\
+     \hline
+     Toolbar & RFO-11, RIO-1 \\
+     \hline
+     PropertyDialog & RFO-12 \\ 
+         
+%%%%%%%%%%% PARTE DA MODIFICARE %%%%%%%%%%%%%%%%
+    \hline %%FINE RIGA
+%%%%%%%%%%% FINE PARTE DA MODIFICARE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \end{tabular}
+  \caption{Componenti GUI - Requisiti} %INSERIRE DIDASCALIA - SE NECESSARIA -
+  \label{tab:requisitiGUI}
+  \end{center}
+\end{table}
+
+
+\begin{table}[h]
+\begin{center}
+     \begin{tabular}
+           {@{\extracolsep{\fill}}|c|c|}
+      		\hline
+           \multicolumn{2}{|c|}{ \textbf{Componenti ApplicationLogic} } \\
+     \hline
+%%%%%%%%%%%%%%INTESTAZIONE COLONNE%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+      \textbf{Componenti} & \textbf{Requisiti} \\
+%%%%%%%%%%%%%%FINE INTESTAZIONE COLONNE%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+      \hline
+     Document & RFO-15, RFO-16 \\
+     \hline
+     SVGWriter & RFO-15 \\
+     \hline
+     SVGReader & RFO-16 \\
+     \hline
+     Manual & RIO-2, RIO-3 \\
+     \hline
+     FreeLine & RFO-1 \\
+     \hline
+     BezierCurve & RFO-2 \\
+     \hline
+     Rectangle & RFO-3 \\
+     \hline
+     Polygon & RFO-4 \\ 
+     \hline
+     Circle & RFO-5 \\
+     \hline
+     Text & RFO-6 \\
+     \hline
+     TextProperty & RFO-7 \\
+     \hline
+     Colour & RFO-9 \\
+     \hline
+     Property & RFO-12 \\
+     \hline
+     Line & RFD-1 \\ 
+%%%%%%%%%%% PARTE DA MODIFICARE %%%%%%%%%%%%%%%%
+    \hline %%FINE RIGA
+%%%%%%%%%%% FINE PARTE DA MODIFICARE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \end{tabular}
+  \caption{Componenti ApplicationLogic - Requisiti} %INSERIRE DIDASCALIA - SE NECESSARIA -
+  \label{tab:requisitiAL}
+  \end{center}
+\end{table}
+
+\begin{table}[h]
+\begin{center}
+     \begin{tabular}
+           {@{\extracolsep{\fill}}|c|c|}
+           \hline
+           \multicolumn{2}{|c|}{ \textbf{Componenti DocBackEnd} }\\
+     \hline
+%%%%%%%%%%%%%%INTESTAZIONE COLONNE%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+      \textbf{Componenti} & \textbf{Requisiti} \\
+%%%%%%%%%%%%%%FINE INTESTAZIONE COLONNE%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+      \hline
+     Document & RFO-15, RFO-16 \\
+         
+%%%%%%%%%%% PARTE DA MODIFICARE %%%%%%%%%%%%%%%%
+    \hline %%FINE RIGA
+%%%%%%%%%%% FINE PARTE DA MODIFICARE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \end{tabular}
+  \caption{Componenti DocBackEnd - Requisiti} %INSERIRE DIDASCALIA - SE NECESSARIA -
+  \label{tab:requisitiDocBackEnd}
+  \end{center}
+\end{table}
 
 \end{document}
