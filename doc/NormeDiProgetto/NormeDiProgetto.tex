@@ -1,219 +1,235 @@
-	\input{../TeX/base} %BASE!!!
-
+\input{../TeX/base} %BASE!!!
+ 
 \title{\TITOLODOC}
-\author{Geremia Mirco}
-
+\author{Carollo Mirko}
+ 
 \begin{document}
-
-\renewcommand{\insertversion}{1.0} %INSERIRE LA VERSIONE QUI DENTRO STILE x.x.xx
+ 
+\renewcommand{\insertversion}{1.1} %INSERIRE LA VERSIONE QUI DENTRO STILE x.x.xx
 \renewcommand{\TITOLODOC}{Norme di Progetto} %INSERIRE IL TITOLO DEL DOCUMENTO DA FAR COMPARIRE A PIE PAGINA
 \renewcommand{\glosspath}{.\glossario} %INSERIRE PERCORSO RELATIVO
-
+ 
 %%%%%%%%%%%%%%%%%%%%%%PARTE DA NON MODIFICARE%%%%%%%%%%%%%%%%%
 \begin{titlepage}
 \begin{center}
-	\begin{Large}	\today \end{Large}
+  \begin{Large}  \today \end{Large}
 \end{center}
-
+ 
 \vspace{20pt}
-
+ 
 \begin{center}
-	\begin{Huge}
-				\textbf{\ajax}
-	\end{Huge}
-\end{center}			
-
+  \begin{Huge}
+        \textbf{\ajax}
+  \end{Huge}
+\end{center}      
+ 
 \begin{center}
-	\begin{large}
-				\textbf{Software per il Disegno Grafico\\ in Tecnologie Web}
-	\end{large}
-\end{center}			
-
+  \begin{large}
+        \textbf{Software per il Disegno Grafico\\ in Tecnologie Web}
+  \end{large}
+\end{center}      
+ 
 \vspace{20pt}
-
+ 
 \begin{center}
 \includegraphics[width=150pt]{../logo/logo}
 \end{center}
-
+ 
 \vspace{170pt}
-\begin{center} %INSERIRE ALL'INTERNO IL TITOLO DOCUMENTO CHE COMPARIRA NELLA PAGINA INIZIALE				
-	\begin{Huge}
-				\textbf{\TITOLODOC}
-	\end{Huge}
-			\\
+\begin{center} %INSERIRE ALL'INTERNO IL TITOLO DOCUMENTO CHE COMPARIRA NELLA PAGINA INIZIALE        
+  \begin{Huge}
+        \textbf{\TITOLODOC}
+  \end{Huge}
+      \\
 \end{center}
 \vspace{210pt}
 \begin{center}
 Versione: \insertversion
 \end{center}
 \end{titlepage}
-
+ 
 \newpage
 %%%%%%%%%%%%%%%%%%%%%%FINE PARTE DA NON MODIFICARE%%%%%%%%%%%%%%%%%
-
+ 
 \begin{center} %INSERIRE ALL'INTERNO IL TITOLO DOCUMENTO CHE COMPARIRA NELLA PAGINA INIZIALE
-	\begin{Huge}	
-				\textbf{\TITOLODOC}
-			\\
-	\end{Huge}
+  \begin{Huge}  
+        \textbf{\TITOLODOC}
+      \\
+  \end{Huge}
 \end{center}
-
-%\setlength{\parindent}{18pt} %settato indentazione di default 
+ 
+%\setlength{\parindent}{18pt} %settato indentazione di default
 \section*{\LARGE Sommario:} %SEZIONE SOMMARIO
 \indent \indent
 Questo documento definisce le linee guida da seguire per la stesura della documentazione e indica gli strumenti software da utilizzare e le modalit\`a di comunicazione all'interno dell'azienda.
-
+ 
 \section*{\LARGE Stato del documento:}
 \indent \indent
-	Formale Interno
-
+  Formale Interno
+ 
 \section*{\LARGE Redazione:}
-	\begin{table}[!h]
-		\begin{center}
-			\begin{tabular}
-				{|c|c|}
-				\hline
-				%%%%%%%%%%%%%%INTESTAZIONE COLONNE%%%%%%%%%%%%%%%%%%%
-				\multicolumn{2}{|c|}{ \textbf{Redazione} } \\
-				\hline
-				\textbf{Fase} & \textbf{Redattori} \\
-				%%%%%%%%%%%%%%FINE INTESTAZIONE COLONNE%%%%%%%%%%%%%%%%
-				\hline
-				%%%%%%%%%%% PARTE DA MODIFICARE %%%%%%%%%%%%%%%%%%%%%%%
-				{Pre-RR} &Geremia Mirco \\
-				\hline
-				{RR-RPP} & \\
-				\hline
-				%%%%%%%%%%% FINE PARTE DA MODIFICARE %%%%%%%%%%%%%%%%%%%%
-			\end{tabular}
-			\caption{Lista Redattori} %INSERIRE DIDASCALIA - SE NECESSARIA - 
-			\label{tabredazione}
-		\end{center}
-	\end{table}
-	
+  \begin{table}[!h]
+    \begin{center}
+      \begin{tabular}
+        {|c|c|}
+        \hline
+        %%%%%%%%%%%%%%INTESTAZIONE COLONNE%%%%%%%%%%%%%%%%%%%
+        \multicolumn{2}{|c|}{ \textbf{Redazione} } \\
+        \hline
+        \textbf{Fase} & \textbf{Redattori} \\
+        %%%%%%%%%%%%%%FINE INTESTAZIONE COLONNE%%%%%%%%%%%%%%%%
+        \hline
+        %%%%%%%%%%% PARTE DA MODIFICARE %%%%%%%%%%%%%%%%%%%%%%%
+        {Pre-RR} &Geremia Mirco \\
+        \hline
+        {RR-RPP} &Carollo Mirko \\
+        \hline
+        %%%%%%%%%%% FINE PARTE DA MODIFICARE %%%%%%%%%%%%%%%%%%%%
+      \end{tabular}
+      \caption{Lista Redattori} %INSERIRE DIDASCALIA - SE NECESSARIA -
+      \label{tabredazione}
+    \end{center}
+  \end{table}
+  
 \section*{\LARGE Approvazione:}
-
+ 
 \begin{table}[!h]
-	\begin{center}
-		\begin{tabular}
-			{|c|c|}
-			\hline
-			%%%%%%%%%%%%%%INTESTAZIONE COLONNE%%%%%%%%%%%%%%%%%%%%
-			\multicolumn{2}{|c|}{ \textbf{Approvazione} } \\
-			\hline
-			\textbf{Fase} & \textbf{Approvatori} \\
-			%%%%%%%%%%%%%%FINE INTESTAZIONE COLONNE%%%%%%%%%%%%%%%%%
-			\hline
-			%%%%%%%%%%% PARTE DA MODIFICARE %%%%%%%%%%%%%%%%%%%%%%%%
-			{Pre-RR} & Bizzotto Piero \\
-			\hline
-			{RR-RPP} & \\
-			\hline
-			%%%%%%%%%%% FINE PARTE DA MODIFICARE %%%%%%%%%%%%%%%%%%%%%
-		\end{tabular}
-		\caption{Lista Approvatori} %INSERIRE DIDASCALIA - SE NECESSARIA - 
-		\label{tabapprovazione}
-	\end{center}
+  \begin{center}
+    \begin{tabular}
+      {|c|c|}
+      \hline
+      %%%%%%%%%%%%%%INTESTAZIONE COLONNE%%%%%%%%%%%%%%%%%%%%
+      \multicolumn{2}{|c|}{ \textbf{Approvazione} } \\
+      \hline
+      \textbf{Fase} & \textbf{Approvatori} \\
+      %%%%%%%%%%%%%%FINE INTESTAZIONE COLONNE%%%%%%%%%%%%%%%%%
+      \hline
+      %%%%%%%%%%% PARTE DA MODIFICARE %%%%%%%%%%%%%%%%%%%%%%%%
+      {Pre-RR} & Bizzotto Piero \\
+      \hline
+      {RR-RPP} & Geremia Mirco \\
+      \hline
+      %%%%%%%%%%% FINE PARTE DA MODIFICARE %%%%%%%%%%%%%%%%%%%%%
+    \end{tabular}
+    \caption{Lista Approvatori} %INSERIRE DIDASCALIA - SE NECESSARIA -
+    \label{tabapprovazione}
+  \end{center}
 \end{table}
 \textbf{}
-
-
+ 
+ 
 \section*{\LARGE Lista di Distribuzione:}
-
-	\begin{elenconumerato}{\normindent}
-		\item WebShape 
-	%	\item I committenti Conte Renato e Vardanega Tullio in rappresentanza \\  dell'azienda proponente Zucchetti SPA
-	\end{elenconumerato}
-
+ 
+  \begin{elenconumerato}{\normindent}
+    \item WebShape
+  %  \item I committenti Conte Renato e Vardanega Tullio in rappresentanza \\ dell'azienda proponente Zucchetti SPA
+  \end{elenconumerato}
+ 
 \newpage
-
+ 
 \section*{\LARGE Registro delle Modifiche:}
-
+ 
 \begin{center}
-	\begin{table}[h]
-		  \begin{tabular*}
-			{1\textwidth}%
-				{@{\extracolsep{\fill}}|p{0.1\textwidth}|p{0.54\textwidth}|p{0.26\textwidth}|}
-			 \hline
+  \begin{table}[h]
+     \begin{tabular*}
+      {1\textwidth}%
+        {@{\extracolsep{\fill}}|p{0.1\textwidth}|p{0.54\textwidth}|p{0.26\textwidth}|}
+       \hline
 %%%%%%%%%%%%%%INTESTAZIONE COLONNE%%%%%%%%%%%%%%%%%
-			\textbf{Versione}  & \textbf{Descrizione} & \textbf{Autore} \\
+      \textbf{Versione} & \textbf{Descrizione} & \textbf{Autore} \\
 %%%%%%%%%%%%%%FINE INTESTAZIONE COLONNE%%%%%%%%%%%%%%
-		 \hline
+     \hline
 %%%%%%%%%%% PARTE DA MODIFICARE %%%%%%%%%%%%%%%%%%%%%
-			
-			1.0 &    09$\slash$12$\slash$2008  Verifica finale in preparazione al rilascio & Geremia Mirco \\
-			\hline
-			0.3 &	05$\slash$12$\slash$2008 Correzioni sintattiche in seguito alla verifica & Geremia Mirco\\
-			\hline						
-			0.2 & 	 02$\slash$12$\slash$2008 Aggiunto Strumenti di sviluppo & Geremia Mirco \\
-			\hline
-			0.1 & 	 29$\slash$11$\slash$2008 Aggiunto Risorse e Comunicazione & Geremia Mirco\\
-			\hline
-    	 	0.0 & 	 28$\slash$11$\slash$2008 Prima stesura & Geremia Mirco\\
-
-		\hline %%FINE RIGA
+         1.1 & 21$\slash$01$\slash$2009 Aggiornamento in preparazione a RPP & Carollo Mirko        \\ 
+      \hline
+      1.0 & 09$\slash$12$\slash$2008 Verifica finale in preparazione al rilascio & Geremia Mirco \\
+      \hline
+      0.3 &  05$\slash$12$\slash$2008 Correzioni sintattiche in seguito alla verifica & Geremia Mirco\\
+      \hline            
+      0.2 &    02$\slash$12$\slash$2008 Aggiunto Strumenti di sviluppo & Geremia Mirco \\
+      \hline
+      0.1 &    29$\slash$11$\slash$2008 Aggiunto Risorse e Comunicazione & Geremia Mirco\\
+      \hline
+         0.0 &    28$\slash$11$\slash$2008 Prima stesura & Geremia Mirco\\
+ 
+    \hline %%FINE RIGA
 %%%%%%%%%%% FINE PARTE DA MODIFICARE %%%%%%%%%%%%%%%%%%%
-		\end{tabular*}
-	\caption{didascalia tabella 	MODIFICHE} %INSERIRE DIDASCALIA - SE NECESSARIA - 
-	\label{tab:modifiche}
-	\end{table}
+    \end{tabular*}
+  \caption{didascalia tabella   MODIFICHE} %INSERIRE DIDASCALIA - SE NECESSARIA -
+  \label{tab:modifiche}
+  \end{table}
 \end{center}
-
-
+ 
+ 
 \newpage
 \thispagestyle{fancy}
 \tableofcontents
 \thispagestyle{fancy}
 \newpage
-
+ 
 %qui inizia l'indice, che viene creato automaticamente
 \sezione{Risorse}
-	\begin{elencopuntato}[\normindent]
-		\item[-] Sito del progetto: \sito
-		\item[-] Repository Git: \href{http://github.com/webshape/ajaxdraw/tree/master}{http://github.com/webshape/ajaxdraw/tree/master}
-		\item[-] Contatto e-mail: \href{mailto:webshape.contact@gmail.com}{webshape.contact@gmail.com}
-	\end{elencopuntato}
-
+  \begin{elencopuntato}[\normindent]
+    \item[-] Sito del progetto: \sito
+    \item[-] Repository Git: \href{http://github.com/webshape/ajaxdraw/tree/master}{http://github.com/webshape/ajaxdraw/tree/master}
+    \item[-] Contatto e-mail: \href{mailto:webshape.contact@gmail.com}{webshape.contact@gmail.com}
+  \end{elencopuntato}
+ 
 \sezione{Redazione dei documenti}
-	I documenti sono redatti in lingua italiana e presentano termini in inglese solamente nel caso di riferimenti al codice o a termini tecnici. Le parole presenti nel glossario sono sottolineate alla prima occorrenza nel documento.\\
-	Per la redazione dei documenti si \`e scelto di usare il \underline{linguaggio di markup} \underline{\LaTeX}, che gestisce automaticamente la formattazione del testo permettendo agli autori di concentrarsi maggiormente sui contenuti. Per la creazione di un documento si utilizza il template di base presente nel repository dell'azienda.\\
-	I nomi dei documenti seguono le seguenti regole:
-	\begin{elencopuntato}[\normindent]
-		\item[-] Devono iniziare con una lettera in maiuscolo.
-		\item[-] Non si possono usare spazi o altri caratteri speciali tra le parole.
-		\item[-] Ogni parola deve iniziare con una lettera in maiuscolo (ad esempio NormeDiProgetto).
-		\item[-] I documenti interni non prevedono riferimenti alla versione, che sar\`a invece presente nei documenti formali esterni.
-	\end{elencopuntato}
-	
+  I documenti sono redatti in lingua italiana e presentano termini in inglese solamente nel caso di riferimenti al codice o a termini tecnici. Le parole presenti nel glossario sono sottolineate alla prima occorrenza nel documento.\\
+  Per la redazione dei documenti si \`e scelto di usare il \underline{linguaggio di markup} \underline{\LaTeX}, che gestisce automaticamente la formattazione del testo permettendo agli autori di concentrarsi maggiormente sui contenuti. Per la creazione di un documento si utilizza il template di base presente nel repository dell'azienda.\\
+  I nomi dei documenti seguono le seguenti regole:
+  \begin{elencopuntato}[\normindent]
+    \item[-] Devono iniziare con una lettera in maiuscolo.
+    \item[-] Non si possono usare spazi o altri caratteri speciali tra le parole.
+    \item[-] Ogni parola deve iniziare con una lettera in maiuscolo (ad esempio NormeDiProgetto).
+    \item[-] I documenti interni non prevedono riferimenti alla versione, che sar\`a invece presente nei documenti formali esterni.
+  \end{elencopuntato}
+  
 \sezione{Modifiche}
-	Le modifica pu\`o essere effettuata solamente dai redattori del documento, che avranno anche l'obbligo di aggiornare la tabella delle modifiche. Ogni voce di questa tabella deve comprendere il numero di versione, la data, un breve commento che indichi i principali cambiamenti e l'autore della modifica.
-	Gli approvatori possono segnalare gli eventuali cambiamenti da apportare al documento tramite i sistemi di comunicazione interni all'azienda.
-	
+  Le modifica pu\`o essere effettuata solamente dai redattori del documento, che avranno anche l'obbligo di aggiornare la tabella delle modifiche. Ogni voce di questa tabella deve comprendere il numero di versione, la data, un breve commento che indichi i principali cambiamenti e l'autore della modifica.
+  Gli approvatori possono segnalare gli eventuali cambiamenti da apportare al documento tramite i sistemi di comunicazione interni all'azienda.
+  
 \sezione{Versionamento}
-	La numerazione delle versioni dei documenti \`e composta da due cifre separate da un punto, che partono entrambe da 0. La prima cifra rappresenta il numero dei rilasci esterni e viene quindi aumentata quando si consegna il documento per una revisione; la seconda sta ad indicare le versioni interne, viene incrementata ad ogni cambiamento del documento ed \`e posta a 0 ogniqualvolta si cambi la prima cifra. 
-
+  La numerazione delle versioni dei documenti \`e composta da due cifre separate da un punto, che partono entrambe da 0. La prima cifra rappresenta il numero dei rilasci esterni e viene quindi aumentata quando si consegna il documento per una revisione; la seconda sta ad indicare le versioni interne, viene incrementata ad ogni cambiamento del documento ed \`e posta a 0 ogniqualvolta si cambi la prima cifra.
+ 
 \sezione{Comunicazione interna}
 Il gruppo si incontra settimanalmente per aggiornarsi e verificare lo stato di avanzamento del progetto. Le riunioni non sono fissate per un giorno preciso della settimana, ma in base alla disponibilit\`a dei componenti del gruppo.\\
 L'azienda si serve del sistema di mailing-list offerto da Google (\href{http://groups.google.it/}{http://groups.google.it/}) per discutere le diverse problematiche inerenti al progetto e per aggiornamenti di ogni tipo.
-
+ 
 \sezione{Strumenti di sviluppo}
 L'azienda sceglie di utilizzare software con licenze \underline{Open Source} poich\`e rispecchiano le linee di pensiero dei componenti del gruppo. Inoltre tutto il software utilizzato \`e disponibile gratuitamente, per non gravare sui costi finali del prodotto.
-
+ 
 \subsezione{Sistema di versionamento}
 Per il versionamento si usa il sistema Git (\href{http://git.or.cz/}{http://git.or.cz/}) nella sua ultima versione disponibile (1.6.0.4) e come repository comune GitHub (\href{http://github.com}{http://github.com}) poich\`e offre una comoda interfaccia grafica per visualizzare le modifiche effettuate, e non aggiunge costi in quanto gratuito nella sua versione base. GitHub offre inoltre un \underline{wiki} utilizzabile all'occorrenza.\\
 Git \`e preferito ad Svn o ad altri sistemi in quanto \`e decentralizzato, quindi nel caso in cui il repository comune non fosse pi\`u raggiungibile per qualsiasi motivo, ogni membro disporr\`a comunque di una copia totale del progetto e di tutta la storia in ogni sua parte.\\
 Git \`e un sistema di comprovata qualit\`a, utilizzato da progetti del calibro del kernel Linux.
-
+ 
 \subsezione{Bug tracking}
 Considerato il prerequisito del capitolato d'appalto di pubblicare il progetto su \href{http://sourceforge.net}{SourceForge}, per il tracciamento dei bug si utilizza il sistema \href{https://sourceforge.net/tracker/?group_id=245619}{Tracker} messo a disposizione dallo stesso.
-
+ 
 \subsezione{Modellazione UML}
 Per la creazione di diagrammi UML l'azienda si serve del software ArgoUML v0.26.2 (\href{http://argouml.tigris.org/}{http://argouml.tigris.org/}), scelto principalmente per la semplicit\`a di utilizzo e per la possibilit\`a di esportare le immagini in formato \underline{PNG}.
-
+ 
 \subsezione{Pianificazione delle attivit\`a}
-Per pianificare le attivit\`a il gruppo ha deciso di adottare i diagrammi di {\underline{Gantt}} perch\`e ritenuti pi\`u immediati; pertanto si \`e scelto di usare il software GanttProject (\href{http://ganttproject.biz/}{http://ganttproject.biz/}) nella versione 2.0.8.
-
+Per pianificare le attivit\`a il gruppo ha deciso di adottare i diagrammi di Gantt perch\`e ritenuti pi\`u immediati; pertanto si \`e scelto di usare il software GanttProject (\href{http://ganttproject.biz/}{http://ganttproject.biz/}) nella versione 2.0.8.
+ 
 \subsezione{Editor \LaTeX}
 L'ambiente di sviluppo \LaTeX \ non \`e definito poich\`e non influisce nel risultato finale, e perch\`e si preferisce lasciare i membri del gruppo liberi di utilizzare l'editor che ritengono pi\`u adatto alle loro caratteristiche.
+ 
+\subsezione{Editor di testo}
+L'editor utilizzato per il codice JavaScript \`e \underline{emacs} con  \underline{js2-mode}, quest'ultimo permette di catturare la maggior parte degli errori di battitura e suggerisce la sintassi corretta mentre il codice viene digitato. 
+ 
+\subsezione{Ricerca di errori}
+Oltre alle utili funzionalit\`a di \underline{js2-mode}, l'azienda utilizza il programma \underline{JSLint}, un noto verificatore di codice Javascript, il quale rilevera' tutti gli altri errori.
 
+\subsezione{Copertura del codice}
+Si utilizza lo strumento JSCoverage, che offre informazioni utili per la construzione di un test di copertura, ed \`e compatibile con tutti i morderni browser. Grazie ad esso sar\`a possibile determinare quali righe di codice non saranno eseguite dai test di unit\`a
+
+\subsezione{Test di unit\`a}
+L'azienda utilizza il software QUnit. \`E molto stabile e, avendo una buona copertura di unità,  \`e possibile eseguire i test di regressione dopo ogni piccolo passo, sempre. Ci\`o comporta un notevole risparmio di tempo.
+
+\subsezione{Debug codice tramite browser}
+Si utilizza Firebug, la famosa estensione di Firefox che consente di effettuare il debug di codice HTML e JavaScript direttamente dal browser.
 \end{document}
+ 
