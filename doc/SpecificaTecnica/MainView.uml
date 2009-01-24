@@ -53,7 +53,7 @@
 			UML 1.4
 		</plugin>
 </profile>
-<XMI xmi.version = '1.2' xmlns:UML = 'org.omg.xmi.namespace.UML' timestamp = 'Thu Jan 22 10:41:29 CET 2009'>
+<XMI xmi.version = '1.2' xmlns:UML = 'org.omg.xmi.namespace.UML' timestamp = 'Sat Jan 24 09:56:04 CET 2009'>
   <XMI.header>    <XMI.documentation>
       <XMI.exporter>ArgoUML (using Netbeans XMI Writer version 1.0)</XMI.exporter>
       <XMI.exporterVersion>0.26.2(6) revised on $Date: 2007-05-12 08:08:08 +0200 (Sat, 12 May 2007) $ </XMI.exporterVersion>
@@ -65,7 +65,7 @@
       isAbstract = 'false'>
       <UML:Namespace.ownedElement>
         <UML:Package xmi.id = '127-0-0-1-6b50bb6a:11efdb5440e:-8000:0000000000000CAE'
-          name = 'UI' isSpecification = 'false' isRoot = 'false' isLeaf = 'false'
+          name = 'GUI' isSpecification = 'false' isRoot = 'false' isLeaf = 'false'
           isAbstract = 'false'>
           <UML:ModelElement.clientDependency>
             <UML:Usage xmi.idref = '127-0-0-1-6b50bb6a:11efdb5440e:-8000:0000000000000CB1'/>
@@ -153,7 +153,7 @@
       x="40"
       y="96"
       width="91"
-      height="22"
+      height="34"
       fill="1"
       fillcolor="white"
       stroke="1"
@@ -164,7 +164,7 @@
       bold="false"
       textsize="12"
       justification="Left"
-    >UI</text>
+    >GUI</text>
     <rectangle name="Fig0.3"
       x="41"
       y="96"
@@ -178,9 +178,9 @@
     />
     <text name="Fig0.4"
       x="40"
-      y="117"
+      y="129"
       width="140"
-      height="79"
+      height="67"
       fill="1"
       fillcolor="white"
       stroke="1"
@@ -194,7 +194,7 @@
     ></text>
   </group>
   <group name="Fig1"
-       description="org.argouml.uml.diagram.static_structure.ui.FigPackage[280, 96, 153, 100]pathVisible=false;stereotypeView=0;stereotypeVisible=true;visibilityVisible=false"
+       description="org.argouml.uml.diagram.static_structure.ui.FigPackage[280, 96, 161, 100]pathVisible=false;stereotypeView=0;stereotypeVisible=true;visibilityVisible=false"
        href="127-0-0-1-6b50bb6a:11efdb5440e:-8000:0000000000000CAF"
        fill="1"
        fillcolor="white"
@@ -207,7 +207,7 @@
     <rectangle name="Fig1.0"
       x="280"
       y="96"
-      width="153"
+      width="161"
       height="100"
       fill="0"
       fillcolor="white"
@@ -215,7 +215,7 @@
       strokecolor="black"
     />
     <group name="Fig1.1"
-         description="org.argouml.uml.diagram.ui.FigStereotypesCompartment[280, 96, 103, 1]"
+         description="org.argouml.uml.diagram.ui.FigStereotypesCompartment[280, 96, 111, 1]"
          fill="1"
          fillcolor="white"
          stroke="1"
@@ -228,7 +228,7 @@
       <rectangle name="Fig1.1.0"
         x="280"
         y="96"
-        width="103"
+        width="111"
         height="1"
         fill="1"
         fillcolor="white"
@@ -239,8 +239,8 @@
     <text name="Fig1.2"
       x="280"
       y="96"
-      width="104"
-      height="22"
+      width="112"
+      height="34"
       fill="1"
       fillcolor="white"
       stroke="1"
@@ -255,7 +255,7 @@
     <rectangle name="Fig1.3"
       x="281"
       y="96"
-      width="101"
+      width="109"
       height="2"
       fill="1"
       fillcolor="white"
@@ -265,9 +265,9 @@
     />
     <text name="Fig1.4"
       x="280"
-      y="117"
-      width="153"
-      height="79"
+      y="129"
+      width="161"
+      height="67"
       fill="1"
       fillcolor="white"
       stroke="1"
@@ -327,7 +327,7 @@
       x="520"
       y="96"
       width="91"
-      height="22"
+      height="34"
       fill="1"
       fillcolor="white"
       stroke="1"
@@ -352,9 +352,9 @@
     />
     <text name="Fig2.4"
       x="520"
-      y="117"
+      y="129"
       width="140"
-      height="79"
+      height="67"
       fill="1"
       fillcolor="white"
       stroke="1"
@@ -380,7 +380,7 @@
       destFigNode="Fig1"
     </private>
     <path name="Fig3.0"
-      description="org.tigris.gef.presentation.FigPoly"
+      description="org.argouml.gefext.ArgoFigPoly"
       fill="0"
       fillcolor="white"
       stroke="1"
@@ -405,13 +405,13 @@
       destFigNode="Fig2"
     </private>
     <path name="Fig4.0"
-      description="org.tigris.gef.presentation.FigPoly"
+      description="org.argouml.gefext.ArgoFigPoly"
       fill="0"
       fillcolor="white"
       stroke="1"
       strokecolor="black"
     >
-      <moveto x="433"
+      <moveto x="441"
               y="152" />
       <lineto x="520"
               y="152" />

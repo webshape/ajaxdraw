@@ -92,8 +92,7 @@ Il presente documento descrive le scelte tecniche, architetturali e tecnologiche
 			\label{tabredazione}
 		\end{center}
 	\end{table}
-	
-\newpage	
+
 	
 \section*{\LARGE Approvazione:}
 \begin{table}[!h]
@@ -108,8 +107,8 @@ Il presente documento descrive le scelte tecniche, architetturali e tecnologiche
 			%%%%%%%%%%%%%%FINE INTESTAZIONE COLONNE%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 			\hline
 			%%%%%%%%%%% PARTE DA MODIFICARE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%		
-			\multirow{2}{*}{RR-RPP} & \\
-									& \\
+			\multirow{1}{*}{RR-RPP} & Geremia Mirco\\
+									
 			\hline
 			%%%%%%%%%%% FINE PARTE DA MODIFICARE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 		\end{tabular}
@@ -119,7 +118,7 @@ Il presente documento descrive le scelte tecniche, architetturali e tecnologiche
 \end{table}
 
 \textbf{}
-
+\newpage
 \section*{\LARGE Lista di Distribuzione:}
 
 	\begin{elenconumerato}{\normindent}
@@ -127,7 +126,7 @@ Il presente documento descrive le scelte tecniche, architetturali e tecnologiche
 		\item I committenti Conte Renato e Vardanega Tullio in rappresentanza \\  dell'azienda proponente Zucchetti SPA
 	\end{elenconumerato}
 
-\newpage
+
 
 
 
@@ -145,7 +144,8 @@ Il presente documento descrive le scelte tecniche, architetturali e tecnologiche
 %%%%%%%%%%%%%%FINE INTESTAZIONE COLONNE%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 		 \hline
 %%%%%%%%%%% PARTE DA MODIFICARE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-		  1.0 & 23$\slash$01$\slash$2009  Verifica finale in preparazione al rilascio per RPP & Bizzotto Piero \\		  
+		  1.0 & 23$\slash$01$\slash$2009  Verifica finale in preparazione al rilascio per RPP & Bizzotto Piero \\		
+		  0.8 & 23/01/2009 Correzioni in seguito a verifica & Bizzotto Piero \\
 		  0.7 & 22/01/2009 Correzioni in seguito a verifica & Dissegna Stefano \\
 		  0.6 & 22/01/2009 Descrizione e diagramma delle classi ServerLogic & Dal Bosco Davide\\
           0.5 & 22/01/2009 Descrizione e diagramma delle classi GUI & Bizzotto Piero \\
@@ -201,35 +201,47 @@ L'architettura del sistema \`e stata sviluppata secondo un paradigma orientato a
 \caption{Package principali}
 \end{figure}
 
-Il sistema si compone, al massimo livello di astrazione, di tre componenti: il primo, contenuto nel package \textit{UI}, si occupa dell'interfaccia utente, il secondo, contenuto nel package \textit{ApplicationLogic}, gestisce la logica interna, ovvero la gestione in memoria di quanto disegnato e della conversione tra rappresentazione interna e rappresentazione in SVG, e il terzo, contenuto nel package \textit{DocBackend}, si occupa del salvataggio e del caricamento di file testuali e dell'accesso a file statici, come ad esempio il manuale.
+Il sistema si compone, al massimo livello di astrazione, di tre componenti: il primo, contenuto nel package \textit{GUI}, si occupa dell'interfaccia utente, il secondo, contenuto nel package \textit{ApplicationLogic}, gestisce la logica interna, ovvero la gestione in memoria di quanto disegnato e della conversione tra rappresentazione interna e rappresentazione in SVG, e il terzo, contenuto nel package \textit{DocBackend}, si occupa del salvataggio e del caricamento di file testuali e dell'accesso a file statici, come ad esempio il manuale.
+\newpage
 \subsubsezione{Design Pattern usati}
-\paragraph{Facade (Document):}
+\paragrafo{Facade (Document):}
 Permette di salvare/caricare file senza conoscere il sottosistema che implementa le funzionalit\`a.
-\subparagraph{Subsystem} Il sottosistema \`e composto dal package \textit{DocBackend}
+\subparagrafo{Subsystem} Il sottosistema \`e composto dal package \textit{DocBackend}
 
-\paragraph{Facade (StaticDocument):}
+\paragrafo{Facade (StaticDocument):}
 Permette di ottenere un file statico senza conoscere il sottosistema che implementa le funzionalit\`a.
-\subparagraph{Subsystem} Il sottosistema \`e composto dal package \textit{DocBackend}
+\subparagrafo{Subsystem} Il sottosistema \`e composto dal package \textit{DocBackend}
 
-\paragraph{Template Method:}
-\subparagraph{Algoritmo parametrizzato:}
-Il metodo \textit{setSelection} di \textit{FigureSet} implementa la logica di selezione di una figura a partire da un punto.
-\subparagraph{Metodo astratto da implementare:}
+
+\paragrafo{Template Method:}
+\subparagrafo{Algoritmo parametrizzato:}
+Il metodo \textit{setSelection} di \textit{FigureSet} implementa la logica di selezione di una figura a partire da un punto.\\ \\
+\textbf{Metodo astratto da implementare:}
 Implementando il metodo astratto \textit{getMainPoints} di \textit{Figure} \`e possibile parametrizzare l'algoritmo generale adattandolo alla figura specifica.
 
-\paragraph{Abstract Factory:}
-\subparagraph{Factory:} \textit{SVGElementRegistry} permette di generare oggetti la cui classe deriva da \textit{SVGReadable} a partire dal nome di un tag, e il cui tipo quindi non pu\`o essere conosciuto solo a runtime.
-\subparagraph{Concrete Factory:} Invece che utilizzare un insieme statico di possibili associazioni tra nome tag e classe da costruire, si utilizza una tabella dinamica in cui le classi devono registrarsi. Le fabbriche concrete sono quindi tutte le classi che si registrano al sistema, in particolare tutte le classi che derivano da \textit{Figure}.
-\subparagraph{Abstract Product:} Un'istanza di una classe che implementa \textit{SVGReadable}.
-\subparagraph{Concrete Product:} Un'istanza di una classe registrata nel sistema.
-\subparagraph{Client:} \textit{SVGReader}
-
-\paragraph{Abstract Factory:} 
-\subparagraph{Factory:} \textit{Property} genera un elemento grafico per modificare una propriet\`a specifica.
-\subparagraph{Concrete Factory:} tutte le classi che derivano da \textit{Property}
-\subparagraph{Abstract Product:} \textit{Widget}
-\subparagraph{Concrete Product:} un particolare elemento grafico a seconda della propriet\`a coinvolta.
-\subparagraph{Client:} \textit{PropertiesDialog}
+\paragrafo{Abstract Factory:}
+\subparagrafo{Factory:} 
+\textit{SVGElementRegistry} permette di generare oggetti la cui classe deriva da \textit{SVGReadable} a partire dal nome di un tag, e il cui tipo quindi non pu\`o essere conosciuto solo a runtime. \\ \\
+\textbf{Concrete Factory:} \\
+Invece di utilizzare un insieme statico di possibili associazioni tra nome tag e classe da costruire, si utilizza una tabella dinamica in cui le classi devono registrarsi. Le fabbriche concrete sono quindi tutte le classi che si registrano al sistema, in particolare tutte le classi che derivano da \textit{Figure}. \\ \\
+\textbf{Abstract Product:} \\
+Un'istanza di una classe che implementa \textit{SVGReadable}. \\ \\
+\textbf{Concrete Product:} \\
+Un'istanza di una classe registrata nel sistema. \\ \\
+\textbf{Client:}\\
+\textit{SVGReader.} 
+\newpage
+\paragrafo{Abstract Factory:} 
+\subparagrafo{Factory:} 
+\textit{Property} genera un elemento grafico per modificare una propriet\`a specifica.\\ \\
+\textbf{Concrete Factory: }\\
+tutte le classi che derivano da \textit{Property}. \\ \\
+\textbf{Abstract Product: }\\
+\textit{Widget.}\\ \\
+\textbf{Concrete Product: }\\
+un particolare elemento grafico a seconda della propriet\`a coinvolta. \\
+\textbf{Client:}\\
+\textit{PropertiesDialog.}
 \newpage
 %\paragraph{Iterator:}
 %Viene usata una variante pi\`u semplice, anche se meno flessibile. 
@@ -241,7 +253,14 @@ Implementando il metodo astratto \textit{getMainPoints} di \textit{Figure} \`e p
 \includegraphics{GUIlogic.jpg}
 \caption{GUILogic}
 \end{figure}
-La GUI \` e  il client che verr\` a utilizzato nel sistema AJAXDRAW, e verr\` a descritta brevemente, in quanto rappresenta solo un'unit\` a che andr\`  a a lavorare sulle altre componenti di sistema. \` E costruita nella sua totalit\` a nella pagina web caricata dal browser, rappresentata dalla classe \textit{Page}, e composta da tutti i widgets con i quali interagire (che implementano tutti l'interfaccia generica \textit{Widget}).  I widgets si suddividono in \textit{Toolbar} (barra degli strumenti), \textit{Button} (pulsanti generici, che compongono anche la toolbar stessa), \textit{Palette} e \textit{ColourDialog}(per la gestione del colore), e \textit{PropertiesDialog}(per la modifica delle propriet\` a, che aggrega gli specifici \textit{Setter}). La pagina \` e composta inoltre dalla classe \textit{Visualization}, la quale gestisce il \textit{Canvas} e tutte le operazioni su di esso eseguite, tra cui la conversione tra coordinate utente e coordinate interne e lo zoom. Le classi che rappresentano oggetti con cui \`e necessario interagire tramite mouse implementano, tutte l'interfaccia \textit{UserClickEvent}, e tra queste vi \` e ovviamente la classe \textit{Canvas}, che oltre a questa implementa anche \textit{MouseMovePressed} e \textit{MouseMoveReleased}, necessarie al disegno tramite il mouse.  \` E infine presente la possibilit\` a per il programma di avvertire l'utente in caso di errore interno all'applicazione, tramite l'oggetto \textit{Alert}.
+La GUI \` e  il client che verr\` a utilizzato nel sistema AJAXDRAW, e verr\` a descritta brevemente, in quanto rappresenta solo un'unit\` a che andr\`  a a lavorare sulle altre componenti di sistema. \` E costruita nella sua totalit\` a nella pagina web caricata dal browser, rappresentata dalla classe \textit{Page}, e composta da tutti i widgets con i quali interagire (che implementano tutti l'interfaccia generica \textit{Widget}).  I widgets si suddividono in \textit{Toolbar} (barra degli strumenti), \textit{Button} (pulsanti generici, che compongono anche la toolbar stessa), \textit{Palette} e \textit{ColourDialog}(per la gestione del colore), e \textit{PropertiesDialog}(per la modifica delle propriet\` a, che aggrega gli specifici \textit{Setter}). La pagina \` e composta inoltre dalla classe \textit{Visualization}, la quale gestisce il \textit{Canvas} e tutte le operazioni su di esso eseguite, tra cui la conversione tra coordinate utente e coordinate interne e lo zoom. Le classi che rappresentano oggetti con cui \`e necessario interagire tramite mouse implementano, tutte l'interfaccia \textit{UserClickEvent}, e tra queste vi \` e ovviamente la classe \textit{Canvas}, che oltre a questa implementa anche \textit{MouseMovePressed} e \textit{MouseMoveReleased}, necessarie al disegno tramite il mouse.  \` E infine presente la possibilit\` a per il programma di avvertire l'utente in caso di errore interno all'applicazione, tramite l'oggetto \textit{Alert}. \\ \\ \\
+
+\begin{figure}[!ht]
+\centering
+\includegraphics{bozzaGUI.jpg}
+\caption{Bozza della GUI}
+\end{figure}
+
 \newpage
 \subsubsezione{ApplicationLogic - Logica interna}
 
@@ -284,7 +303,7 @@ L'importazione di un file SVG viene gestita dalla classe \textit{SVGReader} attr
 \caption{ServerLogic}
 \end{figure}
 
-In AJAXDRAW \`e necessaria la presenza di una parte server, visto il modello client-server dell'applicazione. La parte server, ha funzionalit\`a minimali, ma fondamentali per permettere il funzionamento dell'intero sistema. Le sue funzioni, oltre a quella di essere un webserver e fornire la pagina HTML al client, sono esclusivamente quelle di permettere un salvataggio in formato SVG del disegno effettuato sul client, effettuare il caricamento di un file risiedente su disco e avere accesso al manuale utente dell'applicazione. Come da figura 6, \`e composto da una classe \textit{Document} che rappresenta il disegno effettuato sul canvas, nella quale sono presenti i metodi \textit{save} e \textit{load}. L'uso di questi metodi permettono l'invio di una richiesta al server (classe \textit{Request}, tramite il metodo \textit{acceptRequest}). La classe \textit{Server} contiene tre metodi: \textit{getSave} che permette di salvare un file su disco, \textit{getLoad} che permette di caricare un file e \textit{getHTML} che ha il compito di ottenere la pagina HTML da fornire al client e di prelevare il manuale utente. La classe \textit{File} rappresenta un file che risiede su disco, il quale \`e possibile prelevarlo (\textit{getFile}) o cancellarlo (\textit{deleteFile}). La classe \textit{Clean} contiene il metodo \textit{sweeper} il quale elimina i file che sono gia stati scaricati o i file di client che abbandonano la connessione con il server, in modo da evitare che quesi file presenti temporaneamente sul server non lo intasino. La classe \textit{StaticDocument}, tramite il suo metodo \textit{get} permette di inviare una richiesta al server per ottenere il manuale utente. Sono presenti inoltre delle classi che permettono la gestione di eccezioni: pu\`o verificarsi un errore di comunicazione (rappresentato dall'interfaccia \textit{CommunicationError} e dalle classi \textit{ConnectionError} e \textit{ServerError} con relativi metodi che la implementano), o un errore di file non trovato (perch\`e su disco non \`e presente il file). Questo tipo di eccezione \`e rappresentato dalla classe \textit{FileNotFound} con il relativo metodo \textit{getFileError}. 
+In AJAXDRAW \`e necessaria la presenza di una parte server, visto il modello client-server dell'applicazione. La parte server ha funzionalit\`a minimali, ma fondamentali per permettere il funzionamento dell'intero sistema. Le sue funzioni, oltre a quella di essere un webserver e fornire la pagina HTML al client, sono esclusivamente quelle di permettere un salvataggio in formato SVG del disegno effettuato sul client, effettuare il caricamento di un file risiedente su disco e avere accesso al manuale utente dell'applicazione. Come da figura 6, \`e composto da una classe \textit{Document} che rappresenta il disegno effettuato sul canvas, nella quale sono presenti i metodi \textit{save} e \textit{load}. L'uso di questi metodi permettono l'invio di una richiesta al server (classe \textit{Request}, tramite il metodo \textit{acceptRequest}). La classe \textit{Server} contiene tre metodi: \textit{getSave} che permette di salvare un file su disco, \textit{getLoad} che permette di caricare un file e \textit{getHTML} che ha il compito di ottenere la pagina HTML da fornire al client e di prelevare il manuale utente. La classe \textit{File} rappresenta un file che risiede su disco, il quale \`e possibile prelevarlo (\textit{getFile}) o cancellarlo (\textit{deleteFile}). La classe \textit{Clean} contiene il metodo \textit{sweeper} il quale elimina i file che sono gia stati scaricati o i file di client che abbandonano la connessione con il server, in modo da evitare che quesi file presenti temporaneamente sul server non lo intasino. La classe \textit{StaticDocument}, tramite il suo metodo \textit{get} permette di inviare una richiesta al server per ottenere il manuale utente. Sono presenti inoltre delle classi che permettono la gestione di eccezioni: pu\`o verificarsi un errore di comunicazione (rappresentato dall'interfaccia \textit{CommunicationError} e dalle classi \textit{ConnectionError} e \textit{ServerError} con relativi metodi che la implementano), o un errore di file non trovato (perch\`e su disco non \`e presente il file). Questo tipo di eccezione \`e rappresentato dalla classe \textit{FileNotFound} con il relativo metodo \textit{getFileError}. 
 
 
 \sezione{Descrizione dei singoli componenti}
@@ -510,7 +529,7 @@ Classe concreta che si occupa di avvertire l'utente di un errore verificatosi ne
 Nessuna.
 \subsubsezione{Interfacce e relazioni di uso da altre componenti}
 Nessuna.
-\subsubsezione{Attivit\`a svolte e dati trattati}begin{elencopuntato}[\normindent]
+\subsubsezione{Attivit\`a svolte e dati trattati}
 \begin{elencopuntato}[\normindent]
 \item[-]  \textit{showError} metodo che avverte l'utente di un qualche errore tramite pop-up o un avviso di altro genere.
 \end{elencopuntato}
@@ -576,6 +595,7 @@ Implementata da \textit{Colour}, \textit{TextFont} e \textit{TextSize}.
 \subsubsezione{Tipo, obiettivo e funzione del componente}
 Rappresenta l'opacit\`a di un colore.
 \subsubsezione{Relazioni d'uso di altre componenti}
+Nessuna.
 \subsubsezione{Interfacce e relazioni di uso da altre componenti}
 \textit{Colour} ne mantiene un'istanza.
 \subsubsezione{Attivit\`a svolte e dati trattati}
@@ -627,6 +647,7 @@ Rappresenta il colore di un testo.
 \subsubsezione{Relazioni d'uso di altre componenti}
 Deriva da \textit{Colour} e da \textit{TextProperty}.
 \subsubsezione{Interfacce e relazioni di uso da altre componenti}
+Nessuna.
 \subsubsezione{Attivit\`a svolte e dati trattati}
 Nessuna a questo livello.
 
@@ -636,6 +657,7 @@ Rappresenta il font di un testo.
 \subsubsezione{Relazioni d'uso di altre componenti}
 Deriva da \textit{TextProperty} e implementa \textit{CSSProperty}.
 \subsubsezione{Interfacce e relazioni di uso da altre componenti}
+Nessuna.
 \subsubsezione{Attivit\`a svolte e dati trattati}
 Nessuna a questo livello.
 
@@ -645,6 +667,7 @@ Rappresenta la grandezza di un testo.
 \subsubsezione{Relazioni d'uso di altre componenti}
 Deriva da \textit{TextProperty} e implementa \textit{CSSProperty}.
 \subsubsezione{Interfacce e relazioni di uso da altre componenti}
+Nessuna.
 \subsubsezione{Attivit\`a svolte e dati trattati}
 Nessuna a questo livello.
 
@@ -654,6 +677,7 @@ Rappresenta la posizione e le dimensioni massime di una figura.
 \subsubsezione{Relazioni d'uso di altre componenti}
 Implementa \textit{Property}. Ogni istanza di \textit{Figure} ne mantiene un'istanza.
 \subsubsezione{Interfacce e relazioni di uso da altre componenti}
+Nessuna.
 \subsubsezione{Attivit\`a svolte e dati trattati}
 Nessuna a questo livello.
 
@@ -663,6 +687,7 @@ Rappresenta un cerchio o un'ellisse.
 \subsubsezione{Relazioni d'uso di altre componenti}
 Deriva da \textit{Figure} e ne implementa i metodi astratti. Mantiene un'istanza di \textit{FillColour}.
 \subsubsezione{Interfacce e relazioni di uso da altre componenti}
+Nessuna.
 \subsubsezione{Attivit\`a svolte e dati trattati}
 Nessuna a questo livello.
 
@@ -672,6 +697,7 @@ Rappresenta un rettangolo o un quadrato.
 \subsubsezione{Relazioni d'uso di altre componenti}
 Deriva da \textit{Figure} e ne implementa i metodi astratti. Mantiene un'istanza di \textit{FillColour}.
 \subsubsezione{Interfacce e relazioni di uso da altre componenti}
+Nessuna.
 \subsubsezione{Attivit\`a svolte e dati trattati}
 Nessuna a questo livello.
 
@@ -681,6 +707,7 @@ Rappresenta una linea generica.
 \subsubsezione{Relazioni d'uso di altre componenti}
 Deriva da \textit{Figure}.
 \subsubsezione{Interfacce e relazioni di uso da altre componenti}
+Nessuna.
 \subsubsezione{Attivit\`a svolte e dati trattati}
 Nessuna a questo livello.
 
@@ -690,6 +717,7 @@ Rappresenta una linea diritta.
 \subsubsezione{Relazioni d'uso di altre componenti}
 Deriva da \textit{Line} e ne implementa i metodi astratti.
 \subsubsezione{Interfacce e relazioni di uso da altre componenti}
+Nessuna.
 \subsubsezione{Attivit\`a svolte e dati trattati}
 Nessuna a questo livello.
 
@@ -711,6 +739,7 @@ Rappresenta una linea curva.
 \subsubsezione{Relazioni d'uso di altre componenti}
 Deriva da \textit{FreeLine}.
 \subsubsezione{Interfacce e relazioni di uso da altre componenti}
+Nessuna.
 \subsubsezione{Attivit\`a svolte e dati trattati}
 Nessuna a questo livello.
 
@@ -720,6 +749,7 @@ Rappresenta un poligono regolare.
 \subsubsezione{Relazioni d'uso di altre componenti}
 Deriva da \textit{Figure} e ne implementa i metodi astratti. Mantiene un'istanza di \textit{FillColour} e di \textit{EdgeNumber} che ne identifica il numero di lati.
 \subsubsezione{Interfacce e relazioni di uso da altre componenti}
+Nessuna.
 \subsubsezione{Attivit\`a svolte e dati trattati}
 Nessuna a questo livello.
 
@@ -729,6 +759,7 @@ Permette di creare un documento SVG.
 \subsubsezione{Relazioni d'uso di altre componenti}
 Accede alle figure correnti attraverso un'istanza di \textit{FigureSet}.
 \subsubsezione{Interfacce e relazioni di uso da altre componenti}
+Nessuna.
 \subsubsezione{Attivit\`a svolte e dati trattati}
 \begin{elencopuntato}[\normindent]
 \item[-] \textit{write} crea un documento SVG che contiene le figure correntemente disegnate.
@@ -750,6 +781,7 @@ Implementata dalle classi che rappresentano figure.
 \subsubsezione{Tipo, obiettivo e funzione del componente}
 Rappresenta un documento SVG in costruzione.
 \subsubsezione{Relazioni d'uso di altre componenti}
+Nessuna.
 \subsubsezione{Interfacce e relazioni di uso da altre componenti}
 Usato da \textit{SVGWriter} e dalle classi che implementano \textit{SVGWritable} per realizzare un documento SVG.
 \subsubsezione{Attivit\`a svolte e dati trattati}
@@ -763,22 +795,27 @@ Usato da \textit{SVGWriter} e dalle classi che implementano \textit{SVGWritable}
 \subsubsezione{Tipo, obiettivo e funzione del componente}
 Un parser SVG.
 \subsubsezione{Relazioni d'uso di altre componenti}
+Nessuna.
 \subsubsezione{Interfacce e relazioni di uso da altre componenti}
 Usato da \textit{SVGReader}.
 \subsubsezione{Attivit\`a svolte e dati trattati}
+Nessuna a questo livello.
 
 \subsezione{SVGTag}
 \subsubsezione{Tipo, obiettivo e funzione del componente}
 Rappresenta un tag (ovvero un comando) SVG.
 \subsubsezione{Relazioni d'uso di altre componenti}
+Nessuna.
 \subsubsezione{Interfacce e relazioni di uso da altre componenti}
 Usato da \textit{SVGReader} e dalle classi che implementano \textit{SVGReadable}.
 \subsubsezione{Attivit\`a svolte e dati trattati}
+Nessuna a questo livello.
 
 \subsezione{SVGReadable}
 \subsubsezione{Tipo, obiettivo e funzione del componente}
 Rappresenta un oggetto caricabile da un documento SVG.
 \subsubsezione{Relazioni d'uso di altre componenti}
+Nessuna.
 \subsubsezione{Interfacce e relazioni di uso da altre componenti}
 Implementata dalle classi che rappresentano figure.
 \subsubsezione{Attivit\`a svolte e dati trattati}
@@ -790,9 +827,11 @@ Implementata dalle classi che rappresentano figure.
 \subsubsezione{Tipo, obiettivo e funzione del componente}
 Metaclasse di \textit{SVGReadable}.
 \subsubsezione{Relazioni d'uso di altre componenti}
+Nessuna.
 \subsubsezione{Interfacce e relazioni di uso da altre componenti}
 Usata da \textit{SVGElementRegistry} per associare il nome di un tag a una classe che implementa \textit{SVGReadable}.
 \subsubsezione{Attivit\`a svolte e dati trattati}
+Nessuna a questo livello.
 
 \subsezione{SVGReader}
 \subsubsezione{Tipo, obiettivo e funzione del componente}
@@ -800,6 +839,7 @@ Permette di caricare un documento SVG.
 \subsubsezione{Relazioni d'uso di altre componenti}
 Usa \textit{XMLParser} per fare il parsing del documento testuale, crea \textit{SVGTag} e usa \textit{SVGElementRegistry} per creare una figura a partire da un tag SVG.
 \subsubsezione{Interfacce e relazioni di uso da altre componenti}
+Nessuna.
 \subsubsezione{Attivit\`a svolte e dati trattati}
 \begin{elencopuntato}[\normindent]
 \item[-] \textit{read} prende un documento SVG e ritorna un'istanza di \textit{FigureSet} che lo rappresenta.
@@ -824,6 +864,7 @@ Rappresenta il manuale utente.
 \subsubsezione{Relazioni d'uso di altre componenti}
 Usa \textit{StaticDocument} per ottenere il file contenente il manuale.
 \subsubsezione{Interfacce e relazioni di uso da altre componenti}
+Nessuna.
 \subsubsezione{Attivit\`a svolte e dati trattati}
 \begin{elencopuntato}[\normindent]
 \item[-] \textit{get} ritorna il manuale.
@@ -833,28 +874,37 @@ Usa \textit{StaticDocument} per ottenere il file contenente il manuale.
 \subsubsezione{Tipo, obiettivo e funzione del componente}
 Un punto sul piano.
 \subsubsezione{Relazioni d'uso di altre componenti}
+Nessuna.
 \subsubsezione{Interfacce e relazioni di uso da altre componenti}
+Nessuna.
 \subsubsezione{Attivit\`a svolte e dati trattati}
+Nessuna a questo livello.
 
 \subsezione{PointSeq}
 \subsubsezione{Tipo, obiettivo e funzione del componente}
 Una sequenza di \textit{Point}.
 \subsubsezione{Relazioni d'uso di altre componenti}
+Nessuna.
 \subsubsezione{Interfacce e relazioni di uso da altre componenti}
+Nessuna.
 \subsubsezione{Attivit\`a svolte e dati trattati}
+Nessuna a questo livello.
 
 \subsezione{Object}
 \subsubsezione{Tipo, obiettivo e funzione del componente}
 Superclasse di ogni classe.
 \subsubsezione{Relazioni d'uso di altre componenti}
+Nessuna.
 \subsubsezione{Interfacce e relazioni di uso da altre componenti}
 Ereditata automaticamente da ogni classe.
 \subsubsezione{Attivit\`a svolte e dati trattati}
+Nessuna a questo livello.
 
 \subsezione{Function}
 \subsubsezione{Tipo, obiettivo e funzione del componente}
 Una funzione di prima classe che accetta un argomento di tipo qualsiasi. La funzione pu\`o essere anonima o no.
 \subsubsezione{Relazioni d'uso di altre componenti}
+Nessuna.
 \subsubsezione{Interfacce e relazioni di uso da altre componenti}
 Usata dai metodi di iterazione, come ad esempio \textit{each} di \textit{FigureSet}, per applicare una certa operazione ad ogni elemento di una collezione.
 \subsubsezione{Attivit\`a svolte e dati trattati}
@@ -862,6 +912,7 @@ Usata dai metodi di iterazione, come ad esempio \textit{each} di \textit{FigureS
 \item[-] \textit{call} richiama la funzione.
 \end{elencopuntato}
 
+%Parte Dal Bosco
 \subsezione{Document}
 \subsubsezione{Tipo, obiettivo e funzione del componente}
 Permette di salvare e caricare file.
@@ -987,7 +1038,7 @@ Usata da \textit{File} nel caso non venga trovato su disco un file richiesto.
 \sezione{Stime di fattibilit\`a e di bisogno di risorse}
 Il maggiore collo di bottiglia del sistema \`e rappresentato dal server, in quanto una singola macchina pu\`o trovarsi a gestire un numero elevato di richieste. Non dovrebbero comunque esserci problemi in quanto le funzionalit\`a implementate lato server sono minime, e quindi ogni singolo client comporta un dispendio di risorse, in termini di tempo di calcolo, di spazio su disco e di banda, minimo. 
 Un secondo problema prestazionale \`e rappresentato dal fatto che l'applicazione sar\`a forzatamente scritta in \underline{JavaScript}, la cui implementazione \`e estremamente scadente dal punto di vista delle prestazioni in quasi tutti i browser, fatta eccezione per Google Chrome, l'unico a fornire un sistema di compilazione \underline{JIT}. Per questo, durante l'implementazione si dovr\`a porre una costante attenzione alle risorse richieste dai diversi metodi.
-
+\newpage
 \sezione{Tracciamento della relazione componenti-requisiti}
 \begin{table}[h]
 \begin{center}
@@ -1010,7 +1061,7 @@ Un secondo problema prestazionale \`e rappresentato dal fatto che l'applicazione
      \hline
      Toolbar & RFO-11, RIO-1 \\
      \hline
-     PropertyDialog & RFO-12 \\ 
+     PropertiesDialog & RFO-12 \\ 
      \hline
      BoundingRectangle & RFO-10 \\
      \hline
@@ -1130,7 +1181,7 @@ Un secondo problema prestazionale \`e rappresentato dal fatto che l'applicazione
      \hline
      ServerError & RFO-15, RFO-16 \\
      \hline
-     Server & RFO-15, RFO-16 \\
+     Server & RFO-15, RFO-16, RIO-2, RIO-3 \\
      \hline
      StaticDocument & RFO-15, RFO-16 \\
      \hline
