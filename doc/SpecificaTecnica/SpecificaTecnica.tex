@@ -145,14 +145,23 @@ Il presente documento descrive le scelte tecniche, architetturali e tecnologiche
 		 \hline
 %%%%%%%%%%% PARTE DA MODIFICARE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 		  1.0 & 23$\slash$01$\slash$2009  Verifica finale in preparazione al rilascio per RPP & Bizzotto Piero \\		
+		  		\hline
 		  0.8 & 23/01/2009 Correzioni in seguito a verifica & Bizzotto Piero \\
+		  		\hline
 		  0.7 & 22/01/2009 Correzioni in seguito a verifica & Dissegna Stefano \\
+		  		\hline
 		  0.6 & 22/01/2009 Descrizione e diagramma delle classi ServerLogic & Dal Bosco Davide\\
+		  		\hline
           0.5 & 22/01/2009 Descrizione e diagramma delle classi GUI & Bizzotto Piero \\
+          		\hline
           0.4 & 22/01/2009 Descrizione design pattern & Dissegna Stefano \\
+          		\hline
           0.3 & 21/01/2009 Descrizione generale e delle classi per ApplicationLogic & Dissegna Stefano \\
+          		\hline
           0.2 & 20/01/2009 Diagrammi di sequenza per ApplicationLogic & Dissegna Stefano \\
+          		\hline
           0.1 & 19/01/2009 Diagramma delle classi per ApplicationLogic & Dissegna Stefano \\
+          		\hline
     	  0.0 & 15/01/2009 Bozza iniziale & Dal Bosco Davide \\
 		\hline %%FINE RIGA
 %%%%%%%%%%% FINE PARTE DA MODIFICARE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -206,11 +215,11 @@ Il sistema si compone, al massimo livello di astrazione, di tre componenti: il p
 \subsubsezione{Design Pattern usati}
 \paragrafo{Facade (Document):}
 Permette di salvare/caricare file senza conoscere il sottosistema che implementa le funzionalit\`a.
-\subparagrafo{Subsystem} Il sottosistema \`e composto dal package \textit{DocBackend}
+\subparagrafo{Subsystem} Il sottosistema \`e composto dal package \textit{DocBackend}.
 
 \paragrafo{Facade (StaticDocument):}
 Permette di ottenere un file statico senza conoscere il sottosistema che implementa le funzionalit\`a.
-\subparagrafo{Subsystem} Il sottosistema \`e composto dal package \textit{DocBackend}
+\subparagrafo{Subsystem} Il sottosistema \`e composto dal package \textit{DocBackend}.
 
 
 \paragrafo{Template Method:}
@@ -316,7 +325,7 @@ Nessuna.
 \subsubsezione{Interfacce e relazioni di uso da altre componenti}
 Implementata da tutti gli oggetti grafici concreti presenti nella pagina.
 \subsubsezione{Attivit\`a svolte e dati trattati}
-Nessuna a questo livello.
+\leftskip=36pt{Nessuna a questo livello. }
 
 \subsezione{Toolbar}
 \subsubsezione{Tipo, obiettivo e funzione del componente}
@@ -326,7 +335,7 @@ Classe concreta che rappresenta la toolbar dalla quale scegliere la funzione des
 \subsubsezione{Interfacce e relazioni di uso da altre componenti}
 \textit{Page} ne mantiene un'istanza.
 \subsubsezione{Attivit\`a svolte e dati trattati}
-Nessuna a questo livello.
+\leftskip=36pt{Nessuna a questo livello.}
 
 \subsezione{Button}
 \subsubsezione{Tipo, obiettivo e funzione del componente}
@@ -348,7 +357,7 @@ Oltre a \textit{Widget}, implementa l'interfaccia \textit{UserClickEvent} per la
 \subsubsezione{Interfacce e relazioni di uso da altre componenti}
 \textit{Page} ne mantiene un'istanza.
 \subsubsezione{Attivit\`a svolte e dati trattati}
-Nessuna a questo livello.
+\leftskip=36pt{Nessuna a questo livello.}
 
 \subsezione{ColourDialog}
 \subsubsezione{Tipo, obiettivo e funzione del componente}
@@ -370,7 +379,7 @@ Classe concreta che rappresenta  il menu di modifica delle propriet\` a di un og
 \subsubsezione{Interfacce e relazioni di uso da altre componenti}
 \textit{Page} ne mantiene un'istanza.
 \subsubsezione{Attivit\`a svolte e dati trattati}
-Nessuna a questo livello.
+\leftskip=36pt{Nessuna a questo livello.}
 
 \subsezione{BoundingRectagleSetter}
 \subsubsezione{Tipo, obiettivo e funzione del componente}
@@ -380,7 +389,7 @@ Nessuna.
 \subsubsezione{Interfacce e relazioni di uso da altre componenti}
 \textit{PropertiesDialog} ne mantiene un'istanza.
 \subsubsezione{Attivit\`a svolte e dati trattati}
-Nessuna a questo livello.
+\leftskip=36pt{Nessuna a questo livello.}
 
 \subsezione{EdgeNumberSetter}
 \subsubsezione{Tipo, obiettivo e funzione del componente}
@@ -390,7 +399,7 @@ Nessuna.
 \subsubsezione{Interfacce e relazioni di uso da altre componenti}
 \textit{PropertiesDialog} ne mantiene un'istanza.
 \subsubsezione{Attivit\`a svolte e dati trattati}
-Nessuna a questo livello.
+\leftskip=36pt{Nessuna a questo livello.}
 
 \subsezione{FontSetter}
 \subsubsezione{Tipo, obiettivo e funzione del componente}
@@ -400,7 +409,7 @@ Classe concreta che rappresenta l'oggetto che si occupa di modificare il font di
 \subsubsezione{Interfacce e relazioni di uso da altre componenti}
 \textit{PropertiesDialog} ne mantiene un'istanza.
 \subsubsezione{Attivit\`a svolte e dati trattati}
-Nessuna a questo livello.
+\leftskip=36pt{Nessuna a questo livello.}
 
 \subsezione{FontSizeSetter}
 \subsubsezione{Tipo, obiettivo e funzione del componente}
@@ -410,7 +419,7 @@ Nessuna.
 \subsubsezione{Interfacce e relazioni di uso da altre componenti}
 \textit{FontSetter} ne mantiene un'istanza.
 \subsubsezione{Attivit\`a svolte e dati trattati}
-Nessuna a questo livello.
+\leftskip=36pt{Nessuna a questo livello.}
 
 \subsezione{FontTypeSetter}
 \subsubsezione{Tipo, obiettivo e funzione del componente}
@@ -420,7 +429,7 @@ Nessuna.
 \subsubsezione{Interfacce e relazioni di uso da altre componenti}
 \textit{FontSetter} ne mantiene un'istanza.
 \subsubsezione{Attivit\`a svolte e dati trattati}
-Nessuna a questo livello.
+\leftskip=36pt{Nessuna a questo livello.}
 
 \subsezione{UserClickEvent}
 \subsubsezione{Tipo, obiettivo e funzione del componente}
@@ -466,7 +475,7 @@ Estende \textit{OnMouseMove}.
 \subsubsezione{Interfacce e relazioni di uso da altre componenti}
 Viene implementato dall'istanza della classe \textit{Canvas}, per gestire il caso del pulsante del mouse premuto.
 \subsubsezione{Attivit\`a svolte e dati trattati}
-Nessuna a questo livello.
+\leftskip=36pt{Nessuna a questo livello.}
 
 \subsezione{MouseMoveReleased}
 \subsubsezione{Tipo, obiettivo e funzione del componente}
@@ -476,7 +485,7 @@ Estende \textit{OnMouseMovePressed}.
 \subsubsezione{Interfacce e relazioni di uso da altre componenti}
 Viene implementato dall'istanza della classe \textit{Canvas}, per gestire il caso del pulsante del mouse premuto.
 \subsubsezione{Attivit\`a svolte e dati trattati}
-Nessuna a questo livello.
+\leftskip=36pt{Nessuna a questo livello.}
 
 \subsezione{Event}
 \subsubsezione{Tipo, obiettivo e funzione del componente}
@@ -486,7 +495,7 @@ Nessuna.
 \subsubsezione{Interfacce e relazioni di uso da altre componenti}
 Viene utilizzato dalle interfacce \textit{OnMouseMove} e \textit{UserClickEvent}, a seguito dell'utilizzo del mouse per effettuare qualche operazione.
 \subsubsezione{Attivit\`a svolte e dati trattati}
-Nessuna a questo livello.
+\leftskip=36pt{Nessuna a questo livello.}
 
 \subsezione{Page}
 \subsubsezione{Tipo, obiettivo e funzione del componente}
@@ -496,7 +505,7 @@ Classe concreta che rappresenta la pagina web visualizzata dall'utente tramite l
 \subsubsezione{Interfacce e relazioni di uso da altre componenti}
 Nessuna.
 \subsubsezione{Attivit\`a svolte e dati trattati}
-Nessuna a questo livello.
+\leftskip=36pt{Nessuna a questo livello.}
 
 \subsezione{Visualization}
 \subsubsezione{Tipo, obiettivo e funzione del componente}
@@ -520,7 +529,7 @@ Nessuna.
 \subsubsezione{Interfacce e relazioni di uso da altre componenti}
 \textit{Visualization} ne utilizza un'istanza.
 \subsubsezione{Attivit\`a svolte e dati trattati}
-Nessuna a questo livello.
+\leftskip=36pt{Nessuna a questo livello.}
 
 \subsezione{Alert}
 \subsubsezione{Tipo, obiettivo e funzione del componente}
@@ -599,7 +608,7 @@ Nessuna.
 \subsubsezione{Interfacce e relazioni di uso da altre componenti}
 \textit{Colour} ne mantiene un'istanza.
 \subsubsezione{Attivit\`a svolte e dati trattati}
-Nessuna a questo livello.
+\leftskip=36pt{Nessuna a questo livello.}
 
 \subsezione{EdgeNumber}
 \subsubsezione{Tipo, obiettivo e funzione del componente}
@@ -609,7 +618,7 @@ Implementa \textit{Property}.
 \subsubsezione{Interfacce e relazioni di uso da altre componenti}
 \textit{Polygon} ne mantiene un'istanza.
 \subsubsezione{Attivit\`a svolte e dati trattati}
-Nessuna a questo livello.
+\leftskip=36pt{Nessuna a questo livello.}
 
 \subsezione{Colour}
 \subsubsezione{Tipo, obiettivo e funzione del componente}
@@ -619,7 +628,7 @@ Implementa \textit{Property} e \textit{CSSProperty}. Mantiene un'istanza di \tex
 \subsubsezione{Interfacce e relazioni di uso da altre componenti}
 \textit{Figure} ne mantiene un'istanza per rappresentare il colore del bordo.
 \subsubsezione{Attivit\`a svolte e dati trattati}
-Nessuna a questo livello.
+\leftskip=36pt{Nessuna a questo livello.}
 
 \subsezione{FillColour}
 \subsubsezione{Tipo, obiettivo e funzione del componente}
@@ -629,7 +638,7 @@ Deriva da \textit{Colour}.
 \subsubsezione{Interfacce e relazioni di uso da altre componenti}
 \textit{Circle}, \textit{Polygon} e \textit{Rectangle} ne mantengono un'istanza.
 \subsubsezione{Attivit\`a svolte e dati trattati}
-Nessuna a questo livello.
+\leftskip=36pt{Nessuna a questo livello.}
 
 \subsezione{TextProperty}
 \subsubsezione{Tipo, obiettivo e funzione del componente}
@@ -639,7 +648,7 @@ Deriva da \textit{Property}.
 \subsubsezione{Interfacce e relazioni di uso da altre componenti}
 \textit{Text} ne mantiene delle istanze.
 \subsubsezione{Attivit\`a svolte e dati trattati}
-Nessuna a questo livello.
+\leftskip=36pt{Nessuna a questo livello.}
 
 \subsezione{TextColour}
 \subsubsezione{Tipo, obiettivo e funzione del componente}
@@ -649,7 +658,7 @@ Deriva da \textit{Colour} e da \textit{TextProperty}.
 \subsubsezione{Interfacce e relazioni di uso da altre componenti}
 Nessuna.
 \subsubsezione{Attivit\`a svolte e dati trattati}
-Nessuna a questo livello.
+\leftskip=36pt{Nessuna a questo livello.}
 
 \subsezione{TextFont}
 \subsubsezione{Tipo, obiettivo e funzione del componente}
@@ -659,7 +668,7 @@ Deriva da \textit{TextProperty} e implementa \textit{CSSProperty}.
 \subsubsezione{Interfacce e relazioni di uso da altre componenti}
 Nessuna.
 \subsubsezione{Attivit\`a svolte e dati trattati}
-Nessuna a questo livello.
+\leftskip=36pt{Nessuna a questo livello.}
 
 \subsezione{TextSize}
 \subsubsezione{Tipo, obiettivo e funzione del componente}
@@ -669,7 +678,7 @@ Deriva da \textit{TextProperty} e implementa \textit{CSSProperty}.
 \subsubsezione{Interfacce e relazioni di uso da altre componenti}
 Nessuna.
 \subsubsezione{Attivit\`a svolte e dati trattati}
-Nessuna a questo livello.
+\leftskip=36pt{Nessuna a questo livello.}
 
 \subsezione{BoundingRectangle}
 \subsubsezione{Tipo, obiettivo e funzione del componente}
@@ -679,7 +688,7 @@ Implementa \textit{Property}. Ogni istanza di \textit{Figure} ne mantiene un'ist
 \subsubsezione{Interfacce e relazioni di uso da altre componenti}
 Nessuna.
 \subsubsezione{Attivit\`a svolte e dati trattati}
-Nessuna a questo livello.
+\leftskip=36pt{Nessuna a questo livello.}
 
 \subsezione{Circle}
 \subsubsezione{Tipo, obiettivo e funzione del componente}
@@ -689,7 +698,7 @@ Deriva da \textit{Figure} e ne implementa i metodi astratti. Mantiene un'istanza
 \subsubsezione{Interfacce e relazioni di uso da altre componenti}
 Nessuna.
 \subsubsezione{Attivit\`a svolte e dati trattati}
-Nessuna a questo livello.
+\leftskip=36pt{Nessuna a questo livello.}
 
 \subsezione{Rectangle}
 \subsubsezione{Tipo, obiettivo e funzione del componente}
@@ -699,7 +708,7 @@ Deriva da \textit{Figure} e ne implementa i metodi astratti. Mantiene un'istanza
 \subsubsezione{Interfacce e relazioni di uso da altre componenti}
 Nessuna.
 \subsubsezione{Attivit\`a svolte e dati trattati}
-Nessuna a questo livello.
+\leftskip=36pt{Nessuna a questo livello.}
 
 \subsezione{Line}
 \subsubsezione{Tipo, obiettivo e funzione del componente}
@@ -709,7 +718,7 @@ Deriva da \textit{Figure}.
 \subsubsezione{Interfacce e relazioni di uso da altre componenti}
 Nessuna.
 \subsubsezione{Attivit\`a svolte e dati trattati}
-Nessuna a questo livello.
+\leftskip=36pt{Nessuna a questo livello.}
 
 \subsezione{StraightLine}
 \subsubsezione{Tipo, obiettivo e funzione del componente}
@@ -719,7 +728,7 @@ Deriva da \textit{Line} e ne implementa i metodi astratti.
 \subsubsezione{Interfacce e relazioni di uso da altre componenti}
 Nessuna.
 \subsubsezione{Attivit\`a svolte e dati trattati}
-Nessuna a questo livello.
+\leftskip=36pt{Nessuna a questo livello.}
 
 \subsezione{FreeLine}
 \subsubsezione{Tipo, obiettivo e funzione del componente}
@@ -741,7 +750,7 @@ Deriva da \textit{FreeLine}.
 \subsubsezione{Interfacce e relazioni di uso da altre componenti}
 Nessuna.
 \subsubsezione{Attivit\`a svolte e dati trattati}
-Nessuna a questo livello.
+\leftskip=36pt{Nessuna a questo livello.}
 
 \subsezione{Polygon}
 \subsubsezione{Tipo, obiettivo e funzione del componente}
@@ -751,7 +760,7 @@ Deriva da \textit{Figure} e ne implementa i metodi astratti. Mantiene un'istanza
 \subsubsezione{Interfacce e relazioni di uso da altre componenti}
 Nessuna.
 \subsubsezione{Attivit\`a svolte e dati trattati}
-Nessuna a questo livello.
+\leftskip=36pt{Nessuna a questo livello.}
 
 \subsezione{SVGWriter}
 \subsubsezione{Tipo, obiettivo e funzione del componente}
@@ -799,7 +808,7 @@ Nessuna.
 \subsubsezione{Interfacce e relazioni di uso da altre componenti}
 Usato da \textit{SVGReader}.
 \subsubsezione{Attivit\`a svolte e dati trattati}
-Nessuna a questo livello.
+\leftskip=36pt{Nessuna a questo livello.}
 
 \subsezione{SVGTag}
 \subsubsezione{Tipo, obiettivo e funzione del componente}
@@ -809,7 +818,7 @@ Nessuna.
 \subsubsezione{Interfacce e relazioni di uso da altre componenti}
 Usato da \textit{SVGReader} e dalle classi che implementano \textit{SVGReadable}.
 \subsubsezione{Attivit\`a svolte e dati trattati}
-Nessuna a questo livello.
+\leftskip=36pt{Nessuna a questo livello.}
 
 \subsezione{SVGReadable}
 \subsubsezione{Tipo, obiettivo e funzione del componente}
@@ -831,7 +840,7 @@ Nessuna.
 \subsubsezione{Interfacce e relazioni di uso da altre componenti}
 Usata da \textit{SVGElementRegistry} per associare il nome di un tag a una classe che implementa \textit{SVGReadable}.
 \subsubsezione{Attivit\`a svolte e dati trattati}
-Nessuna a questo livello.
+\leftskip=36pt{Nessuna a questo livello.}
 
 \subsezione{SVGReader}
 \subsubsezione{Tipo, obiettivo e funzione del componente}
@@ -878,7 +887,7 @@ Nessuna.
 \subsubsezione{Interfacce e relazioni di uso da altre componenti}
 Nessuna.
 \subsubsezione{Attivit\`a svolte e dati trattati}
-Nessuna a questo livello.
+\leftskip=36pt{Nessuna a questo livello.}
 
 \subsezione{PointSeq}
 \subsubsezione{Tipo, obiettivo e funzione del componente}
@@ -888,7 +897,7 @@ Nessuna.
 \subsubsezione{Interfacce e relazioni di uso da altre componenti}
 Nessuna.
 \subsubsezione{Attivit\`a svolte e dati trattati}
-Nessuna a questo livello.
+\leftskip=36pt{Nessuna a questo livello.}
 
 \subsezione{Object}
 \subsubsezione{Tipo, obiettivo e funzione del componente}
@@ -898,7 +907,7 @@ Nessuna.
 \subsubsezione{Interfacce e relazioni di uso da altre componenti}
 Ereditata automaticamente da ogni classe.
 \subsubsezione{Attivit\`a svolte e dati trattati}
-Nessuna a questo livello.
+\leftskip=36pt{Nessuna a questo livello.}
 
 \subsezione{Function}
 \subsubsezione{Tipo, obiettivo e funzione del componente}
@@ -997,7 +1006,7 @@ Nessuna.
 \subsubsezione{Interfacce e relazioni di uso da altre componenti}
 Implementata da \textit{ConnectionError} e da \textit{ServerError} per la getione di errori di comunicazione.
 \subsubsezione{Attivit\`a svolte e dati trattati}
-Nessuna a questo livello.
+\leftskip=36pt{Nessuna a questo livello.}
 
 \subsezione{ConnectionError}
 \subsubsezione{Tipo, obiettivo e funzione del componente}
