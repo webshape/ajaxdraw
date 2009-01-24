@@ -5,7 +5,7 @@
  
 \begin{document}
  
-\renewcommand{\insertversion}{2} %INSERIRE LA VERSIONE QUI DENTRO STILE x.x.xx
+\renewcommand{\insertversion}{2.0} %INSERIRE LA VERSIONE QUI DENTRO STILE x.x.xx
 \renewcommand{\TITOLODOC}{Piano di qualifica} %INSERIRE IL TITOLO DEL DOCUMENTO DA FAR COMPARIRE A PIE PAGINA
 \renewcommand{\glosspath}{.\glossario} %INSERIRE PERCORSO RELATIVO
  
@@ -92,7 +92,6 @@ Il presente documento descrive le strategie per la gestione della qualit\`a adot
     \end{center}
   \end{table}  
  
-\newpage
 \section*{\LARGE Approvazione:}
 \begin{table}[!h]
   \begin{center}
@@ -145,7 +144,9 @@ Il presente documento descrive le strategie per la gestione della qualit\`a adot
 %%%%%%%%%%%%%%FINE INTESTAZIONE COLONNE%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
      \hline
 %%%%%%%%%%% PARTE DA MODIFICARE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-      1.1 &    09$\slash$12$\slash$2008 Aggiornamento in preparazione RPP & Carollo Mirko\\
+      2.0 &    23$\slash$01$\slash$2009 Verifica finale in preparazione al rilascio per la RPP & Carollo Mirko\\
+      \hline 
+      1.1 &    19$\slash$01$\slash$2009 Aggiunti strumenti e procedure di automazione & Carollo Mirko\\
       \hline
       1.0 &    09$\slash$12$\slash$2008 Verifica finale in preparazione al rilascio & Dissegna Stefano\\
       \hline
@@ -231,12 +232,12 @@ La verifica del codice si compone dei seguenti aspetti:
 \paragraph{Codice} Il numero di verificatori da assegnare ad un dato modulo di codice varieranno in base alle esigenze del modulo stesso.
  
 \subsezione{Strumenti, tecniche, metodi}
-Per il tracciamento degli errori e delle loro soluzioni ci si avvarr\`a degli strumenti di bug tracking messi a disposizione da \textit{SourceForge} e dagli strumenti di versionamento in uso. Per il debug del codice Javascript direttamente da browser si utilizzer\`a Firebug, la famosa estensione di Firefox. Le discussioni tra i verificatori e gli autori delle modifiche avverrano tramite il sistema di commenti di \textit{GitHub} qualora si tratti di annotazioni di scarsa entit\`a, mentre discussioni pi\`u rilevanti avverranno nel gruppo di discussione interno all'azienda. Entrambi i sistemi mantengono in modo persistente le informazioni, permettendo dei riferimenti futuri alle stesse. I verificatori saranno avvisati della necessit\`a di un'attivit\`a di verifica tramite un messaggio nel gruppo di discussione interno.
+Per il tracciamento degli errori e delle loro soluzioni ci si avvarr\`a degli strumenti di bug tracking messi a disposizione da \textit{SourceForge} e dagli strumenti di versionamento in uso. Per il debug del codice Javascript direttamente da browser si utilizzer\`a Firebug, un'estensione di Firefox. Le discussioni tra i verificatori e gli autori delle modifiche avverrano tramite il sistema di commenti di \textit{GitHub} qualora si tratti di annotazioni di scarsa entit\`a, mentre discussioni pi\`u rilevanti avverranno nel gruppo di discussione interno all'azienda. Entrambi i sistemi mantengono in modo persistente le informazioni, permettendo dei riferimenti futuri alle stesse. I verificatori saranno avvisati della necessit\`a di un'attivit\`a di verifica tramite un messaggio nel gruppo di discussione interno.
 
 \subsezione{Infrastrutture e procedure di automazione} 
 Hanno lo scopo di accelerare tutte le attivit\`a di verifica e impedire errori umani.
 Tali attivit\`a potranno quindi essere svolte dopo ogni singolo cambiamento, anche di piccola entit\`a. Saranno predisposte dai verificatori. 
-Verrano usati i seguenti prodotti: \textit{QUnit , JSCoverage, js2-mode, JSLint, FireBug}. Tutti i dettagli delle attivit\`a di verifica sono gi\`a stati esposti nel paragrafo 2.1
+Verrano usati i seguenti prodotti: \textit{QUnit, JSCoverage, js2-mode, JSLint, FireBug}. Tutti i dettagli delle attivit\`a di verifica sono gi\`a stati esposti nel paragrafo 2.1.
  
 \sezione{Gestione amministrativa della revisione}
  
@@ -247,7 +248,7 @@ Quando un'anomalia viene riscontrata durante una verifica, il verificatore provv
 Qualora un prodotto si discostasse da quanto descritto nell'analisi dei requisiti, il responsabile della qualit\`a provveder\`a a individuare la causa e la persona, o le persone, imputabili per la discrepanza. Il responsabile della qualit\`a, dopo averne discusso con lui, o loro, traccier\`a delle azioni correttive e si assicurer\`a che vengano attuate.
  
 \subsezione{Procedure di controllo di qualit\`a di processo}
-L'amministratore del progetto deve assicurarsi che gli standard descritti nelle \textit{NormeDiProgetto} siano rispettati, e deve segnalare eventuali infrazioni al responsabile, in modo che provveda a risolverle. Il responsabile della qualit\`a controlla che le attivit\`a di verifica vengano svolte, e che seguano le procedure descritte in questo documento.
+L'amministratore del progetto deve assicurarsi che gli standard descritti nelle \textit{NormeDiProgetto} siano rispettati e deve segnalare eventuali infrazioni al responsabile, in modo che provveda a risolverle. Il responsabile della qualit\`a controlla che le attivit\`a di verifica vengano svolte, e che seguano le procedure descritte in questo documento.
 \newpage
  
 \sezione{Resoconto delle attivit\`a di verifica}
