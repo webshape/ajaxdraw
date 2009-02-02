@@ -1,6 +1,6 @@
 canvas {
   background-color: rgb(230, 240, 230);
-  margin-left: 8em;
+  margin-left: 5em;
 }
 
 #tool{
@@ -13,3 +13,22 @@ canvas {
 	margin-left: 5em;
 	margin-top: 0.1em;
 }
+
+span.tooltip{ 
+	position:relative; /*questa è fondamentale*/
+    z-index:24; 
+    text-decoration: none
+    }
+
+span.tooltip:hover{ 
+	z-index: 25; 
+	}
+span.tooltip span{
+	display: none}
+
+span.tooltip:hover span{ /*lo span verrý mostrato solo sullo stato :hover */
+    display: block; position:absolute;
+    top: 2em; left: 2em; width: 15em;
+    border: 1px solid #0cf; background-color: #cff; color:#000;
+    font-size: 80%;text-align: center
+    }

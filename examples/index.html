@@ -3,32 +3,87 @@
 <head>
 <title>Canvas Test</title>
 <link rel="stylesheet" type="text/css" href="style.css"/>
-<script src="http://code.jquery.com/jquery-latest.js"></script>
+<link rel="stylesheet" href="farbtastic.css" type="text/css" />
+
+<script src="../src/jquery.js"></script>
+<script src="../src/farbtastic.js"></script>
 <script>
 $(document).ready(function(){
+    
     $("#example").dialog({
-    draggable: true,
-    height: 400,
-    position: "right"});
+    position: ["right","top"],
+    height: 300,
+    dialogClass: "Dialog1"
+    });
+    
+    $("#example2").dialog({
+    position: ["right","bottom"]});
+    
+    $("#picker").farbtastic("#color");
+    
+    $("#changeCol").click(function () {
+     		$("#colorx").show("slow"),
+         $(".Dialog1").data("height.dialog", 500)
+      });
+     
+    $("#closeWheel").click(function () {
+     $("#colorx").hide("slow"),
+     $(".Dialog1").effect("size", { to: {width: 200,height: 200} }, 1000);
 
+
+     		});
+     
+     
 
   });</script>
   <script type="text/javascript" src="draw.js"/></script>
 </head>
 <body onload="draw()">
 <link rel="stylesheet" href="http://ui.jquery.com/latest/themes/flora/flora.all.css" type="text/css" media="screen" title="Flora (Default)"/>
-<script type="text/javascript" src="http://ui.jquery.com/latest/ui/ui.core.js"></script>
-<script type="text/javascript" src="http://ui.jquery.com/latest/ui/ui.dialog.js"></script>
-<script type="text/javascript" src="http://ui.jquery.com/latest/ui/ui.resizable.js"></script>
-<script type="text/javascript" src="http://ui.jquery.com/latest/ui/ui.draggable.js"></script>
+<script type="text/javascript" src="../src/ui.core.js"></script>
+<script type="text/javascript" src="../src/ui.dialog.js"></script>
+<script type="text/javascript" src="../src/ui.resizable.js"></script>
+<script type="text/javascript" src="../src/ui.draggable.js"></script>
+
+
 <div>
 <span id="tool"><img src="toolbar.png" width="34" height="546" alt="toolbar" /></span>
 <span><canvas id="cv" height="540" width="720"/></span>
+<span class="tooltip"><span>Salva l'immagine in un file SVG</span><input type="button" name="SaveSVG" value="Salva SVG"/>&nbsp;</span>Carica:
+<span><input type="file" class="SVG" name="LoadSVG" value="Carica SVG"/></span>
 </br>
+
 <div><img id="paletta" src="paletta.png" width="1100" height="16" alt="paletta" /></div>
 <div/>
 
-<div id="example" class="flora" title="Modifica">Coordinate:</div>
+
+<div id="example" class="flora" title="Modifica colori">
+	<p>Colore bordo:   
+	<span id="coloreOra" style="background: red">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+	<span><input type="button" id="changeCol" name="ChangeCol" value="Cambia Colore"/></span></p>
+	<form id="colorx" action="" style="width: 400px;display: none;">
+  		<div class="form-item" >
+  			<label for="color">Color:</label>
+  			<input type="text" id="color" name="color" value="#123456" />
+  		</div>
+  		<div id="picker"></div>
+  		<input class="tooltip" type="button" id="closeWheel" value="Chiudi">
+
+  		</input>
+	</form>
+	
+	
+	
+	<p>Colore riempimento:  
+		<span id="change" style="background: green">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> 
+	</p>
+</div>
+
+<div id="example2" class="flora" title="Modifica attributi">
+	<p>Altezza:   <INPUT type="text" size="2"/></p>
+	<p>Larghezza:   <INPUT type="text" size="2"/></p>
+	<p>X:  &nbsp; <INPUT type="text" size="2"/>&nbsp;&nbsp;   Y:&nbsp;<INPUT type="text" size="2"/></p>
+</div>
 
 
 </body>
