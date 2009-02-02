@@ -17,9 +17,10 @@ Function.prototype.abstractMethod = function (name) {
 /**
  * Define reader function getSlot
  * @param {String} name of the slot with first letter capitalized
+ * @param {String} publicName public name of the slot (optional)
  */
-Function.prototype.reader = function (slot) {
-  this.prototype['get' + slot] = function () {
+Function.prototype.reader = function (slot, publicName) {
+  this.prototype[slot ? 'get' + slot : publicName] = function () {
     return this[slot];
   };
 };

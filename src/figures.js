@@ -27,6 +27,7 @@ function Figure() {
 
 Figure.abstractMethod('draw');
 Figure.abstractMethod('getMainPoints');
+Figure.reader('bounds', 'getBounds');
 
 /**
  * Set selection status of the figure
@@ -74,6 +75,9 @@ function BoundingRectangle(start, end) {
   this._end = end;
 }
 
+BoundingRectangle.reader('_start', 'start');
+BoundingRectangle.reader('_end', 'end');
+
 BoundingRectangle.prototype = new Property();
 
 BoundingRectangle.prototype.createWidget = function () {
@@ -113,8 +117,8 @@ Colour.prototype.createWidget = function () {
 };
 
 Colour.prototype.toCSS = function () {
-  return 'font-color: #' + this._r.toString(16) + 
-    this._g.toString(16) + this._b.toString(16) + ';';
+  return '#' + this._r.toString(16) + 
+    this._g.toString(16) + this._b.toString(16);
 };
 
 /**
@@ -158,7 +162,7 @@ function TextFont (name) {
 TextFont.prototype = new Property();
 
 TextFont.prototype.toCSS = function () {
-  return 'font-family: ' + this._name + ';';
+  return this._name;
 };
 
 /**
@@ -175,7 +179,7 @@ function TextSize (sz, unit) {
 TextSize.prototype = new Property();
 
 TextSize.prototype.toCSS = function () {
-  return 'font-size: ' + this._sz + this._unit + ';';
+  return this._sz + this._unit;
 };
 
 /**
@@ -243,4 +247,27 @@ FigureSet.prototype.selectFigure = function (where) {
   }
   
   return f;
+};
+
+/**
+ * @constructor
+ * A circle
+ */
+function Circle () {
+  Figure.call(this);
+}
+
+Circle.prototype = new Figure();
+
+Circle.prototype.draw = function (c) {
+  var ctx = c.getContext('2d');
+  // TODO: set color
+  // calculate radius based on bounding rectangle
+  var b = this.getBounds();
+  var r = Math.abs(b.end().y - b.start().y);
+  var centrex = b.start().x + (b.end().x - b.start().x)/2;
+  var centrey = b.start().y + (b.end().y - b.start().y)/2;
+  ctx.beginPath();
+  ctx.arc(centrex, centrey, r, 0, Math.PI * 2);
+  ctx.endPath();
 };
