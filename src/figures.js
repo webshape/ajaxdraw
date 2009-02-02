@@ -145,3 +145,70 @@ EdgeNumber.accessors('val');
 EdgeNumber.prototype.createWidget = function () {
   // TODO: implement
 };
+
+/**
+ * @constructor
+ * A collection of figures
+ */
+function FigureSet () {
+  this._figures = [];
+}
+
+/**
+ * Apply a function to each figure
+ * @param {Function} fn function to apply
+ */
+FigureSet.prototype.each = function (fn) {
+  this._figures.each(fn);
+};
+
+/**
+ * Add a new figure to the collection
+ * @param {Figure} f figure to add
+ */
+FigureSet.prototype.add = function (f) {
+  this._figures.push(f);
+};
+
+/**
+ * Remove the matching figure
+ * @param {Figure} f figure to remove
+ */
+FigureSet.prototype.rem = function (f) {
+  // maybe slow
+  this._figures = this._figures.grep(function (el) {
+                                       return el != f;
+                                     });
+};
+
+/**
+ * Select the figure matching the given point
+ * @param {Point} where point to match against
+ * @return matching figure or null
+ */
+FigureSet.prototype.selectFigure = function (where) {
+  // distance between 2 points
+  var distance = function (pt1, pt2) {
+    var dx = pt1.x - pt2.x;
+    var dy = p1.y - pt2.y;
+    // best will maximize, so we need to invert the score
+    return -Math.sqrt(dx*dx + dy*dy); 
+  };
+  // maximum distance we're willing to accept
+  var max_distance = 5;
+  // best value for each figure
+  var best_each = this._figures.map(function (f) {
+                                      return f.getMainPoints().best(distance);
+                                    });
+  var best_match = best_each.best(function (x) {
+                                    return x[1]; // the value
+                                  });
+  // best_match is [[Figure, score], score]
+  var f = best_match[0][0];
+  var dist = -best_match[1];
+  if (f === null || dist > max_distance) {
+    return null;
+  }
+  
+  return f;
+};

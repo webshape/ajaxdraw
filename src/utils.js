@@ -52,3 +52,54 @@ Array.prototype.each = function (fn) {
     fn.call(this, this[i]);
   }
 };
+
+/**
+ * Build a new array mapping a function to each element
+ * @param {Function} fn function to apply
+ * @return the new array
+ */
+Array.prototype.map = function (fn) {
+  var res = [];
+  for (var i = 0; i<this.length; ++i) {
+    res.push(fn.call(this, this[i]));
+  }
+
+  return res;
+};
+
+/**
+ * Build a new array without elements for which the predicate doesn't hold
+ * @param {Function} fn predicate
+ * @return the new array
+ */
+Array.prototype.grep = function (fn) {
+  var res = [];
+  for (var i = 0; i<this.length; ++i) {
+    if (fn.call(this, this[i])) {
+      res.push(this[i]);
+    }
+  }
+
+  return res;
+};
+
+/**
+ * Find the element with the best best score
+ * @param {Function} scorer function to get the score of an element
+ * @return list of 2 elems: best element and its score. If the array is empty,
+ * return a list with null elements
+ */
+Array.prototype.best = function (scorer) {
+  var max = null;
+  var the_best = null;
+  var score = 0;
+  for (var i = 0; i < this.length; ++i) {
+    score = scorer.call(this, this[i]);
+    if (!max  || score > max) {
+      max = score;
+      the_best = this[i];
+    }
+  }
+  
+  return [the_best, max];
+};
