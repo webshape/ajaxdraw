@@ -113,8 +113,8 @@ Colour.prototype.createWidget = function () {
 };
 
 Colour.prototype.toCSS = function () {
-  return '#' + this._r.toString(16) + 
-    this._g.toString(16) + this._b.toString(16);
+  return 'font-color: #' + this._r.toString(16) + 
+    this._g.toString(16) + this._b.toString(16) + ';';
 };
 
 /**
@@ -144,6 +144,38 @@ EdgeNumber.accessors('val');
 
 EdgeNumber.prototype.createWidget = function () {
   // TODO: implement
+};
+
+/**
+ * @constructor
+ * Font of a text
+ * @param {String} name font name
+ */
+function TextFont (name) {
+  this._name = name;
+}
+
+TextFont.prototype = new Property();
+
+TextFont.prototype.toCSS = function () {
+  return 'font-family: ' + this._name + ';';
+};
+
+/**
+ * @constructor
+ * Size of a text
+ * @param {Float} sz the size
+ * @param {String} unit measure unit (px, em, etc.)
+ */
+function TextSize (sz, unit) {
+  this._sz = sz;
+  this._unit = unit;
+}
+
+TextSize.prototype = new Property();
+
+TextSize.prototype.toCSS = function () {
+  return 'font-size: ' + this._sz + this._unit + ';';
 };
 
 /**
