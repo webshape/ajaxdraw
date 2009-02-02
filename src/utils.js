@@ -1,5 +1,7 @@
-/*
+/**
+ * @fileoverview
  * General utilities to write js code
+ * @author Dissegna Stefano
  */
 
 /**
