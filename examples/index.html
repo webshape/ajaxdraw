@@ -17,24 +17,20 @@ $(document).ready(function(){
     });
     
     $("#example2").dialog({
-    position: ["right","bottom"]});
+    	position: ["right","bottom"]});
     
     $("#picker").farbtastic("#color");
     
     $("#changeCol").click(function () {
      		$("#colorx").show("slow"),
-         $(".Dialog1").data("height.dialog", 500)
+         $(".Dialog1").height(500)
       });
      
     $("#closeWheel").click(function () {
      $("#colorx").hide("slow"),
-     $(".Dialog1").effect("size", { to: {width: 200,height: 200} }, 1000);
-
-
+     $(".Dialog1").height(300);
      		});
      
-     
-
   });</script>
   <script type="text/javascript" src="draw.js"/></script>
 </head>
@@ -47,20 +43,22 @@ $(document).ready(function(){
 
 
 <div>
-<span id="tool"><img src="toolbar.png" width="34" height="546" alt="toolbar" /></span>
-<span><canvas id="cv" height="540" width="720"/></span>
-<span class="tooltip"><span>Salva l'immagine in un file SVG</span><input type="button" name="SaveSVG" value="Salva SVG"/>&nbsp;</span>Carica:
-<span><input type="file" class="SVG" name="LoadSVG" value="Carica SVG"/></span>
-</br>
-
-<div><img id="paletta" src="paletta.png" width="1100" height="16" alt="paletta" /></div>
+	<span id="tool"><img src="toolbar.png" width="34" height="546" alt="toolbar" /></span>
+	<span><canvas id="cv" height="540" width="720"/></span>
+	<span class="tooltip"><span>Salva l'immagine in un file SVG</span><input type="button" name="SaveSVG" value="Salva SVG"/>&nbsp;</span>Carica:
+	<span><input type="file" class="SVG" name="LoadSVG" value="Carica SVG"/></span>
+	</br>
+	<div><img id="paletta" src="paletta.png" width="1100" height="16" alt="paletta" /></div>
 <div/>
 
 
 <div id="example" class="flora" title="Modifica colori">
 	<p>Colore bordo:   
-	<span id="coloreOra" style="background: red">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-	<span><input type="button" id="changeCol" name="ChangeCol" value="Cambia Colore"/></span></p>
+		<span id="coloreOra" style="background: red">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+		<span>
+			<input type="button" id="changeCol" name="ChangeCol" value="Cambia Colore"/>
+		</span>
+	</p>
 	<form id="colorx" action="" style="width: 400px;display: none;">
   		<div class="form-item" >
   			<label for="color">Color:</label>
