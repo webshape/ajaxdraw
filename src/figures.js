@@ -91,6 +91,14 @@ BoundingRectangle.prototype.createWidget = function () {
   // TODO: implement
 };
 
+BoundingRectangle.prototype.applyToContext = function (ctx) {
+  ctx.translate(this._start.x, this._start.y);
+  var scaley = this._end.y - this._start.y;
+  ctx.scale(this._end.x - this._start.x, scaley);
+  // avoid too thick lines
+  ctx.lineWidth = 1/scaley;
+};
+
 /**
  * @constructor
  * The opacity of a colour
@@ -289,14 +297,8 @@ Circle.prototype = new Figure();
 
 Circle.prototype.draw = function (c) {
   var ctx = c.getContext('2d');
-  // transformation based on bounding rectangle
-  var b = this.getBounds();
   ctx.save();
-  ctx.translate(b.start().x, b.start().y);
-  var scaley = b.end().y - b.start().y;
-  ctx.scale(b.end().x - b.start().x, scaley);
-  // avoid too thick lines
-  ctx.lineWidth = 1/scaley;
+  this.getBounds().applyToContext(ctx);
   ctx.beginPath();
   // standard circle
   ctx.arc(0.5, 0.5, 0.5, 0, Math.PI * 2, false);
@@ -305,5 +307,46 @@ Circle.prototype.draw = function (c) {
   this.getBorderColour().applyToContext(ctx);
   ctx.stroke();
   ctx.endPath();
+  ctx.restore();
+};
+
+/**
+ * @constructor
+ * A polygon
+ */
+function Polygon () {
+  Figure.call(this);
+  this._fillColour = new FillColour(0, 0, 0, new Opacity(1));
+  this._en = new EdgeNumber(3);
+}
+
+Polygon.prototype = new Figure();
+
+Polygon.prototype.draw = function (c) {
+  var ctx = c.getContext('2d');
+  ctx.save();
+  this.getBounds().applyToContext(ctx);
+  
+  var points = []; // points of the regular polygon
+  // n must be > 0
+  var n = this._en.getVal();
+  var step = Math.PI * 2 / n;
+  var angle = 0;
+  for (var i = 0; i < n; ++i) {
+    // points on a circumference with radius 1
+    points.push(new Point(Math.cos(angle), Math.sin(angle)));
+    angle += step;
+  }
+  ctx.beginPath();
+  // draw it
+  ctx.moveTo(points[0].x, points[0].y);
+  points.each(function (pt) {
+                ctx.lineTo(pt.x, pt.y);
+              });
+  this._fillColour.applyToContext(ctx);
+  ctx.fill();
+  this.getBorderColour().applyToContext(ctx);
+  ctx.stroke();
+  ctx.closePath();
   ctx.restore();
 };
