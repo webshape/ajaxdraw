@@ -175,7 +175,7 @@ function EdgeNumber (val) {
 
 EdgeNumber.prototype = new Property();
 
-EdgeNumber.accessors('val');
+EdgeNumber.accessors('val', 'getVal', 'setVal');
 
 EdgeNumber.prototype.createWidget = function () {
   // TODO: implement
@@ -333,12 +333,15 @@ Polygon.prototype.draw = function (c) {
   var step = Math.PI * 2 / n;
   var angle = 0;
   for (var i = 0; i < n; ++i) {
-    // points on a circumference with radius 1
+    // points on a circumference with radius 1 and centre in (0, 0)
     points.push(new Point(Math.cos(angle), Math.sin(angle)));
     angle += step;
   }
   ctx.beginPath();
   // draw it
+  // adapt coords to points
+  ctx.translate(0.5, 0.5);
+  ctx.scale(1/2, 1/2);
   ctx.moveTo(points[0].x, points[0].y);
   points.each(function (pt) {
                 ctx.lineTo(pt.x, pt.y);
