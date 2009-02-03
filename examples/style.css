@@ -32,3 +32,15 @@ span.tooltip:hover span{ /*lo span verrý mostrato solo sullo stato :hover */
     border: 1px solid #0cf; background-color: #cff; color:#000;
     font-size: 80%;text-align: center
     }
+
+.toolbarButton{
+	width: 3em;
+	height:2em;
+}
+
+#selezione{
+	background-image:url("selezione.png");
+	}
+#quadrato{
+	background-image:url("quadrato.png");
+}
