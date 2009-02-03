@@ -16,32 +16,35 @@ Function.prototype.abstractMethod = function (name) {
 
 /**
  * Define reader function getSlot
- * @param {String} name of the slot with first letter capitalized
+ * @param {String} slot name of the slot
  * @param {String} publicName public name of the slot (optional)
  */
 Function.prototype.reader = function (slot, publicName) {
-  this.prototype[slot ? 'get' + slot : publicName] = function () {
+  this.prototype[publicName || 'get' + slot] = function () {
     return this[slot];
   };
 };
 
 /**
  * Define writer function setSlot(x)
- * @param {String} name of the slot with first letter capitalized
+ * @param {String} slot name of the slot
+ * @param {String} publicName public name of the slot (optional)
  */
-Function.prototype.writer = function (slot) {
-  this.prototype['set' + slot] = function (x) {
+Function.prototype.writer = function (slot, publicName) {
+  this.prototype[publicName || 'set' + slot] = function (x) {
     return (this[slot] = x);
   };
 };
 
 /**
  * Define accessors functions getSlot and setSlot(x)
- * @param {String} name of the slot with first letter capitalized
+ * @param {String} slot name of the slot
+ * @param {String} readName name of the reader function (optional)
+ * @param {String} writeName name of the writer function (optional)
  */
-Function.prototype.accessors = function (slot) {
-  this.reader(slot);
-  this.writer(slot);
+Function.prototype.accessors = function (slot, readName, writeName) {
+  this.reader(slot, readName);
+  this.writer(slot, writeName);
 };
 
 /**

@@ -27,7 +27,7 @@ function Figure() {
 
 Figure.abstractMethod('draw');
 Figure.abstractMethod('getMainPoints');
-Figure.reader('bounds', 'getBounds');
+Figure.reader('_bounds', 'getBounds');
 Figure.reader('_borderColour', 'getBorderColour');
 
 /**
@@ -108,7 +108,7 @@ function Opacity(val) {
   this.val = val;
 }
 
-Opacity.accessors('val');
+Opacity.accessors('val', 'getVal', 'setVal');
 
 Opacity.prototype.applyToContext = function (ctx) {
   ctx.globalAlpha = this.val;
@@ -142,7 +142,7 @@ Colour.prototype.toCSS = function () {
 
 Colour.prototype.applyToContext = function (ctx) {
   this.strokeStyle = this.toCSS();
-  this.o.applyToContext(ctx);
+  this._o.applyToContext(ctx);
 };
 
 /**
@@ -156,7 +156,7 @@ FillColour.prototype = new Colour();
 
 FillColour.prototype.applyToContext = function (ctx) {
   this.fillStyle = this.toCSS();
-  this.o.applyToContext(ctx);
+  this._o.applyToContext(ctx);
 };
 
 /**
@@ -306,7 +306,7 @@ Circle.prototype.draw = function (c) {
   ctx.fill();
   this.getBorderColour().applyToContext(ctx);
   ctx.stroke();
-  ctx.endPath();
+  ctx.closePath();
   ctx.restore();
 };
 
