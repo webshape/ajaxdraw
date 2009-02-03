@@ -353,3 +353,24 @@ Polygon.prototype.draw = function (c) {
   ctx.closePath();
   ctx.restore();
 };
+
+/**
+ * @constructor
+ * A rectangle
+ */
+function Rectangle () {
+  this._fillColour = new FillColour(0, 0, 0, new Opacity(1));
+}
+
+Rectangle.prototype = new Figure();
+
+Rectangle.prototype.draw = function (c) {
+  var ctx = c.getContext('2d');
+  ctx.save();
+  this.getBounds().applyToContext(ctx);
+  this._fillColour.applyToContext(ctx);
+  ctx.fillRect(0, 0, 1, 1);
+  this.getBorderColour().applyToContext(ctx);
+  ctx.strokeRect(0, 0, 1, 1);
+  ctx.restore();
+};
