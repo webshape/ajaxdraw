@@ -39,8 +39,8 @@ span.tooltip:hover span{ /*lo span verrý mostrato solo sullo stato :hover */
 }
 
 #selezione{
-	background-image:url("selezione.png");
+	background-image:url("images/selezione.png");
 	}
 #quadrato{
-	background-image:url("quadrato.png");
+	background-image:url("images/quadrato.png");
 }
