@@ -21,13 +21,14 @@ function Point(x, y) {
 function Figure() {
   // default values
   this._selected = false;
-  this._borderColour = new Colour(0, 0, 0, 1);
+  this._borderColour = new Colour(0, 0, 0, new Opacity(1));
   this._bounds = new BoundingRectangle(0, 0, 0, 0);
 }
 
 Figure.abstractMethod('draw');
 Figure.abstractMethod('getMainPoints');
 Figure.reader('bounds', 'getBounds');
+Figure.reader('_borderColour', 'getBorderColour');
 
 /**
  * Set selection status of the figure
@@ -64,6 +65,12 @@ function Property() {
 Property.abstractMethod('createWidget');
 
 /**
+ * Apply the property to the given context
+ * @param {Context} ctx the current canvas context
+ */
+Property.abstractMethod('applyToContext');
+
+/**
  * @constructor
  * Rectangle containing a figure
  * Represent both position and size
@@ -95,6 +102,10 @@ function Opacity(val) {
 
 Opacity.accessors('val');
 
+Opacity.prototype.applyToContext = function (ctx) {
+  ctx.globalAlpha = this.val;
+};
+
 /**
  * @constructor
  * An RGB coulour
@@ -121,17 +132,29 @@ Colour.prototype.toCSS = function () {
     this._g.toString(16) + this._b.toString(16);
 };
 
-/**
- * Inner colour of a figure
- * there is no difference with the Colour proto
- */
-var FillColour = Colour;
+Colour.prototype.applyToContext = function (ctx) {
+  this.strokeStyle = this.toCSS();
+  this.o.applyToContext(ctx);
+};
 
 /**
- * Colour of a text
- * there is no difference with the Colour proto
+ * Inner colour of a figure
  */
-var TextColour = Colour;
+function FillColour (r, g, b, o) {
+  Colour.call(this, r, g, b, o);
+}
+
+FillColour.prototype = new Colour();
+
+FillColour.prototype.applyToContext = function (ctx) {
+  this.fillStyle = this.toCSS();
+  this.o.applyToContext(ctx);
+};
+
+/**
+ * Fill colour of a text
+ */
+var TextColour = FillColour;
 
 /**
  * @constructor
@@ -163,6 +186,10 @@ TextFont.prototype = new Property();
 
 TextFont.prototype.toCSS = function () {
   return this._name;
+};
+
+TextFont.prototype.applyToContext = function (ctx) {
+  ctx.font = this.toCSS();
 };
 
 /**
@@ -255,19 +282,28 @@ FigureSet.prototype.selectFigure = function (where) {
  */
 function Circle () {
   Figure.call(this);
+  this._fillColour = new Colour(0, 0, 0, new Opacity(1));
 }
 
 Circle.prototype = new Figure();
 
 Circle.prototype.draw = function (c) {
   var ctx = c.getContext('2d');
-  // TODO: set color
-  // calculate radius based on bounding rectangle
+  // transformation based on bounding rectangle
   var b = this.getBounds();
-  var r = Math.abs(b.end().y - b.start().y);
-  var centrex = b.start().x + (b.end().x - b.start().x)/2;
-  var centrey = b.start().y + (b.end().y - b.start().y)/2;
+  ctx.save();
+  ctx.translate(b.start().x, b.start().y);
+  var scaley = b.end().y - b.start().y;
+  ctx.scale(b.end().x - b.start().x, scaley);
+  // avoid too thick lines
+  ctx.lineWidth = 1/scaley;
   ctx.beginPath();
-  ctx.arc(centrex, centrey, r, 0, Math.PI * 2);
+  // standard circle
+  ctx.arc(0.5, 0.5, 0.5, 0, Math.PI * 2, false);
+  this._fillColour.applyToContext(ctx);
+  ctx.fill();
+  this.getBorderColour().applyToContext(ctx);
+  ctx.stroke();
   ctx.endPath();
+  ctx.restore();
 };
