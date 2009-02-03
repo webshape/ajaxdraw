@@ -215,14 +215,6 @@ L'architettura del sistema \`e stata sviluppata secondo un paradigma orientato a
 Il sistema si compone, al massimo livello di astrazione, di tre componenti: il primo, contenuto nel package \textit{GUI}, si occupa dell'interfaccia utente, il secondo, contenuto nel package \textit{ApplicationLogic}, gestisce la logica interna, ovvero la gestione in memoria di quanto disegnato e della conversione tra rappresentazione interna e rappresentazione in SVG, e il terzo, contenuto nel package \textit{DocBackend}, si occupa del salvataggio e del caricamento di file testuali e dell'accesso a file statici, come ad esempio il manuale.
 \newpage
 \subsubsezione{Design Pattern usati}
-\paragrafo{Facade (Document):}
-Permette di salvare/caricare file senza conoscere il sottosistema che implementa le funzionalit\`a.
-\subparagrafo{Subsystem} Il sottosistema \`e composto dal package \textit{DocBackend}.
-
-\paragrafo{Facade (StaticDocument):}
-Permette di ottenere un file statico senza conoscere il sottosistema che implementa le funzionalit\`a.
-\subparagrafo{Subsystem} Il sottosistema \`e composto dal package \textit{DocBackend}.
-
 
 \paragrafo{Template Method:}
 \subparagrafo{Algoritmo parametrizzato:}
@@ -230,18 +222,6 @@ Il metodo \textit{setSelection} di \textit{FigureSet} implementa la logica di se
 \textbf{Metodo astratto da implementare:}
 Implementando il metodo astratto \textit{getMainPoints} di \textit{Figure} \`e possibile parametrizzare l'algoritmo generale adattandolo alla figura specifica.
 
-\paragrafo{Abstract Factory:}
-\subparagrafo{Factory:} 
-\textit{SVGElementRegistry} permette di generare oggetti la cui classe deriva da \textit{SVGReadable} a partire dal nome di un tag, e il cui tipo quindi non pu\`o essere conosciuto solo a runtime. \\ \\
-\textbf{Concrete Factory:} \\
-Invece di utilizzare un insieme statico di possibili associazioni tra nome tag e classe da costruire, si utilizza una tabella dinamica in cui le classi devono registrarsi. Le fabbriche concrete sono quindi tutte le classi che si registrano al sistema, in particolare tutte le classi che derivano da \textit{Figure}. \\ \\
-\textbf{Abstract Product:} \\
-Un'istanza di una classe che implementa \textit{SVGReadable}. \\ \\
-\textbf{Concrete Product:} \\
-Un'istanza di una classe registrata nel sistema. \\ \\
-\textbf{Client:}\\
-\textit{SVGReader.} 
-\newpage
 \paragrafo{Abstract Factory:} 
 \subparagrafo{Factory:} 
 \textit{Property} genera un elemento grafico per modificare una propriet\`a specifica.\\ \\
