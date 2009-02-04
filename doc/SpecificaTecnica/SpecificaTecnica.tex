@@ -220,7 +220,7 @@ Il sistema si compone, al massimo livello di astrazione, di tre componenti: il p
 \begin{figure}[!ht]
 \centering
 \includegraphics{canvas.jpg}
-\caption{\textit{Canvas}}
+\caption{Singleton}
 \end{figure}
 Esiste una sola istanza della classe \textit{Canvas}. \`E possibile accedere a 
 questa istanza attraverso il metodo \textit{getElementById} dell'oggetto 
@@ -228,12 +228,22 @@ globale \textit{document}, fornito dal browser e quindi non presente nei
 diagrammi delle classi.
 
 \paragrafo{Template Method:}
+\begin{figure}[!ht]
+\centering
+\includegraphics{templatemethod.jpg}
+\caption{Template method}
+\end{figure}
 \subparagrafo{Algoritmo parametrizzato:}
-Il metodo \textit{setSelection} di \textit{FigureSet} implementa la logica di selezione di una figura a partire da un punto.\\ \\
+Il metodo \textit{selectFigure} di \textit{FigureSet} implementa la logica di selezione di una figura a partire da un punto.\\ \\
 \textbf{Metodo astratto da implementare:}
 Implementando il metodo astratto \textit{getMainPoints} di \textit{Figure} \`e possibile parametrizzare l'algoritmo generale adattandolo alla figura specifica.
 
 \paragrafo{Abstract Factory:} 
+\begin{figure}[!ht]
+\centering
+\includegraphics{absfactory.jpg}
+\caption{Abstract factory}
+\end{figure}
 \subparagrafo{Factory:} 
 \textit{Property} genera un elemento grafico per modificare una propriet\`a specifica.\\ \\
 \textbf{Concrete Factory: }\\
