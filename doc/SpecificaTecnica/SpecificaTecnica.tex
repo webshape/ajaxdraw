@@ -216,6 +216,17 @@ Il sistema si compone, al massimo livello di astrazione, di tre componenti: il p
 \newpage
 \subsubsezione{Design Pattern usati}
 
+\paragrafo{Singleton:}
+\begin{figure}[!ht]
+\centering
+\includegraphics{canvas.jpg}
+\caption{\textit{Canvas}}
+\end{figure}
+Esiste una sola istanza della classe \textit{Canvas}. \`E possibile accedere a 
+questa istanza attraverso il metodo \textit{getElementById} dell'oggetto 
+globale \textit{document}, fornito dal browser e quindi non presente nei 
+diagrammi delle classi.
+
 \paragrafo{Template Method:}
 \subparagrafo{Algoritmo parametrizzato:}
 Il metodo \textit{setSelection} di \textit{FigureSet} implementa la logica di selezione di una figura a partire da un punto.\\ \\
