@@ -593,7 +593,7 @@ Viene aggregata dalla classe \textit{FigureSet}.
 
 \subsezione{FigureSet}
 \subsubsezione{Tipo, obiettivo e funzione del componente}
-Rappresenta una collezione di figure.
+Rappresenta una collezione di figure. Tutte le figure disegnate dall'utente sono contenute in questa collezione, la quale ne permette la manipolazione e l'attraversamento. Per cancellare una figura \`e sufficiente rimuoverla dalla collezione.
 \subsubsezione{Relazioni d'uso di altre componenti}
 Contiene le istanze di \textit{Figure} correntemente attive.
 \subsubsezione{Interfacce e relazioni di uso da altre componenti}
@@ -601,26 +601,27 @@ Usata dalla classe \textit{SVGWriter} per serializzare in SVG le figure correnti
 \subsubsezione{Attivit\`a svolte e dati trattati}
 \begin{elencopuntato}[\normindent]
 \item[-]  \textit{selectFigure} permette di selezionare una figura contenente il punto passato come argomento, se tale figura esiste.
-\item[-]  \textit{each} permette di applicare una funzione ad ogni figura.
-\item[-]  \textit{add} aggiunge una figura all'insieme
-\item[-]  \textit{rem} rimuove una figura dall'insieme se presente
+\item[-]  \textit{each} permette di applicare una funzione ad ogni figura. Viene usato per iterare attraverso la collezione.
+\item[-]  \textit{add} aggiunge una figura all'insieme.
+\item[-]  \textit{rem} rimuove una figura dall'insieme, se presente.
 \end{elencopuntato}
 
 \subsezione{Property}
 \subsubsezione{Tipo, obiettivo e funzione del componente}
-Rappresenta una propriet\`a generica di una figura.
+Rappresenta una propriet\`a generica di una figura. Le propriet\`a influenzano 
+l'aspetto delle diverse figure, e sono modificabili dall'utente.
 \subsubsezione{Relazioni d'uso di altre componenti}
 Nessuna.
 \subsubsezione{Interfacce e relazioni di uso da altre componenti}
 Implementata da tutte le propriet\`a concrete delle diverse figure.
 \subsubsezione{Attivit\`a svolte e dati trattati}
 \begin{elencopuntato}[\normindent]
-\item[-] \textit{createWidget} crea un widget grafico che permetter\`a di modificare la propriet\`a all'utente.
+\item[-] \textit{createWidget} crea un widget grafico che permetter\`a all'utente di modificare la propriet\`a.
 \end{elencopuntato}
 
 \subsezione{CSSProperty}
 \subsubsezione{Tipo, obiettivo e funzione del componente}
-Rappresenta una propriet\`a di una figura che necessita di una rappresentazione conforme ai CSS.
+Rappresenta una propriet\`a di una figura che necessita di una rappresentazione conforme ai CSS. Questa rappresentazione \`e necessaria per applicare alcune propriet\`a (come ad esempio il colore) al canvas e per la conversione in SVG.
 \subsubsezione{Relazioni d'uso di altre componenti}
 Nessuna.
 \subsubsezione{Interfacce e relazioni di uso da altre componenti}
@@ -632,7 +633,8 @@ Implementata da \textit{Colour}, \textit{TextFont} e \textit{TextSize}.
 
 \subsezione{Opacity}
 \subsubsezione{Tipo, obiettivo e funzione del componente}
-Rappresenta l'opacit\`a di un colore.
+Rappresenta l'opacit\`a di un colore. Mantiene un unico valore che varia nell'intervallo [0, 1]. Se il valore \`e 0 la figura \`e completamente trasparente, se
+il valore \`e 1, la figura \`e completamente opaca, ovvero non permette la visualizzazione delle figure sottostanti.
 \subsubsezione{Relazioni d'uso di altre componenti}
 Nessuna.
 \subsubsezione{Interfacce e relazioni di uso da altre componenti}
@@ -652,7 +654,7 @@ Implementa \textit{Property}.
 
 \subsezione{Colour}
 \subsubsezione{Tipo, obiettivo e funzione del componente}
-Rappresenta un colore.
+Rappresenta un colore come una terna RGB pi\`u l'opacit\`a del colore stesso. Questa rappresentazione trova una corrispondenza diretta sia nel tag <canvas>, sia nel formato SVG.
 \subsubsezione{Relazioni d'uso di altre componenti}
 Implementa \textit{Property} e \textit{CSSProperty}. Mantiene un'istanza di \textit{Opacity} che rappresenta l'opacit\`a del colore.
 \subsubsezione{Interfacce e relazioni di uso da altre componenti}
