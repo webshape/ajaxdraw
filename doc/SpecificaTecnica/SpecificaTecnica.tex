@@ -282,29 +282,50 @@ La GUI \` e  il client che verr\` a utilizzato nel sistema AJAXDRAW, e verr\` a 
 \caption{ApplicationLogic}
 \end{figure}
 
-Questo sottosistema si divide in tre ulteriori sottosistemi
+Questo sottosistema si divide in tre ulteriori sottosistemi: la gestione delle
+figure, la loro conversione in SVG e la lettura da file SVG.
+
 \subsubsezione{Gestione figure}
+\begin{figure}[!ht]
+\centering
+\includegraphics{gestionefigure.jpg}
+\caption{Gestione figure}
+\end{figure}
 Si occupa della gestione interna delle figure disegnabili e manipolabili dall'utente e delle relative propriet\`a. Il termine \textit{figura} in questo contesto include anche i testi disegnati sul canvas. La classe \textit{Figure} rappresenta una figura qualsiasi. Una figura \`e caratterizzata da delle propriet\`a derivate dalla classe \textit{Property}. La suddetta classe contiene un metodo \textit{createWidget} per fabbricare un elemento grafico, il quale permette all'utente di modificare la propriet\`a che ha generato il widget stesso. Ogni figura contiene un \textit{BoundingRectangle} che rappresenta la cornice entro cui la figura \`e completamente contenuta. Una figura pu\`o essere selezionata oppure no. Le classi che implementano \textit{Figure} sono responsabili di disegnarsi sul canvas implementando il metodo \textit{draw}. In questo metodo, non si dovr\`a tener conto dell'area correntemente visualizzata o del livello di zoom, in quanto gestiti in modo trasparente dalla classe \textit{Visualization}. Ad ogni figura \`e associato un insieme di punti significativi, come ad esempio i vertici in un quadrato, ottenibili tramite il metodo \textit{getMainPoints}. Ogni figura mantiene un colore del bordo, rappresentato dalla classe \textit{Colour}. Le classi \textit{Circle}, \textit{Polygon} e \textit{Rectangle} aggiungono un ulteriore colore per il riempimento, rappresentato dalla classe \textit{FillColour}. La classe \textit{Text} rappresenta un testo disegnato dall'utente, e mantiene delle propriet\`a derivate dalla classe \textit{TextProperty}. A fini implementativi, le propriet\`a del testo e del colore andranno rappresentate secondo lo standard \textit{CSS}, quindi le suddette propriet\`a dovranno implementare l'interfaccia \textit{CSSProperty} che offre il metodo \textit{toCSS} responsabile della conversione dalla rappresentazione interna a quella \textit{CSS}. La classe \textit{FigureSet} mantiene l'insieme delle istanze di \textit{Figure} correntemente disegnate dall'utente e offre la possibilit\`a di selezionarne una a partire da un punto sul canvas.
 \newpage
 \subsubsezione{Conversione in \textit{SVG}}
 Si occupa di trasformare il \textit{FigureSet} corrente in una stringa 
 contenente un documento SVG valido e viceversa. 
 
+\paragraph{Da \textit{FigureSet} a SVG}
+
+\begin{figure}[!ht]
+\centering
+\includegraphics{ClassiScritturaSVG.jpg}
+\caption{ApplicationLogic - Creazione documento SVG, diagramma delle classi}
+\end{figure}
+
 \begin{figure}[!ht]
 \centering
 \includegraphics{ScritturaSVG.jpg}
-\caption{ApplicationLogic - Creazione documento SVG}
+\caption{ApplicationLogic - Creazione documento SVG, diagramma di sequenza}
+\end{figure}
+
+Le classi derivanti da \textit{Figure} implementano l'interfaccia \textit{SVGWritable}, che rappresenta un qualsiasi elemento convertibile in SVG. La conversione avviene tramite il metodo \textit{toSVG}. La classe \textit{SVGWriter} dovr\`a, nel metodo \textit{write}, creare un documento SVG vuoto e richiamare il metodo \textit{toSVG} su tutte le figure contenute, le quali genereranno gli elementi SVG necessari alla propria rappresentazione. Per creare un documento SVG si istanzia la classe \textit{SVGGenerator}, la quale offre dei metodi per generare comandi SVG. Quando tutte le figure hanno avuto la possibilit\`a di inserirsi nel documento SVG, il metodo \textit{flush} chiude il documento e lo ritorna sotto forma di stringa.
+\paragraph{Da SVG a \textit{FigureSet}}
+
+\begin{figure}[!ht]
+\centering
+\includegraphics{ClassiLetturaSVG.jpg}
+\caption{ApplicationLogic - Caricamento documento SVG, diagramma delle classi}
 \end{figure}
 
 \begin{figure}[!ht]
 \centering
 \includegraphics{LetturaSVG.jpg}
-\caption{ApplicationLogic - Caricamento documento SVG}
+\caption{ApplicationLogic - Caricamento documento SVG, diagramma di sequenza}
 \end{figure}
 
-\paragraph{Da \textit{FigureSet} a SVG}
-Le classi derivanti da \textit{Figure} implementano l'interfaccia \textit{SVGWritable}, che rappresenta un qualsiasi elemento convertibile in SVG. La conversione avviene tramite il metodo \textit{toSVG}. La classe \textit{SVGWriter} dovr\`a, nel metodo \textit{write}, creare un documento SVG vuoto e richiamare il metodo \textit{toSVG} su tutte le figure contenute, le quali genereranno gli elementi SVG necessari alla propria rappresentazione. Per creare un documento SVG si istanzia la classe \textit{SVGGenerator}, la quale offre dei metodi per generare comandi SVG. Quando tutte le figure hanno avuto la possibilit\`a di inserirsi nel documento SVG, il metodo \textit{flush} chiude il documento e lo ritorna sotto forma di stringa.
-\paragraph{Da SVG a \textit{FigureSet}}
 L'importazione di un file SVG viene gestita dalla classe \textit{SVGReader} attraverso il metodo \textit{read}, che riceve un documento SVG valido sotto forma di stringa e restituisce un'istanza di \textit{FigureSet} corrispondente. Viene fatto il parsing del documento come \textit{XML} attraverso la classe \textit{XMLParser}, e per ogni comando SVG viene creato un'istanza di \textit{SVGTag} che lo rappresenta. Il nome del tag verr\`a usato come indice dal metodo \textit{makeFigureClassFromTag} della classe \textit{SVGElementRegistry}, che costruir\`a un'istanza della classe corrispondente. Su quest'istanza verr\`a invocato il metodo \textit{fromSVG}, il quale \`e responsabile di inizializzare la classe a partire dal tag. Per associare una classe al nome di un tag si usa il metodo \textit{register}. La classe registrata deve implementare l'interfaccia \textit{SVGReadable}.
 
 \newpage
