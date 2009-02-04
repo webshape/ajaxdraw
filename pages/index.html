@@ -6,48 +6,6 @@
 <link rel="stylesheet" href="farbtastic.css" type="text/css" />
 <script src="../src/jquery.js"></script>
 <script src="../src/farbtastic.js"></script>
-<script>
-$(document).ready(function(){
-    
-    $("#example").dialog({
-    position: ["right","top"],
-    height: 300,
-    dialogClass: "Dialog1"
-    });
-    
-    $("#example2").dialog({
-    	position: ["right","bottom"]}
-    	);
-    
-    $("#picker").farbtastic("#color");
-    
-    $("#changeCol").click(function () {
-     		$("#colorx").show("slow"),
-         $(".Dialog1").height(500)
-      });
-     
-    $("#closeWheel").click(function () {
-     		$("#colorx").hide("slow"),
-     		$(".Dialog1").height(300);
-     	});
-     
-     <!-- Funzione gestione pulsante toolbar premuto/rilasciato -->
-     sentSelect=false;
-     $("#selezione").click(function () {
-		if(sentSelect==false){     
-       	$(this).css({"background-color":"#A0A0A0"}),
-       	sentSelect=true;
-       	}
-		else {
-			$(this).css({"background-color":"#F4F3F2"}),
-			sentSelect=false;     
-       }
-      });
-
-     
-     
-  });
-</script>
 <script type="text/javascript" src="draw.js"/></script>
 </head>
 
@@ -58,7 +16,7 @@ $(document).ready(function(){
 <script type="text/javascript" src="../src/ui.dialog.js"></script>
 <script type="text/javascript" src="../src/ui.resizable.js"></script>
 <script type="text/javascript" src="../src/ui.draggable.js"></script>
-
+<script type="text/javascript" src="../src/gui.js"></script>
 <!-- Interfaccia -->
 <div>
 	<!-- Toolbar a pulsanti -->
