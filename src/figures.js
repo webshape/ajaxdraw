@@ -136,12 +136,12 @@ Colour.prototype.createWidget = function () {
 };
 
 Colour.prototype.toCSS = function () {
-  return '#' + this._r.toString(16) + 
-    this._g.toString(16) + this._b.toString(16);
+  return 'rgb(' + this._r.toString() + ',' +
+    this._g.toString() + ',' + this._b.toString() + ')';
 };
 
 Colour.prototype.applyToContext = function (ctx) {
-  this.strokeStyle = this.toCSS();
+  ctx.strokeStyle = this.toCSS();
   this._o.applyToContext(ctx);
 };
 
@@ -155,7 +155,7 @@ function FillColour (r, g, b, o) {
 FillColour.prototype = new Colour();
 
 FillColour.prototype.applyToContext = function (ctx) {
-  this.fillStyle = this.toCSS();
+  ctx.fillStyle = this.toCSS();
   this._o.applyToContext(ctx);
 };
 
