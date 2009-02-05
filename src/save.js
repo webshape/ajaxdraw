@@ -16,18 +16,18 @@ function SVGWriter() {}
  */
 SVGWriter.prototype.write = function (fs) {
   var doc = new SVGGenerator;
-  for (var i = 0; i < fs.lenght(); i++){ /*fs.length() returns the lenght of FigureSet? */
-	 fs[i].toSVG(doc);
-  }
+  fs.each(function (figure) {
+	    figure.toSVG(doc);
+          });
   return doc.flush();
-}
+};
 
 
 /**
  * SVGGenerator
  */
 function SVGGenerator() {
-  var _doc;
+  this._doc = "<svg>"; // TODO: add standard SVG headers
 }
 
 /**
@@ -36,7 +36,9 @@ function SVGGenerator() {
  */
 SVGGenerator.prototype.startCommand = function (name) {
   this._doc += "<" + name + " ";
-}
+  // TODO: close tag somewhere
+  // maybe add flag to attr to tell if that is the last attribute
+};
 
 /**
  * Write the attributes of a tag in the form name="value"
@@ -44,8 +46,8 @@ SVGGenerator.prototype.startCommand = function (name) {
  * @param {String} value the value of the attribute
  */
 SVGGenerator.prototype.attr = function (name, value) {
-  this._doc += name + "=\"" + value + "\" ";
-}
+  this._doc += name + "=\"" + value + "\"";
+};
 
 /**
  * Write the end of a tag
@@ -53,14 +55,15 @@ SVGGenerator.prototype.attr = function (name, value) {
  */
 SVGGenerator.prototype.endCommand = function (name) {
   this._doc += "</" + name + ">";
-}
+};
 
 /**
  * Return the SVG document as a string
  */
 SVGGenerator.prototype.flush = function () {
+  this._doc = '</svg>';
   return this._doc;
-}
+};
 
 
 /**
