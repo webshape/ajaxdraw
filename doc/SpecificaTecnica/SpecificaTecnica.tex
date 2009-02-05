@@ -144,6 +144,8 @@ Il presente documento descrive le scelte tecniche, architetturali e tecnologiche
 %%%%%%%%%%%%%%FINE INTESTAZIONE COLONNE%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 		 \hline
 %%%%%%%%%%% PARTE DA MODIFICARE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+                  1.4 & 5$\slash$02$\slash$2009 Maggiore dettaglio nella descrizione di alcune classi di ApplicationLogic & Dissegna Stefano \\
+				\hline
                   1.3 & 4$\slash$02$\slash$2009 Suddivisione del diagramma ApplicationLogic in tre parti & Dissegna Stefano \\
 				\hline
                   1.2 & 4$\slash$02$\slash$2009 Aggiunti diagrammi per design pattern & Dissegna Stefano \\
@@ -644,7 +646,7 @@ Nessuna.
 
 \subsezione{EdgeNumber}
 \subsubsezione{Tipo, obiettivo e funzione del componente}
-Rappresenta il numero degli spigoli di un poligono.
+Rappresenta il numero degli spigoli di un poligono. Questo numero non pu\`o essere inferiore a 3.
 \subsubsezione{Relazioni d'uso di altre componenti}
 Implementa \textit{Property}.
 \subsubsezione{Interfacce e relazioni di uso da altre componenti}
@@ -694,7 +696,7 @@ Nessuna.
 
 \subsezione{TextFont}
 \subsubsezione{Tipo, obiettivo e funzione del componente}
-Rappresenta il font di un testo.
+Rappresenta il font di un testo. Mantiene il nome del font.
 \subsubsezione{Relazioni d'uso di altre componenti}
 Deriva da \textit{TextProperty} e implementa \textit{CSSProperty}.
 \subsubsezione{Interfacce e relazioni di uso da altre componenti}
@@ -726,7 +728,7 @@ Nessuna.
 
 \subsezione{Circle}
 \subsubsezione{Tipo, obiettivo e funzione del componente}
-Rappresenta un cerchio o un'ellisse, a seconda che il proprio \textit{BoundingRectangle} sia un quadrato oppure un rettangolo.
+Rappresenta un cerchio o un'ellisse, a seconda che il proprio \textit{BoundingRectangle} sia un quadrato oppure un rettangolo. Viene disegnato in modo da essere inscritto al \textit{BoundingRectangle}.
 \subsubsezione{Relazioni d'uso di altre componenti}
 Deriva da \textit{Figure} e ne implementa i metodi astratti. Mantiene un'istanza di \textit{FillColour}.
 \subsubsezione{Interfacce e relazioni di uso da altre componenti}
@@ -756,7 +758,7 @@ Nessuna.
 
 \subsezione{StraightLine}
 \subsubsezione{Tipo, obiettivo e funzione del componente}
-Rappresenta una linea diritta.
+Rappresenta una linea diritta. La linea v\`a dall'angolo in alto a sinistra all'angolo in basso a destra del \textit{BoundingRectangle}.
 \subsubsezione{Relazioni d'uso di altre componenti}
 Deriva da \textit{Line} e ne implementa i metodi astratti.
 \subsubsezione{Interfacce e relazioni di uso da altre componenti}
@@ -778,7 +780,7 @@ Usata come base da \textit{BezierCurve}.
 
 \subsezione{BezierCurve}
 \subsubsezione{Tipo, obiettivo e funzione del componente}
-Rappresenta una linea curva.
+Rappresenta una linea curva, disegnata tramite curve di bezier.
 \subsubsezione{Relazioni d'uso di altre componenti}
 Deriva da \textit{FreeLine}. A differenza di \textit{FreeLine} la lista di punti interni contiene un numero ridotto di punti.
 \subsubsezione{Interfacce e relazioni di uso da altre componenti}
@@ -817,12 +819,12 @@ Usa \textit{SVGGenerator} per generare i comandi SVG.
 Implementata dalle classi che rappresentano figure.
 \subsubsezione{Attivit\`a svolte e dati trattati}
 \begin{elencopuntato}[\normindent]
-\item[-] \textit{toSVG} converte in SVG.
+\item[-] \textit{toSVG} converte in SVG. Per trascriversi in un documento SVG l'oggetto potr\`a usare solo i metodi messi a disposizione dall'\textit{SVGGenerator} passato come parametro.
 \end{elencopuntato}
 
 \subsezione{SVGGenerator}
 \subsubsezione{Tipo, obiettivo e funzione del componente}
-Rappresenta un documento SVG in costruzione.
+Rappresenta un documento SVG in costruzione. Mantiene al suo interno una rappresentazione del documento finora generato e mette a disposizione dei metodi per scrivere nel documento.
 \subsubsezione{Relazioni d'uso di altre componenti}
 Nessuna.
 \subsubsezione{Interfacce e relazioni di uso da altre componenti}
@@ -832,11 +834,12 @@ Usato da \textit{SVGWriter} e dalle classi che implementano \textit{SVGWritable}
 \item[-] \textit{startCommand} apre un comando con il nome dato.
 \item[-] \textit{attr} aggiunge un attributo con il nome e il valore dato al comando corrente.
 \item[-] \textit{endCommand} chiude il comando corrente.
+\item[-] \textit{flush} ritorna il documento finora generato sotto forma di stringa.
 \end{elencopuntato}
 
 \subsezione{XMLParser}
 \subsubsezione{Tipo, obiettivo e funzione del componente}
-Un parser SVG.
+Un parser SVG. Costruisce il DOM di un documento XML a partire dalla sua rappresentazione testuale.
 \subsubsezione{Relazioni d'uso di altre componenti}
 Nessuna.
 \subsubsezione{Interfacce e relazioni di uso da altre componenti}
@@ -846,7 +849,7 @@ Usato da \textit{SVGReader}.
 
 \subsezione{SVGTag}
 \subsubsezione{Tipo, obiettivo e funzione del componente}
-Rappresenta un tag (ovvero un comando) SVG.
+Rappresenta un tag (ovvero un comando) SVG. Un tag \`e caratterizzato dal nome, da un'insieme di coppie attributo-valore, e da eventuali tag figli.
 \subsubsezione{Relazioni d'uso di altre componenti}
 Nessuna.
 \subsubsezione{Interfacce e relazioni di uso da altre componenti}
@@ -863,7 +866,7 @@ Nessuna.
 Implementata dalle classi che rappresentano figure.
 \subsubsezione{Attivit\`a svolte e dati trattati}
 \begin{elencopuntato}[\normindent]
-\item[-] \textit{fromSVG} inizializza l'oggetto a partire da un tag SVG.
+\item[-] \textit{fromSVG} inizializza, modificando il proprio stato interno, se stesso a partire da un tag SVG.
 \end{elencopuntato}
 
 \subsezione{SVGReadableClass}
@@ -894,7 +897,7 @@ Associa nomi di tag SVG a classi (non istanze) che implementano \textit{SVGReada
 \subsubsezione{Relazioni d'uso di altre componenti}
 Usa \textit{SVGReadableClass} per mantenere un riferimento ad una classe per poterla poi istanziare.
 \subsubsezione{Interfacce e relazioni di uso da altre componenti}
-Usata da \textit{SVGReader} durante la conversione di un documento SVG. Ogni classe che implementa \textit{SVGReadable} deve registrarsi.
+Usata da \textit{SVGReader} durante la conversione di un documento SVG per creare oggetti del tipo corretto a partire da un tag SVG. Gli oggetti creati andranno poi inizializzati. Ogni classe che implementa \textit{SVGReadable} deve registrarsi.
 \subsubsezione{Attivit\`a svolte e dati trattati}
 \begin{elencopuntato}[\normindent]
 \item[-] \textit{register} associa il nome di un tag SVG ad una classe che implementa \textit{SVGReadable}.
