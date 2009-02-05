@@ -25,7 +25,7 @@ $(document).ready(function(){
      
      /* Funzione gestione pulsante toolbar premuto/rilasciato*/
      sentSelect=false;
-     $("#selezione").click(function () {
+     $("#selectionButton").click(function () {
 		if(sentSelect==false){     
        	$(this).css({"background-color":"#A0A0A0"}),
        	sentSelect=true;
@@ -36,7 +36,9 @@ $(document).ready(function(){
        }
       });
 		
-		 $("#quadrato").tooltip();
+		 $(".toolbarButton").tooltip(
+		 {delay: 1000}
+);
 		 
      
      

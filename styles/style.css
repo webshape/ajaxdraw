@@ -38,10 +38,10 @@ span.tooltip:hover span{ /*lo span verrý mostrato solo sullo stato :hover */
 	height:2em;
 }
 
-#selezione{
+#selectionButton{
 	background-image:url("../pages/images/selezione.png");
 	}
-#quadrato{
+#squareButton{
 	background-image:url("../pages/images/quadrato.png");
 }
 
