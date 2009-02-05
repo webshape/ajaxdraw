@@ -2,15 +2,20 @@
 <html>
 <head>
 <title>AJAXDRAW</title>
-<link rel="stylesheet" type="text/css" href="style.css"/>
-<link rel="stylesheet" href="farbtastic.css" type="text/css" />
+<link rel="stylesheet" type="text/css" href="../styles/style.css"/>
+<link rel="stylesheet" type="text/css" href="../styles/jquery.tooltip.css" />
+<link rel="stylesheet" href="../styles/farbtastic.css" type="text/css" />
 <script src="../src/jquery.js"></script>
 <script src="../src/farbtastic.js"></script>
-<script type="text/javascript" src="draw.js"/></script>
+
+<script type="text/javascript" src="../src/jquery.dimensions.js"></script>
+<script type="text/javascript" src="../src/jquery.tooltip.js"></script>
+
+<!--  <script type="text/javascript" src="draw.js"/></script> -->
 </head>
 
 
-<body onload="draw()">
+<body >
 <link rel="stylesheet" href="http://ui.jquery.com/latest/themes/flora/flora.all.css" type="text/css" media="screen" title="Flora (Default)"/>
 <script type="text/javascript" src="../src/ui.core.js"></script>
 <script type="text/javascript" src="../src/ui.dialog.js"></script>
@@ -25,13 +30,14 @@
 	</span> -->
 	<div id="tool">
 		<input class="toolbarButton" id="selezione" type="button"></input><br/>
-		<input class="toolbarButton" id="quadrato" type="button" ></input><br/>
+		<input title="Disegna un quadrato" class="toolbarButton" id="quadrato" type="button" ></input><br/>
 	</div>
 	
 	<!-- Canvas -->
 	<span><canvas id="cv" height="540" width="720"/></span>
 	<span class="tooltip">
 		<span>Salva l'immagine in un file SVG</span>
+
 		<input type="button" name="SaveSVG" value="Salva SVG"/>&nbsp;
 	</span>Carica:
 	<span><input type="file" class="SVG" name="LoadSVG" value="Carica SVG"/></span>

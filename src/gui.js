@@ -18,11 +18,12 @@ $(document).ready(function(){
       });
      
     $("#closeWheel").click(function () {
-     		$("#colorx").hide("slow"),
-     		$(".Dialog1").height(300);
+    		$(".Dialog1").height(300),
+     		$("#colorx").hide("slow");
+     		
      	});
      
-     <!-- Funzione gestione pulsante toolbar premuto/rilasciato -->
+     /* Funzione gestione pulsante toolbar premuto/rilasciato*/
      sentSelect=false;
      $("#selezione").click(function () {
 		if(sentSelect==false){     
@@ -34,7 +35,9 @@ $(document).ready(function(){
 			sentSelect=false;     
        }
       });
-
+		
+		 $("#quadrato").tooltip();
+		 
      
      
   });

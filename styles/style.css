@@ -4,7 +4,7 @@ canvas {
 }
 
 #tool{
-	margin-left: 2em;
+	margin-left: 0.5em;
 	position: fixed;
 	}
 
@@ -39,8 +39,9 @@ span.tooltip:hover span{ /*lo span verrý mostrato solo sullo stato :hover */
 }
 
 #selezione{
-	background-image:url("images/selezione.png");
+	background-image:url("../pages/images/selezione.png");
 	}
 #quadrato{
-	background-image:url("images/quadrato.png");
+	background-image:url("../pages/images/quadrato.png");
 }
+
