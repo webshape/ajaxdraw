@@ -1,0 +1,59 @@
+<!-- draw some figures, manually checked -->
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<title> Draw Test </title>
+<script src="../jquery.js"></script>
+<script src="../utils.js"></script>
+<script src="../figures.js"></script>
+<script>
+$(document).ready(function(){
+var canvas = document.getElementById("cv");
+//canvas.height = 1000;
+//canvas.width = 1000;
+var figures = [];
+
+// Polygon
+var c = new Polygon();
+c.getBorderColour().set(255, 0, 0, new Opacity(1));
+c.getBounds().setStart(new Point(0, 0));
+c.getBounds().setEnd(new Point(100, 100));
+c.edgeNumber().setVal(12);
+figures.push(c);
+// Deformed polygon with border colour
+c = new Polygon();
+c.getBounds().setStart(new Point(150, 0));
+c.getBounds().setEnd(new Point(250, 200));
+c.edgeNumber().setVal(7);
+figures.push(c);
+
+// 2 Rectangles
+c = new Rectangle();
+c.getBorderColour().set(255, 0, 0, new Opacity(1));
+c.getBounds().setStart(new Point(50, 270));
+c.getBounds().setEnd(new Point(250, 320));
+figures.push(c);
+c = new Rectangle();
+c._fillColour.set(0, 255, 0, new Opacity(0.8));
+c.getBounds().setStart(new Point(0, 250));
+c.getBounds().setEnd(new Point(200, 300));
+figures.push(c);
+
+// Ellipse
+c = new Circle();
+c.getBorderColour().set(0, 0, 255, new Opacity(1));
+c.getBounds().setStart(new Point(0, 350));
+c.getBounds().setEnd(new Point(400, 450));
+figures.push(c);
+
+figures.each(function (f) {
+               f.draw(canvas);
+             });
+});
+</script>
+<script type="text/javascript" src="draw.js"/>
+</head>
+<body>
+<canvas id="cv" height="800" width="600"/>
+</body>
+</html>

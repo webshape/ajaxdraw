@@ -43,8 +43,12 @@ Function.prototype.writer = function (slot, publicName) {
  * @param {String} writeName name of the writer function (optional)
  */
 Function.prototype.accessors = function (slot, readName, writeName) {
-  this.reader(slot, readName);
-  this.writer(slot, writeName);
+  this.prototype[readName || 'get' + slot] = function () {
+    return this[slot];
+  };
+  this.prototype[writeName || 'set' + slot] = function (x) {
+    return (this[slot] = x);
+  };
 };
 
 /**

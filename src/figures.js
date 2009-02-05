@@ -22,7 +22,7 @@ function Figure() {
   // default values
   this._selected = false;
   this._borderColour = new Colour(0, 0, 0, new Opacity(1));
-  this._bounds = new BoundingRectangle(0, 0, 0, 0);
+  this._bounds = new BoundingRectangle(new Point(0, 0), new Point(0, 0));
 }
 
 Figure.abstractMethod('draw');
@@ -82,10 +82,10 @@ function BoundingRectangle(start, end) {
   this._end = end;
 }
 
-BoundingRectangle.reader('_start', 'start');
-BoundingRectangle.reader('_end', 'end');
-
 BoundingRectangle.prototype = new Property();
+
+BoundingRectangle.accessors('_start', 'start', 'setStart');
+BoundingRectangle.accessors('_end', 'end', 'setEnd');
 
 BoundingRectangle.prototype.createWidget = function () {
   // TODO: implement
@@ -123,13 +123,17 @@ Opacity.prototype.applyToContext = function (ctx) {
  * @param {Opacity} o the opacity of the colour
  */
 function Colour(r, g, b, o) {
-  this._r = r;
-  this._g = g;
-  this._b = b;
-  this._o = o;
+  this.set(r, g, b, o);
 }
 
 Colour.prototype = new Property();
+
+Colour.prototype.set = function (r, g, b, o) {
+  this._r = r;
+  this._g = g;
+  this._b = b;
+  this._o = o;  
+};
 
 Colour.prototype.createWidget = function () {
   // TODO: implement
@@ -322,6 +326,8 @@ function Polygon () {
 
 Polygon.prototype = new Figure();
 
+Polygon.reader('_en', 'edgeNumber');
+
 Polygon.prototype.draw = function (c) {
   var ctx = c.getContext('2d');
   ctx.save();
@@ -359,6 +365,7 @@ Polygon.prototype.draw = function (c) {
  * A rectangle
  */
 function Rectangle () {
+  Figure.call(this);
   this._fillColour = new FillColour(0, 0, 0, new Opacity(1));
 }
 
