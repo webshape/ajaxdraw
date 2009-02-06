@@ -31,7 +31,7 @@ figures.push(c);
 c = new Rectangle();
 c.getBorderColour().set(255, 0, 0, new Opacity(1));
 c.getBounds().setStart(new Point(50, 270));
-c.getBounds().setEnd(new Point(250, 320));
+c.getBounds().setEnd(new Point(450, 320));
 figures.push(c);
 c = new Rectangle();
 c._fillColour.set(0, 255, 0, new Opacity(0.8));
@@ -44,6 +44,13 @@ c = new Circle();
 c.getBorderColour().set(0, 0, 255, new Opacity(1));
 c.getBounds().setStart(new Point(0, 350));
 c.getBounds().setEnd(new Point(400, 450));
+figures.push(c);
+
+// Circle
+c = new Circle();
+c.getBorderColour().set(125, 0, 255, new Opacity(1));
+c.getBounds().setStart(new Point(450, 350));
+c.getBounds().setEnd(new Point(550, 450));
 figures.push(c);
 
 figures.each(function (f) {

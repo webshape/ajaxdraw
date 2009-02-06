@@ -87,16 +87,46 @@ BoundingRectangle.prototype = new Property();
 BoundingRectangle.accessors('_start', 'start', 'setStart');
 BoundingRectangle.accessors('_end', 'end', 'setEnd');
 
+/**
+ * Get the height of the rectangle
+ * @return {Float} the height
+ */
+BoundingRectangle.prototype.h = function () {
+  return this._end.y - this._start.y;
+};
+
+/**
+ * Get the width of the rectangle
+ * @return {Float} the width
+ */
+BoundingRectangle.prototype.w = function () {
+  return this._end.x - this._start.x;
+};
+
+/**
+ * Get the centre of the rectangle
+ * @return {Point} the central point, considering the top left corner as the origin
+ */
+BoundingRectangle.prototype.centre = function () {
+  return new Point((this._end.x - this._start.x)/2, 
+                   (this._end.y - this._start.y)/2);
+};
+
+
 BoundingRectangle.prototype.createWidget = function () {
   // TODO: implement
 };
 
+/**
+ * Translate coords origin to the top left corner of the rectangle
+ * @param {Context2D} ctx the drawing context
+ */
 BoundingRectangle.prototype.applyToContext = function (ctx) {
   ctx.translate(this._start.x, this._start.y);
-  var scaley = this._end.y - this._start.y;
-  ctx.scale(this._end.x - this._start.x, scaley);
+  //var scaley = this._end.y - this._start.y;
+  //ctx.scale(this._end.x - this._start.x, scaley);
   // avoid too thick lines
-  ctx.lineWidth = 1/scaley;
+  //ctx.lineWidth = 1/scaley;
 };
 
 /**
@@ -110,6 +140,10 @@ function Opacity(val) {
 
 Opacity.accessors('val', 'getVal', 'setVal');
 
+/**
+ * Set the global alpha value
+ * @param {Context2D} ctx the drawing context 
+ */
 Opacity.prototype.applyToContext = function (ctx) {
   ctx.globalAlpha = this.val;
 };
@@ -144,6 +178,10 @@ Colour.prototype.toCSS = function () {
     this._g.toString() + ',' + this._b.toString() + ')';
 };
 
+/**
+ * Set the current stroke colour
+ * @param {Context2D} ctx the drawing context
+ */
 Colour.prototype.applyToContext = function (ctx) {
   ctx.strokeStyle = this.toCSS();
   this._o.applyToContext(ctx);
@@ -158,6 +196,10 @@ function FillColour (r, g, b, o) {
 
 FillColour.prototype = new Colour();
 
+/**
+ * Set the current fill colour
+ * @param {Context2D} ctx the drawing context
+ */
 FillColour.prototype.applyToContext = function (ctx) {
   ctx.fillStyle = this.toCSS();
   this._o.applyToContext(ctx);
@@ -302,10 +344,29 @@ Circle.prototype = new Figure();
 Circle.prototype.draw = function (c) {
   var ctx = c.getContext('2d');
   ctx.save();
-  this.getBounds().applyToContext(ctx);
+  var bounds = this.getBounds();
+  bounds.applyToContext(ctx);
   ctx.beginPath();
-  // standard circle
-  ctx.arc(0.5, 0.5, 0.5, 0, Math.PI * 2, false);
+
+  var KAPPA = 4 * ((Math.sqrt(2) -1) / 3);
+
+  var rx = bounds.w()/2;
+  var ry = bounds.h()/2;
+
+  var centre = bounds.centre();
+  var cx = centre.x;
+  var cy = centre.y;
+  
+  ctx.moveTo(cx, cy - ry);
+  ctx.bezierCurveTo(cx + (KAPPA * rx), cy - ry,  cx + rx,
+                    cy - (KAPPA * ry), cx + rx, cy);
+  ctx.bezierCurveTo(cx + rx, cy + (KAPPA * ry), cx + (KAPPA * rx), 
+                    cy + ry, cx, cy + ry);
+  ctx.bezierCurveTo(cx - (KAPPA * rx), cy + ry, cx - rx, 
+                    cy + (KAPPA * ry), cx - rx, cy);
+  ctx.bezierCurveTo(cx - rx, cy - (KAPPA * ry), cx - (KAPPA * rx), 
+                    cy - ry, cx, cy - ry);
+
   this._fillColour.applyToContext(ctx);
   ctx.fill();
   this.getBorderColour().applyToContext(ctx);
@@ -331,7 +392,10 @@ Polygon.reader('_en', 'edgeNumber');
 Polygon.prototype.draw = function (c) {
   var ctx = c.getContext('2d');
   ctx.save();
-  this.getBounds().applyToContext(ctx);
+  var bounds = this.getBounds();
+  bounds.applyToContext(ctx);
+  var halfw = Math.abs(bounds.w()/2);
+  var halfh = Math.abs(bounds.h()/2);
   
   var points = []; // points of the regular polygon
   // n must be > 0
@@ -340,18 +404,21 @@ Polygon.prototype.draw = function (c) {
   var angle = 0;
   for (var i = 0; i < n; ++i) {
     // points on a circumference with radius 1 and centre in (0, 0)
-    points.push(new Point(Math.cos(angle), Math.sin(angle)));
+    // adapted to real height and width
+    points.push(new Point(halfw*Math.cos(angle), halfh*Math.sin(angle)));
     angle += step;
   }
   ctx.beginPath();
   // draw it
   // adapt coords to points
-  ctx.translate(0.5, 0.5);
-  ctx.scale(1/2, 1/2);
+  var centre = bounds.centre();
+  ctx.translate(centre.x, centre.y);
   ctx.moveTo(points[0].x, points[0].y);
   points.each(function (pt) {
                 ctx.lineTo(pt.x, pt.y);
               });
+  // close the polygon
+  ctx.lineTo(points[0].x, points[0].y);
   this._fillColour.applyToContext(ctx);
   ctx.fill();
   this.getBorderColour().applyToContext(ctx);
@@ -374,10 +441,11 @@ Rectangle.prototype = new Figure();
 Rectangle.prototype.draw = function (c) {
   var ctx = c.getContext('2d');
   ctx.save();
-  this.getBounds().applyToContext(ctx);
+  var b = this.getBounds();
+  b.applyToContext(ctx);
   this._fillColour.applyToContext(ctx);
-  ctx.fillRect(0, 0, 1, 1);
+  ctx.fillRect(0, 0, b.w(), b.h());
   this.getBorderColour().applyToContext(ctx);
-  ctx.strokeRect(0, 0, 1, 1);
+  ctx.strokeRect(0, 0, b.w(), b.h());
   ctx.restore();
 };
