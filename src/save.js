@@ -105,7 +105,6 @@ Circle.prototype.toSVG = function(gen) {
  */
 Rectangle.prototype.toSVG = function(gen) {
   gen.startCommand("rect");
-  this.getBounds()
   gen.attr("x", this.getBounds().start().x, false);
   gen.attr("y", this.getBounds().start().y, false);
   gen.attr("rx", 0, 0, false);
@@ -124,7 +123,6 @@ Rectangle.prototype.toSVG = function(gen) {
  */
 Line.prototype.toSVG = function(gen) {
   gen.startCommand("line");
-  this.getBounds()
   gen.attr("x1", this.getBounds().start().x, false);
   gen.attr("y1", this.getBounds().start().y, false);
   gen.attr("x2", this.getBounds().end().x, false);
@@ -140,10 +138,12 @@ Line.prototype.toSVG = function(gen) {
  */
 Polygon.prototype.toSVG = function(gen) {
   gen.startCommand("polygon");
-  this.getBounds()
   gen.attr("fill", this.getFillColour().toCSS(), false);
   gen.attr("stroke", this.getBorderColour().toCSS(), false);
-  gen.atrr("points", this.)/*I'm waiting for get_points*/
+  var aPoints = this.getPoints();
+  for (i = 0; i < aPoints.length; ++i)
+	  var points += (aPoints[i].x + this.getBounds().start().x) +","+ (aPoints[i].y + this.getBounds().start().y) +" ";
+  gen.attr("points", this.points, false);
 };
 
 
