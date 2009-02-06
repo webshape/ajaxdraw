@@ -2,6 +2,7 @@
  *	@fileoverview
  * Save the content of the canvas in SVG format
  * @author Mirco Geremia
+ * @author Marco Cunico
  */
 
 
@@ -94,7 +95,6 @@ Circle.prototype.toSVG = function(gen) {
   gen.attr("r", this.getBounds().w()/2, false);
   gen.attr("fill", this.getFillColour().toCSS(), false);
   gen.attr("stroke", this.getBorderColour().toCSS(), false);
-  /* the size of the stroke is not implemented; am i wrong?*/
 };
 
 
@@ -113,4 +113,5 @@ Rectangle.prototype.toSVG = function(gen) {
   gen.attr("width", this.getBounds().w(), false);
   gen.attr("height", this.getBounds().h(), false);
   gen.attr("fill", this.getBounds().getFillColour(), false);
+  gen.attr("stroke", this.getBorderColour().toCSS(), false);
 };
