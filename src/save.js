@@ -94,3 +94,21 @@ Circle.prototype.toSVG = function(gen) {
   gen.attr("r", this.getBounds().w()/2, false);
   gen.attr("fill", "none" , false);
 };
+
+
+
+/**
+ * Transform the rectangle figure into SVG tags
+ * @param {SVGGenerator} gen to call the methods to create tags
+ */
+Rectangle.prototype.toSVG = function(gen) {
+  gen.startCommand("rect");
+  this.getBounds()
+  gen.attr("x", this.getBounds().start().x, false);
+  gen.attr("y", this.getBounds().start().y, false);
+  gen.attr("rx", 0, 0, false);
+  gen.attr("ry", 0, 0, false);
+  gen.attr("width", this.getBounds().w(), false);
+  gen.attr("height", this.getBounds().h(), false);
+  gen.attr("fill", this.getBounds().getFillColour(), false);
+};
