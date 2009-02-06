@@ -144,6 +144,10 @@ Il presente documento descrive le scelte tecniche, architetturali e tecnologiche
 %%%%%%%%%%%%%%FINE INTESTAZIONE COLONNE%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 		 \hline
 %%%%%%%%%%% PARTE DA MODIFICARE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+                  1.6 & 6$\slash$02$\slash$2009 Aggiunta giustificazione scelta JavaScript & Dissegna Stefano \\
+				\hline
+                  1.5 & 6$\slash$02$\slash$2009 Descritto problema supporto diversi browser & Dissegna Stefano \\
+				\hline
                   1.4 & 5$\slash$02$\slash$2009 Maggiore dettaglio nella descrizione di alcune classi di ApplicationLogic & Dissegna Stefano \\
 				\hline
                   1.3 & 4$\slash$02$\slash$2009 Suddivisione del diagramma ApplicationLogic in tre parti & Dissegna Stefano \\
@@ -1093,7 +1097,8 @@ Usata da \textit{File} nel caso non venga trovato su disco un file richiesto.
 
 \sezione{Stime di fattibilit\`a e di bisogno di risorse}
 Il maggiore collo di bottiglia del sistema \`e rappresentato dal server, in quanto una singola macchina pu\`o trovarsi a gestire un numero elevato di richieste. Non dovrebbero comunque esserci problemi in quanto le funzionalit\`a implementate lato server sono minime, e quindi ogni singolo client comporta un dispendio di risorse, in termini di tempo di calcolo, di spazio su disco e di banda, minimo. 
-Un secondo problema prestazionale \`e rappresentato dal fatto che l'applicazione sar\`a forzatamente scritta in \underline{JavaScript}, la cui implementazione \`e estremamente scadente dal punto di vista delle prestazioni in quasi tutti i browser, fatta eccezione per Google Chrome, l'unico a fornire un sistema di compilazione \underline{JIT}. Per questo, durante l'implementazione si dovr\`a porre una costante attenzione alle risorse richieste dai diversi metodi.
+Un secondo problema prestazionale \`e rappresentato dal fatto che l'applicazione sar\`a forzatamente scritta in \underline{JavaScript}, la cui implementazione \`e estremamente scadente dal punto di vista delle prestazioni in quasi tutti i browser, fatta eccezione per Google Chrome, l'unico a fornire un sistema di compilazione \underline{JIT}. Per questo, durante l'implementazione si dovr\`a porre una costante attenzione alle risorse richieste dai diversi metodi. La scelta del linguaggio JavaScript dipende dal fatto che \`e l'unico linguaggio supportato lato client, e una scelta diversa obbligherebbe quindi o a spostare la logica dell'applicazione lato server o ad utilizzare un compilatore dal linguaggio prescelto al JavaScript. La prima opzione aumenterebbe in modo notevole la comunicazione necessaria tra client e server, degradando la reattivit\`a dell'applicazione e aumentando le probabilit\`a di verificarsi di un errore e dei problemi causati dall'errore stesso. La seconda opzione non \`e desidarabile, in quanto la maggiore distanza tra sorgente e codice eseguito renderebbe molto difficile il debugging dell'applicazione.
+Un altro problema \`e la necessit\`a di supportare un'ampia gamma di browser. Ogni browser non sempre implementa i vari standard in modo conforme, con il risultato che un'applicazione funzionante correttamente su un browser potrebbe avere problemi in un altro. Per ridurre al minimo questo problema, si utilizzer\`a la liberia \textit{JQuery} che gestisce una buona parte delle discrepanze tra i browser, si seguir\`a lo standard JavaScript versione 1.5 in quanto \`e l'unica ben supportata da tutti e si effettueranno test frequenti su tutti i diversi browser.
 \newpage
 \sezione{Tracciamento della relazione componenti-requisiti}
 \begin{table}[h]

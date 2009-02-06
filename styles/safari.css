@@ -1,5 +1,5 @@
 canvas {
-  background-color: rgb(230, 240, 230);
+  background-color: rgb(0, 240, 230);
   margin-left: 5em;
 }
 
@@ -44,8 +44,6 @@ span.tooltip:hover span{ /*lo span verrý mostrato solo sullo stato :hover */
 #squareButton{
 	background-image:url("../pages/images/quadrato.png");
 }
-
-
 
 
 
