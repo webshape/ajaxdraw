@@ -449,3 +449,56 @@ Rectangle.prototype.draw = function (c) {
   ctx.strokeRect(0, 0, b.w(), b.h());
   ctx.restore();
 };
+
+/**
+ * @constructor
+ * A straight line
+ */
+function StraightLine () {
+  Figure.call(this);
+}
+
+StraightLine.prototype = new Figure();
+
+StraightLine.prototype.draw = function (c) {
+  var ctx = c.getContext('2d');
+  ctx.save();
+  var b = this.getBounds();
+  var start = b.start();
+  var end = b.end();
+  ctx.beginPath();
+  ctx.moveTo(start.x, start.y);
+  ctx.lineTo(end.x, end.y);
+  this.getBorderColour().applyToContext(ctx);
+  ctx.stroke();
+  ctx.closePath();
+  ctx.restore();
+};
+
+/**
+ * @constructor
+ * A free hand line
+ */
+function FreeLine () {
+  Figure.call(this);
+  this._pts = []; // Points composing the line
+}
+
+FreeLine.prototype = new Figure();
+
+/**
+ * Add a new point at the end of the line
+ * @param {Point} pt the point to add
+ */
+FreeLine.prototype.extend = function (pt) {
+  this._pts.push(pt);
+};
+
+FreeLine.prototype.draw = function (c) {
+  var ctx = c.getContext('2d');
+  ctx.save();
+  var b = this.getBounds();
+  ctx.beginPath();
+  ctx.endPath();
+  ctx.restore();
+};
