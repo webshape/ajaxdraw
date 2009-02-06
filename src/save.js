@@ -112,6 +112,54 @@ Rectangle.prototype.toSVG = function(gen) {
   gen.attr("ry", 0, 0, false);
   gen.attr("width", this.getBounds().w(), false);
   gen.attr("height", this.getBounds().h(), false);
-  gen.attr("fill", this.getBounds().getFillColour(), false);
+  gen.attr("fill", this.getFillColour().toCSS(), false);
+  gen.attr("stroke", this.getBorderColour().toCSS(), false);
+};
+
+
+
+/**
+ * Transform the line figure into SVG tags
+ * @param {SVGGenerator} gen to call the methods to create tags
+ */
+Line.prototype.toSVG = function(gen) {
+  gen.startCommand("line");
+  this.getBounds()
+  gen.attr("x1", this.getBounds().start().x, false);
+  gen.attr("y1", this.getBounds().start().y, false);
+  gen.attr("x2", this.getBounds().end().x, false);
+  gen.attr("y2", this.getBounds().end().y, false);
+  gen.attr("stroke", this.getBorderColour().toCSS(), false);
+};
+
+
+
+/**
+ * Transform the polygon figure into SVG tags
+ * @param {SVGGenerator} gen to call the methods to create tags
+ */
+Polygon.prototype.toSVG = function(gen) {
+  gen.startCommand("polygon");
+  this.getBounds()
+  gen.attr("fill", this.getFillColour().toCSS(), false);
+  gen.attr("stroke", this.getBorderColour().toCSS(), false);
+  gen.atrr("points", this.)/*I'm waiting for get_points*/
+};
+
+
+
+/**
+ * Transform the ellipse figure into SVG tags
+ * @param {SVGGenerator} gen to call the methods to create tags
+ */
+Ellipse.prototype.toSVG = function(gen) {
+  gen.startCommand("ellipse");
+  var cx = this.getBounds().start().x + this.getBounds().center().x;
+  gen.attr("cx", cx, false);
+  var cy = this.getBounds().start().y + this.getBounds().center().y;
+  gen.attr("cy", cy, false);
+  gen.attr("rx", this.getBounds().w()/2, false);
+  gen.attr("ry", this.getBounds().h()/2, false);
+  gen.attr("fill", this.getFillColour().toCSS(), false);
   gen.attr("stroke", this.getBorderColour().toCSS(), false);
 };
