@@ -28,7 +28,7 @@ SVGWriter.prototype.write = function (fs) {
  * @param {Integer} w width of the canvas element
  * @param {Integer} h height of the canvas element
  */
-function SVGGenerator(w, h) {
+function SVGGenerator(w, h) { /*TODO change > into &gt etc.. */
   this._doc = "<?xml version=\"1.0\" standalone=\"no\"?>\n\
 					<!DOCTYPE svg PUBLIC \"-//W3C//DTD SVG 1.1//EN http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd\">\n\
 					<svg width=\"" + w + "\" height=\"" + h + "\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\">\n";
@@ -40,8 +40,6 @@ function SVGGenerator(w, h) {
  */
 SVGGenerator.prototype.startCommand = function (name) {
   this._doc += "<" + name + " ";
-  // TODO: close tag somewhere
-  // maybe add flag to attr to tell if that is the last attribute
 };
 
 /**
@@ -81,11 +79,13 @@ SVGGenerator.prototype.flush = function () {
 };
 
 
+
 /**
- * Create the SVG tag that represents the figure
- * @param {SVGGenerator} gen the SVGGenerator that contains the SVGDocument
+ * Transform the circle figure into SVG tags
+ * @param {SVGGenerator} gen to call the methods to create tags
  */
-function toSVG(gen) { /*should be an implementation of a method of an interface*/
-  gen.startCommand(this.name()); /* this.name() returns the name of the figure? */
-  /* depending from which figure it is, it will write different attributes */
-}
+Circle.prototype.toSVG = function(gen) {
+  gen.startCommand("Circle");
+  this.getBounds()
+  gen.attr("cx", this.ctx.x, false);
+};
