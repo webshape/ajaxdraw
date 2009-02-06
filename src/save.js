@@ -24,12 +24,15 @@ SVGWriter.prototype.write = function (fs) {
 
 
 /**
- * SVGGenerator
+ * @constructor
+ * SVGGenerator contains the document
+ * @param {Integer} w width of the canvas element
+ * @param {Integer} h height of the canvas element
  */
-function SVGGenerator() {
+function SVGGenerator(w, h) {
   this._doc = "<?xml version=\"1.0\" standalone=\"no\"?>\n\
 					<!DOCTYPE svg PUBLIC \"-//W3C//DTD SVG 1.1//EN http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd\">\n\
-					<svg version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\">\n";
+					<svg width=\"" + w + "\" height=\"" + h + "\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\">\n";
 }
 
 /**
@@ -46,10 +49,21 @@ SVGGenerator.prototype.startCommand = function (name) {
  * Write the attributes of a tag in the form name="value"
  * @param {String} name the name of the attribute
  * @param {String} value the value of the attribute
+ * @param {Boolean} last if it is the last attribute
  */
-SVGGenerator.prototype.attr = function (name, value) {
+SVGGenerator.prototype.attr = function (name, value, last) {
   this._doc += name + "=\"" + value + "\"";
+  if (last)
+	 this._doc += ">";
 };
+
+/**
+ * Write the text between the tags
+ * @param {String} t the text
+ */
+SVGenerator.protype.text = function (t) {
+  this._doc += "\n" + t + "\n";
+}
 
 /**
  * Write the end of a tag
