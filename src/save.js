@@ -27,7 +27,9 @@ SVGWriter.prototype.write = function (fs) {
  * SVGGenerator
  */
 function SVGGenerator() {
-  this._doc = "<svg>"; // TODO: add standard SVG headers
+  this._doc = "<?xml version=\"1.0\" standalone=\"no\"?>\n\
+					<!DOCTYPE svg PUBLIC \"-//W3C//DTD SVG 1.1//EN http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd\">\n\
+					<svg version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\">\n";
 }
 
 /**
@@ -54,14 +56,14 @@ SVGGenerator.prototype.attr = function (name, value) {
  * @param {String} name the name of the tag
  */
 SVGGenerator.prototype.endCommand = function (name) {
-  this._doc += "</" + name + ">";
+  this._doc += "</" + name + ">\n";
 };
 
 /**
  * Return the SVG document as a string
  */
 SVGGenerator.prototype.flush = function () {
-  this._doc = '</svg>';
+  this._doc = "</svg>";
   return this._doc;
 };
 
