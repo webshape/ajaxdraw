@@ -24,6 +24,7 @@ SVGWriter.prototype.write = function (fs) {
 
 
 /**
+ * @constructor
  * SVGGenerator contains the document
  * @param {Integer} w width of the canvas element
  * @param {Integer} h height of the canvas element
@@ -52,7 +53,7 @@ SVGGenerator.prototype.startCommand = function (name) {
  */
 SVGGenerator.prototype.attr = function (name, value, last) {
   this._doc += name + "=\"" + value + "\"";
-  if (last == true)
+  if (last)
 	 this._doc += ">";
 };
 
