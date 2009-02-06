@@ -1,8 +1,8 @@
 /**
  *	@fileoverview
  * Save the content of the canvas in SVG format
- * @author Mirco Geremia
  * @author Marco Cunico
+ * @author Mirco Geremia
  */
 
 
@@ -141,8 +141,9 @@ Polygon.prototype.toSVG = function(gen) {
   gen.attr("fill", this.getFillColour().toCSS(), false);
   gen.attr("stroke", this.getBorderColour().toCSS(), false);
   var aPoints = this.getPoints();
-  for (i = 0; i < aPoints.length; ++i)
-	  var points += (aPoints[i].x + this.getBounds().start().x) +","+ (aPoints[i].y + this.getBounds().start().y) +" ";
+  var points;
+  for (var i = 0; i < aPoints.length; ++i)
+	 points += (aPoints[i].x + this.getBounds().start().x) + "," + (aPoints[i].y + this.getBounds().start().y) + " ";
   gen.attr("points", this.points, false);
 };
 
