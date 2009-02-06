@@ -86,7 +86,11 @@ SVGGenerator.prototype.flush = function () {
  * @param {SVGGenerator} gen to call the methods to create tags
  */
 Circle.prototype.toSVG = function(gen) {
-  gen.startCommand("Circle");
-  this.getBounds()
-  gen.attr("cx", this.ctx.x, false);
+  gen.startCommand("circle");
+  var cx = this.getBounds().start().x + this.getBounds().center().x;
+  gen.attr("cx", cx, false);
+  var cy = this.getBounds().start().y + this.getBounds().center().y;
+  gen.attr("cy", cy, false);
+  gen.attr("r", this.getBounds().w()/2, false);
+  gen.attr("fill", "none" , false);
 };
