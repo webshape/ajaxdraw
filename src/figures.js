@@ -389,13 +389,15 @@ Polygon.prototype = new Figure();
 
 Polygon.reader('_en', 'edgeNumber');
 
-Polygon.prototype.draw = function (c) {
-  var ctx = c.getContext('2d');
-  ctx.save();
+/**
+ * Get an array of vertexes of the polygon
+ * the origin is the top-left corner of the BoundingRectangle
+ */
+Polygon.prototype.getPoints = function () {
   var bounds = this.getBounds();
-  bounds.applyToContext(ctx);
   var halfw = Math.abs(bounds.w()/2);
   var halfh = Math.abs(bounds.h()/2);
+  var centre = bounds.centre();
   
   var points = []; // points of the regular polygon
   // n must be > 0
@@ -405,14 +407,26 @@ Polygon.prototype.draw = function (c) {
   for (var i = 0; i < n; ++i) {
     // points on a circumference with radius 1 and centre in (0, 0)
     // adapted to real height and width
-    points.push(new Point(halfw*Math.cos(angle), halfh*Math.sin(angle)));
+    // adapted to the position
+    points.push(new Point(centre.x + halfw*Math.cos(angle), 
+                          centre.y + halfh*Math.sin(angle)));
     angle += step;
   }
+
+  return points;
+};
+
+Polygon.prototype.draw = function (c) {
+  var ctx = c.getContext('2d');
+  ctx.save();
+  var bounds = this.getBounds();
+  bounds.applyToContext(ctx);
+  var points = this.getPoints();
+  
   ctx.beginPath();
   // draw it
   // adapt coords to points
   var centre = bounds.centre();
-  ctx.translate(centre.x, centre.y);
   ctx.moveTo(points[0].x, points[0].y);
   points.each(function (pt) {
                 ctx.lineTo(pt.x, pt.y);
