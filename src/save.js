@@ -92,5 +92,7 @@ Circle.prototype.toSVG = function(gen) {
   var cy = this.getBounds().start().y + this.getBounds().center().y;
   gen.attr("cy", cy, false);
   gen.attr("r", this.getBounds().w()/2, false);
-  gen.attr("fill", "none" , false);
+  gen.attr("fill", this.getFillColour().toCSS(), false);
+  gen.attr("stroke", this.getBorderColour().toCSS(), false);
+  /* the size of the stroke is not implemented; am i wrong?*/
 };
