@@ -115,6 +115,13 @@ c.extend(new Point(0.8, 0.9));
 c.extend(new Point(1.0, 1.0));
 figures.push(c);
 
+// Text
+c = new Text('Aloha!');
+c.getBorderColour().set(255, 0, 0, new Opacity(1));
+c.getBounds().setStart(new Point(0, 750));
+c.getBounds().setEnd(new Point(200, 850));
+figures.push(c);
+
 figures.each(function (f) {
                f.draw(canvas);
              });

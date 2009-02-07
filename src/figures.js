@@ -256,6 +256,7 @@ TextFont.prototype.applyToContext = function (ctx) {
 /**
  * @constructor
  * Size of a text
+ * ?? Should size depend only on the BoundingRectangle?
  * @param {Float} sz the size
  * @param {String} unit measure unit (px, em, etc.)
  */
@@ -596,3 +597,35 @@ function BezierCurve () {
 }
 
 BezierCurve.prototype = new FreeLine();
+
+/**
+ * @constructor
+ * A graphic text
+ */
+function Text (txt) {
+  Figure.call(this);
+  this._txt = txt;
+  this._font = new TextFont('sans-serif');
+}
+
+Text.prototype = new Figure();
+
+Text.accessors('_txt', 'getText', 'setText');
+
+Text.prototype.eachProperty = function (fn) {
+  Figure.prototype.eachProperty.call(this, fn);
+  fn.call(this, this._font);
+};
+
+Text.prototype.draw = function (c) {
+  var ctx = c.getContext('2d');
+  ctx.save();
+  // actually the text color, not the border color
+  this.getBorderColour().applyToContext(ctx);
+  var b = this.getBounds();
+  ctx.font = Math.abs(b.h()) + 'px ' + this._font.toCSS();
+  var x = b.start().x < b.end().x ? b.start().x : b.end().x;
+  var y = b.start().y < b.end().y ? b.start().y : b.end().y;
+  ctx.strokeText(this._txt, x, y, Math.abs(b.w()));
+  ctx.restore();
+};
