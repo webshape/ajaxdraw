@@ -88,9 +88,9 @@ SVGGenerator.prototype.flush = function () {
  */
 Circle.prototype.toSVG = function(gen) {
   gen.startCommand("circle");
-  var cx = this.getBounds().start().x + this.getBounds().center().x;
+  var cx = this.getBounds().start().x + this.getBounds().centre().x;
   gen.attr("cx", cx, false);
-  var cy = this.getBounds().start().y + this.getBounds().center().y;
+  var cy = this.getBounds().start().y + this.getBounds().centre().y;
   gen.attr("cy", cy, false);
   gen.attr("r", this.getBounds().w()/2, false);
   gen.attr("fill", this.getFillColour().toCSS(), false);
