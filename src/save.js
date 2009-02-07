@@ -17,12 +17,9 @@ function SVGWriter() {}
  */
 SVGWriter.prototype.write = function (fs) {
   var doc = new SVGGenerator(1000, 1000);
-/*  fs.each(function (figure) {
+  fs.each(function (figure) {
 	    figure.toSVG(doc);
-          });*/
-/*  fs.each(toSVG(doc));	*/
-  for (var i = 0; i<fs.lenght; i++)
-	 fs[i].toSVG(doc);
+          });
   return doc.flush();
 };
 
@@ -44,7 +41,7 @@ function SVGGenerator(w, h) { /*TODO change > into &gt etc.. */
  * @param {String} name the name of the tag
  */
 SVGGenerator.prototype.startCommand = function (name) {
-  this._doc += "<" + name + " ";
+  this._doc += "<" + name;
 };
 
 /**
@@ -54,7 +51,7 @@ SVGGenerator.prototype.startCommand = function (name) {
  * @param {Boolean} last if it is the last attribute
  */
 SVGGenerator.prototype.attr = function (name, value, last) {
-  this._doc += name + "=\"" + value + "\"";
+  this._doc += " " + name + "=\"" + value + "\"";
   if (last){
 	 this._doc += ">";
   }

@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
 <title> Draw Test </title>
-<script src="../jquery.js"></script>
+<script src="../lib/jquery.js"></script>
+<!--[if IE]><script type="text/javascript" src="../src/lib/excanvas.js"></script><![endif]-->
 <script src="../utils.js"></script>
 <script src="../figures.js"></script>
 <script src="../save.js"></script>
@@ -52,12 +53,6 @@ c.getBounds().setStart(new Point(700, 300));
 c.getBounds().setEnd(new Point(500, 250));
 figures.push(c);
 
-// Ellipse
-c = new Circle();
-c.getBorderColour().set(0, 0, 255, new Opacity(1));
-c.getBounds().setStart(new Point(0, 350));
-c.getBounds().setEnd(new Point(400, 450));
-figures.push(c);
 
 // Circle
 c = new Circle();
@@ -66,12 +61,7 @@ c.getBounds().setStart(new Point(450, 350));
 c.getBounds().setEnd(new Point(550, 450));
 figures.push(c);
 
-// Reversed ellipse
-c = new Circle();
-c.getBorderColour().set(0, 0, 255, new Opacity(1));
-c.getBounds().setStart(new Point(750, 450));
-c.getBounds().setEnd(new Point(600, 350));
-figures.push(c);
+
 
 // Straight line
 c = new StraightLine();
@@ -80,11 +70,15 @@ c.getBounds().setStart(new Point(0, 500));
 c.getBounds().setEnd(new Point(200, 600));
 figures.push(c);
 
+
 figures.each(function (f) {
                f.draw(canvas);
              });
+
 s = new SVGWriter();
-document.write(s.write(figures));
+svg = (s.write(figures));
+document.write(svg);
+
 });
 </script>
 <script type="text/javascript" src="draw.js"> </script>
