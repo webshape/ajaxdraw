@@ -548,3 +548,13 @@ FreeLine.prototype.draw = function (c) {
   ctx.closePath();
   ctx.restore();
 };
+
+/**
+ * @constructor
+ * A bezier curve
+ */
+function BezierCurve () {
+  FreeLine.call(this);
+}
+
+BezierCurve.prototype = new FreeLine();
