@@ -174,8 +174,15 @@ Colour.prototype.createWidget = function () {
 };
 
 Colour.prototype.toCSS = function () {
-  return 'rgb(' + this._r.toString() + ',' +
-    this._g.toString() + ',' + this._b.toString() + ')';
+  var to16 = function (x) {
+    if (x < 16) {
+      return '0' + x.toString(16);
+    } else {
+      return x.toString(16);
+    }
+  };
+  
+  return '#' + to16(this._r) + to16(this._g) + to16(this._b);
 };
 
 /**
