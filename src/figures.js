@@ -343,6 +343,11 @@ Circle.prototype = new Figure();
 
 Circle.reader('_fillColour', 'getFillColour');
 
+Circle.prototype.eachProperty = function (fn) {
+  Figure.prototype.eachProperty.call(this, fn);
+  fn.call(this, this._fillColour);
+};
+
 Circle.prototype.draw = function (c) {
   var ctx = c.getContext('2d');
   ctx.save();
@@ -391,6 +396,12 @@ Polygon.prototype = new Figure();
 
 Polygon.reader('_fillColour', 'getFillColour');
 Polygon.reader('_en', 'edgeNumber');
+
+Polygon.prototype.eachProperty = function (fn) {
+  Figure.prototype.eachProperty.call(this, fn);
+  fn.call(this, this._fillColour);
+  fn.call(this, this._en);
+};
 
 /**
  * Get an array of vertexes of the polygon
@@ -456,6 +467,11 @@ function Rectangle () {
 Rectangle.prototype = new Figure();
 
 Rectangle.reader('_fillColour', 'getFillColour');
+
+Rectangle.prototype.eachProperty = function (fn) {
+  Figure.prototype.eachProperty.call(this, fn);
+  fn.call(this, this._fillColour);
+};
 
 Rectangle.prototype.draw = function (c) {
   var ctx = c.getContext('2d');
