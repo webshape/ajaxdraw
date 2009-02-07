@@ -605,27 +605,31 @@ BezierCurve.prototype = new FreeLine();
 function Text (txt) {
   Figure.call(this);
   this._txt = txt;
+  this._colour = new TextColour(0, 0, 0, new Opacity(1));
   this._font = new TextFont('sans-serif');
 }
 
 Text.prototype = new Figure();
 
 Text.accessors('_txt', 'getText', 'setText');
+Text.accessors('_colour', 'getTextColour', 'setTextColour');
 
 Text.prototype.eachProperty = function (fn) {
   Figure.prototype.eachProperty.call(this, fn);
   fn.call(this, this._font);
+  fn.call(this, this._colour);
 };
 
 Text.prototype.draw = function (c) {
   var ctx = c.getContext('2d');
   ctx.save();
-  // actually the text color, not the border color
-  this.getBorderColour().applyToContext(ctx);
   var b = this.getBounds();
   ctx.font = Math.abs(b.h()) + 'px ' + this._font.toCSS();
   var x = b.start().x < b.end().x ? b.start().x : b.end().x;
-  var y = b.start().y < b.end().y ? b.start().y : b.end().y;
+  var y = b.start().y > b.end().y ? b.start().y : b.end().y;
+  this.getTextColour().applyToContext(ctx);
+  ctx.fillText(this._txt, x, y, Math.abs(b.w()));
+  this.getBorderColour().applyToContext(ctx);
   ctx.strokeText(this._txt, x, y, Math.abs(b.w()));
   ctx.restore();
 };
