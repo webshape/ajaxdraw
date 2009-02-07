@@ -477,11 +477,21 @@ Rectangle.prototype.draw = function (c) {
   var ctx = c.getContext('2d');
   ctx.save();
   var b = this.getBounds();
-  b.applyToContext(ctx);
-  this._fillColour.applyToContext(ctx);
-  ctx.fillRect(0, 0, b.w(), b.h());
+  var x1 = b.start().x;
+  var y1 = b.start().y;
+  var x2 = b.end().x;
+  var y2 = b.end().y;
+  ctx.beginPath();
+  ctx.moveTo(x1, y1);
+  ctx.lineTo(x1, y2);
+  ctx.lineTo(x2, y2);
+  ctx.lineTo(x2, y1);
+  ctx.lineTo(x1, y1);
+  this.getFillColour().applyToContext(ctx);
+  ctx.fill();
   this.getBorderColour().applyToContext(ctx);
-  ctx.strokeRect(0, 0, b.w(), b.h());
+  ctx.stroke();
+  ctx.closePath();
   ctx.restore();
 };
 
