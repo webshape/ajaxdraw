@@ -16,10 +16,13 @@ function SVGWriter() {}
  * @param {FigureSet} fs contains all the figures
  */
 SVGWriter.prototype.write = function (fs) {
-  var doc = new SVGGenerator;
-  fs.each(function (figure) {
+  var doc = new SVGGenerator(1000, 1000);
+/*  fs.each(function (figure) {
 	    figure.toSVG(doc);
-          });
+          });*/
+/*  fs.each(toSVG(doc));	*/
+  for (var i = 0; i<fs.lenght; i++)
+	 fs[i].toSVG(doc);
   return doc.flush();
 };
 
@@ -32,8 +35,8 @@ SVGWriter.prototype.write = function (fs) {
  */
 function SVGGenerator(w, h) { /*TODO change > into &gt etc.. */
   this._doc = "<?xml version=\"1.0\" standalone=\"no\"?>\n\
-					<!DOCTYPE svg PUBLIC \"-//W3C//DTD SVG 1.1//EN http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd\">\n\
-					<svg width=\"" + w + "\" height=\"" + h + "\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\">\n";
+<!DOCTYPE svg PUBLIC \"-//W3C//DTD SVG 1.1//EN http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd\">\n\
+<svg width=\"" + w + "\" height=\"" + h + "\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\">\n";
 }
 
 /**
@@ -52,15 +55,16 @@ SVGGenerator.prototype.startCommand = function (name) {
  */
 SVGGenerator.prototype.attr = function (name, value, last) {
   this._doc += name + "=\"" + value + "\"";
-  if (last)
+  if (last){
 	 this._doc += ">";
+  }
 };
 
 /**
  * Write the text between the tags
  * @param {String} t the text
  */
-SVGGenerator.protype.text = function (t) {
+SVGGenerator.prototype.text = function (t) {
   this._doc += "\n" + t + "\n";
 }
 
@@ -76,7 +80,7 @@ SVGGenerator.prototype.endCommand = function (name) {
  * Return the SVG document as a string
  */
 SVGGenerator.prototype.flush = function () {
-  this._doc = "</svg>";
+  this._doc += "</svg>";
   return this._doc;
 };
 
@@ -94,7 +98,8 @@ Circle.prototype.toSVG = function(gen) {
   gen.attr("cy", cy, false);
   gen.attr("r", this.getBounds().w()/2, false);
   gen.attr("fill", this.getFillColour().toCSS(), false);
-  gen.attr("stroke", this.getBorderColour().toCSS(), false);
+  gen.attr("stroke", this.getBorderColour().toCSS(), true);
+  gen.endCommand("circle");
 };
 
 
@@ -112,7 +117,8 @@ Rectangle.prototype.toSVG = function(gen) {
   gen.attr("width", this.getBounds().w(), false);
   gen.attr("height", this.getBounds().h(), false);
   gen.attr("fill", this.getFillColour().toCSS(), false);
-  gen.attr("stroke", this.getBorderColour().toCSS(), false);
+  gen.attr("stroke", this.getBorderColour().toCSS(), true);
+  gen.endCommand("rect");
 };
 
 
@@ -121,13 +127,14 @@ Rectangle.prototype.toSVG = function(gen) {
  * Transform the line figure into SVG tags
  * @param {SVGGenerator} gen to call the methods to create tags
  */
-Line.prototype.toSVG = function(gen) {
+StraightLine.prototype.toSVG = function(gen) {
   gen.startCommand("line");
   gen.attr("x1", this.getBounds().start().x, false);
   gen.attr("y1", this.getBounds().start().y, false);
   gen.attr("x2", this.getBounds().end().x, false);
   gen.attr("y2", this.getBounds().end().y, false);
-  gen.attr("stroke", this.getBorderColour().toCSS(), false);
+  gen.attr("stroke", this.getBorderColour().toCSS(), true);
+  gen.endCommand("line");
 };
 
 
@@ -144,7 +151,8 @@ Polygon.prototype.toSVG = function(gen) {
   var points;
   for (var i = 0; i < aPoints.length; ++i)
 	 points += (aPoints[i].x + this.getBounds().start().x) + "," + (aPoints[i].y + this.getBounds().start().y) + " ";
-  gen.attr("points", this.points, false);
+  gen.attr("points", this.points, true);
+  gen.endCommand("polygon");
 };
 
 
@@ -153,6 +161,7 @@ Polygon.prototype.toSVG = function(gen) {
  * Transform the ellipse figure into SVG tags
  * @param {SVGGenerator} gen to call the methods to create tags
  */
+/* not yet implemented: commented for testing
 Ellipse.prototype.toSVG = function(gen) {
   gen.startCommand("ellipse");
   var cx = this.getBounds().start().x + this.getBounds().center().x;
@@ -163,4 +172,4 @@ Ellipse.prototype.toSVG = function(gen) {
   gen.attr("ry", this.getBounds().h()/2, false);
   gen.attr("fill", this.getFillColour().toCSS(), false);
   gen.attr("stroke", this.getBorderColour().toCSS(), false);
-};
+};*/
