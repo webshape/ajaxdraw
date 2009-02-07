@@ -508,11 +508,43 @@ FreeLine.prototype.extend = function (pt) {
   this._pts.push(pt);
 };
 
+/**
+ * Get a list of the points composing the line converted to absolute position
+ */
+FreeLine.prototype.getPoints = function () {
+  var bounds = this.getBounds();
+  var tx = bounds.start().x;
+  var ty = bounds.start().y;
+  var w = bounds.w();
+  var h = bounds.h();
+  return this._pts.map(function (pt) {
+                         return new Point(pt.x*w+tx, pt.y*h+ty);
+                       });
+};
+
 FreeLine.prototype.draw = function (c) {
   var ctx = c.getContext('2d');
   ctx.save();
-  var b = this.getBounds();
+  var pts = this.getPoints();
   ctx.beginPath();
+  ctx.moveTo(pts[0].x, pts[0].y);
+  var i = 0;
+  for (i = 0; i + 3 < pts.length; i += 3) {
+    ctx.bezierCurveTo(pts[i].x, pts[i].y, pts[i+1].x, pts[i+1].y,
+                      pts[i+2].x, pts[i+2].y);
+  }
+  var remaining = (pts.length-1) - i;
+  if (remaining == 2) {
+    // quadratic curve
+    ctx.quadraticCurveTo(pts[i].x, pts[i].y, pts[i+1].x, pts[i+1].y);
+  } else {
+    if (remaining == 1) {
+      // straight line
+      ctx.lineTo(pts[i].x, pts[i].y);
+    }
+  } // else remaining == 0, nothing to do
   ctx.endPath();
+  this.getBorderColour().applyToContext(ctx);
+  ctx.stroke();
   ctx.restore();
 };
