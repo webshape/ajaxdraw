@@ -341,6 +341,8 @@ function Circle () {
 
 Circle.prototype = new Figure();
 
+Circle.reader('_fillColour', 'getFillColour');
+
 Circle.prototype.draw = function (c) {
   var ctx = c.getContext('2d');
   ctx.save();
@@ -387,6 +389,7 @@ function Polygon () {
 
 Polygon.prototype = new Figure();
 
+Polygon.reader('_fillColour', 'getFillColour');
 Polygon.reader('_en', 'edgeNumber');
 
 /**
@@ -451,6 +454,8 @@ function Rectangle () {
 }
 
 Rectangle.prototype = new Figure();
+
+Rectangle.reader('_fillColour', 'getFillColour');
 
 Rectangle.prototype.draw = function (c) {
   var ctx = c.getContext('2d');
