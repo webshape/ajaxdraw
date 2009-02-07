@@ -60,7 +60,7 @@ SVGGenerator.prototype.attr = function (name, value, last) {
  * Write the text between the tags
  * @param {String} t the text
  */
-SVGGnerator.protype.text = function (t) {
+SVGGenerator.protype.text = function (t) {
   this._doc += "\n" + t + "\n";
 }
 
