@@ -1,6 +1,7 @@
 canvas {
   background-color: rgb(230, 240, 230);
   margin-left: 5em;
+  margin-top: -12em;
 }
 
 #tool{
@@ -36,10 +37,12 @@ span.tooltip:hover span{ /*lo span verrý mostrato solo sullo stato :hover */
 .toolbarButton{
 	width: 3em;
 	height:2em;
+	cursor:pointer;
 }
 
 #selectionButton{
 	background-image:url("../pages/images/selezione.png");
+
 	}
 #squareButton{
 	background-image:url("../pages/images/quadrato.png");

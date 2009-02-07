@@ -36,6 +36,7 @@ span.tooltip:hover span{ /*lo span verrý mostrato solo sullo stato :hover */
 .toolbarButton{
 	width: 3em;
 	height:2em;
+	cursor:pointer;
 }
 
 #selectionButton{

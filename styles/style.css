@@ -32,10 +32,12 @@ span.tooltip:hover span{ /*lo span verrý mostrato solo sullo stato :hover */
     border: 1px solid #0cf; background-color: #cff; color:#000;
     font-size: 80%;text-align: center
     }
-
+/* Caratteristiche generiche pulsante toolbar */
 .toolbarButton{
 	width: 3em;
 	height:2em;
+	cursor:pointer;
+	background-color:#F4F3F2;
 }
 
 #selectionButton{

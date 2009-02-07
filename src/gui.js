@@ -12,27 +12,34 @@ function activateStylesheet(sheetref){
 	}
 }
 
+
 $(document).ready(function(){
 	/* carica fogli di stile diversi a seconda del browser */
+	var version = jQuery.browser.version;
 	if ($.browser.safari) {
    	   activateStylesheet('safari.css');
-		}
+   	   if (version=="525.27.1"){  	   
+	   	   $(".toolbarButton").css({"width":"3.5em"}),
+	   	   $(".toolbarButton").css({"height":"2.5em"});
+	   	}
+	}
 
 	if ($.browser.opera) {
    	   activateStylesheet('opera.css');
-		}
-        if ($.browser.msie) {
-   	   activateStylesheet('msie.css');
-		}
+	}
+   if ($.browser.msie) {
+   	   activateStylesheet('msie.css'),
+   	   $("canvas").css({"margin-top":"-13em"});
+	}
 
 
-    $("#example").dialog({
-    position: ["right","top"],
-    height: 300,
-    dialogClass: "Dialog1"
+    $("#colorDialog").dialog({
+    	position: ["right","top"],
+    	height: 300,
+    	dialogClass: "Dialog1"
     });
 
-    $("#example2").dialog({
+    $("#propertiesDialog").dialog({
     	position: ["right","bottom"]}
     	);
 
@@ -60,6 +67,7 @@ $(document).ready(function(){
 			$(this).css({"background-color":"#F4F3F2"}),
 			sentSelect=false;
        }
+       $("canvas").css({'cursor' : 'url("../pages/images/selezione.gif")'});
       });
 
 		 $(".toolbarButton").tooltip(
