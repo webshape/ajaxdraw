@@ -529,11 +529,11 @@ FreeLine.prototype.draw = function (c) {
   ctx.beginPath();
   ctx.moveTo(pts[0].x, pts[0].y);
   var i = 0;
-  for (i = 0; i + 3 < pts.length; i += 3) {
+  for (i = 0; i + 2 < pts.length; i += 3) {
     ctx.bezierCurveTo(pts[i].x, pts[i].y, pts[i+1].x, pts[i+1].y,
                       pts[i+2].x, pts[i+2].y);
   }
-  var remaining = (pts.length-1) - i;
+  var remaining = pts.length - i;
   if (remaining == 2) {
     // quadratic curve
     ctx.quadraticCurveTo(pts[i].x, pts[i].y, pts[i+1].x, pts[i+1].y);
@@ -543,8 +543,8 @@ FreeLine.prototype.draw = function (c) {
       ctx.lineTo(pts[i].x, pts[i].y);
     }
   } // else remaining == 0, nothing to do
-  ctx.endPath();
   this.getBorderColour().applyToContext(ctx);
   ctx.stroke();
+  ctx.closePath();
   ctx.restore();
 };

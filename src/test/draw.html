@@ -79,6 +79,42 @@ c.getBounds().setStart(new Point(0, 500));
 c.getBounds().setEnd(new Point(200, 600));
 figures.push(c);
 
+// Free line with 4 points
+c = new FreeLine();
+c.getBorderColour().set(10, 20, 40, new Opacity(1));
+c.getBounds().setStart(new Point(200, 500));
+c.getBounds().setEnd(new Point(400, 700));
+c.extend(new Point(0, 0));
+c.extend(new Point(0.5, 0.5));
+c.extend(new Point(0.6, 0.2));
+c.extend(new Point(1.0, 1.0));
+figures.push(c);
+
+// Free line with 5 points
+c = new FreeLine();
+c.getBorderColour().set(10, 20, 40, new Opacity(1));
+c.getBounds().setStart(new Point(400, 500));
+c.getBounds().setEnd(new Point(600, 700));
+c.extend(new Point(0, 0));
+c.extend(new Point(0.5, 0.5));
+c.extend(new Point(0.6, 0.2));
+c.extend(new Point(0.67, 0.7));
+c.extend(new Point(1.0, 1.0));
+figures.push(c);
+
+// Free line with 6 points
+c = new FreeLine();
+c.getBorderColour().set(10, 20, 40, new Opacity(1));
+c.getBounds().setStart(new Point(600, 500));
+c.getBounds().setEnd(new Point(800, 700));
+c.extend(new Point(0, 0));
+c.extend(new Point(0.5, 0.5));
+c.extend(new Point(0.6, 0.2));
+c.extend(new Point(0.67, 0.7));
+c.extend(new Point(0.8, 0.9));
+c.extend(new Point(1.0, 1.0));
+figures.push(c);
+
 figures.each(function (f) {
                f.draw(canvas);
              });
