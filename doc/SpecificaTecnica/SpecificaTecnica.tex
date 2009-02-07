@@ -144,6 +144,8 @@ Il presente documento descrive le scelte tecniche, architetturali e tecnologiche
 %%%%%%%%%%%%%%FINE INTESTAZIONE COLONNE%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 		 \hline
 %%%%%%%%%%% PARTE DA MODIFICARE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+                  1.7 & 7$\slash$02$\slash$2009 Descritto in dettaglio il ruolo dei punti in \textit{FreeLine} & Dissegna Stefano \\
+				\hline
                   1.6 & 6$\slash$02$\slash$2009 Aggiunta giustificazione scelta JavaScript & Dissegna Stefano \\
 				\hline
                   1.5 & 6$\slash$02$\slash$2009 Descritto problema supporto diversi browser & Dissegna Stefano \\
@@ -784,7 +786,7 @@ Nessuna.
 \subsubsezione{Tipo, obiettivo e funzione del componente}
 Rappresenta una linea a mano libera. Viene implementata tramite delle curve di bezier brevi e ravvicinate tra di loro.
 \subsubsezione{Relazioni d'uso di altre componenti}
-Deriva da \textit{Line} e ne implementa i metodi astratti. Mantiene una lista di punti.
+Deriva da \textit{Line} e ne implementa i metodi astratti. Mantiene una lista di punti. I punti prendono come origine l'angolo in alto a sinistra del \textit{BoundingRectangle} e presuppongono un quadrato alto 1 e largo 1, in modo da essere indipendenti dal \textit{BoundingRectangle}. I punti verranno poi convertiti nei loro valori assoluti, a seconda del \textit{BoundingRectangle}, prima di disegnare la linea. Qualora ripetere questa computazione ad ogni refresh fosse troppo dispendioso, si potrebbe ricorrere ad un sistema di caching.
 \subsubsezione{Interfacce e relazioni di uso da altre componenti}
 Usata come base da \textit{BezierCurve}.
 \subsubsezione{Attivit\`a svolte e dati trattati}
