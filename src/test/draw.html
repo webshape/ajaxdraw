@@ -121,6 +121,12 @@ c.getBorderColour().set(255, 0, 0, new Opacity(1));
 c.getBounds().setStart(new Point(0, 700));
 c.getBounds().setEnd(new Point(200, 850));
 figures.push(c);
+// Text with reversed bounding rectangle
+c = new Text('Aloha (2) !');
+c.getBorderColour().set(255, 0, 0, new Opacity(1));
+c.getBounds().setStart(new Point(450, 850));
+c.getBounds().setEnd(new Point(250, 700));
+figures.push(c);
 
 figures.each(function (f) {
                f.draw(canvas);
