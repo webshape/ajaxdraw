@@ -1,19 +1,74 @@
+/* CSS da applicare a Apple Safari */
+
 canvas {
   background-color: rgb(0, 240, 230);
   margin-left: 5em;
 }
+
+/*Toolbar */
 
 #tool{
 	margin-left: 0.5em;
 	position: fixed;
 	}
 
+.toolbarButton{
+	width: 3.5em;
+	height:2.5em;
+	cursor:pointer;
+}
 
-#paletta{
+#selectionButton{
+	background-image:url("../pages/images/selezione.png");
+		background-repeat:no-repeat;
+		background-position: center;
+		
+		
+	}
+#squareButton{
+	background-image:url("../pages/images/quadrato.png");
+	background-repeat:no-repeat;
+	background-position: center;
+}
+
+
+
+/*Tavolozza*/
+.paletteComponent{
+	width:6px;
+	height:4em;
+	margin-right:-0.35em;
+	cursor:pointer;
+	border-top:solid;
+	border-bottom:solid;
+	border-width:thin;
+	}
+	
+#firstPalette{
+	border-left:solid;
+	border-width:thin;
+	
+}
+#lastPalette{
+	border-right:solid;
+	border-width:thin;
+	
+}
+	
+#palette{
 	margin-left: 5em;
 	margin-top: 0.1em;
 }
 
+
+/*zona salva/carica SVG */
+#saveLoadZone{
+	display: inline-block;
+	
+}
+
+
+/*tooltip CSS avanzato */
 span.tooltip{ 
 	position:relative; /*questa è fondamentale*/
     z-index:24; 
@@ -32,20 +87,6 @@ span.tooltip:hover span{ /*lo span verrý mostrato solo sullo stato :hover */
     border: 1px solid #0cf; background-color: #cff; color:#000;
     font-size: 80%;text-align: center
     }
-
-.toolbarButton{
-	width: 3em;
-	height:2em;
-	cursor:pointer;
-}
-
-#selectionButton{
-	background-image:url("../pages/images/selezione.png");
-	}
-#squareButton{
-	background-image:url("../pages/images/quadrato.png");
-}
-
 
 
 /* This file skins dialog */

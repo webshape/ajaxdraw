@@ -16,22 +16,23 @@ function activateStylesheet(sheetref){
 $(document).ready(function(){
 	/* carica fogli di stile diversi a seconda del browser */
 	var version = jQuery.browser.version;
-	if ($.browser.safari) {
+	
+	if ($.browser.name=="safari") {
    	   activateStylesheet('safari.css');
-   	   if (version=="525.27.1"){  	   
-	   	   $(".toolbarButton").css({"width":"3.5em"}),
-	   	   $(".toolbarButton").css({"height":"2.5em"});
-	   	}
-	}
-
-	if ($.browser.opera) {
-   	   activateStylesheet('opera.css');
-	}
-   if ($.browser.msie) {
+   }	
+   else if ($.browser.name=="chrome") {
+   	   activateStylesheet('chrome.css');
+   }	
+   else if ($.browser.name=="msie") {
    	   activateStylesheet('msie.css'),
    	   $("canvas").css({"margin-top":"-13em"});
 	}
-
+	else if ($.browser.name=="opera") {
+   	   activateStylesheet('opera.css');
+	}
+	else if ($.browser.name=="konqueror") {
+   	   activateStylesheet('konqueror.css');   	   
+	}
 
     $("#colorDialog").dialog({
     	position: ["right","top"],
@@ -40,7 +41,7 @@ $(document).ready(function(){
     });
 
     $("#propertiesDialog").dialog({
-    	position: ["right","bottom"]}
+    	position: "right"}
     	);
 
     $("#picker").farbtastic("#color");
@@ -67,7 +68,8 @@ $(document).ready(function(){
 			$(this).css({"background-color":"#F4F3F2"}),
 			sentSelect=false;
        }
-       $("canvas").css({'cursor' : 'url("../pages/images/selezione.gif")'});
+       if($.browser.opera==false){
+       $("canvas").css({'cursor' : 'url("../pages/images/selezione.gif")'});}
       });
 
 		 $(".toolbarButton").tooltip(
