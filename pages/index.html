@@ -2,23 +2,29 @@
 <html>
 <head>
 <title>AJAXDRAW</title>
-<link rel="stylesheet" type="text/css" href="../styles/style.css"/>
+<link rel="stylesheet" title="mozilla" type="text/css" href="../styles/style.css"/>
 <link rel="alternate stylesheet" title="opera" type="text/css" href="../styles/opera.css"/>
 <link rel="alternate stylesheet" title="safari" type="text/css" href="../styles/safari.css"/>
+<link rel="alternate stylesheet" title="msie" type="text/css" href="../styles/msie.css"/>
+<link rel="alternate stylesheet" title="konqueror" type="text/css" href="../styles/konqueror.css"/>
+<link rel="alternate stylesheet" title="chrome" type="text/css" href="../styles/chrome.css"/>
 <link rel="stylesheet" type="text/css" href="../styles/jquery.tooltip.css" />
 <link rel="stylesheet" href="../styles/farbtastic.css" type="text/css" />
+<!--[if IE]><script type="text/javascript" src="../src/lib/excanvas.js"></script><![endif]-->
 <script type="text/javascript" src="../src/lib/jquery.js"></script>
 <script type="text/javascript" src="../src/lib/farbtastic.js"></script>
 <script type="text/javascript" src="../src/lib/jquery.dimensions.js"></script>
 <script type="text/javascript" src="../src/lib/jquery.tooltip.js"></script>
+<script type="text/javascript" src="../src/lib/jquery.browser.js"></script>
+<script type="text/javascript" src="../src/lib/effects.core.js"></script>
+<script type="text/javascript" src="../src/lib/effects.highlight.js"></script>
 <script type="text/javascript" src="../src/lib/ui.core.js"></script>
 <script type="text/javascript" src="../src/lib/ui.dialog.js"></script>
 <script type="text/javascript" src="../src/lib/ui.resizable.js"></script>
 <script type="text/javascript" src="../src/lib/ui.draggable.js"></script>
-<script type="text/javascript" src="../src/gui.js"></script>
 <script type="text/javascript" src="../src/utils.js"></script>
 <script type="text/javascript" src="../src/figures.js"></script>
-<!--[if IE]><script type="text/javascript" src="../src/lib/excanvas.js"></script><![endif]-->
+<script type="text/javascript" src="../src/gui.js"></script>
 <script type="text/javascript">
 function draw(){
 var canvas = document.getElementById("cv");
@@ -111,30 +117,83 @@ figures.each(function (f) {
 		<img src="images/toolbar.png" width="34" height="546" alt="toolbar" />
 	</span> -->
 	<div id="tool">
-		<input title="Seleziona e trasforma oggetti" class="toolbarButton" id="selectionButton" type="button"></input><br/>
-		<input title="Ingrandisce o rimpicciolisce" class="toolbarButton" id="zoomButton" type="button"></input><br/>
-		<input title="Disegna una linea di Bezier" class="toolbarButton" id="bezierButton" type="button" ></input><br/>
-		<input title="Crea rettangoli e quadrati" class="toolbarButton" id="squareButton" type="button"></input><br/>
-		<input title="Crea cerchi ed ellissi" class="toolbarButton" id="circleButton" type="button"></input><br/>
-		<input title="Crea poligoni" class="toolbarButton" id="polygonButton" type="button"></input><br/>
-		<input title="Disegna linee a mano libera" class="toolbarButton" id="freeHandButton" type="button"></input><br/>
-		<input title="Disegna un quadrato" class="toolbarButton" id="selezione" type="button"></input><br/>
+		<input title="Seleziona e trasforma oggetti" class="toolbarButton" id="selectionButton" type="button"/><br/>
+		<input title="Ingrandisce o rimpicciolisce" class="toolbarButton" id="zoomButton" type="button"/><br/>
+		<input title="Disegna una linea di Bezier" class="toolbarButton" id="bezierButton" type="button"/><br/>
+		<input title="Crea rettangoli e quadrati" class="toolbarButton" id="squareButton" type="button"/><br/>
+		<input title="Crea cerchi ed ellissi" class="toolbarButton" id="circleButton" type="button"/><br/>
+		<input title="Crea poligoni" class="toolbarButton" id="polygonButton" type="button"/><br/>
+		<input title="Disegna linee a mano libera" class="toolbarButton" id="freeHandButton" type="button"/><br/>
+		<input title="Disegna un quadrato" class="toolbarButton" id="selezione" type="button"/><br/>
 	</div>
 	
 	<!-- Canvas -->
-	<span><canvas id="cv" height="540" width="720"></canvas></span>
-	<span class="tooltip">
-		<span>Salva l'immagine in un file SVG</span>
+	<span>
+		<canvas id="cv" height="540" width="720"></canvas>
+	</span>
+	<div id="saveLoadZone">
+		<span class="tooltip">
+			<span>Salva l'immagine in un file SVG</span>
+			<input type="button" name="SaveSVG" value="Salva SVG"/>&nbsp;
+			<br/>
+		</span>Carica:
+		<span>
+			<input type="file" class="SVG" name="LoadSVG" value="Carica SVG"/>
+		</span>
+	</div>
+	<br/>
+	
+	
+	<!-- Tavolozza nella parte bassa dello schermo -->
+	<div id="palette">
+		<!--  <img id="paletta" src="images/paletta.png" width="1100" height="16" alt="paletta" /> -->
+		<span id="firstPalette" onclick="cambiaColore()" class="paletteComponent" style="background-color:#EEC73E">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+		<span class="paletteComponent" style="background-color:#F0A513">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+		<span class="paletteComponent" style="background-color:#FB8B00">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+		<span class="paletteComponent" style="background-color:#F44800">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+		<span class="paletteComponent" style="background-color:#FFFF99">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+		<span class="paletteComponent" style="background-color:#FFFF00">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>	
+		<span class="paletteComponent" style="background-color:#FDCA01">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>	
+		<span class="paletteComponent" style="background-color:#986601">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>	
+		<span class="paletteComponent" style="background-color:#F44800">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+		<span class="paletteComponent" style="background-color:#FD3301">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+		<span class="paletteComponent" style="background-color:#D40000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+		<span class="paletteComponent" style="background-color:#980101">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+		<span class="paletteComponent" style="background-color:#FDD99B">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+		<span class="paletteComponent" style="background-color:#D9BB7A">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+		<span class="paletteComponent" style="background-color:#816647">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+		<span class="paletteComponent" style="background-color:#565248">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+		<span class="paletteComponent" style="background-color:#AACCEE">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+		<span class="paletteComponent" style="background-color:#6699CC">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+		<span class="paletteComponent" style="background-color:#336699">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>		
+		<span class="paletteComponent" style="background-color:#003366">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>		
+		<span class="paletteComponent" style="background-color:#B3DEFD">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>		
+		<span class="paletteComponent" style="background-color:#0197FD">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>		
+		<span class="paletteComponent" style="background-color:#0169C9">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>		
+		<span class="paletteComponent" style="background-color:#013397">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>		
+		<span class="paletteComponent" style="background-color:#CCFF99">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>		
+		<span class="paletteComponent" style="background-color:#98FC66">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>	
+		<span class="paletteComponent" style="background-color:#339900">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>	
+		<span class="paletteComponent" style="background-color:#015A01">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>				
+		<span class="paletteComponent" style="background-color:#002B3D">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>				
+		<span class="paletteComponent" style="background-color:#FF9BFF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>				
+		<span class="paletteComponent" style="background-color:#FF00FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>				
+		<span class="paletteComponent" style="background-color:#6600CC">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>				
+		<span class="paletteComponent" style="background-color:#EEEEEE">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>				
+		<span class="paletteComponent" style="background-color:#CCCCCF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>		
+		<span class="paletteComponent" style="background-color:#AAAAAA">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>	
+		<span class="paletteComponent" style="background-color:#888888">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>	
+		<span class="paletteComponent" style="background-color:#666666">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>	
+		<span class="paletteComponent" style="background-color:#333333">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>	
+		<span id="lastPalette" class="paletteComponent" style="background-color:#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>	
+	</div>
 
-		<input type="button" name="SaveSVG" value="Salva SVG"/>&nbsp;
-	</span>Carica:
-	<span><input type="file" class="SVG" name="LoadSVG" value="Carica SVG"/></span>
-	</br>
-	<div><img id="paletta" src="images/paletta.png" width="1100" height="16" alt="paletta" /></div>
 <div/>
+<!-- Fine interfaccia -->
+
 
 <!-- Inizio Parte Dialog Colori-->
-<div id="example" class="flora" title="Modifica colori">
+<div id="colorDialog" class="flora" title="Modifica colori">
 	<p>Colore bordo:   
 		<span id="coloreOra" style="background: red">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
 		<span>
@@ -155,8 +214,8 @@ figures.each(function (f) {
 </div>
 
 <!-- Parte Dialog Properties -->
-<div id="example2" class="flora" title="Modifica attributi">
-	<p>Altezza:   <INPUT type="text" size="2"/></p>
+<div id="propertiesDialog" class="flora" title="Modifica attributi">
+	<p id="prova">Altezza:   <INPUT type="text" size="2"/></p>
 	<p>Larghezza:   <INPUT type="text" size="2"/></p>
 	<p>X:  &nbsp; <INPUT type="text" size="2"/>&nbsp;&nbsp;   Y:&nbsp;<INPUT type="text" size="2"/></p>
 </div>

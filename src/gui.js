@@ -11,38 +11,53 @@ function activateStylesheet(sheetref){
 		}
 	}
 }
+function cambiaColore(){
+  $.farbtastic("#color").setColor("#EEC73E");
+  document.getElementById("color").value=$.farbtastic("#color").color;
+  }
 
+/*parte di jquery */
 $(document).ready(function(){
 	/* carica fogli di stile diversi a seconda del browser */
-	if ($.browser.safari) {
+
+  if ($.browser.name=="safari") {
    	   activateStylesheet('safari.css');
-		}
-
-	if ($.browser.opera) {
+  }
+     else if ($.browser.name=="chrome") {
+   	   activateStylesheet('chrome.css');
+     }
+     else if ($.browser.name=="msie") {
+   	   activateStylesheet('msie.css'),
+   	   $("canvas").css({"margin-top":"-13em"});
+     }
+     else if ($.browser.name=="opera") {
    	   activateStylesheet('opera.css');
-		}
-        if ($.browser.msie) {
-   	   activateStylesheet('msie.css');
-		}
+     }
+     else if ($.browser.name=="konqueror") {
+   	   activateStylesheet('konqueror.css');
+     }
 
-
-    $("#example").dialog({
-    position: ["right","top"],
-    height: 300,
-    dialogClass: "Dialog1"
+	/*Creazione dialog colore */
+    $("#colorDialog").dialog({
+    	position: ["right","top"],
+    	height: 300,
+    	width: 230,
+    	dialogClass: "Dialog1"
     });
-
-    $("#example2").dialog({
-    	position: ["right","bottom"]}
-    	);
-
+	/*Creazione dialog proprietà */
+    $("#propertiesDialog").dialog({
+    	position: "right",
+    	width: 230
+    });
+ /* Ruota dei colori **********************/
     $("#picker").farbtastic("#color");
 
     $("#changeCol").click(function () {
      		$("#colorx").show("slow"),
-         $(".Dialog1").height(500)
+        	    $(".Dialog1").height(500);
       });
-
+ /* ********************************************/
+ /*Animazione chiusura ruota */
     $("#closeWheel").click(function () {
     		$(".Dialog1").height(300),
      		$("#colorx").hide("slow");
@@ -50,22 +65,34 @@ $(document).ready(function(){
      	});
 
      /* Funzione gestione pulsante toolbar premuto/rilasciato*/
-     sentSelect=false;
-     $("#selectionButton").click(function () {
-		if(sentSelect==false){
-       	$(this).css({"background-color":"#A0A0A0"}),
-       	sentSelect=true;
-       	}
-		else {
-			$(this).css({"background-color":"#F4F3F2"}),
-			sentSelect=false;
+     $(".toolbarButton").toggle(
+       function () {
+	 $(this).css({"background-color":"#A0A0A0"});
+       },
+       function() {
+	 $(this).css({"background-color":"#F4F3F2"});
        }
-      });
+     // if($.browser.opera==false){
+     //  $("canvas").css({'cursor' : 'url("../pages/images/selezione.gif")'});}
+     );
 
-		 $(".toolbarButton").tooltip(
-		 {delay: 1000}
-);
+       /*Animazione tooltip su pulsante toolbar*/
+       $(".toolbarButton").tooltip(
+	 {delay: 1000}
+       );
+
+
+       $(".toolbarButton").click(function() {
+	 $(this).effect("highlight");
+       });
 
 
 
+
+
+
+
+
+
+//fine documento
   });

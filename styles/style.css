@@ -3,17 +3,65 @@ canvas {
   margin-left: 5em;
 }
 
+
+
+/*Tavolozza*/
+.paletteComponent{
+	height:4em;
+	margin-right:-0.35em;
+	cursor:pointer;
+	border-top:solid;
+	border-bottom:solid;
+	border-width:thin;
+	}
+	
+#firstPalette{
+	border-left:solid;
+	border-width:thin;
+	
+}
+#lastPalette{
+	border-right:solid;
+	border-width:thin;
+	
+}
+	
+#palette{
+	margin-left: 5em;
+	margin-top: 0.1em;
+}
+
+
+
+/* Caratteristiche generiche  toolbar */
 #tool{
 	margin-left: 0.5em;
 	position: fixed;
 	}
 
-
-#paletta{
-	margin-left: 5em;
-	margin-top: 0.1em;
+.toolbarButton{
+	width: 3em;
+	height:2em;
+	cursor:pointer;
+	background-color:#F4F3F2;
 }
 
+#selectionButton{
+	background-image:url("../pages/images/selezione.png");
+	}
+#squareButton{
+	background-image:url("../pages/images/quadrato.png");
+}
+
+/*zona salva/carica SVG */
+#saveLoadZone{
+	display: inline-block;
+	
+}
+
+/********************AVANZATE******************/
+
+/*Tooltip CSS*/
 span.tooltip{ 
 	position:relative; /*questa è fondamentale*/
     z-index:24; 
@@ -33,21 +81,6 @@ span.tooltip:hover span{ /*lo span verrý mostrato solo sullo stato :hover */
     font-size: 80%;text-align: center
     }
 
-.toolbarButton{
-	width: 3em;
-	height:2em;
-}
-
-#selectionButton{
-	background-image:url("../pages/images/selezione.png");
-	}
-#squareButton{
-	background-image:url("../pages/images/quadrato.png");
-}
-
-
-
-
 
 /* This file skins dialog */
 
@@ -62,7 +95,7 @@ span.tooltip:hover span{ /*lo span verrý mostrato solo sullo stato :hover */
 	background: #ff9900 url(i/dialog-title.gif) repeat-x;
 	padding: 0px;
 	height: 28px;
-	_height: 29px;
+/*	_height: 29px; */
 }
 
 .flora .ui-draggable .ui-dialog-titlebar,
@@ -149,3 +182,4 @@ span.tooltip:hover span{ /*lo span verrý mostrato solo sullo stato :hover */
 
 .flora .ui-dialog .ui-resizable-ne,
 .flora.ui-dialog .ui-resizable-ne { cursor: ne-resize; width: 9px; height: 29px; right: 0px; top: 0px; background: transparent url(i/dialog-ne.gif); }
+
