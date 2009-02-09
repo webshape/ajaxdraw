@@ -11,6 +11,10 @@ function activateStylesheet(sheetref){
 		}
 	}
 }
+function cambiaColore(){
+  $.farbtastic("#color").setColor("#EEC73E");
+  document.getElementById("color").value=$.farbtastic("#color").color;
+  }
 
 /*parte di jquery */
 $(document).ready(function(){
@@ -81,6 +85,7 @@ $(document).ready(function(){
        $(".toolbarButton").click(function() {
 	 $(this).effect("highlight");
        });
+
 
 
 
