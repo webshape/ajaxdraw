@@ -37,6 +37,30 @@ $(document).ready(function(){
    	   activateStylesheet('konqueror.css');
      }
 
+
+//dialog skin nera
+
+
+$('#dialog').dialog({
+		autoOpen: true,
+                position: ["left","bottom"],
+		width: 450,
+		height: 40,
+                buttons:0 
+	});
+
+ $("#dialog2").dialog({
+    	position: ["right","top"],
+    	height: 500,
+    	width: 250,
+    	dialogClass: "Dialog1"
+    });
+
+
+//end  skin black
+
+
+
 	/*Creazione dialog colore */
     $("#colorDialog").dialog({
     	position: ["right","top"],
