@@ -95,7 +95,7 @@ span.tooltip:hover span{ /*lo span verrý mostrato solo sullo stato :hover */
 	background: #ff9900 url(i/dialog-title.gif) repeat-x;
 	padding: 0px;
 	height: 28px;
-	_height: 29px;
+/*	_height: 29px; */
 }
 
 .flora .ui-draggable .ui-dialog-titlebar,

@@ -15,7 +15,6 @@ function activateStylesheet(sheetref){
 
 $(document).ready(function(){
 	/* carica fogli di stile diversi a seconda del browser */
-	var version = jQuery.browser.version;
 	
 	if ($.browser.name=="safari") {
    	   activateStylesheet('safari.css');
@@ -34,23 +33,27 @@ $(document).ready(function(){
    	   activateStylesheet('konqueror.css');   	   
 	}
 
+	/*Creazione dialog colore */
     $("#colorDialog").dialog({
     	position: ["right","top"],
     	height: 300,
+    	width: 230,
     	dialogClass: "Dialog1"
     });
-
+	/*Creazione dialog proprietà */
     $("#propertiesDialog").dialog({
-    	position: "right"}
+    	position: "right",
+    	width: 230}
     	);
-
+ /* Ruota dei colori **********************/
     $("#picker").farbtastic("#color");
 
     $("#changeCol").click(function () {
      		$("#colorx").show("slow"),
          $(".Dialog1").height(500)
       });
-
+ /* ********************************************/
+ /*Animazione chiusura ruota */
     $("#closeWheel").click(function () {
     		$(".Dialog1").height(300),
      		$("#colorx").hide("slow");
@@ -59,6 +62,7 @@ $(document).ready(function(){
 
      /* Funzione gestione pulsante toolbar premuto/rilasciato*/
      sentSelect=false;
+
      $("#selectionButton").click(function () {
 		if(sentSelect==false){
        	$(this).css({"background-color":"#A0A0A0"}),
@@ -68,13 +72,19 @@ $(document).ready(function(){
 			$(this).css({"background-color":"#F4F3F2"}),
 			sentSelect=false;
        }
-       if($.browser.opera==false){
+      if($.browser.opera==false){
        $("canvas").css({'cursor' : 'url("../pages/images/selezione.gif")'});}
       });
 
+		/*Animazione tooltip su pulsante toolbar*/
 		 $(".toolbarButton").tooltip(
 		 {delay: 1000}
-);
+			);
+			
+		
+		$(".toolbarButton").click(function() {
+                       $(this).effect("highlight");
+		});
 
 
 
