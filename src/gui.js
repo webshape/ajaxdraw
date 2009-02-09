@@ -12,26 +12,26 @@ function activateStylesheet(sheetref){
 	}
 }
 
-
+/*parte di jquery */
 $(document).ready(function(){
 	/* carica fogli di stile diversi a seconda del browser */
-	
-	if ($.browser.name=="safari") {
+
+  if ($.browser.name=="safari") {
    	   activateStylesheet('safari.css');
-   }	
-   else if ($.browser.name=="chrome") {
+  }
+     else if ($.browser.name=="chrome") {
    	   activateStylesheet('chrome.css');
-   }	
-   else if ($.browser.name=="msie") {
+     }
+     else if ($.browser.name=="msie") {
    	   activateStylesheet('msie.css'),
    	   $("canvas").css({"margin-top":"-13em"});
-	}
-	else if ($.browser.name=="opera") {
+     }
+     else if ($.browser.name=="opera") {
    	   activateStylesheet('opera.css');
-	}
-	else if ($.browser.name=="konqueror") {
-   	   activateStylesheet('konqueror.css');   	   
-	}
+     }
+     else if ($.browser.name=="konqueror") {
+   	   activateStylesheet('konqueror.css');
+     }
 
 	/*Creazione dialog colore */
     $("#colorDialog").dialog({
@@ -43,14 +43,14 @@ $(document).ready(function(){
 	/*Creazione dialog proprietà */
     $("#propertiesDialog").dialog({
     	position: "right",
-    	width: 230}
-    	);
+    	width: 230
+    });
  /* Ruota dei colori **********************/
     $("#picker").farbtastic("#color");
 
     $("#changeCol").click(function () {
      		$("#colorx").show("slow"),
-         $(".Dialog1").height(500)
+        	    $(".Dialog1").height(500);
       });
  /* ********************************************/
  /*Animazione chiusura ruota */
@@ -61,31 +61,33 @@ $(document).ready(function(){
      	});
 
      /* Funzione gestione pulsante toolbar premuto/rilasciato*/
-     sentSelect=false;
-
-     $("#selectionButton").click(function () {
-		if(sentSelect==false){
-       	$(this).css({"background-color":"#A0A0A0"}),
-       	sentSelect=true;
-       	}
-		else {
-			$(this).css({"background-color":"#F4F3F2"}),
-			sentSelect=false;
+     $(".toolbarButton").toggle(
+       function () {
+	 $(this).css({"background-color":"#A0A0A0"});
+       },
+       function() {
+	 $(this).css({"background-color":"#F4F3F2"});
        }
-      if($.browser.opera==false){
-       $("canvas").css({'cursor' : 'url("../pages/images/selezione.gif")'});}
-      });
+     // if($.browser.opera==false){
+     //  $("canvas").css({'cursor' : 'url("../pages/images/selezione.gif")'});}
+     );
 
-		/*Animazione tooltip su pulsante toolbar*/
-		 $(".toolbarButton").tooltip(
-		 {delay: 1000}
-			);
-			
-		
-		$(".toolbarButton").click(function() {
-                       $(this).effect("highlight");
-		});
+       /*Animazione tooltip su pulsante toolbar*/
+       $(".toolbarButton").tooltip(
+	 {delay: 1000}
+       );
 
 
+       $(".toolbarButton").click(function() {
+	 $(this).effect("highlight");
+       });
 
+
+
+
+
+
+
+
+//fine documento
   });
