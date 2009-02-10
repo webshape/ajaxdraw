@@ -13,10 +13,6 @@
 <!--[if IE]><script type="text/javascript" src="../src/lib/excanvas.js"></script><![endif]-->
 
 
-<link type="text/css" href="theme/ui.all.css" rel="Stylesheet" />
-
-
-
 <script type="text/javascript" src="../src/lib/jquery.js"></script>
 <script type="text/javascript" src="../src/lib/farbtastic.js"></script>
 <script type="text/javascript" src="../src/lib/jquery.dimensions.js"></script>
@@ -31,6 +27,20 @@
 <script type="text/javascript" src="../src/utils.js"></script>
 <script type="text/javascript" src="../src/figures.js"></script>
 <script type="text/javascript" src="../src/gui.js"></script>
+
+
+
+<link type="text/css" href="theme/ui.all.css" rel="Stylesheet" />
+<script type="text/javascript" src="theme/jquery-1.3.1.js"></script>
+<script type="text/javascript" src="theme/jquery.ui.all.js"></script>
+
+<script type="text/javascript" src="../src/lib/farbtastic.js"></script>
+<link rel="stylesheet" href="../styles/farbtastic.css" type="text/css" />
+<!-- dev'ex incluso dopo questi 3 file del thema black -->
+
+
+
+
 <script type="text/javascript">
 function draw(){
 var canvas = document.getElementById("cv");
@@ -109,6 +119,7 @@ figures.each(function (f) {
                f.draw(canvas);
              });
 }
+
 </script>
 
 
@@ -141,6 +152,9 @@ $(document).ready(function(){
  </script>
 
 
+=======
+</script>
+  
 </head>
  
  
@@ -238,7 +252,28 @@ $(document).ready(function(){
   <span>Larghezza: <INPUT type="text" size="2"/></span>
   <span>X: &nbsp; <INPUT type="text" size="2"/></span>
 </div>
- 
+
+
+<!-- Inizio Parte Dialog Colori-->
+<div id="dialog2" class="flora"  title="Modifica colori">
+	<p>Colore bordo:   
+		<span id="coloreOra" style="background: red">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+		<span>
+			<input type="button" id="changeCol" name="ChangeCol" value="Cambia Colore"/>
+		</span>
+	</p>
+	<form id="colorx" action="" style="width: 400px;display: none;">
+  		<div class="form-item" >
+  			<label  for="color">Color:</label>
+  			<input type="text" id="color" style="width:100px" name="color" value="#123456" />
+  		</div>
+  		<div id="picker"></div>
+  		<input class="tooltip" type="button" id="closeWheel" value="Chiudi"></input>
+	</form>	
+	<p>Colore riempimento:  
+		<span id="change" style="background: green">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> 
+	</p>
+</div>
  
 </body>
 </html>
