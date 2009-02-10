@@ -228,7 +228,7 @@ L'editor utilizzato per la scrittura del codice JavaScript \`e Emacs con js2-mod
 Oltre alle utili funzionalit\`a di js2-mode, l'azienda utilizza il programma JSLint, un noto verificatore di codice JavaScript, il quale rilever\`a tutti gli altri errori.
 
 \subsezione{Copertura del codice}
-Si utilizza lo strumento JSCoverage, che offre informazioni utili per la construzione di un test di copertura, ed \`e compatibile con tutti i morderni browser. Grazie ad esso sar\`a possibile determinare quali righe di codice non saranno eseguite dai test di unit\`a.
+Si utilizza lo strumento JSCoverage, che offre informazioni utili per la construzione di un test di copertura, ed \`e compatibile con tutti i moderni browser. Grazie ad esso sar\`a possibile determinare quali righe di codice non saranno eseguite dai test di unit\`a.
 
 \subsezione{Test di unit\`a}
 L'azienda utilizza il software QUnit. \`E molto stabile e, avendo una completa copertura di unit\`a,  \`e possibile eseguire i test di regressione dopo ogni piccolo passo. Ci\`o comporta un notevole risparmio di tempo.
@@ -236,7 +236,15 @@ L'azienda utilizza il software QUnit. \`E molto stabile e, avendo una completa c
 \subsezione{Debug codice tramite browser}
 Si utilizza Firebug, un estensione di Firefox che consente di effettuare il debug di codice HTML e JavaScript direttamente dal browser.
 
+\subsezione{Librerie Javascript}
+Si \` e scelto di utilizzare jQuery (\href{http://jquery.com/}{http://jquery.com/}) nella sua ultima versione (1.3.1), una libreria JavaScript veloce e concisa che semplifica l'attraversamento del documento HTML, la gestione degli eventi, le animazioni, e le interazioni Ajax per un rapido sviluppo web. Oltre alla libreria base, si utilizzano anche i seguenti plugins:
+ \begin{elencopuntato}[\normindent]
+    \item[-] \textit{jquery.tooltip}  (\href{http://bassistance.de/jquery-plugins/jquery-plugin-tooltip/}{http://bassistance.de/jquery-plugins/jquery-plugin-tooltip/}): per visualizzare un tooltip a comparsa descrittivo della funzione effettuata dall'oggetto grafico sul quale \` e posizionato il cursore;
+    \item[-]\textit{ jquery.browser}  (\href{http://jquery.thewikies.com/browser/}{http://jquery.thewikies.com/browser/}): per aiutare nel riconoscimento dei dettagli del broswser utilizzato, consentendo al programma di adattarsi quindi al client cambiando foglio di stile adottato e funzionalit\` a disponibili;
+    \item[-]\textit{ farbtastic} (\href{http://acko.net/dev/farbtastic}{http://acko.net/dev/farbtastic}) : per aggiungere una o pi\` u ruote per la selezione del colore alla pagina;
+  \end{elencopuntato}
+
 \sezione{Stile del codice}
-Lo stile del codice deve essere conforme alle regole utilizzate da \textit{Mozilla}, reperibili ai seguenti due indirizzi: \href{https://developer.mozilla.org/en/JavaScript_style_guide}{https://developer.mozilla.org/en/JavaScript_style_guide} e \href{http://neil.rashbrook.org/Js.htm}{http://neil.rashbrook.org/Js.htm}.
+Lo stile del codice deve essere conforme alle regole utilizzate da \textit{Mozilla}, reperibili ai seguenti due indirizzi: \href{https://developer.mozilla.org/en/JavaScript_style_guide}{https://developer.mozilla.org/en/JavaScript Style Guide} e \href{http://neil.rashbrook.org/Js.htm}{http://neil.rashbrook.org/Js.htm}.
 \end{document}
  
