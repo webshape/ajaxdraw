@@ -32,7 +32,7 @@ SVGWriter.prototype.write = function (fs) {
  */
 function SVGGenerator(w, h) { /*TODO change > into &gt etc.. */
   this._doc = "<?xml version=\"1.0\" standalone=\"no\"?>\n\
-<!DOCTYPE svg PUBLIC \"-//W3C//DTD SVG 1.1//EN http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd\">\n\
+<!DOCTYPE svg PUBLIC \"-//W3C//DTD SVG 1.1//EN\" \"http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd\">\n\
 <svg width=\"" + w + "\" height=\"" + h + "\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\">\n";
 }
 
@@ -88,15 +88,33 @@ SVGGenerator.prototype.flush = function () {
  * @param {SVGGenerator} gen to call the methods to create tags
  */
 Circle.prototype.toSVG = function(gen) {
-  gen.startCommand("circle");
+  var rx = this.getBounds().w()/2;
+  var ry = this.getBounds().h()/2;
+  if (rx != ry) {
+    gen.startCommand("ellipse");
+  }
+  else {
+    gen.startCommand("circle");
+  }
   var cx = this.getBounds().start().x + this.getBounds().centre().x;
   gen.attr("cx", cx, false);
   var cy = this.getBounds().start().y + this.getBounds().centre().y;
   gen.attr("cy", cy, false);
-  gen.attr("r", this.getBounds().w()/2, false);
+  if (rx != ry) {
+    gen.attr("rx", rx, false);
+    gen.attr("ry", ry, false);
+  }
+  else {
+    gen.attr("r", rx, false);
+  }
   gen.attr("fill", this.getFillColour().toCSS(), false);
   gen.attr("stroke", this.getBorderColour().toCSS(), true);
-  gen.endCommand("circle");
+  if (rx != ry) {
+    gen.endCommand("ellipse");
+  }
+  else {
+    gen.endCommand("circle");
+  }
 };
 
 
@@ -145,10 +163,10 @@ Polygon.prototype.toSVG = function(gen) {
   gen.attr("fill", this.getFillColour().toCSS(), false);
   gen.attr("stroke", this.getBorderColour().toCSS(), false);
   var aPoints = this.getPoints();
-  var points;
+  var points = "";
   for (var i = 0; i < aPoints.length; ++i)
 	 points += (aPoints[i].x + this.getBounds().start().x) + "," + (aPoints[i].y + this.getBounds().start().y) + " ";
-  gen.attr("points", this.points, true);
+  gen.attr("points", points, true);
   gen.endCommand("polygon");
 };
 
