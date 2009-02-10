@@ -171,10 +171,10 @@ Polygon.prototype.toSVG = function(gen) {
 
 
 /**
- * Transform the ellipse figure into SVG tags (a circle is a paricular ellipse)
+ * Transform the ellipse figure into SVG tags (a circle is a particular ellipse)
  * @param {SVGGenerator} gen to call the methods to create tags
  */
-Ellipse.prototype.toSVG = function(gen) {
+Circle.prototype.toSVG = function(gen) {
   gen.startCommand("ellipse");
   var cx = this.getBounds().start().x + this.getBounds().center().x;
   gen.attr("cx", cx, false);
