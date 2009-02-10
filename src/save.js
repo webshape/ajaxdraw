@@ -30,7 +30,7 @@ SVGWriter.prototype.write = function (fs) {
  * @param {Integer} w width of the canvas element
  * @param {Integer} h height of the canvas element
  */
-function SVGGenerator(w, h) { /*TODO change > into &gt etc.. */
+function SVGGenerator(w, h) {
   this._doc = "<?xml version=\"1.0\" standalone=\"no\"?>\n\
 <!DOCTYPE svg PUBLIC \"-//W3C//DTD SVG 1.1//EN\" \"http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd\">\n\
 <svg width=\"" + w + "\" height=\"" + h + "\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\">\n";
@@ -87,6 +87,7 @@ SVGGenerator.prototype.flush = function () {
  * Transform the circle figure into SVG tags
  * @param {SVGGenerator} gen to call the methods to create tags
  */
+/*
 Circle.prototype.toSVG = function(gen) {
   var rx = this.getBounds().w()/2;
   var ry = this.getBounds().h()/2;
@@ -116,8 +117,7 @@ Circle.prototype.toSVG = function(gen) {
     gen.endCommand("circle");
   }
 };
-
-
+*/
 
 /**
  * Transform the rectangle figure into SVG tags
@@ -127,8 +127,6 @@ Rectangle.prototype.toSVG = function(gen) {
   gen.startCommand("rect");
   gen.attr("x", this.getBounds().start().x, false);
   gen.attr("y", this.getBounds().start().y, false);
-  /*gen.attr("rx", 0, 0, false);
-  gen.attr("ry", 0, 0, false);*/
   gen.attr("width", this.getBounds().w(), false);
   gen.attr("height", this.getBounds().h(), false);
   gen.attr("fill", this.getFillColour().toCSS(), false);
@@ -173,10 +171,9 @@ Polygon.prototype.toSVG = function(gen) {
 
 
 /**
- * Transform the ellipse figure into SVG tags
+ * Transform the ellipse figure into SVG tags (a circle is a paricular ellipse)
  * @param {SVGGenerator} gen to call the methods to create tags
  */
-/* not yet implemented: commented for testing
 Ellipse.prototype.toSVG = function(gen) {
   gen.startCommand("ellipse");
   var cx = this.getBounds().start().x + this.getBounds().center().x;
@@ -186,5 +183,6 @@ Ellipse.prototype.toSVG = function(gen) {
   gen.attr("rx", this.getBounds().w()/2, false);
   gen.attr("ry", this.getBounds().h()/2, false);
   gen.attr("fill", this.getFillColour().toCSS(), false);
-  gen.attr("stroke", this.getBorderColour().toCSS(), false);
-};*/
+  gen.attr("stroke", this.getBorderColour().toCSS(), true);
+  gen.endCommand("ellipse");
+};
