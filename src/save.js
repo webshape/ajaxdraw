@@ -127,8 +127,8 @@ Rectangle.prototype.toSVG = function(gen) {
   gen.startCommand("rect");
   gen.attr("x", this.getBounds().start().x, false);
   gen.attr("y", this.getBounds().start().y, false);
-  gen.attr("rx", 0, 0, false);
-  gen.attr("ry", 0, 0, false);
+  /*gen.attr("rx", 0, 0, false);
+  gen.attr("ry", 0, 0, false);*/
   gen.attr("width", this.getBounds().w(), false);
   gen.attr("height", this.getBounds().h(), false);
   gen.attr("fill", this.getFillColour().toCSS(), false);
