@@ -136,18 +136,18 @@ Rectangle.prototype.toSVG = function(gen) {
     width = width*(-1);
 	scalex= -1;
 	reverse = true;
-	x = (this.getBounds().start().x + width)*-1;
+	x = (this.getBounds().start().x)*-1;
   }
   if (height < 0) {
     height = height*(-1);
 	scaley= -1;
 	reverse = true;
-	y = (this.getBounds().start().y + height)*-1;
+	y = (this.getBounds().start().y)*-1;
   }
   gen.attr("x", x, false);
   gen.attr("y", y, false);
   if (reverse)
-    gen.attr("transform", "scale("+ scalex +","+ scaley + ")", false);
+    gen.attr("transform", "scale(" + scalex +","+ scaley + ")", false);
   gen.attr("width", width, false);
   gen.attr("height", height, false);
   gen.attr("fill", this.getFillColour().toCSS(), false);
