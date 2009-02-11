@@ -161,6 +161,53 @@ Si vedano le \textit{NormeDiprogetto}.
 
 \sezione{Specifica delle componenti}
 
+\subsezione{ApplicationLogic}
+
+\subsezione{Figure}
+\subsubsezione{Tipo, obiettivo e funzione del componente}
+Classe astratta che rappresenta una figura generica nel sistema, ovvero un oggetto disegnabile nel canvas.
+\subsubsezione{Relazioni d'uso di altre componenti}
+Mantiene un'istanza della classe \textit{BoundingRectangle} per rappresentare i limiti della figura. Contiene anche un'istanza di \textit{Colour} che rappresenta il colore del bordo. Deriva, ma non implementa, l'interfaccia \textit{SVGReadable} e l'interfaccia \textit{SVGWritable}, in quanto le sue sottoclassi dovranno essere serializzabili e deserializabili in file SVG.
+\subsubsezione{Interfacce e relazioni di uso da altre componenti}
+Viene aggregata dalla classe \textit{FigureSet}.
+\subsubsezione{Attivit\`a svolte e dati trattati}
+\paragrafo{Attributi privati:}
+\begin{elencopuntato}[\normindent]
+\item[-] \textit{_selected} dice se la figura \`e selezionata
+\item[-] \textit{_bounds} \textit{BoundingRectangle} che racchiude la figura
+\item[-] \textit{_borderColour} colore del bordo della figura
+\end{elencopuntato}
+\paragrafo{Metodi pubblici:}
+\begin{elencopuntato}[\normindent]
+\item[-] \textit{getBounds()} ritorna \textit{_bounds}
+\item[-] \textit{getBorderColour()} ritorna \textit{_borderColour}
+\item[-]  \textit{draw(canvas)} metodo astratto per disegnare la figura sul canvas.
+\item[-]  \textit{getMainPoints} metodo astratto per ottenere i punti della figura manipolabili dall'utente.
+\item[-]  \textit{setSelection(value)} permette di selezionare/deselezionare la figura. Modifica \textit{_selected}.
+\item[-]  \textit{isSelected()} dice se la figura \`e correntemente selezionata. Ritorna \textit{_selected}.
+\item[-]  \textit{eachProperty(fn)} applica la funzione fn ad ogni propriet\`a della figura, ovvero a \textit{_bounds} e \textit{_borderColour}.
+\end{elencopuntato}
+
+\subsezione{FigureSet}
+\subsubsezione{Tipo, obiettivo e funzione del componente}
+Rappresenta una collezione di figure. Tutte le figure disegnate dall'utente sono contenute in questa collezione, la quale ne permette la manipolazione e l'attraversamento. Per cancellare una figura \`e sufficiente rimuoverla dalla collezione.
+\subsubsezione{Relazioni d'uso di altre componenti}
+Contiene le istanze di \textit{Figure} correntemente attive.
+\subsubsezione{Interfacce e relazioni di uso da altre componenti}
+Usata dalla classe \textit{SVGWriter} per serializzare in SVG le figure correnti a dall'interfaccia utente per accedere alle figure. Pu\`o venire generata dalla classe \textit{SVGReader} dopo la deserializzazione di un file SVG.
+\subsubsezione{Attivit\`a svolte e dati trattati}
+\paragrafo{Attributi privati:}
+\begin{elencopuntato}[\normindent]
+\item[-] \textit{_figures} array contenente le figure.
+\end{elencopuntato}
+\paragrafo{Metodi pubblici:}
+\begin{elencopuntato}[\normindent]
+\item[-]  \textit{selectFigure()} permette di selezionare una figura contenente il punto passato come argomento, se tale figura esiste.
+\item[-]  \textit{each(fn)} permette di applicare una funzione ad ogni figura. Viene usato per iterare attraverso la collezione. Applica fn ad ogni elemento di \textit{_figures}. 
+\item[-]  \textit{add(f)} aggiunge la figura f alla fine di \textit{_figures}.
+\item[-]  \textit{rem(f)} rimuove da \textit{_figures} tutte le figure identiche (ovvero aventi lo stesso indirizzo) di f.
+\end{elencopuntato}
+
 \sezione{Tracciamento della relazione componenti - requisiti}
 
 \end{document}
