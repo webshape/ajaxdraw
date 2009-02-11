@@ -1,5 +1,5 @@
 $(document).ready(function () {
-                    test("Save Test", function () {
+						  test("Save Test", function () {
                            var c = new Rectangle();
                            c.getBorderColour().set(255, 0, 0, new Opacity(1));
                            c.getBounds().setStart(new Point(10, 20));

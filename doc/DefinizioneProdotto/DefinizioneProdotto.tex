@@ -1,7 +1,7 @@
 	\input{../TeX/base} %BASE!!!
 
 \title{\TITOLODOC}
-\author{Piero Bizzotto}
+\author{Stefano Dissegna}
 
 \begin{document}
 
@@ -25,7 +25,7 @@
 
 \begin{center}
 	\begin{large}
-				\textbf{Software per il Disegno Grafico in Tecnologie Web}
+				\textbf{Software per il Disegno Grafico\\ in Tecnologie Web}
 	\end{large}
 \end{center}			
 
@@ -42,7 +42,7 @@
 	\end{Huge}
 			\\
 \end{center}
-\vspace{210pt}
+\vspace{190pt}
 \begin{center}
 Versione: \insertversion
 \end{center}
@@ -59,37 +59,77 @@ Versione: \insertversion
 \end{center}
 
 %\setlength{\parindent}{18pt} %settato indentazione di default 
-\section*{\Large Sommario:} %SEZIONE SOMMARIO
-\indent \indent
+\section*{\LARGE Sommario:} %SEZIONE SOMMARIO
 Il presente documento descrive in modo dettagliato le classi e i relativi metodi che andranno a comporre il sistema.
 
-\section*{\Large Stato del documento:}
+\indent \indent
+
+\section*{\LARGE Stato del documento:}
 \indent \indent
 	Formale Esterno
 
-\section*{\Large Redazione:}
-	\begin{elencopuntato}[\normindent]
-		\item[-] Redattore N. 1
-		\item[-] Redattore N. 2
-		\item[-] Redattore N. 3
-	\end{elencopuntato}
 
-\section*{\Large Approvazione:}
-	\begin{elencopuntato}[\normindent]
-		\item Approvatore N. 1
-		\item Approvatore N. 2
-		\item Approvatore N. 3
-	\end{elencopuntato}
+\section*{\LARGE Redazione:}
+	\begin{table}[!h]
+		\begin{center}
+			\begin{tabular}
+				{|c|c|}
+				\hline
+				%%%%%%%%%%%%%%INTESTAZIONE COLONNE%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+				\multicolumn{2}{|c|}{ \textbf{Redazione} } \\
+				\hline
+				\textbf{Fase} & \textbf{Redattori} \\
+				%%%%%%%%%%%%%%FINE INTESTAZIONE COLONNE%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+				\hline
+				%%%%%%%%%%% PARTE DA MODIFICARE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%		
+				\multirow{2}{*}{Pre-RR} & Cunico Marco\\
+										& Dal Bosco Davide\\
+				\hline
+				\multirow{1}{*}{RR-RPP} & Bizzotto Piero\\
+										
+				\hline
+				%%%%%%%%%%% FINE PARTE DA MODIFICARE %%%%%%%%%%%%%%%%%%%%%%%%%%%
+			\end{tabular}
+			\caption{Lista Redattori} %INSERIRE DIDASCALIA - SE NECESSARIA - 
+			\label{tabredazione}
+		\end{center}
+	\end{table}
+	
+	
+\section*{\LARGE Approvazione:}
+\begin{table}[!h]
+	\begin{center}
+		\begin{tabular}
+			{|c|c|}
+			\hline
+			%%%%%INTESTAZIONE COLONNE%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+			\multicolumn{2}{|c|}{ \textbf{Approvazione} } \\
+			\hline
+			\textbf{Fase} & \textbf{Approvatori} \\
+			%%%%%%%%%%%%%%FINE INTESTAZIONE COLONNE%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+			\hline
+			%%%%%%%%%%% PARTE DA MODIFICARE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%		
+			\multirow{1}{*}{Pre-RR} & Geremia Mirco \\
+									
+			\hline
+			\multirow{1}{*}{RR-RPP} & Geremia Mirco\\
+									
+			\hline
+			%%%%%%%%%%% FINE PARTE DA MODIFICARE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+		\end{tabular}
+		\caption{Lista Approvatori} %INSERIRE DIDASCALIA - SE NECESSARIA - 
+		\label{tabapprovazione}
+	\end{center}
+\end{table}
 
+\textbf{}
+\newpage
 \section*{\LARGE Lista di Distribuzione:}
 
 	\begin{elenconumerato}{\normindent}
-		\item WebShape \footnote{Il termine WebShape designa una collettivit\`a di individui come da organigramma contenuto nel piano di progetto fornito in allegato al presente documento}
-		\item I committenti Vardanega Tullio e Conte Renato in rappresentanza \\  dell'azienda proponente Zucchetti SPA
-		%\item Il committente Conte Renato
+		\item WebShape 
+		\item I committenti Conte Renato e Vardanega Tullio in rappresentanza \\  dell'azienda proponente Zucchetti SPA
 	\end{elenconumerato}
-
-\newpage
 
 
 
