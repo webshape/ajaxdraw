@@ -207,3 +207,19 @@ Circle.prototype.toSVG = function(gen) {
   gen.attr("stroke", this.getBorderColour().toCSS(), true);
   gen.endCommand("ellipse");
 };
+
+
+
+/**
+ * Transform the text into SVG tags (a circle is a particular ellipse)
+ * @param {SVGGenerator} gen to call the methods to create tags
+ */
+Text.prototype.toSVG = function(gen) {
+  gen.startCommand("text");
+  gen.attr("x", this.getBounds().start().x, false);
+  gen.attr("y", this.getBounds().end().y, false);
+  //non completata
+  gen.attr("fill", this.getFillColour().toCSS(), false);
+  gen.attr("stroke", this.getBorderColour().toCSS(), true);
+  gen.endCommand("text");
+};
