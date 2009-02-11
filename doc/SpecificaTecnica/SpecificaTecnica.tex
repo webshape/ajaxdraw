@@ -231,15 +231,7 @@ Il sistema si compone, al massimo livello di astrazione, di tre componenti: il p
 \subsubsezione{Design Pattern usati}
 
 \paragrafo{Singleton:}
-\begin{figure}[!ht]
-\centering
-\includegraphics{images/canvas.jpg}
-\caption{Singleton}
-\end{figure}
-Esiste una sola istanza della classe \textit{Canvas}. \`E possibile accedere a 
-questa istanza attraverso il metodo \textit{getElementById} dell'oggetto 
-globale \textit{document}, fornito dal browser e quindi non presente nei 
-diagrammi delle classi.
+Esiste una sola istanza della classe \textit{Visualization}. \`E possibile accedere a questa istanza attraverso una variabile globale.
 
 \paragrafo{Template Method:}
 \begin{figure}[!ht]
@@ -250,7 +242,7 @@ diagrammi delle classi.
 \subparagrafo{Algoritmo parametrizzato:}
 Il metodo \textit{selectFigure} di \textit{FigureSet} implementa la logica di selezione di una figura a partire da un punto.\\ \\
 \textbf{Metodo astratto da implementare:}
-Implementando il metodo astratto \textit{getMainPoints} di \textit{Figure} \`e possibile parametrizzare l'algoritmo generale adattandolo alla figura specifica.
+Implementando il metodo astratto \textit{draw} di \textit{Figure} \`e possibile parametrizzare l'algoritmo generale adattandolo alla figura specifica. L'algoritmo infatti permette di selezionara una figura a seconda di dove essa viene disegnata dal metodo \textit{draw} il quale non ricever\`a il canvas visualizzato dall'utente, ma un canvas apposito.
 
 \paragrafo{Abstract Factory:} 
 \begin{figure}[!ht]
