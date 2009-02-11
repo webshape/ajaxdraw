@@ -125,10 +125,31 @@ Circle.prototype.toSVG = function(gen) {
  */
 Rectangle.prototype.toSVG = function(gen) {
   gen.startCommand("rect");
-  gen.attr("x", this.getBounds().start().x, false);
-  gen.attr("y", this.getBounds().start().y, false);
-  gen.attr("width", this.getBounds().w(), false);
-  gen.attr("height", this.getBounds().h(), false);
+  var width = this.getBounds().w();
+  var height = this.getBounds().h();
+  var reverse = false;
+  var scalex = 1;
+  var scaley = 1;
+  var x = this.getBounds().start().x;
+  var y = this.getBounds().start().y;
+  if (width < 0) {
+    width = width*(-1);
+	scalex= -1;
+	reverse = true;
+	x = (this.getBounds().start().x + width)*-1;
+  }
+  if (height < 0) {
+    height = height*(-1);
+	scaley= -1;
+	reverse = true;
+	y = (this.getBounds().start().y + height)*-1;
+  }
+  gen.attr("x", x, false);
+  gen.attr("y", y, false);
+  if (reverse)
+    gen.attr("transform", "scale("+ scalex +","+ scaley + ")", false);
+  gen.attr("width", width, false);
+  gen.attr("height", height, false);
   gen.attr("fill", this.getFillColour().toCSS(), false);
   gen.attr("stroke", this.getBorderColour().toCSS(), true);
   gen.endCommand("rect");
