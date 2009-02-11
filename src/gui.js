@@ -28,10 +28,15 @@ function createColDialog(){
     	position: ["right","top"],
     	height: 300,
     	width: 230,
-    	dialogClass: "Dialog1"
+    	dialogClass: "Dialog1",
+	buttons: {
+	  "Cancel": function() {  $(this).dialog("close"); }
+
+	  }
     });
 
 }
+
 
 
 /*parte di jQuery */
