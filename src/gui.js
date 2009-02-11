@@ -11,15 +11,19 @@ function activateStylesheet(sheetref){
 		}
 	}
 }
-function cambiaColore(){
-  $.farbtastic("#color").setColor("#EEC73E");
+
+
+
+
+function changeFarbColor(object){
+ var colorChange = object.style.backgroundColor;
+  $.farbtastic("#color").setColor(colorChange);
   document.getElementById("color").value=$.farbtastic("#color").color;
   }
 
-/*parte di jquery */
+/*parte di jQuery */
 $(document).ready(function(){
-	/* carica fogli di stile diversi a seconda del browser */
-
+/* carica fogli di stile diversi a seconda del browser */
   if ($.browser.name=="safari") {
    	   activateStylesheet('safari.css');
   }
@@ -41,47 +45,47 @@ $(document).ready(function(){
 //dialog skin nera
 
 
-$('#dialog').dialog({
-		autoOpen: true,
-                position: ["left","bottom"],
-		width: 450,
-		height: 40,
-                buttons:0 
-	});
+     $('#dialog').dialog({
+       autoOpen: true,
+       position: ["left","bottom"],
+       width: 450,
+       height: 40,
+       buttons:0
+     });
 
- $("#dialog2").dialog({
-    	position: ["right","top"],
-    	height: 500,
-    	width: 250,
-    	dialogClass: "Dialog1"
-    });
+     $("#dialog2").dialog({
+       position: ["right","top"],
+       height: 500,
+       width: 250,
+       dialogClass: "Dialog1"
+     });
 
 
 //end  skin black
 
 
 
-	/*Creazione dialog colore */
+/*Creazione dialog colore */
     $("#colorDialog").dialog({
     	position: ["right","top"],
     	height: 300,
     	width: 230,
     	dialogClass: "Dialog1"
     });
-	/*Creazione dialog proprietà */
+/*Creazione dialog proprietà */
     $("#propertiesDialog").dialog({
     	position: "right",
     	width: 230
     });
- /* Ruota dei colori **********************/
+/* Ruota dei colori **********************/
     $("#picker").farbtastic("#color");
 
     $("#changeCol").click(function () {
      		$("#colorx").show("slow"),
         	    $(".Dialog1").height(500);
       });
- /* ********************************************/
- /*Animazione chiusura ruota */
+	/* ********************************************/
+    /*Animazione chiusura ruota */
     $("#closeWheel").click(function () {
     		$(".Dialog1").height(300),
      		$("#colorx").hide("slow");
@@ -100,12 +104,12 @@ $('#dialog').dialog({
      //  $("canvas").css({'cursor' : 'url("../pages/images/selezione.gif")'});}
      );
 
-       /*Animazione tooltip su pulsante toolbar*/
+       /*Animazione tooltip su pulsante toolbar ritardata di 1 secondo*/
        $(".toolbarButton").tooltip(
 	 {delay: 1000}
        );
 
-
+/* Effetto Highlight su pulsante */
        $(".toolbarButton").click(function() {
 	 $(this).effect("highlight");
        });

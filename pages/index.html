@@ -25,6 +25,10 @@
 <script type="text/javascript" src="../src/utils.js"></script>
 <script type="text/javascript" src="../src/figures.js"></script>
 <script type="text/javascript" src="../src/gui.js"></script>
+<script type="text/javascript" src="../src/lib/menu-for-applications.js"></script>
+<link rel="stylesheet" href="../styles/menu_bar/menu-bar.css" type="text/css" />
+<link rel="stylesheet" href="../styles/menu_bar/menu-item.css" type="text/css" />
+
 <script type="text/javascript">
 function draw(){
 var canvas = document.getElementById("cv");
@@ -103,6 +107,9 @@ figures.each(function (f) {
                f.draw(canvas);
              });
 }
+
+
+
 </script>
 </head>
 
@@ -112,6 +119,46 @@ figures.each(function (f) {
 
 <!-- Interfaccia -->
 <div>
+
+
+<!-- Barra di salvataggio -->
+<ul id="menuModel5">
+	<li id="50000" itemIcon="images/menu_bar/disk.gif"><a href="#" title="Open the file menu">File</a>
+		<ul width="150">
+			<li id="500001" jsFunction="alert('salvato')" itemIcon="images/menu_bar/disk.gif"><a href="#" title="Save your work">Save</a></li>
+			<li id="500002"><a href="#">Save As</a></li>
+			<li id="500004" itemType="separator"></li>
+			<li id="500003"><a href="#">Open</a></li>
+		</ul>
+	</li>
+	<li id="50001"><a href="#">View</a>
+		<ul width="130">
+			<li id="500011"><a href="#">Source</a></li>
+			<li id="500012"><a href="#">Debug info</a></li>
+			<li id="500013"><a href="#">Layout</a>
+				<ul width="150">
+					<li id="5000131"><a href="#">CSS</a>	
+					<li id="5000132"><a href="#">HTML</a>	
+					<li id="5000133"><a href="#">Javascript</a>	
+				</ul>
+			</li>		
+		</ul>
+	</li>
+	<li id="50003" itemType="separator"></li>
+	<li id="50002"><a href="#">Options</a></li>
+</ul>
+<div id="fifthMenu"></div>
+<script>
+/* Fifth menu - created from markup */
+var menuModel5 = new DHTMLSuite.menuModel();
+menuModel5.addItemsFromMarkup('menuModel5');
+menuModel5.init();
+
+var menuBar5 = new DHTMLSuite.menuBar();
+menuBar5.addMenuItems(menuModel5);
+menuBar5.setTarget('fifthMenu');
+menuBar5.init();
+</script>
 	<!-- Toolbar a pulsanti -->
 	<!--  <span id="tool">
 		<img src="images/toolbar.png" width="34" height="546" alt="toolbar" />
@@ -147,7 +194,7 @@ figures.each(function (f) {
 	<!-- Tavolozza nella parte bassa dello schermo -->
 	<div id="palette">
 		<!--  <img id="paletta" src="images/paletta.png" width="1100" height="16" alt="paletta" /> -->
-		<span id="firstPalette" onclick="cambiaColore()" class="paletteComponent" style="background-color:#EEC73E">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+		<span id="firstPalette" onclick="changeFarbColor(this)" class="paletteComponent" style="background-color:#EEC73E">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
 		<span class="paletteComponent" style="background-color:#F0A513">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
 		<span class="paletteComponent" style="background-color:#FB8B00">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
 		<span class="paletteComponent" style="background-color:#F44800">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
