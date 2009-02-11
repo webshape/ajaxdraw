@@ -312,30 +312,48 @@ FigureSet.prototype.rem = function (f) {
  * @return matching figure or null
  */
 FigureSet.prototype.selectFigure = function (where) {
-  // distance between 2 points
-  var distance = function (pt1, pt2) {
-    var dx = pt1.x - pt2.x;
-    var dy = p1.y - pt2.y;
-    // best will maximize, so we need to invert the score
-    return -Math.sqrt(dx*dx + dy*dy); 
+  var r = 0;
+  var g = 0;
+  var b = 0;
+  var o = new Opacity(1);
+  var next = function () {
+    if (r < 255) {
+      r++;
+    } else if (g < 255) {
+      r = 0;
+      g++;
+    } else if (b < 255) {
+      r = g = 0;
+      b++;
+    } else {
+      r = g = b = 0;
+    }
+    return [new Colour(r, g, b, o), new FillColour(r, g, b, o)];
   };
-  // maximum distance we're willing to accept
-  var max_distance = 5;
-  // best value for each figure
-  var best_each = this._figures.map(function (f) {
-                                      return f.getMainPoints().best(distance);
-                                    });
-  var best_match = best_each.best(function (x) {
-                                    return x[1]; // the value
-                                  });
-  // best_match is [[Figure, score], score]
-  var f = best_match[0][0];
-  var dist = -best_match[1];
-  if (f === null || dist > max_distance) {
-    return null;
-  }
   
-  return f;
+  var fs = {};
+  var c = document.createElement('canvas');
+  c.width = 1000;
+  c.height = 1000;
+  this.each(function (f) {
+              var col = next();
+              fs[col[0].toCSS()] = f;
+              // momentarily change the colour
+              // !! straight access to private attributes
+              var old1 = f._borderColour;
+              var old2 = f._fillColour;
+              f._borderColour = col[0];
+              // figure may not have a fillColour
+              // this won't create any error
+              f._fillColour = col[1];
+              f.draw(c);
+              f._borderColour = old1;
+              f._fillColour = old2;
+            });
+  // get the selected pixel
+  var selection = c.getContext('2d').getImageData(where.x, where.y, 1, 1).data;
+  var col = new Colour(selection[0], selection[1], selection[2], o);
+  return fs[col.toCSS()] || null;
 };
 
 /**

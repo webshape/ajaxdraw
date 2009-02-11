@@ -15,11 +15,22 @@ function activateStylesheet(sheetref){
 
 
 
-function changeFarbColor(object){
- var colorChange = object.style.backgroundColor;
-  $.farbtastic("#color").setColor(colorChange);
+function changeFarbColor(col){
+  $.farbtastic("#color").setColor(col);
   document.getElementById("color").value=$.farbtastic("#color").color;
-  }
+  document.getElementById("coloreOra").style.backgroundColor=col;
+  $.farbtastic("#color").updateDisplay();
+  //  document.getElementById("color").style.backgroundColor=col;
+}
+
+function createColDialog(){
+    $("#colorDialog").dialog({
+    	position: ["right","top"],
+    	height: 300,
+    	width: 230,
+    	dialogClass: "Dialog1"
+    });
+}
 
 /*parte di jQuery */
 $(document).ready(function(){
@@ -66,12 +77,7 @@ $(document).ready(function(){
 
 
 /*Creazione dialog colore */
-    $("#colorDialog").dialog({
-    	position: ["right","top"],
-    	height: 300,
-    	width: 230,
-    	dialogClass: "Dialog1"
-    });
+       createColDialog();
 /*Creazione dialog proprietà */
     $("#propertiesDialog").dialog({
     	position: "right",
@@ -80,17 +86,31 @@ $(document).ready(function(){
 /* Ruota dei colori **********************/
     $("#picker").farbtastic("#color");
 
-    $("#changeCol").click(function () {
-     		$("#colorx").show("slow"),
+    $("#changeCol").toggle(
+       function () {
+		$("#colorx").show("slow"),
         	    $(".Dialog1").height(500);
-      });
+       },
+       function() {
+	$(".Dialog1").height(300),
+     		$("#colorx").hide("slow");
+       }
+     // if($.browser.opera==false){
+     //  $("canvas").css({'cursor' : 'url("../pages/images/selezione.gif")'});}
+     );
+
+
+//    $("#changeCol").click(function () {
+ //    		$("#colorx").show("slow"),
+ //       	    $(".Dialog1").height(500);
+ //     });
 	/* ********************************************/
     /*Animazione chiusura ruota */
-    $("#closeWheel").click(function () {
-    		$(".Dialog1").height(300),
-     		$("#colorx").hide("slow");
+ //   $("#closeWheel").click(function () {
+    	//	$(".Dialog1").height(300),
+     	//	$("#colorx").hide("slow");
 
-     	});
+     		//	   });
 
      /* Funzione gestione pulsante toolbar premuto/rilasciato*/
      $(".toolbarButton").toggle(
