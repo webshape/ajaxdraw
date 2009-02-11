@@ -24,13 +24,15 @@ function changeFarbColor(col){
 }
 
 function createColDialog(){
-    $("#colorDialog").dialog({
+     $("#colorDialog").dialog({
     	position: ["right","top"],
     	height: 300,
     	width: 230,
     	dialogClass: "Dialog1"
     });
+
 }
+
 
 /*parte di jQuery */
 $(document).ready(function(){
@@ -115,7 +117,9 @@ $(document).ready(function(){
      /* Funzione gestione pulsante toolbar premuto/rilasciato*/
      $(".toolbarButton").toggle(
        function () {
+	 $(".toolbarButton").css({"background-color":"#F4F3F2"}),
 	 $(this).css({"background-color":"#A0A0A0"});
+
        },
        function() {
 	 $(this).css({"background-color":"#F4F3F2"});
@@ -131,7 +135,8 @@ $(document).ready(function(){
 
 /* Effetto Highlight su pulsante */
        $(".toolbarButton").click(function() {
-	 $(this).effect("highlight");
+				   $(this).effect("highlight");
+
        });
 
 
