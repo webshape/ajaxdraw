@@ -28,11 +28,8 @@ function createColDialog(){
     	position: ["right","top"],
     	height: 300,
     	width: 230,
-    	dialogClass: "Dialog1",
-	buttons: {
-	  "Cancel": function() {  $(this).dialog("close"); }
+    	dialogClass: "Dialog1"
 
-	  }
     });
 
 }
@@ -107,47 +104,26 @@ $(document).ready(function(){
      );
 
 
-//    $("#changeCol").click(function () {
- //    		$("#colorx").show("slow"),
- //       	    $(".Dialog1").height(500);
- //     });
-	/* ********************************************/
-    /*Animazione chiusura ruota */
- //   $("#closeWheel").click(function () {
-    	//	$(".Dialog1").height(300),
-     	//	$("#colorx").hide("slow");
-
-     		//	   });
-
      /* Funzione gestione pulsante toolbar premuto/rilasciato*/
      $(".toolbarButton").toggle(
        function () {
-	 $(".toolbarButton").css({"background-color":"#F4F3F2"}),
-	 $(this).css({"background-color":"#A0A0A0"});
-
+	 $(".toolbarButton").css({"background-color":"#F4F3F2"}), //tutti grigio chiaro
+	 $(this).css({"background-color":"#A0A0A0"});  //pulsante premuto grigio scuro
+//	 $(this).effect("highlight");//effetto highlight
        },
        function() {
-	 $(this).css({"background-color":"#F4F3F2"});
+	 $(this).css({"background-color":"#F4F3F2"}); //torna a vecchio grigio
+//	 $(this).effect("highlight");  //highlight
+
        }
      // if($.browser.opera==false){
      //  $("canvas").css({'cursor' : 'url("../pages/images/selezione.gif")'});}
      );
 
-       /*Animazione tooltip su pulsante toolbar ritardata di 1 secondo*/
+/*Animazione tooltip su pulsante toolbar ritardata di 1 secondo*/
        $(".toolbarButton").tooltip(
 	 {delay: 1000}
        );
-
-/* Effetto Highlight su pulsante */
-       $(".toolbarButton").click(function() {
-				   $(this).effect("highlight");
-
-       });
-
-
-
-
-
 
 
 
