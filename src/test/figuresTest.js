@@ -23,7 +23,23 @@ test('FigureSet.selectFigure', function () {
        f.getBounds().setEnd(new Point(100, 100));
        fs.add(f);
        equals(fs.selectFigure(new Point(10, 10)), f, 'line selection in');
-       equals(fs.selectFigure(new Point(11, 10)), null, 'line selection out');
+       equals(fs.selectFigure(new Point(12, 10)), null, 'line selection out');
      });
-        
+                    
+test('FreeLine', function () {
+       var f = new FreeLine();
+       var pts = [new Point(0, 0), new Point(0, 0), new Point(0, 10), 
+                  new Point(100, 200), new Point(-23, 24), new Point(10, 10)];
+       pts.each(function (p) {
+                  f.extend(p);
+                });
+       // extend may change the original array
+       pts = [new Point(0, 0), new Point(0, 0), new Point(0, 10), 
+              new Point(100, 200), new Point(-23, 24), new Point(10, 10)];
+       same(f.getPoints(), pts, 'correct abs/rel conversion');
+       same(f.getBounds(), new BoundingRectangle(new Point(-23, 0), 
+                                                 new Point(100, 200)),
+            'bounds adjusted');
+     });
+                    
 });
