@@ -15,7 +15,6 @@ a.button span{display: block;padding-right: 18px;
     background: url(../pages/images/bottone.png) no-repeat top right}
 
 a.button:hover{background-position: bottom left;color: #6B9828}
-
 a.button:hover span{background-position: bottom right}
 
 
@@ -61,6 +60,11 @@ a.button:hover span{background-position: bottom right}
 	cursor:pointer;
 	background-color:#F4F3F2;
 }
+
+.toolbarButton:hover{
+	background-color:#E8E8E8;
+}
+
 
 #selectionButton{
 	background-image:url("../pages/images/selezione.png");
