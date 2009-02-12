@@ -82,43 +82,6 @@ SVGGenerator.prototype.flush = function () {
 };
 
 
-
-/**
- * Transform the circle figure into SVG tags
- * @param {SVGGenerator} gen to call the methods to create tags
- */
-/*
-Circle.prototype.toSVG = function(gen) {
-  var rx = this.getBounds().w()/2;
-  var ry = this.getBounds().h()/2;
-  if (rx != ry) {
-    gen.startCommand("ellipse");
-  }
-  else {
-    gen.startCommand("circle");
-  }
-  var cx = this.getBounds().start().x + this.getBounds().centre().x;
-  gen.attr("cx", cx, false);
-  var cy = this.getBounds().start().y + this.getBounds().centre().y;
-  gen.attr("cy", cy, false);
-  if (rx != ry) {
-    gen.attr("rx", rx, false);
-    gen.attr("ry", ry, false);
-  }
-  else {
-    gen.attr("r", rx, false);
-  }
-  gen.attr("fill", this.getFillColour().toCSS(), false);
-  gen.attr("stroke", this.getBorderColour().toCSS(), true);
-  if (rx != ry) {
-    gen.endCommand("ellipse");
-  }
-  else {
-    gen.endCommand("circle");
-  }
-};
-*/
-
 /**
  * Transform the rectangle figure into SVG tags
  * @param {SVGGenerator} gen to call the methods to create tags
@@ -133,16 +96,16 @@ Rectangle.prototype.toSVG = function(gen) {
   var x = this.getBounds().start().x;
   var y = this.getBounds().start().y;
   if (width < 0) {
-    width = width*(-1);
-	scalex= -1;
-	reverse = true;
-	x = (this.getBounds().start().x)*-1;
+	 width *= -1;
+	 scalex = -1;
+	 reverse = true;
+	 x *= -1;
   }
   if (height < 0) {
-    height = height*(-1);
-	scaley= -1;
-	reverse = true;
-	y = (this.getBounds().start().y)*-1;
+	 height *= -1;
+	 scaley = -1;
+	 reverse = true;
+	 y *= -1;
   }
   gen.attr("x", x, false);
   gen.attr("y", y, false);
@@ -197,9 +160,17 @@ FreeLine.prototype.toSVG = function(gen) {
       c += " L " + p[i].x + "," + p[i].y;
     }
   }
-
   gen.attr("d", c, true);
   gen.endCommand("path");
+};
+
+
+/**
+ * Transform bezier curve into SVG tags
+ * @param {SVGGenerator} gen to call the methods to create tags
+ */
+BezierCurve.prototype.toSVG = function(gen) {
+//  FreeLine.call(this, this, gen);
 };
 
 

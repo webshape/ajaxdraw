@@ -50,7 +50,7 @@ figures.push(c);
 c = new Rectangle();
 c.getBorderColour().set(255, 0, 0, new Opacity(1));
 c.getBounds().setStart(new Point(700, 300));
-c.getBounds().setEnd(new Point(500, 250));
+c.getBounds().setEnd(new Point(500, 350));
 figures.push(c);
 
 // Ellipse
@@ -105,7 +105,7 @@ c.extend(new Point(600, 700));
 figures.push(c);
 
 // Free line with 6 points
-c = new FreeLine();
+c = new BezierCurve();
 c.getBorderColour().set(10, 20, 40, new Opacity(1));
 c.getBounds().setStart(new Point(600, 500));
 c.getBounds().setEnd(new Point(800, 700));
