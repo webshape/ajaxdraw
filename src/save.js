@@ -179,7 +179,7 @@ FreeLine.prototype.toSVG = function(gen) {
   var p = this.getPoints();
   gen.attr("d", p, true);
   gen.endCommand("path");
-}
+};
 
 
 /**

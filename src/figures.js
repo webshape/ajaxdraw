@@ -559,10 +559,105 @@ FreeLine.prototype = new Figure();
 
 /**
  * Add a new point at the end of the line
- * @param {Point} pt the point to add
+ * @param {Point} pt the point to add. Coords of pt are absolute
  */
 FreeLine.prototype.extend = function (pt) {
-  this._pts.push(pt);
+  var b = this.getBounds();
+  var s = b.start();
+  var newStart = new Point(s.x, s.y);
+  var e = b.end();
+  var newEnd = new Point(e.x, e.y);
+  
+  if (this._pts.length == 0) {
+    // first point
+    b.setStart(new Point(pt.x, pt.y));
+    b.setEnd(new Point(pt.x, pt.y));
+    this._pts.push(new Point(0, 0));
+    return;
+  }
+  
+  // if needed make the BoundingRectangle grow
+  if (s.x <= e.x) {
+    if (pt.x < s.x) {
+      newStart.x = pt.x;
+    }
+    if (pt.x > e.x) {
+      newEnd.x = pt.x;
+    }
+  } else {
+    if (pt.x > s.x) {
+      newStart.x = pt.x;
+    }
+    if (pt.x < e.x) {
+      newEnd.x = pt.x;
+    }
+  }
+  if (s.y <= e.y) {
+    if (pt.y < s.y) {
+      newStart.y = pt.y;
+    }
+    if (pt.y > e.y) {
+      newEnd.y = pt.y;
+    }
+  } else {
+    if (pt.y > s.y) {
+      newStart.y = pt.y;
+    }
+    if (pt.y < e.y) {
+      newEnd.y = pt.y;
+    }
+  }
+
+  if (s.x != newStart.x || s.y != newStart.y || 
+      e.x != newEnd.x || e.y != newEnd.y) {
+    // bounding rectangle changed
+    var w = b.w();
+    var h = b.h();
+    //s.x = newStart.x; s.y = newStart.y;
+    //e.x = newEnd.x; e.y = newEnd.y;
+    // get all abs values
+    for (var i = 0; i < this._pts.length; i++) {
+      var p = this._pts[i];
+      p.x = p.x*w + s.x;
+      p.y = p.y*h + s.y;
+    }
+    // add point
+    this._pts.push(pt);
+    // change rect
+    s.x = newStart.x; s.y = newStart.y;
+    e.x = newEnd.x; e.y = newEnd.y;
+    // w & h changed
+    w = b.w();
+    h = b.h();
+    // back to relative
+    for (i = 0; i < this._pts.length; i++) {
+      var p = this._pts[i];
+      if (w == 0) {
+        p.x = s.x;
+      } else {
+        p.x = (p.x - s.x)/w;
+      }
+      if (h == 0) {
+        p.y = s.y;
+      } else {
+        p.y = (p.y - s.y)/h;
+      }
+    }
+  } else {
+    var w = b.w();
+    var h = b.h();
+    if (w == 0) {
+      pt.x = s.x;
+    } else {
+      pt.x = (pt.x - s.x)/w;
+    }
+    if (h == 0) {
+      pt.y = s.y;
+    } else {
+      pt.y = (pt.y - s.y)/h;
+    }
+    this._pts.push(pt);
+  }
 };
 
 /**
@@ -575,7 +670,9 @@ FreeLine.prototype.getPoints = function () {
   var w = bounds.w();
   var h = bounds.h();
   return this._pts.map(function (pt) {
-                         return new Point(pt.x*w+tx, pt.y*h+ty);
+                         var p = new Point(pt.x*w+tx, pt.y*h+ty);
+                         //alert(p.x + ' ' + p.y);
+                         return p;
                        });
 };
 
