@@ -1,4 +1,4 @@
-$(document).ready(function () {
+function runFiguresTest() {
                     
 test("BoundingRectangle", function () {
        var r = new BoundingRectangle(new Point(-10, -10),
@@ -42,4 +42,4 @@ test('FreeLine', function () {
             'bounds adjusted');
      });
                     
-});
+}
