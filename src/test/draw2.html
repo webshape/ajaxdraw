@@ -4,7 +4,7 @@
 <head>
 <title> Draw Test </title>
 <script src="../lib/jquery.js"></script>
-<!--[if IE]><script type="text/javascript" src="../src/lib/excanvas.js"></script><![endif]-->
+<!--[if IE]><script type="text/javascript" src="../lib/excanvas.js"></script><![endif]-->
 <script src="../utils.js"></script>
 <script src="../figures.js"></script>
 <script src="../save.js"></script>
@@ -60,7 +60,6 @@ c.getBounds().setStart(new Point(0, 350));
 c.getBounds().setEnd(new Point(400, 450));
 figures.push(c);
 
-
 // Circle
 c = new Circle();
 c.getBorderColour().set(125, 0, 255, new Opacity(1));
@@ -68,7 +67,12 @@ c.getBounds().setStart(new Point(450, 350));
 c.getBounds().setEnd(new Point(550, 450));
 figures.push(c);
 
-
+// Reversed ellipse
+c = new Circle();
+c.getBorderColour().set(0, 0, 255, new Opacity(1));
+c.getBounds().setStart(new Point(750, 450));
+c.getBounds().setEnd(new Point(600, 350));
+figures.push(c);
 
 // Straight line
 c = new StraightLine();
@@ -77,11 +81,59 @@ c.getBounds().setStart(new Point(0, 500));
 c.getBounds().setEnd(new Point(200, 600));
 figures.push(c);
 
+// Free line with 4 points
+c = new FreeLine();
+c.getBorderColour().set(10, 20, 40, new Opacity(1));
+//c.getBounds().setStart(new Point(200, 500));
+//c.getBounds().setEnd(new Point(400, 700));
+c.extend(new Point(200, 500));
+c.extend(new Point(300, 600));
+c.extend(new Point(320, 520));
+c.extend(new Point(400, 700));
+figures.push(c);
 
+// Free line with 5 points
+c = new FreeLine();
+c.getBorderColour().set(10, 20, 40, new Opacity(1));
+c.getBounds().setStart(new Point(400, 500));
+c.getBounds().setEnd(new Point(600, 700));
+c.extend(new Point(400, 500));
+c.extend(new Point(500, 600));
+c.extend(new Point(520, 520));
+c.extend(new Point(550, 550));
+c.extend(new Point(600, 700));
+figures.push(c);
+
+// Free line with 6 points
+c = new FreeLine();
+c.getBorderColour().set(10, 20, 40, new Opacity(1));
+c.getBounds().setStart(new Point(600, 500));
+c.getBounds().setEnd(new Point(800, 700));
+c.extend(new Point(600, 500));
+c.extend(new Point(700, 600));
+c.extend(new Point(720, 520));
+c.extend(new Point(750, 550));
+c.extend(new Point(780, 690));
+c.extend(new Point(800, 700));
+figures.push(c);
+/*
+// Text
+c = new Text('Aloha!');
+c.getBorderColour().set(255, 0, 0, new Opacity(1));
+c.getBounds().setStart(new Point(0, 700));
+c.getBounds().setEnd(new Point(200, 850));
+figures.push(c);
+// Text with reversed bounding rectangle
+c = new Text('Aloha (2) !');
+c.getBorderColour().set(255, 0, 0, new Opacity(1));
+c.getBounds().setStart(new Point(450, 850));
+c.getBounds().setEnd(new Point(250, 700));
+figures.push(c);
+*/
 figures.each(function (f) {
                f.draw(canvas);
              });
-
+             
 s = new SVGWriter();
 svg = (s.write(figures));
 document.write(svg);

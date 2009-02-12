@@ -176,8 +176,29 @@ StraightLine.prototype.toSVG = function(gen) {
  */
 FreeLine.prototype.toSVG = function(gen) {
   gen.startCommand("path");
+  gen.attr("stroke", this.getBorderColour().toCSS(), false);
+  gen.attr("fill", "none", false);
   var p = this.getPoints();
-  gen.attr("d", p, true);
+  var c = "M " + p[0].x + "," + p[0].y;
+  var i = 0;
+  for (i = 0; i+2 < p.length; i += 3) {
+	 c += " C";
+	 for (var j = i; j < i+3; j++) {
+		c += " " + p[j].x + "," + p[j].y;
+	 }
+  }
+  var r = p.length - i;
+  if (r == 2) {
+    // quadratic curve
+    c += " Q " + p[i].x + "," + p[i].y + " " + p[i+1].x + "," + p[i+1].y;
+  } else {
+    if (r == 1) {
+      // straight line
+      c += " L " + p[i].x + "," + p[i].y;
+    }
+  }
+
+  gen.attr("d", c, true);
   gen.endCommand("path");
 };
 
@@ -221,6 +242,7 @@ Circle.prototype.toSVG = function(gen) {
  * Transform the text into SVG tags (a circle is a particular ellipse)
  * @param {SVGGenerator} gen to call the methods to create tags
  */
+/*
 Text.prototype.toSVG = function(gen) {
   gen.startCommand("text");
   gen.attr("x", this.getBounds().start().x, false);
@@ -231,4 +253,4 @@ Text.prototype.toSVG = function(gen) {
   gen.attr("stroke", this.getBorderColour().toCSS(), true);
   gen.text(this.getText());
   gen.endCommand("text");
-};
+};*/
