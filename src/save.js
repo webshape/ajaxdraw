@@ -156,7 +156,6 @@ Rectangle.prototype.toSVG = function(gen) {
 };
 
 
-
 /**
  * Transform the line figure into SVG tags
  * @param {SVGGenerator} gen to call the methods to create tags
@@ -171,6 +170,16 @@ StraightLine.prototype.toSVG = function(gen) {
   gen.endCommand("line");
 };
 
+/**
+ * Transform free-hand lines into SVG tags
+ * @param {SVGGenerator} gen to call the methods to create tags
+ */
+FreeLine.prototype.toSVG = function(gen) {
+  gen.startCommand("path");
+  var p = this.getPoints();
+  gen.attr("d", p, true);
+  gen.endCommand("path");
+}
 
 
 /**
@@ -188,7 +197,6 @@ Polygon.prototype.toSVG = function(gen) {
   gen.attr("points", points, true);
   gen.endCommand("polygon");
 };
-
 
 
 /**
@@ -209,7 +217,6 @@ Circle.prototype.toSVG = function(gen) {
 };
 
 
-
 /**
  * Transform the text into SVG tags (a circle is a particular ellipse)
  * @param {SVGGenerator} gen to call the methods to create tags
@@ -218,8 +225,10 @@ Text.prototype.toSVG = function(gen) {
   gen.startCommand("text");
   gen.attr("x", this.getBounds().start().x, false);
   gen.attr("y", this.getBounds().end().y, false);
-  //non completata
-  gen.attr("fill", this.getFillColour().toCSS(), false);
+  gen.attr("font-family", this.getTextFont(), false);
+  gen.attr("font-size", this.getTextSize(), false);
+  gen.attr("fill", this.getTextColour().toCSS(), false);
   gen.attr("stroke", this.getBorderColour().toCSS(), true);
+  gen.text(this.getText());
   gen.endCommand("text");
 };
