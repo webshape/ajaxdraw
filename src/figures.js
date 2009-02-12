@@ -277,6 +277,20 @@ TextSize.prototype.toCSS = function () {
  */
 function FigureSet () {
   this._figures = [];
+  // check if we have getImageData
+  var hasImageData = false;
+  var c = document.createElement('canvas');
+  if (c) {
+    c = c.getContext('2d');
+    if (c) {
+      if (c.getImageData) {
+        hasImageData = true;
+      }
+    }
+  }
+  if (!hasImageData) {
+    this.selectFigure = FigureSet.prototype.fallbackSelection;
+  }
 }
 
 /**
@@ -307,6 +321,43 @@ FigureSet.prototype.rem = function (f) {
 };
 
 /**
+ * Select the figure matching the given point. Fallback function
+ * for browsers without getImageData. Less precise.
+ * @param {Point} where point to match against
+ * @return matching figure or null
+ */
+FigureSet.prototype.fallbackSelection = function (where) {
+  for (var i = this._figures.length - 1; i >= 0; --i) {
+    var f = this._figures[i];
+    var b = this._figures[i].getBounds();
+    var s = b.start();
+    var e = b.end();
+    var minx = s.x; var maxx = e.x;
+    var miny = s.y; var maxy = e.y;
+    if (maxx < minx) {
+      maxx = minx;
+      minx = e.x;
+    }
+    if (maxy < miny) {
+      maxy = miny;
+      miny = e.x;
+    }
+    if (minx <= where.x && where.x <= maxx && 
+        miny <= where.y && where.y <= maxy) {
+      if (f instanceof StraightLine) {
+        // default algorithm works really bad with straight lines
+        if (minx == where.x || maxx == where.x || 
+            (miny-where.y)/(minx-where.x) == (maxy-where.y)/(maxx-where.x))
+          return this._figures[i];
+      } else {
+        return this._figures[i];
+      }
+    }
+  }
+  return null;
+};
+
+/**
  * Select the figure matching the given point
  * @param {Point} where point to match against
  * @return matching figure or null
@@ -330,7 +381,7 @@ FigureSet.prototype.selectFigure = function (where) {
     }
     return [new Colour(r, g, b, o), new FillColour(r, g, b, o)];
   };
-  
+
   var fs = {};
   var c = document.createElement('canvas');
   c.width = 1000;
@@ -720,14 +771,14 @@ BezierCurve.prototype = new FreeLine();
 function Text (txt) {
   Figure.call(this);
   this._txt = txt;
-  this._colour = new TextColour(0, 0, 0, new Opacity(1));
+  this._fillColour = new TextColour(0, 0, 0, new Opacity(1));
   this._font = new TextFont('sans-serif');
 }
 
 Text.prototype = new Figure();
 
 Text.accessors('_txt', 'getText', 'setText');
-Text.accessors('_colour', 'getTextColour', 'setTextColour');
+Text.accessors('_fillColour', 'getTextColour', 'setTextColour');
 
 Text.prototype.eachProperty = function (fn) {
   Figure.prototype.eachProperty.call(this, fn);

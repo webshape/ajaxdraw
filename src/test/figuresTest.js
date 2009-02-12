@@ -23,7 +23,29 @@ test('FigureSet.selectFigure', function () {
        f.getBounds().setEnd(new Point(100, 100));
        fs.add(f);
        equals(fs.selectFigure(new Point(10, 10)), f, 'line selection in');
-       equals(fs.selectFigure(new Point(12, 10)), null, 'line selection out');
+       equals(fs.selectFigure(new Point(99, 99)), f, 'line selection in');
+       equals(fs.selectFigure(new Point(10, 12)), null, 'line selection out');
+       equals(fs.selectFigure(new Point(102, 102)), null, 
+              'line selection out');
+       var p = new Polygon();
+       p.getBounds().setStart(new Point(0, 0));
+       p.getBounds().setEnd(new Point(200, 200));
+       p.edgeNumber().setVal(7);
+       fs.add(p);
+       equals(fs.selectFigure(new Point(101, 101)), p, 
+              'line with polygon over, point on polygon');
+       equals(fs.selectFigure(new Point(100, 100)), p, 
+              'line with polygon over');
+       equals(fs.selectFigure(new Point(202, 200)), null, 
+              'line with polygon over, point out of both');
+       var t = new Text('#############');
+       t.getBounds().setStart(new Point(0, 0));
+       t.getBounds().setEnd(new Point(50, 50));
+       fs.add(t);
+       equals(fs.selectFigure(new Point(100, 100)), p, 
+              'text and line with polygon over, point on polygon');
+       //equals(fs.selectFigure(new Point(10, 10)), t,
+         //     'text, line, polygon, point on text');
      });
                     
 test('FreeLine', function () {
