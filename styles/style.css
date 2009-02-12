@@ -5,6 +5,21 @@ canvas {
 
 }
 
+/*bottoni salva */
+a.button{float: left;height: 35px;padding-left: 18px; 
+    font: bold 12px/35px "Trebuchet MS",Arial,sans-serif;
+    background: url(../pages/images/bottone.png) no-repeat top left;
+    text-decoration: none;color: #286C98}
+
+a.button span{display: block;padding-right: 18px;
+    background: url(../pages/images/bottone.png) no-repeat top right}
+
+a.button:hover{background-position: bottom left;color: #6B9828}
+
+a.button:hover span{background-position: bottom right}
+
+
+
 /*Tavolozza*/
 .paletteComponent{
 	height:4em;
