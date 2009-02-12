@@ -56,6 +56,29 @@ Figure.prototype.eachProperty = function (fn) {
 };
 
 /**
+ * Draw small squares around the main points of the figure
+ * @param {Canvas} c the canvas
+ */
+Figure.prototype.drawSelection = function (c) {
+  if (!this.isSelected()) {
+    // nothing to do
+    return;
+  }
+
+  var ctx = c.getContext('2d');
+  var size = 10; // 10x10 pixel squares
+  var half = size/2;
+  var color = new Colour(0, 0, 255, new Opacity(0.8)); // blue
+  ctx.save();
+  this.getMainPoints().each(function (pt) {
+                              color.applyToContext(ctx);
+                              ctx.strokeRect(pt.x - half, ptx.y - half, 
+                                             size, size);
+                            });
+  ctx.restore();
+};
+
+/**
  * Property of a figure
  */
 function Property() {
@@ -778,6 +801,7 @@ function Text (txt) {
 Text.prototype = new Figure();
 
 Text.accessors('_txt', 'getText', 'setText');
+Text.accessors('_font', 'getFont', 'setFont');
 Text.accessors('_fillColour', 'getTextColour', 'setTextColour');
 
 Text.prototype.eachProperty = function (fn) {
