@@ -1,11 +1,3 @@
-<<<<<<< HEAD:src/test/saveTest.js
-$(document).ready(function () {
-						  test("Save Test", function () {
-                           var c = new Rectangle();
-                           c.getBorderColour().set(255, 0, 0, new Opacity(1));
-                           c.getBounds().setStart(new Point(10, 20));
-                           c.getBounds().setEnd(new Point(50, 40));
-=======
 function runSaveTest () {
   test("Save Test", function () {
          var c = new Rectangle();
@@ -14,7 +6,6 @@ function runSaveTest () {
          c.getBounds().setEnd(new Point(50, 40));
          
          var svgValue = "<rect x=\"10\" y=\"20\" width=\"40\" height=\"20\" fill=\"#000000\" stroke=\"#ff0000\"></rect>\n";
->>>>>>> 18d0bd1804ebca0e27af38bd57e465146ff75fb2:src/test/saveTest.js
 
          var s = new SVGGenerator(1000, 1000);
 	 s._doc = "";
