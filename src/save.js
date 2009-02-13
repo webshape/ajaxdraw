@@ -88,6 +88,13 @@ SVGGenerator.prototype.flush = function () {
  */
 Rectangle.prototype.toSVG = function(gen) {
   gen.startCommand("rect");
+  var x = this.getBounds().start().x;
+  if (x > this.getBounds().end().x)
+	 x = this.getBounds().end().x;
+  var y = this.getBounds().start().y;
+  if (y > this.getBounds().end().y)
+	 y = this.getBounds().end().y;
+  /*
   var width = this.getBounds().w();
   var height = this.getBounds().h();
   var reverse = false;
@@ -106,15 +113,17 @@ Rectangle.prototype.toSVG = function(gen) {
 	 scaley = -1;
 	 reverse = true;
 	 y *= -1;
-  }
+  }*/
   gen.attr("x", x, false);
   gen.attr("y", y, false);
-  if (reverse)
-    gen.attr("transform", "scale(" + scalex +","+ scaley + ")", false);
-  gen.attr("width", width, false);
-  gen.attr("height", height, false);
+  /*if (reverse)
+    gen.attr("transform", "scale(" + scalex +","+ scaley + ")", false);*/
+  gen.attr("width", Math.abs(this.getBounds().w()), false);
+  gen.attr("height", Math.abs(this.getBounds().h()), false);
   gen.attr("fill", this.getFillColour().toCSS(), false);
-  gen.attr("stroke", this.getBorderColour().toCSS(), true);
+  gen.attr("fill-opacity", this.getFillColour().getOpacity().getVal(), false);
+  gen.attr("stroke", this.getBorderColour().toCSS(), false);
+  gen.attr("stroke-opacity", this.getBorderColour().getOpacity().getVal(), true);
   gen.endCommand("rect");
 };
 
@@ -129,7 +138,8 @@ StraightLine.prototype.toSVG = function(gen) {
   gen.attr("y1", this.getBounds().start().y, false);
   gen.attr("x2", this.getBounds().end().x, false);
   gen.attr("y2", this.getBounds().end().y, false);
-  gen.attr("stroke", this.getBorderColour().toCSS(), true);
+  gen.attr("stroke", this.getBorderColour().toCSS(), false);
+  gen.attr("stroke-opacity", this.getBorderColour().getOpacity().getVal(), true);
   gen.endCommand("line");
 };
 
@@ -139,8 +149,9 @@ StraightLine.prototype.toSVG = function(gen) {
  */
 FreeLine.prototype.toSVG = function(gen) {
   gen.startCommand("path");
-  gen.attr("stroke", this.getBorderColour().toCSS(), false);
   gen.attr("fill", "none", false);
+  gen.attr("stroke", this.getBorderColour().toCSS(), false);
+  gen.attr("stroke-opacity", this.getBorderColour().getOpacity().getVal(), false);
   var p = this.getPoints();
   var c = "M " + p[0].x + "," + p[0].y;
   var i = 0;
@@ -181,7 +192,9 @@ BezierCurve.prototype.toSVG = function(gen) {
 Polygon.prototype.toSVG = function(gen) {
   gen.startCommand("polygon");
   gen.attr("fill", this.getFillColour().toCSS(), false);
+gen.attr("fill-opacity", this.getFillColour().getOpacity().getVal(), false);
   gen.attr("stroke", this.getBorderColour().toCSS(), false);
+  gen.attr("stroke-opacity", this.getBorderColour().getOpacity().getVal(), false);
   var aPoints = this.getPoints();
   var points = "";
   for (var i = 0; i < aPoints.length; ++i)
@@ -197,14 +210,22 @@ Polygon.prototype.toSVG = function(gen) {
  */
 Circle.prototype.toSVG = function(gen) {
   gen.startCommand("ellipse");
-  var cx = this.getBounds().start().x + this.getBounds().centre().x;
+  var x = this.getBounds().start().x;
+  if (x > this.getBounds().end().x)
+	 x = this.getBounds().end().x;
+  var y = this.getBounds().start().y;
+  if (y > this.getBounds().end().y)
+	 y = this.getBounds().end().y;
+  var cx = x + Math.abs(this.getBounds().centre().x);
+  var cy = y + Math.abs(this.getBounds().centre().y);
   gen.attr("cx", cx, false);
-  var cy = this.getBounds().start().y + this.getBounds().centre().y;
   gen.attr("cy", cy, false);
-  gen.attr("rx", this.getBounds().w()/2, false);
-  gen.attr("ry", this.getBounds().h()/2, false);
+  gen.attr("rx", Math.abs(this.getBounds().w()/2), false);
+  gen.attr("ry", Math.abs(this.getBounds().h()/2), false);
   gen.attr("fill", this.getFillColour().toCSS(), false);
-  gen.attr("stroke", this.getBorderColour().toCSS(), true);
+  gen.attr("fill-opacity", this.getFillColour().getOpacity().getVal(), false);
+  gen.attr("stroke", this.getBorderColour().toCSS(), false);
+  gen.attr("stroke-opacity", this.getBorderColour().getOpacity().getVal(), true);
   gen.endCommand("ellipse");
 };
 
@@ -220,7 +241,9 @@ Text.prototype.toSVG = function(gen) {
   gen.attr("font-family", this.getFont().toCSS(), false);
   gen.attr("font-size", Math.abs(this.getBounds().h()), false);
   gen.attr("fill", this.getTextColour().toCSS(), false);
-  gen.attr("stroke", this.getBorderColour().toCSS(), true);
+  gen.attr("fill-opacity", this.getFillColour().getOpacity().getVal(), false);
+  gen.attr("stroke", this.getBorderColour().toCSS(), false);
+  gen.attr("stroke-opacity", this.getBorderColour().getOpacity().getVal(), true);
   gen.text(this.getText());
   gen.endCommand("text");
 };
