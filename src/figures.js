@@ -158,10 +158,10 @@ BoundingRectangle.prototype.applyToContext = function (ctx) {
  * @param val the opacity value
  */
 function Opacity(val) {
-  this.val = val;
+  this._val = val;
 }
 
-Opacity.accessors('val', 'getVal', 'setVal');
+Opacity.accessors('_val', 'getVal', 'setVal');
 
 /**
  * Set the global alpha value
@@ -248,12 +248,12 @@ var TextColour = FillColour;
  * @param {Integer} val value
  */
 function EdgeNumber (val) {
-  this.val = val;
+  this._val = val;
 }
 
 EdgeNumber.prototype = new Property();
 
-EdgeNumber.accessors('val', 'getVal', 'setVal');
+EdgeNumber.accessors('_val', 'getVal', 'setVal');
 
 EdgeNumber.prototype.createWidget = function () {
   // TODO: implement

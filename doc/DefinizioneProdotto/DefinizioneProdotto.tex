@@ -249,6 +249,106 @@ Usata dalla classe \textit{SVGWriter} per serializzare in SVG le figure correnti
 \end{elencopuntato}
 
 
+\subsezione{Property}
+\subsubsezione{Tipo, obiettivo e funzione del componente}
+Rappresenta una propriet\`a generica di una figura. Le propriet\`a influenzano 
+l'aspetto delle diverse figure, e sono modificabili dall'utente.
+\subsubsezione{Relazioni d'uso di altre componenti}
+Nessuna.
+\subsubsezione{Interfacce e relazioni di uso da altre componenti}
+Implementata da tutte le propriet\`a concrete delle diverse figure.
+\subsubsezione{Attivit\`a svolte e dati trattati}
+\begin{elencopuntato}[\normindent]
+\item[-] \textit{createWidget} crea un widget grafico che permetter\`a all'utente di modificare la propriet\`a.
+\end{elencopuntato}
+
+\subsezione{CSSProperty}
+\subsubsezione{Tipo, obiettivo e funzione del componente}
+Rappresenta una propriet\`a di una figura che necessita di una rappresentazione conforme ai CSS. Questa rappresentazione \`e necessaria per applicare alcune propriet\`a (come ad esempio il colore) al canvas e per la conversione in SVG. Non \`e presente in modo esplicito nel codice.
+\subsubsezione{Relazioni d'uso di altre componenti}
+Nessuna.
+\subsubsezione{Interfacce e relazioni di uso da altre componenti}
+Implementata da \textit{Colour} e \textit{TextFont}. 
+\subsubsezione{Attivit\`a svolte e dati trattati}
+\begin{elencopuntato}[\normindent]
+\item[-] \textit{toCSS} genera una stringa che rappresenta la propriet\`a come propriet\`a CSS.
+\end{elencopuntato}
+
+\subsezione{Opacity}
+\subsubsezione{Tipo, obiettivo e funzione del componente}
+Rappresenta l'opacit\`a di un colore. Mantiene un unico valore che varia nell'intervallo [0, 1]. Se il valore \`e 0 la figura \`e completamente trasparente, se
+il valore \`e 1, la figura \`e completamente opaca, ovvero non permette la visualizzazione delle figure sottostanti.
+\subsubsezione{Relazioni d'uso di altre componenti}
+Nessuna.
+\subsubsezione{Interfacce e relazioni di uso da altre componenti}
+\textit{Colour} ne mantiene un'istanza.
+\subsubsezione{Attivit\`a svolte e dati trattati}
+\paragrafo{Attributi privati:}
+\begin{elencopuntato}[\normindent]
+\item[-] \textit{\_val} un numero contenente il valore dell'opacit\`a.
+\end{elencopuntato}
+\paragraph{Metodi pubblici:}
+\begin{elencopuntato}[\normindent]
+\item[-] \textit{get/setVal} permette di ottenere, o di modificare, il valore dell'opacit\`a.
+\item[-] \textit{applyToContext(context)} setta il valore \textit{globalAlpha} del contesto grafico al proprio valore interno. Questo valore influenzer\`a l'opacit\`a delle prossime figure disegnate.
+\end{elencopuntato}
+
+\subsezione{EdgeNumber}
+\subsubsezione{Tipo, obiettivo e funzione del componente}
+Rappresenta il numero degli spigoli di un poligono. Questo numero non pu\`o essere inferiore a 3.
+\subsubsezione{Relazioni d'uso di altre componenti}
+Implementa \textit{Property}.
+\subsubsezione{Interfacce e relazioni di uso da altre componenti}
+\textit{Polygon} ne mantiene un'istanza.
+\subsubsezione{Attivit\`a svolte e dati trattati}
+\paragrafo{Attributi privati:}
+\begin{elencopuntato}[\normindent]
+\item[-] \textit{\_val} il numero dei lati.
+\end{elencopuntato}
+\paragraph{Metodi pubblici:}
+\begin{elencopuntato}[\normindent]
+\item[-] \textit{get/setVal} permette di ottenere, o di modificare, il numero dei lati.
+\item[-] \textit{createWidget} crea e ritorna un'istanza di \textit{EdgeNumberSetter} passando se stesso come parametro al costruttore.
+\end{elencopuntato}
+
+
+\subsezione{Colour}
+\subsubsezione{Tipo, obiettivo e funzione del componente}
+Rappresenta un colore come una terna RGB pi\`u l'opacit\`a del colore stesso. Questa rappresentazione trova una corrispondenza diretta sia nel tag <canvas>, sia nel formato SVG.
+\subsubsezione{Relazioni d'uso di altre componenti}
+Implementa \textit{Property} e \textit{CSSProperty}. Mantiene un'istanza di \textit{Opacity} che rappresenta l'opacit\`a del colore.
+\subsubsezione{Interfacce e relazioni di uso da altre componenti}
+\textit{Figure} ne mantiene un'istanza per rappresentare il colore del bordo.
+\subsubsezione{Attivit\`a svolte e dati trattati}
+\paragrafo{Attributi privati:}
+\begin{elencopuntato}[\normindent]
+\item[-] \textit{\_r} intensit\`a del rosso. Pu\`o valere da 0 a 255.
+\item[-] \textit{\_g} intensit\`a del verde. Pu\`o valere da 0 a 255.
+\item[-] \textit{\_b} intensit\`a del blu. Pu\`o valere da 0 a 255.
+\item[-] \textit{\_o} opacit\`a del colore, di tipo \textit{Opacity}.
+\end{elencopuntato}
+\paragraph{Metodi pubblici:}
+\begin{elencopuntato}[\normindent]
+\item[-] \textit{getOpacity()} ritorna l'attributi \textit{_o}.
+\item[-] \textit{set(r, g, b, o)} modifica i valori dei quattro attributi.
+\item[-] \textit{createWidget()} crea e ritorna un'istanza di \textit{ColourDialog} passando se stesso come parametro al costruttore.
+\item[-] \textit{toCSS()} ritorna il colore come una stringa di tipo \"#EEEEEE\" formata da tre coppie di due cifre esadecimali. Le coppie rappresentano rispettivamente il rosso, il verde, il blu. L'opacit\`a viene ignorata da questo metodo.
+\item[-] \textit{applyToContext(context)} setta l'attributo \textit{strokeStyle} del contesto grafico alla propria rappresentazione CSS, e richiama il metodo \textit{applyToContext} su \textit{_o} passando \textit{context} come argomento.
+\end{elencopuntato}
+
+\subsezione{FillColour}
+\subsubsezione{Tipo, obiettivo e funzione del componente}
+Rappresenta un colore di riempimento.
+\subsubsezione{Relazioni d'uso di altre componenti}
+Deriva da \textit{Colour}.
+\subsubsezione{Interfacce e relazioni di uso da altre componenti}
+\textit{Circle}, \textit{Polygon} e \textit{Rectangle} ne mantengono un'istanza.
+\subsubsezione{Attivit\`a svolte e dati trattati}
+\paragraph{Metodi pubblici:}
+\begin{elencopuntato}[\normindent]
+\item[-] \textit{applyToContext(context)} setta l'attributo \textit{fillStyle} del contesto grafico alla propria rappresentazione CSS, e richiama il metodo \textit{applyToContext} su \textit{_o} passando \textit{context} come argomento.
+\end{elencopuntato}
+
 \sezione{Tracciamento della relazione componenti - requisiti}
 
 \end{document}
