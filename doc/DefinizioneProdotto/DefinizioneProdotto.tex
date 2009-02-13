@@ -180,10 +180,10 @@ Il presente documento \`e redatto utilizzando le convenzioni inserite nel docume
 \subsubsezione{Normativi}
 \begin{elencopuntato}[\subsubsecindent]
 \item[-] \textit{NormeDiProgetto.pdf}
-\item[-] Raccomandazione SVG: http://www.w3.org/TR/SVG11/
-\item[-] Raccomandazione CSS: http://www.w3.org/TR/CSS21/
-\item[-] Working Draft HTML 5: http://www.w3.org/TR/html5/
-\item[-] Specifiche UML: http://www.omg.org/spec/UML/2.1.2/
+\item[-] Raccomandazione SVG: \href{http://www.w3.org/TR/SVG11/}{http://www.w3.org/TR/SVG11/}
+\item[-] Raccomandazione CSS: \href{http://www.w3.org/TR/CSS21/}{http://www.w3.org/TR/CSS21/}
+\item[-] Working Draft HTML 5: \href{http://www.w3.org/TR/html5/}{http://www.w3.org/TR/html5/}
+\item[-] Specifiche UML: \href{http://www.omg.org/spec/UML/2.1.2/}{http://www.omg.org/spec/UML/2.1.2/}
 \end{elencopuntato}
 
 \sezione{Standard di progetto}
@@ -191,7 +191,7 @@ Il presente documento \`e redatto utilizzando le convenzioni inserite nel docume
 La progettazione verr\`a presentata tramite una descrizione testuale delle componenti accompagnata da diagrammi UML.
 \subsezione{Standard di documentazione del codice}
 Si vedano le \textit{NormeDiprogetto}.
-\subsezione{Standard di denominazione di entità e relazioni}
+\subsezione{Standard di denominazione di entit\`a e relazioni}
 Si vedano le \textit{NormeDiprogetto}.
 \subsezione{Standard di programmazione}
 Si vedano le \textit{NormeDiprogetto}.
@@ -212,19 +212,19 @@ Viene aggregata dalla classe \textit{FigureSet}.
 \subsubsezione{Attivit\`a svolte e dati trattati}
 \paragrafo{Attributi privati:}
 \begin{elencopuntato}[\normindent]
-\item[-] \textit{_selected} dice se la figura \`e selezionata
-\item[-] \textit{_bounds} \textit{BoundingRectangle} che racchiude la figura
-\item[-] \textit{_borderColour} colore del bordo della figura
+\item[-] \textit{{\_}selected} dice se la figura \`e selezionata
+\item[-] \textit{{\_}bounds} \textit{BoundingRectangle} che racchiude la figura
+\item[-] \textit{{\_}borderColour} colore del bordo della figura
 \end{elencopuntato}
 \paragrafo{Metodi pubblici:}
 \begin{elencopuntato}[\normindent]
-\item[-] \textit{getBounds()} ritorna \textit{_bounds}
-\item[-] \textit{getBorderColour()} ritorna \textit{_borderColour}
+\item[-] \textit{getBounds()} ritorna \textit{{\_}bounds}
+\item[-] \textit{getBorderColour()} ritorna \textit{{\_}borderColour}
 \item[-]  \textit{draw(canvas)} metodo astratto per disegnare la figura sul canvas.
 \item[-]  \textit{getMainPoints} metodo astratto per ottenere i punti della figura manipolabili dall'utente.
-\item[-]  \textit{setSelection(value)} permette di selezionare/deselezionare la figura. Modifica \textit{_selected}.
-\item[-]  \textit{isSelected()} dice se la figura \`e correntemente selezionata. Ritorna \textit{_selected}.
-\item[-]  \textit{eachProperty(fn)} applica la funzione fn ad ogni propriet\`a della figura, ovvero a \textit{_bounds} e \textit{_borderColour}.
+\item[-]  \textit{setSelection(value)} permette di selezionare/deselezionare la figura. Modifica \textit{{\_}selected}.
+\item[-]  \textit{isSelected()} dice se la figura \`e correntemente selezionata. Ritorna \textit{{\_}selected}.
+\item[-]  \textit{eachProperty(fn)} applica la funzione fn ad ogni propriet\`a della figura, ovvero a \textit{{\_}bounds} e \textit{{\_}borderColour}.
 \item[-] \textit{drawSelection(canvas)} disegna dei quadratini intorno ai punti principali della figura, ottenuti tramite \textit{getMainPoints}, se la figura \`e selezionata.
 \end{elencopuntato}
 
@@ -238,14 +238,14 @@ Usata dalla classe \textit{SVGWriter} per serializzare in SVG le figure correnti
 \subsubsezione{Attivit\`a svolte e dati trattati}
 \paragrafo{Attributi privati:}
 \begin{elencopuntato}[\normindent]
-\item[-] \textit{_figures} array contenente le figure.
+\item[-] \textit{{\_}figures} array contenente le figure.
 \end{elencopuntato}
 \paragrafo{Metodi pubblici:}
 \begin{elencopuntato}[\normindent]
 \item[-]  \textit{selectFigure()} permette di selezionare una figura contenente il punto passato come argomento, se tale figura esiste.
-\item[-]  \textit{each(fn)} permette di applicare una funzione ad ogni figura. Viene usato per iterare attraverso la collezione. Applica fn ad ogni elemento di \textit{_figures}. 
-\item[-]  \textit{add(f)} aggiunge la figura f alla fine di \textit{_figures}.
-\item[-]  \textit{rem(f)} rimuove da \textit{_figures} tutte le figure identiche (ovvero aventi lo stesso indirizzo) di f.
+\item[-]  \textit{each(fn)} permette di applicare una funzione ad ogni figura. Viene usato per iterare attraverso la collezione. Applica fn ad ogni elemento di \textit{{\_}figures}. 
+\item[-]  \textit{add(f)} aggiunge la figura f alla fine di \textit{{\_}figures}.
+\item[-]  \textit{rem(f)} rimuove da \textit{{\_}figures} tutte le figure identiche (ovvero aventi lo stesso indirizzo) di f.
 \end{elencopuntato}
 
 
