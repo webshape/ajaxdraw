@@ -1,4 +1,5 @@
-	\input{../TeX/base} %BASE!!!
+\input{../TeX/base} %BASE!!!
+\usepackage{multirow}
 
 \title{\TITOLODOC}
 \author{Stefano Dissegna}
@@ -62,12 +63,12 @@ Versione: \insertversion
 \section*{\LARGE Sommario:} %SEZIONE SOMMARIO
 Il presente documento descrive in modo dettagliato le classi e i relativi metodi che andranno a comporre il sistema.
 
+ %SEZIONE SOMMARIO
 \indent \indent
 
 \section*{\LARGE Stato del documento:}
 \indent \indent
 	Formale Esterno
-
 
 \section*{\LARGE Redazione:}
 	\begin{table}[!h]
@@ -82,11 +83,11 @@ Il presente documento descrive in modo dettagliato le classi e i relativi metodi
 				%%%%%%%%%%%%%%FINE INTESTAZIONE COLONNE%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 				\hline
 				%%%%%%%%%%% PARTE DA MODIFICARE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%		
-				\multirow{2}{*}{Pre-RR} & Cunico Marco\\
-										& Dal Bosco Davide\\
+				\multirow{2}{*}{RPP-RQ} & \\
+										& \\
 				\hline
-				\multirow{1}{*}{RR-RPP} & Bizzotto Piero\\
-										
+				\multirow{1}{*}{RQ-RA} & \\
+												
 				\hline
 				%%%%%%%%%%% FINE PARTE DA MODIFICARE %%%%%%%%%%%%%%%%%%%%%%%%%%%
 			\end{tabular}
@@ -96,29 +97,29 @@ Il presente documento descrive in modo dettagliato le classi e i relativi metodi
 	\end{table}
 	
 	
-\section*{\LARGE Approvazione:}
+\section*{\LARGE Verifica:}
 \begin{table}[!h]
 	\begin{center}
 		\begin{tabular}
 			{|c|c|}
 			\hline
 			%%%%%INTESTAZIONE COLONNE%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-			\multicolumn{2}{|c|}{ \textbf{Approvazione} } \\
+			\multicolumn{2}{|c|}{ \textbf{Verifica} } \\
 			\hline
-			\textbf{Fase} & \textbf{Approvatori} \\
+			\textbf{Fase} & \textbf{Verificatori} \\
 			%%%%%%%%%%%%%%FINE INTESTAZIONE COLONNE%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 			\hline
 			%%%%%%%%%%% PARTE DA MODIFICARE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%		
-			\multirow{1}{*}{Pre-RR} & Geremia Mirco \\
+			\multirow{1}{*}{RPP-RQ} &  \\
 									
 			\hline
-			\multirow{1}{*}{RR-RPP} & Geremia Mirco\\
+			\multirow{1}{*}{RQ-RA} & \\
 									
 			\hline
 			%%%%%%%%%%% FINE PARTE DA MODIFICARE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 		\end{tabular}
-		\caption{Lista Approvatori} %INSERIRE DIDASCALIA - SE NECESSARIA - 
-		\label{tabapprovazione}
+		\caption{Lista Verificatori} %INSERIRE DIDASCALIA - SE NECESSARIA - 
+		\label{tabverifica}
 	\end{center}
 \end{table}
 
@@ -130,8 +131,6 @@ Il presente documento descrive in modo dettagliato le classi e i relativi metodi
 		\item WebShape 
 		\item I committenti Conte Renato e Vardanega Tullio in rappresentanza \\  dell'azienda proponente Zucchetti SPA
 	\end{elenconumerato}
-
-
 
 \section*{\Large Registro delle Modifiche:}
 
@@ -248,6 +247,7 @@ Usata dalla classe \textit{SVGWriter} per serializzare in SVG le figure correnti
 \item[-]  \textit{add(f)} aggiunge la figura f alla fine di \textit{_figures}.
 \item[-]  \textit{rem(f)} rimuove da \textit{_figures} tutte le figure identiche (ovvero aventi lo stesso indirizzo) di f.
 \end{elencopuntato}
+
 
 \sezione{Tracciamento della relazione componenti - requisiti}
 
