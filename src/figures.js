@@ -305,7 +305,7 @@ function FigureSet () {
   // check if we have getImageData
   var hasImageData = false;
   var c = document.createElement('canvas');
-  if (c) {
+  if (c && c.getContext) {
     c = c.getContext('2d');
     if (c) {
       if (c.getImageData) {
@@ -380,6 +380,20 @@ FigureSet.prototype.fallbackSelection = function (where) {
     }
   }
   return null;
+  
+/*  
+  var selected = null;
+  var c = document.createElement('canvas');
+  c.height = c.width = 1000;
+  this._figures.each(function (f) {
+                       c.width = 1000; // clear
+                       var ctx = c.getContext('2d');
+                       f.draw(c);
+                       if (ctx.isPointInPath(where.x, where.y)) {
+                         selected = f;
+                       }
+                     });
+  return selected;*/
 };
 
 /**
