@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Insert title here</title>
+<script type="text/javascript">
+  var XMLHttpRequestObject = false;
+  if (window.XMLHttpRequest) {
+    XMLHttpRequestObject = new XMLHttpRequest();
+  } else if (window.ActiveXObject) {
+      XMLHttpRequestObject = new ActiveXObject("Microsoft.XMLHTTP");
+}
+function connessione(dataSource, blocco){
+if(XMLHttpRequestObject) {
+  var obj = document.getElementById(blocco);
+  XMLHttpRequestObject.open("GET", dataSource);
+  XMLHttpRequestObject.onreadystatechange = function() {
+  if (XMLHttpRequestObject.status != 200) {
+    alert("Server non raggiungibile"); 
+    break;
+  }
+} 
+XMLHttpRequestObject.send(null);
+}
+}
+ 
+</script>
+</head>
+<body>
+<form> <!-- method="POST" action="UploadFile" enctype="multipart/form-data"> -->
+  <input name="my_file" type="file">
+  <input type="button" name="salva" value="Salva" onclick='connessione("http://localhost:8080/","blocco")'">
+</form>
+<div id="blocco">
+<p> risposta server <p>
+</div>
+</body>
+</html>
