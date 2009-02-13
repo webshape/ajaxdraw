@@ -763,12 +763,12 @@ FreeLine.prototype.extend = function (pt) {
     for (i = 0; i < this._pts.length; i++) {
       p = this._pts[i];
       if (w === 0) {
-        p.x = s.x;
+        p.x = 0;
       } else {
         p.x = (p.x - s.x)/w;
       }
       if (h === 0) {
-        p.y = s.y;
+        p.y = 0;
       } else {
         p.y = (p.y - s.y)/h;
       }
@@ -777,12 +777,12 @@ FreeLine.prototype.extend = function (pt) {
     w = b.w();
     h = b.h();
     if (w === 0) {
-      pt.x = s.x;
+      pt.x = 0;
     } else {
       pt.x = (pt.x - s.x)/w;
     }
     if (h === 0) {
-      pt.y = s.y;
+      pt.y = 0;
     } else {
       pt.y = (pt.y - s.y)/h;
     }

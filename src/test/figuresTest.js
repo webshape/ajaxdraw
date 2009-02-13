@@ -50,16 +50,16 @@ test('FigureSet.selectFigure', function () {
                     
 test('FreeLine', function () {
        var f = new FreeLine();
-       var pts = [new Point(0, 0), new Point(0, 0), new Point(0, 10), 
+       var pts = [new Point(5, 5), new Point(5, 5), new Point(0, 10), 
                   new Point(100, 200), new Point(-23, 24), new Point(10, 10)];
        pts.each(function (p) {
                   f.extend(p);
                 });
        // extend may change the original array
-       pts = [new Point(0, 0), new Point(0, 0), new Point(0, 10), 
+       pts = [new Point(5, 5), new Point(5, 5), new Point(0, 10), 
               new Point(100, 200), new Point(-23, 24), new Point(10, 10)];
        same(f.getPoints(), pts, 'correct abs/rel conversion');
-       same(f.getBounds(), new BoundingRectangle(new Point(-23, 0), 
+       same(f.getBounds(), new BoundingRectangle(new Point(-23, 5), 
                                                  new Point(100, 200)),
             'bounds adjusted');
      });
