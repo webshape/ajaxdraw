@@ -372,8 +372,9 @@ FigureSet.prototype.fallbackSelection = function (where) {
       if (f instanceof StraightLine) {
         // default algorithm works really bad with straight lines
         if (minx == where.x || maxx == where.x || 
-            (miny-where.y)/(minx-where.x) == (maxy-where.y)/(maxx-where.x))
+            ((miny-where.y)/(minx-where.x) == (maxy-where.y)/(maxx-where.x))) {
           return this._figures[i];
+        }
       } else {
         return this._figures[i];
       }
@@ -694,7 +695,7 @@ FreeLine.prototype.extend = function (pt) {
   var e = b.end();
   var newEnd = new Point(e.x, e.y);
   
-  if (this._pts.length == 0) {
+  if (this._pts.length === 0) {
     // first point
     b.setStart(new Point(pt.x, pt.y));
     b.setEnd(new Point(pt.x, pt.y));
@@ -734,16 +735,19 @@ FreeLine.prototype.extend = function (pt) {
     }
   }
 
+  var w = null;
+  var h = null;
   if (s.x != newStart.x || s.y != newStart.y || 
       e.x != newEnd.x || e.y != newEnd.y) {
     // bounding rectangle changed
-    var w = b.w();
-    var h = b.h();
+    w = b.w();
+    h = b.h();
     //s.x = newStart.x; s.y = newStart.y;
     //e.x = newEnd.x; e.y = newEnd.y;
     // get all abs values
+    var p = null;
     for (var i = 0; i < this._pts.length; i++) {
-      var p = this._pts[i];
+      p = this._pts[i];
       p.x = p.x*w + s.x;
       p.y = p.y*h + s.y;
     }
@@ -757,27 +761,27 @@ FreeLine.prototype.extend = function (pt) {
     h = b.h();
     // back to relative
     for (i = 0; i < this._pts.length; i++) {
-      var p = this._pts[i];
-      if (w == 0) {
+      p = this._pts[i];
+      if (w === 0) {
         p.x = s.x;
       } else {
         p.x = (p.x - s.x)/w;
       }
-      if (h == 0) {
+      if (h === 0) {
         p.y = s.y;
       } else {
         p.y = (p.y - s.y)/h;
       }
     }
   } else {
-    var w = b.w();
-    var h = b.h();
-    if (w == 0) {
+    w = b.w();
+    h = b.h();
+    if (w === 0) {
       pt.x = s.x;
     } else {
       pt.x = (pt.x - s.x)/w;
     }
-    if (h == 0) {
+    if (h === 0) {
       pt.y = s.y;
     } else {
       pt.y = (pt.y - s.y)/h;
