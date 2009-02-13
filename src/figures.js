@@ -185,6 +185,8 @@ function Colour(r, g, b, o) {
 
 Colour.prototype = new Property();
 
+Colour.reader('_o', 'getOpacity');
+
 Colour.prototype.set = function (r, g, b, o) {
   this._r = r;
   this._g = g;
