@@ -329,11 +329,11 @@ Implementa \textit{Property} e \textit{CSSProperty}. Mantiene un'istanza di \tex
 \end{elencopuntato}
 \paragraph{Metodi pubblici:}
 \begin{elencopuntato}[\normindent]
-\item[-] \textit{getOpacity()} ritorna l'attributi \textit{_o}.
+\item[-] \textit{getOpacity()} ritorna l'attributi \textit{{\_}o}.
 \item[-] \textit{set(r, g, b, o)} modifica i valori dei quattro attributi.
 \item[-] \textit{createWidget()} crea e ritorna un'istanza di \textit{ColourDialog} passando se stesso come parametro al costruttore.
-\item[-] \textit{toCSS()} ritorna il colore come una stringa di tipo \"#EEEEEE\" formata da tre coppie di due cifre esadecimali. Le coppie rappresentano rispettivamente il rosso, il verde, il blu. L'opacit\`a viene ignorata da questo metodo.
-\item[-] \textit{applyToContext(context)} setta l'attributo \textit{strokeStyle} del contesto grafico alla propria rappresentazione CSS, e richiama il metodo \textit{applyToContext} su \textit{_o} passando \textit{context} come argomento.
+\item[-] \textit{toCSS()} ritorna il colore come una stringa di tipo \"{\#}EEEEEE\" formata da tre coppie di due cifre esadecimali. Le coppie rappresentano rispettivamente il rosso, il verde, il blu. L'opacit\`a viene ignorata da questo metodo.
+\item[-] \textit{applyToContext(context)} setta l'attributo \textit{strokeStyle} del contesto grafico alla propria rappresentazione CSS, e richiama il metodo \textit{applyToContext} su \textit{{\_}o} passando \textit{context} come argomento.
 \end{elencopuntato}
 
 \subsezione{FillColour}
@@ -346,7 +346,21 @@ Deriva da \textit{Colour}.
 \subsubsezione{Attivit\`a svolte e dati trattati}
 \paragraph{Metodi pubblici:}
 \begin{elencopuntato}[\normindent]
-\item[-] \textit{applyToContext(context)} setta l'attributo \textit{fillStyle} del contesto grafico alla propria rappresentazione CSS, e richiama il metodo \textit{applyToContext} su \textit{_o} passando \textit{context} come argomento.
+\item[-] \textit{applyToContext(context)} setta l'attributo \textit{fillStyle} del contesto grafico alla propria rappresentazione CSS, e richiama il metodo \textit{applyToContext} su \textit{{\_}o} passando \textit{context} come argomento.
+\end{elencopuntato}
+
+\subsezione{SVGWriter}
+\subsubsezione{Tipo, obiettivo e funzione del componente}
+Si occupa di chiamare il metodo \textit{toSVG} su ogni figura e ritornare il documento SVG che corrisponde alla situazione corrente del canvas.
+\subsubsezione{Relazioni d'uso di altre componenti}
+Si serve di \textit{SVGGenerator} per creare il documento, del metodo \textit{each} per iterare attraverso la collezione di figure e del metodo \textit{flush} per ritornare il documento come stringa. 
+Implementa il metodo \textit{toSVG} dell'interfaccia \textit{SVGWritable}.
+\subsubsezione{Interfacce e relazioni di uso da altre componenti}
+Nessuna
+\subsubsezione{Attivit\`a svolte e dati trattati}
+\paragrafo{Metodi pubblici:}
+\begin{elencopuntato}[\normindent]
+\item[-]  \textit{write()} Chiama il metodo \textit{toSVG} su ogni figura e ritorna il documento SVG.
 \end{elencopuntato}
 
 \sezione{Tracciamento della relazione componenti - requisiti}

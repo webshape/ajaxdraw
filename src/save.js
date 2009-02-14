@@ -236,14 +236,21 @@ Circle.prototype.toSVG = function(gen) {
  */
 Text.prototype.toSVG = function(gen) {
   gen.startCommand("text");
-  gen.attr("x", this.getBounds().start().x, false);
-  gen.attr("y", this.getBounds().end().y, false);
+  var x = this.getBounds().start().x;
+  if (x > this.getBounds().end().x)
+	 x = this.getBounds().end().x;
+  var y = this.getBounds().end().y;
+  if (y < this.getBounds().start().y)
+	 y = this.getBounds().start().y;
+  gen.attr("x", x, false);
+  gen.attr("y", y, false);
   gen.attr("font-family", this.getFont().toCSS(), false);
   gen.attr("font-size", Math.abs(this.getBounds().h()), false);
+  gen.attr("textLength", Math.abs(this.getBounds().w()), false);
   gen.attr("fill", this.getTextColour().toCSS(), false);
-  gen.attr("fill-opacity", this.getFillColour().getOpacity().getVal(), false);
-  gen.attr("stroke", this.getBorderColour().toCSS(), false);
-  gen.attr("stroke-opacity", this.getBorderColour().getOpacity().getVal(), true);
+//  gen.attr("fill-opacity", this.getFillColour().getOpacity().getVal(), false);
+  gen.attr("stroke", this.getBorderColour().toCSS(), true);
+//  gen.attr("stroke-opacity", this.getBorderColour().getOpacity().getVal(), true);
   gen.text(this.getText());
   gen.endCommand("text");
 };

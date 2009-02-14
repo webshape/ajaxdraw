@@ -105,7 +105,7 @@ c.extend(new Point(600, 700));
 figures.push(c);
 
 // Free line with 6 points
-c = new BezierCurve();
+c = new FreeLine();
 c.getBorderColour().set(10, 20, 40, new Opacity(1));
 c.getBounds().setStart(new Point(600, 500));
 c.getBounds().setEnd(new Point(800, 700));
@@ -116,7 +116,7 @@ c.extend(new Point(750, 550));
 c.extend(new Point(780, 690));
 c.extend(new Point(800, 700));
 figures.push(c);
-/*
+
 // Text
 c = new Text('Aloha!');
 c.getBorderColour().set(255, 0, 0, new Opacity(1));
@@ -129,7 +129,7 @@ c.getBorderColour().set(255, 0, 0, new Opacity(1));
 c.getBounds().setStart(new Point(450, 850));
 c.getBounds().setEnd(new Point(250, 700));
 figures.push(c);
-*/
+
 figures.each(function (f) {
                f.draw(canvas);
              });
