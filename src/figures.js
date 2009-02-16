@@ -72,7 +72,7 @@ Figure.prototype.drawSelection = function (c) {
   ctx.save();
   this.getMainPoints().each(function (pt) {
                               color.applyToContext(ctx);
-                              ctx.strokeRect(pt.x - half, ptx.y - half, 
+                              ctx.strokeRect(pt.x - half, ptx.y - half,
                                              size, size);
                             });
   ctx.restore();
@@ -82,7 +82,7 @@ Figure.prototype.drawSelection = function (c) {
  * Property of a figure
  */
 function Property() {
-  
+
 }
 
 Property.abstractMethod('createWidget');
@@ -131,7 +131,7 @@ BoundingRectangle.prototype.w = function () {
  * @return {Point} the central point, considering the top left corner as the origin
  */
 BoundingRectangle.prototype.centre = function () {
-  return new Point((this._end.x - this._start.x)/2, 
+  return new Point((this._end.x - this._start.x)/2,
                    (this._end.y - this._start.y)/2);
 };
 
@@ -165,10 +165,10 @@ Opacity.accessors('_val', 'getVal', 'setVal');
 
 /**
  * Set the global alpha value
- * @param {Context2D} ctx the drawing context 
+ * @param {Context2D} ctx the drawing context
  */
 Opacity.prototype.applyToContext = function (ctx) {
-  ctx.globalAlpha = this.val;
+  ctx.globalAlpha = this._val;
 };
 
 /**
@@ -191,7 +191,7 @@ Colour.prototype.set = function (r, g, b, o) {
   this._r = r;
   this._g = g;
   this._b = b;
-  this._o = o;  
+  this._o = o;
 };
 
 Colour.prototype.createWidget = function () {
@@ -206,7 +206,7 @@ Colour.prototype.toCSS = function () {
       return x.toString(16);
     }
   };
-  
+
   return '#' + to16(this._r) + to16(this._g) + to16(this._b);
 };
 
@@ -367,11 +367,11 @@ FigureSet.prototype.fallbackSelection = function (where) {
       maxy = miny;
       miny = e.x;
     }
-    if (minx <= where.x && where.x <= maxx && 
+    if (minx <= where.x && where.x <= maxx &&
         miny <= where.y && where.y <= maxy) {
       if (f instanceof StraightLine) {
         // default algorithm works really bad with straight lines
-        if (minx == where.x || maxx == where.x || 
+        if (minx == where.x || maxx == where.x ||
             ((miny-where.y)/(minx-where.x) == (maxy-where.y)/(maxx-where.x))) {
           return this._figures[i];
         }
@@ -381,8 +381,8 @@ FigureSet.prototype.fallbackSelection = function (where) {
     }
   }
   return null;
-  
-/*  
+
+/*
   var selected = null;
   var c = document.createElement('canvas');
   c.height = c.width = 1000;
@@ -490,15 +490,15 @@ Circle.prototype.draw = function (c) {
   var centre = bounds.centre();
   var cx = centre.x;
   var cy = centre.y;
-  
+
   ctx.moveTo(cx, cy - ry);
   ctx.bezierCurveTo(cx + (KAPPA * rx), cy - ry,  cx + rx,
                     cy - (KAPPA * ry), cx + rx, cy);
-  ctx.bezierCurveTo(cx + rx, cy + (KAPPA * ry), cx + (KAPPA * rx), 
+  ctx.bezierCurveTo(cx + rx, cy + (KAPPA * ry), cx + (KAPPA * rx),
                     cy + ry, cx, cy + ry);
-  ctx.bezierCurveTo(cx - (KAPPA * rx), cy + ry, cx - rx, 
+  ctx.bezierCurveTo(cx - (KAPPA * rx), cy + ry, cx - rx,
                     cy + (KAPPA * ry), cx - rx, cy);
-  ctx.bezierCurveTo(cx - rx, cy - (KAPPA * ry), cx - (KAPPA * rx), 
+  ctx.bezierCurveTo(cx - rx, cy - (KAPPA * ry), cx - (KAPPA * rx),
                     cy - ry, cx, cy - ry);
 
   this._fillColour.applyToContext(ctx);
@@ -539,7 +539,7 @@ Polygon.prototype.getPoints = function () {
   var halfw = Math.abs(bounds.w()/2);
   var halfh = Math.abs(bounds.h()/2);
   var centre = bounds.centre();
-  
+
   var points = []; // points of the regular polygon
   // n must be > 0
   var n = this._en.getVal();
@@ -549,7 +549,7 @@ Polygon.prototype.getPoints = function () {
     // points on a circumference with radius 1 and centre in (0, 0)
     // adapted to real height and width
     // adapted to the position
-    points.push(new Point(centre.x + halfw*Math.cos(angle), 
+    points.push(new Point(centre.x + halfw*Math.cos(angle),
                           centre.y + halfh*Math.sin(angle)));
     angle += step;
   }
@@ -573,7 +573,7 @@ Polygon.prototype.draw = function (c) {
   var bounds = this.getBounds();
   bounds.applyToContext(ctx);
   var points = this.getPoints();
-  
+
   ctx.beginPath();
   // draw it
   // adapt coords to points
@@ -694,7 +694,7 @@ FreeLine.prototype.extend = function (pt) {
   var newStart = new Point(s.x, s.y);
   var e = b.end();
   var newEnd = new Point(e.x, e.y);
-  
+
   if (this._pts.length === 0) {
     // first point
     b.setStart(new Point(pt.x, pt.y));
@@ -702,7 +702,7 @@ FreeLine.prototype.extend = function (pt) {
     this._pts.push(new Point(0, 0));
     return;
   }
-  
+
   // if needed make the BoundingRectangle grow
   if (s.x <= e.x) {
     if (pt.x < s.x) {
@@ -737,7 +737,7 @@ FreeLine.prototype.extend = function (pt) {
 
   var w = null;
   var h = null;
-  if (s.x != newStart.x || s.y != newStart.y || 
+  if (s.x != newStart.x || s.y != newStart.y ||
       e.x != newEnd.x || e.y != newEnd.y) {
     // bounding rectangle changed
     w = b.w();
