@@ -240,7 +240,11 @@ FillColour.prototype.applyToContext = function (ctx) {
 /**
  * Fill colour of a text
  */
-var TextColour = FillColour;
+function TextColour (r, g, b, o) {
+  FillColour.call(this, r, g, b, o);
+}
+  
+TextColour.prototype = new FillColour();
 
 /**
  * @constructor
@@ -883,8 +887,10 @@ Text.prototype.draw = function (c) {
   var x = b.start().x < b.end().x ? b.start().x : b.end().x;
   var y = b.start().y > b.end().y ? b.start().y : b.end().y;
   this.getTextColour().applyToContext(ctx);
+  ctx.beginPath();
   ctx.fillText(this._txt, x, y, Math.abs(b.w()));
   this.getBorderColour().applyToContext(ctx);
   ctx.strokeText(this._txt, x, y, Math.abs(b.w()));
+  ctx.closePath();
   ctx.restore();
 };
