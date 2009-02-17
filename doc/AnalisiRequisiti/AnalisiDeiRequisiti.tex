@@ -77,8 +77,10 @@ Tale studio \`e mirato alla comprensione dei bisogni espressi nel capitolato e a
 				\multirow{1}{*}{Pre-RR} & Bizzotto Piero\\
 										& Dissegna Stefano\\
 										& Carollo Mirko\\
+                                                                                & Rizzo Maurizio\\
 				\hline
 				\multirow{1}{*}{RR-RPP} & Cunico Marco\\
+                                                        & Rizzo Maurizio\\
 										%& \\
 				\hline
 				%%%%%%%%%%% FINE PARTE DA MODIFICARE %%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -140,6 +142,8 @@ Tale studio \`e mirato alla comprensione dei bisogni espressi nel capitolato e a
 %%%%%%%%%%%%%%FINE INTESTAZIONE COLONNE%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%% PARTE DA MODIFICARE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+                \hline
+                2.2 & 13$\slash$01$\slash$2009 modifiche e aggiunte dervate da integrazione RR ed RPP & Rizzo Maurizio\\
                 \hline
 				2.0 & 24$\slash$01$\slash$2009 Rilascio per RPP. & Cunico Marco \\
 		\hline
@@ -722,6 +726,29 @@ Il sistema consente di modificare la dimensione dei caratteri del testo di una c
 \paragraph{Precondizioni} L'utente ha scelto un oggetto presente nel canvas. Se le dimensioni sono superiori a un valore massimo relativo della dimensione del canvas, il sistema le imposta alla massima dimensione consentita.
 \paragraph{Postcondizioni} Le propriet\`a  degli stili grafici della casella di testo indicano che le dimensioni dell'oggetto sono quelle selezionate. L'oggetto si ingrandir\` a/rimpicciolir\`a a seconda dell'input.
 
+\subsubsezione{UC10.13 Caso d'uso: Copia un oggetto}
+\paragraph{Attori coinvolti} Utente.
+\paragraph{Scopo e descrizione sintetica} Il sistema consente di duplicare sul canvas un qualsiasi oggetto.
+\paragraph{Flusso di eventi}
+\begin{elenconumerato}[\textbf{}]{\subsubsecindent}
+\item  L'utente seleziona il comando per la selezione di un oggetto.
+\item  L'utente usa il cursore per selezionare l'oggetto in questione.
+\item  L'utente seleziona il comando per la duplicazione di un oggetto.
+\end{elenconumerato}
+\paragraph{Precondizioni} Il canvas \`e visualizzato. 
+\paragraph{Postcondizioni} Il canvas visualizza il nuovo oggetto copia dell'oggetto di partenza in posizione leggermente spostata verso l'alto in modo da non permettere sovrapposizioni di oggetti che potrebbero trarre in inganno l'utente.
+
+\subsubsezione{UC10.14 Caso d'uso: Rotazione di una figura geometrica}
+\paragraph{Attori coinvolti} Utente.
+\paragraph{Scopo e descrizione sintetica} Il sistema consente di ruotare di 90 gradi a destra oppure a sinista sul canvas un qualsiasi oggetto.
+\paragraph{Flusso di eventi}
+\begin{elenconumerato}[\textbf{}]{\subsubsecindent}
+\item  L'utente seleziona il comando per la selezione di un oggetto.
+\item  L'utente usa il cursore per selezionare l'oggetto in questione.
+\item  L'utente seleziona il comando per effettuare la rotazione di 90 gradi sull'asse latitudinale di un oggetto.
+\end{elenconumerato}
+\paragraph{Precondizioni} Il canvas \`e visualizzato. 
+\paragraph{Postcondizioni} Il canvas visualizza l'oggetto ruotato di 90 gradi .
 
 %%%%%%%%%%%%%%%%inizio requisiti%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \sezione{Lista dei requisiti}
@@ -748,6 +775,8 @@ Tutti i requisiti elencati in seguito derivano unicamente ed esplicitamente dal 
 \item{ACO-2 - AJAXDRAW permette di effettuare uno zoom in avanti e all'indietro nel disegno.}
 \item{ACO-4 - AJAXDRAW \`e in grado di salvare le immagini create dall'utente nel formato SVG.}
 \item{ACO-4 - AJAXDRAW permette di caricare immagini in formato SVG che utilizzano il sottoinsieme che AJAXDRAW \`e in grado di generare.}
+\item{ACF-1 - AJAXDRAW permette di cancellare completamente l'area di disegno.}
+\item{ACF-1 - AJAXDRAW permette di cancellare un singolo oggetto disegnato.}
 \end{elenconumerato}
 
 %requisiti desiderabili
@@ -755,8 +784,15 @@ Tutti i requisiti elencati in seguito derivano unicamente ed esplicitamente dal 
 \begin{elenconumerato}[\textbf{RFD-}]{\subsubsecindent}
 \item{ACF-2 - AJAXDRAW permette di disegnare a mano libera.}
 \item{ACF-2 - AJAXDRAW permette di disegnare connettori per diagrammi.}
-\item{ACF-1 - AJAXDRAW permette di cancellare completamente l'area di disegno.}
-\item{ACF-1 - AJAXDRAW permette di cancellare un singolo oggetto disegnato.}
+\item{ AJAXDRAW permette di fare una copia di un oggetto presente sul canvas.}
+\end{elenconumerato}
+
+%facoltativi
+\subsubsezione{Facoltativi (RFF)}
+\begin{elenconumerato}[\textbf{RFF-}]{\subsubsecindent}
+\item{ACF-2 - AJAXDRAW permette la creazione di spirali.}
+\item{ACF-2 - AJAXDRAW permette di utilizzare il disegno calligrafico o pennellato.}
+\item{ AJAXDRAW permette di ruotare un oggetto di 90 gradi secondo l'asse latitudinale.}
 \end{elenconumerato}
 
 %facoltativi
@@ -836,7 +872,7 @@ Tutti i requisiti elencati in seguito derivano unicamente ed esplicitamente dal 
       \hline
      RA0-1 & UC0 \\
      \hline
-     RFD-3 & UC1  \\
+     RFO-17 & UC1  \\
      \hline
      RIO-2  RIO-4 & UC2\\
      \hline
@@ -876,7 +912,11 @@ Tutti i requisiti elencati in seguito derivano unicamente ed esplicitamente dal 
      \hline
      RFO-10 & UC10.8 UC10.9 \\
      \hline
-     RFD-4 & UC10.11 \\
+     RFO-18 & UC10.11 \\
+     \hline
+     RFD-3 & UC10.13 \\
+     \hline
+     RFF-3 & UC10.14 \\
      
 %%%%%%%%%%% PARTE DA MODIFICARE %%%%%%%%%%%%%%%%
     \hline %%FINE RIGA

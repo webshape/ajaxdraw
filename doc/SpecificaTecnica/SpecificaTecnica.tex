@@ -82,9 +82,10 @@ Il presente documento descrive le scelte tecniche, architetturali e tecnologiche
 				%%%%%%%%%%%%%%FINE INTESTAZIONE COLONNE%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 				\hline
 				%%%%%%%%%%% PARTE DA MODIFICARE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%		
-				\multirow{3}{*}{RR-RPP} & Bizzotto Piero\\
+				\multirow{4}{*}{RR-RPP} & Bizzotto Piero\\
 										& Dal Bosco Davide\\
 										& Dissegna Stefano\\
+										& Rizzo Maurizio\\
 				\hline
 				%%%%%%%%%%% FINE PARTE DA MODIFICARE %%%%%%%%%%%%%%%%%%%%%%%%%%%
 			\end{tabular}
@@ -144,6 +145,8 @@ Il presente documento descrive le scelte tecniche, architetturali e tecnologiche
 %%%%%%%%%%%%%%FINE INTESTAZIONE COLONNE%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 		 \hline
 %%%%%%%%%%% PARTE DA MODIFICARE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+                  1.8 & 13$\slash$02$\slash$2009 Aggiunta e descrizione classi di integrazione  & Rizzo Maurizio \\
+                                \hline 
                   1.7 & 7$\slash$02$\slash$2009 Descritto in dettaglio il ruolo dei punti in \textit{FreeLine} & Dissegna Stefano \\
 				\hline
                   1.6 & 6$\slash$02$\slash$2009 Aggiunta giustificazione scelta JavaScript & Dissegna Stefano \\
@@ -378,15 +381,25 @@ Classe concreta che rappresenta la toolbar dalla quale l'utente pu\` o scegliere
 
 \subsezione{Button}
 \subsubsezione{Tipo, obiettivo e funzione del componente}
-Classe concreta che rappresenta un generico pulsante tramite il quale effettuare l'operazione desiderata, che pu\`o  essere una funzione di disegno oppure di salvataggio o caricamento di un'immagine.
+Classe concreta che rappresenta un generico pulsante tramite il quale effettuare l'operazione desiderata.
 \subsubsezione{Relazioni d'uso di altre componenti}
-Oltre a \textit{Widget}, implementa l'interfaccia \textit{UserClickEvent} per la gestione dei click del mouse.  
+Oltre a \textit{Widget}, implementa l'interfaccia \textit{UserClickEvent} per la gestione dei click del mouse. 
 \subsubsezione{Interfacce e relazioni di uso da altre componenti}
-\textit{Page} e \textit{Toolbar }ne mantengono una o pi\` u istanze.
+\textit{Page} e \textit{Toolbar }ne mantengono una o pi\` u istanze, \` e inoltre implementata dalla classe \textit{CloneButton}.
 \subsubsezione{Attivit\`a svolte e dati trattati}
 \begin{elencopuntato}[\normindent]
 \item[-]  \textit{setPressed} metodo che valuta la pressione del bottone per decidere le operazioni da effettuare.
 \end{elencopuntato}
+
+\subsezione{CloneButton}
+\subsubsezione{Tipo, obiettivo e funzione del componente}
+Classe concreta che permette a un utente di clonare un oggetto presente sul canvas.
+\subsubsezione{Relazioni d'uso di altre componenti}
+Eredita dalla classe \textit{Button}.
+\subsubsezione{Interfacce e relazioni di uso da altre componenti}
+nessuna.
+\subsubsezione{Attivit\`a svolte e dati trattati}
+\leftskip=36pt{Nessuna a questo livello.}
 
 \subsezione{Palette}
 \subsubsezione{Tipo, obiettivo e funzione del componente}
@@ -437,6 +450,16 @@ Classe concreta che rappresenta l'oggetto che si occupa di modificare il numero 
 Nessuna.
 \subsubsezione{Interfacce e relazioni di uso da altre componenti}
 \textit{PropertiesDialog} ne mantiene un'istanza.
+\subsubsezione{Attivit\`a svolte e dati trattati}
+\leftskip=36pt{Nessuna a questo livello.}
+
+\subsezione{RotationSetter}
+\subsubsezione{Tipo, obiettivo e funzione del componente}
+Classe concreta che permette a un utente di ruotare un oggetto presente sul canvas
+\subsubsezione{Relazioni d'uso di altre componenti}
+nessuna. 
+\subsubsezione{Interfacce e relazioni di uso da altre componenti}
+\textit{PropertiesDialog} ne mantiene un' istanza.
 \subsubsezione{Attivit\`a svolte e dati trattati}
 \leftskip=36pt{Nessuna a questo livello.}
 
@@ -598,6 +621,7 @@ Viene aggregata dalla classe \textit{FigureSet}.
 \item[-]  \textit{setSelection} permette di selezionare/deselezionare la figura.
 \item[-]  \textit{isSelected} dice se la figura \`e correntemente selezionata.
 \item[-]  \textit{eachProperty} applica la funzione fn ad ogni propriet\`a della figura.
+\item[-]  \textit{clone} crea un oggetto clone appena sopra la figura.
 \end{elencopuntato}
 
 \subsezione{FigureSet}
@@ -730,6 +754,16 @@ Rappresenta la posizione e le dimensioni massime di una figura. Modificando il
 Implementa \textit{Property}. Ogni istanza di \textit{Figure} ne mantiene un'istanza.
 \subsubsezione{Interfacce e relazioni di uso da altre componenti}
 Nessuna.
+\subsubsezione{Attivit\`a svolte e dati trattati}
+\leftskip=36pt{Nessuna a questo livello.}
+
+\subsezione{Rotation}
+\subsubsezione{Tipo, obiettivo e funzione del componente}
+Propriet\`a che rappresenta il grado di rotazione di una figura. La rotazione avviene seguendo il centro della circonferenza che iscrive la figura; pi\`u precisamente, la rotazione viene svolta attraverso l'uso del centro del BoundingRectangle. 
+\subsubsezione{Relazioni d'uso di altre componenti}
+Deriva da \textit{Property}.
+\subsubsezione{Interfacce e relazioni di uso da altre componenti}
+\textit{figure} ne mantiene una o pi\'u istanze.
 \subsubsezione{Attivit\`a svolte e dati trattati}
 \leftskip=36pt{Nessuna a questo livello.}
 
@@ -1117,6 +1151,10 @@ Un altro problema \`e la necessit\`a di supportare un'ampia gamma di browser. Og
      \hline
      PropertiesDialog & RFO-12 \\ 
      \hline
+     RotationSetter & RFF-3 \\
+     \hline
+     Canvas & RFO-17 \\
+     \hline
      BoundingRectangle & RFO-10 \\
      \hline
      OnMouseMove & RFO-8 \\
@@ -1162,9 +1200,9 @@ Un altro problema \`e la necessit\`a di supportare un'ampia gamma di browser. Og
      \hline
      XMLParser & RFO-16\\
      \hline
-     FigureSet & RFO-8, RFO-12 \\
+     FigureSet & RFO-8, RFO-12, RFO-18 \\
      \hline
-     Figure & RFO-8, RFO-12 \\
+     Figure & RFO-8, RFO-12, RFD-3 \\
      \hline
      Manual & RIO-2, RIO-3 \\
      \hline
@@ -1191,6 +1229,8 @@ Un altro problema \`e la necessit\`a di supportare un'ampia gamma di browser. Og
      Colour & RFO-9 \\
      \hline
      FillColour & RFO-9 \\
+     \hline
+     Rotation & RFF-3 \\
      \hline
      TextColour & RFO-9 \\
      \hline

@@ -349,6 +349,64 @@ Deriva da \textit{Colour}.
 \item[-] \textit{applyToContext(context)} setta l'attributo \textit{fillStyle} del contesto grafico alla propria rappresentazione CSS, e richiama il metodo \textit{applyToContext} su \textit{{\_}o} passando \textit{context} come argomento.
 \end{elencopuntato}
 
+\subsezione{TextProperty}
+\subsubsezione{Tipo, obiettivo e funzione del componente}
+Propriet\`a di un testo grafico. Non serve implementarla in JavaScript.
+
+\subsezione{TextColour}
+\subsubsezione{Tipo, obiettivo e funzione del componente}
+Rappresenta il colore di un testo.
+\subsubsezione{Relazioni d'uso di altre componenti}
+Deriva da \textit{FillColour}.
+\subsubsezione{Interfacce e relazioni di uso da altre componenti}
+Nessuna.
+\subsubsezione{Attivit\`a svolte e dati trattati}
+\leftskip=36pt{Nessuna.}
+
+\subsezione{TextFont}
+\subsubsezione{Tipo, obiettivo e funzione del componente}
+Rappresenta il font di un testo. Mantiene il nome del font.
+\subsubsezione{Relazioni d'uso di altre componenti}
+Deriva da \textit{TextProperty} e implementa \textit{CSSProperty}.
+\subsubsezione{Interfacce e relazioni di uso da altre componenti}
+Usata dalla classe \textit{Text} che ne mantiene un'istanza.
+\subsubsezione{Attivit\`a svolte e dati trattati}
+\paragrafo{Attributi privati:}
+\begin{elencopuntato}[\normindent]
+\item[-] \textit{{\_}name} nome del font.
+\end{elencopuntato}
+\paragraph{Metodi pubblici:}
+\begin{elencopuntato}[\normindent]
+\item[-] \textit{toCSS()} ritorna {\_}name.
+\item[-] \textit{applyToContext(context)} setta l'attributo \textit{font} del contesto grafico alla propria rappresentazione CSS.
+\end{elencopuntato}
+
+\subsezione{BoundingRectangle}
+\subsubsezione{Tipo, obiettivo e funzione del componente}
+Rappresenta la posizione e le dimensioni massime di una figura. Modificando il
+\textit{BoundingRectangle} \`e possibile spostare, ingrandire e deformare una figura.
+\`E responsabilit\`a delle singole figure, all'interno del metodo \textit{draw}, di disegnarsi all'interno dei limiti.
+\subsubsezione{Relazioni d'uso di altre componenti}
+Implementa \textit{Property}. Ogni istanza di \textit{Figure} ne mantiene un'istanza.
+\subsubsezione{Interfacce e relazioni di uso da altre componenti}
+Ogni istanza di una classe derivante da \textit{Figure} ha uno e un solo \textit{BoundingRectangle} che ne definisce i limiti. Modificandolo, \`e possibile ingrandire, deformare e spostare una figura, la quale \`e responsabile di adattarsi.
+\subsubsezione{Attivit\`a svolte e dati trattati}
+\paragrafo{Attributi privati:}
+\begin{elencopuntato}[\normindent]
+\item[-] \textit{{\_}start} angolo in alto a sinistra del rettangolo, di tipo \textit{Point}.
+\item[-] \textit{{\_}end} angolo in basso a destra del rettangolo, di tipo \textit{Point}.
+\end{elencopuntato}
+\`E possibile che {\_}end abbia coordinate x ed y minori delle rispettive di {\_}start. In questo caso il rettangolo racchiude una figura rovesciata.
+\paragraph{Metodi pubblici:}
+\begin{elencopuntato}[\normindent]
+\item[-] \textit{h()} ritorna l'altezza del rettangolo. Pu\`o essere negativa.
+\item[-] \textit{w()} ritorna la larghezza del rettangolo. Pu\`o essere negativa.
+\item[-] \textit{centre()} ritorna un \textit{Point} contenente le coordinate del centro del rettangolo.
+\item[-] \textit{applyToContext(context)} trasla le coordinate del sistema ponendo {\_}name come origine.
+\item[-] \textit{createWidget()} crea e ritorna un'istanza di \textit{BoundingRectangleSetter} passando se stesso come parametro al costruttore.
+\end{elencopuntato}
+
+
 \subsezione{SVGWriter}
 \subsubsezione{Tipo, obiettivo e funzione del componente}
 Si occupa di chiamare il metodo \textit{toSVG} su ogni figura e ritornare il documento SVG che corrisponde alla situazione corrente del canvas.
