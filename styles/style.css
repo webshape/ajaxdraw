@@ -59,6 +59,10 @@ a.button:hover span{background-position: bottom right}
 	height:2em;
 	cursor:pointer;
 	background-color:#F4F3F2;
+	background-repeat: no-repeat;
+	background-position: center;
+	
+	
 }
 
 .toolbarButton:hover{
@@ -69,9 +73,20 @@ a.button:hover span{background-position: bottom right}
 #selectionButton{
 	background-image:url("../pages/images/selezione.png");
 	}
+#bezierButton{
+    background-image:url("../pages/images/linea.png");
+	}
 #squareButton{
 	background-image:url("../pages/images/quadrato.png");
 }
+#circleButton{
+	background-image:url("../pages/images/cerchio.png");
+}
+#polygonButton{
+	background-image:url("../pages/images/poligono.png");
+}
+
+
 
 /*zona salva/carica SVG */
 #saveLoadZone{
