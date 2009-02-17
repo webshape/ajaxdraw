@@ -866,7 +866,7 @@ Text.prototype = new Figure();
 
 Text.accessors('_txt', 'getText', 'setText');
 Text.accessors('_font', 'getFont', 'setFont');
-Text.accessors('_fillColour', 'getTextColour', 'setTextColour');
+Text.reader('_fillColour', 'getTextColour');
 
 Text.prototype.eachProperty = function (fn) {
   Figure.prototype.eachProperty.call(this, fn);

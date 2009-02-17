@@ -146,6 +146,9 @@ Il presente documento descrive in modo dettagliato le classi e i relativi metodi
 %%%%%%%%%%%%%%FINE INTESTAZIONE COLONNE%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 		 \hline
 %%%%%%%%%%% PARTE DA MODIFICARE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%		
+    	 	0.1 & 	 17$\slash$02$\slash$2009 Descritte classi e metodi delle figure e delle propriet\`a & Dissegna Stefano \\
+
+		\hline
     	 	0.0 & 	 11$\slash$02$\slash$2009 Bozza & Dissegna Stefano \\
 
 		\hline %%FINE RIGA
@@ -404,6 +407,135 @@ Ogni istanza di una classe derivante da \textit{Figure} ha uno e un solo \textit
 \item[-] \textit{centre()} ritorna un \textit{Point} contenente le coordinate del centro del rettangolo.
 \item[-] \textit{applyToContext(context)} trasla le coordinate del sistema ponendo {\_}name come origine.
 \item[-] \textit{createWidget()} crea e ritorna un'istanza di \textit{BoundingRectangleSetter} passando se stesso come parametro al costruttore.
+\end{elencopuntato}
+
+\subsezione{Circle}
+\subsubsezione{Tipo, obiettivo e funzione del componente}
+Rappresenta un cerchio o un'ellisse, a seconda che il proprio \textit{BoundingRectangle} sia un quadrato oppure un rettangolo. Viene disegnato in modo da essere inscritto al \textit{BoundingRectangle}.
+\subsubsezione{Relazioni d'uso di altre componenti}
+Deriva da \textit{Figure} e ne implementa i metodi astratti. Mantiene un'istanza di \textit{FillColour}.
+\subsubsezione{Interfacce e relazioni di uso da altre componenti}
+Creato dalla lettura di un file SVG oppure dall'interfaccia utente. Manipolato dall'interfaccia utente.
+\subsubsezione{Attivit\`a svolte e dati trattati}
+\paragrafo{Attributi privati:}
+\begin{elencopuntato}[\normindent]
+\item[-] \textit{{\_}fillColour} colore di riempimento, di tipo \textit{FillColour}.
+\end{elencopuntato}
+\paragraph{Metodi pubblici:}
+\begin{elencopuntato}[\normindent]
+\item[-] \textit{getFillColour()} ritorna \textit{{\_}fillColour}.
+\item[-] \textit{eachProperty(fn)} richiama \textit{eachProperty} di \textit{Figure} ed applica la funzione fn a \textit{{\_}fillColour}.
+\item[-] \textit{draw(canvas)} disegna il cerchio/ellisse usando quattro curve di bezier. Viene disegnato due volte: la prima per il riempimento, la seconda per il bordo. Prima di disegnarsi richiama \textit{applyToContext} sulle proprie propriet\`a.
+\end{elencopuntato}
+
+\subsezione{Rectangle}
+\subsubsezione{Tipo, obiettivo e funzione del componente}
+Rappresenta un rettangolo od un quadrato.
+\subsubsezione{Relazioni d'uso di altre componenti}
+Deriva da \textit{Figure} e ne implementa i metodi astratti. Mantiene un'istanza di \textit{FillColour}.
+\subsubsezione{Interfacce e relazioni di uso da altre componenti}
+Creato dalla lettura di un file SVG oppure dall'interfaccia utente. Manipolato dall'interfaccia utente.
+\subsubsezione{Attivit\`a svolte e dati trattati}
+\paragrafo{Attributi privati:}
+\begin{elencopuntato}[\normindent]
+\item[-] \textit{{\_}fillColour} colore di riempimento, di tipo \textit{FillColour}.
+\end{elencopuntato}
+\paragraph{Metodi pubblici:}
+\begin{elencopuntato}[\normindent]
+\item[-] \textit{getFillColour()} ritorna \textit{{\_}fillColour}.
+\item[-] \textit{eachProperty(fn)} richiama \textit{eachProperty} di \textit{Figure} ed applica la funzione fn a \textit{{\_}fillColour}.
+\item[-] \textit{draw(canvas)} disegna il rettangolo usando le API per i path del contesto grafico, tracciando un path chiuso che contiene i quattro angoli ricavabili dal \textit{BoundingRectangle}. Viene disegnato due volte: la prima per il riempimento, la seconda per il bordo. Prima di disegnarsi richiama \textit{applyToContext} sulle proprie propriet\`a.
+\end{elencopuntato}
+
+\subsezione{Line}
+\subsubsezione{Tipo, obiettivo e funzione del componente}
+Rappresenta una linea generica. Non viene implementata in JavaScript.
+
+\subsezione{StraightLine}
+\subsubsezione{Tipo, obiettivo e funzione del componente}
+Rappresenta una linea diritta. La linea v\`a dall'angolo in alto a sinistra all'angolo in basso a destra del \textit{BoundingRectangle}.
+\subsubsezione{Relazioni d'uso di altre componenti}
+Deriva da \textit{Line} e ne implementa i metodi astratti.
+\subsubsezione{Interfacce e relazioni di uso da altre componenti}
+Creato dalla lettura di un file SVG oppure dall'interfaccia utente. Manipolato dall'interfaccia utente.
+\subsubsezione{Attivit\`a svolte e dati trattati}
+\paragraph{Metodi pubblici:}
+\begin{elencopuntato}[\normindent]
+\item[-] \textit{draw(canvas)} disegna una linea diritta usando le API per i path del contesto grafico, tracciando un path da \textit{BoundingRectangle.start()} a \textit{BoundingRectangle.end()}. Prima di disegnarsi richiama \textit{applyToContext} sul colore del bordo.
+\end{elencopuntato}
+
+\subsezione{FreeLine}
+\subsubsezione{Tipo, obiettivo e funzione del componente}
+Rappresenta una linea a mano libera. Viene implementata tramite delle curve di bezier brevi e ravvicinate tra di loro.
+\subsubsezione{Relazioni d'uso di altre componenti}
+Deriva da \textit{Line} e ne implementa i metodi astratti. Mantiene una lista di punti. I punti prendono come origine l'angolo in alto a sinistra del \textit{BoundingRectangle} e presuppongono un quadrato alto 1 e largo 1, in modo da essere indipendenti dal \textit{BoundingRectangle}. I punti verranno poi convertiti nei loro valori assoluti, a seconda del \textit{BoundingRectangle}, prima di disegnare la linea. Qualora ripetere questa computazione ad ogni refresh fosse troppo dispendioso, si potrebbe ricorrere ad un sistema di caching.
+\subsubsezione{Interfacce e relazioni di uso da altre componenti}
+Creato dalla lettura di un file SVG oppure dall'interfaccia utente. Manipolato dall'interfaccia utente.
+\subsubsezione{Attivit\`a svolte e dati trattati}
+\paragrafo{Attributi privati:}
+\begin{elencopuntato}[\normindent]
+\item[-] \textit{{\_}pts} i punti di controllo della linea, memorizzati con coordinate relative.
+\end{elencopuntato}
+\paragraph{Metodi pubblici:}
+\begin{elencopuntato}[\normindent]
+\item[-] \textit{extend(point)} aggiunge un punto avente coordinate assolute ai punti di controllo. Nel caso il punto esca dal \textit{BoundingRectangle}, il \textit{BoundingRectangle} viene ampliato e tutti i punti di controllo (con coordinate relative) vengono ricalcolati in modo che mantengano la posizione precedente. Per maggiori dettagli si veda il diagramma di attivit\`a [TODO: inserire diagramma].
+\item[-] \textit{getPoints} ritorna un array con una copia dei punti di controllo della linea convertiti a coordinate assolute in base al \textit{BoundingRectangle}.Per maggiori dettagli si veda il diagramma di attivit\`a [TODO: inserire diagramma].
+\item[-] \textit{draw(canvas)} chiama \textit{applyToContext} sul colore del bordo e ottiene i punti di controllo assoluti tramite \textit{getPoints}. Raggruppa i punti a 3 a 3 e per ogni gruppo traccia una curva di bezier. Se rimangono due punti traccia una quadratica e se ne rimane uno solo una linea diritta.
+\end{elencopuntato}
+
+\subsezione{BezierCurve}
+\subsubsezione{Tipo, obiettivo e funzione del componente}
+Rappresenta una linea curva, disegnata tramite curve di bezier.
+\subsubsezione{Relazioni d'uso di altre componenti}
+Deriva da \textit{FreeLine}. A differenza di \textit{FreeLine} la lista di punti interni contiene un numero ridotto di punti.
+\subsubsezione{Interfacce e relazioni di uso da altre componenti}
+Creato dalla lettura di un file SVG oppure dall'interfaccia utente. Manipolato dall'interfaccia utente.
+\subsubsezione{Attivit\`a svolte e dati trattati}
+Nessuna oltre a quelle ereditate da \textit{FreeLine}.
+
+\subsezione{Polygon}
+\subsubsezione{Tipo, obiettivo e funzione del componente}
+Rappresenta un poligono regolare.
+\subsubsezione{Relazioni d'uso di altre componenti}
+Deriva da \textit{Figure} e ne implementa i metodi astratti. Mantiene un'istanza di \textit{FillColour} e di \textit{EdgeNumber} che ne identifica il numero di lati.
+\subsubsezione{Interfacce e relazioni di uso da altre componenti}
+Creato dalla lettura di un file SVG oppure dall'interfaccia utente. Manipolato dall'interfaccia utente.
+\subsubsezione{Attivit\`a svolte e dati trattati}
+\paragrafo{Attributi privati:}
+\begin{elencopuntato}[\normindent]
+\item[-] \textit{{\_}fillColour} colore di riempimento, di tipo \textit{FillColour}.
+\item[-] \textit{{\_}en} numero di spigoli del poligono, di tipo \textit{EdgeNumber}.
+\end{elencopuntato}
+\paragraph{Metodi pubblici:}
+\begin{elencopuntato}[\normindent]
+\item[-] \textit{getFillColour()} ritorna \textit{{\_}fillColour}.
+\item[-] \textit{edgeNumber()} ritorna \textit{{\_}en}.
+\item[-] \textit{eachProperty(fn)} richiama \textit{eachProperty} di \textit{Figure} ed applica la funzione fn a \textit{{\_}fillColour} e a \textit{{\_en}}.
+\item[-] \textit{getPoints()} ritorna un'array di punti, considerando come origine \textit{BoundingRectangle.start()}, che rappresentano i vertici del poligono. Per maggiori dettagli si veda [TODO: ins. diagramma].
+\item[-] \textit{draw(canvas)} disegna il poligono usando le API per i path del contesto grafico tracciando  un path che congiunge i punti ottenuti con \textit{getPoints}. Viene disegnato due volte: la prima per il riempimento, la seconda per il bordo. Prima di disegnarsi richiama \textit{applyToContext} sulle proprie propriet\`a.
+\end{elencopuntato}
+
+\subsezione{Text}
+\subsubsezione{Tipo, obiettivo e funzione del componente}
+Rappresenta un testo.
+\subsubsezione{Relazioni d'uso di altre componenti}
+Deriva da \textit{Figure} e ne implementa i metodi astratti. Mantiene un'istanza di \textit{FillColour} e di \textit{TextFont} che identifica il font del testo.
+\subsubsezione{Interfacce e relazioni di uso da altre componenti}
+Creato dalla lettura di un file SVG oppure dall'interfaccia utente. Manipolato dall'interfaccia utente.
+\subsubsezione{Attivit\`a svolte e dati trattati}
+\paragrafo{Attributi privati:}
+\begin{elencopuntato}[\normindent]
+\item[-] \textit{{\_}fillColour} colore di riempimento, di tipo \textit{FillColour}.
+\item[-] \textit{{\_}font} font del testo, di tipo \textit{TextFont}.
+\item[-] \textit{{\_}txt} stringa contenente il testo da disegnare.
+\end{elencopuntato}
+\paragraph{Metodi pubblici:}
+\begin{elencopuntato}[\normindent]
+\item[-] \textit{getTextColour()} ritorna \textit{{\_}fillColour}.
+\item[-] \textit{get/setFont()} ottiene/modifica \textit{{\_}font}.
+\item[-] \textit{get/setText()} ottiene/modifica \textit{{\_}txt}.
+\item[-] \textit{eachProperty(fn)} richiama \textit{eachProperty} di \textit{Figure} ed applica la funzione fn a \textit{{\_}fillColour} e a \textit{{\_}font}.
+\item[-] \textit{draw(canvas)} disegna il \textit{{\_}txt} usando le API del contesto grafico. L'altezza del testo \`e uguale all'altezza del \textit{BoundingRectangle}, mentre la larghezza del \textit{BoundingRectangle} definisce la larghezza massima del testo. Viene disegnato due volte: la prima per il riempimento, la seconda per il bordo. Prima di disegnarsi richiama \textit{applyToContext} sui colori del bordo e di riempimento, e setta l'attributo \textit{font} del contesto grafico all'altezza assoluta del \textit{BoundingRectangle} in pixel, seguita dalla rappresentazione CSS di \textit{{\_}font}.
 \end{elencopuntato}
 
 
