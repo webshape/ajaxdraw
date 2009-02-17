@@ -239,13 +239,15 @@ Contiene le istanze di \textit{Figure} correntemente attive.
 \subsubsezione{Interfacce e relazioni di uso da altre componenti}
 Usata dalla classe \textit{SVGWriter} per serializzare in SVG le figure correnti a dall'interfaccia utente per accedere alle figure. Pu\`o venire generata dalla classe \textit{SVGReader} dopo la deserializzazione di un file SVG.
 \subsubsezione{Attivit\`a svolte e dati trattati}
+Il costruttore controlla se il browser supporta il metodo \textit{getImageData} del contesto grafico. In caso negativo, setta il metodo \textit{selectFigure} a \textit{fallbackSelection}.
 \paragrafo{Attributi privati:}
 \begin{elencopuntato}[\normindent]
 \item[-] \textit{{\_}figures} array contenente le figure.
 \end{elencopuntato}
 \paragrafo{Metodi pubblici:}
 \begin{elencopuntato}[\normindent]
-\item[-]  \textit{selectFigure()} permette di selezionare una figura contenente il punto passato come argomento, se tale figura esiste.
+\item[-]  \textit{selectFigure(where)} permette di selezionare una figura contenente il punto passato come argomento, se tale figura esiste. Per maggiori dettagli si veda il diagramma di attivit\`a [TODO: inserire diagramma].
+\item[-] \textit{fallbackSelection(where}} metodo usato quando il browser non supporta \textit{getImageData} al posto di \textit{selectFigure}. Seleziona l'ultima figura (se esiste) il cui \textit{BoundingRectangle} contiene il punto \textit{where}. Nel caso la figura sia una linea diritta viene controllato se il punto giace sulla linea. Questo metodo \`e pi\`u impreciso rispetto a \textit{selectFigure}.
 \item[-]  \textit{each(fn)} permette di applicare una funzione ad ogni figura. Viene usato per iterare attraverso la collezione. Applica fn ad ogni elemento di \textit{{\_}figures}. 
 \item[-]  \textit{add(f)} aggiunge la figura f alla fine di \textit{{\_}figures}.
 \item[-]  \textit{rem(f)} rimuove da \textit{{\_}figures} tutte le figure identiche (ovvero aventi lo stesso indirizzo) di f.
