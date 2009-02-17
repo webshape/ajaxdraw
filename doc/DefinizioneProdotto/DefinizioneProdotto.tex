@@ -411,14 +411,34 @@ Ogni istanza di una classe derivante da \textit{Figure} ha uno e un solo \textit
 \subsubsezione{Tipo, obiettivo e funzione del componente}
 Si occupa di chiamare il metodo \textit{toSVG} su ogni figura e ritornare il documento SVG che corrisponde alla situazione corrente del canvas.
 \subsubsezione{Relazioni d'uso di altre componenti}
-Si serve di \textit{SVGGenerator} per creare il documento, del metodo \textit{each} per iterare attraverso la collezione di figure e del metodo \textit{flush} per ritornare il documento come stringa. 
-Implementa il metodo \textit{toSVG} dell'interfaccia \textit{SVGWritable}.
+Si serve di \textit{SVGGenerator} per creare il documento e ritornarlo, del metodo \textit{each} per iterare attraverso la collezione di figure.
 \subsubsezione{Interfacce e relazioni di uso da altre componenti}
 Nessuna
 \subsubsezione{Attivit\`a svolte e dati trattati}
 \paragrafo{Metodi pubblici:}
 \begin{elencopuntato}[\normindent]
-\item[-]  \textit{write()} Chiama il metodo \textit{toSVG} su ogni figura e ritorna il documento SVG.
+\item[-]  \textit{write()} chiama il metodo \textit{toSVG} su ogni figura e ritorna il documento SVG.
+\end{elencopuntato}
+
+\subsezione{SVGGenerator}
+\subsubsezione{Tipo, obiettivo e funzione del componente}
+Contiene il documento SVG in costruzione e i metodi per gestirlo.
+\subsubsezione{Relazioni d'uso di altre componenti}
+Nessuna
+\subsubsezione{Interfacce e relazioni di uso da altre componenti}
+Usato da \textit{SVGWriter} per realizzare il documento SVG.
+\subsubsezione{Attivit\`a svolte e dati trattati}
+\paragrafo{Attributi privati:}
+\begin{elencopuntato}[\normindent]
+\item[-] \textit{{\_}doc} stringa che rappresenta il documento in costruzione.
+\end{elencopuntato}
+\paragrafo{Metodi pubblici:}
+\begin{elencopuntato}[\normindent]
+\item[-]  \textit{startCommand(name)} apre un tag svg con il valore \textit{name}. 
+\item[-]  \textit{attr(name, value, last)} aggiunge un attributo \textit{name} con valore \textit{value}. Se il valore booleano \textit{last} \`e \textit{true} chiude il tag di apertura.
+\item[-]  \textit{text(t)} scrive il testo contenuto nella stringa \textit{t} tra un tag di apertura e il corrispondente di chiusura.
+\item[-]  \textit{endCommand(name)} aggiunge un tag svg di chiusura con il valore \textit{name}.
+\item[-]  \textit{flush()} chiude il documento e lo ritorna come stringa.
 \end{elencopuntato}
 
 \sezione{Tracciamento della relazione componenti - requisiti}
