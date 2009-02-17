@@ -523,6 +523,7 @@ Deriva da \textit{Figure} e ne implementa i metodi astratti. Mantiene un'istanza
 \subsubsezione{Interfacce e relazioni di uso da altre componenti}
 Creato dalla lettura di un file SVG oppure dall'interfaccia utente. Manipolato dall'interfaccia utente.
 \subsubsezione{Attivit\`a svolte e dati trattati}
+Nel costruttorte viene controllato se il browser supporta le API per il disegno del testo. In caso contrario, il metodo \textit{draw} viene settato a \textit{fallbackDraw}.
 \paragrafo{Attributi privati:}
 \begin{elencopuntato}[\normindent]
 \item[-] \textit{{\_}fillColour} colore di riempimento, di tipo \textit{FillColour}.
@@ -536,6 +537,7 @@ Creato dalla lettura di un file SVG oppure dall'interfaccia utente. Manipolato d
 \item[-] \textit{get/setText()} ottiene/modifica \textit{{\_}txt}.
 \item[-] \textit{eachProperty(fn)} richiama \textit{eachProperty} di \textit{Figure} ed applica la funzione fn a \textit{{\_}fillColour} e a \textit{{\_}font}.
 \item[-] \textit{draw(canvas)} disegna il \textit{{\_}txt} usando le API del contesto grafico. L'altezza del testo \`e uguale all'altezza del \textit{BoundingRectangle}, mentre la larghezza del \textit{BoundingRectangle} definisce la larghezza massima del testo. Viene disegnato due volte: la prima per il riempimento, la seconda per il bordo. Prima di disegnarsi richiama \textit{applyToContext} sui colori del bordo e di riempimento, e setta l'attributo \textit{font} del contesto grafico all'altezza assoluta del \textit{BoundingRectangle} in pixel, seguita dalla rappresentazione CSS di \textit{{\_}font}.
+\item[-] \textit{fallbackDraw(canvas)} metodo usato al posto di \textit{draw} quando il browser non ha il supporto per il testo. Disegna un rettangolo in modo analogo al metodo \textit{draw} di \textit{Rectangle}.
 \end{elencopuntato}
 
 

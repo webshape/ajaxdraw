@@ -860,6 +860,20 @@ function Text (txt) {
   this._txt = txt;
   this._fillColour = new TextColour(0, 0, 0, new Opacity(1));
   this._font = new TextFont('sans-serif');
+  // check for text support
+  var hasSupport = false;
+  var c = document.createElement('canvas');
+  if (c && c.getContext) {
+    c = c.getContext('2d');
+    if (c && c.fillText && c.strokeText) {
+      hasSupport = true;
+    }
+  }
+  if (!hasSupport) {
+    this.draw = Text.prototype.fallbackDraw;
+    // used to cheat Rectangle.prototype.draw and reuse it
+    this.getFillColour = this.getTextColour;
+  }
 }
 
 Text.prototype = new Figure();
@@ -893,4 +907,12 @@ Text.prototype.draw = function (c) {
   ctx.strokeText(this._txt, x, y, Math.abs(b.w()));
   ctx.closePath();
   ctx.restore();
+};
+
+/*
+ * Method used to draw a text when there is no support for text
+ * It just draws a filled rectangle
+ */
+Text.prototype.fallbackDraw = function (c) {
+  Rectangle.prototype.draw.call(this, c);
 };
