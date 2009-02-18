@@ -72,7 +72,7 @@ Figure.prototype.drawSelection = function (c) {
   ctx.save();
   this.getMainPoints().each(function (pt) {
                               color.applyToContext(ctx);
-                              ctx.strokeRect(pt.x - half, ptx.y - half,
+                              ctx.strokeRect(pt.x - half, pt.y - half,
                                              size, size);
                             });
   ctx.restore();
