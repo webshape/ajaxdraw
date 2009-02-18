@@ -146,7 +146,9 @@ Il presente documento descrive in modo dettagliato le classi e i relativi metodi
 %%%%%%%%%%%%%%FINE INTESTAZIONE COLONNE%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 		 \hline
 %%%%%%%%%%% PARTE DA MODIFICARE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%		
-    	 	0.1 & 	 17$\slash$02$\slash$2009 Descritte classi e metodi delle figure e delle propriet\`a & Dissegna Stefano \\
+    	 	0.2 &    18$\slash$02$\slash$2009 descritto metodo clone nella classe figure & Rizzo Maurizio \\
+                \hline
+                0.1 & 	 17$\slash$02$\slash$2009 Descritte classi e metodi delle figure e delle propriet\`a & Dissegna Stefano \\
 
 		\hline
     	 	0.0 & 	 11$\slash$02$\slash$2009 Bozza & Dissegna Stefano \\
@@ -229,6 +231,7 @@ Viene aggregata dalla classe \textit{FigureSet}.
 \item[-]  \textit{isSelected()} dice se la figura \`e correntemente selezionata. Ritorna \textit{{\_}selected}.
 \item[-]  \textit{eachProperty(fn)} applica la funzione fn ad ogni propriet\`a della figura, ovvero a \textit{{\_}bounds} e \textit{{\_}borderColour}.
 \item[-] \textit{drawSelection(canvas)} disegna dei quadratini intorno ai punti principali della figura, ottenuti tramite \textit{getMainPoints}, se la figura \`e selezionata.
+\item[-] \textit{clone()} metodo che utilizza \textit{isSelected()} per riconoscere una figura selezionata, \textit{getMainPoints} per ottenere i punti della figura selezionata e usa \textit{draw(canvas)} per disegnare il clone dell'originale spostato leggermente verso l'alto o in relazione a dove si trova la figura origine sul canvas.
 \end{elencopuntato}
 
 \subsezione{FigureSet}
