@@ -19,7 +19,6 @@ var FillColor="#000000";
 
 
 function changeFarbColor(col,type){
-
   $.farbtastic("#color").setColor(col);
   document.getElementById("color").value=$.farbtastic("#color").color;
   document.getElementById("coloreOra").style.backgroundColor=col;
@@ -42,10 +41,9 @@ function createColDialog(){
 
 function createEdgeDialog(){
   $("#edgeNumberDialog").dialog({
-
    // position: ["right","top"],
-    height: 150,
-    width:400,
+    height: 100,
+    width:320,
     dialogClass: "edgeDialog",
     buttons: { "Conferma": function() {
 		 $(this).dialog("close");
@@ -53,8 +51,7 @@ function createEdgeDialog(){
 		   polygonEdgeNumber=document.getElementById("#edgeNumber").value;
     });
 
-
-	       } }
+    } }
 
     });
 
@@ -110,8 +107,9 @@ $(document).ready(function(){
 
 /*Creazione dialog colore */
        createColDialog();
-		    createEdgeDialog();
-		    $("#edgeNumberDialog").dialog("close");
+/* Creazione dialog Edge */
+       createEdgeDialog();
+       $("#edgeNumberDialog").dialog("close");
 /*Creazione dialog proprietà */
     $("#propertiesDialog").dialog({
     	position: "right",

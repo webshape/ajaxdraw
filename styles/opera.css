@@ -9,17 +9,27 @@ canvas {
 	position: fixed;
 	}
 .toolbarButton{
-	width: 3em;
-	height:2em;
+	width: 3.5em;
+	height:2.5em;
 }
-
 #selectionButton{
 	background-image:url("../pages/images/selezione.png");
+	}
+#zoomButton{
+	background-image:url("../pages/images/zoom.png");
+	}		
+#bezierButton{
+    background-image:url("../pages/images/linea.png");
 	}
 #squareButton{
 	background-image:url("../pages/images/quadrato.png");
 }
-
+#circleButton{
+	background-image:url("../pages/images/cerchio.png");
+}
+#polygonButton{
+	background-image:url("../pages/images/poligono.png");
+}
 /*Tavolozza*/
 .paletteComponent{
 	width:15em;

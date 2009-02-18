@@ -73,6 +73,10 @@ a.button:hover span{background-position: bottom right}
 #selectionButton{
 	background-image:url("../pages/images/selezione.png");
 	}
+#zoomButton{
+	background-image:url("../pages/images/zoom.png");
+	}	
+	
 #bezierButton{
     background-image:url("../pages/images/linea.png");
 	}
