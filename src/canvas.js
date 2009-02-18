@@ -2,17 +2,20 @@ $(document).ready(function(){
 
 var canvas = document.getElementById("cv");
 var ctx = canvas.getContext("2d");   //prendo il contesto
-
 var canvasLeft = ctx.canvas.offsetLeft;
 var canvasTop = ctx.canvas.offsetTop;
-//var figures = [];
-var polygonEdgeNumber=3;
+var polygonEdgeNumber = 3;
+var boolTool = new Array;
 var Set=new FigureSet();
-
+boolTool[0]=false;
+boolTool[1]=false;
+boolTool[2]=false;
+boolTool[3]=false;
+boolTool[4]=false;
 
 
 function refresh(){
-  //  alert("Elementi array:"+Set._figures.length);
+  // alert("Elementi array:"+Set._figures.length);
   Set.each(function (f) {
     f.draw(canvas);
   });
@@ -28,9 +31,11 @@ function deselectAll(){
 /////////////////////////////////////////
 $("#selectionButton").click(function () {
   $("#cv").unbind('mousedown click mouseup');
-  $("#cv").bind("click", function(e){
+        canvas.width=canvas.width;
       refresh();
-      deselectAll();
+
+  $("#cv").bind("click", function(e){
+   //   deselectAll();
       var sx = e.pageX-canvasLeft;
       var top = e.pageY-canvasTop;
       var coord = new Point(sx,top);
@@ -50,101 +55,93 @@ $("#selectionButton").click(function () {
 
 
 /////////////////////////////////////////////////
-
+var bez=new Array;
+var iBezier=0;
 $("#bezierButton").click(function () {
   $("#cv").unbind('mousedown click mouseup');
-  var c = new StraightLine();
   $("#cv").bind("mousedown", function(e){
+      bez[iBezier] = new StraightLine();
       var sx = e.pageX-canvasLeft;
       var top = e.pageY-canvasTop;
 
-      c.getBorderColour().set(0, 0, 255, new Opacity(1));
-      c.getBounds().setStart(new Point(sx, top));
+      bez[iBezier].getBorderColour().set(0, 0, 255, new Opacity(1));
+      bez[iBezier].getBounds().setStart(new Point(sx, top));
       }).bind("mouseup",function(e){
-		var sx1 = e.pageX-canvasLeft;
-		var top1 = e.pageY-canvasTop;
-		c.getBounds().setEnd(new Point(sx1,top1));
-		Set.add(c);
-		refresh();
+	var sx1 = e.pageX-canvasLeft;
+	var top1 = e.pageY-canvasTop;
+	bez[iBezier].getBounds().setEnd(new Point(sx1,top1));
+	Set.add(bez[iBezier]);
+	iBezier++;
+	refresh();
 
     });
 
 });
-
-///////////////////////////////////////////////////////////////////////////
-
+////////////////////////////////////////////////////////////
+var sq=new Array;
+var iSquare=0;
 $("#squareButton").click(function () {
   $("#cv").unbind('mousedown click mouseup');
-  var c = new Rectangle();
-  $("#cv").bind("mousedown", function(e){
+   $("#cv").bind("mousedown", function(e){
+      sq[iSquare] = new Rectangle();
       var sx = e.pageX-canvasLeft;
       var top = e.pageY-canvasTop;
-
-      c.getBorderColour().set(255, 0, 0, new Opacity(1));
-       c.getBounds().setStart(new Point(sx, top));
-
-
-	/*	  $("#cv").bind("mousemove",function(e){
-			    var re=new Rectangle();
-			    var sx2 = e.pageX-canvasLeft;
-			    var top2 = e.pageY-canvasTop;
-			     re.getBounds().setEnd(new Point(sx2, top2));
-			      Set.add(re);
-			      Set.each(function (f) {
-				f.draw(canvas);
-			      });   */
-
-
-
-
-		    }).bind("mouseup",function(e){
-			      var sx1 = e.pageX-canvasLeft;
-			      var top1 = e.pageY-canvasTop;
-			      c.getBounds().setEnd(new Point(sx1, top1));
-			      Set.add(c);
-			      refresh();
-
+      sq[iSquare].getBorderColour().set(255, 0, 0, new Opacity(1));
+      sq[iSquare].getBounds().setStart(new Point(sx, top));
+      }).bind("mouseup",function(e){
+	var sx1 = e.pageX-canvasLeft;
+	var top1 = e.pageY-canvasTop;
+	sq[iSquare].getBounds().setEnd(new Point(sx1, top1));
+	Set.add(sq[iSquare]);
+	iSquare++;
+	refresh();
     });
-
 });
 
-////////////////////////////////////////////////////////////
 
+
+//////////////////////////////////////////////////////////////////////
+
+
+var pol=new Array;
+var iPoly=0;
  $("#polygonButton").click(function () {
    $("#cv").unbind('mousedown mouseup click');
    createEdgeDialog();
-   var y= new Polygon();
    $("#cv").bind("mousedown", function(e){
+     pol[iPoly]= new Polygon();
      var sx = e.pageX-canvasLeft;
      var top = e.pageY-canvasTop;
-     y.getBorderColour().set(255, 0, 0, new Opacity(1));
-     y.getBounds().setStart(new Point(sx, top));
+     pol[iPoly].getBorderColour().set(255, 0, 0, new Opacity(1));
+     pol[iPoly].getBounds().setStart(new Point(sx, top));
    }).bind("mouseup",function(e){
      var sx1 = e.pageX-canvasLeft;
      var top1 = e.pageY-canvasTop;
-     y.getBounds().setEnd(new Point(sx1, top1));
-     y.edgeNumber().setVal(polygonEdgeNumber);
-     Set.add(y);
+     pol[iPoly].getBounds().setEnd(new Point(sx1, top1));
+     pol[iPoly].edgeNumber().setVal(polygonEdgeNumber);
+     Set.add(pol[iPoly]);
+     iPoly++;
      refresh();
    });
 });
 
 ////////////////////////////////////////////////////////////////////////////////
-
+var cir=new Array;
+var iCircle=0;
  $("#circleButton").click(function () {
    $("#cv").unbind('mouseup mousedown click');
-   var y= new Circle();
    $("#cv").bind("mousedown", function(e){
-		var sx = e.pageX-canvasLeft;
-		var top = e.pageY-canvasTop;
-		y.getBorderColour().set(255, 0, 0, new Opacity(1));
-		y.getBounds().setStart(new Point(sx, top));
-
+	cir[iCircle]= new Circle();
+	var sx = e.pageX-canvasLeft;
+	var top = e.pageY-canvasTop;
+	cir[iCircle].getBorderColour().set(255, 0, 0, new Opacity(1));
+	cir[iCircle].getBounds().setStart(new Point(sx, top));
 		  }).bind("mouseup",function(e){
 			    var sx1 = e.pageX-canvasLeft;
 			    var top1 = e.pageY-canvasTop;
-			    y.getBounds().setEnd(new Point(sx1, top1));
-			    Set.add(y);
+			    cir[iCircle].getBounds().setEnd(new Point(sx1, top1));
+			    Set.add(cir[iCircle]);
+			    iCircle++;
 			    refresh();
 		  });
 
