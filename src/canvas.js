@@ -55,45 +55,45 @@ $("#selectionButton").click(function () {
 
 
 /////////////////////////////////////////////////
-var bez=new Array;
-var iBezier=0;
+
 $("#bezierButton").click(function () {
   $("#cv").unbind('mousedown click mouseup');
+  var b = [];
   $("#cv").bind("mousedown", function(e){
-      bez[iBezier] = new StraightLine();
+                  var f = b[0] = new StraightLine();
       var sx = e.pageX-canvasLeft;
       var top = e.pageY-canvasTop;
 
-      bez[iBezier].getBorderColour().set(0, 0, 255, new Opacity(1));
-      bez[iBezier].getBounds().setStart(new Point(sx, top));
+      f.getBorderColour().set(0, 0, 255, new Opacity(1));
+      f.getBounds().setStart(new Point(sx, top));
       }).bind("mouseup",function(e){
 	var sx1 = e.pageX-canvasLeft;
 	var top1 = e.pageY-canvasTop;
-	bez[iBezier].getBounds().setEnd(new Point(sx1,top1));
-	Set.add(bez[iBezier]);
-	iBezier++;
+        var f = b[0];
+	f.getBounds().setEnd(new Point(sx1,top1));
+	Set.add(f);
 	refresh();
 
     });
 
 });
 ////////////////////////////////////////////////////////////
-var sq=new Array;
-var iSquare=0;
+
 $("#squareButton").click(function () {
   $("#cv").unbind('mousedown click mouseup');
+  var s = [];
    $("#cv").bind("mousedown", function(e){
-      sq[iSquare] = new Rectangle();
+      var f = s[0] = new Rectangle();
       var sx = e.pageX-canvasLeft;
       var top = e.pageY-canvasTop;
-      sq[iSquare].getBorderColour().set(255, 0, 0, new Opacity(1));
-      sq[iSquare].getBounds().setStart(new Point(sx, top));
+      f.getBorderColour().set(255, 0, 0, new Opacity(1));
+      f.getBounds().setStart(new Point(sx, top));
       }).bind("mouseup",function(e){
 	var sx1 = e.pageX-canvasLeft;
 	var top1 = e.pageY-canvasTop;
-	sq[iSquare].getBounds().setEnd(new Point(sx1, top1));
-	Set.add(sq[iSquare]);
-	iSquare++;
+        var f = s[0];
+	f.getBounds().setEnd(new Point(sx1, top1));
+	Set.add(f);
 	refresh();
     });
 });
@@ -103,45 +103,44 @@ $("#squareButton").click(function () {
 //////////////////////////////////////////////////////////////////////
 
 
-var pol=new Array;
-var iPoly=0;
  $("#polygonButton").click(function () {
    $("#cv").unbind('mousedown mouseup click');
    createEdgeDialog();
+   var p = [];
    $("#cv").bind("mousedown", function(e){
-     pol[iPoly]= new Polygon();
+     var f = p[0]= new Polygon();
      var sx = e.pageX-canvasLeft;
      var top = e.pageY-canvasTop;
-     pol[iPoly].getBorderColour().set(255, 0, 0, new Opacity(1));
-     pol[iPoly].getBounds().setStart(new Point(sx, top));
+     f.getBorderColour().set(255, 0, 0, new Opacity(1));
+     f.getBounds().setStart(new Point(sx, top));
    }).bind("mouseup",function(e){
      var sx1 = e.pageX-canvasLeft;
      var top1 = e.pageY-canvasTop;
-     pol[iPoly].getBounds().setEnd(new Point(sx1, top1));
-     pol[iPoly].edgeNumber().setVal(polygonEdgeNumber);
-     Set.add(pol[iPoly]);
-     iPoly++;
+     var f = p[0];
+     f.getBounds().setEnd(new Point(sx1, top1));
+     f.edgeNumber().setVal(polygonEdgeNumber);
+     Set.add(f);
      refresh();
    });
 });
 
 ////////////////////////////////////////////////////////////////////////////////
-var cir=new Array;
-var iCircle=0;
+
  $("#circleButton").click(function () {
    $("#cv").unbind('mouseup mousedown click');
+   var y = [];
    $("#cv").bind("mousedown", function(e){
-	cir[iCircle]= new Circle();
+	           var c = y[0] = new Circle();
 	var sx = e.pageX-canvasLeft;
 	var top = e.pageY-canvasTop;
-	cir[iCircle].getBorderColour().set(255, 0, 0, new Opacity(1));
-	cir[iCircle].getBounds().setStart(new Point(sx, top));
+	c.getBorderColour().set(255, 0, 0, new Opacity(1));
+	c.getBounds().setStart(new Point(sx, top));
 		  }).bind("mouseup",function(e){
+                            var c = y[0];
 			    var sx1 = e.pageX-canvasLeft;
 			    var top1 = e.pageY-canvasTop;
-			    cir[iCircle].getBounds().setEnd(new Point(sx1, top1));
-			    Set.add(cir[iCircle]);
-			    iCircle++;
+			    c.getBounds().setEnd(new Point(sx1, top1));
+			    Set.add(c);
 			    refresh();
 		  });
 
