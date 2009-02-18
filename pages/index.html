@@ -25,12 +25,13 @@
 <script type="text/javascript" src="../src/utils.js"></script>
 <script type="text/javascript" src="../src/figures.js"></script>
 <script type="text/javascript" src="../src/gui.js"></script>
+<script type="text/javascript" src="../src/canvas.js"></script>
 <script type="text/javascript" src="../src/lib/menu-for-applications.js"></script>
 <link rel="stylesheet" href="../styles/menu_bar/menu-bar.css" type="text/css" />
 <link rel="stylesheet" href="../styles/menu_bar/menu-item.css" type="text/css" />
 <!-- Script di prova di disegno su canvas -->
 <script type="text/javascript">
-function draw(){
+/*function draw(){
 var canvas = document.getElementById("cv");
 
 //canvas.height = 1000;
@@ -106,7 +107,7 @@ figures.push(c);
 figures.each(function (f) {
                f.draw(canvas);
              });
-}
+}  */
 
 
 
@@ -114,7 +115,7 @@ figures.each(function (f) {
 </head>
 
 
-<body onload="draw()">
+<body onload="">
 
 
 <!-- Interfaccia -->
@@ -168,7 +169,7 @@ menuBar5.init();
 		<img src="images/toolbar.png" width="34" height="546" alt="toolbar" />
 	</span> -->
 	<div id="tool">
-		<input title="Seleziona e trasforma oggetti" class="toolbarButton" id="selectionButton" type="button"/><br/>
+		<input onclick="draw()" title="Seleziona e trasforma oggetti" class="toolbarButton" id="selectionButton" type="button"/><br/>
 		<input title="Ingrandisce o rimpicciolisce" class="toolbarButton" id="zoomButton" type="button"/><br/>
 		<input title="Disegna una linea di Bezier" class="toolbarButton" id="bezierButton" type="button"/><br/>
 		<input title="Crea rettangoli e quadrati" class="toolbarButton" id="squareButton" type="button"/><br/>
@@ -274,6 +275,11 @@ menuBar5.init();
 	<p>X:  &nbsp; <INPUT type="text" size="2"/>&nbsp;&nbsp;   Y:&nbsp;<INPUT type="text" size="2"/></p>
 </div>
 
+
+<!-- Dialog per il numero di poligoni -->
+<div id="edgeNumberDialog" class="flora" title="Scegli il numero di lati">
+	<p>Numero di lati: <input id="edgeNumber" type="text"/></p>
+</div>
 
 </body>
 </html>
