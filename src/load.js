@@ -23,6 +23,17 @@ SVGReader.prototype.read = function (doc) {
   if (xmlDoc == null)
 	 return 1; // parsing error
 
+  var x = xmlDoc.getElementsByTagName("svg");
+  for (var i = 0; i < x[0].childNodes.length; i++) {
+	 var n = x[0].childNodes[i].nodeName;
+	 if (n != "#text"){
+		document.write(n);
+	 }
+	 else {
+		document.write("<br/>");
+	 }
+  }
+
   return 0;// xmlDoc contains the DOM of the SVG
 };
 
