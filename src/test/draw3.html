@@ -1,0 +1,24 @@
+<!-- draw some figures, manually checked -->
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<title> Draw Test </title>
+<script src="../lib/jquery.js"></script>
+<!--[if IE]><script type="text/javascript" src="../lib/excanvas.js"></script><![endif]-->
+<script src="../utils.js"></script>
+<script src="../figures.js"></script>
+<script src="../load.js"></script>
+<script type="text/javascript" src="draw.js"> </script>
+</head>
+<body>
+<script type="text/javascript">
+$(document).ready(function(){
+var doc = "svg.svg";       
+r = new SVGReader();
+b = (r.read(doc));
+document.write(b);
+
+});
+</script>
+</body>
+</html>
