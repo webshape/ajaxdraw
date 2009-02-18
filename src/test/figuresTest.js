@@ -108,7 +108,42 @@ test('FigureSet.selectFigure', function () {
        //equals(fs.selectFigure(new Point(10, 10)), t,
          //     'text, line, polygon, point on text');
      });
-                    
+
+test('Circle', function () {
+       var c = new Circle();
+       c.getFillColour().set(1, 2, 3, new Opacity(1));
+       equals(c.getFillColour().toCSS(), '#010203', 'getFillColour');
+     });
+
+test('Polygon', function () {
+       var p = new Polygon();
+       p.getFillColour().set(1, 2, 3, new Opacity(1));
+       equals(p.getFillColour().toCSS(), '#010203', 'getFillColour');
+       ok(p.edgeNumber() instanceof EdgeNumber, 'edgeNumber');
+       p.getBounds().setStart(new Point(10, 20));
+       p.getBounds().setEnd(new Point(110, 120));
+       p.edgeNumber().setVal(4);
+       same(p.getPoints().map(function (p) { 
+                                return new Point(Math.round(p.x),
+                                                 Math.round(p.y));
+                              }),
+            [new Point(100, 50), new Point(50, 100),
+             new Point(0, 50), new Point(50, 0)],
+            'getPoints (4 edges)');
+//       p.getEdgeNumber().setVal(3);
+  //     same(p.getPoints(), [new Point(100, 50), new Point(50, 0),
+       //                     new Point(0, 50), new Point(50, 100)],
+    //        'getPoints (3 edges)');       
+     });
+
+test('Rectangle', function () {
+       var r = new Rectangle();
+       r.getFillColour().set(1, 2, 3, new Opacity(1));
+       equals(r.getFillColour().toCSS(), '#010203', 'getFillColour');
+     });
+
+// nothing to test here for StraightLine
+  
 test('FreeLine', function () {
        var f = new FreeLine();
        var pts = [new Point(5, 5), new Point(5, 5), new Point(0, 10), 
@@ -124,5 +159,19 @@ test('FreeLine', function () {
                                                  new Point(100, 200)),
             'bounds adjusted');
      });
-                    
+
+test('Text', function () {
+       var t = new Text('aloha!');
+       t.getTextColour().set(1, 2, 3, new Opacity(1));
+       equals(t.getTextColour().toCSS(), '#010203', 'getTextColour');
+       equals(t.getText(), 'aloha!', 'getText');
+       t.setText('new');
+       equals(t.getText(), 'new', 'setText');
+       equals(t.getFont().toCSS(), 'sans-serif', 'getFont');
+       t.setFont(new TextFont('verdana'));
+       equals(t.getFont().toCSS(), 'verdana', 'setFont');
+     });
+
+// drawing functions tested in draw.html
+  
 }
