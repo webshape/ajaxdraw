@@ -15,7 +15,27 @@ test("BoundingRectangle", function () {
        r.setEnd(new Point(5, 6));
        same(r.end(), new Point(5, 6), 'setEnd');
      });
-                    
+
+test('Colour & Opacity', function () {
+       var o = new Opacity(0.5);
+       var c = new Colour(0, 255, 2, o);
+       equals(o.getVal(), 0.5, 'getVal');
+       o.setVal(0.9);
+       equals(o.getVal(), 0.9, 'setVal');
+       equals(c.toCSS(), '#00ff02', 'toCSS');
+       c.set(254, 0, 0, o);
+       equals(c.toCSS(), '#fe0000', 'set');
+       equals(c._o, o, 'set');
+     });
+
+test('EdgeNumber', function () {
+       var e = new EdgeNumber(7);
+       equals(e.getVal(), 7, 'getVal');
+       e.setVal(9);
+       equals(e.getVal(), 9, 'setVal');
+       ok(e.createWidget() instanceof EdgeNumberSetter, 'createWidget');
+     });
+  
 test('FigureSet.selectFigure', function () {
        var fs = new FigureSet();
        var f = new StraightLine();
