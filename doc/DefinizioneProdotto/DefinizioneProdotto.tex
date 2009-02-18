@@ -484,7 +484,7 @@ Creato dalla lettura di un file SVG oppure dall'interfaccia utente. Manipolato d
 \paragraph{Metodi pubblici:}
 \begin{elencopuntato}[\normindent]
 \item[-] \textit{extend(point)} aggiunge un punto avente coordinate assolute ai punti di controllo. Nel caso il punto esca dal \textit{BoundingRectangle}, il \textit{BoundingRectangle} viene ampliato e tutti i punti di controllo (con coordinate relative) vengono ricalcolati in modo che mantengano la posizione precedente. Per maggiori dettagli si veda il diagramma di attivit\`a [TODO: inserire diagramma].
-\item[-] \textit{getPoints} ritorna un array con una copia dei punti di controllo della linea convertiti a coordinate assolute in base al \textit{BoundingRectangle}.Per maggiori dettagli si veda il diagramma di attivit\`a [TODO: inserire diagramma].
+\item[-] \textit{getPoints} ritorna un array con una copia dei punti di controllo della linea convertiti a coordinate assolute in base al \textit{BoundingRectangle}.
 \item[-] \textit{draw(canvas)} chiama \textit{applyToContext} sul colore del bordo e ottiene i punti di controllo assoluti tramite \textit{getPoints}. Raggruppa i punti a 3 a 3 e per ogni gruppo traccia una curva di bezier. Se rimangono due punti traccia una quadratica e se ne rimane uno solo una linea diritta.
 \item[-] \textit{toSVG(gen)} si serve dei metodi di \textit{gen} (di tipo \textit{SVGGenerator}) per scrivere le propriet\`a della figura in formato SVG.
 \end{elencopuntato}
