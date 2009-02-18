@@ -14,6 +14,7 @@ test("BoundingRectangle", function () {
        equals(r.w(), -10, 'negative w');
        r.setEnd(new Point(5, 6));
        same(r.end(), new Point(5, 6), 'setEnd');
+       ok(r.createWidget() instanceof BoundingRectangleSetter, 'createWidget');
      });
 
 test('Colour & Opacity', function () {
@@ -26,6 +27,7 @@ test('Colour & Opacity', function () {
        c.set(254, 0, 0, o);
        equals(c.toCSS(), '#fe0000', 'set');
        equals(c._o, o, 'set');
+       ok(c.createWidget() instanceof ColourDialog, 'createWidget');
      });
 
 test('EdgeNumber', function () {
@@ -34,6 +36,45 @@ test('EdgeNumber', function () {
        e.setVal(9);
        equals(e.getVal(), 9, 'setVal');
        ok(e.createWidget() instanceof EdgeNumberSetter, 'createWidget');
+     });
+
+test('TextFont', function () {
+       var t = new TextFont('verdana');
+       equals(t.toCSS(), 'verdana', 'toCSS');
+     });
+
+test('FigureSet', function () {
+       var fs = new FigureSet();
+       var f1 = new Circle();
+       var f2 = new Rectangle();
+       var f3 = new Polygon();
+       var count = function () {
+         var i = 0;
+         fs.each(function (f) {
+                   i++;
+                 });
+         return i;
+       };
+       fs.add(f1);
+       equals(count(), 1, 'add & each (1)');
+       fs.add(f2);
+       equals(count(), 2, 'add & each (2)');
+       fs.add(f3);
+       equals(count(), 3, 'add & each (3)');
+       fs.rem(f2);
+       equals(count(), 2, 'rem');
+       fs.rem(f2);
+       equals(count(), 2, 'rem non existant');
+       fs.add(f2);
+       var i = 0;
+       var res = false;
+       fs.each(function (f) {
+                 if (i == 2) {
+                   res = f instanceof Rectangle;
+                 }
+                 i++;
+               });
+       ok(res, 'last added, last position');
      });
   
 test('FigureSet.selectFigure', function () {
