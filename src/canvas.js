@@ -5,16 +5,47 @@ var ctx = canvas.getContext("2d");   //prendo il contesto
 
 var canvasLeft = ctx.canvas.offsetLeft;
 var canvasTop = ctx.canvas.offsetTop;
-var figures = [];
+//var figures = [];
 var polygonEdgeNumber=3;
-var toolSelected = new Array();
-		    toolSelected[0]=false; //selectionButton
-		    toolSelected[1]=false; //zoomButton
-		    toolSelected[2]=false;//bezierButton
-		    toolSelected[3]=false;//squareButton
-		    toolSelected[4]=false;//circleButton
-		    toolSelected[5]=false;//polygonButton
-		    toolSelected[6]=false;//freeHandButton
+var Set=new FigureSet();
+
+
+
+
+
+
+
+/////////////////////////////////////////
+$("#selectionButton").click(function () {
+  $("#cv").unbind('mousedown click mouseup');
+  $("#cv").bind("click", function(e){
+      var sx = e.pageX-canvasLeft;
+      var top = e.pageY-canvasTop;
+
+		  var coord=new Point(sx,top);
+
+
+
+
+		var actualFigure=  Set.selectFigure(coord);
+		  actualFigure.setSelection(true);
+		  actualFigure.drawSelection(canvas);
+	//	  if(actualFigure!=null){
+	//	    alert("trovata figura");
+	//	  }
+	//	  else {
+	//	    alert("trovato niente");
+	//	  }
+  }
+
+
+   );
+
+});
+
+
+
+/////////////////////////////////////////////////
 
 $("#bezierButton").click(function () {
 			     $("#cv").unbind('mousedown click mouseup');
@@ -32,8 +63,8 @@ $("#bezierButton").click(function () {
 				       var top1 = e.pageY-canvasTop;
 
 				      c.getBounds().setEnd(new Point(sx1,top1));
-				      figures.push(c);
-				      figures.each(function (f) {
+				      Set._figures.push(c);
+				      Set._figures.each(function (f) {
 					f.draw(canvas);
 				      });
 
@@ -59,8 +90,8 @@ $("#squareButton").click(function () {
 				       var top1 = e.pageY-canvasTop;
 
 				    c.getBounds().setEnd(new Point(sx1, top1));
-				      figures.push(c);
-				      figures.each(function (f) {
+				     Set._figures.push(c);
+				      Set._figures.each(function (f) {
 					f.draw(canvas);
 				      });
 
@@ -68,7 +99,7 @@ $("#squareButton").click(function () {
 
 });
 
-
+////////////////////////////////////////////////////////////
 
  $("#polygonButton").click(function () {
 			     $("#cv").unbind('mousedown mouseup click');
@@ -88,8 +119,8 @@ $("#squareButton").click(function () {
 
 			    y.getBounds().setEnd(new Point(sx1, top1));
 			    y.edgeNumber().setVal(polygonEdgeNumber);
-			    figures.push(y);
-			    figures.each(function (f) {
+			    Set._figures.push(y);
+			    Set._figures.each(function (f) {
 			      f.draw(canvas);
 			    });
 		  });
@@ -117,8 +148,8 @@ $("#squareButton").click(function () {
 			    var top1 = e.pageY-canvasTop;
 
 			    y.getBounds().setEnd(new Point(sx1, top1));
-			    figures.push(y);
-			    figures.each(function (f) {
+			    Set._figures.push(y);
+			    Set._figures.each(function (f) {
 			      f.draw(canvas);
 			    });
 		  });
