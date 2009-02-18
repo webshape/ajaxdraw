@@ -13,15 +13,20 @@ function activateStylesheet(sheetref){
 }
 
 
+var BorderColor="#000000";
+var FillColor="#000000";
 
 
-function changeFarbColor(col){
+
+function changeFarbColor(col,type){
   $.farbtastic("#color").setColor(col);
   document.getElementById("color").value=$.farbtastic("#color").color;
   document.getElementById("coloreOra").style.backgroundColor=col;
   $.farbtastic("#color").updateDisplay();
-  //  document.getElementById("color").style.backgroundColor=col;
 }
+
+
+
 
 function createColDialog(){
      $("#colorDialog").dialog({
@@ -31,6 +36,26 @@ function createColDialog(){
     	dialogClass: "Dialog1"
 
     });
+
+}
+
+function createEdgeDialog(){
+  $("#edgeNumberDialog").dialog({
+   // position: ["right","top"],
+    height: 100,
+    width:320,
+    dialogClass: "edgeDialog",
+    buttons: { "Conferma": function() {
+		 $(this).dialog("close");
+		 $(this).click(function () {
+		   polygonEdgeNumber=document.getElementById("#edgeNumber").value;
+    });
+
+    } }
+
+    });
+
+
 
 }
 
@@ -82,6 +107,9 @@ $(document).ready(function(){
 
 /*Creazione dialog colore */
        createColDialog();
+/* Creazione dialog Edge */
+       createEdgeDialog();
+       $("#edgeNumberDialog").dialog("close");
 /*Creazione dialog proprietà */
     $("#propertiesDialog").dialog({
     	position: "right",
@@ -102,6 +130,15 @@ $(document).ready(function(){
      // if($.browser.opera==false){
      //  $("canvas").css({'cursor' : 'url("../pages/images/selezione.gif")'});}
      );
+
+
+	$(".toolbarButton").hover(
+	  function(){
+	    $(this).fadeOut(100);
+	    $(this).fadeIn(500);
+	  }
+	);
+
 
 
      /* Funzione gestione pulsante toolbar premuto/rilasciato*/
@@ -130,3 +167,4 @@ $(document).ready(function(){
 
 //fine documento
   });
+

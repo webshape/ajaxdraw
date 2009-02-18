@@ -72,7 +72,7 @@ Figure.prototype.drawSelection = function (c) {
   ctx.save();
   this.getMainPoints().each(function (pt) {
                               color.applyToContext(ctx);
-                              ctx.strokeRect(pt.x - half, ptx.y - half,
+                              ctx.strokeRect(pt.x - half, pt.y - half,
                                              size, size);
                             });
   ctx.restore();
@@ -860,13 +860,27 @@ function Text (txt) {
   this._txt = txt;
   this._fillColour = new TextColour(0, 0, 0, new Opacity(1));
   this._font = new TextFont('sans-serif');
+  // check for text support
+  var hasSupport = false;
+  var c = document.createElement('canvas');
+  if (c && c.getContext) {
+    c = c.getContext('2d');
+    if (c && c.fillText && c.strokeText) {
+      hasSupport = true;
+    }
+  }
+  if (!hasSupport) {
+    this.draw = Text.prototype.fallbackDraw;
+    // used to cheat Rectangle.prototype.draw and reuse it
+    this.getFillColour = this.getTextColour;
+  }
 }
 
 Text.prototype = new Figure();
 
 Text.accessors('_txt', 'getText', 'setText');
 Text.accessors('_font', 'getFont', 'setFont');
-Text.accessors('_fillColour', 'getTextColour', 'setTextColour');
+Text.reader('_fillColour', 'getTextColour');
 
 Text.prototype.eachProperty = function (fn) {
   Figure.prototype.eachProperty.call(this, fn);
@@ -893,4 +907,12 @@ Text.prototype.draw = function (c) {
   ctx.strokeText(this._txt, x, y, Math.abs(b.w()));
   ctx.closePath();
   ctx.restore();
+};
+
+/*
+ * Method used to draw a text when there is no support for text
+ * It just draws a filled rectangle
+ */
+Text.prototype.fallbackDraw = function (c) {
+  Rectangle.prototype.draw.call(this, c);
 };
