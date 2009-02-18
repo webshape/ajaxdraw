@@ -1,0 +1,24 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="1000" height="1200" version="1.1" xmlns="http://www.w3.org/2000/svg">
+<polygon fill="#000000" fill-opacity="1" stroke="#ff0000" stroke-opacity="1" points="100,50 93.30127018922194,75 75,93.30127018922192 50,100 25.00000000000001,93.30127018922194 6.698729810778076,75.00000000000001 0,50.00000000000003 6.6987298107780475,25.000000000000032 24.99999999999998,6.698729810778083 49.99999999999999,0 75,6.698729810778069 93.30127018922194,25.000000000000018 "></polygon>
+<polygon fill="#000000" fill-opacity="1" stroke="#000000" stroke-opacity="1" points="250,100 231.17449009293668,178.183148246803 188.87395330218428,197.49279121818236 154.95155660487904,143.38837391175582 154.95155660487904,56.6116260882442 188.87395330218428,2.5072087818176385 231.17449009293665,21.816851753197014 "></polygon>
+<polygon fill="#000000" fill-opacity="1" stroke="#000000" stroke-opacity="1" points="400,100 381.1744900929367,178.183148246803 338.8739533021843,197.49279121818236 304.95155660487904,143.38837391175582 304.95155660487904,56.61162608824421 338.87395330218425,2.5072087818176385 381.17449009293665,21.816851753197 "></polygon>
+<rect x="50" y="270" width="400" height="50" fill="#000000" fill-opacity="1" stroke="#ff0000" stroke-opacity="1"></rect>
+<rect x="0" y="250" width="200" height="50" fill="#00ff00" fill-opacity="0.8" stroke="#000000" stroke-opacity="1"></rect>
+<rect x="500" y="250" width="200" height="50" fill="#000000" fill-opacity="1" stroke="#ff0000" stroke-opacity="1"></rect>
+<ellipse cx="200" cy="400" rx="200" ry="50" fill="#000000" fill-opacity="1" stroke="#0000ff" stroke-opacity="1"></ellipse>
+<ellipse cx="500" cy="400" rx="50" ry="50" fill="#000000" fill-opacity="1" stroke="#7d00ff" stroke-opacity="1"></ellipse>
+<ellipse cx="675" cy="400" rx="75" ry="50" fill="#000000" fill-opacity="1" stroke="#0000ff" stroke-opacity="1"></ellipse>
+<line x1="0" y1="500" x2="200" y2="600" stroke="#0000ff" stroke-opacity="1"></line>
+<path fill="none" stroke="#0a1428" stroke-opacity="1" d="M 200,500 C 200,500 300,600 320,520 L 400,700"></path>
+<path fill="none" stroke="#0a1428" stroke-opacity="1" d="M 400,500 C 400,500 500,600 520,520 Q 550,550 600,700"></path>
+<path fill="none" stroke="#0a1428" stroke-opacity="1" d="M 600,500 C 600,500 700,600 720,520 C 750,550 780,690 800,700"></path>
+<text x="0" y="700" font-weight="20" font-family="sans-serif" font-size="150" fill="#000000" stroke="#ff0000">
+
+Aloha!
+</text>
+<text x="250" y="700" font-family="sans-serif" font-size="150" textLength="200" fill="#000000" stroke="#ff0000">
+Aloha (2) !
+</text>
+</svg>
