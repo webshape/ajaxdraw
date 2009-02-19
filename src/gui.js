@@ -17,7 +17,6 @@ var BorderColor="#000000";
 var FillColor="#000000";
 
 
-
 function changeFarbColor(col,type){
   if( document.getElementById("comboColor").value=="border"){
   $.farbtastic("#color1").setColor(col);
@@ -32,6 +31,9 @@ else{
   FillColor=col;
 }
 }
+
+
+
 
 
 function createColDialog(){

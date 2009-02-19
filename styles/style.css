@@ -76,7 +76,10 @@ margin-left:0.5em;
 	}
 #zoomButton{
 	background-image:url("../pages/images/zoom.png");
-	}	
+		}	
+#straightLineButton{
+	background-image:url("../pages/images/lineaDritta.png");
+		}	
 	
 #bezierButton{
     background-image:url("../pages/images/linea.png");

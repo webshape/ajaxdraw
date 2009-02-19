@@ -18,28 +18,37 @@ function refresh(){
 function deselectAll(){
   Set.each(function (f){
     f.setSelection(false);
-   // f.drawSelection(canvas);
   });
+}
+
+function clear(){
+  canvas.width=canvas.width;
+}
+function updateInfos(figure){
+  document.getElementById("DialogHeight").value=figure.getBounds().h();
+  document.getElementById("DialogWidth").value=figure.getBounds().w();
 }
 
 
 /////////////////////////////////////////
 $("#selectionButton").click(function () {
   $("#cv").unbind('mousedown click mouseup');
-        canvas.width=canvas.width;
-      refresh();
 
   $("#cv").bind("click", function(e){
-   //   deselectAll();
+      deselectAll();
+      refresh();
       var sx = e.pageX-canvasLeft;
       var top = e.pageY-canvasTop;
       var coord = new Point(sx,top);
       var actualFigure = Set.selectFigure(coord);
       actualFigure.setSelection(true);
+      updateInfos(actualFigure);
+		  clear();
+		  refresh();
       actualFigure.drawSelection(canvas);
-	//	  if(actualFigure!=null){
-	//	    alert("trovata figura");
-	//	  }
+		  if(actualFigure==null){
+		    throw 'No figure found';
+		  }
 	//	  else {
 	//	    alert("trovato niente");
 	//	  }
@@ -51,8 +60,10 @@ $("#selectionButton").click(function () {
 
 /////////////////////////////////////////////////
 
-$("#bezierButton").click(function () {
+$("#straightLineButton").click(function () {
   $("#cv").unbind('mousedown click mouseup');
+  clear();
+  refresh();//per togliere un'eventuale selezione
   var b = [];
   $("#cv").bind("mousedown", function(e){
       var f = b[0] = new StraightLine();
@@ -77,7 +88,9 @@ $("#bezierButton").click(function () {
 
 $("#squareButton").click(function () {
   $("#cv").unbind('mousedown click mouseup');
-  var s = [];
+  clear();
+  refresh();//per togliere un'eventuale selezione
+ var s = [];
    $("#cv").bind("mousedown", function(e){
       var f = s[0] = new Rectangle();
       var sx = e.pageX-canvasLeft;
@@ -106,6 +119,8 @@ $("#squareButton").click(function () {
 
  $("#polygonButton").click(function () {
    $("#cv").unbind('mousedown mouseup click');
+   clear();
+   refresh();//per togliere un'eventuale selezione
    createEdgeDialog();
    var p = [];
    $("#cv").bind("mousedown", function(e){
@@ -135,6 +150,8 @@ $("#squareButton").click(function () {
 
  $("#circleButton").click(function () {
    $("#cv").unbind('mouseup mousedown click');
+   clear();
+   refresh();//per togliere un'eventuale selezione
    var y = [];
    $("#cv").bind("mousedown", function(e){
         var c = y[0] = new Circle();
