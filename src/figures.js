@@ -445,8 +445,9 @@ FigureSet.prototype.selectFigure = function (where) {
 
   var fs = {};
   var c = document.createElement('canvas');
-  c.width = 1000;
-  c.height = 1000;
+  c.width = 760;
+  c.height = 480;
+  c.getContext('2d').lineWidth = 10; // easier selection of lines
   this.each(function (f) {
               var col = next();
               fs[col[0].toCSS()] = f;
@@ -465,7 +466,7 @@ FigureSet.prototype.selectFigure = function (where) {
   // get the selected pixel
   var selection = c.getContext('2d').getImageData(where.x, where.y, 1, 1).data;
   var col = new Colour(selection[0], selection[1], selection[2], o);
-//  alert(fs[col.toCSS()]);
+  //alert(col.toCSS());
   return fs[col.toCSS()] || null;
 };
 
@@ -690,6 +691,7 @@ StraightLine.prototype.draw = function (c) {
   ctx.moveTo(start.x, start.y);
   ctx.lineTo(end.x, end.y);
   this.getBorderColour().applyToContext(ctx);
+//  alert(this.getBorderColour().toCSS());
   ctx.stroke();
   ctx.closePath();
   ctx.restore();
