@@ -23,12 +23,13 @@ function changeFarbColor(col,type){
   $.farbtastic("#color1").setColor(col);
   document.getElementById("color1").value=$.farbtastic("#color1").color;
   document.getElementById("borderColorNow").style.backgroundColor=col;
+  BorderColor=col;
 }
 else{
  $.farbtastic("#color2").setColor(col);
   document.getElementById("color2").value=$.farbtastic("#color2").color;
   document.getElementById("fillColorNow").style.backgroundColor=col;
-
+  FillColor=col;
 }
 }
 
@@ -121,7 +122,7 @@ $(document).ready(function(){
     	width: 230
     });
 
-	
+
 	/* Ruota dei colori **********************/
     $("#picker1").farbtastic("#color1");
 	$("#picker2").farbtastic("#color2");
@@ -139,8 +140,8 @@ $(document).ready(function(){
      // if($.browser.opera==false){
      //  $("canvas").css({'cursor' : 'url("../pages/images/selezione.gif")'});}
      );
-	 
-	 
+
+
 	 $("#changeFillCol").toggle(
        function () {
 		$("#colory").show("slow"),
