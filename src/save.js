@@ -53,7 +53,7 @@ SVGGenerator.prototype.startCommand = function (name) {
 SVGGenerator.prototype.attr = function (name, value, last) {
   this._doc += " " + name + "=\"" + value + "\"";
   if (last){
-	 this._doc += ">";
+    this._doc += ">";
   }
 };
 
@@ -63,7 +63,7 @@ SVGGenerator.prototype.attr = function (name, value, last) {
  */
 SVGGenerator.prototype.text = function (t) {
   this._doc += "\n" + t + "\n";
-}
+};
 
 /**
  * Write the end of a tag
@@ -89,11 +89,13 @@ SVGGenerator.prototype.flush = function () {
 Rectangle.prototype.toSVG = function(gen) {
   gen.startCommand("rect");
   var x = this.getBounds().start().x;
-  if (x > this.getBounds().end().x)
-	 x = this.getBounds().end().x;
+  if (x > this.getBounds().end().x) {
+    x = this.getBounds().end().x;
+  }
   var y = this.getBounds().start().y;
-  if (y > this.getBounds().end().y)
-	 y = this.getBounds().end().y;
+  if (y > this.getBounds().end().y) {
+    y = this.getBounds().end().y;
+  }
   /*
   var width = this.getBounds().w();
   var height = this.getBounds().h();
@@ -123,7 +125,8 @@ Rectangle.prototype.toSVG = function(gen) {
   gen.attr("fill", this.getFillColour().toCSS(), false);
   gen.attr("fill-opacity", this.getFillColour().getOpacity().getVal(), false);
   gen.attr("stroke", this.getBorderColour().toCSS(), false);
-  gen.attr("stroke-opacity", this.getBorderColour().getOpacity().getVal(), true);
+  gen.attr("stroke-opacity", this.getBorderColour().getOpacity().getVal(), 
+           true);
   gen.endCommand("rect");
 };
 
@@ -139,7 +142,8 @@ StraightLine.prototype.toSVG = function(gen) {
   gen.attr("x2", this.getBounds().end().x, false);
   gen.attr("y2", this.getBounds().end().y, false);
   gen.attr("stroke", this.getBorderColour().toCSS(), false);
-  gen.attr("stroke-opacity", this.getBorderColour().getOpacity().getVal(), true);
+  gen.attr("stroke-opacity", this.getBorderColour().getOpacity().getVal(), 
+           true);
   gen.endCommand("line");
 };
 
@@ -151,15 +155,16 @@ FreeLine.prototype.toSVG = function(gen) {
   gen.startCommand("path");
   gen.attr("fill", "none", false);
   gen.attr("stroke", this.getBorderColour().toCSS(), false);
-  gen.attr("stroke-opacity", this.getBorderColour().getOpacity().getVal(), false);
+  gen.attr("stroke-opacity", this.getBorderColour().getOpacity().getVal(), 
+           false);
   var p = this.getPoints();
   var c = "M " + p[0].x + "," + p[0].y;
   var i = 0;
   for (i = 0; i+2 < p.length; i += 3) {
-	 c += " C";
-	 for (var j = i; j < i+3; j++) {
-		c += " " + p[j].x + "," + p[j].y;
-	 }
+    c += " C";
+    for (var j = i; j < i+3; j++) {
+      c += " " + p[j].x + "," + p[j].y;
+    }
   }
   var r = p.length - i;
   if (r == 2) {
@@ -181,7 +186,6 @@ FreeLine.prototype.toSVG = function(gen) {
  * @param {SVGGenerator} gen to call the methods to create tags
  */
 BezierCurve.prototype.toSVG = function(gen) {
-//  FreeLine.call(this, this, gen);
 };
 
 
@@ -192,13 +196,15 @@ BezierCurve.prototype.toSVG = function(gen) {
 Polygon.prototype.toSVG = function(gen) {
   gen.startCommand("polygon");
   gen.attr("fill", this.getFillColour().toCSS(), false);
-gen.attr("fill-opacity", this.getFillColour().getOpacity().getVal(), false);
+  gen.attr("fill-opacity", this.getFillColour().getOpacity().getVal(), false);
   gen.attr("stroke", this.getBorderColour().toCSS(), false);
-  gen.attr("stroke-opacity", this.getBorderColour().getOpacity().getVal(), false);
+  gen.attr("stroke-opacity", this.getBorderColour().getOpacity().getVal(), 
+           false);
   var aPoints = this.getPoints();
   var points = "";
-  for (var i = 0; i < aPoints.length; ++i)
-	 points += (aPoints[i].x + this.getBounds().start().x) + "," + (aPoints[i].y + this.getBounds().start().y) + " ";
+  for (var i = 0; i < aPoints.length; ++i) {
+    points += (aPoints[i].x + this.getBounds().start().x) + "," + (aPoints[i].y + this.getBounds().start().y) + " ";
+  }
   gen.attr("points", points, true);
   gen.endCommand("polygon");
 };
@@ -225,7 +231,8 @@ Circle.prototype.toSVG = function(gen) {
   gen.attr("fill", this.getFillColour().toCSS(), false);
   gen.attr("fill-opacity", this.getFillColour().getOpacity().getVal(), false);
   gen.attr("stroke", this.getBorderColour().toCSS(), false);
-  gen.attr("stroke-opacity", this.getBorderColour().getOpacity().getVal(), true);
+  gen.attr("stroke-opacity", this.getBorderColour().getOpacity().getVal(), 
+           true);
   gen.endCommand("ellipse");
 };
 
