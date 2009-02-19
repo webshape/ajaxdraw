@@ -230,7 +230,7 @@ Viene aggregata dalla classe \textit{FigureSet}.
 \item[-]  \textit{setSelection(value)} permette di selezionare/deselezionare la figura. Modifica \textit{{\_}selected}.
 \item[-]  \textit{isSelected()} dice se la figura \`e correntemente selezionata. Ritorna \textit{{\_}selected}.
 \item[-]  \textit{eachProperty(fn)} applica la funzione fn ad ogni propriet\`a della figura, ovvero a \textit{{\_}bounds} e \textit{{\_}borderColour}.
-\item[-] \textit{drawSelection(canvas)} disegna dei quadratini intorno ai punti principali della figura, ottenuti tramite \textit{getMainPoints}, se la figura \`e selezionata.
+\item[-] \textit{drawSelection(canvas)} disegna dei quadratini di colore blu e con opacit\`a 0.8 intorno ai punti principali della figura, ottenuti tramite \textit{getMainPoints}e traccia i bordi del \textit{BoundingRectangle} di colore grigio con opacit\`a 0.8, solo se la figura \`e selezionata. 
 \item[-] \textit{clone()} metodo che utilizza \textit{isSelected()} per riconoscere una figura selezionata, \textit{getMainPoints} per ottenere i punti della figura selezionata e usa \textit{draw(canvas)} per disegnare il clone dell'originale spostato leggermente verso l'alto o in relazione a dove si trova la figura origine sul canvas.
 \end{elencopuntato}
 
