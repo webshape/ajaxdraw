@@ -75,6 +75,12 @@ Figure.prototype.drawSelection = function (c) {
                               ctx.strokeRect(pt.x - half, pt.y - half,
                                              size, size);
                             });
+  // draw the bounds
+  (new Colour(100, 100, 100, new Opacity(0.8))).applyToContext(ctx); // gray
+  var b = this.getBounds();
+  var x0 = b.start().x < b.end().x ? b.start().x : b.end().x;
+  var y0 = b.start().y < b.end().y ? b.start().y : b.end().y;
+  ctx.strokeRect(x0, y0, Math.abs(b.w()), Math.abs(b.h()));
   ctx.restore();
 };
 

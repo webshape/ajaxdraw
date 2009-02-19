@@ -11,34 +11,44 @@
  * @constructor
  */
 function SVGReader() {
-  var _fs = new FigureSet;
-  var _er = new SVGElementRegistry();
 }
 
+/**
+ * Error manager
+ * @param {String} msg the description of the error
+ */
+function ParsingError (msg) {
+  this._msg = msg;
+}
+
+ParsingError.reader('_msg', 'msg');
 
 /**
  * Create an instance of FigureSet parsing an SVG document
  * @param {String} doc the name of the file SVG
  */
 SVGReader.prototype.read = function (doc) {
+  var fs = new FigureSet();
   var psr = new XMLParser();
   var xmlDoc = psr.parsing(doc);
-  if (xmlDoc == null)
-	 return 1; // parsing error
+  if (xmlDoc == null) {
+    throw new ParsingError('Parsing Error');
+  }
 
   var x = xmlDoc.getElementsByTagName("svg");
   for (var i = 0; i < x[0].childNodes.length; i++) {
-	 var n = x[0].childNodes[i];
-	 if (n.nodeName != "#text"){
-		var f = _er.makeFigureClassFromTag(n.nodeName); // returns an instance of a figure
-		if (f == null)
-		  return -1; // the tag is not implemented
-		f.fromSVG(n);
-		_fs.push(f);
-	 }
+    var n = x[0].childNodes[i];
+    if (n.nodeName != "#text") {
+      var f = registry.makeFigureClassFromTag(n.nodeName); // returns an instance of a figure
+      // ignore unknow tags
+      if (f != null) {
+        f.fromSVG(n);
+		  fs.add(f);
+      }
+    }
   }
 
-  return 0;// xmlDoc contains the DOM of the SVG
+  return fs;
 };
 
 
@@ -88,14 +98,12 @@ XMLParser.prototype.parsing = function (doc) {
 };
 
 
-
 /**
  * Contain the hash table
  * @constructor
  */
 function SVGElementRegistry() {
-  var _ht = new Array();
-  this.register();
+  this._reg = {};
 }
 
 
@@ -104,16 +112,31 @@ function SVGElementRegistry() {
  * @param {String} tag the name of the tag
  */
 SVGElementRegistry.prototype.makeFigureClassFromTag = function (tag) {
-  return this._ht[tag];
+  var fn = this._reg[tag];
+  if (fn) {
+    return new fn();
+  }
+  return null;
 };
 
 
-SVGElementRegistry.prototype.register = function () {
-  this._ht['rect'] = new Rectangle();
-  this._ht['ellipse'] = new Circle();
-  this._ht['polygon'] = new Polygon();
-  this._ht['path'] = new BezierCurve();
-  this._ht['text'] = new Text();
+/**
+ * Add a tag to the hashtable
+ * @param {String} tagName the name of the tag
+ * @param {Figure} constructor the figure corrisponding to the tag
+ */
+SVGElementRegistry.prototype.register = function (tagName, constructor) {
+  this._reg[tagName] = constructor;
 };
+
+// unique instance of registry
+var registry = new SVGElementRegistry();
+
+registry.register('rect', Rectangle);
+registry.register('ellipse', Circle);
+registry.register('polygon', Polygon);
+registry.register('path', BezierCurve);
+registry.register('text', Text);
+
 
 //TODO: every class fromSVG method
