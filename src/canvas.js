@@ -5,13 +5,8 @@ var ctx = canvas.getContext("2d");   //prendo il contesto
 var canvasLeft = ctx.canvas.offsetLeft;
 var canvasTop = ctx.canvas.offsetTop;
 var polygonEdgeNumber = 3;
-var boolTool = new Array;
 var Set=new FigureSet();
-boolTool[0]=false;
-boolTool[1]=false;
-boolTool[2]=false;
-boolTool[3]=false;
-boolTool[4]=false;
+
 
 
 function refresh(){
@@ -60,11 +55,11 @@ $("#bezierButton").click(function () {
   $("#cv").unbind('mousedown click mouseup');
   var b = [];
   $("#cv").bind("mousedown", function(e){
-                  var f = b[0] = new StraightLine();
+      var f = b[0] = new StraightLine();
       var sx = e.pageX-canvasLeft;
       var top = e.pageY-canvasTop;
-
-      f.getBorderColour().set(0, 0, 255, new Opacity(1));
+      f.getBorderColour().getOpacity().setVal(1);
+      f.getBorderColour().fromCSS(BorderColor);
       f.getBounds().setStart(new Point(sx, top));
       }).bind("mouseup",function(e){
 	var sx1 = e.pageX-canvasLeft;
@@ -86,7 +81,12 @@ $("#squareButton").click(function () {
       var f = s[0] = new Rectangle();
       var sx = e.pageX-canvasLeft;
       var top = e.pageY-canvasTop;
-      f.getBorderColour().set(255, 0, 0, new Opacity(1));
+
+      f.getFillColour().getOpacity().setVal(1);
+      f.getFillColour().fromCSS(FillColor);
+
+      f.getBorderColour().getOpacity().setVal(1);
+      f.getBorderColour().fromCSS(BorderColor);
       f.getBounds().setStart(new Point(sx, top));
       }).bind("mouseup",function(e){
 	var sx1 = e.pageX-canvasLeft;
@@ -111,7 +111,13 @@ $("#squareButton").click(function () {
      var f = p[0]= new Polygon();
      var sx = e.pageX-canvasLeft;
      var top = e.pageY-canvasTop;
-     f.getBorderColour().set(255, 0, 0, new Opacity(1));
+
+      f.getFillColour().getOpacity().setVal(1);
+      f.getFillColour().fromCSS(FillColor);
+
+      f.getBorderColour().getOpacity().setVal(1);
+      f.getBorderColour().fromCSS(BorderColor);
+
      f.getBounds().setStart(new Point(sx, top));
    }).bind("mouseup",function(e){
      var sx1 = e.pageX-canvasLeft;
@@ -130,22 +136,23 @@ $("#squareButton").click(function () {
    $("#cv").unbind('mouseup mousedown click');
    var y = [];
    $("#cv").bind("mousedown", function(e){
-	           var c = y[0] = new Circle();
+        var c = y[0] = new Circle();
 	var sx = e.pageX-canvasLeft;
 	var top = e.pageY-canvasTop;
-	c.getBorderColour().set(255, 0, 0, new Opacity(1));
+	c.getFillColour().getOpacity().setVal(1);
+	c.getFillColour().fromCSS(FillColor);
+	c.getBorderColour().getOpacity().setVal(1);
+	c.getBorderColour().fromCSS(BorderColor);
 	c.getBounds().setStart(new Point(sx, top));
 		  }).bind("mouseup",function(e){
-                            var c = y[0];
 			    var sx1 = e.pageX-canvasLeft;
 			    var top1 = e.pageY-canvasTop;
+			    var c = y[0];
 			    c.getBounds().setEnd(new Point(sx1, top1));
 			    Set.add(c);
 			    refresh();
 		  });
 
 			  });
-
-
 
 });
