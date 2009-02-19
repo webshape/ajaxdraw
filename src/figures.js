@@ -847,7 +847,7 @@ FreeLine.prototype.draw = function (c) {
   ctx.beginPath();
   ctx.moveTo(pts[0].x, pts[0].y);
   var i = 0;
-  for (i = 0; i + 2 < pts.length; i += 3) {
+  for (i = 1; i + 2 < pts.length; i += 3) {
     ctx.bezierCurveTo(pts[i].x, pts[i].y, pts[i+1].x, pts[i+1].y,
                       pts[i+2].x, pts[i+2].y);
   }
@@ -864,6 +864,38 @@ FreeLine.prototype.draw = function (c) {
   this.getBorderColour().applyToContext(ctx);
   ctx.stroke();
   ctx.closePath();
+  ctx.restore();
+};
+
+FreeLine.prototype.drawSelection = function (c) {
+  Figure.prototype.drawSelection.call(this, c);
+  var pts = this.getPoints();
+  var ctx = c.getContext('2d');
+  ctx.save();
+  (new Colour(100, 100, 100, new Opacity(0.8))).applyToContext(ctx);
+  var i = 0;
+  for (i = 1; i + 2 < pts.length; i += 3) {
+    // first tangent
+    ctx.beginPath();
+    ctx.moveTo(pts[i-1].x, pts[i-1].y);
+    ctx.lineTo(pts[i].x, pts[i].y);
+    ctx.stroke();
+    ctx.closePath();
+    // second tangent
+    ctx.beginPath();
+    ctx.moveTo(pts[i+1].x, pts[i+1].y);
+    ctx.lineTo(pts[i+2].x, pts[i+2].y);
+    ctx.stroke();
+    ctx.closePath();
+  }
+  var remaining = pts.length - i;
+  if (remaining == 2) {
+    ctx.beginPath();
+    ctx.moveTo(pts[i].x, pts[i].y);
+    ctx.lineTo(pts[i+1].x, pts[i+1].y);
+    ctx.stroke();
+    ctx.closePath();
+  }
   ctx.restore();
 };
 
