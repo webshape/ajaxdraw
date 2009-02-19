@@ -64,7 +64,7 @@ $("#bezierButton").click(function () {
       var sx = e.pageX-canvasLeft;
       var top = e.pageY-canvasTop;
 
-      f.getBorderColour().set(0, 0, 255, new Opacity(1));
+      f.getBorderColour().set(cr, 0, 255, new Opacity(1));
       f.getBounds().setStart(new Point(sx, top));
       }).bind("mouseup",function(e){
 	var sx1 = e.pageX-canvasLeft;
