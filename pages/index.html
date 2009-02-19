@@ -241,10 +241,10 @@ menuBar5.init();
 		<span class="paletteComponent" onclick="changeFarbColor('#666666')" style="background-color:#666666">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>	
 		<span class="paletteComponent" onclick="changeFarbColor('#333333')" style="background-color:#333333">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>	
 		<span id="lastPalette" onclick="changeFarbColor('#000000')" class="paletteComponent" style="background-color:#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>	
-<span id="comboColor">
-<select>
-  <option value="bordo">Bordo</option>
-  <option value="riempimento">Riempimento</option>  
+<span >
+<select id="comboColor">
+  <option value="border">Bordo</option>
+  <option value="fill">Riempimento</option>  
 </select>
 </span>
 
@@ -260,22 +260,34 @@ menuBar5.init();
 <!-- Inizio Parte Dialog Colori-->
 <div id="colorDialog" class="flora" title="Modifica colori">
 	<p>Colore bordo:   
-		<span id="coloreOra" style="background: red">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+		<span id="borderColorNow" style="background: red">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
 		<span>
-			<input type="button" id="changeCol" name="ChangeCol" value="Cambia Colore"/>
+			<input type="button" id="changeBorderCol" name="ChangeCol" value="Cambia Colore Bordo"/>
 		</span>
 	</p>
 	<form id="colorx" action="" style="width: 400px;display: none;">
   		<div class="form-item" >
   			<label for="color">Color:</label>
-  			<input type="text" id="color" name="color" value="#123456" />
+  			<input type="text" id="color1" name="color1" value="#123456" />
   		</div>
-  		<div id="picker"></div>
+  		<div id="picker1"></div>
   	<!--  <input class="tooltip" type="button" id="closeWheel" value="Chiudi"></input> -->
 	</form>	
+	<!-- Seconda ruota -->
 	<p>Colore riempimento:  
-		<span id="change" style="background: green">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> 
+		<span id="fillColorNow" style="background: green">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> 
+		<span>
+			<input type="button" id="changeFillCol" name="ChangeCol" value="Cambia Colore Riemp."/>
+		</span>
 	</p>
+	<form id="colory" action="" style="width: 400px;display: none;">
+  		<div class="form-item" >
+  			<label for="color">Color:</label>
+  			<input type="text" id="color2" name="color2" value="#123456" />
+  		</div>
+  		<div id="picker2"></div>
+  	<!--  <input class="tooltip" type="button" id="closeWheel" value="Chiudi"></input> -->
+	</form>	
 </div>
 
 <!-- Parte Dialog Properties -->
