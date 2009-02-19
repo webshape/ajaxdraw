@@ -7,12 +7,12 @@
 
 
 /**
- * SVGReader
+ * SVGReader create a figureSet and an elementRegistry
  * @constructor
  */
 function SVGReader() {
   var _fs = new FigureSet;
-  // TODO: create the hashtable through the register method
+  var _er = new SVGElementRegistry();
 }
 
 
@@ -30,7 +30,9 @@ SVGReader.prototype.read = function (doc) {
   for (var i = 0; i < x[0].childNodes.length; i++) {
 	 var n = x[0].childNodes[i];
 	 if (n.nodeName != "#text"){
-		var f = makeFigureClassFromTag(n.nodeName); // returns an instance of a figure
+		var f = _er.makeFigureClassFromTag(n.nodeName); // returns an instance of a figure
+		if (f == null)
+		  return -1; // the tag is not implemented
 		f.fromSVG(n);
 		_fs.push(f);
 	 }
@@ -92,7 +94,8 @@ XMLParser.prototype.parsing = function (doc) {
  * @constructor
  */
 function SVGElementRegistry() {
-  //TODO: Hash table
+  var _ht = new Array();
+  register();
 }
 
 
@@ -101,8 +104,16 @@ function SVGElementRegistry() {
  * @param {String} tag the name of the tag
  */
 SVGElementRegistry.prototype.makeFigureClassFromTag = function (tag) {
-  // TODO: check if tag is in the table and return the corrispondent figure
+  return _ht[tag];
 };
 
 
-//TODO: every class fromSVG method 
+SVGElementRegistry.prototype.register = function () {
+  _ht['rect'] = new Rectangle();
+  _ht['ellipse'] = new Circle();
+  _ht['polygon'] = new Polygon();
+  _ht['path'] = new BezierCurve();
+  _ht['text'] = new Text();
+};
+
+//TODO: every class fromSVG method
