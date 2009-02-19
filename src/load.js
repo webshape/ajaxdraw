@@ -95,7 +95,7 @@ XMLParser.prototype.parsing = function (doc) {
  */
 function SVGElementRegistry() {
   var _ht = new Array();
-  register();
+  this.register();
 }
 
 
@@ -104,16 +104,16 @@ function SVGElementRegistry() {
  * @param {String} tag the name of the tag
  */
 SVGElementRegistry.prototype.makeFigureClassFromTag = function (tag) {
-  return _ht[tag];
+  return this._ht[tag];
 };
 
 
 SVGElementRegistry.prototype.register = function () {
-  _ht['rect'] = new Rectangle();
-  _ht['ellipse'] = new Circle();
-  _ht['polygon'] = new Polygon();
-  _ht['path'] = new BezierCurve();
-  _ht['text'] = new Text();
+  this._ht['rect'] = new Rectangle();
+  this._ht['ellipse'] = new Circle();
+  this._ht['polygon'] = new Polygon();
+  this._ht['path'] = new BezierCurve();
+  this._ht['text'] = new Text();
 };
 
 //TODO: every class fromSVG method
