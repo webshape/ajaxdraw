@@ -135,6 +135,7 @@ var registry = new SVGElementRegistry();
 registry.register('rect', Rectangle);
 registry.register('ellipse', Circle);
 registry.register('polygon', Polygon);
+registry.register('line', StraightLine);
 registry.register('path', BezierCurve);
 registry.register('text', Text);
 
