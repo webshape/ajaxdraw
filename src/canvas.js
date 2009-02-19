@@ -144,15 +144,15 @@ $("#squareButton").click(function () {
 	c.getBorderColour().getOpacity().setVal(1);
 	c.getBorderColour().fromCSS(BorderColor);
 	c.getBounds().setStart(new Point(sx, top));
-		  }).bind("mouseup",function(e){
-			    var sx1 = e.pageX-canvasLeft;
-			    var top1 = e.pageY-canvasTop;
-			    var c = y[0];
-			    c.getBounds().setEnd(new Point(sx1, top1));
-			    Set.add(c);
-			    refresh();
-		  });
+   }).bind("mouseup",function(e){
+     var sx1 = e.pageX-canvasLeft;
+     var top1 = e.pageY-canvasTop;
+     var c = y[0];
+     c.getBounds().setEnd(new Point(sx1, top1));
+     Set.add(c);
+     refresh();
+   });
 
-			  });
+   });
 
 });
