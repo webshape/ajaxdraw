@@ -15,6 +15,8 @@ function activateStylesheet(sheetref){
 
 var BorderColor="#000000";
 var FillColor="#000000";
+var polygonEdgeNumber = 3;
+
 
 /**
  * Change figure color by clicking on the palette's preffered color
@@ -49,20 +51,20 @@ function createColDialog(){
 
 }
 
+function edgeNumberSetter(value){
+  alert(value);
+  polygonEdgeNumber = value;
+
+}
+
+
+
 function createEdgeDialog(){
   $("#edgeNumberDialog").dialog({
    // position: ["right","top"],
     height: 100,
     width:320,
-    dialogClass: "edgeDialog",
-    buttons: { "Conferma": function() {
-		 $(this).dialog("close");
-		 $(this).click(function () {
-		   polygonEdgeNumber=document.getElementById("#edgeNumber").value;
-    });
-
-    } }
-
+    dialogClass: "edgeDialog"
     });
 
 
@@ -119,7 +121,14 @@ $(document).ready(function(){
        createColDialog();
 /* Creazione dialog Edge */
        createEdgeDialog();
+
        $("#edgeNumberDialog").dialog("close");
+
+       $("#edgeSetter").click(function () {
+	 edgeNumberSetter( parseInt(document.getElementById("edgeNumber").value,10));
+	 $("#edgeNumberDialog").dialog("close");
+	 
+       });
 /*Creazione dialog proprietà */
     $("#propertiesDialog").dialog({
     	position: "right",
@@ -127,9 +136,9 @@ $(document).ready(function(){
     });
 
 
-	/* Ruota dei colori **********************/
+/* Ruota dei colori **********************/
     $("#picker1").farbtastic("#color1");
-	$("#picker2").farbtastic("#color2");
+    $("#picker2").farbtastic("#color2");
 
 
     $("#changeBorderCol").toggle(
@@ -144,8 +153,6 @@ $(document).ready(function(){
 	BorderColor=$.farbtastic("#color1").color;
 	document.getElementById("borderColorNow").style.backgroundColor=BorderColor;
        }
-     // if($.browser.opera==false){
-     //  $("canvas").css({'cursor' : 'url("../pages/images/selezione.gif")'});}
      );
 
 
@@ -156,23 +163,21 @@ $(document).ready(function(){
 
        },
        function() {
-	$(".Dialog1").height(210),
-     	$("#colory").hide("slow");
-	$.farbtastic("#color2").setColor(document.getElementById("color2").value);
-	FillColor=$.farbtastic("#color2").color;
-	document.getElementById("fillColorNow").style.backgroundColor=FillColor;
+	 $(".Dialog1").height(210),
+     	 $("#colory").hide("slow");
+	 $.farbtastic("#color2").setColor(document.getElementById("color2").value);
+	 FillColor=$.farbtastic("#color2").color;
+	 document.getElementById("fillColorNow").style.backgroundColor=FillColor;
        }
-     // if($.browser.opera==false){
-     //  $("canvas").css({'cursor' : 'url("../pages/images/selezione.gif")'});}
      );
 
 
-	$(".toolbarButton").hover(
-	  function(){
-	    $(this).fadeOut(100);
-	    $(this).fadeIn(200);
-	  }
-	);
+     $(".toolbarButton").hover(
+       function(){
+	 $(this).fadeOut(100);
+	 $(this).fadeIn(200);
+       }
+     );
 
 
 

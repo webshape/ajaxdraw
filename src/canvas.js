@@ -4,7 +4,6 @@ var canvas = document.getElementById("cv");
 var ctx = canvas.getContext("2d");   //prendo il contesto
 var canvasLeft = ctx.canvas.offsetLeft;
 var canvasTop = ctx.canvas.offsetTop;
-var polygonEdgeNumber = 3;
 var Set=new FigureSet();
 
 
@@ -41,17 +40,19 @@ $("#selectionButton").click(function () {
       var top = e.pageY-canvasTop;
       var coord = new Point(sx,top);
       var actualFigure = Set.selectFigure(coord);
-      actualFigure.setSelection(true);
-      updateInfos(actualFigure);
-		  clear();
-		  refresh();
-      actualFigure.drawSelection(canvas);
-		  if(actualFigure==null){
-		    throw 'No figure found';
-		  }
-	//	  else {
-	//	    alert("trovato niente");
-	//	  }
+      if(actualFigure==null){
+	deselectAll();
+	clear();
+	refresh();
+	throw 'No figure found';
+      }
+      else{
+	actualFigure.setSelection(true);
+	updateInfos(actualFigure);
+	clear();
+	refresh();
+	actualFigure.drawSelection(canvas);
+      }
   });
 
 });
@@ -111,7 +112,49 @@ $("#squareButton").click(function () {
 	refresh();
     });
 });
+////////////////////////////////
 
+$("#provaButton").click(function () {
+  $("#cv").unbind('mousedown click mouseup');
+  clear();
+  refresh();//per togliere un'eventuale selezione
+ var s = [];
+   $("#cv").bind("mousedown", function(e){
+      var f = s[0] = new Rectangle();
+      var sx = e.pageX-canvasLeft;
+      var top = e.pageY-canvasTop;
+
+      f.getFillColour().getOpacity().setVal(1);
+      f.getFillColour().fromCSS(FillColor);
+
+      f.getBorderColour().getOpacity().setVal(1);
+      f.getBorderColour().fromCSS(BorderColor);
+
+
+      f.getBounds().setStart(new Point(sx, top));
+
+      $("#cv").bind("mousemove",function(e){
+
+		   var sx2 = e.pageX-canvasLeft;
+		   var top2 = e.pageY-canvasTop;
+		   f.getBounds().setEnd(new Point(sx2, top2));
+		      clear();
+		   refresh();
+		   f.draw(canvas);
+
+      });
+
+      }).bind("mouseup",function(e){
+	$("#cv").unbind('mousemove');
+	var sx1 = e.pageX-canvasLeft;
+	var top1 = e.pageY-canvasTop;
+        var f = s[0];
+	f.getBounds().setEnd(new Point(sx1, top1));
+	Set.add(f);
+		clear();
+	refresh();
+    });
+});
 
 
 //////////////////////////////////////////////////////////////////////
@@ -123,6 +166,7 @@ $("#squareButton").click(function () {
    refresh();//per togliere un'eventuale selezione
    createEdgeDialog();
    var p = [];
+
    $("#cv").bind("mousedown", function(e){
      var f = p[0]= new Polygon();
      var sx = e.pageX-canvasLeft;
@@ -130,7 +174,6 @@ $("#squareButton").click(function () {
 
       f.getFillColour().getOpacity().setVal(1);
       f.getFillColour().fromCSS(FillColor);
-
       f.getBorderColour().getOpacity().setVal(1);
       f.getBorderColour().fromCSS(BorderColor);
 

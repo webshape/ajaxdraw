@@ -76,9 +76,6 @@ menuBar5.setTarget('fifthMenu');
 menuBar5.init();
 </script>
 <!-- Toolbar a pulsanti -->
-	<!--  <span id="tool">
-		<img src="images/toolbar.png" width="34" height="546" alt="toolbar" />
-	</span> -->
 	<div id="tool">
 		<input title="Seleziona e trasforma oggetti" class="toolbarButton" id="selectionButton" type="button"/><br/>
 		<input title="Ingrandisce o rimpicciolisce" class="toolbarButton" id="zoomButton" type="button"/><br/>
@@ -88,7 +85,7 @@ menuBar5.init();
 		<input title="Crea cerchi ed ellissi" class="toolbarButton" id="circleButton" type="button"/><br/>
 		<input title="Crea poligoni" class="toolbarButton" id="polygonButton" type="button"/><br/>
 		<input title="Disegna linee a mano libera" class="toolbarButton" id="freeHandButton" type="button"/><br/>
-		<input title="Disegna un quadrato" class="toolbarButton" id="selezione" type="button"/><br/>
+		<input title="Disegna una prova" class="toolbarButton" id="provaButton" type="button"/><br/>
 	</div>
 	
 	<!-- Canvas -->
@@ -215,7 +212,12 @@ menuBar5.init();
 
 <!-- Dialog per il numero di poligoni -->
 <div id="edgeNumberDialog" class="flora" title="Scegli il numero di lati">
-	<p>Numero di lati: <input id="edgeNumber" type="text"/></p>
+	<p>Numero di lati: 
+		<input id="edgeNumber" type="text" value="3"/>
+		<span>
+			<input type="button" id="edgeSetter" value="ok"/>
+		</span>
+	</p>
 </div>
 
 </body>
