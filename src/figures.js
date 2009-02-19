@@ -301,28 +301,6 @@ TextFont.prototype.toCSS = function () {
   return this._name;
 };
 
-TextFont.prototype.applyToContext = function (ctx) {
-  ctx.font = this.toCSS();
-};
-
-/**
- * @constructor
- * Size of a text
- * ?? Should size depend only on the BoundingRectangle?
- * @param {Float} sz the size
- * @param {String} unit measure unit (px, em, etc.)
- */
-function TextSize (sz, unit) {
-  this._sz = sz;
-  this._unit = unit;
-}
-
-TextSize.prototype = new Property();
-
-TextSize.prototype.toCSS = function () {
-  return this._sz + this._unit;
-};
-
 /**
  * @constructor
  * A collection of figures

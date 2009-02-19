@@ -101,7 +101,7 @@ test('FigureSet.selectFigure', function () {
        fs.add(f);
        equals(fs.selectFigure(new Point(10, 10)), f, 'line selection in');
        equals(fs.selectFigure(new Point(99, 99)), f, 'line selection in');
-       equals(fs.selectFigure(new Point(10, 12)), null, 'line selection out');
+       equals(fs.selectFigure(new Point(10, 19)), null, 'line selection out');
        equals(fs.selectFigure(new Point(102, 102)), null, 
               'line selection out');
        var p = new Polygon();
@@ -123,6 +123,17 @@ test('FigureSet.selectFigure', function () {
               'text and line with polygon over, point on polygon');
        //equals(fs.selectFigure(new Point(10, 10)), t,
          //     'text, line, polygon, point on text');
+       // add a lot of figures
+       var last = null;
+       for (var i = 0; i < 300; i++) {
+         var c = new Circle();
+         c.getBounds().setStart(new Point(300, 300));
+         c.getBounds().setEnd(new Point(400, 350));
+         fs.add(c);
+         last = c;
+       }
+       equals(fs.selectFigure(new Point(350, 325)), last, 
+              'lot of figures in same postion, last selected');
      });
 
 test('Figure', function () {
@@ -185,6 +196,31 @@ test('FreeLine', function () {
        same(f.getBounds(), new BoundingRectangle(new Point(-23, 5), 
                                                  new Point(100, 200)),
             'bounds adjusted');
+       f = new FreeLine();
+       pts = [new Point(60, 60), new Point(30, 60), new Point(0, 0)];
+       pts.each(function (p) {
+                  f.extend(p);
+                });
+       // reverse the bounds
+       var start = f.getBounds().start();
+       f.getBounds().setStart(f.getBounds().end());
+       f.getBounds().setEnd(start);
+       f.extend(new Point(70, 65));
+       f.extend(new Point(-1, -1));
+       pts = [new Point(0, 0), new Point(30, 0), new Point(60, 60),
+              new Point(70, 65), new Point(-1 , -1)];
+       same(f.getPoints(), pts, 'correct abs/rel conversion, reversed');
+       same(f.getBounds(), new BoundingRectangle(new Point(70, 65), 
+                                                 new Point(-1, -1)),
+            'bounds adjusted, reversed');
+       f = new FreeLine();
+       f.extend(new Point(0, 0));
+       f.extend(new Point(0, 56));
+       same(f.getPoints(), [new Point(0, 0), new Point(0, 56)], 
+            'extend with width 0');
+       same(f.getBounds(), new BoundingRectangle(new Point(0, 0), 
+                                                 new Point(0, 56)),
+            'extend with width 0 (bounds)');
      });
 
 test('Text', function () {
