@@ -16,6 +16,7 @@ var figures = [];
 
 // Polygon
 var c = new Polygon();
+c.setSelection(true);
 c.getBorderColour().set(255, 0, 0, new Opacity(1));
 c.getBounds().setStart(new Point(0, 0));
 c.getBounds().setEnd(new Point(100, 100));
@@ -23,12 +24,14 @@ c.edgeNumber().setVal(12);
 figures.push(c);
 // Deformed polygon with border colour
 c = new Polygon();
+c.setSelection(true);
 c.getBounds().setStart(new Point(150, 0));
 c.getBounds().setEnd(new Point(250, 200));
 c.edgeNumber().setVal(7);
 figures.push(c);
 // Polygon with reversed bounds
 c = new Polygon();
+c.setSelection(true);
 c.getBounds().setStart(new Point(400, 200));
 c.getBounds().setEnd(new Point(300, 0));
 c.edgeNumber().setVal(7);
@@ -36,17 +39,20 @@ figures.push(c);
 
 // 2 Rectangles
 c = new Rectangle();
+c.setSelection(true);
 c.getBorderColour().set(255, 0, 0, new Opacity(1));
 c.getBounds().setStart(new Point(50, 270));
 c.getBounds().setEnd(new Point(450, 320));
 figures.push(c);
 c = new Rectangle();
+c.setSelection(true);
 c._fillColour.set(0, 255, 0, new Opacity(0.8));
 c.getBounds().setStart(new Point(0, 250));
 c.getBounds().setEnd(new Point(200, 300));
 figures.push(c);
 // Reversed rectangle
 c = new Rectangle();
+c.setSelection(true);
 c.getBorderColour().set(255, 0, 0, new Opacity(1));
 c.getBounds().setStart(new Point(700, 300));
 c.getBounds().setEnd(new Point(500, 250));
@@ -54,6 +60,7 @@ figures.push(c);
 
 // Ellipse
 c = new Circle();
+c.setSelection(true);
 c.getBorderColour().set(0, 0, 255, new Opacity(1));
 c.getBounds().setStart(new Point(0, 350));
 c.getBounds().setEnd(new Point(400, 450));
@@ -61,6 +68,7 @@ figures.push(c);
 
 // Circle
 c = new Circle();
+c.setSelection(true);
 c.getBorderColour().set(125, 0, 255, new Opacity(1));
 c.getBounds().setStart(new Point(450, 350));
 c.getBounds().setEnd(new Point(550, 450));
@@ -68,6 +76,7 @@ figures.push(c);
 
 // Reversed ellipse
 c = new Circle();
+c.setSelection(true);
 c.getBorderColour().set(0, 0, 255, new Opacity(1));
 c.getBounds().setStart(new Point(750, 450));
 c.getBounds().setEnd(new Point(600, 350));
@@ -75,6 +84,7 @@ figures.push(c);
 
 // Straight line
 c = new StraightLine();
+c.setSelection(true);
 c.getBorderColour().set(0, 0, 255, new Opacity(1));
 c.getBounds().setStart(new Point(0, 500));
 c.getBounds().setEnd(new Point(200, 600));
@@ -82,6 +92,7 @@ figures.push(c);
 
 // Free line with 4 points
 c = new FreeLine();
+c.setSelection(true);
 c.getBorderColour().set(10, 20, 40, new Opacity(1));
 //c.getBounds().setStart(new Point(200, 500));
 //c.getBounds().setEnd(new Point(400, 700));
@@ -93,6 +104,7 @@ figures.push(c);
 
 // Free line with 5 points
 c = new FreeLine();
+c.setSelection(true);
 c.getBorderColour().set(10, 20, 40, new Opacity(1));
 c.getBounds().setStart(new Point(400, 500));
 c.getBounds().setEnd(new Point(600, 700));
@@ -105,6 +117,7 @@ figures.push(c);
 
 // Free line with 6 points
 c = new FreeLine();
+c.setSelection(true);
 c.getBorderColour().set(10, 20, 40, new Opacity(1));
 c.getBounds().setStart(new Point(600, 500));
 c.getBounds().setEnd(new Point(800, 700));
@@ -131,6 +144,7 @@ figures.push(c);
 
 figures.each(function (f) {
                f.draw(canvas);
+               f.drawSelection(canvas);
              });
 });
 </script>

@@ -37,7 +37,6 @@ a.button:hover span{background-position: bottom right}
 #lastPalette{
 	border-right:solid;
 	border-width:thin;
-	
 }
 	
 #palette{
@@ -45,7 +44,9 @@ a.button:hover span{background-position: bottom right}
 	margin-top: 0.1em;
 }
 
-
+#comboColor{
+margin-left:0.5em;
+}
 
 /* Caratteristiche generiche  toolbar */
 #tool{
@@ -75,7 +76,10 @@ a.button:hover span{background-position: bottom right}
 	}
 #zoomButton{
 	background-image:url("../pages/images/zoom.png");
-	}	
+		}	
+#straightLineButton{
+	background-image:url("../pages/images/lineaDritta.png");
+		}	
 	
 #bezierButton{
     background-image:url("../pages/images/linea.png");

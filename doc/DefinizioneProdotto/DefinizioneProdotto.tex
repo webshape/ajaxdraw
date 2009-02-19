@@ -230,7 +230,7 @@ Viene aggregata dalla classe \textit{FigureSet}.
 \item[-]  \textit{setSelection(value)} permette di selezionare/deselezionare la figura. Modifica \textit{{\_}selected}.
 \item[-]  \textit{isSelected()} dice se la figura \`e correntemente selezionata. Ritorna \textit{{\_}selected}.
 \item[-]  \textit{eachProperty(fn)} applica la funzione fn ad ogni propriet\`a della figura, ovvero a \textit{{\_}bounds} e \textit{{\_}borderColour}.
-\item[-] \textit{drawSelection(canvas)} disegna dei quadratini intorno ai punti principali della figura, ottenuti tramite \textit{getMainPoints}, se la figura \`e selezionata.
+\item[-] \textit{drawSelection(canvas)} disegna dei quadratini di colore blu e con opacit\`a 0.8 intorno ai punti principali della figura, ottenuti tramite \textit{getMainPoints}e traccia i bordi del \textit{BoundingRectangle} di colore grigio con opacit\`a 0.8, solo se la figura \`e selezionata. 
 \item[-] \textit{clone()} metodo che utilizza \textit{isSelected()} per riconoscere una figura selezionata, \textit{getMainPoints} per ottenere i punti della figura selezionata e usa \textit{draw(canvas)} per disegnare il clone dell'originale spostato leggermente verso l'alto o in relazione a dove si trova la figura origine sul canvas.
 \end{elencopuntato}
 
@@ -339,6 +339,7 @@ Implementa \textit{Property} e \textit{CSSProperty}. Mantiene un'istanza di \tex
 \begin{elencopuntato}[\normindent]
 \item[-] \textit{getOpacity()} ritorna l'attributi \textit{{\_}o}.
 \item[-] \textit{set(r, g, b, o)} modifica i valori dei quattro attributi.
+\item[-] \textit{fromCSS(repr)} inizializza le componenti RGB del colore a partire dalla loro rappresentazione CSS. Diivide la stringa \textit{repr} in tre parti di due cifre esadecimali l'una, le converte in numeri e le assegna alle tre componenti. Se \textit{repr} \`e invalida viene sollevata un'eccezione.
 \item[-] \textit{createWidget()} crea e ritorna un'istanza di \textit{ColourDialog} passando se stesso come parametro al costruttore.
 \item[-] \textit{toCSS()} ritorna il colore come una stringa di tipo \"{\#}EEEEEE\" formata da tre coppie di due cifre esadecimali. Le coppie rappresentano rispettivamente il rosso, il verde, il blu. L'opacit\`a viene ignorata da questo metodo.
 \item[-] \textit{applyToContext(context)} setta l'attributo \textit{strokeStyle} del contesto grafico alla propria rappresentazione CSS, e richiama il metodo \textit{applyToContext} su \textit{{\_}o} passando \textit{context} come argomento.
@@ -482,13 +483,14 @@ Creato dalla lettura di un file SVG oppure dall'interfaccia utente. Manipolato d
 \subsubsezione{Attivit\`a svolte e dati trattati}
 \paragrafo{Attributi privati:}
 \begin{elencopuntato}[\normindent]
-\item[-] \textit{{\_}pts} i punti di controllo della linea, memorizzati con coordinate relative.
+\item[-] \textit{{\_}pts} i punti di controllo della linea, memorizzati con coordinate relative. Il primo punto \`e l'inizio della linea, e i successivi seguono lo schema: punto di controllo 1, punto di controllo 2, punto di fine curva. Il punto di fine curva diventa l'inizio di quella successiva.
 \end{elencopuntato}
 \paragraph{Metodi pubblici:}
 \begin{elencopuntato}[\normindent]
 \item[-] \textit{extend(point)} aggiunge un punto avente coordinate assolute ai punti di controllo. Nel caso il punto esca dal \textit{BoundingRectangle}, il \textit{BoundingRectangle} viene ampliato e tutti i punti di controllo (con coordinate relative) vengono ricalcolati in modo che mantengano la posizione precedente. Per maggiori dettagli si veda il diagramma di attivit\`a [TODO: inserire diagramma].
 \item[-] \textit{getPoints} ritorna un array con una copia dei punti di controllo della linea convertiti a coordinate assolute in base al \textit{BoundingRectangle}.
-\item[-] \textit{draw(canvas)} chiama \textit{applyToContext} sul colore del bordo e ottiene i punti di controllo assoluti tramite \textit{getPoints}. Raggruppa i punti a 3 a 3 e per ogni gruppo traccia una curva di bezier. Se rimangono due punti traccia una quadratica e se ne rimane uno solo una linea diritta.
+\item[-] \textit{draw(canvas)} chiama \textit{applyToContext} sul colore del bordo e ottiene i punti di controllo assoluti tramite \textit{getPoints}. Usa il primo punto come inizio della prima curva e raggruppa i punti a 3 a 3 e per ogni gruppo traccia una curva di bezier. Se rimangono due punti traccia una quadratica e se ne rimane uno solo una linea diritta.
+\item[-] \textit{drawSelection(canvas)} richiama \textit{drawSelection} di \textit{Figure} e disegna le tangenti alla curva di colore grigio con opacit\`a 0.8. Le tangenti sono dei segmenti che congiungono il punto di inizio/fine curva al relativo punto di controllo.
 \item[-] \textit{toSVG(gen)} si serve dei metodi di \textit{gen} (di tipo \textit{SVGGenerator}) per scrivere le propriet\`a della figura in formato SVG.
 \end{elencopuntato}
 

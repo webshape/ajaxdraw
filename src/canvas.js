@@ -2,17 +2,15 @@ $(document).ready(function(){
 
 var canvas = document.getElementById("cv");
 var ctx = canvas.getContext("2d");   //prendo il contesto
-
 var canvasLeft = ctx.canvas.offsetLeft;
 var canvasTop = ctx.canvas.offsetTop;
-//var figures = [];
-var polygonEdgeNumber=3;
+var polygonEdgeNumber = 3;
 var Set=new FigureSet();
 
 
 
 function refresh(){
-  //  alert("Elementi array:"+Set._figures.length);
+  // alert("Elementi array:"+Set._figures.length);
   Set.each(function (f) {
     f.draw(canvas);
   });
@@ -20,26 +18,37 @@ function refresh(){
 function deselectAll(){
   Set.each(function (f){
     f.setSelection(false);
-   // f.drawSelection(canvas);
   });
+}
+
+function clear(){
+  canvas.width=canvas.width;
+}
+function updateInfos(figure){
+  document.getElementById("DialogHeight").value=figure.getBounds().h();
+  document.getElementById("DialogWidth").value=figure.getBounds().w();
 }
 
 
 /////////////////////////////////////////
 $("#selectionButton").click(function () {
   $("#cv").unbind('mousedown click mouseup');
+
   $("#cv").bind("click", function(e){
-      refresh();
       deselectAll();
+      refresh();
       var sx = e.pageX-canvasLeft;
       var top = e.pageY-canvasTop;
       var coord = new Point(sx,top);
       var actualFigure = Set.selectFigure(coord);
       actualFigure.setSelection(true);
+      updateInfos(actualFigure);
+		  clear();
+		  refresh();
       actualFigure.drawSelection(canvas);
-	//	  if(actualFigure!=null){
-	//	    alert("trovata figura");
-	//	  }
+		  if(actualFigure==null){
+		    throw 'No figure found';
+		  }
 	//	  else {
 	//	    alert("trovato niente");
 	//	  }
@@ -51,80 +60,88 @@ $("#selectionButton").click(function () {
 
 /////////////////////////////////////////////////
 
-$("#bezierButton").click(function () {
+$("#straightLineButton").click(function () {
   $("#cv").unbind('mousedown click mouseup');
-  var c = new StraightLine();
+  clear();
+  refresh();//per togliere un'eventuale selezione
+  var b = [];
   $("#cv").bind("mousedown", function(e){
+      var f = b[0] = new StraightLine();
       var sx = e.pageX-canvasLeft;
       var top = e.pageY-canvasTop;
 
-      c.getBorderColour().set(0, 0, 255, new Opacity(1));
-      c.getBounds().setStart(new Point(sx, top));
+      f.getBorderColour().getOpacity().setVal(1);
+      f.getBorderColour().fromCSS(BorderColor);
+      f.getBounds().setStart(new Point(sx, top));
       }).bind("mouseup",function(e){
-		var sx1 = e.pageX-canvasLeft;
-		var top1 = e.pageY-canvasTop;
-		c.getBounds().setEnd(new Point(sx1,top1));
-		Set.add(c);
-		refresh();
+	var sx1 = e.pageX-canvasLeft;
+	var top1 = e.pageY-canvasTop;
+        var f = b[0];
+	f.getBounds().setEnd(new Point(sx1,top1));
+	Set.add(f);
+	refresh();
 
     });
 
 });
-
-///////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////
 
 $("#squareButton").click(function () {
   $("#cv").unbind('mousedown click mouseup');
-  var c = new Rectangle();
-  $("#cv").bind("mousedown", function(e){
+  clear();
+  refresh();//per togliere un'eventuale selezione
+ var s = [];
+   $("#cv").bind("mousedown", function(e){
+      var f = s[0] = new Rectangle();
       var sx = e.pageX-canvasLeft;
       var top = e.pageY-canvasTop;
 
-      c.getBorderColour().set(255, 0, 0, new Opacity(1));
-       c.getBounds().setStart(new Point(sx, top));
+      f.getFillColour().getOpacity().setVal(1);
+      f.getFillColour().fromCSS(FillColor);
 
-
-	/*	  $("#cv").bind("mousemove",function(e){
-			    var re=new Rectangle();
-			    var sx2 = e.pageX-canvasLeft;
-			    var top2 = e.pageY-canvasTop;
-			     re.getBounds().setEnd(new Point(sx2, top2));
-			      Set.add(re);
-			      Set.each(function (f) {
-				f.draw(canvas);
-			      });   */
-
-
-
-
-		    }).bind("mouseup",function(e){
-			      var sx1 = e.pageX-canvasLeft;
-			      var top1 = e.pageY-canvasTop;
-			      c.getBounds().setEnd(new Point(sx1, top1));
-			      Set.add(c);
-			      refresh();
-
+      f.getBorderColour().getOpacity().setVal(1);
+      f.getBorderColour().fromCSS(BorderColor);
+      f.getBounds().setStart(new Point(sx, top));
+      }).bind("mouseup",function(e){
+	var sx1 = e.pageX-canvasLeft;
+	var top1 = e.pageY-canvasTop;
+        var f = s[0];
+	f.getBounds().setEnd(new Point(sx1, top1));
+	Set.add(f);
+	refresh();
     });
-
 });
 
-////////////////////////////////////////////////////////////
+
+
+//////////////////////////////////////////////////////////////////////
+
 
  $("#polygonButton").click(function () {
    $("#cv").unbind('mousedown mouseup click');
+   clear();
+   refresh();//per togliere un'eventuale selezione
    createEdgeDialog();
-   var y= new Polygon();
+   var p = [];
    $("#cv").bind("mousedown", function(e){
+     var f = p[0]= new Polygon();
      var sx = e.pageX-canvasLeft;
      var top = e.pageY-canvasTop;
-     y.getBorderColour().set(255, 0, 0, new Opacity(1));
-     y.getBounds().setStart(new Point(sx, top));
+
+      f.getFillColour().getOpacity().setVal(1);
+      f.getFillColour().fromCSS(FillColor);
+
+      f.getBorderColour().getOpacity().setVal(1);
+      f.getBorderColour().fromCSS(BorderColor);
+
+     f.getBounds().setStart(new Point(sx, top));
    }).bind("mouseup",function(e){
      var sx1 = e.pageX-canvasLeft;
      var top1 = e.pageY-canvasTop;
-     y.getBounds().setEnd(new Point(sx1, top1));
-     y.edgeNumber().setVal(polygonEdgeNumber);
-     Set.add(y);
+     var f = p[0];
+     f.getBounds().setEnd(new Point(sx1, top1));
+     f.edgeNumber().setVal(polygonEdgeNumber);
+     Set.add(f);
      refresh();
    });
 });
@@ -133,23 +150,27 @@ $("#squareButton").click(function () {
 
  $("#circleButton").click(function () {
    $("#cv").unbind('mouseup mousedown click');
-   var y= new Circle();
+   clear();
+   refresh();//per togliere un'eventuale selezione
+   var y = [];
    $("#cv").bind("mousedown", function(e){
-		var sx = e.pageX-canvasLeft;
-		var top = e.pageY-canvasTop;
-		y.getBorderColour().set(255, 0, 0, new Opacity(1));
-		y.getBounds().setStart(new Point(sx, top));
+        var c = y[0] = new Circle();
+	var sx = e.pageX-canvasLeft;
+	var top = e.pageY-canvasTop;
+	c.getFillColour().getOpacity().setVal(1);
+	c.getFillColour().fromCSS(FillColor);
+	c.getBorderColour().getOpacity().setVal(1);
+	c.getBorderColour().fromCSS(BorderColor);
+	c.getBounds().setStart(new Point(sx, top));
+   }).bind("mouseup",function(e){
+     var sx1 = e.pageX-canvasLeft;
+     var top1 = e.pageY-canvasTop;
+     var c = y[0];
+     c.getBounds().setEnd(new Point(sx1, top1));
+     Set.add(c);
+     refresh();
+   });
 
-		  }).bind("mouseup",function(e){
-			    var sx1 = e.pageX-canvasLeft;
-			    var top1 = e.pageY-canvasTop;
-			    y.getBounds().setEnd(new Point(sx1, top1));
-			    Set.add(y);
-			    refresh();
-		  });
-
-			  });
-
-
+   });
 
 });

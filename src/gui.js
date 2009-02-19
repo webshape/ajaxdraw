@@ -17,13 +17,21 @@ var BorderColor="#000000";
 var FillColor="#000000";
 
 
-
 function changeFarbColor(col,type){
-  $.farbtastic("#color").setColor(col);
-  document.getElementById("color").value=$.farbtastic("#color").color;
-  document.getElementById("coloreOra").style.backgroundColor=col;
-  $.farbtastic("#color").updateDisplay();
+  if( document.getElementById("comboColor").value=="border"){
+  $.farbtastic("#color1").setColor(col);
+  document.getElementById("color1").value=$.farbtastic("#color1").color;
+  document.getElementById("borderColorNow").style.backgroundColor=col;
+  BorderColor=col;
 }
+else{
+ $.farbtastic("#color2").setColor(col);
+  document.getElementById("color2").value=$.farbtastic("#color2").color;
+  document.getElementById("fillColorNow").style.backgroundColor=col;
+  FillColor=col;
+}
+}
+
 
 
 
@@ -115,10 +123,14 @@ $(document).ready(function(){
     	position: "right",
     	width: 230
     });
-/* Ruota dei colori **********************/
-    $("#picker").farbtastic("#color");
 
-    $("#changeCol").toggle(
+
+	/* Ruota dei colori **********************/
+    $("#picker1").farbtastic("#color1");
+	$("#picker2").farbtastic("#color2");
+
+
+    $("#changeBorderCol").toggle(
        function () {
 		$("#colorx").show("slow"),
         	    $(".Dialog1").height(500);
@@ -126,6 +138,20 @@ $(document).ready(function(){
        function() {
 	$(".Dialog1").height(300),
      		$("#colorx").hide("slow");
+       }
+     // if($.browser.opera==false){
+     //  $("canvas").css({'cursor' : 'url("../pages/images/selezione.gif")'});}
+     );
+
+
+	 $("#changeFillCol").toggle(
+       function () {
+		$("#colory").show("slow"),
+        	    $(".Dialog1").height(500);
+       },
+       function() {
+	$(".Dialog1").height(300),
+     		$("#colory").hide("slow");
        }
      // if($.browser.opera==false){
      //  $("canvas").css({'cursor' : 'url("../pages/images/selezione.gif")'});}

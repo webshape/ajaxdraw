@@ -75,6 +75,12 @@ Figure.prototype.drawSelection = function (c) {
                               ctx.strokeRect(pt.x - half, pt.y - half,
                                              size, size);
                             });
+  // draw the bounds
+  (new Colour(100, 100, 100, new Opacity(0.8))).applyToContext(ctx); // gray
+  var b = this.getBounds();
+  var x0 = b.start().x < b.end().x ? b.start().x : b.end().x;
+  var y0 = b.start().y < b.end().y ? b.start().y : b.end().y;
+  ctx.strokeRect(x0, y0, Math.abs(b.w()), Math.abs(b.h()));
   ctx.restore();
 };
 
@@ -192,6 +198,23 @@ Colour.prototype.set = function (r, g, b, o) {
   this._g = g;
   this._b = b;
   this._o = o;
+};
+
+/**
+ * Set the RGB components of the colour from a CSS representation
+ * 
+ * @param {String} repr the CSS representation
+ */
+Colour.prototype.fromCSS = function (repr) {
+  if (!repr.match(/^#([0-9]|a|A|b|B|c|C|d|D|e|E|f|F){6}$/)) {
+    throw 'Illegal CSS representation of a colour';
+  }
+  var res = [1, 3, 5].map(function (i) {
+                            return parseInt(repr.substr(i, 2), 16);
+                          });
+  this._r = res[0];
+  this._g = res[1];
+  this._b = res[2];
 };
 
 Colour.prototype.createWidget = function () {
@@ -428,8 +451,9 @@ FigureSet.prototype.selectFigure = function (where) {
 
   var fs = {};
   var c = document.createElement('canvas');
-  c.width = 1000;
-  c.height = 1000;
+  c.width = 760;
+  c.height = 480;
+  c.getContext('2d').lineWidth = 10; // easier selection of lines
   this.each(function (f) {
               var col = next();
               fs[col[0].toCSS()] = f;
@@ -448,6 +472,7 @@ FigureSet.prototype.selectFigure = function (where) {
   // get the selected pixel
   var selection = c.getContext('2d').getImageData(where.x, where.y, 1, 1).data;
   var col = new Colour(selection[0], selection[1], selection[2], o);
+  //alert(col.toCSS());
   return fs[col.toCSS()] || null;
 };
 
@@ -457,7 +482,7 @@ FigureSet.prototype.selectFigure = function (where) {
  */
 function Circle () {
   Figure.call(this);
-  this._fillColour = new Colour(0, 0, 0, new Opacity(1));
+  this._fillColour = new FillColour(0, 0, 0, new Opacity(1));
 }
 
 Circle.prototype = new Figure();
@@ -672,6 +697,7 @@ StraightLine.prototype.draw = function (c) {
   ctx.moveTo(start.x, start.y);
   ctx.lineTo(end.x, end.y);
   this.getBorderColour().applyToContext(ctx);
+//  alert(this.getBorderColour().toCSS());
   ctx.stroke();
   ctx.closePath();
   ctx.restore();
@@ -821,7 +847,7 @@ FreeLine.prototype.draw = function (c) {
   ctx.beginPath();
   ctx.moveTo(pts[0].x, pts[0].y);
   var i = 0;
-  for (i = 0; i + 2 < pts.length; i += 3) {
+  for (i = 1; i + 2 < pts.length; i += 3) {
     ctx.bezierCurveTo(pts[i].x, pts[i].y, pts[i+1].x, pts[i+1].y,
                       pts[i+2].x, pts[i+2].y);
   }
@@ -838,6 +864,42 @@ FreeLine.prototype.draw = function (c) {
   this.getBorderColour().applyToContext(ctx);
   ctx.stroke();
   ctx.closePath();
+  ctx.restore();
+};
+
+FreeLine.prototype.drawSelection = function (c) {
+  Figure.prototype.drawSelection.call(this, c);
+  if (!this.isSelected()) {
+    return;
+  }
+  
+  var pts = this.getPoints();
+  var ctx = c.getContext('2d');
+  ctx.save();
+  (new Colour(100, 100, 100, new Opacity(0.8))).applyToContext(ctx);
+  var i = 0;
+  for (i = 1; i + 2 < pts.length; i += 3) {
+    // first tangent
+    ctx.beginPath();
+    ctx.moveTo(pts[i-1].x, pts[i-1].y);
+    ctx.lineTo(pts[i].x, pts[i].y);
+    ctx.stroke();
+    ctx.closePath();
+    // second tangent
+    ctx.beginPath();
+    ctx.moveTo(pts[i+1].x, pts[i+1].y);
+    ctx.lineTo(pts[i+2].x, pts[i+2].y);
+    ctx.stroke();
+    ctx.closePath();
+  }
+  var remaining = pts.length - i;
+  if (remaining == 2) {
+    ctx.beginPath();
+    ctx.moveTo(pts[i].x, pts[i].y);
+    ctx.lineTo(pts[i+1].x, pts[i+1].y);
+    ctx.stroke();
+    ctx.closePath();
+  }
   ctx.restore();
 };
 
