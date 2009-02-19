@@ -13,7 +13,10 @@
 function SVGReader() {
 }
 
-
+/**
+ * Error manager
+ * @param {String} msg the description of the error
+ */
 function ParsingError (msg) {
   this._msg = msg;
 }
@@ -40,7 +43,7 @@ SVGReader.prototype.read = function (doc) {
       // ignore unknow tags
       if (f != null) {
         f.fromSVG(n);
-	fs.add(f);
+		  fs.add(f);
       }
     }
   }
@@ -95,7 +98,6 @@ XMLParser.prototype.parsing = function (doc) {
 };
 
 
-
 /**
  * Contain the hash table
  * @constructor
@@ -117,6 +119,12 @@ SVGElementRegistry.prototype.makeFigureClassFromTag = function (tag) {
   return null;
 };
 
+
+/**
+ * Add a tag to the hashtable
+ * @param {String} tagName the name of the tag
+ * @param {Figure} constructor the figure corrisponding to the tag
+ */
 SVGElementRegistry.prototype.register = function (tagName, constructor) {
   this._reg[tagName] = constructor;
 };
@@ -128,6 +136,7 @@ registry.register('rect', Rectangle);
 registry.register('ellipse', Circle);
 registry.register('polygon', Polygon);
 registry.register('path', BezierCurve);
-register.register('text', Text);
+registry.register('text', Text);
+
 
 //TODO: every class fromSVG method

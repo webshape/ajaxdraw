@@ -177,6 +177,7 @@ FreeLine.prototype.toSVG = function(gen) {
     }
   }
   gen.attr("d", c, true);
+  //gen.attr("d", c + ' Z', true); con closePath
   gen.endCommand("path");
 };
 
@@ -185,8 +186,12 @@ FreeLine.prototype.toSVG = function(gen) {
  * Transform bezier curve into SVG tags
  * @param {SVGGenerator} gen to call the methods to create tags
  */
+/*BezierCurve.prototype.toSVG = function(gen) {
+  FreeLine.call(this, this, gen);
+};Non serve viene già chiamato in automatico su freeline*/ 
 BezierCurve.prototype.toSVG = function(gen) {
 };
+
 
 
 /**
