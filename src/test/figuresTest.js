@@ -27,6 +27,22 @@ test('Colour & Opacity', function () {
        c.set(254, 0, 0, o);
        equals(c.toCSS(), '#fe0000', 'set');
        equals(c._o, o, 'set');
+       c.fromCSS('#01aBf6');
+       equals(c.toCSS(), '#01abf6', 'fromCSS');
+       var e = false;
+       try {
+         c.fromCSS('#01abg6');
+       } catch (ex) {
+         e = true;
+       }
+       ok(e, 'illegal CSS value');
+       e = false;
+       try {
+         c.fromCSS('#01abf67');
+       } catch (ex) {
+         e = true;
+       }
+       ok(e, 'illegal CSS value (2)');
        ok(c.createWidget() instanceof ColourDialog, 'createWidget');
      });
 

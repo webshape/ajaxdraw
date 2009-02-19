@@ -194,6 +194,23 @@ Colour.prototype.set = function (r, g, b, o) {
   this._o = o;
 };
 
+/**
+ * Set the RGB components of the colour from a CSS representation
+ * 
+ * @param {String} repr the CSS representation
+ */
+Colour.prototype.fromCSS = function (repr) {
+  if (!repr.match(/^#([0-9]|a|A|b|B|c|C|d|D|e|E|f|F){6}$/)) {
+    throw 'Illegal CSS representation of a colour';
+  }
+  var res = [1, 3, 5].map(function (i) {
+                            return parseInt(repr.substr(i, 2), 16);
+                          });
+  this._r = res[0];
+  this._g = res[1];
+  this._b = res[2];
+};
+
 Colour.prototype.createWidget = function () {
   // TODO: implement
 };
@@ -448,6 +465,7 @@ FigureSet.prototype.selectFigure = function (where) {
   // get the selected pixel
   var selection = c.getContext('2d').getImageData(where.x, where.y, 1, 1).data;
   var col = new Colour(selection[0], selection[1], selection[2], o);
+//  alert(fs[col.toCSS()]);
   return fs[col.toCSS()] || null;
 };
 
@@ -457,7 +475,7 @@ FigureSet.prototype.selectFigure = function (where) {
  */
 function Circle () {
   Figure.call(this);
-  this._fillColour = new Colour(0, 0, 0, new Opacity(1));
+  this._fillColour = new FillColour(0, 0, 0, new Opacity(1));
 }
 
 Circle.prototype = new Figure();

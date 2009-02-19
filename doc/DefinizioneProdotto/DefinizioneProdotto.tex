@@ -339,6 +339,7 @@ Implementa \textit{Property} e \textit{CSSProperty}. Mantiene un'istanza di \tex
 \begin{elencopuntato}[\normindent]
 \item[-] \textit{getOpacity()} ritorna l'attributi \textit{{\_}o}.
 \item[-] \textit{set(r, g, b, o)} modifica i valori dei quattro attributi.
+\item[-] \textit{fromCSS(repr)} inizializza le componenti RGB del colore a partire dalla loro rappresentazione CSS. Diivide la stringa \textit{repr} in tre parti di due cifre esadecimali l'una, le converte in numeri e le assegna alle tre componenti. Se \textit{repr} \`e invalida viene sollevata un'eccezione.
 \item[-] \textit{createWidget()} crea e ritorna un'istanza di \textit{ColourDialog} passando se stesso come parametro al costruttore.
 \item[-] \textit{toCSS()} ritorna il colore come una stringa di tipo \"{\#}EEEEEE\" formata da tre coppie di due cifre esadecimali. Le coppie rappresentano rispettivamente il rosso, il verde, il blu. L'opacit\`a viene ignorata da questo metodo.
 \item[-] \textit{applyToContext(context)} setta l'attributo \textit{strokeStyle} del contesto grafico alla propria rappresentazione CSS, e richiama il metodo \textit{applyToContext} su \textit{{\_}o} passando \textit{context} come argomento.
