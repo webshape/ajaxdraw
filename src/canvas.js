@@ -58,6 +58,7 @@ $("#bezierButton").click(function () {
       var f = b[0] = new StraightLine();
       var sx = e.pageX-canvasLeft;
       var top = e.pageY-canvasTop;
+
       f.getBorderColour().getOpacity().setVal(1);
       f.getBorderColour().fromCSS(BorderColor);
       f.getBounds().setStart(new Point(sx, top));
