@@ -125,6 +125,17 @@ test('FigureSet.selectFigure', function () {
          //     'text, line, polygon, point on text');
      });
 
+test('Figure', function () {
+       var f = new Rectangle(); // a concrete figure
+       equals(f.isSelected(), false, 'isSelected');
+       f.setSelection(true);
+       equals(f.isSelected(), true, 'setSelection');
+       same(f.getBounds(), new BoundingRectangle(new Point(0, 0), 
+                                                 new Point(0,0)),
+            'getBounds()');
+       equals(f.getBorderColour().toCSS(), '#000000', 'getBorderColour');
+     });
+  
 test('Circle', function () {
        var c = new Circle();
        c.getFillColour().set(1, 2, 3, new Opacity(1));
