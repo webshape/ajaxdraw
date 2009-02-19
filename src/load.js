@@ -141,3 +141,21 @@ registry.register('text', Text);
 
 
 //TODO: every class fromSVG method
+/**
+ * Transform an svg node into a complete rectangle
+ * @param {node} n the node containg the svg
+ */
+Rectangle.prototype.fromSVG = function (n) {
+  var x1 = n.getAttribute("x");
+  var y1 = n.getAttribute("y");
+  var x2 = parseInt(x1) + parseInt(n.getAttribute("width"));
+  var y2 = parseInt(y1) + parseInt(n.getAttribute("height"));
+  var p1 = new Point(x1, y1);
+  var p2 = new Point(x2, y2);
+  this.getBounds().setStart(p1);
+  this.getBounds().setEnd(p2);
+  this.getFillColour().fromCSS(n.getAttribute("fill"));
+  this.getFillColour().getOpacity().setVal(n.getAttribute("fill-opacity"));
+  this.getBorderColour().fromCSS(n.getAttribute("stroke"));
+  this.getBorderColour().getOpacity().setVal(n.getAttribute("stroke-opacity"));
+};
