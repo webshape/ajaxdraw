@@ -869,6 +869,10 @@ FreeLine.prototype.draw = function (c) {
 
 FreeLine.prototype.drawSelection = function (c) {
   Figure.prototype.drawSelection.call(this, c);
+  if (!this.isSelected()) {
+    return;
+  }
+  
   var pts = this.getPoints();
   var ctx = c.getContext('2d');
   ctx.save();
