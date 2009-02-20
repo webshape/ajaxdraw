@@ -146,7 +146,7 @@ Il presente documento descrive in modo dettagliato le classi e i relativi metodi
 %%%%%%%%%%%%%%FINE INTESTAZIONE COLONNE%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 		 \hline
 %%%%%%%%%%% PARTE DA MODIFICARE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%		
-    	 	0.2 &    18$\slash$02$\slash$2009 descritto metodo clone nella classe figure & Rizzo Maurizio \\
+    	 	0.2 &    18$\slash$02$\slash$2009 descrizione classe Rotation e metodo clone nella classe figure & Rizzo Maurizio \\
                 \hline
                 0.1 & 	 17$\slash$02$\slash$2009 Descritte classi e metodi delle figure e delle propriet\`a & Dissegna Stefano \\
 
@@ -231,7 +231,7 @@ Viene aggregata dalla classe \textit{FigureSet}.
 \item[-]  \textit{isSelected()} dice se la figura \`e correntemente selezionata. Ritorna \textit{{\_}selected}.
 \item[-]  \textit{eachProperty(fn)} applica la funzione fn ad ogni propriet\`a della figura, ovvero a \textit{{\_}bounds} e \textit{{\_}borderColour}.
 \item[-] \textit{drawSelection(canvas)} disegna dei quadratini di colore blu e con opacit\`a 0.8 intorno ai punti principali della figura, ottenuti tramite \textit{getMainPoints}e traccia i bordi del \textit{BoundingRectangle} di colore grigio con opacit\`a 0.8, solo se la figura \`e selezionata. 
-\item[-] \textit{clone()} metodo che utilizza \textit{isSelected()} per riconoscere una figura selezionata, \textit{getMainPoints} per ottenere i punti della figura selezionata e usa \textit{draw(canvas)} per disegnare il clone dell'originale spostato leggermente verso l'alto o in relazione a dove si trova la figura origine sul canvas.
+\\item[-] \textit{clone()} metodo che utilizza \textit{getMainPoints} per ottenere i punti della figura selezionata, propone sul canvas una copia dell'originale con l'ausilio del metodo \textit{draw(canvas)}; il clone dell'originale viene disegnato spostato 10 10px verso l'alto o in relazione a dove si trova la figura origine sul canvas.
 \end{elencopuntato}
 
 \subsezione{FigureSet}
@@ -317,6 +317,21 @@ Implementa \textit{Property}.
 \begin{elencopuntato}[\normindent]
 \item[-] \textit{get/setVal} permette di ottenere, o di modificare, il numero dei lati.
 \item[-] \textit{createWidget} crea e ritorna un'istanza di \textit{EdgeNumberSetter} passando se stesso come parametro al costruttore.
+\end{elencopuntato}
+
+\subsezione{Rotation}
+\subsubsezione{Tipo, obiettivo e funzione del componente}
+Rappresenta la proprietà di una figura di essere ruotata.
+\subsubsezione{Relazioni d'uso di altre componenti}
+Implementa \textit{Property}.
+\subsubsezione{Interfacce e relazioni di uso da altre componenti}
+\textit{Figure} ne mantiene un'istanza.
+\subsubsezione{Attivit\`a svolte e dati trattati}
+\paragraph{Metodi pubblici:}
+\begin{elencopuntato}[\normindent]
+\item[-] \textit{getCentre} permette di ottenere il centro della figura utilizzando il metodo pubblico \textit{Centre()} della classe \textit{BoundingRectangle}.
+\item[-] \textit{setPoints} ritorna la modifica dei vertici della figura ottenibili attraverso \textit{getMainPoints}; la figura viene ridisegnata con l'ausilio del metodo \textit{draw(canvas)} a partire dai punti ottenuti dalla rotazione.  
+\item[-] \textit{createWidget} crea e ritorna un'istanza di \textit{RotationSetter} passando se stesso come parametro al costruttore.
 \end{elencopuntato}
 
 
