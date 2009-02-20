@@ -239,11 +239,9 @@ Polygon.prototype.fromSVG = function (n) {
   this.getBounds().setEnd(p2);
   var points = n.getAttribute("points");
   var edges = 0;
-  for (var i = 0; i < points.length; ++i) {
-	 if (mid(stringa, i, 1) = ",") {
-		edges += 1;
-	 }
-  }
+  for (var i = 0; i < points.length; ++i)
+    if (points.substr(i, 1) == ",")
+	  edges += 1;
   this.getEdgeNumber().setVal(edges);
   this.getFillColour().fromCSS(n.getAttribute("fill"));
   this.getFillColour().getOpacity().setVal(n.getAttribute("fill-opacity"));
