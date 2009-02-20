@@ -229,11 +229,41 @@ BezierCurve.prototype.fromSVG = function (n) {
  * @param {node} n the SVG node containg the property
  */
 Polygon.prototype.fromSVG = function (n) {
+  var d = new Array();
+  d = (n.getAttribute("points")).split(" ");
+
+  var x1 = 0;
+  var y1 = 0;
+  var x2 = 0;
+  var y2 = 0;
+  
+  for (var i = 0; i < d.length; ++i){
+	 if (d[i].length > 1){
+		var z = new Array();
+		z = d[i].split(",");
+		if (x1 > z[0]) 
+		  x1 = z[0];
+		if (y1 < z[1])
+		  y1 = z[1];
+		if (x2 < z[0])
+		  x2 = z[0];
+		if (y2 > z[1])
+		  y2 = z[1];
+	 }
+  }
+  
+  var p1 = new Point(x1, y1);
+  var p2 = new Point(x2, y2);
+  this.getBounds().setStart(p1);
+  this.getBounds().setEnd(p2);
+
   var points = n.getAttribute("points");
   var edges = 0;
+  
   for (var i = 0; i < points.length; ++i)
     if (points.substr(i, 1) == ",")
 	  edges += 1;
+  
   this.getEdgeNumber().setVal(edges);
   this.getFillColour().fromCSS(n.getAttribute("fill"));
   this.getFillColour().getOpacity().setVal(n.getAttribute("fill-opacity"));
