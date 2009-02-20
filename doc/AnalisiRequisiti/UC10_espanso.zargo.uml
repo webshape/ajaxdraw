@@ -57,7 +57,7 @@
 			UML 1.4
 		</plugin>
 </profile>
-<XMI xmi.version = '1.2' xmlns:UML = 'org.omg.xmi.namespace.UML' timestamp = 'Thu Feb 19 18:48:35 CET 2009'>
+<XMI xmi.version = '1.2' xmlns:UML = 'org.omg.xmi.namespace.UML' timestamp = 'Fri Feb 20 01:03:47 CET 2009'>
   <XMI.header>    <XMI.documentation>
       <XMI.exporter>ArgoUML (using Netbeans XMI Writer version 1.0)</XMI.exporter>
       <XMI.exporterVersion>0.26.2(6) revised on $Date: 2007-05-12 08:08:08 +0200 (Sat, 12 May 2007) $ </XMI.exporterVersion>
@@ -826,6 +826,108 @@
             <UML:UseCase xmi.idref = '127-0-1-1--562452:11eef487d32:-8000:0000000000000E29'/>
           </UML:Generalization.parent>
         </UML:Generalization>
+        <UML:UseCase xmi.id = '127-0-0-1--4de42e34:11f90f5d821:-8000:0000000000000E4B'
+          name = 'UC10.13 Copia di un oggetto' isSpecification = 'false' isRoot = 'false'
+          isLeaf = 'false' isAbstract = 'false'>
+          <UML:UseCase.include>
+            <UML:Include xmi.idref = '127-0-0-1--4de42e34:11f90f5d821:-8000:0000000000000E56'/>
+          </UML:UseCase.include>
+        </UML:UseCase>
+        <UML:UseCase xmi.id = '127-0-0-1--4de42e34:11f90f5d821:-8000:0000000000000E4C'
+          name = 'UC 10.14 Rotazione di un oggetto' isSpecification = 'false' isRoot = 'false'
+          isLeaf = 'false' isAbstract = 'false'>
+          <UML:UseCase.include>
+            <UML:Include xmi.idref = '127-0-0-1--4de42e34:11f90f5d821:-8000:0000000000000E60'/>
+          </UML:UseCase.include>
+        </UML:UseCase>
+        <UML:Association xmi.id = '127-0-0-1--4de42e34:11f90f5d821:-8000:0000000000000E4D'
+          name = '' isSpecification = 'false' isRoot = 'false' isLeaf = 'false' isAbstract = 'false'>
+          <UML:Association.connection>
+            <UML:AssociationEnd xmi.id = '127-0-0-1--4de42e34:11f90f5d821:-8000:0000000000000E4E'
+              visibility = 'public' isSpecification = 'false' isNavigable = 'false' ordering = 'unordered'
+              aggregation = 'none' targetScope = 'instance' changeability = 'changeable'>
+              <UML:AssociationEnd.multiplicity>
+                <UML:Multiplicity xmi.id = '127-0-0-1--4de42e34:11f90f5d821:-8000:0000000000000E4F'>
+                  <UML:Multiplicity.range>
+                    <UML:MultiplicityRange xmi.id = '127-0-0-1--4de42e34:11f90f5d821:-8000:0000000000000E50'
+                      lower = '1' upper = '1'/>
+                  </UML:Multiplicity.range>
+                </UML:Multiplicity>
+              </UML:AssociationEnd.multiplicity>
+              <UML:AssociationEnd.participant>
+                <UML:Actor xmi.idref = '-64--88-0-99--2d54782a:11df957618e:-8000:0000000000000CAE'/>
+              </UML:AssociationEnd.participant>
+            </UML:AssociationEnd>
+            <UML:AssociationEnd xmi.id = '127-0-0-1--4de42e34:11f90f5d821:-8000:0000000000000E51'
+              visibility = 'public' isSpecification = 'false' isNavigable = 'true' ordering = 'unordered'
+              aggregation = 'none' targetScope = 'instance' changeability = 'changeable'>
+              <UML:AssociationEnd.multiplicity>
+                <UML:Multiplicity xmi.id = '127-0-0-1--4de42e34:11f90f5d821:-8000:0000000000000E55'>
+                  <UML:Multiplicity.range>
+                    <UML:MultiplicityRange xmi.id = '127-0-0-1--4de42e34:11f90f5d821:-8000:0000000000000E54'
+                      lower = '0' upper = '-1'/>
+                  </UML:Multiplicity.range>
+                </UML:Multiplicity>
+              </UML:AssociationEnd.multiplicity>
+              <UML:AssociationEnd.participant>
+                <UML:UseCase xmi.idref = '127-0-0-1--4de42e34:11f90f5d821:-8000:0000000000000E4B'/>
+              </UML:AssociationEnd.participant>
+            </UML:AssociationEnd>
+          </UML:Association.connection>
+        </UML:Association>
+        <UML:Include xmi.id = '127-0-0-1--4de42e34:11f90f5d821:-8000:0000000000000E56'
+          isSpecification = 'false'>
+          <UML:Include.addition>
+            <UML:UseCase xmi.idref = '127-0-1-1--53e90f34:11e0bddd89f:-8000:0000000000000DF8'/>
+          </UML:Include.addition>
+          <UML:Include.base>
+            <UML:UseCase xmi.idref = '127-0-0-1--4de42e34:11f90f5d821:-8000:0000000000000E4B'/>
+          </UML:Include.base>
+        </UML:Include>
+        <UML:Association xmi.id = '127-0-0-1--4de42e34:11f90f5d821:-8000:0000000000000E57'
+          name = '' isSpecification = 'false' isRoot = 'false' isLeaf = 'false' isAbstract = 'false'>
+          <UML:Association.connection>
+            <UML:AssociationEnd xmi.id = '127-0-0-1--4de42e34:11f90f5d821:-8000:0000000000000E58'
+              visibility = 'public' isSpecification = 'false' isNavigable = 'false' ordering = 'unordered'
+              aggregation = 'none' targetScope = 'instance' changeability = 'changeable'>
+              <UML:AssociationEnd.multiplicity>
+                <UML:Multiplicity xmi.id = '127-0-0-1--4de42e34:11f90f5d821:-8000:0000000000000E59'>
+                  <UML:Multiplicity.range>
+                    <UML:MultiplicityRange xmi.id = '127-0-0-1--4de42e34:11f90f5d821:-8000:0000000000000E5A'
+                      lower = '1' upper = '1'/>
+                  </UML:Multiplicity.range>
+                </UML:Multiplicity>
+              </UML:AssociationEnd.multiplicity>
+              <UML:AssociationEnd.participant>
+                <UML:Actor xmi.idref = '-64--88-0-99--2d54782a:11df957618e:-8000:0000000000000CAE'/>
+              </UML:AssociationEnd.participant>
+            </UML:AssociationEnd>
+            <UML:AssociationEnd xmi.id = '127-0-0-1--4de42e34:11f90f5d821:-8000:0000000000000E5B'
+              visibility = 'public' isSpecification = 'false' isNavigable = 'true' ordering = 'unordered'
+              aggregation = 'none' targetScope = 'instance' changeability = 'changeable'>
+              <UML:AssociationEnd.multiplicity>
+                <UML:Multiplicity xmi.id = '127-0-0-1--4de42e34:11f90f5d821:-8000:0000000000000E5F'>
+                  <UML:Multiplicity.range>
+                    <UML:MultiplicityRange xmi.id = '127-0-0-1--4de42e34:11f90f5d821:-8000:0000000000000E5E'
+                      lower = '0' upper = '-1'/>
+                  </UML:Multiplicity.range>
+                </UML:Multiplicity>
+              </UML:AssociationEnd.multiplicity>
+              <UML:AssociationEnd.participant>
+                <UML:UseCase xmi.idref = '127-0-0-1--4de42e34:11f90f5d821:-8000:0000000000000E4C'/>
+              </UML:AssociationEnd.participant>
+            </UML:AssociationEnd>
+          </UML:Association.connection>
+        </UML:Association>
+        <UML:Include xmi.id = '127-0-0-1--4de42e34:11f90f5d821:-8000:0000000000000E60'
+          isSpecification = 'false'>
+          <UML:Include.addition>
+            <UML:UseCase xmi.idref = '127-0-1-1--53e90f34:11e0bddd89f:-8000:0000000000000DF8'/>
+          </UML:Include.addition>
+          <UML:Include.base>
+            <UML:UseCase xmi.idref = '127-0-0-1--4de42e34:11f90f5d821:-8000:0000000000000E4C'/>
+          </UML:Include.base>
+        </UML:Include>
       </UML:Namespace.ownedElement>
     </UML:Model>
     <UML:Multiplicity xmi.id = '-64--88-0-99--2d54782a:11df957618e:-8000:0000000000000CC1'>
@@ -924,6 +1026,18 @@
           lower = '1' upper = '1'/>
       </UML:Multiplicity.range>
     </UML:Multiplicity>
+    <UML:Multiplicity xmi.id = '127-0-0-1--4de42e34:11f90f5d821:-8000:0000000000000E52'>
+      <UML:Multiplicity.range>
+        <UML:MultiplicityRange xmi.id = '127-0-0-1--4de42e34:11f90f5d821:-8000:0000000000000E53'
+          lower = '1' upper = '1'/>
+      </UML:Multiplicity.range>
+    </UML:Multiplicity>
+    <UML:Multiplicity xmi.id = '127-0-0-1--4de42e34:11f90f5d821:-8000:0000000000000E5C'>
+      <UML:Multiplicity.range>
+        <UML:MultiplicityRange xmi.id = '127-0-0-1--4de42e34:11f90f5d821:-8000:0000000000000E5D'
+          lower = '1' upper = '1'/>
+      </UML:Multiplicity.range>
+    </UML:Multiplicity>
   </XMI.content>
 </XMI>
 <pgml description="org.argouml.uml.diagram.static_structure.ui.UMLClassDiagram|-64--88-0-99--2d54782a:11df957618e:-8000:0000000000000B06"
@@ -941,14 +1055,14 @@
     x="72"
     y="8"
     width="1200"
-    height="760"
+    height="880"
     fill="1"
     fillcolor="white"
     stroke="1"
     strokecolor="black"
   />
   <group name="Fig1"
-       description="org.argouml.uml.diagram.use_case.ui.FigActor[8, 336, 40, 84]pathVisible=false;stereotypeView=0;"
+       description="org.argouml.uml.diagram.use_case.ui.FigActor[8, 336, 40, 76]pathVisible=false;stereotypeView=0;"
        href="-64--88-0-99--2d54782a:11df957618e:-8000:0000000000000CAE"
        fill="1"
        fillcolor="white"
@@ -962,7 +1076,7 @@
       x="8"
       y="336"
       width="40"
-      height="84"
+      height="76"
       fill="0"
       fillcolor="white"
       stroke="0"
@@ -972,7 +1086,7 @@
       x="24"
       y="391"
       width="8"
-      height="29"
+      height="21"
       fill="0"
       fillcolor="white"
       stroke="0"
@@ -1043,7 +1157,7 @@
               y="391" />
     </path>
     <group name="Fig1.7"
-         description="org.argouml.uml.diagram.ui.FigStereotypesCompartment[28, 420, 0, 0]"
+         description="org.argouml.uml.diagram.ui.FigStereotypesCompartment[28, 412, 0, 0]"
          href="-64--88-0-99--2d54782a:11df957618e:-8000:0000000000000CAE"
          fill="0"
          fillcolor="white"
@@ -1055,7 +1169,7 @@
       
       <rectangle name="Fig1.7.0"
         x="28"
-        y="420"
+        y="412"
         width="0"
         height="0"
         fill="0"
@@ -1097,10 +1211,10 @@
       strokecolor="black"
     />
     <text name="Fig2.2"
-      x="276"
-      y="31"
-      width="233"
-      height="29"
+      x="280"
+      y="35"
+      width="225"
+      height="21"
       fill="0"
       fillcolor="white"
       stroke="0"
@@ -1142,13 +1256,13 @@
       strokecolor="black"
       visibility="0"
     >
-      <moveto x="128"
+      <moveto x="0"
               y="30" />
-      <lineto x="248"
+      <lineto x="118"
               y="30" />
     </path>
     <group name="Fig2.5"
-         description="org.tigris.gef.presentation.FigGroup[128, 0, 0, 0]"
+         description="org.tigris.gef.presentation.FigGroup[0, 0, 0, 0]"
          fill="0"
          fillcolor="white"
          stroke="0"
@@ -1159,7 +1273,7 @@
       </private>
       
       <rectangle name="Fig2.5.0"
-        x="186"
+        x="57"
         y="33"
         width="4"
         height="4"
@@ -1203,10 +1317,10 @@
       strokecolor="black"
     />
     <text name="Fig3.2"
-      x="349"
-      y="95"
-      width="264"
-      height="29"
+      x="354"
+      y="99"
+      width="254"
+      height="21"
       fill="0"
       fillcolor="white"
       stroke="0"
@@ -1248,13 +1362,13 @@
       strokecolor="black"
       visibility="0"
     >
-      <moveto x="128"
+      <moveto x="0"
               y="30" />
-      <lineto x="248"
+      <lineto x="118"
               y="30" />
     </path>
     <group name="Fig3.5"
-         description="org.tigris.gef.presentation.FigGroup[128, 0, 0, 0]"
+         description="org.tigris.gef.presentation.FigGroup[0, 0, 0, 0]"
          fill="0"
          fillcolor="white"
          stroke="0"
@@ -1265,7 +1379,7 @@
       </private>
       
       <rectangle name="Fig3.5.0"
-        x="186"
+        x="57"
         y="33"
         width="4"
         height="4"
@@ -1309,10 +1423,10 @@
       strokecolor="black"
     />
     <text name="Fig4.2"
-      x="395"
-      y="220"
-      width="212"
-      height="29"
+      x="396"
+      y="224"
+      width="210"
+      height="21"
       fill="0"
       fillcolor="white"
       stroke="0"
@@ -1354,13 +1468,13 @@
       strokecolor="black"
       visibility="0"
     >
-      <moveto x="128"
+      <moveto x="0"
               y="30" />
-      <lineto x="248"
+      <lineto x="118"
               y="30" />
     </path>
     <group name="Fig4.5"
-         description="org.tigris.gef.presentation.FigGroup[128, 0, 0, 0]"
+         description="org.tigris.gef.presentation.FigGroup[0, 0, 0, 0]"
          fill="0"
          fillcolor="white"
          stroke="0"
@@ -1371,7 +1485,7 @@
       </private>
       
       <rectangle name="Fig4.5.0"
-        x="186"
+        x="57"
         y="33"
         width="4"
         height="4"
@@ -1415,10 +1529,10 @@
       strokecolor="black"
     />
     <text name="Fig5.2"
-      x="349"
-      y="158"
-      width="250"
-      height="29"
+      x="353"
+      y="162"
+      width="241"
+      height="21"
       fill="0"
       fillcolor="white"
       stroke="0"
@@ -1460,13 +1574,13 @@
       strokecolor="black"
       visibility="0"
     >
-      <moveto x="128"
+      <moveto x="0"
               y="30" />
-      <lineto x="248"
+      <lineto x="118"
               y="30" />
     </path>
     <group name="Fig5.5"
-         description="org.tigris.gef.presentation.FigGroup[128, 0, 0, 0]"
+         description="org.tigris.gef.presentation.FigGroup[0, 0, 0, 0]"
          fill="0"
          fillcolor="white"
          stroke="0"
@@ -1477,7 +1591,7 @@
       </private>
       
       <rectangle name="Fig5.5.0"
-        x="186"
+        x="57"
         y="33"
         width="4"
         height="4"
@@ -1521,10 +1635,10 @@
       strokecolor="black"
     />
     <text name="Fig6.2"
-      x="416"
-      y="281"
-      width="167"
-      height="29"
+      x="420"
+      y="285"
+      width="160"
+      height="21"
       fill="0"
       fillcolor="white"
       stroke="0"
@@ -1566,13 +1680,13 @@
       strokecolor="black"
       visibility="0"
     >
-      <moveto x="128"
+      <moveto x="0"
               y="30" />
-      <lineto x="248"
+      <lineto x="118"
               y="30" />
     </path>
     <group name="Fig6.5"
-         description="org.tigris.gef.presentation.FigGroup[128, 0, 0, 0]"
+         description="org.tigris.gef.presentation.FigGroup[0, 0, 0, 0]"
          fill="0"
          fillcolor="white"
          stroke="0"
@@ -1583,7 +1697,7 @@
       </private>
       
       <rectangle name="Fig6.5.0"
-        x="186"
+        x="57"
         y="33"
         width="4"
         height="4"
@@ -1627,10 +1741,10 @@
       strokecolor="black"
     />
     <text name="Fig7.2"
-      x="335"
-      y="407"
-      width="371"
-      height="29"
+      x="339"
+      y="411"
+      width="363"
+      height="21"
       fill="0"
       fillcolor="white"
       stroke="0"
@@ -1672,13 +1786,13 @@
       strokecolor="black"
       visibility="0"
     >
-      <moveto x="128"
+      <moveto x="0"
               y="30" />
-      <lineto x="248"
+      <lineto x="118"
               y="30" />
     </path>
     <group name="Fig7.5"
-         description="org.tigris.gef.presentation.FigGroup[128, 0, 0, 0]"
+         description="org.tigris.gef.presentation.FigGroup[0, 0, 0, 0]"
          fill="0"
          fillcolor="white"
          stroke="0"
@@ -1689,7 +1803,7 @@
       </private>
       
       <rectangle name="Fig7.5.0"
-        x="186"
+        x="57"
         y="33"
         width="4"
         height="4"
@@ -1733,10 +1847,10 @@
       strokecolor="black"
     />
     <text name="Fig8.2"
-      x="374"
-      y="343"
-      width="349"
-      height="29"
+      x="378"
+      y="347"
+      width="342"
+      height="21"
       fill="0"
       fillcolor="white"
       stroke="0"
@@ -1778,13 +1892,13 @@
       strokecolor="black"
       visibility="0"
     >
-      <moveto x="128"
+      <moveto x="0"
               y="30" />
-      <lineto x="248"
+      <lineto x="118"
               y="30" />
     </path>
     <group name="Fig8.5"
-         description="org.tigris.gef.presentation.FigGroup[128, 0, 0, 0]"
+         description="org.tigris.gef.presentation.FigGroup[0, 0, 0, 0]"
          fill="0"
          fillcolor="white"
          stroke="0"
@@ -1795,7 +1909,7 @@
       </private>
       
       <rectangle name="Fig8.5.0"
-        x="186"
+        x="57"
         y="33"
         width="4"
         height="4"
@@ -1991,7 +2105,7 @@
     </path>
   </group>
   <group name="Fig16"
-       description="org.argouml.uml.diagram.use_case.ui.FigUseCase[128, 648, 482, 60]pathVisible=false;stereotypeView=0;extensionPointVisible=false"
+       description="org.argouml.uml.diagram.use_case.ui.FigUseCase[112, 760, 482, 60]pathVisible=false;stereotypeView=0;extensionPointVisible=false"
        href="127-0-1-1--53e90f34:11e0bddd89f:-8000:0000000000000DF6"
        fill="1"
        fillcolor="white"
@@ -2002,8 +2116,8 @@
     </private>
     
     <ellipse name="Fig16.0"
-      x="369"
-      y="678"
+      x="353"
+      y="790"
       rx="241"
       ry="30"
       fill="1"
@@ -2012,8 +2126,8 @@
       strokecolor="black"
     />
     <ellipse name="Fig16.1"
-      x="369"
-      y="678"
+      x="353"
+      y="790"
       rx="241"
       ry="30"
       fill="1"
@@ -2022,10 +2136,10 @@
       strokecolor="black"
     />
     <text name="Fig16.2"
-      x="219"
-      y="663"
-      width="299"
-      height="29"
+      x="209"
+      y="779"
+      width="287"
+      height="21"
       fill="0"
       fillcolor="white"
       stroke="0"
@@ -2038,7 +2152,7 @@
       justification="Center"
     >UC10.8 ridimensiona l&apos;oggetto tramite cursore</text>
     <group name="Fig16.3"
-         description="org.argouml.uml.diagram.ui.FigStereotypesCompartment[369, 708, 0, 0]"
+         description="org.argouml.uml.diagram.ui.FigStereotypesCompartment[353, 820, 0, 0]"
          href="127-0-1-1--53e90f34:11e0bddd89f:-8000:0000000000000DF6"
          fill="0"
          fillcolor="white"
@@ -2049,8 +2163,8 @@
       </private>
       
       <rectangle name="Fig16.3.0"
-        x="369"
-        y="708"
+        x="353"
+        y="820"
         width="0"
         height="0"
         fill="0"
@@ -2067,13 +2181,13 @@
       strokecolor="black"
       visibility="0"
     >
-      <moveto x="128"
-              y="30" />
-      <lineto x="248"
-              y="30" />
+      <moveto x="-16"
+              y="142" />
+      <lineto x="102"
+              y="142" />
     </path>
     <group name="Fig16.5"
-         description="org.tigris.gef.presentation.FigGroup[128, 0, 0, 0]"
+         description="org.tigris.gef.presentation.FigGroup[-16, 112, 0, 0]"
          fill="0"
          fillcolor="white"
          stroke="0"
@@ -2084,8 +2198,8 @@
       </private>
       
       <rectangle name="Fig16.5.0"
-        x="186"
-        y="33"
+        x="41"
+        y="145"
         width="4"
         height="4"
         fill="0"
@@ -2097,7 +2211,7 @@
     </group>
   </group>
   <group name="Fig17"
-       description="org.argouml.uml.diagram.use_case.ui.FigUseCase[608, 648, 642, 60]pathVisible=false;stereotypeView=0;extensionPointVisible=false"
+       description="org.argouml.uml.diagram.use_case.ui.FigUseCase[608, 768, 642, 60]pathVisible=false;stereotypeView=0;extensionPointVisible=false"
        href="127-0-1-1--53e90f34:11e0bddd89f:-8000:0000000000000DF7"
        fill="1"
        fillcolor="white"
@@ -2109,7 +2223,7 @@
     
     <ellipse name="Fig17.0"
       x="929"
-      y="678"
+      y="798"
       rx="321"
       ry="30"
       fill="1"
@@ -2119,7 +2233,7 @@
     />
     <ellipse name="Fig17.1"
       x="929"
-      y="678"
+      y="798"
       rx="321"
       ry="30"
       fill="1"
@@ -2128,10 +2242,10 @@
       strokecolor="black"
     />
     <text name="Fig17.2"
-      x="743"
-      y="663"
-      width="372"
-      height="29"
+      x="749"
+      y="787"
+      width="360"
+      height="21"
       fill="0"
       fillcolor="white"
       stroke="0"
@@ -2144,7 +2258,7 @@
       justification="Center"
     >UC10.9 ridimensiona l&apos;oggetto tramite coordinate assolute</text>
     <group name="Fig17.3"
-         description="org.argouml.uml.diagram.ui.FigStereotypesCompartment[929, 708, 0, 0]"
+         description="org.argouml.uml.diagram.ui.FigStereotypesCompartment[929, 828, 0, 0]"
          href="127-0-1-1--53e90f34:11e0bddd89f:-8000:0000000000000DF7"
          fill="0"
          fillcolor="white"
@@ -2156,7 +2270,7 @@
       
       <rectangle name="Fig17.3.0"
         x="929"
-        y="708"
+        y="828"
         width="0"
         height="0"
         fill="0"
@@ -2173,13 +2287,13 @@
       strokecolor="black"
       visibility="0"
     >
-      <moveto x="128"
-              y="30" />
-      <lineto x="248"
-              y="30" />
+      <moveto x="0"
+              y="150" />
+      <lineto x="118"
+              y="150" />
     </path>
     <group name="Fig17.5"
-         description="org.tigris.gef.presentation.FigGroup[128, 0, 0, 0]"
+         description="org.tigris.gef.presentation.FigGroup[0, 120, 0, 0]"
          fill="0"
          fillcolor="white"
          stroke="0"
@@ -2190,8 +2304,8 @@
       </private>
       
       <rectangle name="Fig17.5.0"
-        x="186"
-        y="33"
+        x="57"
+        y="153"
         width="4"
         height="4"
         fill="0"
@@ -2234,10 +2348,10 @@
       strokecolor="black"
     />
     <text name="Fig18.2"
-      x="841"
-      y="247"
-      width="123"
-      height="29"
+      x="843"
+      y="251"
+      width="120"
+      height="21"
       fill="0"
       fillcolor="white"
       stroke="0"
@@ -2279,13 +2393,13 @@
       strokecolor="black"
       visibility="0"
     >
-      <moveto x="128"
+      <moveto x="0"
               y="30" />
-      <lineto x="248"
+      <lineto x="118"
               y="30" />
     </path>
     <group name="Fig18.5"
-         description="org.tigris.gef.presentation.FigGroup[128, 0, 0, 0]"
+         description="org.tigris.gef.presentation.FigGroup[0, 0, 0, 0]"
          fill="0"
          fillcolor="white"
          stroke="0"
@@ -2296,7 +2410,7 @@
       </private>
       
       <rectangle name="Fig18.5.0"
-        x="186"
+        x="57"
         y="33"
         width="4"
         height="4"
@@ -2340,10 +2454,10 @@
       strokecolor="black"
     />
     <text name="Fig19.2"
-      x="513"
-      y="479"
-      width="164"
-      height="29"
+      x="517"
+      y="483"
+      width="155"
+      height="21"
       fill="0"
       fillcolor="white"
       stroke="0"
@@ -2385,13 +2499,13 @@
       strokecolor="black"
       visibility="0"
     >
-      <moveto x="128"
+      <moveto x="0"
               y="30" />
-      <lineto x="248"
+      <lineto x="118"
               y="30" />
     </path>
     <group name="Fig19.5"
-         description="org.tigris.gef.presentation.FigGroup[128, 0, 0, 0]"
+         description="org.tigris.gef.presentation.FigGroup[0, 0, 0, 0]"
          fill="0"
          fillcolor="white"
          stroke="0"
@@ -2402,7 +2516,7 @@
       </private>
       
       <rectangle name="Fig19.5.0"
-        x="186"
+        x="57"
         y="33"
         width="4"
         height="4"
@@ -2658,7 +2772,7 @@
     </path>
   </group>
   <group name="Fig29"
-       description="org.argouml.uml.diagram.use_case.ui.FigUseCase[424, 536, 334, 60]pathVisible=false;stereotypeView=0;extensionPointVisible=false"
+       description="org.argouml.uml.diagram.use_case.ui.FigUseCase[424, 648, 334, 60]pathVisible=false;stereotypeView=0;extensionPointVisible=false"
        href="127-0-1-1--562452:11eef487d32:-8000:0000000000000E29"
        fill="1"
        fillcolor="white"
@@ -2670,7 +2784,7 @@
     
     <ellipse name="Fig29.0"
       x="591"
-      y="566"
+      y="678"
       rx="167"
       ry="30"
       fill="1"
@@ -2680,7 +2794,7 @@
     />
     <ellipse name="Fig29.1"
       x="591"
-      y="566"
+      y="678"
       rx="167"
       ry="30"
       fill="1"
@@ -2689,10 +2803,10 @@
       strokecolor="black"
     />
     <text name="Fig29.2"
-      x="487"
-      y="551"
-      width="207"
-      height="29"
+      x="492"
+      y="667"
+      width="197"
+      height="21"
       fill="0"
       fillcolor="white"
       stroke="0"
@@ -2705,7 +2819,7 @@
       justification="Center"
     >U.C.10.12 ridimensiona oggetto</text>
     <group name="Fig29.3"
-         description="org.argouml.uml.diagram.ui.FigStereotypesCompartment[591, 596, 0, 0]"
+         description="org.argouml.uml.diagram.ui.FigStereotypesCompartment[591, 708, 0, 0]"
          href="127-0-1-1--562452:11eef487d32:-8000:0000000000000E29"
          fill="0"
          fillcolor="white"
@@ -2717,7 +2831,7 @@
       
       <rectangle name="Fig29.3.0"
         x="591"
-        y="596"
+        y="708"
         width="0"
         height="0"
         fill="0"
@@ -2734,13 +2848,13 @@
       strokecolor="black"
       visibility="0"
     >
-      <moveto x="128"
-              y="30" />
-      <lineto x="248"
-              y="30" />
+      <moveto x="0"
+              y="142" />
+      <lineto x="118"
+              y="142" />
     </path>
     <group name="Fig29.5"
-         description="org.tigris.gef.presentation.FigGroup[128, 0, 0, 0]"
+         description="org.tigris.gef.presentation.FigGroup[0, 112, 0, 0]"
          fill="0"
          fillcolor="white"
          stroke="0"
@@ -2751,8 +2865,8 @@
       </private>
       
       <rectangle name="Fig29.5.0"
-        x="186"
-        y="33"
+        x="57"
+        y="145"
         width="4"
         height="4"
         fill="0"
@@ -2782,8 +2896,10 @@
       stroke="1"
       strokecolor="black"
     >
-      <moveto x="717"
-              y="546" />
+      <moveto x="757"
+              y="678" />
+      <lineto x="984"
+              y="680" />
       <lineto x="994"
               y="504" />
       <lineto x="914"
@@ -2811,10 +2927,10 @@
     >
       <moveto x="33"
               y="391" />
-      <lineto x="216"
-              y="488" />
-      <lineto x="481"
-              y="543" />
+      <lineto x="144"
+              y="680" />
+      <lineto x="424"
+              y="678" />
     </path>
   </group>
   <group name="Fig32"
@@ -2837,13 +2953,13 @@
       strokecolor="black"
     >
       <moveto x="928"
-              y="648" />
+              y="768" />
       <lineto x="928"
-              y="624" />
+              y="736" />
       <lineto x="592"
-              y="624" />
+              y="736" />
       <lineto x="591"
-              y="595" />
+              y="707" />
     </path>
   </group>
   <path name="Fig33"
@@ -2854,9 +2970,9 @@
     strokecolor="black"
   >
     <moveto x="376"
-            y="648" />
+            y="760" />
     <lineto x="376"
-            y="624" />
+            y="736" />
   </path>
   <path name="Fig34"
     description="org.argouml.gefext.ArgoFigLine"
@@ -2866,15 +2982,15 @@
     strokecolor="black"
   >
     <moveto x="376"
-            y="624" />
+            y="736" />
     <lineto x="592"
-            y="624" />
+            y="736" />
   </path>
   <text name="Fig35"
     x="72"
     y="8"
-    width="120"
-    height="32"
+    width="113"
+    height="15"
     fill="1"
     fillcolor="white"
     stroke="1"
@@ -2886,6 +3002,336 @@
     textsize="10"
     justification="Center"
   >Seleziona e Modifica</text>
+  <group name="Fig36"
+       description="org.argouml.uml.diagram.use_case.ui.FigUseCase[152, 512, 320, 76]pathVisible=false;stereotypeView=0;extensionPointVisible=false"
+       href="127-0-0-1--4de42e34:11f90f5d821:-8000:0000000000000E4B"
+       fill="1"
+       fillcolor="white"
+       stroke="1"
+       strokecolor="black"
+  >
+    <private>
+    </private>
+    
+    <ellipse name="Fig36.0"
+      x="312"
+      y="550"
+      rx="160"
+      ry="38"
+      fill="1"
+      fillcolor="white"
+      stroke="1"
+      strokecolor="black"
+    />
+    <ellipse name="Fig36.1"
+      x="312"
+      y="550"
+      rx="160"
+      ry="38"
+      fill="1"
+      fillcolor="white"
+      stroke="1"
+      strokecolor="black"
+    />
+    <text name="Fig36.2"
+      x="221"
+      y="539"
+      width="181"
+      height="21"
+      fill="0"
+      fillcolor="white"
+      stroke="0"
+      strokecolor="black"
+      textcolor="black"
+      font="Dialog"
+      italic="false"
+      bold="false"
+      textsize="12"
+      justification="Center"
+    >UC10.13 Copia di un oggetto</text>
+    <group name="Fig36.3"
+         description="org.argouml.uml.diagram.ui.FigStereotypesCompartment[312, 588, 0, 0]"
+         href="127-0-0-1--4de42e34:11f90f5d821:-8000:0000000000000E4B"
+         fill="0"
+         fillcolor="white"
+         stroke="0"
+         strokecolor="black"
+    >
+      <private>
+      </private>
+      
+      <rectangle name="Fig36.3.0"
+        x="312"
+        y="588"
+        width="0"
+        height="0"
+        fill="0"
+        fillcolor="white"
+        stroke="0"
+        strokecolor="black"
+      />
+    </group>
+    <path name="Fig36.4"
+      description="org.tigris.gef.presentation.FigLine"
+      fill="1"
+      fillcolor="white"
+      stroke="1"
+      strokecolor="black"
+      visibility="0"
+    >
+      <moveto x="192"
+              y="558" />
+      <lineto x="310"
+              y="558" />
+    </path>
+    <group name="Fig36.5"
+         description="org.tigris.gef.presentation.FigGroup[192, 528, 0, 0]"
+         fill="0"
+         fillcolor="white"
+         stroke="0"
+         strokecolor="black"
+         visibility="0"
+    >
+      <private>
+      </private>
+      
+      <rectangle name="Fig36.5.0"
+        x="249"
+        y="561"
+        width="4"
+        height="4"
+        fill="0"
+        fillcolor="white"
+        stroke="0"
+        strokecolor="black"
+        visibility="0"
+      />
+    </group>
+  </group>
+  <group name="Fig37"
+       description="org.argouml.uml.diagram.use_case.ui.FigUseCase[480, 552, 352, 80]pathVisible=false;stereotypeView=0;extensionPointVisible=false"
+       href="127-0-0-1--4de42e34:11f90f5d821:-8000:0000000000000E4C"
+       fill="1"
+       fillcolor="white"
+       stroke="1"
+       strokecolor="black"
+  >
+    <private>
+    </private>
+    
+    <ellipse name="Fig37.0"
+      x="656"
+      y="592"
+      rx="176"
+      ry="40"
+      fill="1"
+      fillcolor="white"
+      stroke="1"
+      strokecolor="black"
+    />
+    <ellipse name="Fig37.1"
+      x="656"
+      y="592"
+      rx="176"
+      ry="40"
+      fill="1"
+      fillcolor="white"
+      stroke="1"
+      strokecolor="black"
+    />
+    <text name="Fig37.2"
+      x="551"
+      y="581"
+      width="210"
+      height="21"
+      fill="0"
+      fillcolor="white"
+      stroke="0"
+      strokecolor="black"
+      textcolor="black"
+      font="Dialog"
+      italic="false"
+      bold="false"
+      textsize="12"
+      justification="Center"
+    >UC 10.14 Rotazione di un oggetto</text>
+    <group name="Fig37.3"
+         description="org.argouml.uml.diagram.ui.FigStereotypesCompartment[656, 632, 0, 0]"
+         href="127-0-0-1--4de42e34:11f90f5d821:-8000:0000000000000E4C"
+         fill="0"
+         fillcolor="white"
+         stroke="0"
+         strokecolor="black"
+    >
+      <private>
+      </private>
+      
+      <rectangle name="Fig37.3.0"
+        x="656"
+        y="632"
+        width="0"
+        height="0"
+        fill="0"
+        fillcolor="white"
+        stroke="0"
+        strokecolor="black"
+      />
+    </group>
+    <path name="Fig37.4"
+      description="org.tigris.gef.presentation.FigLine"
+      fill="1"
+      fillcolor="white"
+      stroke="1"
+      strokecolor="black"
+      visibility="0"
+    >
+      <moveto x="536"
+              y="590" />
+      <lineto x="654"
+              y="590" />
+    </path>
+    <group name="Fig37.5"
+         description="org.tigris.gef.presentation.FigGroup[536, 560, 0, 0]"
+         fill="0"
+         fillcolor="white"
+         stroke="0"
+         strokecolor="black"
+         visibility="0"
+    >
+      <private>
+      </private>
+      
+      <rectangle name="Fig37.5.0"
+        x="593"
+        y="593"
+        width="4"
+        height="4"
+        fill="0"
+        fillcolor="white"
+        stroke="0"
+        strokecolor="black"
+        visibility="0"
+      />
+    </group>
+  </group>
+  <group name="Fig38"
+       description="org.argouml.uml.diagram.ui.FigAssociation"
+       href="127-0-0-1--4de42e34:11f90f5d821:-8000:0000000000000E4D"
+       stroke="1"
+       strokecolor="black"
+  >
+    <private>
+      sourcePortFig="Fig1.0"
+      destPortFig="Fig36.0"
+      sourceFigNode="Fig1"
+      destFigNode="Fig36"
+    </private>
+    <path name="Fig38.0"
+      description="org.tigris.gef.presentation.FigPoly"
+      fill="0"
+      fillcolor="white"
+      stroke="1"
+      strokecolor="black"
+    >
+      <moveto x="33"
+              y="391" />
+      <lineto x="112"
+              y="488" />
+      <lineto x="214"
+              y="519" />
+    </path>
+  </group>
+  <group name="Fig39"
+       description="org.argouml.uml.diagram.use_case.ui.FigInclude"
+       href="127-0-0-1--4de42e34:11f90f5d821:-8000:0000000000000E56"
+       stroke="1"
+       strokecolor="black"
+  >
+    <private>
+      sourcePortFig="Fig36.0"
+      destPortFig="Fig18.0"
+      sourceFigNode="Fig36"
+      destFigNode="Fig18"
+    </private>
+    <path name="Fig39.0"
+      description="org.tigris.gef.presentation.FigPoly"
+      fill="0"
+      fillcolor="white"
+      stroke="1"
+      strokecolor="black"
+    >
+      <moveto x="471"
+              y="545" />
+      <lineto x="840"
+              y="536" />
+      <lineto x="936"
+              y="488" />
+      <lineto x="920"
+              y="384" />
+      <lineto x="907"
+              y="291" />
+    </path>
+  </group>
+  <group name="Fig40"
+       description="org.argouml.uml.diagram.ui.FigAssociation"
+       href="127-0-0-1--4de42e34:11f90f5d821:-8000:0000000000000E57"
+       stroke="1"
+       strokecolor="black"
+  >
+    <private>
+      sourcePortFig="Fig1.0"
+      destPortFig="Fig37.0"
+      sourceFigNode="Fig1"
+      destFigNode="Fig37"
+    </private>
+    <path name="Fig40.0"
+      description="org.tigris.gef.presentation.FigPoly"
+      fill="0"
+      fillcolor="white"
+      stroke="1"
+      strokecolor="black"
+    >
+      <moveto x="33"
+              y="391" />
+      <lineto x="136"
+              y="576" />
+      <lineto x="272"
+              y="632" />
+      <lineto x="496"
+              y="608" />
+    </path>
+  </group>
+  <group name="Fig41"
+       description="org.argouml.uml.diagram.use_case.ui.FigInclude"
+       href="127-0-0-1--4de42e34:11f90f5d821:-8000:0000000000000E60"
+       stroke="1"
+       strokecolor="black"
+  >
+    <private>
+      sourcePortFig="Fig37.0"
+      destPortFig="Fig18.0"
+      sourceFigNode="Fig37"
+      destFigNode="Fig18"
+    </private>
+    <path name="Fig41.0"
+      description="org.tigris.gef.presentation.FigPoly"
+      fill="0"
+      fillcolor="white"
+      stroke="1"
+      strokecolor="black"
+    >
+      <moveto x="801"
+              y="569" />
+      <lineto x="912"
+              y="552" />
+      <lineto x="968"
+              y="520" />
+      <lineto x="912"
+              y="296" />
+      <lineto x="910"
+              y="291" />
+    </path>
+  </group>
 </pgml>
 <todo>
 <todolist>
