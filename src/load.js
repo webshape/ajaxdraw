@@ -143,7 +143,7 @@ registry.register('text', Text);
 //TODO: every class fromSVG method
 /**
  * Transform an svg node into a complete rectangle
- * @param {node} n the node containg the svg
+ * @param {node} n the SVG node containg the property
  */
 Rectangle.prototype.fromSVG = function (n) {
   var x1 = n.getAttribute("x");
@@ -158,4 +158,27 @@ Rectangle.prototype.fromSVG = function (n) {
   this.getFillColour().getOpacity().setVal(n.getAttribute("fill-opacity"));
   this.getBorderColour().fromCSS(n.getAttribute("stroke"));
   this.getBorderColour().getOpacity().setVal(n.getAttribute("stroke-opacity"));
+  //this.draw(c);? or shall we draw all at the end?  how can i get canvas?
 };
+
+
+/**
+ * Transform an svg node into an ellipse
+ * @param {node} n the SVG node containg the property
+ */
+Circle.prototype.fromSVG = function (n) {
+  var cx = n.getAttribute("cx");
+  var cy = n.getAttribute("cy");
+  var rx = n.getAttribute("rx");
+  var ry = n.getAttribute("ry");
+  var p1 = new Point((parseInt(cx) - parseInt(rx)), (parseInt(cy) - parseInt(ry)));
+  var p2 = new Point((parseInt(cx) + parseInt(rx)), (parseInt(cy) + parseInt(ry)));
+  this.getBounds().setStart(p1);
+  this.getBounds().setEnd(p2);
+  this.getFillColour().fromCSS(n.getAttribute("fill"));
+  this.getFillColour().getOpacity().setVal(n.getAttribute("fill-opacity"));
+  this.getBorderColour().fromCSS(n.getAttribute("stroke"));
+  this.getBorderColour().getOpacity().setVal(n.getAttribute("stroke-opacity"));
+  //this.draw(c);? or shall we draw all at the end?  how can i get canvas?
+};
+
