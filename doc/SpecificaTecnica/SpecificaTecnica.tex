@@ -250,7 +250,7 @@ Implementando il metodo astratto \textit{draw} di \textit{Figure} \`e possibile 
 \paragrafo{Abstract Factory:} 
 \begin{figure}[!ht]
 \centering
-\includegraphics{images/absfactory.jpg}
+\includegraphics[scale=0.5]{images/absfactory.png}
 \caption{Abstract factory}
 \end{figure}
 \subparagrafo{Factory:} 
@@ -270,14 +270,14 @@ un particolare elemento grafico a seconda della propriet\`a coinvolta. \\
 \subsubsezione{GUI - Intefaccia Grafica}
 \begin{figure}[!ht]
 \centering
-\includegraphics{images/GUIlogic.jpg}
+\includegraphics[scale=0.5]{images/GUIlogic.png}
 \caption{GUILogic}
 \end{figure}
 La GUI \` e  il client che verr\` a utilizzato nel sistema AJAXDRAW, e verr\` a descritta brevemente, in quanto rappresenta solo un'unit\` a che andr\`  a a lavorare sulle altre componenti di sistema. \` E costruita nella sua totalit\` a nella pagina web caricata dal browser, rappresentata dalla classe \textit{Page}, e composta da tutti i widgets con i quali interagire (che implementano tutti l'interfaccia generica \textit{Widget}).  I widgets si suddividono in \textit{Toolbar} (barra degli strumenti), \textit{Button} (pulsanti generici, che compongono anche la toolbar stessa), \textit{Palette} e \textit{ColourDialog}(per la gestione del colore), e \textit{PropertiesDialog}(per la modifica delle propriet\` a, che aggrega gli specifici \textit{Setter}). La pagina \` e composta inoltre dalla classe \textit{Visualization}, la quale gestisce il \textit{Canvas} e tutte le operazioni su di esso eseguite, tra cui la conversione tra coordinate utente e coordinate interne e lo zoom. Le classi che rappresentano oggetti con cui \`e necessario interagire tramite mouse implementano, tutte l'interfaccia \textit{UserClickEvent}, e tra queste vi \` e ovviamente la classe \textit{Canvas}, che oltre a questa implementa anche \textit{MouseMovePressed} e \textit{MouseMoveReleased}, necessarie al disegno tramite il mouse.  \` E infine presente la possibilit\` a per il programma di avvertire l'utente in caso di errore interno all'applicazione, tramite l'oggetto \textit{Alert}. \\ \\ \\
 
 \begin{figure}[!ht]
 \centering
-\includegraphics{images/bozzaGUI.jpg}
+\includegraphics[scale=0.5]{images/bozzaGUI.png}
 \caption{Bozza della GUI}
 \end{figure}
 
@@ -286,7 +286,7 @@ La GUI \` e  il client che verr\` a utilizzato nel sistema AJAXDRAW, e verr\` a 
 
 \begin{figure}[!ht]
 \centering
-\includegraphics{images/applogic.jpg}
+\includegraphics[scale=0.4]{images/applogic.png}
 \caption{ApplicationLogic}
 \end{figure}
 
@@ -296,7 +296,7 @@ figure, la loro conversione in SVG e la lettura da file SVG.
 \subsubsezione{Gestione figure}
 \begin{figure}[!ht]
 \centering
-\includegraphics{images/gestionefigure.jpg}
+\includegraphics[scale=0.5]{images/gestionefigure.png}
 \caption{Gestione figure}
 \end{figure}
 Si occupa della gestione interna delle figure disegnabili e manipolabili dall'utente e delle relative propriet\`a. Il termine \textit{figura} in questo contesto include anche i testi disegnati sul canvas. La classe \textit{Figure} rappresenta una figura qualsiasi. Una figura \`e caratterizzata da delle propriet\`a derivate dalla classe \textit{Property}. La suddetta classe contiene un metodo \textit{createWidget} per fabbricare un elemento grafico, il quale permette all'utente di modificare la propriet\`a che ha generato il widget stesso. Ogni figura contiene un \textit{BoundingRectangle} che rappresenta la cornice entro cui la figura \`e completamente contenuta. Una figura pu\`o essere selezionata oppure no. Le classi che implementano \textit{Figure} sono responsabili di disegnarsi sul canvas implementando il metodo \textit{draw}. In questo metodo, non si dovr\`a tener conto dell'area correntemente visualizzata o del livello di zoom, in quanto gestiti in modo trasparente dalla classe \textit{Visualization}. Ad ogni figura \`e associato un insieme di punti significativi, come ad esempio i vertici in un quadrato, ottenibili tramite il metodo \textit{getMainPoints}. Ogni figura mantiene un colore del bordo, rappresentato dalla classe \textit{Colour}. Le classi \textit{Circle}, \textit{Polygon} e \textit{Rectangle} aggiungono un ulteriore colore per il riempimento, rappresentato dalla classe \textit{FillColour}. La classe \textit{Text} rappresenta un testo disegnato dall'utente, e mantiene delle propriet\`a derivate dalla classe \textit{TextProperty}. A fini implementativi, le propriet\`a del testo e del colore andranno rappresentate secondo lo standard \textit{CSS}, quindi le suddette propriet\`a dovranno implementare l'interfaccia \textit{CSSProperty} che offre il metodo \textit{toCSS} responsabile della conversione dalla rappresentazione interna a quella \textit{CSS}. La classe \textit{FigureSet} mantiene l'insieme delle istanze di \textit{Figure} correntemente disegnate dall'utente e offre la possibilit\`a di selezionarne una a partire da un punto sul canvas.
