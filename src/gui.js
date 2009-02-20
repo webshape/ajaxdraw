@@ -68,7 +68,7 @@ function createEdgeDialog(){
  $("#edgeSetter").click(function () {
 	edgeNumberSetter( parseInt(document.getElementById("edgeNumber").value,10));
 	$("#edgeNumberDialog").dialog("close");
-	
+
      });
 
 

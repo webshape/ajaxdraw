@@ -122,6 +122,7 @@ Button.prototype.isSelected = function () {
  * @param {Numeric} edgeNumber the number of edges if the figure to be drawn will be a polygon
  */
 Button.prototype.bindCanvas = function (canvas,canvasObj,visual,figureSet,edgeNumber) {
+  this.setSelection(true);
    $("#cv").unbind('mousedown click mouseup');
    canvasObj.clear();
    visual.refresh();//per togliere un'eventuale selezione
@@ -161,6 +162,35 @@ Button.prototype.bindCanvas = function (canvas,canvasObj,visual,figureSet,edgeNu
       visual.refresh();
     });
 };
+
+/*
+ * Binds a specified cursor to every tool
+ */
+Button.prototype.bindCursor = function(type){
+ // if(($.browser.name!="opera")){
+    switch(type){
+       case "selection":
+      // $("#cv").unbind("mouseover");
+//	$("#cv").bind("mouseover", function(e){
+	  $("#cv").css({'cursor' : 'url("images/selezione.png")'});
+//	});
+      break;
+     case "square":
+     // $("#cv").unbind("mouseover");
+//	$("#cv").bind("mouseover", function(e){
+	  $("#cv").css({'cursor' : 'url("images/squareDraw.png")'});
+//	});
+    break;
+      case "text":
+	$("#cv").css({'cursor' : 'text'});
+      break;
+    default:
+      alert("fatto");
+    }
+//  }
+};
+
+
 
 /**
  * @constructor
@@ -303,11 +333,106 @@ PolygonButton.prototype.getBuilder = function () {
   return Polygon;
 };
 
+
+/**
+ * @constructor
+ * The Text drawing button
+ */
+function TextButton () {
+  Button.call(this);
+  this._id = document.getElementById("textButton");
+}
+
+TextButton.prototype = new Button();
+
+TextButton.prototype.getId = function (){
+  return this._id;
+};
+
+TextButton.prototype.getBuilder = function () {
+  return Text;
+};
+
+TextButton.prototype.bindCanvas = function (canvas,canvasObj,visual,figureSet) {
+  this.setSelection(true);
+   $("#cv").unbind('mousedown click mouseup');
+   canvasObj.clear();
+   visual.refresh();//per togliere un'eventuale selezione
+   var s = [];
+   var f;
+   var self = this;
+   $("#cv").bind("mousedown", function(e){
+   //  var builder = self.getBuilder();
+     var f = s[0] = new Text("prova");
+     var coords = visual.getClickCoordsWithinTarget(e);
+     f.getFillColour().getOpacity().setVal(1);
+      f.getFillColour().fromCSS(FillColor);
+
+     f.getBorderColour().getOpacity().setVal(1);
+     f.getBorderColour().fromCSS(BorderColor);
+     f.getTextColour().getOpacity().setVal(1);
+     f.getTextColour().fromCSS(BorderColor);
+     f.getBounds().setStart(new Point(coords.x, coords.y));
+
+    $("#cv").bind("mousemove",function(e){
+        var coords2 = visual.getClickCoordsWithinTarget(e);
+	f.getBounds().setEnd(new Point(coords2.x, coords2.y));
+	canvasObj.clear();
+	visual.refresh();
+	f.draw(canvas);
+    });
+
+    }).bind("mouseup",function(e){  //jQuery mouseup event bind
+      $("#cv").unbind('mousemove');
+      var coords1 = visual.getClickCoordsWithinTarget(e);
+      var f = s[0];
+      f.getBounds().setEnd(new Point(coords1.x, coords1.y));
+      visual.getFigureSet().add(f);
+      canvasObj.clear();
+      visual.refresh();
+    });
+};
+
+
+
+/**
+ * @constructor
+ * The Toolbar
+ */
+function Toolbar(){
+  this._buttonList = [];
+}
+/**
+ * Add a new figure to the collection
+ * @param {Button} b button to add
+ */
+Toolbar.prototype.add = function (b) {
+  this._buttonList.push(b);
+};
+
+Toolbar.prototype.deselectAll = function () {
+   this._buttonList.each(function (f){
+     f.setSelection(false);
+  });
+};
+//Colors
+/**
+ * @constructor
+ * The Palette
+ */
+function Palette(){
+  this._colorsList = [];
+}
+
+
+
+
+
 /* Do not touch */
 $(document).ready(function(){
   var canvasObj = new Canvas();
   var canvas = canvasObj.getId();
-  if ($.browser.msie) {
+  if ($.browser.msie) { // hack for internet explorer
     canvas=window.G_vmlCanvasManager.initElement(canvas);
   }
   var ctx = canvas.getContext("2d");   //prendo il contesto
@@ -315,37 +440,54 @@ $(document).ready(function(){
 //  var canvasTop = ctx.canvas.offsetTop;
   var figureSet = new FigureSet();
   var visual = new Visualization(figureSet);
-  var selectionButton = new SelectionButton();
-  var zoomButton = new ZoomButton();
-  var straightLineButton = new StraightLineButton();
-  var squareButton = new SquareButton();
-  var circleButton = new CircleButton();
-  var polygonButton = new PolygonButton();
+  // Toolbar Creation
+  var toolbar = new Toolbar();
+  var selectionButton = new SelectionButton();toolbar.add(selectionButton);
+  var zoomButton = new ZoomButton();toolbar.add(zoomButton);
+  var straightLineButton = new StraightLineButton();toolbar.add(straightLineButton);
+  var squareButton = new SquareButton();toolbar.add(squareButton);
+  var circleButton = new CircleButton();toolbar.add(circleButton);
+  var polygonButton = new PolygonButton();toolbar.add(polygonButton);
   var polygonEdgeNumber = 7;
+  var textButton = new TextButton();toolbar.add(textButton);
 
   $("#selectionButton").click(function () {
-      selectionButton.bindCanvas(canvas,canvasObj,visual,figureSet);
+    toolbar.deselectAll();
+    selectionButton.bindCursor("selection");
+    selectionButton.bindCanvas(canvas,canvasObj,visual,figureSet);
   });
 
   $("#zoomButton").click(function () {
-			   alert("Not yet implemented" );
+    alert("Not yet implemented" );
   });
 
   $("#straightLineButton").click(function () {
-      straightLineButton.bindCanvas(canvas,canvasObj,visual,figureSet);
+    toolbar.deselectAll();
+    straightLineButton.bindCanvas(canvas,canvasObj,visual,figureSet);
   });
 
   $("#squareButton").click(function () {
-      squareButton.bindCanvas(canvas,canvasObj,visual,figureSet);
+    toolbar.deselectAll();
+    squareButton.bindCursor("square");
+    squareButton.bindCanvas(canvas,canvasObj,visual,figureSet);
   });
 
   $("#circleButton").click(function () {
+    toolbar.deselectAll();
     circleButton.bindCanvas(canvas,canvasObj,visual,figureSet);
   });
 
   $("#polygonButton").click(function () {
-    // var edge = createEdgeDialog();
-     polygonButton.bindCanvas(canvas,canvasObj,visual,figureSet,polygonEdgeNumber);
+    toolbar.deselectAll();
+    var edge = createEdgeDialog(polygonEdgeNumber);
+    polygonEdgeNumber =  document.getElementById("edgeNumber").value;
+    polygonButton.bindCanvas(canvas,canvasObj,visual,figureSet,polygonEdgeNumber);
+  });
+
+  $("#textButton").click(function () {
+    toolbar.deselectAll();
+    textButton.bindCursor("text");
+    textButton.bindCanvas(canvas,canvasObj,visual,figureSet);
   });
 
 
