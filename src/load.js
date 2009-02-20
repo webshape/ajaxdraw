@@ -42,7 +42,7 @@ SVGReader.prototype.read = function (doc) {
       var f = registry.makeFigureClassFromTag(n.nodeName); // returns an instance of a figure
       // ignore unknow tags
       if (f != null) {
-        f.fromSVG(n);
+		  f.fromSVG(n);
 		  fs.add(f);
       }
     }
@@ -143,7 +143,7 @@ registry.register('text', Text);
 //TODO: every class fromSVG method
 /**
  * Transform an svg node into a complete rectangle
- * @param {node} n the SVG node containg the property
+ * @param {node} n the SVG node containg the properties
  */
 Rectangle.prototype.fromSVG = function (n) {
   var x1 = n.getAttribute("x");
@@ -164,7 +164,7 @@ Rectangle.prototype.fromSVG = function (n) {
 
 /**
  * Transform an svg node into an ellipse
- * @param {node} n the SVG node containg the property
+ * @param {node} n the SVG node containg the properties
  */
 Circle.prototype.fromSVG = function (n) {
   var cx = n.getAttribute("cx");
@@ -183,10 +183,9 @@ Circle.prototype.fromSVG = function (n) {
 };
 
 
-
 /**
  * Transform an svg node into a straight line
- * @param {node} n the SVG node containg the property
+ * @param {node} n the SVG node containg the properties
  */
 StraightLine.prototype.fromSVG = function (n) {
   var x1 = n.getAttribute("x1");
@@ -197,6 +196,57 @@ StraightLine.prototype.fromSVG = function (n) {
   var p2 = new Point(x2, y2);
   this.getBounds().setStart(p1);
   this.getBounds().setEnd(p2);
+  this.getBorderColour().fromCSS(n.getAttribute("stroke"));
+  this.getBorderColour().getOpacity().setVal(n.getAttribute("stroke-opacity"));
+  //this.draw(c);? or shall we draw all at the end?  how can i get canvas?
+};
+
+
+/**
+ * Transform an svg node into a bezier curve
+ * @param {node} n the SVG node containg the properties
+ */
+BezierCurve.prototype.fromSVG = function (n) {
+  var d = new Array();
+  d = (n.getAttribute("d")).split(" ");
+
+  for (var i = 0; i < d.length; i++){
+	 if (d[i].length > 1){
+		var x = new Array();
+		x = d[i].split(",");
+		var p = new Point(x[0], x[1]);
+		this.extend(p);
+	 }
+  }
+  this.getBorderColour().fromCSS(n.getAttribute("stroke"));
+  this.getBorderColour().getOpacity().setVal(n.getAttribute("stroke-opacity"));
+  //this.draw(c);? or shall we draw all at the end?  how can i get canvas?
+};
+
+
+/**
+ * Transform an svg node into a polygon
+ * @param {node} n the SVG node containg the property
+ */
+Polygon.prototype.fromSVG = function (n) {
+  var x1 = n.getAttribute("x1");
+  var y1 = n.getAttribute("y1");
+  var x2 = n.getAttribute("x2");
+  var y2 = n.getAttribute("y2");
+  var p1 = new Point(x1, y1);
+  var p2 = new Point(x2, y2);
+  this.getBounds().setStart(p1);
+  this.getBounds().setEnd(p2);
+  var points = n.getAttribute("points");
+  var edges = 0;
+  for (var i = 0; i < points.length; ++i) {
+	 if (mid(stringa, i, 1) = ",") {
+		edges += 1;
+	 }
+  }
+  this.getEdgeNumber().setVal(edges);
+  this.getFillColour().fromCSS(n.getAttribute("fill"));
+  this.getFillColour().getOpacity().setVal(n.getAttribute("fill-opacity"));
   this.getBorderColour().fromCSS(n.getAttribute("stroke"));
   this.getBorderColour().getOpacity().setVal(n.getAttribute("stroke-opacity"));
   //this.draw(c);? or shall we draw all at the end?  how can i get canvas?
