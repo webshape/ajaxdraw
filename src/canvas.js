@@ -51,14 +51,20 @@ Visualization.prototype.getFigureSet = function(){
 };
 
 
-Visualization.prototype.getClickCoordsWithinTarget = function(event,canvasLeft,canvasTop){
-	var coords = { x: canvasLeft, y: canvasTop};
+Visualization.prototype.deselectAll = function (figureSet) {
+   figureSet.each(function (f){
+     f.setSelection(false);
+  });
+};
+
+Visualization.prototype.getClickCoordsWithinTarget = function(event){
+	var coords = { x: 0, y: 0};
 
 	if(!event) // then we're in a non-DOM (probably IE) browser
 	{
 		event = window.event;
-		coords.x = event.offsetX-canvasLeft;
-		coords.y = event.offsetY-canvasTop;
+		coords.x = event.offsetX;
+		coords.y = event.offsetY;
 	}
 	else		// we assume DOM modeled javascript
 	{
@@ -107,64 +113,136 @@ Button.prototype.isSelected = function () {
   return this._selected;
 };
 
-
-Button.prototype.deselectAll = function (figureSet) {
-   figureSet.each(function (f){
-     f.setSelection(false);
-  });
-};
-
-Button.prototype.bindCanvas = function (canvas,canvasObj,canvasLeft,canvasTop,visual,figureSet) {
+/**
+ * Binds a drawing object function to the caller tool
+ * @param {HTMLObj} canvas the canvas ref
+ * @param {Canvas} canvasObj the canvas obj
+ * @param {Visualization} visual che Visualization object
+ * @param {FigureSet} figureSet the set of figures
+ * @param {Numeric} edgeNumber the number of edges if the figure to be drawn will be a polygon
+ */
+Button.prototype.bindCanvas = function (canvas,canvasObj,visual,figureSet,edgeNumber) {
    $("#cv").unbind('mousedown click mouseup');
    canvasObj.clear();
    visual.refresh();//per togliere un'eventuale selezione
    var s = [];
    var f;
-  var self = this;
+   var self = this;
    $("#cv").bind("mousedown", function(e){
-                   var builder = self.getBuilder();
-                   var f = s[0] = new builder();
-/*     if(type=="#squareButton"){
-      var f = s[0] = new Rectangle();
-     }
-     else if(type=="#circleButton"){
-      var f = s[0] = new Circle();
-     }*/
-      var sx = e.pageX-canvasLeft;
-      var top = e.pageY-canvasTop;
-
+     var builder = self.getBuilder();
+     var f = s[0] = new builder();
+     var coords = visual.getClickCoordsWithinTarget(e);
+     if(builder==Rectangle || builder == Circle || builder==Polygon){ //lines have no fillColour parameter
       f.getFillColour().getOpacity().setVal(1);
       f.getFillColour().fromCSS(FillColor);
-
-      f.getBorderColour().getOpacity().setVal(1);
-      f.getBorderColour().fromCSS(BorderColor);
-      f.getBounds().setStart(new Point(sx, top));
+     }
+     f.getBorderColour().getOpacity().setVal(1);
+     f.getBorderColour().fromCSS(BorderColor);
+     f.getBounds().setStart(new Point(coords.x, coords.y));
 
     $("#cv").bind("mousemove",function(e){
-	var sx2 = e.pageX-canvasLeft;
-	var top2 = e.pageY-canvasTop;
-	f.getBounds().setEnd(new Point(sx2, top2));
+        var coords2 = visual.getClickCoordsWithinTarget(e);
+	f.getBounds().setEnd(new Point(coords2.x, coords2.y));
+	if(builder==Polygon){
+	  f.edgeNumber().setVal(edgeNumber);
+	}
 	canvasObj.clear();
 	visual.refresh();
 	f.draw(canvas);
+    });
 
-      });
-
-      }).bind("mouseup",function(e){
-	 $("#cv").unbind('mousemove');
-	var sx1 = e.pageX-canvasLeft;
-	var top1 = e.pageY-canvasTop;
-       var f = s[0];
-	f.getBounds().setEnd(new Point(sx1, top1));
-	visual.getFigureSet().add(f);
-	//alert(visual.getFigureSet()._figures.lenght);
-	canvasObj.clear();
-	visual.refresh();
-
+    }).bind("mouseup",function(e){  //jQuery mouseup event bind
+      $("#cv").unbind('mousemove');
+      var coords1 = visual.getClickCoordsWithinTarget(e);
+      var f = s[0];
+      f.getBounds().setEnd(new Point(coords1.x, coords1.y));
+      visual.getFigureSet().add(f);
+      canvasObj.clear();
+      visual.refresh();
     });
 };
 
+/**
+ * @constructor
+ * The Figure Selection button
+ */
+function SelectionButton () {
+  Button.call(this);
+  this._id = document.getElementById("selectionButton");
+}
 
+SelectionButton.prototype = new Button();
+
+SelectionButton.prototype.getId = function (){
+  return this._id;
+};
+
+/**
+ * Binds the selection function to the caller tool
+ * @param {HTMLObj} canvas the canvas ref
+ * @param {Canvas} canvasObj the canvas obj
+ * @param {Visualization} visual che Visualization object
+ * @param {FigureSet} figureSet the set of figures
+ * @param {Numeric} edgeNumber the number of edges if the figure to be drawn will be a polygon
+ */
+SelectionButton.prototype.bindCanvas = function (canvas,canvasObj,visual,figureSet) {
+  $("#cv").unbind('mousedown click mouseup');
+  $("#cv").bind("click", function(e){
+      visual.deselectAll(figureSet);
+      visual.refresh();
+      var coords = visual.getClickCoordsWithinTarget(e);
+      var coord = new Point(coords.x,coords.y);
+      var actualFigure = figureSet.selectFigure(coord);
+      if(actualFigure==null){
+	visual.deselectAll(figureSet);
+	canvasObj.clear();
+	visual.refresh();
+	throw 'No figure found';
+      }
+      else{
+	actualFigure.setSelection(true);
+	//updateInfos(actualFigure);
+	canvasObj.clear();
+	visual.refresh();
+	actualFigure.drawSelection(canvas);
+      }
+  });
+};
+/**
+ * @constructor
+ * The Zoom  button
+ */
+function ZoomButton () {
+  Button.call(this);
+  this._id = document.getElementById("zoomButton");
+}
+
+ZoomButton.prototype = new Button();
+
+ZoomButton.prototype.getId = function (){
+  return this._id;
+};
+
+
+/**
+ * @constructor
+ * The Straight Line drawing button
+ */
+
+function StraightLineButton () {
+  Button.call(this);
+  this._id = document.getElementById("straightLineButton");
+}
+
+StraightLineButton.prototype = new Button();
+
+StraightLineButton.prototype.getId = function (){
+  return this._id;
+};
+
+StraightLineButton.prototype.getBuilder = function () {
+  return StraightLine;
+};
 
 
 /**
@@ -187,6 +265,10 @@ SquareButton.prototype.getBuilder = function () {
   return Rectangle;
 };
 
+/**
+ * @constructor
+ * The Circle drawing button
+ */
 function CircleButton () {
   Button.call(this);
   this._id = document.getElementById("circleButton");
@@ -202,235 +284,75 @@ CircleButton.prototype.getBuilder = function () {
   return Circle;
 };
 
+/**
+ * @constructor
+ * The Polygon drawing button
+ */
+function PolygonButton () {
+  Button.call(this);
+  this._id = document.getElementById("polygonButton");
+}
+
+PolygonButton.prototype = new Button();
+
+PolygonButton.prototype.getId = function (){
+  return this._id;
+};
+
+PolygonButton.prototype.getBuilder = function () {
+  return Polygon;
+};
 
 /* Do not touch */
 $(document).ready(function(){
   var canvasObj = new Canvas();
   var canvas = canvasObj.getId();
+  if ($.browser.msie) {
+    canvas=window.G_vmlCanvasManager.initElement(canvas);
+  }
   var ctx = canvas.getContext("2d");   //prendo il contesto
-  var canvasLeft = ctx.canvas.offsetLeft;
-  var canvasTop = ctx.canvas.offsetTop;
+ // var canvasLeft = ctx.canvas.offsetLeft;
+//  var canvasTop = ctx.canvas.offsetTop;
   var figureSet = new FigureSet();
   var visual = new Visualization(figureSet);
+  var selectionButton = new SelectionButton();
+  var zoomButton = new ZoomButton();
+  var straightLineButton = new StraightLineButton();
   var squareButton = new SquareButton();
   var circleButton = new CircleButton();
+  var polygonButton = new PolygonButton();
+  var polygonEdgeNumber = 7;
+
+  $("#selectionButton").click(function () {
+      selectionButton.bindCanvas(canvas,canvasObj,visual,figureSet);
+  });
+
+  $("#zoomButton").click(function () {
+			   alert("Not yet implemented" );
+  });
+
+  $("#straightLineButton").click(function () {
+      straightLineButton.bindCanvas(canvas,canvasObj,visual,figureSet);
+  });
 
   $("#squareButton").click(function () {
-      squareButton.bindCanvas(canvas,canvasObj,canvasLeft,canvasTop,visual,figureSet);
+      squareButton.bindCanvas(canvas,canvasObj,visual,figureSet);
   });
 
   $("#circleButton").click(function () {
-    circleButton.bindCanvas(canvas,canvasObj,canvasLeft,canvasTop,visual,figureSet);
+    circleButton.bindCanvas(canvas,canvasObj,visual,figureSet);
+  });
+
+  $("#polygonButton").click(function () {
+    // var edge = createEdgeDialog();
+     polygonButton.bindCanvas(canvas,canvasObj,visual,figureSet,polygonEdgeNumber);
   });
 
 
-
-//function refresh(){
-  // alert("Elementi array:"+Set._figures.length);
-  //Set.each(function (f) {
-    //f.draw(canvas);
- // });
-//}
-function deselectAll(){
-  Set.each(function (f){
-    f.setSelection(false);
-  });
-}
-
-//function clear(){
- // canvas.width=canvas.width;
-//}
 function updateInfos(figure){
   document.getElementById("DialogHeight").value=figure.getBounds().h();
   document.getElementById("DialogWidth").value=figure.getBounds().w();
 }
 
-
-/////////////////////////////////////////
-/*$("#selectionButton").click(function () {
-  $("#cv").unbind('mousedown click mouseup');
-
-  $("#cv").bind("click", function(e){
-      deselectAll();
-      refresh();
-      var sx = e.pageX-canvasLeft;
-      var top = e.pageY-canvasTop;
-      var coord = new Point(sx,top);
-      var actualFigure = Set.selectFigure(coord);
-      if(actualFigure==null){
-	deselectAll();
-	clear();
-	refresh();
-	throw 'No figure found';
-      }
-      else{
-	actualFigure.setSelection(true);
-	updateInfos(actualFigure);
-	clear();
-	refresh();
-	actualFigure.drawSelection(canvas);
-      }
-  });
-
-});
-
-
-
-/////////////////////////////////////////////////
-
-$("#straightLineButton").click(function () {
-  $("#cv").unbind('mousedown click mouseup');
-  clear();
-  refresh();//per togliere un'eventuale selezione
-  var b = [];
-  $("#cv").bind("mousedown", function(e){
-      var f = b[0] = new StraightLine();
-      var sx = e.pageX-canvasLeft;
-      var top = e.pageY-canvasTop;
-
-      f.getBorderColour().getOpacity().setVal(1);
-      f.getBorderColour().fromCSS(BorderColor);
-      f.getBounds().setStart(new Point(sx, top));
-      }).bind("mouseup",function(e){
-	var sx1 = e.pageX-canvasLeft;
-	var top1 = e.pageY-canvasTop;
-        var f = b[0];
-	f.getBounds().setEnd(new Point(sx1,top1));
-	Set.add(f);
-	refresh();
-
-    });
-
-});
-////////////////////////////////////////////////////////////
-
-$("#squareButton").click(function () {
-  $("#cv").unbind('mousedown click mouseup');
-  clear();
-  refresh();//per togliere un'eventuale selezione
- var s = [];
-   $("#cv").bind("mousedown", function(e){
-      var f = s[0] = new Rectangle();
-      var sx = e.pageX-canvasLeft;
-      var top = e.pageY-canvasTop;
-
-      f.getFillColour().getOpacity().setVal(1);
-      f.getFillColour().fromCSS(FillColor);
-
-      f.getBorderColour().getOpacity().setVal(1);
-      f.getBorderColour().fromCSS(BorderColor);
-      f.getBounds().setStart(new Point(sx, top));
-      }).bind("mouseup",function(e){
-	var sx1 = e.pageX-canvasLeft;
-	var top1 = e.pageY-canvasTop;
-        var f = s[0];
-	f.getBounds().setEnd(new Point(sx1, top1));
-	Set.add(f);
-	refresh();
-    });
-});
-////////////////////////////////
-
-$("#provaButton").click(function () {
-  $("#cv").unbind('mousedown click mouseup');
-  clear();
-  refresh();//per togliere un'eventuale selezione
- var s = [];
-   $("#cv").bind("mousedown", function(e){
-      var f = s[0] = new Rectangle();
-      var sx = e.pageX-canvasLeft;
-      var top = e.pageY-canvasTop;
-
-      f.getFillColour().getOpacity().setVal(1);
-      f.getFillColour().fromCSS(FillColor);
-
-      f.getBorderColour().getOpacity().setVal(1);
-      f.getBorderColour().fromCSS(BorderColor);
-
-
-      f.getBounds().setStart(new Point(sx, top));
-
-      $("#cv").bind("mousemove",function(e){
-
-		   var sx2 = e.pageX-canvasLeft;
-		   var top2 = e.pageY-canvasTop;
-		   f.getBounds().setEnd(new Point(sx2, top2));
-		   clear();
-		   refresh();
-		   f.draw(canvas);
-
-      });
-
-      }).bind("mouseup",function(e){
-	$("#cv").unbind('mousemove');
-	var sx1 = e.pageX-canvasLeft;
-	var top1 = e.pageY-canvasTop;
-        var f = s[0];
-	f.getBounds().setEnd(new Point(sx1, top1));
-	Set.add(f);
-	clear();
-	refresh();
-    });
-});
-
-
-//////////////////////////////////////////////////////////////////////
-
-
- $("#polygonButton").click(function () {
-   $("#cv").unbind('mousedown mouseup click');
-   clear();
-   refresh();//per togliere un'eventuale selezione
-   createEdgeDialog();
-   var p = [];
-
-   $("#cv").bind("mousedown", function(e){
-     var f = p[0]= new Polygon();
-     var sx = e.pageX-canvasLeft;
-     var top = e.pageY-canvasTop;
-
-      f.getFillColour().getOpacity().setVal(1);
-      f.getFillColour().fromCSS(FillColor);
-      f.getBorderColour().getOpacity().setVal(1);
-      f.getBorderColour().fromCSS(BorderColor);
-
-     f.getBounds().setStart(new Point(sx, top));
-   }).bind("mouseup",function(e){
-     var sx1 = e.pageX-canvasLeft;
-     var top1 = e.pageY-canvasTop;
-     var f = p[0];
-     f.getBounds().setEnd(new Point(sx1, top1));
-     f.edgeNumber().setVal(polygonEdgeNumber);
-     Set.add(f);
-     refresh();
-   });
-});
-
-////////////////////////////////////////////////////////////////////////////////
-
- $("#circleButton").click(function () {
-   $("#cv").unbind('mouseup mousedown click');
-   clear();
-   refresh();//per togliere un'eventuale selezione
-   var y = [];
-   $("#cv").bind("mousedown", function(e){
-        var c = y[0] = new Circle();
-	var sx = e.pageX-canvasLeft;
-	var top = e.pageY-canvasTop;
-	c.getFillColour().getOpacity().setVal(1);
-	c.getFillColour().fromCSS(FillColor);
-	c.getBorderColour().getOpacity().setVal(1);
-	c.getBorderColour().fromCSS(BorderColor);
-	c.getBounds().setStart(new Point(sx, top));
-   }).bind("mouseup",function(e){
-     var sx1 = e.pageX-canvasLeft;
-     var top1 = e.pageY-canvasTop;
-     var c = y[0];
-     c.getBounds().setEnd(new Point(sx1, top1));
-     Set.add(c);
-     refresh();
-   });
-
-   });*/
-
+///fine
 });

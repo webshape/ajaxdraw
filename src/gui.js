@@ -15,7 +15,7 @@ function activateStylesheet(sheetref){
 
 var BorderColor="#000000";
 var FillColor="#000000";
-var polygonEdgeNumber = 3;
+
 
 
 /**
@@ -52,9 +52,7 @@ function createColDialog(){
 }
 
 function edgeNumberSetter(value){
-  alert(value);
-  polygonEdgeNumber = value;
-
+  polygonEdgeNumber=value;
 }
 
 
@@ -66,6 +64,12 @@ function createEdgeDialog(){
     width:320,
     dialogClass: "edgeDialog"
     });
+
+ $("#edgeSetter").click(function () {
+	edgeNumberSetter( parseInt(document.getElementById("edgeNumber").value,10));
+	$("#edgeNumberDialog").dialog("close");
+	
+     });
 
 
 
@@ -83,8 +87,8 @@ $(document).ready(function(){
    	   activateStylesheet('chrome.css');
      }
      else if ($.browser.name=="msie") {
-   	   activateStylesheet('msie.css'),
-   	   $("canvas").css({"margin-top":"-13em"});
+       activateStylesheet('msie.css');
+   	//   $("canvas").css({"margin-top":"-13em"});
      }
      else if ($.browser.name=="opera") {
    	   activateStylesheet('opera.css');
@@ -127,7 +131,7 @@ $(document).ready(function(){
        $("#edgeSetter").click(function () {
 	 edgeNumberSetter( parseInt(document.getElementById("edgeNumber").value,10));
 	 $("#edgeNumberDialog").dialog("close");
-	 
+
        });
 /*Creazione dialog proprietà */
     $("#propertiesDialog").dialog({
