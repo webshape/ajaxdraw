@@ -84,21 +84,22 @@ Button.prototype.deselectAll = function (figureSet) {
   });
 };
 
-
-
-Button.prototype.bindCanvas = function (canvas,canvasObj,canvasLeft,canvasTop,visual,figureSet,type) {
+Button.prototype.bindCanvas = function (canvas,canvasObj,canvasLeft,canvasTop,visual,figureSet) {
    $("#cv").unbind('mousedown click mouseup');
    canvasObj.clear();
    visual.refresh();//per togliere un'eventuale selezione
    var s = [];
    var f;
+  var self = this;
    $("#cv").bind("mousedown", function(e){
-     if(type=="#squareButton"){
+                   var builder = self.getBuilder();
+                   var f = s[0] = new builder();
+/*     if(type=="#squareButton"){
       var f = s[0] = new Rectangle();
      }
      else if(type=="#circleButton"){
       var f = s[0] = new Circle();
-     }
+     }*/
       var sx = e.pageX-canvasLeft;
       var top = e.pageY-canvasTop;
 
@@ -152,7 +153,9 @@ SquareButton.prototype.getId = function (){
   return this._id;
 };
 
-
+SquareButton.prototype.getBuilder = function () {
+  return Rectangle;
+};
 
 function CircleButton () {
   Button.call(this);
@@ -165,7 +168,9 @@ CircleButton.prototype.getId = function (){
   return this._id;
 };
 
-
+CircleButton.prototype.getBuilder = function () {
+  return Circle;
+};
 
 
 /* Do not touch */
@@ -180,14 +185,12 @@ $(document).ready(function(){
   var squareButton = new SquareButton();
   var circleButton = new CircleButton();
 
-
   $("#squareButton").click(function () {
-      squareButton.bindCanvas(canvas,canvasObj,canvasLeft,canvasTop,visual,figureSet,"#squareButton");
+      squareButton.bindCanvas(canvas,canvasObj,canvasLeft,canvasTop,visual,figureSet);
   });
 
-
   $("#circleButton").click(function () {
-    circleButton.bindCanvas(canvas,canvasObj,canvasLeft,canvasTop,visual,figureSet,"#circleButton");
+    circleButton.bindCanvas(canvas,canvasObj,canvasLeft,canvasTop,visual,figureSet);
   });
 
 
