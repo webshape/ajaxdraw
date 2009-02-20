@@ -77,10 +77,10 @@ Tale studio \`e mirato alla comprensione dei bisogni espressi nel capitolato e a
 				\multirow{1}{*}{Pre-RR} & Bizzotto Piero\\
 										& Dissegna Stefano\\
 										& Carollo Mirko\\
-                                                                                & Rizzo Maurizio\\
+                                        & Rizzo Maurizio\\
 				\hline
 				\multirow{1}{*}{RR-RPP} & Cunico Marco\\
-                                                        & Rizzo Maurizio\\
+                                        & Rizzo Maurizio\\
 										%& \\
 				\hline
 				%%%%%%%%%%% FINE PARTE DA MODIFICARE %%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -143,7 +143,7 @@ Tale studio \`e mirato alla comprensione dei bisogni espressi nel capitolato e a
 
 %%%%%%%%%%% PARTE DA MODIFICARE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
                 \hline
-                2.2 & 13$\slash$01$\slash$2009 modifiche e aggiunte dervate da integrazione RR ed RPP & Rizzo Maurizio\\
+                2.2 & 13$\slash$02$\slash$2009 modifiche e aggiunte dervate da integrazione RR ed RPP & Rizzo Maurizio\\
                 \hline
 				2.0 & 24$\slash$01$\slash$2009 Rilascio per RPP. & Cunico Marco \\
 		\hline
@@ -223,30 +223,14 @@ Come specificato nelle norme di progetto (NormeDiProgetto.pdf) di WebShape, la t
 \sezione{Casi d'uso}
 Al seguito di questo paragrafo vengono illustrati i casi d'uso, sia grafici che narrativi, utilizzati nell'analisi dei requisiti effettuata da WebShape. Lo scopo dei casi d'uso \`e quello di consentire una comprensione rapida ed efficace dei bisogni del cliente percepiti dall'azienda. Per una lista completa dei requisiti individuati si rimanda comunque alla lista dei requisiti di sezione \ref{listarequisiti}, cui faranno riferimento anche gli stessi casi d'uso narrativi.
 
-\subsezione{Use Case Generale}
+\subsezione{UC0 Caso d'uso: use case generale}
 \begin{figure}[!ht]
 \centering
 \includegraphics{AJAXDRAW.jpg}
 \caption{gestire figure}
 \end{figure}
 
-Segue ora una descrizione testuale del caso d'uso presentato dal grafico.
-
-\subsubsezione{UC0 Caso d'uso: richiedi pagina web}
-\paragraph{Attori coinvolti} Utente, browser, {\underline{server HTTP}}.
-\paragraph{Scopo e descrizione sintetica}
-L'utente avvia l'applicazione visualizzandone la relativa pagina web attraverso il browser, che richiede la relativa pagina al server HTTP.
-\paragraph{Flusso di eventi}
-\begin{elenconumerato}[\textbf{}]{\subsubsecindent}
-\item L'utente inserisce l'URL relativo all'applicazione nel browser.
-\item Il browser richiede la pagina al server HTTP.
-\item Il server HTTP invia la pagina.
-\item Il browser visualizza la pagina.
-\end{elenconumerato}
-\paragraph{Flusso alternativo}
-Se viene rilevato un browser non supportato, l'utente viene avvisato. L'utente pu\`o decidere di continuare ugualmente senza nessuna garanzia di corretto funzionamento.
-\paragraph{Precondizioni} Il browser \`e avviato. \`E possibile connettersi al server.
-\paragraph{Postcondizioni} L'applicazione \`e avviata.
+Il sistema AJAXDRAW permette di gestire oggetti attraverso l'interazione con l'utente.
 
 \subsezione{Interazione con l'applicazione}
 Il seguente grafico descrive le interazioni tra l'utente finale e l'applicazione da un punto di vista ad alto livello. Le interazioni principali verranno poi espanse.
@@ -268,8 +252,9 @@ L'utente pu\`o cancellare totalmente quanto fino a quel momento \`e stato disegn
 \item L'utente seleziona il comando per pulire il canvas. 
 \item Il canvas viene completamente cancellato.
 \end{elenconumerato}
-\paragraph{Precondizioni} Il canvas \`e visibile all'utente.
-\paragraph{Postcondizioni} Il canvas \`e visibile all'utente ed \`e vuoto.
+\paragraph{Precondizioni}  Il sistema AJAXDRAW \`e in attesa di istruzioni da parte dell' utente.
+\paragraph{Postcondizioni} Il sistema AJAXDRAW visualizza l'area di disegno vuota.
+.
 
 \subsubsezione{UC2 Caso d'uso: visualizza manuale}
 \paragraph{Attori coinvolti} Utente.
@@ -280,7 +265,7 @@ L'utente pu\`o visualizzare il manuale dell'applicazione in linea.
 \item L'utente seleziona il comando per visualizzare il manuale. 
 \item Il manuale viene visualizzato mediante l'apertura di una nuova pagina {\underline{HTML}}.
 \end{elenconumerato}
-\paragraph{Precondizioni} Il manuale utente non \`e visualizzato.
+\paragraph{Precondizioni} Il sistema AJAXDRAW \`e in attesa di istruzioni da parte dell' utente. \`E possibile connettersi al server.
 \paragraph{Postcondizioni} Il manuale utente \`e visualizzato.
 
 \subsubsezione{UC3 Caso d'uso: richiedi manuale}
@@ -561,7 +546,7 @@ Il seguente grafico illustra le interazioni tra l'utente e il sistema per selezi
 \begin{figure}[!ht]
 \centering
 \vspace{20pt} 
-\includegraphics[scale=0.4]{UC10Espanso.png}
+\includegraphics{UC10Espanso.jpg}
 \caption{UC10 Caso d'uso: seleziona e modifica}
 \label{uc10}
 \end{figure}
