@@ -930,7 +930,7 @@ Text.prototype.eachProperty = function (fn) {
 
 Text.prototype.getMainPoints = function () {
   // it's the same
-  Rectangle.prototype.getMainPoints.call(this);
+  return Rectangle.prototype.getMainPoints.call(this);
 };
 
 Text.prototype.draw = function (c) {
@@ -951,8 +951,25 @@ Text.prototype.draw = function (c) {
 
 /*
  * Method used to draw a text when there is no support for text
- * It just draws a filled rectangle
  */
 Text.prototype.fallbackDraw = function (c) {
-  Rectangle.prototype.draw.call(this, c);
+  var ctx = c.getContext('2d');
+  ctx.save();
+  var b = this.getBounds();
+  var x = b.start().x < b.end().x ? b.start().x : b.end().x;
+  var y = b.start().y > b.end().y ? b.start().y : b.end().y;
+  var font = this._font.toCSS();
+  var size = Math.abs(b.h());
+  var len = CanvasTextFunctions.measure(font, size, this._txt);
+//  alert(size + ' ' + len + ' ' + Math.abs(b.w()));
+  var w = Math.abs(b.w());
+  if (len > w) {
+    size *= w/len;
+  }
+  ctx.beginPath();
+  this.getBorderColour().applyToContext(ctx);
+  CanvasTextFunctions.draw(ctx, this._font.toCSS(), 
+                           size, x, y, this._txt);
+  ctx.closePath();
+  ctx.restore();
 };
