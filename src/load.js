@@ -182,3 +182,22 @@ Circle.prototype.fromSVG = function (n) {
   //this.draw(c);? or shall we draw all at the end?  how can i get canvas?
 };
 
+
+
+/**
+ * Transform an svg node into a straight line
+ * @param {node} n the SVG node containg the property
+ */
+StraightLine.prototype.fromSVG = function (n) {
+  var x1 = n.getAttribute("x1");
+  var y1 = n.getAttribute("y1");
+  var x2 = n.getAttribute("x2");
+  var y2 = n.getAttribute("y2");
+  var p1 = new Point(x1, y1);
+  var p2 = new Point(x2, y2);
+  this.getBounds().setStart(p1);
+  this.getBounds().setEnd(p2);
+  this.getBorderColour().fromCSS(n.getAttribute("stroke"));
+  this.getBorderColour().getOpacity().setVal(n.getAttribute("stroke-opacity"));
+  //this.draw(c);? or shall we draw all at the end?  how can i get canvas?
+};
