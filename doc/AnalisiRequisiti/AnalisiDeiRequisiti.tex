@@ -291,8 +291,8 @@ Quando il canvas appare troppo grande per essere completamente visualizzato, l'u
 \item L'utente seleziona la parte del canvas da visualizzare.
 \item Il sistema visualizza la parte di canvas selezionata al centro dello schermo.
 \end{elenconumerato}
-\paragraph{Precondizioni} Il canvas non \`e completamente visualizzato a schermo.
-\paragraph{Postcondizioni} L'utente vede su schermo la parte di canvas desiderata.
+\paragraph{Precondizioni} Il sistema AJAXDRAW \`e in attesa di istruzioni da parte dell' utente, l'area di disegno appare troppo grande per essere completamente visualizzato.
+\paragraph{Postcondizioni} L'utente vede su schermo la parte di area di disegno desiderata.
 
 \subsubsezione{UC5 Caso d'uso: aumenta livello di zoom}
 \paragraph{Attori coinvolti} Utente.
@@ -305,8 +305,8 @@ Il sistema permette all'utente di ingrandire il canvas ed il suo contenuto mante
 \item Il sistema ingrandisce il canvas di quanto richiesto.
 \item Il sistema centra la visualizzazione nel punto richiesto dall'utente.
 \end{elenconumerato}
-\paragraph{Precondizioni} Il canvas \`e visualizzato all'utente ad una certa grandezza.
-\paragraph{Postcondizioni} Il canvas \`e ingrandito nel punto selezionato di una certa grandezza a partire dalla grandezza iniziale.
+\paragraph{Precondizioni} L'utente seleziona una parte di area di disegno visualizzata ad una certa grandezza.
+\paragraph{Postcondizioni} L'area di disegno \`e ingrandita nel punto selezionato di una certa grandezza a partire dalla grandezza iniziale.
 
 \subsubsezione{UC6 Caso d'uso: diminuisci zoom}
 \paragraph{Attori coinvolti} Utente.
@@ -319,9 +319,8 @@ Il sistema permette all'utente di rimpicciolire il canvas ed il suo contenuto ma
 \item Il sistema rimpicciolisce il canvas di quanto richiesto.
 \item Il sistema accentra la visualizzazione dove richiesto dall'utente.
 \end{elenconumerato}
-\paragraph{Precondizioni} Il canvas \`e visualizzato all'utente ad una certa grandezza.
-\paragraph{Postcondizioni} Il canvas \`e rimpicciolito nel punto selezionato di una certa grandezza a partire dalla grandezza iniziale.
-
+\paragraph{Precondizioni} L'utente seleziona una parte di area di disegno visualizzata ad una certa grandezza.
+\paragraph{Postcondizioni} L'area di disegno \`e rimpicciolita nel punto selezionato di una certa grandezza a partire dalla grandezza iniziale.
 \subsubsezione{UC7 Caso d'uso: esporta in SVG}
 \paragraph{Attori coinvolti} Utente.
 \paragraph{Scopo e descrizione sintetica} 
@@ -332,7 +331,7 @@ Il sistema permette all'utente di esportare in formato di immagine SVG il conten
 \item Il sistema genera un file SVG il cui contenuto corrisponde a quanto correntemente visualizzato nel canvas.
 \item Il sistema rende disponibile all'utente il file generato.
 \end{elenconumerato}
-\paragraph{Precondizioni} Il canvas \`e visualizzato con le modifiche effettuate dall'utente.
+\paragraph{Precondizioni} L'utente ha effettuato modifiche nell'area di disegno.
 \paragraph{Postcondizioni} Il file SVG \`e disponibile all'utente e contiene quanto visualizzato nel canvas.
 
 \subsubsezione{UC8 Caso d'uso: carica file SVG}
@@ -347,8 +346,8 @@ Il sistema permette all'utente di caricare file in formato SVG nel canvas.
 \end{elenconumerato}
 \paragraph{Flusso alternativo}
 Se il file non pu\`o essere caricato a causa di un errore in lettura o perch\`e non \`e un file SVG, l'utente verr\`a avvisato dell'errore e l'applicazione ritorner\`a allo stato precedente l'esecuzione del comando.
-\paragraph{Precondizioni} Il canvas \`e visualizzato vuoto o con modifiche.
-\paragraph{Postcondizioni} Il canvas contiene la visualizzazione del file SVG selezionato dall'utente ed \`e modificabile. In caso di modifiche al canvas precedenti al caricamento del file SVG, queste sono ignorate.
+\paragraph{Precondizioni} Il sistema AJAXDRAW \`e in attesa di istruzioni da parte dell' utente.
+\paragraph{Postcondizioni} L'area di disegno contiene la visualizzazione del file SVG selezionato dall'utente ed \`e modificabile. In caso di modifiche al canvas precedenti al caricamento del file SVG, queste vengono ignorate.
 
 \subsubsezione{UC9 Caso d'uso: disegna}
 Si rimanda a \ref{ucdisegna} per una descrizione approfondita.
@@ -367,8 +366,9 @@ Il sistema permette all'utente di rimpicciolire o aumentare il canvas ed il suo 
 \item L'utente sceglie di quale percentuale diminuire o aumentare lo zoom.
 \item Il sistema accentra la visualizzazione dove richiesto dall'utente.
 \end{elenconumerato}
-\paragraph{Precondizioni} Il canvas \`e visualizzato all'utente ad una certa grandezza.
-\paragraph{Postcondizioni} Il canvas \`e rimpicciolito o aumentato nel punto selezionato di una certa grandezza, a partire dalla grandezza iniziale.
+\paragraph{Precondizioni} 
+\paragraph{Precondizioni} Il sistema AJAXDRAW \`e in attesa di istruzioni da parte dell' utente.
+\paragraph{Postcondizioni} L'area di disegno \`e rimpicciolita o aumentata nel punto selezionato di una certa grandezza, a partire dalla grandezza iniziale.
 \newpage
 
 \subsezione{Vista UC9 - Disegna}
@@ -394,8 +394,8 @@ Il sistema permette all'utente di disegnare una linea retta o una curva di Bezie
 \item L'utente disegna sul canvas la linea retta con due clic distinti, oppure la curva di Bezier tenendo premuto il pulsante sinistro del mouse.
 \item Il sistema disegna la linea/curva.
 \end{elenconumerato}
-\paragraph{Precondizioni} Il canvas \`e visualizzato all'utente vuoto o con modifiche.
-\paragraph{Postcondizioni} Il canvas \`e visualizzato come da precondizione, in aggiunta mostra la nuova retta/curva disegnata.
+\paragraph{Precondizioni} Il sistema AJAXDRAW \`e in attesa di istruzioni da parte dell' utente.
+\paragraph{Postcondizioni} Il sistema mostra la nuova retta/curva disegnata nell'area di disegno.
 
 \subsubsezione{UC9.2 Caso d'uso: disegna quadrato/rettangolo}
 \paragraph{Attori coinvolti} Utente.
@@ -407,8 +407,8 @@ Il sistema permette all'utente di disegnare un quadrato o un rettangolo di quals
 \item L'utente disegna sul canvas il quadrato o il rettangolo, regolando col cursore la sua dimensione.
 \item Il sistema disegna il quadrato/rettangolo.
 \end{elenconumerato}
-\paragraph{Precondizioni} Il canvas \`e visualizzato all'utente vuoto o con modifiche.
-\paragraph{Postcondizioni} Il canvas \`e visualizzato come da precondizione, in aggiunta mostra il nuovo quadrato/rettangolo disegnato.
+\paragraph{Precondizioni} Il sistema AJAXDRAW \`e in attesa di istruzioni da parte dell' utente.
+\paragraph{Postcondizioni} Il sistema mostra la nuova quadrato/rettangolo disegnata nell'area di disegno.
 
 \subsubsezione{UC9.3 Caso d'uso: disegna poligono}
 \paragraph{Attori coinvolti} Utente.
@@ -421,8 +421,8 @@ Il sistema permette all'utente di disegnare un poligono di qualsiasi dimensione 
 \item L'utente disegna sul canvas il poligono, regolando col cursore la sua dimensione.
 \item Il sistema disegna il poligono.
 \end{elenconumerato}
-\paragraph{Precondizioni} Il canvas \`e visualizzato all'utente vuoto o con modifiche.
-\paragraph{Postcondizioni} Il canvas \`e visualizzato come da precondizione, in aggiunta mostra il nuovo poligono disegnato.
+\paragraph{Precondizioni} Il sistema AJAXDRAW \`e in attesa di istruzioni da parte dell' utente.
+\paragraph{Postcondizioni} Il sistema mostra la nuova poligono disegnata nell'area di disegno.
 
 \subsubsezione{UC9.4 Caso d'uso: disegna cerchio/ellisse}
 \paragraph{Attori coinvolti} Utente.
@@ -434,8 +434,8 @@ Il sistema permette all'utente di disegnare un cerchio o un'ellisse di qualsiasi
 \item L'utente disegna sul canvas il cerchio o l'ellisse, regolando col cursore la sua dimensione.
 \item Il sistema disegna il cerchio o l'ellisse.
 \end{elenconumerato}
-\paragraph{Precondizioni} Il canvas \`e visualizzato vuoto o con modifiche.
-\paragraph{Postcondizioni} Il canvas \`e visualizzato come da precondizione, in aggiunta mostra il nuovo cerchio o la nuova ellisse disegnato/a.
+\paragraph{Precondizioni} Il sistema AJAXDRAW \`e in attesa di istruzioni da parte dell' utente.
+\paragraph{Postcondizioni} Il sistema mostra il nuovo cerchio/ellisse disegnato/a nell'area di disegno.
 
 \subsubsezione{UC9.5 Caso d'uso: disegna casella di testo}
 \paragraph{Attori coinvolti} Utente.
@@ -448,8 +448,8 @@ Il sistema permette all'utente di disegnare una casella di testo.
 \item L'utente scrive il testo all'interno della casella.
 \item Il sistema disegna la casella di testo.
 \end{elenconumerato}
-\paragraph{Precondizioni} Il canvas \`e visualizzato vuoto o con modifiche.
-\paragraph{Postcondizioni} Il canvas \`e visualizzato come da precondizione, in aggiunta mostra la nuova casella di testo disegnata.
+\paragraph{Precondizioni} Il sistema AJAXDRAW \`e in attesa di istruzioni da parte dell' utente.
+\paragraph{Postcondizioni} Il sistema mostra la nuova casella di testo disegnata nell'area di disegno.
 
 \subsubsezione{UC9.6 Caso d'uso: seleziona colore bordo/linea}
 \paragraph{Attori coinvolti} Utente.
@@ -460,8 +460,8 @@ Il sistema permette all'utente di selezionare il colore del bordo della figura d
 \item L'utente seleziona il colore dalla paletta.
 \item Il sistema imposta il colore dato dall'utente come base per la figura da disegnare.
 \end{elenconumerato}
-\paragraph{Precondizioni} Il canvas \`e visualizzato all'utente vuoto o con modifiche.
-\paragraph{Postcondizioni} Il canvas \`e visualizzato come da precondizione. La prossima figura verr\` a disegnata con il colore del bordo selezionato.
+\paragraph{Precondizioni} Il sistema AJAXDRAW \`e in attesa di istruzioni da parte dell' utente.
+\paragraph{Postcondizioni} Il sistema ha memorizzato il nuovo colore per il bordo che verr\`a utilizzato nella costruzione dei prossimi oggetti.
 
 \subsubsezione{UC9.7 Caso d'uso: seleziona colore riempimento}
 \paragraph{Attori coinvolti} Utente.
@@ -472,8 +472,8 @@ Il sistema permette all'utente di selezionare il colore di riempimento del polig
 \item L'utente seleziona il colore di riempimento del poligono dalla paletta.
 \item Il sistema imposta il colore dato dall'utente come base per la figura da disegnare.
 \end{elenconumerato}
-\paragraph{Precondizioni} Il canvas \`e visualizzato vuoto o con modifiche.
-\paragraph{Postcondizioni} Il canvas \`e visualizzato come da precondizione. La prossima figura verr\` a disegnata con il colore di riempimento selezionato.
+\paragraph{Precondizioni} Il sistema AJAXDRAW \`e in attesa di istruzioni da parte dell' utente.
+\paragraph{Postcondizioni} Il sistema ha memorizzato il nuovo colore per il bordo che verr\`a utilizzato nella costruzione dei prossimi oggetti.
 
 \subsubsezione{UC9.8 Caso d'uso: selezione font e dimensione carattere}
 \paragraph{Attori coinvolti} Utente.
@@ -484,8 +484,8 @@ Il sistema permette all'utente di selezionare il tipo e la dimensione del caratt
 \item L'utente seleziona il tipo di carattere e la sua dimensione.
 \item Il sistema imposta i valori dati dall'utente come base per la prossima casella di testo da disegnare.
 \end{elenconumerato}
-\paragraph{Precondizioni} Il canvas \`e visualizzato vuoto o con modifiche.
-\paragraph{Postcondizioni} Il canvas \`e visualizzato come da precondizione. La prossima casella di testo verr\` a disegnata con i parametri selezionati.
+\paragraph{Precondizioni} Il sistema AJAXDRAW \`e in attesa di istruzioni da parte dell' utente.
+\paragraph{Postcondizioni} Il sistema ha memorizzato il nuovo colore di riempimento che verr\`a utilizzato nella costruzione dei prossimi oggetti.
 
 \subsubsezione{UC9.9 Caso d'uso: disegna spirale}
 \paragraph{Attori coinvolti} Utente.
@@ -497,8 +497,8 @@ Il sistema permette all'utente di disegnare una spirale.
 \item L'utente disegna la spirale sul canvas, regolando col cursore la sua ampiezza.
 \item Il sistema disegna la spirale.
 \end{elenconumerato}
-\paragraph{Precondizioni} Il canvas \`e visualizzato vuoto o con modifiche.
-\paragraph{Postcondizioni} Il canvas \`e visualizzato come da precondizione, in aggiunta mostra la nuova spirale disegnata.
+\paragraph{Precondizioni} Il sistema AJAXDRAW \`e in attesa di istruzioni da parte dell' utente.
+\paragraph{Postcondizioni} Il sistema mostra la nuova spirale nell'area di disegno.
 
 \subsubsezione{UC9.10 Caso d'uso: disegno di linee a mano libera}
 \paragraph{Attori coinvolti} Utente.
@@ -510,8 +510,8 @@ Il sistema permette all'utente di disegnare linee a mano libera.
 \item L'utente disegna la linea a mano libera sul canvas, trascinando il cursore.
 \item Il sistema disegna la linea creata.
 \end{elenconumerato}
-\paragraph{Precondizioni} Il canvas \`e visualizzato vuoto o con modifiche.
-\paragraph{Postcondizioni} Il canvas \`e visualizzato come da precondizione, in aggiunta mostra la nuova linea a mano libera.
+\paragraph{Precondizioni} Il sistema AJAXDRAW \`e in attesa di istruzioni da parte dell' utente.
+\paragraph{Postcondizioni} Il sistema mostra le nuove linee disegnate a mano libera nell'area di disegno.
 
 \subsubsezione{UC9.11 Caso d'uso: disegno calligrafico}
 \paragraph{Attori coinvolti} Utente.
@@ -523,8 +523,8 @@ Il sistema permette all'utente di creare linee calligrafiche che emulano l'azion
 \item L'utente disegna la linea calligrafica sul canvas, trascinando il cursore.
 \item Il sistema disegna la linea creata.
 \end{elenconumerato}
-\paragraph{Precondizioni} Il canvas \`e visualizzato vuoto o con modifiche.
-\paragraph{Postcondizioni} Il canvas \`e visualizzato come da precondizione, in aggiunta mostra la nuova linea calligrafica.
+\paragraph{Precondizioni} Il sistema AJAXDRAW \`e in attesa di istruzioni da parte dell' utente.
+\paragraph{Postcondizioni} Il sistema mostra il nuovo disegno calligrafico nell'area di disegno.
 
 \subsubsezione{UC9.12 Caso d'uso: disegno connettori di diagrammi}
 \paragraph{Attori coinvolti} Utente.
@@ -536,8 +536,8 @@ Il sistema permette all'utente di disegnare dei connettori di diagrammi.
 \item L'utente disegna il connettore sul canvas, cliccando su punto d'inizio e punto di fine linea desiderati.
 \item Il sistema disegna il connettore creato.
 \end{elenconumerato}
-\paragraph{Precondizioni} Il canvas \`e visualizzato vuoto o con modifiche.
-\paragraph{Postcondizioni} Il canvas \`e visualizzato come da precondizione, in aggiunta mostra il nuovo connettore creato.
+\paragraph{Precondizioni} Il sistema AJAXDRAW \`e in attesa di istruzioni da parte dell' utente.
+\paragraph{Postcondizioni} Il sistema mostra i nuovi connettori di diagrammi nell'area di disegno.
 \newpage
 \subsezione{Vista UC10 - Seleziona e Modifica}
 \label{ucselezionaemodifica}
@@ -562,8 +562,8 @@ Il sistema consente all'utente di impostare il font del testo presente all'inter
 \item L'utente porta il cursore nella sezione/scheda del pannello relativa al font.
 \item L'utente seleziona il font scelto all'interno di tale pannello.
 \end{elenconumerato}
-\paragraph{Precondizioni} L'utente ha scelto una casella di testo presente nel canvas.
-\paragraph{Postcondizioni} Le propriet\` a degli stili grafici della casella di testo indicano che il font usato \` e quello selezionato (la casella potrebbe essere vuota e quindi non visibile dall'utente all'interno del canvas).
+\paragraph{Precondizioni} L'utente ha selezionato una casella di testo presente nel canvas.
+\paragraph{Postcondizioni} Il canvas visualizza le modifiche al font usato per il testo (la casella potrebbe essere vuota e quindi non visibile dall'utente all'interno del canvas).
 
 \subsubsezione{UC10.2 Caso d'uso: imposta dimensione dei caratteri}
 \paragraph{Attori coinvolti} Utente.
@@ -576,8 +576,8 @@ Il sistema consente di modificare la dimensione dei caratteri del testo di una c
 \item L'utente porta il cursore nella sezione/scheda del pannello relativa alla dimensione carattere.
 \item L'utente seleziona la dimensione scelta nel combobox apposito all'interno di tale pannello, o inserisce un numero intero valido.
 \end{elenconumerato}
-\paragraph{Precondizioni}L'utente ha scelto una casella di testo presente nel canvas.
-\paragraph{Postcondizioni}Le propriet\`a degli stili grafici della casella di testo indicano che la dimensione del font \` e quella selezionata (parte del testo potrebbe essere troncata o non visibile).
+\paragraph{Precondizioni} L'utente ha selezionato una casella di testo presente nel canvas.
+\paragraph{Postcondizioni}  Il canvas visualizza le modifiche alla dimensione dei caratteri del testo (parte del testo potrebbe essere troncata o non visibile).
 
 \subsubsezione{UC10.3  Caso d'uso: imposta colore di riempimento}
 \paragraph{Attori coinvolti} Utente.
@@ -590,8 +590,8 @@ Il sistema consente di modificare la dimensione dei caratteri del testo di una c
 \item L'utente seleziona un colore nel menu a tendina apposito all'interno di tale pannello (caso colore campione).
 \item L'utente si reca nel menu a tendina apposito all'interno di tale pannello. Clicca sulla scheda alternativa e mixa il colore impostando i valori rosso, blu, verde (caso colore personalizzato).
 \end{elenconumerato}
-\paragraph{Precondizioni}L'utente ha scelto un oggetto colorabile presente nel canvas.
-\paragraph{Postcondizioni}Le propriet\` a degli stili grafici della casella di testo indicano che il colore di riempimento \` e  quello selezionato (il colore potrebbe essere uguale allo sfondo del canvas e quindi non visibile dall'utente).
+\paragraph{Precondizioni} L'utente ha selezionato una figura presente nel canvas alla figura deve essere possibile cambiare il colore di riempimento.
+\paragraph{Postcondizioni} Il canvas visualizza la figura precedentemente selezionata con il colore di riempimento modificato (il colore potrebbe essere uguale allo sfondo del canvas e quindi non visibile dall'utente).
 
 
 \subsubsezione{UC10.4  Caso d'uso: imposta colore del bordo}
@@ -605,8 +605,8 @@ Il sistema consente di modificare la dimensione dei caratteri del testo di una c
 \item L'utente seleziona un colore  nel menu a tendina apposito all'interno di tale pannello(caso colore campione).
 \item L'utente si reca nel menu a tendina apposito all'interno di tale pannello. Clicca sulla scheda alternativa e mixa il colore impostando i valori rosso, blu, verde (caso colore personalizzato).
 \end{elenconumerato}
-\paragraph{Precondizioni} L'utente ha scelto un oggetto colorabile presente nel canvas.
-\paragraph{Postcondizioni} Le propriet\` a degli stili grafici della casella di testo indicano che il colore del bordo \`e quello selezionato (il colore potrebbe essere uguale allo sfondo del canvas e quindi il bordo potrebbe diventare non visibile dall'utente).
+\paragraph{Precondizioni} L'utente seleziona una figura a cui \`e possibile cambiare il colore del bordo/linea presente nel canvas.
+\paragraph{Postcondizioni} Il canvas visualizza la figura precendentemente selezionata con il colore del bordo modificato (il colore potrebbe essere uguale allo sfondo del canvas e quindi il bordo potrebbe non essere visibile dall'utente).
 
 
 \subsubsezione{UC10.5  Caso d'uso: imposta l'opacit\` a}
@@ -619,8 +619,8 @@ Il sistema consente di modificare la dimensione dei caratteri del testo di una c
 \item L'utente porta  il cursore nella sezione/scheda del pannello relativa all'opacit\` a.
 \item L'utente regola l'opacit\` a inserendo un valore intero compreso tra 0 e 100 oppure trascinando col cursore l'apposito mixer.
 \end{elenconumerato}
-\paragraph{Precondizioni} L'utente ha scelto un oggetto presente nel canvas.
-\paragraph{Postcondizioni} Le propriet\` a degli stili grafici della casella di testo indicano che l'opacit\` a dell'oggetto corrisponde al valore intero selezionato.
+\paragraph{Precondizioni} L'utente ha selezionato una figura presente nel canvas.
+\paragraph{Postcondizioni} Il canvas visualizza la figura precedentemente selezionata con cambio di opacit\` a.
 
 \subsubsezione{UC10.6   Caso d'uso: imposta la posizione trascinando l'oggetto}
 \paragraph{Attori coinvolti} Utente.
@@ -631,8 +631,8 @@ Il sistema consente di modificare la dimensione dei caratteri del testo di una c
 \item Il sistema evidenzia l'oggetto selezionato e mostra un pannello con i relativi stili grafici.
 \item L'utente trascina l'oggetto in una posizione valida all'interno dell'area del canvas usando il cursore.
 \end{elenconumerato}
-\paragraph{Precondizioni} L'utente ha scelto un oggetto presente nel canvas. L'utente non pu\` o trascinare l'oggetto fuori dal canvas.
-\paragraph{Postcondizioni} Le propriet\` a degli stili grafici della casella di testo indicano che l'oggetto \` e nella nuova posizione. Il canvas visualizza l'oggetto nella nuova posizione.
+\paragraph{Precondizioni} L'utente ha selezionato una figura presente nel canvas. L'utente non pu\` o trascinare la figura fuori dal canvas.
+\paragraph{Postcondizioni} La figura precedentemente selezionata \`e stata spostata all'interno del canvas.
  
 
 \subsubsezione{UC10.7 Caso d'uso: imposta la posizione dell'oggetto tramite coordinate}
@@ -645,8 +645,8 @@ Il sistema consente di modificare la dimensione dei caratteri del testo di una c
 \item  L'utente porta  il cursore nella sezione/scheda del pannello relativa alla dimensione dell'oggetto.
 \item  L'utente imposta manualmente i quattro valori della dimensione dell'oggetto.
 \end{elenconumerato}
-\paragraph{Precondizioni} L'utente ha scelto un oggetto  presente nel canvas. Se l'utente sceglie una posizione non valida (che porterebbe l'oggetto ad uscire dal canvas) il sistema posiziona l'oggetto nel valore valido pi\` u vicino a quello selezionato (ad esempio sul bordo estremo del canvas). Valori negativi vengono ignorati.
-\paragraph{Postcondizioni} Le propriet\`  a degli stili grafici della casella di testo indicano che l'oggetto \`e nella nuova posizione. Il canvas visualizza l'oggetto nella nuova posizione.
+\paragraph{Precondizioni} L'utente ha selezionato una figura presente nel canvas. L'utente deve dare le coordinate di una posizione valida all'interno del canvas.
+\paragraph{Postcondizioni} La figura precedentemente selezionata \`e stata spostata all'interno del canvas.
 
 \subsubsezione{UC10.8 Caso d'uso: ridimensiona l'oggetto tramite cursore}
 \paragraph{Attori coinvolti} Utente.
@@ -657,8 +657,8 @@ Il sistema consente di modificare la dimensione dei caratteri del testo di una c
 \item  Il sistema evidenzia l'oggetto selezionato e mostra un pannello con i relativi stili grafici.
 \item  L'utente usa il cursore con puntatore specifico per modificare le dimensioni dell'oggetto.
 \end{elenconumerato}
-\paragraph{Precondizioni} L'utente ha scelto un oggetto presente nel canvas. Se le dimensioni sono superiori a un valore massimo relativo della dimensione del canvas, il sistema le imposta alla massima dimensione consentita.
-\paragraph{Postcondizioni} Le propriet\`a  degli stili grafici della casella di testo indicano che le dimensioni dell'oggetto sono quelle selezionate. L'oggetto si ingrandir\` a/rimpicciolir\`a  a seconda dei movimenti del cursore.
+\paragraph{Precondizioni} L'utente ha selezionato una figura presente nel canvas. La figura deve assumere delle dimensioni valide.
+\paragraph{Postcondizioni} Il canvas visualizza la figura precedentemente selezionata ridimensionata.
 
 
 \subsubsezione{UC10.9 Caso d'uso: ridimensiona l'oggetto tramite coordinate assolute}
@@ -672,8 +672,8 @@ Il sistema consente di modificare la dimensione dei caratteri del testo di una c
 \item  L'utente imposta manualmente i due valori della dimensione dell'oggetto.
 (base e altezza). Nel caso di cerchio e quadrato  \`e  presente un solo intero da impostare (dimensione unica).
 \end{elenconumerato}
-\paragraph{Precondizioni} L'utente ha scelto un oggetto presente nel canvas. Non si accettano valori negativi o pari a zero. Se le dimensioni sono superiori a un massimo relativo alla dimensione del canvas il sistema le imposta alla massima dimensione consentita.
-\paragraph{Postcondizioni} Le propriet\` a degli stili grafici della casella di testo indicano che le dimensioni dell'oggetto  sono quelle selezionate. L'oggetto si ingrandir\`a/rimpicciolir\`a  a seconda dei valori interi inseriti.
+\paragraph{Precondizioni} L'utente ha selezionato una figura presente nel canvas. La figura deve assumere delle dimensioni valide.
+\paragraph{Postcondizioni} Il canvas visualizza la figura precedentemente selezionata ridimensionata.
                    
 \subsubsezione{UC10.10 Caso d'uso: seleziona}
 \paragraph{Attori coinvolti} Utente.
@@ -683,8 +683,8 @@ Il sistema consente di modificare la dimensione dei caratteri del testo di una c
 \item  L'utente seleziona il comando per la selezione di un oggetto.
 \item  L'utente usa il cursore per selezionare l'oggetto in questione.
 \end{elenconumerato}
-\paragraph{Precondizioni} Il canvas \`e visualizzato. L'utente ha selezionato un oggetto presente nel canvas.
-\paragraph{Postcondizioni} Il sistema evidenzia l'oggetto selezionato e mostra un pannello con i relativi stili grafici.
+\paragraph{Precondizioni} Il sistema AJAXDRAW \`e in attesa di istruzioni da parte dell' utente.
+\paragraph{Postcondizioni} Una figura presente nel canvas \`e stata selezionata.
 
 \subsubsezione{UC10.11 Caso d'uso: elimina oggetto}
 \paragraph{Attori coinvolti} Utente.
@@ -695,8 +695,9 @@ Il sistema consente di modificare la dimensione dei caratteri del testo di una c
 \item  L'utente usa il cursore per selezionare l'oggetto in questione.
 \item  L'utente seleziona il comando per la cancellazione di un oggetto.
 \end{elenconumerato}
-\paragraph{Precondizioni} Il canvas \`e visualizzato. L'utente ha selezionato un oggetto presente nel canvas.
-\paragraph{Postcondizioni} Il canvas non visualizza l'oggetto cancellato.
+\paragraph{Precondizioni} L'utente ha selezionato una figura presente nel canvas.
+\paragraph{Postcondizioni} Il sistema AjaxDraw visualizza il nuovo stato nell'Area di Disegno.
+
 
 \subsubsezione{UC10.12 Caso d'uso: ridimensiona l'oggetto}
 \paragraph{Attori coinvolti} Utente.
@@ -707,8 +708,8 @@ Il sistema consente di modificare la dimensione dei caratteri del testo di una c
 \item  Il sistema evidenzia l'oggetto selezionato e mostra un pannello con i relativi stili grafici.
 \item  L'utente usa il cursore o le coordinate assolute per modificare le dimensioni dell'oggetto.
 \end{elenconumerato}
-\paragraph{Precondizioni} L'utente ha scelto un oggetto presente nel canvas. Se le dimensioni sono superiori a un valore massimo relativo della dimensione del canvas, il sistema le imposta alla massima dimensione consentita.
-\paragraph{Postcondizioni} Le propriet\`a  degli stili grafici della casella di testo indicano che le dimensioni dell'oggetto sono quelle selezionate. L'oggetto si ingrandir\` a/rimpicciolir\`a a seconda dell'input.
+\paragraph{Precondizioni} L'utente ha selezionato una figura presente nel canvas. Se le dimensioni sono superiori a un valore massimo relativo della dimensione del canvas, il sistema le imposta alla massima dimensione consentita.
+\paragraph{Postcondizioni} La figura precedentemente selezionata \`e visualizzata nel canvas ridimensionata.
 
 \subsubsezione{UC10.13 Caso d'uso: Copia un oggetto}
 \paragraph{Attori coinvolti} Utente.
@@ -719,8 +720,8 @@ Il sistema consente di modificare la dimensione dei caratteri del testo di una c
 \item  L'utente usa il cursore per selezionare l'oggetto in questione.
 \item  L'utente seleziona il comando per la duplicazione di un oggetto.
 \end{elenconumerato}
-\paragraph{Precondizioni} Il canvas \`e visualizzato. 
-\paragraph{Postcondizioni} Il canvas visualizza il nuovo oggetto copia dell'oggetto di partenza in posizione leggermente spostata verso l'alto in modo da non permettere sovrapposizioni di oggetti che potrebbero trarre in inganno l'utente.
+\paragraph{Precondizioni} L'utente ha selezionato una figura presente nel canvas.
+\paragraph{Postcondizioni} Il canvas visualizza la nuova figura copia della figura originaria, in posizione leggermente spostata verso l'alto in modo da non permettere sovrapposizioni di oggetti.
 
 \subsubsezione{UC10.14 Caso d'uso: Rotazione di una figura geometrica}
 \paragraph{Attori coinvolti} Utente.
@@ -731,8 +732,8 @@ Il sistema consente di modificare la dimensione dei caratteri del testo di una c
 \item  L'utente usa il cursore per selezionare l'oggetto in questione.
 \item  L'utente seleziona il comando per effettuare la rotazione di 90 gradi sull'asse latitudinale di un oggetto.
 \end{elenconumerato}
-\paragraph{Precondizioni} Il canvas \`e visualizzato. 
-\paragraph{Postcondizioni} Il canvas visualizza l'oggetto ruotato di 90 gradi .
+\paragraph{Precondizioni} L'utente ha selezionato una figura presente nel canvas.
+\paragraph{Postcondizioni} Il canvas visualizza la figura precedentemente selezionata ruotata di 90 gradi.
 
 %%%%%%%%%%%%%%%%inizio requisiti%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \sezione{Lista dei requisiti}
