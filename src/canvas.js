@@ -51,6 +51,36 @@ Visualization.prototype.getFigureSet = function(){
 };
 
 
+Visualization.prototype.getClickCoordsWithinTarget = function(event,canvasLeft,canvasTop){
+	var coords = { x: canvasLeft, y: canvasTop};
+
+	if(!event) // then we're in a non-DOM (probably IE) browser
+	{
+		event = window.event;
+		coords.x = event.offsetX-canvasLeft;
+		coords.y = event.offsetY-canvasTop;
+	}
+	else		// we assume DOM modeled javascript
+	{
+		var Element = event.target ;
+		var CalculatedTotalOffsetLeft = 0;
+		var CalculatedTotalOffsetTop = 0 ;
+
+		while (Element.offsetParent)
+ 		{
+ 			CalculatedTotalOffsetLeft += Element.offsetLeft ;
+			CalculatedTotalOffsetTop += Element.offsetTop ;
+ 			Element = Element.offsetParent ;
+ 		}
+
+		coords.x = event.pageX - CalculatedTotalOffsetLeft ;
+		coords.y = event.pageY - CalculatedTotalOffsetTop ;
+	}
+
+	return coords;
+};
+
+
 /**
  * @constructor
  * A generic Button
