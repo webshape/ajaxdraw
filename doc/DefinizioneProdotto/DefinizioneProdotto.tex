@@ -231,7 +231,7 @@ Viene aggregata dalla classe \textit{FigureSet}.
 \item[-]  \textit{isSelected()} dice se la figura \`e correntemente selezionata. Ritorna \textit{{\_}selected}.
 \item[-]  \textit{eachProperty(fn)} applica la funzione fn ad ogni propriet\`a della figura, ovvero a \textit{{\_}bounds} e \textit{{\_}borderColour}.
 \item[-] \textit{drawSelection(canvas)} disegna dei quadratini di colore blu e con opacit\`a 0.8 intorno ai punti principali della figura, ottenuti tramite \textit{getMainPoints}e traccia i bordi del \textit{BoundingRectangle} di colore grigio con opacit\`a 0.8, solo se la figura \`e selezionata. 
-\\item[-] \textit{clone()} metodo che utilizza \textit{getMainPoints} per ottenere i punti della figura selezionata, propone sul canvas una copia dell'originale con l'ausilio del metodo \textit{draw(canvas)}; il clone dell'originale viene disegnato spostato 10 10px verso l'alto o in relazione a dove si trova la figura origine sul canvas.
+\item[-] \textit{clone()} metodo che propone sul canvas una copia dell'originale con l'ausilio del metodo \textit{draw(canvas)}; il clone dell'originale viene disegnato sopra spostato 10px verso l'alto.  
 \end{elencopuntato}
 
 \subsezione{FigureSet}
@@ -327,13 +327,15 @@ Implementa \textit{Property}.
 \subsubsezione{Interfacce e relazioni di uso da altre componenti}
 \textit{Figure} ne mantiene un'istanza.
 \subsubsezione{Attivit\`a svolte e dati trattati}
+\paragrafo{Attributi privati:}
+\begin{elencopuntato}[\normindent]
+\item[-] \textit{\_rad} un numero contenente il valore dell'angolo espresso in radianti.
+\end{elencopuntato}
 \paragraph{Metodi pubblici:}
 \begin{elencopuntato}[\normindent]
-\item[-] \textit{getCentre} permette di ottenere il centro della figura utilizzando il metodo pubblico \textit{Centre()} della classe \textit{BoundingRectangle}.
-\item[-] \textit{setPoints} ritorna la modifica dei vertici della figura ottenibili attraverso \textit{getMainPoints}; la figura viene ridisegnata con l'ausilio del metodo \textit{draw(canvas)} a partire dai punti ottenuti dalla rotazione.  
+\item[-] \textit{transformPoints} effettua una trasformazione sulla figura selezionata nel canvas, ritorna la modifica dei vertici della figura ottenuti attraverso il metodo\textit{getMainPoints}; la figura viene ridisegnata con l'ausilio del metodo \textit{draw(canvas). 
 \item[-] \textit{createWidget} crea e ritorna un'istanza di \textit{RotationSetter} passando se stesso come parametro al costruttore.
 \end{elencopuntato}
-
 
 \subsezione{Colour}
 \subsubsezione{Tipo, obiettivo e funzione del componente}
