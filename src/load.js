@@ -229,14 +229,6 @@ BezierCurve.prototype.fromSVG = function (n) {
  * @param {node} n the SVG node containg the property
  */
 Polygon.prototype.fromSVG = function (n) {
-  var x1 = n.getAttribute("x1");
-  var y1 = n.getAttribute("y1");
-  var x2 = n.getAttribute("x2");
-  var y2 = n.getAttribute("y2");
-  var p1 = new Point(x1, y1);
-  var p2 = new Point(x2, y2);
-  this.getBounds().setStart(p1);
-  this.getBounds().setEnd(p2);
   var points = n.getAttribute("points");
   var edges = 0;
   for (var i = 0; i < points.length; ++i)
