@@ -1013,8 +1013,6 @@ function Text (txt) {
   }
   if (!hasSupport) {
     this.draw = Text.prototype.fallbackDraw;
-    // used to cheat Rectangle.prototype.draw and reuse it
-    this.getFillColour = this.getTextColour;
   }
 }
 

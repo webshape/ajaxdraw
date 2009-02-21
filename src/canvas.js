@@ -416,7 +416,7 @@ TextButton.prototype.getBuilder = function () {
 };
 
 TextButton.prototype.bindCanvas = function (canvas,canvasObj,visual,figureSet) {
-  this.setSelection(true);
+  this.setSelection(true); 
    $("#cv").unbind('mousedown click mouseup');
    canvasObj.clear();
    visual.refresh();//per togliere un'eventuale selezione
@@ -427,8 +427,8 @@ TextButton.prototype.bindCanvas = function (canvas,canvasObj,visual,figureSet) {
    //  var builder = self.getBuilder();
      var f = s[0] = new Text("prova");
      var coords = visual.getClickCoordsWithinTarget(e);
-     f.getFillColour().getOpacity().setVal(1);
-      f.getFillColour().fromCSS(FillColor);
+     //f.getFillColour().getOpacity().setVal(1);
+     // f.getFillColour().fromCSS(FillColor);
 
      f.getBorderColour().getOpacity().setVal(1);
      f.getBorderColour().fromCSS(BorderColor);
