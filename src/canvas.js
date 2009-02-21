@@ -235,7 +235,6 @@ Button.prototype.bindCursor = function(type){
      case "line":
 	$("#cv").css({'cursor' : 'url("images/lineDraw.png"),auto'});
       break;
-
     case "square":
        $("#cv").css({'cursor' : 'url("images/squareDraw.png"),auto'});
       break;
@@ -416,7 +415,7 @@ TextButton.prototype.getBuilder = function () {
 };
 
 TextButton.prototype.bindCanvas = function (canvas,canvasObj,visual,figureSet) {
-  this.setSelection(true); 
+  this.setSelection(true);
    $("#cv").unbind('mousedown click mouseup');
    canvasObj.clear();
    visual.refresh();//per togliere un'eventuale selezione
@@ -425,7 +424,7 @@ TextButton.prototype.bindCanvas = function (canvas,canvasObj,visual,figureSet) {
    var self = this;
    $("#cv").bind("mousedown", function(e){
    //  var builder = self.getBuilder();
-     var f = s[0] = new Text("prova");
+     var f = s[0] = new Text("Canvas");
      var coords = visual.getClickCoordsWithinTarget(e);
      //f.getFillColour().getOpacity().setVal(1);
      // f.getFillColour().fromCSS(FillColor);
@@ -483,7 +482,7 @@ Toolbar.prototype.deselectAll = function () {
  * @constructor
  * The Palette single color
  */
-function PaletteColor(color){
+function PaletteComponent(color){
   this._color = color;
 }
 
@@ -498,10 +497,42 @@ function Palette(){
 
 /**
  * Add a new color to the collection
- * @param {PaletteColor} p color to add
+ * @param {PaletteComponent} p color to add
  */
 Palette.prototype.add = function (p) {
   this._colorList.push(p);
+};
+/**
+ * Apply a function to each color
+ * @param {Function} fn function to apply
+ */
+Palette.prototype.each = function (fn) {
+  this._figures.each(fn);
+};
+
+
+/**
+ * Change figure color by clicking on the palette's preffered color
+ * @param {String} string with hex color representation
+ * @return  null
+ */
+Palette.prototype.setColour = function (col){
+  $(".paletteComponent").click(function () {
+  if( document.getElementById("comboColor").value=="border"){
+    $.farbtastic("#color1").setColor(col);
+    document.getElementById("color1").value=$.farbtastic("#color1").color;
+    document.getElementById("borderColorNow").style.backgroundColor=col;
+    BorderColor=col;
+  }
+  else{
+ $.farbtastic("#color2").setColor(col);
+    document.getElementById("color2").value=$.farbtastic("#color2").color;
+    document.getElementById("fillColorNow").style.backgroundColor=col;
+    FillColor=col;
+  }
+});
+
+
 };
 
 
@@ -513,7 +544,16 @@ function ColourDialog(){
  //TODO
 }
 
+ColourDialog.prototype.create= function(){
+     $("#colorDialog").dialog({
+    	position: ["right","top"],
+    	height: 210,
+    	width: 230,
+    	dialogClass: "Dialog1"
 
+    });
+
+};
 
 
 
@@ -543,6 +583,10 @@ $(document).ready(function(){
   var polygonButton = new PolygonButton();toolbar.add(polygonButton);
   var polygonEdgeNumber = 7;
   var textButton = new TextButton();toolbar.add(textButton);
+
+
+  var palette = new Palette();
+  var colourDialog = new ColourDialog();
 
   $("#selectionButton").click(function () {
     toolbar.deselectAll();
