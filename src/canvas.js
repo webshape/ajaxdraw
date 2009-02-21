@@ -178,9 +178,8 @@ Button.prototype.isSelected = function () {
  * @param {Canvas} canvasObj the canvas obj
  * @param {Visualization} visual che Visualization object
  * @param {FigureSet} figureSet the set of figures
- * @param {Numeric} edgeNumber the number of edges if the figure to be drawn will be a polygon
  */
-Button.prototype.bindCanvas = function (canvas,canvasObj,visual,figureSet,edgeNumber) {
+Button.prototype.bindCanvas = function (canvas,canvasObj,visual,figureSet) {
   this.setSelection(true);
    $("#cv").unbind('mousedown click mouseup');
    canvasObj.clear();
@@ -204,6 +203,8 @@ Button.prototype.bindCanvas = function (canvas,canvasObj,visual,figureSet,edgeNu
         var coords2 = visual.getClickCoordsWithinTarget(e);
 	f.getBounds().setEnd(new Point(coords2.x, coords2.y));
 	if(builder==Polygon){
+          var edgeNumber = document.getElementById('edgeNumber').value;
+          // TODO: check that edgeNumber is a valid number
 	  f.edgeNumber().setVal(edgeNumber);
 	}
 	canvasObj.clear();
@@ -548,8 +549,7 @@ $(document).ready(function(){
   $("#polygonButton").click(function () {
     toolbar.deselectAll();
     var edge = createEdgeDialog(polygonEdgeNumber);
-    polygonEdgeNumber =  document.getElementById("edgeNumber").value;
-    polygonButton.bindCanvas(canvas,canvasObj,visual,figureSet,polygonEdgeNumber);
+    polygonButton.bindCanvas(canvas,canvasObj,visual,figureSet);
   });
 
   $("#textButton").click(function () {
