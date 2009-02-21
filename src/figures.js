@@ -431,6 +431,8 @@ FigureSet.prototype.selectFigure = function (where) {
   var c = document.createElement('canvas');
   c.width = 760;
   c.height = 480;
+  //var c = document.getElementById('cv');
+  //c.width = c.width;
   c.getContext('2d').lineWidth = 10; // easier selection of lines
   this.each(function (f) {
               var col = next();
