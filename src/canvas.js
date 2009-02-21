@@ -4,6 +4,51 @@
  * @author Bizzotto Piero
  */
 
+/**
+ * @constructor
+ * The Page
+ */
+function Page(){
+  this._browserName = $.browser.name;
+  this._browserVersion = $.browser.version;
+  this._widgets = [];
+}
+
+Page.prototype.getBrowserName = function (){
+  return this._browserName;
+};
+
+Page.prototype.getBrowserVersion = function (){
+  return this._browserVersion;
+};
+
+/*
+ * Handles the activation of a specified stylesheet depending to the browser
+ * @param {String} sheetref the name of the alternate stylesheet
+ * */
+Page.prototype.activateStylesheet = function (sheetref){
+	if(document.getElementsByTagName) {
+		var ss = document.getElementsByTagName('link');}
+	else if (document.styleSheets){
+		var ss = document.styleSheets;}
+	for(var i=0;ss[i];i++){
+		if(ss[i].href.indexOf(sheetref) != -1){
+			ss[i].disabled = true;
+			ss[i].disabled = false;
+		}
+	}
+};
+
+/*
+ * Loads a specified stylesheet depending to the browser
+ * */
+Page.prototype.loadStylesheet = function (){
+  var name = this._browserName;
+  var nameComp = name+".css";
+  this.activateStylesheet(nameComp);
+};
+
+
 
 /**
  * @constructor
@@ -12,7 +57,6 @@
 function Canvas(){
   this._height = 480;
   this._width = 760;
-// this._id = $("#cv");
   this._id = document.getElementById("cv");
 }
 
@@ -23,11 +67,19 @@ function Canvas(){
  *
  */
 Canvas.prototype.getId = function (){
+  if ($.browser.msie) { // hack for internet explorer
+     return window.G_vmlCanvasManager.initElement(this._id);
+  }
   return this._id;
 };
 
 Canvas.prototype.clear = function () {
-  this._id.width = this._id.width;
+   if ($.browser.msie) { // hack for internet explorer
+    var canvas= window.G_vmlCanvasManager.initElement(this._id);
+     canvas.width = canvas.width;
+  }
+ else{ this._id.width = this._id.width;}
+
 };
 
 
@@ -41,8 +93,11 @@ function Visualization(figureSet){
 
 Visualization.prototype.refresh = function(){
   var c = document.getElementById('cv');
-   this._figureSet.each(function (f) {
-       f.draw(c);
+  if ($.browser.msie) { // hack for internet explorer
+    c = window.G_vmlCanvasManager.initElement(c);
+  }
+  this._figureSet.each(function (f) {
+    f.draw(c);
    });
 };
 
@@ -56,7 +111,11 @@ Visualization.prototype.deselectAll = function (figureSet) {
      f.setSelection(false);
   });
 };
-
+/**
+ * Get the accurate coordinates of the user click on the canvas for every browser
+ * @param {Event} event the click event
+ * @return the coordinates of the click
+ */
 Visualization.prototype.getClickCoordsWithinTarget = function(event){
 	var coords = { x: 0, y: 0};
 
@@ -167,27 +226,28 @@ Button.prototype.bindCanvas = function (canvas,canvasObj,visual,figureSet,edgeNu
  * Binds a specified cursor to every tool
  */
 Button.prototype.bindCursor = function(type){
- // if(($.browser.name!="opera")){
+  if(($.browser.name!="opera")){
     switch(type){
-       case "selection":
-      // $("#cv").unbind("mouseover");
-//	$("#cv").bind("mouseover", function(e){
-	  $("#cv").css({'cursor' : 'url("images/selezione.png")'});
-//	});
+      case "selection":
+	$("#cv").css({'cursor' : 'url("images/selezione.png"),auto'});
       break;
-     case "square":
-     // $("#cv").unbind("mouseover");
-//	$("#cv").bind("mouseover", function(e){
-	  $("#cv").css({'cursor' : 'url("images/squareDraw.png")'});
-//	});
-    break;
-      case "text":
-	$("#cv").css({'cursor' : 'text'});
+     case "line":
+	$("#cv").css({'cursor' : 'url("images/lineDraw.png"),auto'});
       break;
-    default:
+
+    case "square":
+       $("#cv").css({'cursor' : 'url("images/squareDraw.png"),auto'});
+      break;
+     case "circle":
+       $("#cv").css({'cursor' : 'url("images/circleDraw.png"),auto'});
+      break;
+     case "text":
+       $("#cv").css({'cursor' : 'text'});
+      break;
+     default:
       alert("fatto");
     }
-//  }
+  }
 };
 
 
@@ -238,6 +298,7 @@ SelectionButton.prototype.bindCanvas = function (canvas,canvasObj,visual,figureS
       }
   });
 };
+
 /**
  * @constructor
  * The Zoom  button
@@ -415,6 +476,7 @@ Toolbar.prototype.deselectAll = function () {
      f.setSelection(false);
   });
 };
+
 //Colors
 /**
  * @constructor
@@ -430,17 +492,21 @@ function Palette(){
 
 /* Do not touch */
 $(document).ready(function(){
+  var page = new Page();
+  page.loadStylesheet();
   var canvasObj = new Canvas();
   var canvas = canvasObj.getId();
-  if ($.browser.msie) { // hack for internet explorer
-    canvas=window.G_vmlCanvasManager.initElement(canvas);
-  }
+
+ // if ($.browser.msie) { // hack for internet explorer
+ //   canvas=window.G_vmlCanvasManager.initElement(canvas);
+ // }
+
   var ctx = canvas.getContext("2d");   //prendo il contesto
- // var canvasLeft = ctx.canvas.offsetLeft;
-//  var canvasTop = ctx.canvas.offsetTop;
+  //var canvasLeft = ctx.canvas.offsetLeft;
+  //var canvasTop = ctx.canvas.offsetTop;
   var figureSet = new FigureSet();
   var visual = new Visualization(figureSet);
-  // Toolbar Creation
+  //Toolbar Creation
   var toolbar = new Toolbar();
   var selectionButton = new SelectionButton();toolbar.add(selectionButton);
   var zoomButton = new ZoomButton();toolbar.add(zoomButton);
@@ -463,6 +529,7 @@ $(document).ready(function(){
 
   $("#straightLineButton").click(function () {
     toolbar.deselectAll();
+    straightLineButton.bindCursor("line");
     straightLineButton.bindCanvas(canvas,canvasObj,visual,figureSet);
   });
 
@@ -473,6 +540,7 @@ $(document).ready(function(){
   });
 
   $("#circleButton").click(function () {
+    circleButton.bindCursor("circle");
     toolbar.deselectAll();
     circleButton.bindCanvas(canvas,canvasObj,visual,figureSet);
   });
@@ -488,6 +556,7 @@ $(document).ready(function(){
     toolbar.deselectAll();
     textButton.bindCursor("text");
     textButton.bindCanvas(canvas,canvasObj,visual,figureSet);
+
   });
 
 

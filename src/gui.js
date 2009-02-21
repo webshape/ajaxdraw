@@ -1,18 +1,3 @@
-/*Funzione che gestisce il cambio di foglio CSS per browser*/
-function activateStylesheet(sheetref){
-	if(document.getElementsByTagName) {
-		var ss = document.getElementsByTagName('link');}
-	else if (document.styleSheets){
-		var ss = document.styleSheets;}
-	for(var i=0;ss[i];i++){
-		if(ss[i].href.indexOf(sheetref) != -1){
-			ss[i].disabled = true;
-			ss[i].disabled = false;
-		}
-	}
-}
-
-
 var BorderColor="#000000";
 var FillColor="#000000";
 
@@ -80,7 +65,7 @@ function createEdgeDialog(){
 /*parte di jQuery */
 $(document).ready(function(){
 /* carica fogli di stile diversi a seconda del browser */
-  if ($.browser.name=="safari") {
+ /* if ($.browser.name=="safari") {
    	   activateStylesheet('safari.css');
   }
      else if ($.browser.name=="chrome") {
@@ -95,7 +80,7 @@ $(document).ready(function(){
      }
      else if ($.browser.name=="konqueror") {
    	   activateStylesheet('konqueror.css');
-     }
+     }*/
 
 
 //dialog skin nera
