@@ -221,6 +221,22 @@ test('FreeLine', function () {
        same(f.getBounds(), new BoundingRectangle(new Point(0, 0), 
                                                  new Point(0, 56)),
             'extend with width 0 (bounds)');
+       // point move
+       f = new FreeLine();
+       f.extend(new Point(0, 0));
+       f.extend(new Point(20, 30));
+       f.extend(new Point(15, 15));
+       f.move(new Point(20, 30), new Point(14, 14));
+       same(f.getPoints(), [new Point(0, 0), new Point(14, 14), 
+                            new Point(15, 15)], 'point move');
+       same(f.getBounds(), new BoundingRectangle(new Point(0, 0), 
+                                                 new Point(15, 15)),
+            'point move, bounds shrink');
+       // scale it
+       f.getBounds().setEnd(new Point(30, 30));
+       same(f.getPoints(), [new Point(0, 0), new Point(28, 28), 
+                            new Point(30, 30)], 
+            'scale bounds after point move');
      });
 
 test('Text', function () {
