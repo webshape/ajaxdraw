@@ -481,10 +481,36 @@ Toolbar.prototype.deselectAll = function () {
 //Colors
 /**
  * @constructor
+ * The Palette single color
+ */
+function PaletteColor(color){
+  this._color = color;
+}
+
+
+/**
+ * @constructor
  * The Palette
  */
 function Palette(){
-  this._colorsList = [];
+  this._colorList = [];
+}
+
+/**
+ * Add a new color to the collection
+ * @param {PaletteColor} p color to add
+ */
+Palette.prototype.add = function (p) {
+  this._colorList.push(p);
+};
+
+
+/**
+ * @constructor
+ * Colour Dialog
+ */
+function ColourDialog(){
+ //TODO
 }
 
 
