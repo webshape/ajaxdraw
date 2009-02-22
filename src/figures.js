@@ -25,8 +25,6 @@ function Figure() {
   this._bounds = new BoundingRectangle(new Point(0, 0), new Point(0, 0));
 }
 
-Figure.abstractMethod('draw');
-Figure.abstractMethod('getMainPoints');
 Figure.reader('_bounds', 'getBounds');
 Figure.reader('_borderColour', 'getBorderColour');
 
@@ -53,6 +51,20 @@ Figure.prototype.isSelected = function () {
 Figure.prototype.eachProperty = function (fn) {
   fn.call(this, this._borderColour);
   fn.call(this, this._bounds);
+};
+
+/**
+ * Return points that the user can modify
+ * @return {Array} an array of the points
+ */
+Figure.prototype.getMainPoints = function () {
+  var b = this.getBounds();
+  var x1 = b.start().x;
+  var y1 = b.start().y;
+  var x2 = b.end().x;
+  var y2 = b.end().y;
+  // return a copy
+  return [new Point(x1, y1), new Point(x2, y2)];
 };
 
 /**
@@ -85,21 +97,6 @@ Figure.prototype.drawSelection = function (c) {
 };
 
 /**
- * Property of a figure
- */
-function Property() {
-
-}
-
-Property.abstractMethod('createWidget');
-
-/**
- * Apply the property to the given context
- * @param {Context} ctx the current canvas context
- */
-Property.abstractMethod('applyToContext');
-
-/**
  * @constructor
  * Rectangle containing a figure
  * Represent both position and size
@@ -110,8 +107,6 @@ function BoundingRectangle(start, end) {
   this._start = start;
   this._end = end;
 }
-
-BoundingRectangle.prototype = new Property();
 
 BoundingRectangle.accessors('_start', 'start', 'setStart');
 BoundingRectangle.accessors('_end', 'end', 'setEnd');
@@ -188,8 +183,6 @@ Opacity.prototype.applyToContext = function (ctx) {
 function Colour(r, g, b, o) {
   this.set(r, g, b, o);
 }
-
-Colour.prototype = new Property();
 
 Colour.reader('_o', 'getOpacity');
 
@@ -278,8 +271,6 @@ function EdgeNumber (val) {
   this._val = val;
 }
 
-EdgeNumber.prototype = new Property();
-
 EdgeNumber.accessors('_val', 'getVal', 'setVal');
 
 EdgeNumber.prototype.createWidget = function () {
@@ -294,8 +285,6 @@ EdgeNumber.prototype.createWidget = function () {
 function TextFont (name) {
   this._name = name;
 }
-
-TextFont.prototype = new Property();
 
 TextFont.prototype.toCSS = function () {
   return this._name;
@@ -431,27 +420,47 @@ FigureSet.prototype.selectFigure = function (where) {
   var c = document.createElement('canvas');
   c.width = 760;
   c.height = 480;
+  //var c = document.getElementById('cv');
+  //c.width = c.width;
   c.getContext('2d').lineWidth = 10; // easier selection of lines
+  var textSelected = null;
   this.each(function (f) {
-              var col = next();
-              fs[col[0].toCSS()] = f;
-              // momentarily change the colour
-              // !! straight access to private attributes
-              var old1 = f._borderColour;
-              var old2 = f._fillColour;
-              f._borderColour = col[0];
-              // figure may not have a fillColour
-              // this won't create any error
-              f._fillColour = col[1];
-              f.draw(c);
-              f._borderColour = old1;
-              f._fillColour = old2;
+              if (f instanceof Text) {
+                // standard method doesn't seem to work with text
+                var b = f.getBounds();
+                var s = b.start();
+                var e = b.end();
+                if (((s.x < where.x && where.x < e.x) 
+                  || (e.x < where.x && where.x < s.x))
+                  && ((s.y < where.y && where.y < e.y) 
+                  || (e.y < where.y && where.y < s.y))) {
+                  textSelected = f;
+                }
+              } else {
+                var col = next();
+                fs[col[0].toCSS()] = f;
+                // momentarily change the colour
+                // !! straight access to private attributes
+                var old1 = f._borderColour;
+                var old2 = f._fillColour;
+                f._borderColour = col[0];
+                // figure may not have a fillColour
+                // this won't create any error
+                f._fillColour = col[1];
+                f.draw(c);
+                f._borderColour = old1;
+                f._fillColour = old2;
+              }
             });
   // get the selected pixel
   var selection = c.getContext('2d').getImageData(where.x, where.y, 1, 1).data;
   var col = new Colour(selection[0], selection[1], selection[2], o);
   //alert(col.toCSS());
-  return fs[col.toCSS()] || null;
+  var res = fs[col.toCSS()];
+  if (!res) {
+    return textSelected; // may be null
+  }
+  return res;
 };
 
 /**
@@ -470,16 +479,6 @@ Circle.reader('_fillColour', 'getFillColour');
 Circle.prototype.eachProperty = function (fn) {
   Figure.prototype.eachProperty.call(this, fn);
   fn.call(this, this._fillColour);
-};
-
-Circle.prototype.getMainPoints = function () {
-  var b = this.getBounds();
-  var s = b.start();
-  var e = b.end();
-  var c = b.centre();
-  c = new Point(c.x + s.x, c.y + s.y);
-  return [new Point(s.x, c.y), new Point(c.x, s.y),
-          new Point(c.x, e.y), new Point(e.x, c.y)];
 };
 
 Circle.prototype.draw = function (c) {
@@ -564,16 +563,6 @@ Polygon.prototype.getPoints = function () {
   return points;
 };
 
-Polygon.prototype.getMainPoints = function () {
-  var s = this.getBounds().start();
-  var pts = this.getPoints();
-  pts.each(function (pt) {
-             pt.x += s.x;
-             pt.y += s.y;
-           });
-  return pts;
-};
-
 Polygon.prototype.draw = function (c) {
   var ctx = c.getContext('2d');
   ctx.save();
@@ -617,16 +606,6 @@ Rectangle.prototype.eachProperty = function (fn) {
   fn.call(this, this._fillColour);
 };
 
-Rectangle.prototype.getMainPoints = function () {
-  var b = this.getBounds();
-  var x1 = b.start().x;
-  var y1 = b.start().y;
-  var x2 = b.end().x;
-  var y2 = b.end().y;
-  return [new Point(x1, y1), new Point(x1, y2),
-          new Point(x2, y2), new Point(x2, y1)];
-};
-
 Rectangle.prototype.draw = function (c) {
   var ctx = c.getContext('2d');
   ctx.save();
@@ -658,12 +637,6 @@ function StraightLine () {
 }
 
 StraightLine.prototype = new Figure();
-
-StraightLine.prototype.getMainPoints = function () {
-  var b = this.getBounds();
-  return [new Point(b.start().x, b.start().y),
-          new Point(b.end().x, b.end().y)];
-};
 
 StraightLine.prototype.draw = function (c) {
   var ctx = c.getContext('2d');
@@ -917,7 +890,8 @@ FreeLine.prototype.getPoints = function () {
 };
 
 FreeLine.prototype.getMainPoints = function () {
-  return this.getPoints();
+  var res = Figure.prototype.getMainPoints.call(this);
+  return res.concat(this.getPoints());
 };
 
 FreeLine.prototype.draw = function (c) {
@@ -1026,11 +1000,6 @@ Text.prototype.eachProperty = function (fn) {
   Figure.prototype.eachProperty.call(this, fn);
   fn.call(this, this._font);
   fn.call(this, this._colour);
-};
-
-Text.prototype.getMainPoints = function () {
-  // it's the same
-  return Rectangle.prototype.getMainPoints.call(this);
 };
 
 Text.prototype.draw = function (c) {

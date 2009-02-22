@@ -226,7 +226,7 @@ Viene aggregata dalla classe \textit{FigureSet}.
 \item[-] \textit{getBounds()} ritorna \textit{{\_}bounds}
 \item[-] \textit{getBorderColour()} ritorna \textit{{\_}borderColour}
 \item[-]  \textit{draw(canvas)} metodo astratto per disegnare la figura sul canvas.
-\item[-]  \textit{getMainPoints} metodo astratto per ottenere i punti della figura manipolabili dall'utente.
+\item[-]  \textit{getMainPoints} ottiene i punti della figura manipolabili dall'utente. Ritorna un array contenente copie del punto di inizio e del punto di fine del \textit{BoundingRectangle}.
 \item[-]  \textit{setSelection(value)} permette di selezionare/deselezionare la figura. Modifica \textit{{\_}selected}.
 \item[-]  \textit{isSelected()} dice se la figura \`e correntemente selezionata. Ritorna \textit{{\_}selected}.
 \item[-]  \textit{eachProperty(fn)} applica la funzione fn ad ogni propriet\`a della figura, ovvero a \textit{{\_}bounds} e \textit{{\_}borderColour}.
@@ -333,7 +333,7 @@ Implementa \textit{Property}.
 \end{elencopuntato}
 \paragraph{Metodi pubblici:}
 \begin{elencopuntato}[\normindent]
-\item[-] \textit{transformPoints} effettua una trasformazione sulla figura selezionata nel canvas, ritorna la modifica dei vertici della figura ottenuti attraverso il metodo\textit{getMainPoints}; la figura viene ridisegnata con l'ausilio del metodo \textit{draw(canvas). 
+\item[-] \textit{transformPoints} effettua una trasformazione sulla figura selezionata nel canvas, ritorna la modifica dei vertici della figura ottenuti attraverso il metodo\textit{getMainPoints}; la figura viene ridisegnata con l'ausilio del metodo \textit{draw(canvas)}. 
 \item[-] \textit{createWidget} crea e ritorna un'istanza di \textit{RotationSetter} passando se stesso come parametro al costruttore.
 \end{elencopuntato}
 
@@ -507,6 +507,7 @@ Creato dalla lettura di un file SVG oppure dall'interfaccia utente. Manipolato d
 \item[-] \textit{extend(point)} aggiunge un punto avente coordinate assolute ai punti di controllo. Nel caso il punto esca dal \textit{BoundingRectangle}, il \textit{BoundingRectangle} viene ampliato e tutti i punti di controllo (con coordinate relative) vengono ricalcolati in modo che mantengano la posizione precedente. Per maggiori dettagli si veda il diagramma di attivit\`a [TODO: inserire diagramma].
 \item[-] \textit{move(point, to)} muove il punto di controllo \textit{point} (se appartiene alla linea) e lo mette in \textit{to}. Aggiusta il \textit{BoundingRectangle} di conseguenza. I due punti hanno coordinate assolute.
 \item[-] \textit{getPoints} ritorna un array con una copia dei punti di controllo della linea convertiti a coordinate assolute in base al \textit{BoundingRectangle}.
+\item[-] \textit{getMainPoints} ritorna un array ottenuto concatenando l'array di \textit{getMainPoints} della superclasse e i punti ottenuti con \textit{getPoints}.
 \item[-] \textit{draw(canvas)} chiama \textit{applyToContext} sul colore del bordo e ottiene i punti di controllo assoluti tramite \textit{getPoints}. Usa il primo punto come inizio della prima curva e raggruppa i punti a 3 a 3 e per ogni gruppo traccia una curva di bezier. Se rimangono due punti traccia una quadratica e se ne rimane uno solo una linea diritta.
 \item[-] \textit{drawSelection(canvas)} richiama \textit{drawSelection} di \textit{Figure} e disegna le tangenti alla curva di colore grigio con opacit\`a 0.8. Le tangenti sono dei segmenti che congiungono il punto di inizio/fine curva al relativo punto di controllo.
 \item[-] \textit{toSVG(gen)} si serve dei metodi di \textit{gen} (di tipo \textit{SVGGenerator}) per scrivere le propriet\`a della figura in formato SVG.

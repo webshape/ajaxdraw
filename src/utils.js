@@ -5,16 +5,6 @@
  */
 
 /**
- * Define an abstract method
- * @param {String} name of the abstract method
- */
-Function.prototype.abstractMethod = function (name) {
-  this[name] = function () {
-    throw "Can't call abstract method";
-  };
-};
-
-/**
  * Define reader function getSlot
  * @param {String} slot name of the slot
  * @param {String} publicName public name of the slot (optional)
