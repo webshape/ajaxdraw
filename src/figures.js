@@ -54,6 +54,20 @@ Figure.prototype.eachProperty = function (fn) {
 };
 
 /**
+ * Return points that the user can modify
+ * @return {Array} an array of the points
+ */
+Figure.prototype.getMainPoints = function () {
+  var b = this.getBounds();
+  var x1 = b.start().x;
+  var y1 = b.start().y;
+  var x2 = b.end().x;
+  var y2 = b.end().y;
+  // return a copy
+  return [new Point(x1, y1), new Point(x2, y2)];
+};
+
+/**
  * Draw small squares around the main points of the figure
  * @param {Canvas} c the canvas
  */
@@ -449,16 +463,6 @@ Circle.prototype.eachProperty = function (fn) {
   fn.call(this, this._fillColour);
 };
 
-Circle.prototype.getMainPoints = function () {
-  var b = this.getBounds();
-  var s = b.start();
-  var e = b.end();
-  var c = b.centre();
-  c = new Point(c.x + s.x, c.y + s.y);
-  return [new Point(s.x, c.y), new Point(c.x, s.y),
-          new Point(c.x, e.y), new Point(e.x, c.y)];
-};
-
 Circle.prototype.draw = function (c) {
   var ctx = c.getContext('2d');
   ctx.save();
@@ -541,16 +545,6 @@ Polygon.prototype.getPoints = function () {
   return points;
 };
 
-Polygon.prototype.getMainPoints = function () {
-  var s = this.getBounds().start();
-  var pts = this.getPoints();
-  pts.each(function (pt) {
-             pt.x += s.x;
-             pt.y += s.y;
-           });
-  return pts;
-};
-
 Polygon.prototype.draw = function (c) {
   var ctx = c.getContext('2d');
   ctx.save();
@@ -594,16 +588,6 @@ Rectangle.prototype.eachProperty = function (fn) {
   fn.call(this, this._fillColour);
 };
 
-Rectangle.prototype.getMainPoints = function () {
-  var b = this.getBounds();
-  var x1 = b.start().x;
-  var y1 = b.start().y;
-  var x2 = b.end().x;
-  var y2 = b.end().y;
-  return [new Point(x1, y1), new Point(x1, y2),
-          new Point(x2, y2), new Point(x2, y1)];
-};
-
 Rectangle.prototype.draw = function (c) {
   var ctx = c.getContext('2d');
   ctx.save();
@@ -635,12 +619,6 @@ function StraightLine () {
 }
 
 StraightLine.prototype = new Figure();
-
-StraightLine.prototype.getMainPoints = function () {
-  var b = this.getBounds();
-  return [new Point(b.start().x, b.start().y),
-          new Point(b.end().x, b.end().y)];
-};
 
 StraightLine.prototype.draw = function (c) {
   var ctx = c.getContext('2d');
@@ -894,7 +872,8 @@ FreeLine.prototype.getPoints = function () {
 };
 
 FreeLine.prototype.getMainPoints = function () {
-  return this.getPoints();
+  var res = Figure.prototype.getMainPoints.call(this);
+  return res.concat(this.getPoints());
 };
 
 FreeLine.prototype.draw = function (c) {
@@ -1003,11 +982,6 @@ Text.prototype.eachProperty = function (fn) {
   Figure.prototype.eachProperty.call(this, fn);
   fn.call(this, this._font);
   fn.call(this, this._colour);
-};
-
-Text.prototype.getMainPoints = function () {
-  // it's the same
-  return Rectangle.prototype.getMainPoints.call(this);
 };
 
 Text.prototype.draw = function (c) {
