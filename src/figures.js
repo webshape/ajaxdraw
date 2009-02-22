@@ -423,26 +423,44 @@ FigureSet.prototype.selectFigure = function (where) {
   //var c = document.getElementById('cv');
   //c.width = c.width;
   c.getContext('2d').lineWidth = 10; // easier selection of lines
+  var textSelected = null;
   this.each(function (f) {
-              var col = next();
-              fs[col[0].toCSS()] = f;
-              // momentarily change the colour
-              // !! straight access to private attributes
-              var old1 = f._borderColour;
-              var old2 = f._fillColour;
-              f._borderColour = col[0];
-              // figure may not have a fillColour
-              // this won't create any error
-              f._fillColour = col[1];
-              f.draw(c);
-              f._borderColour = old1;
-              f._fillColour = old2;
+              if (f instanceof Text) {
+                // standard method doesn't seem to work with text
+                var b = f.getBounds();
+                var s = b.start();
+                var e = b.end();
+                if (((s.x < where.x && where.x < e.x) 
+                  || (e.x < where.x && where.x < s.x))
+                  && ((s.y < where.y && where.y < e.y) 
+                  || (e.y < where.y && where.y < s.y))) {
+                  textSelected = f;
+                }
+              } else {
+                var col = next();
+                fs[col[0].toCSS()] = f;
+                // momentarily change the colour
+                // !! straight access to private attributes
+                var old1 = f._borderColour;
+                var old2 = f._fillColour;
+                f._borderColour = col[0];
+                // figure may not have a fillColour
+                // this won't create any error
+                f._fillColour = col[1];
+                f.draw(c);
+                f._borderColour = old1;
+                f._fillColour = old2;
+              }
             });
   // get the selected pixel
   var selection = c.getContext('2d').getImageData(where.x, where.y, 1, 1).data;
   var col = new Colour(selection[0], selection[1], selection[2], o);
   //alert(col.toCSS());
-  return fs[col.toCSS()] || null;
+  var res = fs[col.toCSS()];
+  if (!res) {
+    return textSelected; // may be null
+  }
+  return res;
 };
 
 /**
