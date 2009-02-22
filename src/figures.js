@@ -25,8 +25,6 @@ function Figure() {
   this._bounds = new BoundingRectangle(new Point(0, 0), new Point(0, 0));
 }
 
-Figure.abstractMethod('draw');
-Figure.abstractMethod('getMainPoints');
 Figure.reader('_bounds', 'getBounds');
 Figure.reader('_borderColour', 'getBorderColour');
 
@@ -85,21 +83,6 @@ Figure.prototype.drawSelection = function (c) {
 };
 
 /**
- * Property of a figure
- */
-function Property() {
-
-}
-
-Property.abstractMethod('createWidget');
-
-/**
- * Apply the property to the given context
- * @param {Context} ctx the current canvas context
- */
-Property.abstractMethod('applyToContext');
-
-/**
  * @constructor
  * Rectangle containing a figure
  * Represent both position and size
@@ -110,8 +93,6 @@ function BoundingRectangle(start, end) {
   this._start = start;
   this._end = end;
 }
-
-BoundingRectangle.prototype = new Property();
 
 BoundingRectangle.accessors('_start', 'start', 'setStart');
 BoundingRectangle.accessors('_end', 'end', 'setEnd');
@@ -188,8 +169,6 @@ Opacity.prototype.applyToContext = function (ctx) {
 function Colour(r, g, b, o) {
   this.set(r, g, b, o);
 }
-
-Colour.prototype = new Property();
 
 Colour.reader('_o', 'getOpacity');
 
@@ -278,8 +257,6 @@ function EdgeNumber (val) {
   this._val = val;
 }
 
-EdgeNumber.prototype = new Property();
-
 EdgeNumber.accessors('_val', 'getVal', 'setVal');
 
 EdgeNumber.prototype.createWidget = function () {
@@ -294,8 +271,6 @@ EdgeNumber.prototype.createWidget = function () {
 function TextFont (name) {
   this._name = name;
 }
-
-TextFont.prototype = new Property();
 
 TextFont.prototype.toCSS = function () {
   return this._name;
