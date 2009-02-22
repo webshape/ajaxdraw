@@ -64,25 +64,6 @@ function createEdgeDialog(){
 
 /*parte di jQuery */
 $(document).ready(function(){
-/* carica fogli di stile diversi a seconda del browser */
- /* if ($.browser.name=="safari") {
-   	   activateStylesheet('safari.css');
-  }
-     else if ($.browser.name=="chrome") {
-   	   activateStylesheet('chrome.css');
-     }
-     else if ($.browser.name=="msie") {
-       activateStylesheet('msie.css');
-   	//   $("canvas").css({"margin-top":"-13em"});
-     }
-     else if ($.browser.name=="opera") {
-   	   activateStylesheet('opera.css');
-     }
-     else if ($.browser.name=="konqueror") {
-   	   activateStylesheet('konqueror.css');
-     }*/
-
-
 //dialog skin nera
 
 
@@ -103,8 +84,6 @@ $(document).ready(function(){
 
 
 //end  skin black
-
-
 
 /*Creazione dialog colore */
        createColDialog();
@@ -160,7 +139,6 @@ $(document).ready(function(){
        }
      );
 
-
      $(".toolbarButton").hover(
        function(){
 	 $(this).fadeOut(100);
@@ -183,7 +161,6 @@ $(document).ready(function(){
 
        }
      );
-
 /*Animazione tooltip su pulsante toolbar ritardata di 1 secondo*/
        $(".toolbarButton").tooltip(
 	 {delay: 1000}
@@ -193,10 +170,6 @@ $(document).ready(function(){
   page.loadStylesheet();
   var canvasObj = new Canvas();
   var canvas = canvasObj.getId();
-
- // if ($.browser.msie) { // hack for internet explorer
- //   canvas=window.G_vmlCanvasManager.initElement(canvas);
- // }
 
   var ctx = canvas.getContext("2d");   //prendo il contesto
   //var canvasLeft = ctx.canvas.offsetLeft;
@@ -212,6 +185,7 @@ $(document).ready(function(){
   var squareButton = new SquareButton();toolbar.add(squareButton);
   var circleButton = new CircleButton();toolbar.add(circleButton);
   var polygonButton = new PolygonButton();toolbar.add(polygonButton);
+  var freeLineButton = new FreeLineButton();toolbar.add(freeLineButton);
   var polygonEdgeNumber = 7;
   var textButton = new TextButton();toolbar.add(textButton);
 
@@ -259,6 +233,12 @@ $("#bezierCurveButton").click(function () {
     toolbar.deselectAll();
     var edge = createEdgeDialog(polygonEdgeNumber);
     polygonButton.bindCanvas(canvas,canvasObj,visual,figureSet);
+  });
+
+  $("#freeLineButton").click(function () {
+    toolbar.deselectAll();
+    freeLineButton.bindCursor("text");
+    freeLineButton.bindCanvas(canvas,canvasObj,visual,figureSet);
   });
 
   $("#textButton").click(function () {

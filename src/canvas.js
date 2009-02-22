@@ -428,6 +428,85 @@ PolygonButton.prototype.getBuilder = function () {
   return Polygon;
 };
 
+/**
+ * @constructor
+ * The Polygon drawing button
+ */
+function PolygonButton () {
+  Button.call(this);
+  this._id = document.getElementById("polygonButton");
+}
+
+PolygonButton.prototype = new Button();
+
+PolygonButton.prototype.getId = function (){
+  return this._id;
+};
+
+PolygonButton.prototype.getBuilder = function () {
+  return Polygon;
+};
+
+/**
+ * @constructor
+ * The FreeLine drawing button
+ */
+function FreeLineButton () {
+  Button.call(this);
+  this._id = document.getElementById("textButton");
+}
+
+FreeLineButton.prototype = new Button();
+
+FreeLineButton.prototype.getId = function (){
+  return this._id;
+};
+
+FreeLineButton.prototype.getBuilder = function () {
+  return FreeLine;
+};
+
+FreeLineButton.prototype.bindCanvas = function (canvas,canvasObj,visual,figureSet) {
+  this.setSelection(true);
+   $("#cv").unbind('mousedown click mouseup');
+   canvasObj.clear();
+   visual.refresh();//per togliere un'eventuale selezione
+   var s = [];
+   var f;
+   var self = this;
+   $("#cv").bind("mousedown", function(e){
+   //  var builder = self.getBuilder();
+     var f = s[0] = new FreeLine();
+     var coords = visual.getClickCoordsWithinTarget(e);
+     f.getBorderColour().getOpacity().setVal(1);
+     f.getBorderColour().fromCSS(BorderColor);
+     f.getBounds().setStart(new Point(coords.x, coords.y));
+
+    $("#cv").bind("mousemove",function(e){
+        var coords2 = visual.getClickCoordsWithinTarget(e);
+	if(Math.abs(coords.x-coords2.x)>40 &&(Math.abs(coords.y-coords2.y)>40 )){
+	     f.extend(new Point(coords2.x, coords2.y));
+
+	f.getBounds().setEnd(new Point(coords2.x, coords2.y));}
+	canvasObj.clear();
+	visual.refresh();
+	f.draw(canvas);
+    });
+
+    }).bind("mouseup",function(e){  //jQuery mouseup event bind
+      $("#cv").unbind('mousemove');
+      var coords1 = visual.getClickCoordsWithinTarget(e);
+      var f = s[0];
+      f.getBounds().setEnd(new Point(coords1.x, coords1.y));
+      visual.getFigureSet().add(f);
+      canvasObj.clear();
+      visual.refresh();
+    });
+};
+
+
+
+
 
 /**
  * @constructor
@@ -447,6 +526,7 @@ TextButton.prototype.getId = function (){
 TextButton.prototype.getBuilder = function () {
   return Text;
 };
+
 
 TextButton.prototype.bindCanvas = function (canvas,canvasObj,visual,figureSet) {
   this.setSelection(true);

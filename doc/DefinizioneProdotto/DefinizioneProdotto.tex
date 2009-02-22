@@ -204,6 +204,28 @@ Si vedano le \textit{NormeDiprogetto}.
 Si vedano le \textit{NormeDiprogetto}.
 
 \sezione{Specifica delle componenti}
+\subsezione{GUILogic}
+\subsezione{Page}
+\subsubsezione{Tipo, obiettivo e funzione del componente}
+Classe concreta che rappresenta la pagina web visualizzata dall'utente tramite l'internet browser, contenitore di tutti i widgets componenti l'interfaccia.
+\subsubsezione{Relazioni d'uso di altre componenti}
+\` E composta da istanze delle classi \textit{Toolbar}, \textit{Button}, \textit{Palette}, \textit{ColourDialog}, \textit{PropertiesDialog} e \textit{Visualization}.
+\subsubsezione{Interfacce e relazioni di uso da altre componenti}
+Nessuna.
+\subsubsezione{Attivit\`a svolte e dati trattati}
+\paragrafo{Attributi privati:}
+\begin{elencopuntato}[\normindent]
+\item[-] \textit{{\_}browserName} nome del browser utilizzato;
+\item[-] \textit{{\_}browserVersion} versione del browser utilizzato;
+\end{elencopuntato}
+\paragrafo{Metodi pubblici:}
+\begin{elencopuntato}[\normindent]
+\item[-] \textit{getBrowserName()} ritorna \textit{{\_}browserName}
+\item[-] \textit{getBrowserVersion()} ritorna \textit{{\_}browserVersion}
+\end{elencopuntato}
+
+
+
 
 \subsezione{ApplicationLogic}
 
