@@ -3,6 +3,7 @@
 <html>
 <head>
   <script src="../lib/jquery.js"></script>
+  <script src="../lib/jquery.browser.js"></script>
   <link rel="stylesheet" href="http://dev.jquery.com/view/trunk/qunit/testsuite.css" type="text/css" media="screen" />
 
 <!--[if IE]><script type="text/javascript" src="../lib/excanvas.js"></script><![endif]-->
@@ -10,12 +11,15 @@
   <script src="../utils.js"></script>
   <script src="../figures.js"></script>
   <script src="../save.js"></script>
+  <script src="../canvas.js"></script>
   <script src="figuresTest.js"></script>
   <script src="saveTest.js"></script>
+  <script src="guiTest.js"></script>
   <script>
 $(document).ready(function () {
 runFiguresTest();
 runSaveTest();
+runGuiTest();
 });
   </script>
 </head>
@@ -28,6 +32,6 @@ runSaveTest();
  <ol id="tests"></ol>
 
  <div id="main"></div>
- 
+ <canvas style="display:none"id="cv" height="480" width="760"></canvas>
 </body>
 </html>

@@ -55,8 +55,8 @@ Page.prototype.loadStylesheet = function (){
  * The Canvas
  */
 function Canvas(){
-  this._height = 480;
-  this._width = 760;
+  this._height = document.getElementById("cv").getAttribute('height');
+  this._width = document.getElementById("cv").getAttribute('width');
   this._id = document.getElementById("cv");
 }
 
@@ -82,7 +82,23 @@ Canvas.prototype.clear = function () {
 
 };
 
+Canvas.prototype.getHeight = function(){
+	return this._height;
+};
 
+Canvas.prototype.getWidth = function(){
+	return this._width;
+};
+
+Canvas.prototype.setHeight = function(val){
+	this._height = val;
+	this.setAttribute('height', val);
+};
+
+Canvas.prototype.setWidth = function(val){
+	this._width = val;
+	this.setAttribute('width', val);
+};
 /**
  * @constructor
  * Visualization handler
@@ -335,12 +351,30 @@ StraightLineButton.prototype.getBuilder = function () {
   return StraightLine;
 };
 
+/**
+ * @constructor
+ * The Bezier Curve button
+ */
+function BezierCurveButton () {
+  Button.call(this);
+  this._id = document.getElementById("bezierCurveButton");
+}
+
+BezierCurveButton.prototype = new Button();
+
+BezierCurveButton.prototype.getId = function (){
+  return this._id;
+};
+
+BezierCurveButton.prototype.getBuilder = function () {
+  return BezierCurve;
+};
+
 
 /**
  * @constructor
  * The Square drawing button
  */
-
 function SquareButton () {
   Button.call(this);
   this._id = document.getElementById("squareButton");
@@ -556,84 +590,15 @@ ColourDialog.prototype.create= function(){
 };
 
 
-
-/* Do not touch */
-$(document).ready(function(){
-  var page = new Page();
-  page.loadStylesheet();
-  var canvasObj = new Canvas();
-  var canvas = canvasObj.getId();
-
- // if ($.browser.msie) { // hack for internet explorer
- //   canvas=window.G_vmlCanvasManager.initElement(canvas);
- // }
-
-  var ctx = canvas.getContext("2d");   //prendo il contesto
-  //var canvasLeft = ctx.canvas.offsetLeft;
-  //var canvasTop = ctx.canvas.offsetTop;
-  var figureSet = new FigureSet();
-  var visual = new Visualization(figureSet);
-  //Toolbar Creation
-  var toolbar = new Toolbar();
-  var selectionButton = new SelectionButton();toolbar.add(selectionButton);
-  var zoomButton = new ZoomButton();toolbar.add(zoomButton);
-  var straightLineButton = new StraightLineButton();toolbar.add(straightLineButton);
-  var squareButton = new SquareButton();toolbar.add(squareButton);
-  var circleButton = new CircleButton();toolbar.add(circleButton);
-  var polygonButton = new PolygonButton();toolbar.add(polygonButton);
-  var polygonEdgeNumber = 7;
-  var textButton = new TextButton();toolbar.add(textButton);
-
-
-  var palette = new Palette();
-  var colourDialog = new ColourDialog();
-
-  $("#selectionButton").click(function () {
-    toolbar.deselectAll();
-    selectionButton.bindCursor("selection");
-    selectionButton.bindCanvas(canvas,canvasObj,visual,figureSet);
-  });
-
-  $("#zoomButton").click(function () {
-    alert("Not yet implemented" );
-  });
-
-  $("#straightLineButton").click(function () {
-    toolbar.deselectAll();
-    straightLineButton.bindCursor("line");
-    straightLineButton.bindCanvas(canvas,canvasObj,visual,figureSet);
-  });
-
-  $("#squareButton").click(function () {
-    toolbar.deselectAll();
-    squareButton.bindCursor("square");
-    squareButton.bindCanvas(canvas,canvasObj,visual,figureSet);
-  });
-
-  $("#circleButton").click(function () {
-    circleButton.bindCursor("circle");
-    toolbar.deselectAll();
-    circleButton.bindCanvas(canvas,canvasObj,visual,figureSet);
-  });
-
-  $("#polygonButton").click(function () {
-    toolbar.deselectAll();
-    var edge = createEdgeDialog(polygonEdgeNumber);
-    polygonButton.bindCanvas(canvas,canvasObj,visual,figureSet);
-  });
-
-  $("#textButton").click(function () {
-    toolbar.deselectAll();
-    textButton.bindCursor("text");
-    textButton.bindCanvas(canvas,canvasObj,visual,figureSet);
-
-  });
-
-
-function updateInfos(figure){
-  document.getElementById("DialogHeight").value=figure.getBounds().h();
-  document.getElementById("DialogWidth").value=figure.getBounds().w();
+function EdgeNumberSetter(){
+ //TODO
 }
 
+function BoundingRectangleSetter(){
+ //TODO
+}
+/* Do not touch
+$(document).ready(function(){
+
 ///fine
-});
+});*/

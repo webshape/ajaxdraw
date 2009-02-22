@@ -182,8 +182,6 @@ $(document).ready(function(){
 //	 $(this).effect("highlight");  //highlight
 
        }
-     // if($.browser.opera==false){
-     //  $("canvas").css({'cursor' : 'url("../pages/images/selezione.gif")'});}
      );
 
 /*Animazione tooltip su pulsante toolbar ritardata di 1 secondo*/
@@ -191,6 +189,90 @@ $(document).ready(function(){
 	 {delay: 1000}
        );
 
+  var page = new Page();
+  page.loadStylesheet();
+  var canvasObj = new Canvas();
+  var canvas = canvasObj.getId();
+
+ // if ($.browser.msie) { // hack for internet explorer
+ //   canvas=window.G_vmlCanvasManager.initElement(canvas);
+ // }
+
+  var ctx = canvas.getContext("2d");   //prendo il contesto
+  //var canvasLeft = ctx.canvas.offsetLeft;
+  //var canvasTop = ctx.canvas.offsetTop;
+  var figureSet = new FigureSet();
+  var visual = new Visualization(figureSet);
+  //Toolbar Creation
+  var toolbar = new Toolbar();
+  var selectionButton = new SelectionButton();toolbar.add(selectionButton);
+  var zoomButton = new ZoomButton();toolbar.add(zoomButton);
+  var straightLineButton = new StraightLineButton();toolbar.add(straightLineButton);
+  var bezierCurveButton = new BezierCurveButton();toolbar.add(bezierCurveButton);
+  var squareButton = new SquareButton();toolbar.add(squareButton);
+  var circleButton = new CircleButton();toolbar.add(circleButton);
+  var polygonButton = new PolygonButton();toolbar.add(polygonButton);
+  var polygonEdgeNumber = 7;
+  var textButton = new TextButton();toolbar.add(textButton);
+
+
+  var palette = new Palette();
+  var colourDialog = new ColourDialog();
+
+  $("#selectionButton").click(function () {
+    toolbar.deselectAll();
+    selectionButton.bindCursor("selection");
+    selectionButton.bindCanvas(canvas,canvasObj,visual,figureSet);
+  });
+
+  $("#zoomButton").click(function () {
+    alert("Not yet implemented" );
+  });
+
+  $("#straightLineButton").click(function () {
+    toolbar.deselectAll();
+    straightLineButton.bindCursor("line");
+    straightLineButton.bindCanvas(canvas,canvasObj,visual,figureSet);
+  });
+
+$("#bezierCurveButton").click(function () {
+    toolbar.deselectAll();
+    bezierCurveButton.bindCursor("bezier");
+    bezierCurveButton.bindCanvas(canvas,canvasObj,visual,figureSet);
+  });
+
+
+
+  $("#squareButton").click(function () {
+    toolbar.deselectAll();
+    squareButton.bindCursor("square");
+    squareButton.bindCanvas(canvas,canvasObj,visual,figureSet);
+  });
+
+  $("#circleButton").click(function () {
+    circleButton.bindCursor("circle");
+    toolbar.deselectAll();
+    circleButton.bindCanvas(canvas,canvasObj,visual,figureSet);
+  });
+
+  $("#polygonButton").click(function () {
+    toolbar.deselectAll();
+    var edge = createEdgeDialog(polygonEdgeNumber);
+    polygonButton.bindCanvas(canvas,canvasObj,visual,figureSet);
+  });
+
+  $("#textButton").click(function () {
+    toolbar.deselectAll();
+    textButton.bindCursor("text");
+    textButton.bindCanvas(canvas,canvasObj,visual,figureSet);
+
+  });
+
+
+function updateInfos(figure){
+  document.getElementById("DialogHeight").value=figure.getBounds().h();
+  document.getElementById("DialogWidth").value=figure.getBounds().w();
+}
 
 
 
