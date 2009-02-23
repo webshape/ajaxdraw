@@ -469,7 +469,8 @@ FreeLineButton.prototype.getBuilder = function () {
   return FreeLine;
 };
 
-FreeLineButton.prototype.bindCanvas = function (canvas,canvasObj,visual,figureSet) {
+FreeLineButton.prototype.bindCanvas = function (toolbar,canvas,canvasObj,visual,figureSet) {
+  toolbar.deselectAll();
   this.setSelection(true);
    $("#cv").unbind('mousedown click mouseup');
    canvasObj.clear();
@@ -531,7 +532,8 @@ TextButton.prototype.getBuilder = function () {
 };
 
 
-TextButton.prototype.bindCanvas = function (canvas,canvasObj,visual,figureSet,BorderColor,FillColor) {
+TextButton.prototype.bindCanvas = function (toolbar,canvas,canvasObj,visual,figureSet,BorderColor,FillColor) {
+toolbar.deselectAll();
   this.setSelection(true);
    $("#cv").unbind('mousedown click mouseup');
    canvasObj.clear();
