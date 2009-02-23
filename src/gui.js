@@ -58,6 +58,11 @@ function createEdgeDialog(){
 
 }
 
+/* utile x coordinate*/
+function setup()
+{
+  document.getElementById('cv').onclick=foo;
+}
 
 /*click sul canvas restituisce le coordinate della posizione cliccata*/
 /* da implementare su dialog attributi */
@@ -94,37 +99,20 @@ function getClickCoordsWithinTarget(event)
  
 function foo(e) {
  
-  // event handling functions like this one
- 
-  // get a reference to the event they handle
- 
-  // (in this case as "e").
- 
   coords = getClickCoordsWithinTarget(e);
-  alert(properties(coords));
+  document.getElementById('x').value=coords.x;
+  document.getElementById('y').value=coords.y;
 }
- 
-function properties(obj) //new
-{
-   var result = '{ ';
-   var comma = '';
-   for (var property in obj)
-   {
-      if(String(obj[property]).indexOf('function') < 0)
-        result += comma + property + ': ' + obj[property] + "\n";
-      comma = ', ';
-   }
-   result += ' }';
-   return result
-}
+
 /*end coordinate*/
 
 
 
 /*parte di jQuery */
 $(document).ready(function(){
-//dialog skin nera
 
+
+//dialog skin nera
 
      $('#dialog').dialog({
        autoOpen: true,
@@ -140,7 +128,6 @@ $(document).ready(function(){
        width: 250,
        dialogClass: "Dialog1"
      });
-
 
 //end  skin black
 
