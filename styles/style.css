@@ -94,6 +94,9 @@ margin-left:0.5em;
 #polygonButton{
 	background-image:url("../pages/images/poligono.png");
 }
+#freeLineButton{
+	background-image:url("../pages/images/freeline.png");
+}
 #textButton{
 	background-image:url("../pages/images/testo.png");
 }

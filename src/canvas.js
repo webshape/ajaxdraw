@@ -195,7 +195,7 @@ Button.prototype.isSelected = function () {
  * @param {Visualization} visual che Visualization object
  * @param {FigureSet} figureSet the set of figures
  */
-Button.prototype.bindCanvas = function (canvas,canvasObj,visual,figureSet) {
+Button.prototype.bindCanvas = function (canvas,canvasObj,visual,figureSet,BorderColor,FillColor) {
   this.setSelection(true);
    $("#cv").unbind('mousedown click mouseup');
    canvasObj.clear();
@@ -203,6 +203,7 @@ Button.prototype.bindCanvas = function (canvas,canvasObj,visual,figureSet) {
    var s = [];
    var f;
    var self = this;
+  alert(BorderColor + FillColor);
    $("#cv").bind("mousedown", function(e){
      var builder = self.getBuilder();
      var f = s[0] = new builder();
@@ -528,7 +529,7 @@ TextButton.prototype.getBuilder = function () {
 };
 
 
-TextButton.prototype.bindCanvas = function (canvas,canvasObj,visual,figureSet) {
+TextButton.prototype.bindCanvas = function (canvas,canvasObj,visual,figureSet,BorderColor,FillColor) {
   this.setSelection(true);
    $("#cv").unbind('mousedown click mouseup');
    canvasObj.clear();
@@ -630,25 +631,47 @@ Palette.prototype.each = function (fn) {
  * @param {String} string with hex color representation
  * @return  null
  */
-Palette.prototype.setColour = function (col){
-  $(".paletteComponent").click(function () {
+Palette.prototype.setColour = function (col,prec1,prec2){
+  var colore = { BorderColor: prec1, FillColor: prec2};
+
   if( document.getElementById("comboColor").value=="border"){
     $.farbtastic("#color1").setColor(col);
     document.getElementById("color1").value=$.farbtastic("#color1").color;
     document.getElementById("borderColorNow").style.backgroundColor=col;
-    BorderColor=col;
+    colore.BorderColor=col;
   }
   else{
- $.farbtastic("#color2").setColor(col);
+    $.farbtastic("#color2").setColor(col);
     document.getElementById("color2").value=$.farbtastic("#color2").color;
     document.getElementById("fillColorNow").style.backgroundColor=col;
-    FillColor=col;
+    colore.FillColor=col;
   }
-});
 
+  return colore;
 
 };
 
+Palette.prototype.rgbToHex= function (rgb) {
+  var rgbvals = /rgb\((.+),(.+),(.+)\)/i.exec(rgb);
+  var rval = parseInt(rgbvals[1]);
+  var gval = parseInt(rgbvals[2]);
+  var bval = parseInt(rgbvals[3]);
+  var to16 = function (x) {
+    if (x < 16) {
+      return '0' + x.toString(16);
+    }
+    else {
+      return x.toString(16);
+    }
+  };
+
+  return '#' + (
+   to16( rval.toString(16)) +
+   to16( gval.toString(16)) +
+   to16( bval.toString(16))
+  ).toUpperCase();
+
+};
 
 /**
  * @constructor

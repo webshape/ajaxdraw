@@ -1,5 +1,4 @@
-var BorderColor="#000000";
-var FillColor="#000000";
+
 
 
 
@@ -188,10 +187,30 @@ $(document).ready(function(){
   var freeLineButton = new FreeLineButton();toolbar.add(freeLineButton);
   var polygonEdgeNumber = 7;
   var textButton = new TextButton();toolbar.add(textButton);
+  var color= {  BorderColor:"#000000", FillColor:"#000000"};
+
+ // var BorderColor="#000000";
+//  var FillColor="#000000";
 
 
   var palette = new Palette();
+  var hex = palette.rgbToHex($("#lastPalette").css("background-color"));
+  color = palette.setColour(hex,color.BorderColor,color.FillColor);
+
   var colourDialog = new ColourDialog();
+
+
+
+
+
+
+
+
+  $(".paletteComponent").click(function () {
+    var hex2 = palette.rgbToHex($(this).css("background-color"));
+    color = palette.setColour(hex2,color.BorderColor,color.FillColor);
+  });
+
 
   $("#selectionButton").click(function () {
     toolbar.deselectAll();
@@ -220,7 +239,7 @@ $("#bezierCurveButton").click(function () {
   $("#squareButton").click(function () {
     toolbar.deselectAll();
     squareButton.bindCursor("square");
-    squareButton.bindCanvas(canvas,canvasObj,visual,figureSet);
+    squareButton.bindCanvas(canvas,canvasObj,visual,figureSet,color.BorderColor,color.FillColor);
   });
 
   $("#circleButton").click(function () {
@@ -247,6 +266,7 @@ $("#bezierCurveButton").click(function () {
     textButton.bindCanvas(canvas,canvasObj,visual,figureSet);
 
   });
+
 
 
 function updateInfos(figure){
