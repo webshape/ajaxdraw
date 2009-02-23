@@ -1,5 +1,4 @@
-var BorderColor="#000000";
-var FillColor="#000000";
+
 
 
 
@@ -8,7 +7,7 @@ var FillColor="#000000";
  * @param {String} string with hex color representation
  * @return  null
  */
-function changeFarbColor(col){
+/*function changeFarbColor(col){
   if( document.getElementById("comboColor").value=="border"){
   $.farbtastic("#color1").setColor(col);
   document.getElementById("color1").value=$.farbtastic("#color1").color;
@@ -21,7 +20,7 @@ function changeFarbColor(col){
   document.getElementById("fillColorNow").style.backgroundColor=col;
   FillColor=col;
   }
-}
+}*/
 
 
 
@@ -58,6 +57,11 @@ function createEdgeDialog(){
 
 }
 
+/* utile x coordinate*/
+function setup()
+{
+  document.getElementById('cv').onclick=foo;
+}
 
 /*click sul canvas restituisce le coordinate della posizione cliccata*/
 /* da implementare su dialog attributi */
@@ -65,7 +69,7 @@ function createEdgeDialog(){
 function getClickCoordsWithinTarget(event)
 {
 	var coords = { x: 0, y: 0};
- 
+
 	if(!event) // then we're in a non-DOM (probably IE) browser
 	{
 		event = window.event;
@@ -77,54 +81,37 @@ function getClickCoordsWithinTarget(event)
 		var Element = event.target ;
 		var CalculatedTotalOffsetLeft = 0;
 		var CalculatedTotalOffsetTop = 0 ;
- 
+
 		while (Element.offsetParent)
  		{
- 			CalculatedTotalOffsetLeft += Element.offsetLeft ;     
+ 			CalculatedTotalOffsetLeft += Element.offsetLeft ;
 			CalculatedTotalOffsetTop += Element.offsetTop ;
  			Element = Element.offsetParent ;
  		}
- 
+
 		coords.x = event.pageX - CalculatedTotalOffsetLeft ;
 		coords.y = event.pageY - CalculatedTotalOffsetTop ;
 	}
- 
+
 	return coords;
 }
- 
+
 function foo(e) {
- 
-  // event handling functions like this one
- 
-  // get a reference to the event they handle
- 
-  // (in this case as "e").
- 
+
   coords = getClickCoordsWithinTarget(e);
-  alert(properties(coords));
+  document.getElementById('x').value=coords.x;
+  document.getElementById('y').value=coords.y;
 }
- 
-function properties(obj) //new
-{
-   var result = '{ ';
-   var comma = '';
-   for (var property in obj)
-   {
-      if(String(obj[property]).indexOf('function') < 0)
-        result += comma + property + ': ' + obj[property] + "\n";
-      comma = ', ';
-   }
-   result += ' }';
-   return result
-}
+
 /*end coordinate*/
 
 
 
 /*parte di jQuery */
 $(document).ready(function(){
-//dialog skin nera
 
+
+//dialog skin nera
 
      $('#dialog').dialog({
        autoOpen: true,
@@ -140,7 +127,6 @@ $(document).ready(function(){
        width: 250,
        dialogClass: "Dialog1"
      });
-
 
 //end  skin black
 
@@ -167,40 +153,7 @@ $(document).ready(function(){
     });
 
 
-/* Ruota dei colori **********************/
-    $("#picker1").farbtastic("#color1");
-    $("#picker2").farbtastic("#color2");
 
-
-    $("#changeBorderCol").toggle(
-       function () {
-	 $("#colorx").show("slow"),
-         $(".Dialog1").height(500);
-       },
-       function() {
-	$(".Dialog1").height(210),
-     	$("#colorx").hide("slow");
-	$.farbtastic("#color1").setColor(document.getElementById("color1").value);
-	BorderColor=$.farbtastic("#color1").color;
-	document.getElementById("borderColorNow").style.backgroundColor=BorderColor;
-       }
-     );
-
-
-     $("#changeFillCol").toggle(
-       function () {
-	 $("#colory").show("slow"),
-         $(".Dialog1").height(500);
-
-       },
-       function() {
-	 $(".Dialog1").height(210),
-     	 $("#colory").hide("slow");
-	 $.farbtastic("#color2").setColor(document.getElementById("color2").value);
-	 FillColor=$.farbtastic("#color2").color;
-	 document.getElementById("fillColorNow").style.backgroundColor=FillColor;
-       }
-     );
 
      $(".toolbarButton").hover(
        function(){
@@ -252,14 +205,30 @@ $(document).ready(function(){
   var polygonEdgeNumber = 7;
   var textButton = new TextButton();toolbar.add(textButton);
 
+ // var BorderColor="#000000";
+//  var FillColor="#000000";
 
+  var color= {  BorderColor:"#000000", FillColor:"#000000"};
   var palette = new Palette();
+  var hex = palette.rgbToHex($("#lastPalette").css("background-color"));
+  color = palette.setColour(hex,color.BorderColor,color.FillColor);
+
   var colourDialog = new ColourDialog();
+
+
+
+  $(".paletteComponent").click(function () {
+    var hex2 = palette.rgbToHex($(this).css("background-color"));
+    color = palette.setColour(hex2,color.BorderColor,color.FillColor);
+   // alert("arrivo qua");
+    toolbar.rebind(canvas,canvasObj,visual,figureSet,color.BorderColor,color.FillColor);
+  });
+
 
   $("#selectionButton").click(function () {
     toolbar.deselectAll();
     selectionButton.bindCursor("selection");
-    selectionButton.bindCanvas(canvas,canvasObj,visual,figureSet);
+      selectionButton.bindCanvas(toolbar,canvas,canvasObj,visual,figureSet);
   });
 
   $("#zoomButton").click(function () {
@@ -269,48 +238,80 @@ $(document).ready(function(){
   $("#straightLineButton").click(function () {
     toolbar.deselectAll();
     straightLineButton.bindCursor("line");
-    straightLineButton.bindCanvas(canvas,canvasObj,visual,figureSet);
+    straightLineButton.bindCanvas(toolbar,canvas,canvasObj,visual,figureSet,color.BorderColor,color.FillColor);
   });
 
-$("#bezierCurveButton").click(function () {
+  $("#bezierCurveButton").click(function () {
     toolbar.deselectAll();
     bezierCurveButton.bindCursor("bezier");
-    bezierCurveButton.bindCanvas(canvas,canvasObj,visual,figureSet);
+    bezierCurveButton.bindCanvas(toolbar,canvas,canvasObj,visual,figureSet,color.BorderColor,color.FillColor);
   });
-
-
 
   $("#squareButton").click(function () {
     toolbar.deselectAll();
     squareButton.bindCursor("square");
-    squareButton.bindCanvas(canvas,canvasObj,visual,figureSet);
+    squareButton.bindCanvas(toolbar,canvas,canvasObj,visual,figureSet,color.BorderColor,color.FillColor);
   });
 
   $("#circleButton").click(function () {
     circleButton.bindCursor("circle");
     toolbar.deselectAll();
-    circleButton.bindCanvas(canvas,canvasObj,visual,figureSet);
+    circleButton.bindCanvas(toolbar,canvas,canvasObj,visual,figureSet,color.BorderColor,color.FillColor);
   });
 
   $("#polygonButton").click(function () {
     toolbar.deselectAll();
     var edge = createEdgeDialog(polygonEdgeNumber);
-    polygonButton.bindCanvas(canvas,canvasObj,visual,figureSet);
+    polygonButton.bindCanvas(toolbar,canvas,canvasObj,visual,figureSet,color.BorderColor,color.FillColor);
   });
 
   $("#freeLineButton").click(function () {
     toolbar.deselectAll();
     freeLineButton.bindCursor("text");
-    freeLineButton.bindCanvas(canvas,canvasObj,visual,figureSet);
+    freeLineButton.bindCanvas(toolbar,canvas,canvasObj,visual,figureSet,color.BorderColor,color.FillColor);
   });
 
   $("#textButton").click(function () {
     toolbar.deselectAll();
     textButton.bindCursor("text");
-    textButton.bindCanvas(canvas,canvasObj,visual,figureSet);
+    textButton.bindCanvas(toolbar,canvas,canvasObj,visual,figureSet,color.BorderColor,color.FillColor);
 
   });
 
+/* Ruota dei colori **********************/
+    $("#picker1").farbtastic("#color1");
+    $("#picker2").farbtastic("#color2");
+
+
+    $("#changeBorderCol").toggle(
+       function () {
+	 $("#colorx").show("slow"),
+         $(".Dialog1").height(500);
+       },
+       function() {
+	$(".Dialog1").height(210),
+     	$("#colorx").hide("slow");
+	$.farbtastic("#color1").setColor(document.getElementById("color1").value);
+	color.BorderColor=$.farbtastic("#color1").color;
+	document.getElementById("borderColorNow").style.backgroundColor=color.BorderColor;
+       }
+     );
+
+
+     $("#changeFillCol").toggle(
+       function () {
+	 $("#colory").show("slow"),
+         $(".Dialog1").height(500);
+
+       },
+       function() {
+	 $(".Dialog1").height(210),
+     	 $("#colory").hide("slow");
+	 $.farbtastic("#color2").setColor(document.getElementById("color2").value);
+	 color.FillColor=$.farbtastic("#color2").color;
+	 document.getElementById("fillColorNow").style.backgroundColor=color.FillColor;
+       }
+     );
 
 function updateInfos(figure){
   document.getElementById("DialogHeight").value=figure.getBounds().h();
