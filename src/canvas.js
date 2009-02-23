@@ -195,7 +195,8 @@ Button.prototype.isSelected = function () {
  * @param {Visualization} visual che Visualization object
  * @param {FigureSet} figureSet the set of figures
  */
-Button.prototype.bindCanvas = function (canvas,canvasObj,visual,figureSet,BorderColor,FillColor) {
+Button.prototype.bindCanvas = function (toolbar,canvas,canvasObj,visual,figureSet,BorderColor,FillColor) {
+  toolbar.deselectAll();
   this.setSelection(true);
    $("#cv").unbind('mousedown click mouseup');
    canvasObj.clear();
@@ -203,7 +204,6 @@ Button.prototype.bindCanvas = function (canvas,canvasObj,visual,figureSet,Border
    var s = [];
    var f;
    var self = this;
-  alert(BorderColor + FillColor);
    $("#cv").bind("mousedown", function(e){
      var builder = self.getBuilder();
      var f = s[0] = new builder();
@@ -292,7 +292,9 @@ SelectionButton.prototype.getId = function (){
  * @param {FigureSet} figureSet the set of figures
  * @param {Numeric} edgeNumber the number of edges if the figure to be drawn will be a polygon
  */
-SelectionButton.prototype.bindCanvas = function (canvas,canvasObj,visual,figureSet) {
+SelectionButton.prototype.bindCanvas = function (toolbar,canvas,canvasObj,visual,figureSet) {
+  toolbar.deselectAll();
+
   $("#cv").unbind('mousedown click mouseup');
   $("#cv").bind("click", function(e){
       visual.deselectAll(figureSet);
@@ -592,6 +594,52 @@ Toolbar.prototype.deselectAll = function () {
   });
 };
 
+/**
+ * Rebinds an action to a figure to update the color
+ * @param {HTMLObject} canvas canvas reference
+ * @param {Canvas} canvasObj the canvas Object
+ * @param {Visualization} visual the visualization object
+ * @param {FigureSet} figureSet the set of figures
+ * @param {String} BorderColor the current Border color
+ * @param {String} FillColor the current Fill color
+ */
+Toolbar.prototype.rebind = function (canvas,canvasObj,visual,figureSet,BorderColor,FillColor) {
+  //for(var i=0;i<this._buttonList.lenght;i++){
+       if(this._buttonList[2].isSelected()==true){//line
+	  this._buttonList[2].bindCanvas(this,canvas,canvasObj,visual,figureSet,BorderColor,FillColor);
+	 return;
+       }
+       else if(this._buttonList[3].isSelected()==true){//bezier
+	 this._buttonList[3].bindCanvas(this,canvas,canvasObj,visual,figureSet,BorderColor,FillColor);
+	 return;
+	 }
+	  else if(this._buttonList[4].isSelected()==true){//square
+	 this._buttonList[4].bindCanvas(this,canvas,canvasObj,visual,figureSet,BorderColor,FillColor);
+	 return;
+	 }
+	  else if(this._buttonList[5].isSelected()==true){//circle
+	 this._buttonList[5].bindCanvas(this,canvas,canvasObj,visual,figureSet,BorderColor,FillColor);
+	 return;
+	 }
+	 else if(this._buttonList[6].isSelected()==true){//polygon
+	 this._buttonList[6].bindCanvas(this,canvas,canvasObj,visual,figureSet,BorderColor,FillColor);
+	 return;
+	 }
+	 else if(this._buttonList[7].isSelected()==true){//freeline
+	 this._buttonList[7].bindCanvas(this,canvas,canvasObj,visual,figureSet,BorderColor,FillColor);
+	 return;
+	 }
+  else if(this._buttonList[8].isSelected()==true){//text
+	 this._buttonList[8].bindCanvas(this,canvas,canvasObj,visual,figureSet,BorderColor,FillColor);
+	 return;
+	 }
+
+//}
+
+};
+
+
+
 //Colors
 /**
  * @constructor
@@ -691,6 +739,7 @@ ColourDialog.prototype.create= function(){
     });
 
 };
+
 
 
 function EdgeNumberSetter(){
