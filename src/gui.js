@@ -55,16 +55,63 @@ function createEdgeDialog(){
 
      });
 
-
-
 }
+
+/* utile x coordinate*/
+function setup()
+{
+  document.getElementById('cv').onclick=foo;
+}
+
+/*click sul canvas restituisce le coordinate della posizione cliccata*/
+/* da implementare su dialog attributi */
+
+function getClickCoordsWithinTarget(event)
+{
+	var coords = { x: 0, y: 0};
+ 
+	if(!event) // then we're in a non-DOM (probably IE) browser
+	{
+		event = window.event;
+		coords.x = event.offsetX;
+		coords.y = event.offsetY;
+	}
+	else		// we assume DOM modeled javascript
+	{
+		var Element = event.target ;
+		var CalculatedTotalOffsetLeft = 0;
+		var CalculatedTotalOffsetTop = 0 ;
+ 
+		while (Element.offsetParent)
+ 		{
+ 			CalculatedTotalOffsetLeft += Element.offsetLeft ;     
+			CalculatedTotalOffsetTop += Element.offsetTop ;
+ 			Element = Element.offsetParent ;
+ 		}
+ 
+		coords.x = event.pageX - CalculatedTotalOffsetLeft ;
+		coords.y = event.pageY - CalculatedTotalOffsetTop ;
+	}
+ 
+	return coords;
+}
+ 
+function foo(e) {
+ 
+  coords = getClickCoordsWithinTarget(e);
+  document.getElementById('x').value=coords.x;
+  document.getElementById('y').value=coords.y;
+}
+
+/*end coordinate*/
 
 
 
 /*parte di jQuery */
 $(document).ready(function(){
-//dialog skin nera
 
+
+//dialog skin nera
 
      $('#dialog').dialog({
        autoOpen: true,
@@ -81,8 +128,11 @@ $(document).ready(function(){
        dialogClass: "Dialog1"
      });
 
-
 //end  skin black
+
+
+
+
 
 /*Creazione dialog colore */
        createColDialog();

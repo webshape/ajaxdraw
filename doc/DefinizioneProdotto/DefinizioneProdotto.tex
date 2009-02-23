@@ -634,6 +634,47 @@ Usato da \textit{SVGWriter} per realizzare il documento SVG.
 \item[-]  \textit{flush()} chiude il documento e lo ritorna come stringa.
 \end{elencopuntato}
 
+
+\subsezione{SVGReader}
+\subsubsezione{Tipo, obiettivo e funzione del componente}
+Si occupa di chiamare il metodo \textit{fromSVG} su ogni tag SVG e ritornare il documento che corrisponde alla situazione corrente nel file SVG.
+\subsubsezione{Relazioni d'uso di altre componenti}
+Si serve di \textit{XMLParser} per fare il parsing del documento come XML, e per ogni comando SVG viene creato un tag SVG che lo rappresenta.
+Si serve di \textit{SVGElementRegistry} per creare la figura dal tag SVG e ritornarla, utilizzando il metodo \textit{makeFigureClassFromTag} per iterare attraverso la collezione di tag SVG.
+\subsubsezione{Interfacce e relazioni di uso da altre componenti}
+Si serve di \textit{SVGReadable}
+\subsubsezione{Attivit\`a svolte e dati trattati}
+\paragrafo{Metodi pubblici:}
+\begin{elencopuntato}[\normindent]
+\item[-]  \textit{read()} chiama il metodo \textit{fromSVG} su ogni tag SVG e ritorna il documento con le figure corrispondenti.
+\end{elencopuntato}
+
+\subsezione{XMLParser}
+\subsubsezione{Tipo, obiettivo e funzione del componente}
+Si occupa di fare il parsing del documento SVG come XML.
+\subsubsezione{Relazioni d'uso di altre componenti}
+Nessuna
+\subsubsezione{Interfacce e relazioni di uso da altre componenti}
+Usato da \textit{SVGReader} per realizzare figure dai tag SVG.
+\subsubsezione{Attivit\`a svolte e dati trattati}
+\paragrafo{Metodi pubblici:}
+\begin{elencopuntato}[\normindent]
+\item[-]
+\end{elencopuntato}
+
+\subsezione{SVGElementRegistry}
+\subsubsezione{Tipo, obiettivo e funzione del componente}
+Si occupa di creare la figura dal tag SVG e ritornarla.
+\subsubsezione{Relazioni d'uso di altre componenti}
+Nessuna
+\subsubsezione{Interfacce e relazioni di uso da altre componenti}
+Usato da \textit{SVGReader} per realizzare il caricamento.
+\subsubsezione{Attivit\`a svolte e dati trattati}
+\paragrafo{Metodi pubblici:}
+\begin{elencopuntato}[\normindent]
+\item[-]
+\end{elencopuntato}
+
 \sezione{Tracciamento della relazione componenti - requisiti}
 
 \end{document}
