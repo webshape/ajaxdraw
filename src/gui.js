@@ -56,9 +56,68 @@ function createEdgeDialog(){
 
      });
 
-
-
 }
+
+
+/*click sul canvas restituisce le coordinate della posizione cliccata*/
+/* da implementare su dialog attributi */
+
+function getClickCoordsWithinTarget(event)
+{
+	var coords = { x: 0, y: 0};
+ 
+	if(!event) // then we're in a non-DOM (probably IE) browser
+	{
+		event = window.event;
+		coords.x = event.offsetX;
+		coords.y = event.offsetY;
+	}
+	else		// we assume DOM modeled javascript
+	{
+		var Element = event.target ;
+		var CalculatedTotalOffsetLeft = 0;
+		var CalculatedTotalOffsetTop = 0 ;
+ 
+		while (Element.offsetParent)
+ 		{
+ 			CalculatedTotalOffsetLeft += Element.offsetLeft ;     
+			CalculatedTotalOffsetTop += Element.offsetTop ;
+ 			Element = Element.offsetParent ;
+ 		}
+ 
+		coords.x = event.pageX - CalculatedTotalOffsetLeft ;
+		coords.y = event.pageY - CalculatedTotalOffsetTop ;
+	}
+ 
+	return coords;
+}
+ 
+function foo(e) {
+ 
+  // event handling functions like this one
+ 
+  // get a reference to the event they handle
+ 
+  // (in this case as "e").
+ 
+  coords = getClickCoordsWithinTarget(e);
+  alert(properties(coords));
+}
+ 
+function properties(obj) //new
+{
+   var result = '{ ';
+   var comma = '';
+   for (var property in obj)
+   {
+      if(String(obj[property]).indexOf('function') < 0)
+        result += comma + property + ': ' + obj[property] + "\n";
+      comma = ', ';
+   }
+   result += ' }';
+   return result
+}
+/*end coordinate*/
 
 
 
@@ -84,6 +143,10 @@ $(document).ready(function(){
 
 
 //end  skin black
+
+
+
+
 
 /*Creazione dialog colore */
        createColDialog();
