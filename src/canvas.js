@@ -469,7 +469,7 @@ FreeLineButton.prototype.getBuilder = function () {
   return FreeLine;
 };
 
-FreeLineButton.prototype.bindCanvas = function (toolbar,canvas,canvasObj,visual,figureSet) {
+FreeLineButton.prototype.bindCanvas = function (toolbar,canvas,canvasObj,visual,figureSet,borderColour) {
   toolbar.deselectAll();
   this.setSelection(true);
    $("#cv").unbind('mousedown click mouseup');
@@ -483,14 +483,18 @@ FreeLineButton.prototype.bindCanvas = function (toolbar,canvas,canvasObj,visual,
      var f = s[0] = new FreeLine();
      var coords = visual.getClickCoordsWithinTarget(e);
      f.getBorderColour().getOpacity().setVal(1);
-     f.getBorderColour().fromCSS(BorderColor);
+     f.getBorderColour().fromCSS(borderColour);
      //f.getBounds().setStart(new Point(coords.x, coords.y));
                    f.extend(new Point(coords.x, coords.y));
     $("#cv").bind("mousemove",function(e){
         var coords2 = visual.getClickCoordsWithinTarget(e);
-	if(Math.abs(coords.x-coords2.x)>40 &&(Math.abs(coords.y-coords2.y)>40 )){
+                    var minDist = 10;
+                    var dx = coords.x-coords2.x;
+                    var dy = coords.y-coords2.y;
+                    var dist = Math.sqrt(dx*dx+dy*dy);
+	if (dist >= minDist) {
 	     f.extend(new Point(coords2.x, coords2.y));
-
+          coords = coords2;
 	//f.getBounds().setEnd(new Point(coords2.x, coords2.y));
 }
 	canvasObj.clear();
