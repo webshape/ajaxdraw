@@ -480,14 +480,15 @@ FreeLineButton.prototype.bindCanvas = function (canvas,canvasObj,visual,figureSe
      var coords = visual.getClickCoordsWithinTarget(e);
      f.getBorderColour().getOpacity().setVal(1);
      f.getBorderColour().fromCSS(BorderColor);
-     f.getBounds().setStart(new Point(coords.x, coords.y));
-
+     //f.getBounds().setStart(new Point(coords.x, coords.y));
+                   f.extend(new Point(coords.x, coords.y));
     $("#cv").bind("mousemove",function(e){
         var coords2 = visual.getClickCoordsWithinTarget(e);
 	if(Math.abs(coords.x-coords2.x)>40 &&(Math.abs(coords.y-coords2.y)>40 )){
 	     f.extend(new Point(coords2.x, coords2.y));
 
-	f.getBounds().setEnd(new Point(coords2.x, coords2.y));}
+	//f.getBounds().setEnd(new Point(coords2.x, coords2.y));
+}
 	canvasObj.clear();
 	visual.refresh();
 	f.draw(canvas);
@@ -497,7 +498,8 @@ FreeLineButton.prototype.bindCanvas = function (canvas,canvasObj,visual,figureSe
       $("#cv").unbind('mousemove');
       var coords1 = visual.getClickCoordsWithinTarget(e);
       var f = s[0];
-      f.getBounds().setEnd(new Point(coords1.x, coords1.y));
+              f.extend(new Point(coords1.x, coords1.y));
+      //f.getBounds().setEnd(new Point(coords1.x, coords1.y));
       visual.getFigureSet().add(f);
       canvasObj.clear();
       visual.refresh();

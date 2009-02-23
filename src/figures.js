@@ -772,6 +772,7 @@ FreeLine.prototype.move = function (pt, to) {
  * @param {Point} pt the point to add. Coords of pt are absolute
  */
 FreeLine.prototype.extend = function (pt) {
+//  alert('called');
   var b = this.getBounds();
   var s = b.start();
   var newStart = new Point(s.x, s.y);
@@ -898,6 +899,9 @@ FreeLine.prototype.draw = function (c) {
   var ctx = c.getContext('2d');
   ctx.save();
   var pts = this.getPoints();
+  if (pts.length == 0) {
+    return;
+  }
   ctx.beginPath();
   ctx.moveTo(pts[0].x, pts[0].y);
   var i = 0;
