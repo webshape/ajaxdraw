@@ -1,107 +1,154 @@
-var BorderColor="#000000";
-var FillColor="#000000";
-
-
-
-/**
- * Change figure color by clicking on the palette's preffered color
- * @param {String} string with hex color representation
- * @return  null
- */
-function changeFarbColor(col){
-  if( document.getElementById("comboColor").value=="border"){
-  $.farbtastic("#color1").setColor(col);
-  document.getElementById("color1").value=$.farbtastic("#color1").color;
-  document.getElementById("borderColorNow").style.backgroundColor=col;
-  BorderColor=col;
-}
-  else{
- $.farbtastic("#color2").setColor(col);
-  document.getElementById("color2").value=$.farbtastic("#color2").color;
-  document.getElementById("fillColorNow").style.backgroundColor=col;
-  FillColor=col;
-  }
+/* utile x coordinate*/
+function setup()
+{
+  document.getElementById('cv').onclick=foo;
 }
 
+/*click sul canvas restituisce le coordinate della posizione cliccata*/
+/* da implementare su dialog attributi */
 
+function getClickCoordsWithinTarget(event)
+{
+	var coords = { x: 0, y: 0};
 
-function createColDialog(){
-     $("#colorDialog").dialog({
-    	position: ["right","top"],
-    	height: 210,
-    	width: 230,
-    	dialogClass: "Dialog1"
+	if(!event) // then we're in a non-DOM (probably IE) browser
+	{
+		event = window.event;
+		coords.x = event.offsetX;
+		coords.y = event.offsetY;
+	}
+	else		// we assume DOM modeled javascript
+	{
+		var Element = event.target ;
+		var CalculatedTotalOffsetLeft = 0;
+		var CalculatedTotalOffsetTop = 0 ;
 
-    });
+		while (Element.offsetParent)
+ 		{
+ 			CalculatedTotalOffsetLeft += Element.offsetLeft ;
+			CalculatedTotalOffsetTop += Element.offsetTop ;
+ 			Element = Element.offsetParent ;
+ 		}
 
+		coords.x = event.pageX - CalculatedTotalOffsetLeft ;
+		coords.y = event.pageY - CalculatedTotalOffsetTop ;
+	}
+
+	return coords;
 }
 
-function edgeNumberSetter(value){
-  polygonEdgeNumber=value;
+function foo(e) {
+
+  coords = getClickCoordsWithinTarget(e);
+  document.getElementById('x').value=coords.x;
+  document.getElementById('y').value=coords.y;
 }
 
-
-
-function createEdgeDialog(){
-  $("#edgeNumberDialog").dialog({
-   // position: ["right","top"],
-    height: 100,
-    width:320,
-    dialogClass: "edgeDialog"
-    });
-
- $("#edgeSetter").click(function () {
-	edgeNumberSetter( parseInt(document.getElementById("edgeNumber").value,10));
-	$("#edgeNumberDialog").dialog("close");
-
-     });
-
-
-
-}
+/*end coordinate*/
 
 
 
 /*parte di jQuery */
 $(document).ready(function(){
-//dialog skin nera
+/* Inizio creazione GUI */
+  var page = new Page();
+  page.loadStylesheet();
+  var canvasObj = new Canvas();
+  var canvas = canvasObj.getId();
+
+  var ctx = canvas.getContext("2d");   //prendo il contesto
+  //var canvasLeft = ctx.canvas.offsetLeft;
+  //var canvasTop = ctx.canvas.offsetTop;
+  var figureSet = new FigureSet();
+  var visual = new Visualization(figureSet);
+  //Toolbar Creation
+  var toolbar = new Toolbar();
+  var selectionButton = new SelectionButton();toolbar.add(selectionButton);
+  var zoomButton = new ZoomButton();toolbar.add(zoomButton);
+  var straightLineButton = new StraightLineButton();toolbar.add(straightLineButton);
+  var bezierCurveButton = new BezierCurveButton();toolbar.add(bezierCurveButton);
+  var squareButton = new SquareButton();toolbar.add(squareButton);
+  var circleButton = new CircleButton();toolbar.add(circleButton);
+  var polygonButton = new PolygonButton();toolbar.add(polygonButton);
+  var freeLineButton = new FreeLineButton();toolbar.add(freeLineButton);
+  var polygonEdgeNumber = 7;
+  var edgeNumberSetter = new EdgeNumberSetter();
+  edgeNumberSetter.create();
+  $("#edgeNumberDialog").dialog("close");
+  var textButton = new TextButton();toolbar.add(textButton);
 
 
-     $('#dialog').dialog({
-       autoOpen: true,
-       position: ["left","bottom"],
-       width: 450,
-       height: 40,
-       buttons:0
-     });
+  var color= {  BorderColor:"#000000", FillColor:"#000000"};
+  var palette = new Palette();
+  var hex = palette.rgbToHex($("#lastPalette").css("background-color"));
+  color = palette.setColour(hex,color.BorderColor,color.FillColor);
+/* Creo il colorDialog */
+  var colourDialog = new ColourDialog();
+  colourDialog.create();
 
-     $("#dialog2").dialog({
-       position: ["right","top"],
-       height: 500,
-       width: 250,
-       dialogClass: "Dialog1"
-     });
+/* Collegamento pulsanti toolbar */
+  $(".paletteComponent").click(function () {
+    var hex2 = palette.rgbToHex($(this).css("background-color"));
+    color = palette.setColour(hex2,color.BorderColor,color.FillColor);
+   // alert("arrivo qua");
+    toolbar.rebind(canvas,canvasObj,visual,figureSet,color.BorderColor,color.FillColor);
+  });
 
 
-//end  skin black
+  $("#selectionButton").click(function () {
+    toolbar.deselectAll();
+    selectionButton.bindCursor("selection");
+      selectionButton.bindCanvas(toolbar,canvas,canvasObj,visual,figureSet);
+  });
 
-/*Creazione dialog colore */
-       createColDialog();
-/* Creazione dialog Edge */
-       createEdgeDialog();
+  $("#zoomButton").click(function () {
+    alert("Not yet implemented" );
+  });
 
-       $("#edgeNumberDialog").dialog("close");
+  $("#straightLineButton").click(function () {
+    toolbar.deselectAll();
+    straightLineButton.bindCursor("line");
+    straightLineButton.bindCanvas(toolbar,canvas,canvasObj,visual,figureSet,color.BorderColor,color.FillColor);
+  });
 
-       $("#edgeSetter").click(function () {
-	 edgeNumberSetter( parseInt(document.getElementById("edgeNumber").value,10));
-	 $("#edgeNumberDialog").dialog("close");
+  $("#bezierCurveButton").click(function () {
+    toolbar.deselectAll();
+    bezierCurveButton.bindCursor("bezier");
+    bezierCurveButton.bindCanvas(toolbar,canvas,canvasObj,visual,figureSet,color.BorderColor,color.FillColor);
+  });
 
-       });
-/*Creazione dialog proprietà */
-    $("#propertiesDialog").dialog({
-    	position: "right",
-    	width: 230
-    });
+  $("#squareButton").click(function () {
+    toolbar.deselectAll();
+    squareButton.bindCursor("square");
+    squareButton.bindCanvas(toolbar,canvas,canvasObj,visual,figureSet,color.BorderColor,color.FillColor);
+  });
+
+  $("#circleButton").click(function () {
+    circleButton.bindCursor("circle");
+    toolbar.deselectAll();
+    circleButton.bindCanvas(toolbar,canvas,canvasObj,visual,figureSet,color.BorderColor,color.FillColor);
+  });
+
+  $("#polygonButton").click(function () {
+    toolbar.deselectAll();
+    edgeNumberSetter.create();
+    polygonButton.bindCanvas(toolbar,canvas,canvasObj,visual,figureSet,color.BorderColor,color.FillColor);
+  });
+
+  $("#freeLineButton").click(function () {
+    toolbar.deselectAll();
+    freeLineButton.bindCursor("text");
+    freeLineButton.bindCanvas(toolbar,canvas,canvasObj,visual,figureSet,color.BorderColor,color.FillColor);
+  });
+
+  $("#textButton").click(function () {
+    toolbar.deselectAll();
+    textButton.bindCursor("text");
+    textButton.bindCanvas(toolbar,canvas,canvasObj,visual,figureSet,color.BorderColor,color.FillColor);
+
+  });
+
+
 
 
 /* Ruota dei colori **********************/
@@ -118,8 +165,9 @@ $(document).ready(function(){
 	$(".Dialog1").height(210),
      	$("#colorx").hide("slow");
 	$.farbtastic("#color1").setColor(document.getElementById("color1").value);
-	BorderColor=$.farbtastic("#color1").color;
-	document.getElementById("borderColorNow").style.backgroundColor=BorderColor;
+	color.BorderColor=$.farbtastic("#color1").color;
+	document.getElementById("borderColorNow").style.backgroundColor=color.BorderColor;
+	 toolbar.rebind(canvas,canvasObj,visual,figureSet,color.BorderColor,color.FillColor);
        }
      );
 
@@ -134,11 +182,23 @@ $(document).ready(function(){
 	 $(".Dialog1").height(210),
      	 $("#colory").hide("slow");
 	 $.farbtastic("#color2").setColor(document.getElementById("color2").value);
-	 FillColor=$.farbtastic("#color2").color;
-	 document.getElementById("fillColorNow").style.backgroundColor=FillColor;
+	 color.FillColor=$.farbtastic("#color2").color;
+
+	 document.getElementById("fillColorNow").style.backgroundColor=color.FillColor;
+	 toolbar.rebind(canvas,canvasObj,visual,figureSet,color.BorderColor,color.FillColor);
        }
      );
 
+function updateInfos(figure){
+  document.getElementById("DialogHeight").value=figure.getBounds().h();
+  document.getElementById("DialogWidth").value=figure.getBounds().w();
+}
+
+/*Creazione dialog proprietà */
+    $("#propertiesDialog").dialog({
+    	position: "right",
+    	width: 230
+    });
      $(".toolbarButton").hover(
        function(){
 	 $(this).fadeOut(100);
@@ -165,96 +225,6 @@ $(document).ready(function(){
        $(".toolbarButton").tooltip(
 	 {delay: 1000}
        );
-
-  var page = new Page();
-  page.loadStylesheet();
-  var canvasObj = new Canvas();
-  var canvas = canvasObj.getId();
-
-  var ctx = canvas.getContext("2d");   //prendo il contesto
-  //var canvasLeft = ctx.canvas.offsetLeft;
-  //var canvasTop = ctx.canvas.offsetTop;
-  var figureSet = new FigureSet();
-  var visual = new Visualization(figureSet);
-  //Toolbar Creation
-  var toolbar = new Toolbar();
-  var selectionButton = new SelectionButton();toolbar.add(selectionButton);
-  var zoomButton = new ZoomButton();toolbar.add(zoomButton);
-  var straightLineButton = new StraightLineButton();toolbar.add(straightLineButton);
-  var bezierCurveButton = new BezierCurveButton();toolbar.add(bezierCurveButton);
-  var squareButton = new SquareButton();toolbar.add(squareButton);
-  var circleButton = new CircleButton();toolbar.add(circleButton);
-  var polygonButton = new PolygonButton();toolbar.add(polygonButton);
-  var freeLineButton = new FreeLineButton();toolbar.add(freeLineButton);
-  var polygonEdgeNumber = 7;
-  var textButton = new TextButton();toolbar.add(textButton);
-
-
-  var palette = new Palette();
-  var colourDialog = new ColourDialog();
-
-  $("#selectionButton").click(function () {
-    toolbar.deselectAll();
-    selectionButton.bindCursor("selection");
-    selectionButton.bindCanvas(canvas,canvasObj,visual,figureSet);
-  });
-
-  $("#zoomButton").click(function () {
-    alert("Not yet implemented" );
-  });
-
-  $("#straightLineButton").click(function () {
-    toolbar.deselectAll();
-    straightLineButton.bindCursor("line");
-    straightLineButton.bindCanvas(canvas,canvasObj,visual,figureSet);
-  });
-
-$("#bezierCurveButton").click(function () {
-    toolbar.deselectAll();
-    bezierCurveButton.bindCursor("bezier");
-    bezierCurveButton.bindCanvas(canvas,canvasObj,visual,figureSet);
-  });
-
-
-
-  $("#squareButton").click(function () {
-    toolbar.deselectAll();
-    squareButton.bindCursor("square");
-    squareButton.bindCanvas(canvas,canvasObj,visual,figureSet);
-  });
-
-  $("#circleButton").click(function () {
-    circleButton.bindCursor("circle");
-    toolbar.deselectAll();
-    circleButton.bindCanvas(canvas,canvasObj,visual,figureSet);
-  });
-
-  $("#polygonButton").click(function () {
-    toolbar.deselectAll();
-    var edge = createEdgeDialog(polygonEdgeNumber);
-    polygonButton.bindCanvas(canvas,canvasObj,visual,figureSet);
-  });
-
-  $("#freeLineButton").click(function () {
-    toolbar.deselectAll();
-    freeLineButton.bindCursor("text");
-    freeLineButton.bindCanvas(canvas,canvasObj,visual,figureSet);
-  });
-
-  $("#textButton").click(function () {
-    toolbar.deselectAll();
-    textButton.bindCursor("text");
-    textButton.bindCanvas(canvas,canvasObj,visual,figureSet);
-
-  });
-
-
-function updateInfos(figure){
-  document.getElementById("DialogHeight").value=figure.getBounds().h();
-  document.getElementById("DialogWidth").value=figure.getBounds().w();
-}
-
-
 
 //fine documento
   });

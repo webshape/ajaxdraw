@@ -220,13 +220,77 @@ Nessuna.
 \end{elencopuntato}
 \paragrafo{Metodi pubblici:}
 \begin{elencopuntato}[\normindent]
-\item[-] \textit{getBrowserName()} ritorna \textit{{\_}browserName}
-\item[-] \textit{getBrowserVersion()} ritorna \textit{{\_}browserVersion}
+\item[-] \textit{getBrowserName()} ritorna \textit{{\_}browserName};
+\item[-] \textit{getBrowserVersion()} ritorna \textit{{\_}browserVersion};
+\item[-] \textit{activateStylesheet(sheetref)} attiva un foglio di stile a seconda del browser utilizzato;
+\item[-] \textit{loadStyleSheet()} carica il foglio di stile ativato da \textit{activateStylesheet}.
 \end{elencopuntato}
 
+\subsezione{Visualization}
+\subsubsezione{Tipo, obiettivo e funzione del componente}
+Classe concreta che si occupa delle operazioni di visualizzazione del canvas su schermo, come la riscalatura a seguito di uno zoom e la corretta visualizzazione della parte ingrandita o rimpicciolita.
+\subsubsezione{Relazioni d'uso di altre componenti}
+\` E composta da un'istanza della classe \textit{Canvas}. Utilizza istanze di \textit{Scale} e \textit{BoundingRectangle}.
+\subsubsezione{Interfacce e relazioni di uso da altre componenti}
+\textit{Page} ne mantiene un'istanza.
+\subsubsezione{Attivit\`a svolte e dati trattati}
+\paragrafo{Attributi privati:}
+\begin{elencopuntato}[\normindent]
+\item[-] \textit{{\_}figureSet} insieme delle figure contenute in memoria.
+\end{elencopuntato}
+\paragrafo{Metodi pubblici:}
+\begin{elencopuntato}[\normindent]
+\item[-] \textit{refresh()} ridisegna il set di figure sul canvas;
+\item[-] \textit{getFigureSet()} ritorna \textit{{\_}figureSet};
+\item[-] \textit{deselectAll(figureSet)} deseleziona tutte le figure presenti nel figure set.
+\item[-] \textit{getClickCoordsWithinTarget(event)} ritorna il punto esatto del canvas sul quale \`  e avvenuto il click  del mouse.
+\end{elencopuntato}
 
+\subsezione{Canvas}
+\subsubsezione{Tipo, obiettivo e funzione del componente}
+Classe che rappresenta il canvas, oggetto sul quale verrano visualizzate le figure disegnate, modificate e spostate dall'utente, tramite l'utilizzo del mouse. 
+\subsubsezione{Relazioni d'uso di altre componenti}
 
+\subsubsezione{Interfacce e relazioni di uso da altre componenti}
+Compone un'istanza di \textit{Visualization}, che si occupa della sua visualizzazione su schermo.
+\subsubsezione{Attivit\`a svolte e dati trattati}
+\paragrafo{Attributi privati:}
+\begin{elencopuntato}[\normindent]
+\item[-] \textit{{\_}height} l'altezza in pixel del canvas;
+\item[-] \textit{{\_}width} la larghezza in pixel del canvas;
+\item[-] \textit{{\_}id} il riferimento all'oggetto HTML <canvas>.
+\end{elencopuntato}
+\paragrafo{Metodi pubblici:}
+\begin{elencopuntato}[\normindent]
+\item[-] \textit{getId()} ritorna  \textit{{\_}fid};
+\item[-] \textit{clear()} cancella tutte le figure disegnate sul canvas;
+\item[-] \textit{getHeight()} ritorna  \textit{{\_}height};
+\item[-] \textit{getWidth()} ritorna  \textit{{\_}width};
+\item[-] \textit{setHeight(val)} modifica \textit{{\_}height};
+\item[-] \textit{setWidth(val)} modifica \textit{{\_}width}.
+\end{elencopuntato}
 
+\subsezione{Button}
+\subsubsezione{Tipo, obiettivo e funzione del componente}
+Classe concreta che rappresenta un generico pulsante tramite il quale effettuare l'operazione desiderata.
+\subsubsezione{Relazioni d'uso di altre componenti}
+\subsubsezione{Interfacce e relazioni di uso da altre componenti}
+
+\subsubsezione{Attivit\`a svolte e dati trattati}
+\textit{Page} e \textit{Toolbar}ne mantengono una o pi\` u istanze, \` e inoltre implementata dalla classe \textit{CloneButton}.
+\paragrafo{Attributi privati:}
+\begin{elencopuntato}[\normindent]
+\item[-] \textit{{\_}selected} dice se il pulsante \`e selezionato.
+\end{elencopuntato}
+\paragrafo{Metodi pubblici:}
+\begin{elencopuntato}[\normindent]
+\item[-]  \textit{setSelection(value)} permette di selezionare/deselezionare il pulsante. Modifica \textit{{\_}selected}.
+\item[-]  \textit{isSelected()} dice se il pulsante \`e correntemente selezionato. Ritorna \textit{{\_}selected}.
+\item[-]  \textit{bindCanvas(toolbar,canvas,canvasObj,visual,figureSet,BorderColor,FillColor)} collega l'azione della toolbar selezionata al canvas;
+\item[-]  \textit{bindCursor(type)} collega ad ogni tool un cursore visibile sopra al canvas per capire che tipo di azione si sta compiendo.
+\end{elencopuntato}
+
+%%%%%%%%Parte Dissegna
 \subsezione{ApplicationLogic}
 
 \subsezione{Figure}
@@ -471,7 +535,7 @@ Creato dalla lettura di un file SVG oppure dall'interfaccia utente. Manipolato d
 \item[-] \textit{getFillColour()} ritorna \textit{{\_}fillColour}.
 \item[-] \textit{eachProperty(fn)} richiama \textit{eachProperty} di \textit{Figure} ed applica la funzione fn a \textit{{\_}fillColour}.
 \item[-] \textit{draw(canvas)} disegna il cerchio/ellisse usando quattro curve di bezier. Viene disegnato due volte: la prima per il riempimento, la seconda per il bordo. Prima di disegnarsi richiama \textit{applyToContext} sulle proprie propriet\`a.
-\item[-] \textit{toSVG(gen)} si serve dei metodi di \textit{gen} (di tipo \textit{SVGGenerator}) per scrivere le propriet\`a della figura in formato SVG.
+\item[-] \textit{toSVG(gen)} crea un tag \textit{ellipse} con il metodo \textit{startCommand} e aggiunge gli attributi secondo lo standard SVG1.1 con il metodo \textit{attr}. Entrambi questi metodi appartengono alla classe \textit{SVGGenerator}. Per le coordinate \textit{x} e \textit{y} che indicano la posizione della figura, controlla se il punto indicato dal metodo \textit{start} di \textit{BoundingRectangle} sia effettivamente il punto in alto a sinistra, poich\`e il cerchio/ellisse potrebbe essere rovesciato. Infine scrive il tag di chiusura con il metodo \textit{endCommand} di \textit{SVGGenerator}.
 \end{elencopuntato}
 
 \subsezione{Rectangle}
@@ -491,7 +555,7 @@ Creato dalla lettura di un file SVG oppure dall'interfaccia utente. Manipolato d
 \item[-] \textit{getFillColour()} ritorna \textit{{\_}fillColour}.
 \item[-] \textit{eachProperty(fn)} richiama \textit{eachProperty} di \textit{Figure} ed applica la funzione fn a \textit{{\_}fillColour}.
 \item[-] \textit{draw(canvas)} disegna il rettangolo usando le API per i path del contesto grafico, tracciando un path chiuso che contiene i quattro angoli ricavabili dal \textit{BoundingRectangle}. Viene disegnato due volte: la prima per il riempimento, la seconda per il bordo. Prima di disegnarsi richiama \textit{applyToContext} sulle proprie propriet\`a.
-\item[-] \textit{toSVG(gen)} si serve dei metodi di \textit{gen} (di tipo \textit{SVGGenerator}) per scrivere le propriet\`a della figura in formato SVG.
+\item[-] \textit{toSVG(gen)} crea un tag \textit{rect} con il metodo \textit{startCommand} e aggiunge gli attributi secondo lo standard SVG1.1 con il metodo \textit{attr}. Entrambi questi metodi appartengono alla classe \textit{SVGGenerator}. Per le coordinate \textit{x} e \textit{y} che indicano la posizione della figura, controlla se il punto indicato dal metodo \textit{start} di \textit{BoundingRectangle} sia effettivamente il punto in alto a sinistra, poich\`e il cerchio/ellisse potrebbe essere rovesciato. Infine scrive il tag di chiusura con il metodo \textit{endCommand} di \textit{SVGGenerator}.
 \end{elencopuntato}
 
 \subsezione{Line}
@@ -509,7 +573,7 @@ Creato dalla lettura di un file SVG oppure dall'interfaccia utente. Manipolato d
 \paragraph{Metodi pubblici:}
 \begin{elencopuntato}[\normindent]
 \item[-] \textit{draw(canvas)} disegna una linea diritta usando le API per i path del contesto grafico, tracciando un path da \textit{BoundingRectangle.start()} a \textit{BoundingRectangle.end()}. Prima di disegnarsi richiama \textit{applyToContext} sul colore del bordo.
-\item[-] \textit{toSVG(gen)} si serve dei metodi di \textit{gen} (di tipo \textit{SVGGenerator}) per scrivere le propriet\`a della figura in formato SVG.
+\item[-] \textit{toSVG(gen)} crea un tag \textit{line} con il metodo \textit{startCommand} e aggiunge gli attributi secondo lo standard SVG1.1 con il metodo \textit{attr}. Entrambi questi metodi appartengono alla classe \textit{SVGGenerator}. Infine scrive il tag di chiusura con il metodo \textit{endCommand} di \textit{SVGGenerator}.
 \end{elencopuntato}
 
 \subsezione{FreeLine}
@@ -532,7 +596,7 @@ Creato dalla lettura di un file SVG oppure dall'interfaccia utente. Manipolato d
 \item[-] \textit{getMainPoints} ritorna un array ottenuto concatenando l'array di \textit{getMainPoints} della superclasse e i punti ottenuti con \textit{getPoints}.
 \item[-] \textit{draw(canvas)} chiama \textit{applyToContext} sul colore del bordo e ottiene i punti di controllo assoluti tramite \textit{getPoints}. Usa il primo punto come inizio della prima curva e raggruppa i punti a 3 a 3 e per ogni gruppo traccia una curva di bezier. Se rimangono due punti traccia una quadratica e se ne rimane uno solo una linea diritta.
 \item[-] \textit{drawSelection(canvas)} richiama \textit{drawSelection} di \textit{Figure} e disegna le tangenti alla curva di colore grigio con opacit\`a 0.8. Le tangenti sono dei segmenti che congiungono il punto di inizio/fine curva al relativo punto di controllo.
-\item[-] \textit{toSVG(gen)} si serve dei metodi di \textit{gen} (di tipo \textit{SVGGenerator}) per scrivere le propriet\`a della figura in formato SVG.
+\item[-] \textit{toSVG(gen)} in sospeso
 \end{elencopuntato}
 
 \subsezione{BezierCurve}
@@ -546,7 +610,7 @@ Creato dalla lettura di un file SVG oppure dall'interfaccia utente. Manipolato d
 Nessuna oltre a quelle ereditate da \textit{FreeLine}.
 \paragraph{Metodi pubblici:}
 \begin{elencopuntato}[\normindent]
-\item[-] \textit{toSVG(gen)} richiama il metodo \textit{toSVG} della classe \textit{FreeLine} per scrivere le propriet\`a della figura in formato SVG.
+\item[-] \textit{toSVG(gen)} in sospeso
 \end{elencopuntato}
 
 
@@ -570,7 +634,7 @@ Creato dalla lettura di un file SVG oppure dall'interfaccia utente. Manipolato d
 \item[-] \textit{eachProperty(fn)} richiama \textit{eachProperty} di \textit{Figure} ed applica la funzione fn a \textit{{\_}fillColour} e a \textit{{\_en}}.
 \item[-] \textit{getPoints()} ritorna un'array di punti, considerando come origine \textit{BoundingRectangle.start()}, che rappresentano i vertici del poligono. Per maggiori dettagli si veda [TODO: ins. diagramma].
 \item[-] \textit{draw(canvas)} disegna il poligono usando le API per i path del contesto grafico tracciando  un path che congiunge i punti ottenuti con \textit{getPoints}. Viene disegnato due volte: la prima per il riempimento, la seconda per il bordo. Prima di disegnarsi richiama \textit{applyToContext} sulle proprie propriet\`a.
-\item[-] \textit{toSVG(gen)} si serve dei metodi di \textit{gen} (di tipo \textit{SVGGenerator}) per scrivere le propriet\`a della figura in formato SVG.
+\item[-] \textit{toSVG(gen)} crea un tag \textit{polygon} con il metodo \textit{startCommand} e aggiunge gli attributi secondo lo standard SVG1.1 con il metodo \textit{attr}. Entrambi questi metodi appartengono alla classe \textit{SVGGenerator}. Per quel che riguarda l'attributo \textit{points} si prendono i punti relativi al \textit{BoundingRectangle} con il metodo \textit{getPoints} e si sommano al punto di coordinate iniziali ottenuto con il metodo \textit{start} di \textit{BoundingRectangle}, per ottenere le coordinate relative al canvas. Infine scrive il tag di chiusura con il metodo \textit{endCommand} di \textit{SVGGenerator}.
 \end{elencopuntato}
 
 \subsezione{Text}
@@ -596,7 +660,7 @@ Nel costruttorte viene controllato se il browser supporta le API per il disegno 
 \item[-] \textit{eachProperty(fn)} richiama \textit{eachProperty} di \textit{Figure} ed applica la funzione fn a \textit{{\_}fillColour} e a \textit{{\_}font}.
 \item[-] \textit{draw(canvas)} disegna il \textit{{\_}txt} usando le API del contesto grafico. L'altezza del testo \`e uguale all'altezza del \textit{BoundingRectangle}, mentre la larghezza del \textit{BoundingRectangle} definisce la larghezza massima del testo. Viene disegnato due volte: la prima per il riempimento, la seconda per il bordo. Prima di disegnarsi richiama \textit{applyToContext} sui colori del bordo e di riempimento, e setta l'attributo \textit{font} del contesto grafico all'altezza assoluta del \textit{BoundingRectangle} in pixel, seguita dalla rappresentazione CSS di \textit{{\_}font}.
 \item[-] \textit{fallbackDraw(canvas)} metodo usato al posto di \textit{draw} quando il browser non ha il supporto per il testo. Disegna un rettangolo in modo analogo al metodo \textit{draw} di \textit{Rectangle}.
-\item[-] \textit{toSVG(gen)} si serve dei metodi di \textit{gen} (di tipo \textit{SVGGenerator}) per scrivere le propriet\`a della figura in formato SVG.
+\item[-] \textit{toSVG(gen)} in sospeso.
 \end{elencopuntato}
 
 
@@ -632,6 +696,47 @@ Usato da \textit{SVGWriter} per realizzare il documento SVG.
 \item[-]  \textit{text(t)} scrive il testo contenuto nella stringa \textit{t} tra un tag di apertura e il corrispondente di chiusura.
 \item[-]  \textit{endCommand(name)} aggiunge un tag svg di chiusura con il valore \textit{name}.
 \item[-]  \textit{flush()} chiude il documento e lo ritorna come stringa.
+\end{elencopuntato}
+
+
+\subsezione{SVGReader}
+\subsubsezione{Tipo, obiettivo e funzione del componente}
+Si occupa di chiamare il metodo \textit{fromSVG} su ogni tag SVG e ritornare il documento che corrisponde alla situazione corrente nel file SVG.
+\subsubsezione{Relazioni d'uso di altre componenti}
+Si serve di \textit{XMLParser} per fare il parsing del documento come XML, e per ogni comando SVG viene creato un tag SVG che lo rappresenta.
+Si serve di \textit{SVGElementRegistry} per creare la figura dal tag SVG e ritornarla, utilizzando il metodo \textit{makeFigureClassFromTag} per iterare attraverso la collezione di tag SVG.
+\subsubsezione{Interfacce e relazioni di uso da altre componenti}
+Si serve di \textit{SVGReadable}
+\subsubsezione{Attivit\`a svolte e dati trattati}
+\paragrafo{Metodi pubblici:}
+\begin{elencopuntato}[\normindent]
+\item[-]  \textit{read()} chiama il metodo \textit{fromSVG} su ogni tag SVG e ritorna il documento con le figure corrispondenti.
+\end{elencopuntato}
+
+\subsezione{XMLParser}
+\subsubsezione{Tipo, obiettivo e funzione del componente}
+Si occupa di fare il parsing del documento SVG come XML.
+\subsubsezione{Relazioni d'uso di altre componenti}
+Nessuna
+\subsubsezione{Interfacce e relazioni di uso da altre componenti}
+Usato da \textit{SVGReader} per realizzare figure dai tag SVG.
+\subsubsezione{Attivit\`a svolte e dati trattati}
+\paragrafo{Metodi pubblici:}
+\begin{elencopuntato}[\normindent]
+\item[-]
+\end{elencopuntato}
+
+\subsezione{SVGElementRegistry}
+\subsubsezione{Tipo, obiettivo e funzione del componente}
+Si occupa di creare la figura dal tag SVG e ritornarla.
+\subsubsezione{Relazioni d'uso di altre componenti}
+Nessuna
+\subsubsezione{Interfacce e relazioni di uso da altre componenti}
+Usato da \textit{SVGReader} per realizzare il caricamento.
+\subsubsezione{Attivit\`a svolte e dati trattati}
+\paragrafo{Metodi pubblici:}
+\begin{elencopuntato}[\normindent]
+\item[-]
 \end{elencopuntato}
 
 \sezione{Tracciamento della relazione componenti - requisiti}

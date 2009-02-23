@@ -195,7 +195,8 @@ Button.prototype.isSelected = function () {
  * @param {Visualization} visual che Visualization object
  * @param {FigureSet} figureSet the set of figures
  */
-Button.prototype.bindCanvas = function (canvas,canvasObj,visual,figureSet) {
+Button.prototype.bindCanvas = function (toolbar,canvas,canvasObj,visual,figureSet,BorderColor,FillColor) {
+  toolbar.deselectAll();
   this.setSelection(true);
    $("#cv").unbind('mousedown click mouseup');
    canvasObj.clear();
@@ -291,7 +292,9 @@ SelectionButton.prototype.getId = function (){
  * @param {FigureSet} figureSet the set of figures
  * @param {Numeric} edgeNumber the number of edges if the figure to be drawn will be a polygon
  */
-SelectionButton.prototype.bindCanvas = function (canvas,canvasObj,visual,figureSet) {
+SelectionButton.prototype.bindCanvas = function (toolbar,canvas,canvasObj,visual,figureSet) {
+  toolbar.deselectAll();
+
   $("#cv").unbind('mousedown click mouseup');
   $("#cv").bind("click", function(e){
       visual.deselectAll(figureSet);
@@ -466,7 +469,8 @@ FreeLineButton.prototype.getBuilder = function () {
   return FreeLine;
 };
 
-FreeLineButton.prototype.bindCanvas = function (canvas,canvasObj,visual,figureSet) {
+FreeLineButton.prototype.bindCanvas = function (toolbar,canvas,canvasObj,visual,figureSet) {
+  toolbar.deselectAll();
   this.setSelection(true);
    $("#cv").unbind('mousedown click mouseup');
    canvasObj.clear();
@@ -530,7 +534,8 @@ TextButton.prototype.getBuilder = function () {
 };
 
 
-TextButton.prototype.bindCanvas = function (canvas,canvasObj,visual,figureSet) {
+TextButton.prototype.bindCanvas = function (toolbar,canvas,canvasObj,visual,figureSet,BorderColor,FillColor) {
+toolbar.deselectAll();
   this.setSelection(true);
    $("#cv").unbind('mousedown click mouseup');
    canvasObj.clear();
@@ -593,6 +598,52 @@ Toolbar.prototype.deselectAll = function () {
   });
 };
 
+/**
+ * Rebinds an action to a figure to update the color
+ * @param {HTMLObject} canvas canvas reference
+ * @param {Canvas} canvasObj the canvas Object
+ * @param {Visualization} visual the visualization object
+ * @param {FigureSet} figureSet the set of figures
+ * @param {String} BorderColor the current Border color
+ * @param {String} FillColor the current Fill color
+ */
+Toolbar.prototype.rebind = function (canvas,canvasObj,visual,figureSet,BorderColor,FillColor) {
+  //for(var i=0;i<this._buttonList.lenght;i++){
+       if(this._buttonList[2].isSelected()==true){//line
+	  this._buttonList[2].bindCanvas(this,canvas,canvasObj,visual,figureSet,BorderColor,FillColor);
+	 return;
+       }
+       else if(this._buttonList[3].isSelected()==true){//bezier
+	 this._buttonList[3].bindCanvas(this,canvas,canvasObj,visual,figureSet,BorderColor,FillColor);
+	 return;
+	 }
+	  else if(this._buttonList[4].isSelected()==true){//square
+	 this._buttonList[4].bindCanvas(this,canvas,canvasObj,visual,figureSet,BorderColor,FillColor);
+	 return;
+	 }
+	  else if(this._buttonList[5].isSelected()==true){//circle
+	 this._buttonList[5].bindCanvas(this,canvas,canvasObj,visual,figureSet,BorderColor,FillColor);
+	 return;
+	 }
+	 else if(this._buttonList[6].isSelected()==true){//polygon
+	 this._buttonList[6].bindCanvas(this,canvas,canvasObj,visual,figureSet,BorderColor,FillColor);
+	 return;
+	 }
+	 else if(this._buttonList[7].isSelected()==true){//freeline
+	 this._buttonList[7].bindCanvas(this,canvas,canvasObj,visual,figureSet,BorderColor,FillColor);
+	 return;
+	 }
+  else if(this._buttonList[8].isSelected()==true){//text
+	 this._buttonList[8].bindCanvas(this,canvas,canvasObj,visual,figureSet,BorderColor,FillColor);
+	 return;
+	 }
+
+//}
+
+};
+
+
+
 //Colors
 /**
  * @constructor
@@ -632,25 +683,47 @@ Palette.prototype.each = function (fn) {
  * @param {String} string with hex color representation
  * @return  null
  */
-Palette.prototype.setColour = function (col){
-  $(".paletteComponent").click(function () {
+Palette.prototype.setColour = function (col,prec1,prec2){
+  var colore = { BorderColor: prec1, FillColor: prec2};
+
   if( document.getElementById("comboColor").value=="border"){
     $.farbtastic("#color1").setColor(col);
-    document.getElementById("color1").value=$.farbtastic("#color1").color;
+   document.getElementById("color1").value=$.farbtastic("#color1").color;
     document.getElementById("borderColorNow").style.backgroundColor=col;
-    BorderColor=col;
+    colore.BorderColor=col;
   }
   else{
- $.farbtastic("#color2").setColor(col);
+    $.farbtastic("#color2").setColor(col);
     document.getElementById("color2").value=$.farbtastic("#color2").color;
     document.getElementById("fillColorNow").style.backgroundColor=col;
-    FillColor=col;
+    colore.FillColor=col;
   }
-});
 
+  return colore;
 
 };
 
+Palette.prototype.rgbToHex= function (rgb) {
+  var rgbvals = /rgb\((.+),(.+),(.+)\)/i.exec(rgb);
+  var rval = parseInt(rgbvals[1]);
+  var gval = parseInt(rgbvals[2]);
+  var bval = parseInt(rgbvals[3]);
+  var to16 = function (x) {
+    if (x < 16) {
+      return '0' + x.toString(16);
+    }
+    else {
+      return x.toString(16);
+    }
+  };
+
+  return '#' + (
+   to16( rval.toString(16)) +
+   to16( gval.toString(16)) +
+   to16( bval.toString(16))
+  ).toUpperCase();
+
+};
 
 /**
  * @constructor
@@ -672,15 +745,45 @@ ColourDialog.prototype.create= function(){
 };
 
 
+/**
+ * @constructor
+ * Edge Number Setter
+ */
 function EdgeNumberSetter(){
- //TODO
+  this._polygonEdgeNumber=3;
 }
+
+
+EdgeNumberSetter.prototype.setEdgeNumber = function(value){
+  this._polygonEdgeNumber=value;
+};
+
+EdgeNumberSetter.prototype.getEdgeNumber = function(){
+  return this._polygonEdgeNumber;
+};
+
+
+EdgeNumberSetter.prototype.create = function(){
+   $("#edgeNumberDialog").dialog({
+   // position: ["right","top"],
+    height: 100,
+    width:320,
+    dialogClass: "edgeDialog"
+    });
+
+   $("#edgeSetter").click(function () {
+     this._polygonEdgeNumber=parseInt(document.getElementById("edgeNumber").value,10);
+     $("#edgeNumberDialog").dialog("close");
+   });
+};
+
+
+
+
+
+
 
 function BoundingRectangleSetter(){
  //TODO
 }
-/* Do not touch
-$(document).ready(function(){
 
-///fine
-});*/
