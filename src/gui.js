@@ -294,6 +294,7 @@ $(document).ready(function(){
 	$.farbtastic("#color1").setColor(document.getElementById("color1").value);
 	color.BorderColor=$.farbtastic("#color1").color;
 	document.getElementById("borderColorNow").style.backgroundColor=color.BorderColor;
+	 toolbar.rebind(canvas,canvasObj,visual,figureSet,color.BorderColor,color.FillColor);
        }
      );
 
@@ -309,7 +310,9 @@ $(document).ready(function(){
      	 $("#colory").hide("slow");
 	 $.farbtastic("#color2").setColor(document.getElementById("color2").value);
 	 color.FillColor=$.farbtastic("#color2").color;
+
 	 document.getElementById("fillColorNow").style.backgroundColor=color.FillColor;
+	 toolbar.rebind(canvas,canvasObj,visual,figureSet,color.BorderColor,color.FillColor);
        }
      );
 
