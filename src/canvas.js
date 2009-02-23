@@ -306,7 +306,8 @@ SelectionButton.prototype.bindCanvas = function (toolbar,canvas,canvasObj,visual
 	visual.deselectAll(figureSet);
 	canvasObj.clear();
 	visual.refresh();
-	throw 'No figure found';
+        // don't throw: no one will catch it
+	//throw 'No figure found';
       }
       else{
 	actualFigure.setSelection(true);
