@@ -220,13 +220,77 @@ Nessuna.
 \end{elencopuntato}
 \paragrafo{Metodi pubblici:}
 \begin{elencopuntato}[\normindent]
-\item[-] \textit{getBrowserName()} ritorna \textit{{\_}browserName}
-\item[-] \textit{getBrowserVersion()} ritorna \textit{{\_}browserVersion}
+\item[-] \textit{getBrowserName()} ritorna \textit{{\_}browserName};
+\item[-] \textit{getBrowserVersion()} ritorna \textit{{\_}browserVersion};
+\item[-] \textit{activateStylesheet(sheetref)} attiva un foglio di stile a seconda del browser utilizzato;
+\item[-] \textit{loadStyleSheet()} carica il foglio di stile ativato da \textit{activateStylesheet}.
 \end{elencopuntato}
 
+\subsezione{Visualization}
+\subsubsezione{Tipo, obiettivo e funzione del componente}
+Classe concreta che si occupa delle operazioni di visualizzazione del canvas su schermo, come la riscalatura a seguito di uno zoom e la corretta visualizzazione della parte ingrandita o rimpicciolita.
+\subsubsezione{Relazioni d'uso di altre componenti}
+\` E composta da un'istanza della classe \textit{Canvas}. Utilizza istanze di \textit{Scale} e \textit{BoundingRectangle}.
+\subsubsezione{Interfacce e relazioni di uso da altre componenti}
+\textit{Page} ne mantiene un'istanza.
+\subsubsezione{Attivit\`a svolte e dati trattati}
+\paragrafo{Attributi privati:}
+\begin{elencopuntato}[\normindent]
+\item[-] \textit{{\_}figureSet} insieme delle figure contenute in memoria.
+\end{elencopuntato}
+\paragrafo{Metodi pubblici:}
+\begin{elencopuntato}[\normindent]
+\item[-] \textit{refresh()} ridisegna il set di figure sul canvas;
+\item[-] \textit{getFigureSet()} ritorna \textit{{\_}figureSet};
+\item[-] \textit{deselectAll(figureSet)} deseleziona tutte le figure presenti nel figure set.
+\item[-] \textit{getClickCoordsWithinTarget(event)} ritorna il punto esatto del canvas sul quale \`  e avvenuto il click  del mouse.
+\end{elencopuntato}
 
+\subsezione{Canvas}
+\subsubsezione{Tipo, obiettivo e funzione del componente}
+Classe che rappresenta il canvas, oggetto sul quale verrano visualizzate le figure disegnate, modificate e spostate dall'utente, tramite l'utilizzo del mouse. 
+\subsubsezione{Relazioni d'uso di altre componenti}
 
+\subsubsezione{Interfacce e relazioni di uso da altre componenti}
+Compone un'istanza di \textit{Visualization}, che si occupa della sua visualizzazione su schermo.
+\subsubsezione{Attivit\`a svolte e dati trattati}
+\paragrafo{Attributi privati:}
+\begin{elencopuntato}[\normindent]
+\item[-] \textit{{\_}height} l'altezza in pixel del canvas;
+\item[-] \textit{{\_}width} la larghezza in pixel del canvas;
+\item[-] \textit{{\_}id} il riferimento all'oggetto HTML <canvas>.
+\end{elencopuntato}
+\paragrafo{Metodi pubblici:}
+\begin{elencopuntato}[\normindent]
+\item[-] \textit{getId()} ritorna  \textit{{\_}fid};
+\item[-] \textit{clear()} cancella tutte le figure disegnate sul canvas;
+\item[-] \textit{getHeight()} ritorna  \textit{{\_}height};
+\item[-] \textit{getWidth()} ritorna  \textit{{\_}width};
+\item[-] \textit{setHeight(val)} modifica \textit{{\_}height};
+\item[-] \textit{setWidth(val)} modifica \textit{{\_}width}.
+\end{elencopuntato}
 
+\subsezione{Button}
+\subsubsezione{Tipo, obiettivo e funzione del componente}
+Classe concreta che rappresenta un generico pulsante tramite il quale effettuare l'operazione desiderata.
+\subsubsezione{Relazioni d'uso di altre componenti}
+\subsubsezione{Interfacce e relazioni di uso da altre componenti}
+
+\subsubsezione{Attivit\`a svolte e dati trattati}
+\textit{Page} e \textit{Toolbar}ne mantengono una o pi\` u istanze, \` e inoltre implementata dalla classe \textit{CloneButton}.
+\paragrafo{Attributi privati:}
+\begin{elencopuntato}[\normindent]
+\item[-] \textit{{\_}selected} dice se il pulsante \`e selezionato.
+\end{elencopuntato}
+\paragrafo{Metodi pubblici:}
+\begin{elencopuntato}[\normindent]
+\item[-]  \textit{setSelection(value)} permette di selezionare/deselezionare il pulsante. Modifica \textit{{\_}selected}.
+\item[-]  \textit{isSelected()} dice se il pulsante \`e correntemente selezionato. Ritorna \textit{{\_}selected}.
+\item[-]  \textit{bindCanvas(toolbar,canvas,canvasObj,visual,figureSet,BorderColor,FillColor)} collega l'azione della toolbar selezionata al canvas;
+\item[-]  \textit{bindCursor(type)} collega ad ogni tool un cursore visibile sopra al canvas per capire che tipo di azione si sta compiendo.
+\end{elencopuntato}
+
+%%%%%%%%Parte Dissegna
 \subsezione{ApplicationLogic}
 
 \subsezione{Figure}

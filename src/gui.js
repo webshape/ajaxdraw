@@ -1,25 +1,3 @@
-/*function edgeNumberSetter(value){
-  polygonEdgeNumber=value;
-}*/
-
-
-
-/*function createEdgeDialog(){
-  $("#edgeNumberDialog").dialog({
-   // position: ["right","top"],
-    height: 100,
-    width:320,
-    dialogClass: "edgeDialog"
-    });
-
- $("#edgeSetter").click(function () {
-	edgeNumberSetter( parseInt(document.getElementById("edgeNumber").value,10));
-	$("#edgeNumberDialog").dialog("close");
-
-     });
-
-} */
-
 /* utile x coordinate*/
 function setup()
 {
@@ -72,74 +50,6 @@ function foo(e) {
 
 /*parte di jQuery */
 $(document).ready(function(){
-
-
-//dialog skin nera
-
-     $('#dialog').dialog({
-       autoOpen: true,
-       position: ["left","bottom"],
-       width: 450,
-       height: 40,
-       buttons:0
-     });
-
-     $("#dialog2").dialog({
-       position: ["right","top"],
-       height: 500,
-       width: 250,
-       dialogClass: "Dialog1"
-     });
-
-//end  skin black
-
-
-
-
-
-/*Creazione dialog colore */
-    //   createColDialog();
-/* Creazione dialog Edge */
-      // createEdgeDialog();
-
-
-/*Creazione dialog proprietà */
-    $("#propertiesDialog").dialog({
-    	position: "right",
-    	width: 230
-    });
-
-
-
-
-     $(".toolbarButton").hover(
-       function(){
-	 $(this).fadeOut(100);
-	 $(this).fadeIn(200);
-       }
-     );
-
-
-
-     /* Funzione gestione pulsante toolbar premuto/rilasciato*/
-     $(".toolbarButton").toggle(
-       function () {
-	 $(".toolbarButton").css({"background-color":"#F4F3F2"}), //tutti grigio chiaro
-	 $(this).css({"background-color":"#A0A0A0"});  //pulsante premuto grigio scuro
-//	 $(this).effect("highlight");//effetto highlight
-       },
-       function() {
-	 $(this).css({"background-color":"#F4F3F2"}); //torna a vecchio grigio
-//	 $(this).effect("highlight");  //highlight
-
-       }
-     );
-/*Animazione tooltip su pulsante toolbar ritardata di 1 secondo*/
-       $(".toolbarButton").tooltip(
-	 {delay: 1000}
-       );
-
-
 /* Inizio creazione GUI */
   var page = new Page();
   page.loadStylesheet();
@@ -165,8 +75,6 @@ $(document).ready(function(){
   var edgeNumberSetter = new EdgeNumberSetter();
   edgeNumberSetter.create();
   $("#edgeNumberDialog").dialog("close");
-
-
   var textButton = new TextButton();toolbar.add(textButton);
 
 
@@ -174,11 +82,11 @@ $(document).ready(function(){
   var palette = new Palette();
   var hex = palette.rgbToHex($("#lastPalette").css("background-color"));
   color = palette.setColour(hex,color.BorderColor,color.FillColor);
-
+/* Creo il colorDialog */
   var colourDialog = new ColourDialog();
   colourDialog.create();
 
-
+/* Collegamento pulsanti toolbar */
   $(".paletteComponent").click(function () {
     var hex2 = palette.rgbToHex($(this).css("background-color"));
     color = palette.setColour(hex2,color.BorderColor,color.FillColor);
@@ -286,7 +194,37 @@ function updateInfos(figure){
   document.getElementById("DialogWidth").value=figure.getBounds().w();
 }
 
+/*Creazione dialog proprietà */
+    $("#propertiesDialog").dialog({
+    	position: "right",
+    	width: 230
+    });
+     $(".toolbarButton").hover(
+       function(){
+	 $(this).fadeOut(100);
+	 $(this).fadeIn(200);
+       }
+     );
 
+
+
+     /* Funzione gestione pulsante toolbar premuto/rilasciato*/
+     $(".toolbarButton").toggle(
+       function () {
+	 $(".toolbarButton").css({"background-color":"#F4F3F2"}), //tutti grigio chiaro
+	 $(this).css({"background-color":"#A0A0A0"});  //pulsante premuto grigio scuro
+//	 $(this).effect("highlight");//effetto highlight
+       },
+       function() {
+	 $(this).css({"background-color":"#F4F3F2"}); //torna a vecchio grigio
+//	 $(this).effect("highlight");  //highlight
+
+       }
+     );
+/*Animazione tooltip su pulsante toolbar ritardata di 1 secondo*/
+       $(".toolbarButton").tooltip(
+	 {delay: 1000}
+       );
 
 //fine documento
   });
