@@ -1,47 +1,10 @@
-
-
-
-
-/**
- * Change figure color by clicking on the palette's preffered color
- * @param {String} string with hex color representation
- * @return  null
- */
-/*function changeFarbColor(col){
-  if( document.getElementById("comboColor").value=="border"){
-  $.farbtastic("#color1").setColor(col);
-  document.getElementById("color1").value=$.farbtastic("#color1").color;
-  document.getElementById("borderColorNow").style.backgroundColor=col;
-  BorderColor=col;
-}
-  else{
- $.farbtastic("#color2").setColor(col);
-  document.getElementById("color2").value=$.farbtastic("#color2").color;
-  document.getElementById("fillColorNow").style.backgroundColor=col;
-  FillColor=col;
-  }
+/*function edgeNumberSetter(value){
+  polygonEdgeNumber=value;
 }*/
 
 
 
-function createColDialog(){
-     $("#colorDialog").dialog({
-    	position: ["right","top"],
-    	height: 210,
-    	width: 230,
-    	dialogClass: "Dialog1"
-
-    });
-
-}
-
-function edgeNumberSetter(value){
-  polygonEdgeNumber=value;
-}
-
-
-
-function createEdgeDialog(){
+/*function createEdgeDialog(){
   $("#edgeNumberDialog").dialog({
    // position: ["right","top"],
     height: 100,
@@ -55,7 +18,7 @@ function createEdgeDialog(){
 
      });
 
-}
+} */
 
 /* utile x coordinate*/
 function setup()
@@ -135,17 +98,11 @@ $(document).ready(function(){
 
 
 /*Creazione dialog colore */
-       createColDialog();
+    //   createColDialog();
 /* Creazione dialog Edge */
-       createEdgeDialog();
+      // createEdgeDialog();
 
-       $("#edgeNumberDialog").dialog("close");
 
-       $("#edgeSetter").click(function () {
-	 edgeNumberSetter( parseInt(document.getElementById("edgeNumber").value,10));
-	 $("#edgeNumberDialog").dialog("close");
-
-       });
 /*Creazione dialog proprietà */
     $("#propertiesDialog").dialog({
     	position: "right",
@@ -182,6 +139,8 @@ $(document).ready(function(){
 	 {delay: 1000}
        );
 
+
+/* Inizio creazione GUI */
   var page = new Page();
   page.loadStylesheet();
   var canvasObj = new Canvas();
@@ -203,10 +162,13 @@ $(document).ready(function(){
   var polygonButton = new PolygonButton();toolbar.add(polygonButton);
   var freeLineButton = new FreeLineButton();toolbar.add(freeLineButton);
   var polygonEdgeNumber = 7;
+  var edgeNumberSetter = new EdgeNumberSetter();
+  edgeNumberSetter.create();
+  $("#edgeNumberDialog").dialog("close");
+
+
   var textButton = new TextButton();toolbar.add(textButton);
 
- // var BorderColor="#000000";
-//  var FillColor="#000000";
 
   var color= {  BorderColor:"#000000", FillColor:"#000000"};
   var palette = new Palette();
@@ -214,7 +176,7 @@ $(document).ready(function(){
   color = palette.setColour(hex,color.BorderColor,color.FillColor);
 
   var colourDialog = new ColourDialog();
-
+  colourDialog.create();
 
 
   $(".paletteComponent").click(function () {
@@ -261,7 +223,7 @@ $(document).ready(function(){
 
   $("#polygonButton").click(function () {
     toolbar.deselectAll();
-    var edge = createEdgeDialog(polygonEdgeNumber);
+    edgeNumberSetter.create();
     polygonButton.bindCanvas(toolbar,canvas,canvasObj,visual,figureSet,color.BorderColor,color.FillColor);
   });
 
@@ -277,6 +239,9 @@ $(document).ready(function(){
     textButton.bindCanvas(toolbar,canvas,canvasObj,visual,figureSet,color.BorderColor,color.FillColor);
 
   });
+
+
+
 
 /* Ruota dei colori **********************/
     $("#picker1").farbtastic("#color1");

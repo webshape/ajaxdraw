@@ -40,7 +40,7 @@ a.button:hover span{background-position: bottom right}
 	border-width:thin;
 }
 	
-#palette{
+#palette{	
 	margin-left: 5em;
 	margin-top: 0.1em;
 }
@@ -107,6 +107,8 @@ margin-left:0.5em;
 	display: inline-block;
 	
 }
+
+
 
 /********************AVANZATE******************/
 

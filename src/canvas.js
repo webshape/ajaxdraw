@@ -686,7 +686,7 @@ Palette.prototype.setColour = function (col,prec1,prec2){
 
   if( document.getElementById("comboColor").value=="border"){
     $.farbtastic("#color1").setColor(col);
-    document.getElementById("color1").value=$.farbtastic("#color1").color;
+   document.getElementById("color1").value=$.farbtastic("#color1").color;
     document.getElementById("borderColorNow").style.backgroundColor=col;
     colore.BorderColor=col;
   }
@@ -743,16 +743,45 @@ ColourDialog.prototype.create= function(){
 };
 
 
-
+/**
+ * @constructor
+ * Edge Number Setter
+ */
 function EdgeNumberSetter(){
- //TODO
+  this._polygonEdgeNumber=3;
 }
+
+
+EdgeNumberSetter.prototype.setEdgeNumber = function(value){
+  this._polygonEdgeNumber=value;
+};
+
+EdgeNumberSetter.prototype.getEdgeNumber = function(){
+  return this._polygonEdgeNumber;
+};
+
+
+EdgeNumberSetter.prototype.create = function(){
+   $("#edgeNumberDialog").dialog({
+   // position: ["right","top"],
+    height: 100,
+    width:320,
+    dialogClass: "edgeDialog"
+    });
+
+   $("#edgeSetter").click(function () {
+     this._polygonEdgeNumber=parseInt(document.getElementById("edgeNumber").value,10);
+     $("#edgeNumberDialog").dialog("close");
+   });
+};
+
+
+
+
+
+
 
 function BoundingRectangleSetter(){
  //TODO
 }
-/* Do not touch
-$(document).ready(function(){
 
-///fine
-});*/
