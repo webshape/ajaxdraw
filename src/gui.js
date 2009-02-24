@@ -130,6 +130,7 @@ $(document).ready(function(){
   });
 
   $("#polygonButton").click(function () {
+    circleButton.bindCursor("polygon");
     toolbar.deselectAll();
     edgeNumberSetter.create();
     polygonButton.bindCanvas(toolbar,canvas,canvasObj,visual,figureSet,color.BorderColor,color.FillColor);
@@ -137,7 +138,7 @@ $(document).ready(function(){
 
   $("#freeLineButton").click(function () {
     toolbar.deselectAll();
-    freeLineButton.bindCursor("text");
+    freeLineButton.bindCursor("freeline");
     freeLineButton.bindCanvas(toolbar,canvas,canvasObj,visual,figureSet,color.BorderColor,color.FillColor);
   });
 

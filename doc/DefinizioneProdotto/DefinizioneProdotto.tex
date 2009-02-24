@@ -240,10 +240,10 @@ Classe concreta che si occupa delle operazioni di visualizzazione del canvas su 
 \end{elencopuntato}
 \paragrafo{Metodi pubblici:}
 \begin{elencopuntato}[\normindent]
-\item[-] \textit{refresh()} ridisegna il set di figure sul canvas;
+\item[-] \textit{refresh()} ridisegna il set di figure sul canvas, utilizzando il metodo\textit{draw} per ogni \textit{Figure};
 \item[-] \textit{getFigureSet()} ritorna \textit{{\_}figureSet};
 \item[-] \textit{deselectAll(figureSet)} deseleziona tutte le figure presenti nel figure set.
-\item[-] \textit{getClickCoordsWithinTarget(event)} ritorna il punto esatto del canvas sul quale \`  e avvenuto il click  del mouse.
+\item[-] \textit{getClickCoordsWithinTarget(event)} ritorna il punto esatto del canvas sul quale \`  e avvenuto il click  del mouse, differenziando le diverse interpretazioni che fa ciascun browser per uniformarle in un unico metodo funzionante universalmente.
 \end{elencopuntato}
 
 \subsezione{Canvas}
@@ -262,12 +262,32 @@ Compone un'istanza di \textit{Visualization}, che si occupa della sua visualizza
 \end{elencopuntato}
 \paragrafo{Metodi pubblici:}
 \begin{elencopuntato}[\normindent]
-\item[-] \textit{getId()} ritorna  \textit{{\_}fid};
-\item[-] \textit{clear()} cancella tutte le figure disegnate sul canvas;
+\item[-] \textit{getId()} ritorna  \textit{{\_}id};
+\item[-] \textit{clear()} cancella tutte le figure disegnate sul canvas, seguendo un criterio scritto nella bozza del standard W3C, il quale prevede che la riassegnazione di uno degli attributi dimensionali del canvas comporta la cancellazione del suo contenuto e il ritorno allo stato iniziale con le nuove dimensioni;
 \item[-] \textit{getHeight()} ritorna  \textit{{\_}height};
 \item[-] \textit{getWidth()} ritorna  \textit{{\_}width};
 \item[-] \textit{setHeight(val)} modifica \textit{{\_}height};
 \item[-] \textit{setWidth(val)} modifica \textit{{\_}width}.
+\end{elencopuntato}
+
+\subsezione{Toolbar}
+\subsubsezione{Tipo, obiettivo e funzione del componente}
+Classe concreta che rappresenta la toolbar dalla quale l'utente pu\` o scegliere la funzione desiderata, posizionata in maniera da essere facilmente accessibile e sempre pronta all'uso.
+\subsubsezione{Relazioni d'uso di altre componenti}
+\` E formata da pi\` u istanze aggregate della classe \textit{Button}, per rappresentare ciascun tool selezionabile. 
+\subsubsezione{Interfacce e relazioni di uso da altre componenti}
+\textit{Page} ne mantiene un'istanza.
+\subsubsezione{Attivit\`a svolte e dati trattati}
+\leftskip=36pt{Nessuna a questo livello.}
+\paragrafo{Attributi privati:}
+\begin{elencopuntato}[\normindent]
+\item[-] \textit{{\_}buttonList} la lista dei pulsanti presenti nella toolbar;
+\end{elencopuntato}
+\paragrafo{Metodi pubblici:}
+\begin{elencopuntato}[\normindent]
+\item[-]  \textit{add(b)} aggiunge il pulsante b alla fine di \textit{{\_}buttonList};
+\item[-] \textit{deselectAll()} deseleziona tutte i pulsanti presenti nella toolbar;
+\item[-] \textit{rebind(canvas,canvasObj,visual,figureSet,BorderColor,FillColor)} prende gli stessi parametri del metodo \textit{bindCanvas} per poi richiamarlo internamente, per aggiornare i colori, in caso di loro modifica, delle figure che verranno disegnate in futuro.
 \end{elencopuntato}
 
 \subsezione{Button}
@@ -275,7 +295,6 @@ Compone un'istanza di \textit{Visualization}, che si occupa della sua visualizza
 Classe concreta che rappresenta un generico pulsante tramite il quale effettuare l'operazione desiderata.
 \subsubsezione{Relazioni d'uso di altre componenti}
 \subsubsezione{Interfacce e relazioni di uso da altre componenti}
-
 \subsubsezione{Attivit\`a svolte e dati trattati}
 \textit{Page} e \textit{Toolbar}ne mantengono una o pi\` u istanze, \` e inoltre implementata dalla classe \textit{CloneButton}.
 \paragrafo{Attributi privati:}
@@ -289,6 +308,172 @@ Classe concreta che rappresenta un generico pulsante tramite il quale effettuare
 \item[-]  \textit{bindCanvas(toolbar,canvas,canvasObj,visual,figureSet,BorderColor,FillColor)} collega l'azione della toolbar selezionata al canvas;
 \item[-]  \textit{bindCursor(type)} collega ad ogni tool un cursore visibile sopra al canvas per capire che tipo di azione si sta compiendo.
 \end{elencopuntato}
+
+
+\subsezione{SelectionButton}
+\subsubsezione{Tipo, obiettivo e funzione del componente}
+Classe concreta che rappresenta lo specifico pulsante che attiva le funzionalit\` a di selezione.
+\subsubsezione{Relazioni d'uso di altre componenti}
+Estende \textit{Button}.
+\subsubsezione{Interfacce e relazioni di uso da altre componenti}
+\subsubsezione{Attivit\`a svolte e dati trattati}
+\textit{Page} e \textit{Toolbar} ne mantengono un' istanza.
+\paragrafo{Attributi privati:}
+\begin{elencopuntato}[\normindent]
+\item[-] \textit{{\_}id} l'attibuto HTML \textit{id} del pulsante.
+\end{elencopuntato}
+\paragrafo{Metodi pubblici:}
+\begin{elencopuntato}[\normindent]
+\item[-] \textit{getId()} ritorna  \textit{{\_}id};
+\item[-]  \textit{bindCanvas(toolbar,canvas,canvasObj,visual,figureSet)} overriding del metodo ereditato da \textit{Button}, collega il canvas all'azione di selezione di una figura disegnata sul canvas.
+\end{elencopuntato}
+
+
+\subsezione{ZoomButton}
+\subsubsezione{Tipo, obiettivo e funzione del componente}
+Classe concreta che rappresenta lo specifico pulsante che attiva le funzionalit\` a di zoom nel canvas.
+\subsubsezione{Relazioni d'uso di altre componenti}
+Estende \textit{Button}.
+\subsubsezione{Interfacce e relazioni di uso da altre componenti}
+\subsubsezione{Attivit\`a svolte e dati trattati}
+\textit{Page} e \textit{Toolbar} ne mantengono un' istanza.
+\paragrafo{Attributi privati:}
+\begin{elencopuntato}[\normindent]
+\item[-] \textit{{\_}id} l'attibuto HTML \textit{id} del pulsante.
+\end{elencopuntato}
+\paragrafo{Metodi pubblici:}
+\begin{elencopuntato}[\normindent]
+\item[-] \textit{getId()} ritorna \textit{{\_}id};
+\end{elencopuntato}
+
+\subsezione{StraightLineButton}
+\subsubsezione{Tipo, obiettivo e funzione del componente}
+Classe concreta che rappresenta lo specifico pulsante che attiva le funzionalit\` a di disegno di una linea diritta.
+\subsubsezione{Relazioni d'uso di altre componenti}
+Estende \textit{Button}.
+\subsubsezione{Interfacce e relazioni di uso da altre componenti}
+\subsubsezione{Attivit\`a svolte e dati trattati}
+\textit{Page} e \textit{Toolbar} ne mantengono un' istanza.
+\paragrafo{Attributi privati:}
+\begin{elencopuntato}[\normindent]
+\item[-] \textit{{\_}id} l'attibuto HTML \textit{id} del pulsante.
+\end{elencopuntato}
+\paragrafo{Metodi pubblici:}
+\begin{elencopuntato}[\normindent]
+\item[-] \textit{getId()} ritorna \textit{{\_}id};
+\item[-] \textit{getBuilder()} ritorna il tipo di oggetto disegnato tramite la pressione di questo pulsante, per permetterne il riconoscimento al metodo \textit{bindCanvas} in modo da associare correttamente la figura da disegnare al suo pulsante.
+\end{elencopuntato}
+
+\subsezione{BezierCurveButton}
+\subsubsezione{Tipo, obiettivo e funzione del componente}
+Classe concreta che rappresenta lo specifico pulsante che attiva le funzionalit\` a di disegno di una curva di Bezier.
+\subsubsezione{Relazioni d'uso di altre componenti}
+Estende \textit{Button}.
+\subsubsezione{Interfacce e relazioni di uso da altre componenti}
+\subsubsezione{Attivit\`a svolte e dati trattati}
+\textit{Page} e \textit{Toolbar} ne mantengono un' istanza.
+\paragrafo{Attributi privati:}
+\begin{elencopuntato}[\normindent]
+\item[-] \textit{{\_}id} l'attibuto HTML \textit{id} del pulsante.
+\end{elencopuntato}
+\paragrafo{Metodi pubblici:}
+\begin{elencopuntato}[\normindent]
+\item[-] \textit{getId()} ritorna \textit{{\_}id};
+\item[-] \textit{getBuilder()} ritorna il tipo di oggetto disegnato tramite la pressione di questo pulsante, per permetterne il riconoscimento al metodo \textit{bindCanvas} in modo da associare correttamente la figura da disegnare al suo pulsante.
+\end{elencopuntato}
+
+\subsezione{SquareButton}
+\subsubsezione{Tipo, obiettivo e funzione del componente}
+Classe concreta che rappresenta lo specifico pulsante che attiva le funzionalit\` a di disegno di una figura quadrata o rettangolare.
+\subsubsezione{Relazioni d'uso di altre componenti}
+Estende \textit{Button}.
+\subsubsezione{Interfacce e relazioni di uso da altre componenti}
+\subsubsezione{Attivit\`a svolte e dati trattati}
+\textit{Page} e \textit{Toolbar} ne mantengono un' istanza.
+\paragrafo{Attributi privati:}
+\begin{elencopuntato}[\normindent]
+\item[-] \textit{{\_}id} l'attibuto HTML \textit{id} del pulsante.
+\end{elencopuntato}
+\paragrafo{Metodi pubblici:}
+\begin{elencopuntato}[\normindent]
+\item[-] \textit{getId()} ritorna \textit{{\_}id};
+\item[-] \textit{getBuilder()} ritorna il tipo di oggetto disegnato tramite la pressione di questo pulsante, per permetterne il riconoscimento al metodo \textit{bindCanvas} in modo da associare correttamente la figura da disegnare al suo pulsante.
+\end{elencopuntato}
+
+\subsezione{CircleButton}
+\subsubsezione{Tipo, obiettivo e funzione del componente}
+Classe concreta che rappresenta lo specifico pulsante che attiva le funzionalit\` a di disegno di una figura rotonda o elissoidale.
+\subsubsezione{Relazioni d'uso di altre componenti}
+Estende \textit{Button}.
+\subsubsezione{Interfacce e relazioni di uso da altre componenti}
+\subsubsezione{Attivit\`a svolte e dati trattati}
+\textit{Page} e \textit{Toolbar} ne mantengono un' istanza.
+\paragrafo{Attributi privati:}
+\begin{elencopuntato}[\normindent]
+\item[-] \textit{{\_}id} l'attibuto HTML \textit{id} del pulsante.
+\end{elencopuntato}
+\paragrafo{Metodi pubblici:}
+\begin{elencopuntato}[\normindent]
+\item[-] \textit{getId()} ritorna \textit{{\_}id};
+\item[-] \textit{getBuilder()} ritorna il tipo di oggetto disegnato tramite la pressione di questo pulsante, per permetterne il riconoscimento al metodo \textit{bindCanvas} in modo da associare correttamente la figura da disegnare al suo pulsante.
+\end{elencopuntato}
+
+\subsezione{PolygonButton}
+\subsubsezione{Tipo, obiettivo e funzione del componente}
+Classe concreta che rappresenta lo specifico pulsante che attiva le funzionalit\` a di disegno di un poligono con un numero di lati arbitrario.
+\subsubsezione{Relazioni d'uso di altre componenti}
+Estende \textit{Button}.
+\subsubsezione{Interfacce e relazioni di uso da altre componenti}
+\subsubsezione{Attivit\`a svolte e dati trattati}
+\textit{Page} e \textit{Toolbar} ne mantengono un' istanza.
+\paragrafo{Attributi privati:}
+\begin{elencopuntato}[\normindent]
+\item[-] \textit{{\_}id} l'attibuto HTML \textit{id} del pulsante.
+\end{elencopuntato}
+\paragrafo{Metodi pubblici:}
+\begin{elencopuntato}[\normindent]
+\item[-] \textit{getId()} ritorna \textit{{\_}id};
+\item[-] \textit{getBuilder()} ritorna il tipo di oggetto disegnato tramite la pressione di questo pulsante, per permetterne il riconoscimento al metodo \textit{bindCanvas} in modo da associare correttamente la figura da disegnare al suo pulsante.
+\end{elencopuntato}
+
+\subsezione{FreeLineButton}
+\subsubsezione{Tipo, obiettivo e funzione del componente}
+Classe concreta che rappresenta lo specifico pulsante che attiva le funzionalit\` a di disegno di una linea a mano libera.
+\subsubsezione{Relazioni d'uso di altre componenti}
+Estende \textit{Button}.
+\subsubsezione{Interfacce e relazioni di uso da altre componenti}
+\subsubsezione{Attivit\`a svolte e dati trattati}
+\textit{Page} e \textit{Toolbar} ne mantengono un' istanza.
+\paragrafo{Attributi privati:}
+\begin{elencopuntato}[\normindent]
+\item[-] \textit{{\_}id} l'attibuto HTML \textit{id} del pulsante.
+\end{elencopuntato}
+\paragrafo{Metodi pubblici:}
+\begin{elencopuntato}[\normindent]
+\item[-] \textit{getId()} ritorna \textit{{\_}id};
+\item[-] \textit{getBuilder()} ritorna il tipo di oggetto disegnato tramite la pressione di questo pulsante, per permetterne il riconoscimento al metodo \textit{bindCanvas} in modo da associare correttamente la figura da disegnare al suo pulsante.
+\item[-]  \textit{bindCanvas(toolbar,canvas,canvasObj,visual,figureSet,borderColor)} overriding del metodo ereditato da \textit{Button}, collega il canvas all'azione di disegno di una linea a mano libera.
+\end{elencopuntato}
+
+\subsezione{TextButton}
+\subsubsezione{Tipo, obiettivo e funzione del componente}
+Classe concreta che rappresenta lo specifico pulsante che attiva le funzionalit\` a di disegno di una linea a mano libera.
+\subsubsezione{Relazioni d'uso di altre componenti}
+Estende \textit{Button}.
+\subsubsezione{Interfacce e relazioni di uso da altre componenti}
+\subsubsezione{Attivit\`a svolte e dati trattati}
+\textit{Page} e \textit{Toolbar} ne mantengono un' istanza.
+\paragrafo{Attributi privati:}
+\begin{elencopuntato}[\normindent]
+\item[-] \textit{{\_}id} l'attibuto HTML \textit{id} del pulsante.
+\end{elencopuntato}
+\paragrafo{Metodi pubblici:}
+\begin{elencopuntato}[\normindent]
+\item[-] \textit{getId()} ritorna \textit{{\_}id};
+\item[-] \textit{getBuilder()} ritorna il tipo di oggetto disegnato tramite la pressione di questo pulsante, per permetterne il riconoscimento al metodo \textit{bindCanvas} in modo da associare correttamente la figura da disegnare al suo pulsante.
+\item[-]  \textit{bindCanvas(toolbar,canvas,canvasObj,visual,figureSet,borderColour,fillColor)} overriding del metodo ereditato da \textit{Button}, collega il canvas all'azione di disegno di una casella di testo. 
+\end{elencopuntato}
+
 
 %%%%%%%%Parte Dissegna
 \subsezione{ApplicationLogic}

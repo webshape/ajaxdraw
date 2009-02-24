@@ -258,8 +258,14 @@ Button.prototype.bindCursor = function(type){
      case "circle":
        $("#cv").css({'cursor' : 'url("images/circleDraw.png"),auto'});
       break;
+       case "polygon":
+       $("#cv").css({'cursor' : 'url("images/polygonDraw.png"),auto'});
+      break;
+       case "freeline":
+       $("#cv").css({'cursor' : 'url("images/freeLineDraw.png"),auto'});
+      break;
      case "text":
-       $("#cv").css({'cursor' : 'text'});
+       $("#cv").css({'cursor' : 'url("images/textDraw.png"),auto'});
       break;
      default:
       alert("fatto");
