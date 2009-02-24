@@ -198,46 +198,45 @@ Button.prototype.isSelected = function () {
 Button.prototype.bindCanvas = function (toolbar,canvas,canvasObj,visual,figureSet,BorderColor,FillColor) {
   toolbar.deselectAll();
   this.setSelection(true);
-   $("#cv").unbind('mousedown click mouseup');
-   canvasObj.clear();
-   visual.refresh();//per togliere un'eventuale selezione
-   var s = [];
-   var f;
-   var self = this;
-   $("#cv").bind("mousedown", function(e){
-     var builder = self.getBuilder();
-     var f = s[0] = new builder();
-     var coords = visual.getClickCoordsWithinTarget(e);
-     if(builder==Rectangle || builder == Circle || builder==Polygon){ //lines have no fillColour parameter
+  $("#cv").unbind('mousedown click mouseup');
+  canvasObj.clear();
+  visual.refresh();//per togliere un'eventuale selezione
+  var s = [];
+  var f;
+  var self = this;
+  $("#cv").bind("mousedown", function(e){
+    var builder = self.getBuilder();
+    var f = s[0] = new builder();
+    var coords = visual.getClickCoordsWithinTarget(e);
+    if(builder==Rectangle || builder == Circle || builder==Polygon){ //lines have no fillColour parameter
       f.getFillColour().getOpacity().setVal(1);
       f.getFillColour().fromCSS(FillColor);
-     }
-     f.getBorderColour().getOpacity().setVal(1);
-     f.getBorderColour().fromCSS(BorderColor);
-     f.getBounds().setStart(new Point(coords.x, coords.y));
-
+    }
+    f.getBorderColour().getOpacity().setVal(1);
+    f.getBorderColour().fromCSS(BorderColor);
+    f.getBounds().setStart(new Point(coords.x, coords.y));
     $("#cv").bind("mousemove",function(e){
-        var coords2 = visual.getClickCoordsWithinTarget(e);
-	f.getBounds().setEnd(new Point(coords2.x, coords2.y));
-	if(builder==Polygon){
-          var edgeNumber = document.getElementById('edgeNumber').value;
-          // TODO: check that edgeNumber is a valid number
-	  f.edgeNumber().setVal(edgeNumber);
-	}
-	canvasObj.clear();
-	visual.refresh();
-	f.draw(canvas);
-    });
+      var coords2 = visual.getClickCoordsWithinTarget(e);
+      f.getBounds().setEnd(new Point(coords2.x, coords2.y));
+      if(builder==Polygon){
+        var edgeNumber = document.getElementById('edgeNumber').value;
+	// TODO: check that edgeNumber is a valid number
+	f.edgeNumber().setVal(edgeNumber);
+      }
+    canvasObj.clear();
+    visual.refresh();
+    f.draw(canvas);
+  });
 
-    }).bind("mouseup",function(e){  //jQuery mouseup event bind
-      $("#cv").unbind('mousemove');
-      var coords1 = visual.getClickCoordsWithinTarget(e);
-      var f = s[0];
-      f.getBounds().setEnd(new Point(coords1.x, coords1.y));
-      visual.getFigureSet().add(f);
-      canvasObj.clear();
-      visual.refresh();
-    });
+  }).bind("mouseup",function(e){  //jQuery mouseup event bind
+    $("#cv").unbind('mousemove');
+    var coords1 = visual.getClickCoordsWithinTarget(e);
+    var f = s[0];
+    f.getBounds().setEnd(new Point(coords1.x, coords1.y));
+    visual.getFigureSet().add(f);
+    canvasObj.clear();
+    visual.refresh();
+  });
 };
 
 /*
@@ -247,10 +246,13 @@ Button.prototype.bindCursor = function(type){
   if(($.browser.name!="opera")){
     switch(type){
       case "selection":
-	$("#cv").css({'cursor' : 'url("images/selezione.png"),auto'});
+	$("#cv").css({'cursor' : 'url("images/selectDraw.png"),auto'});
       break;
      case "line":
 	$("#cv").css({'cursor' : 'url("images/lineDraw.png"),auto'});
+      break;
+       case "bezier":
+	$("#cv").css({'cursor' : 'url("images/bezierDraw.png"),auto'});
       break;
     case "square":
        $("#cv").css({'cursor' : 'url("images/squareDraw.png"),auto'});
@@ -273,6 +275,29 @@ Button.prototype.bindCursor = function(type){
   }
 };
 
+
+/**
+ * @constructor
+ * The Clear Canvas Button
+ */
+function ClearCanvasButton () {
+  Button.call(this);
+  this._id = document.getElementById("clearCanvasButton");
+}
+
+ClearCanvasButton.prototype = new Button();
+
+ClearCanvasButton.prototype.getId = function (){
+  return this._id;
+};
+
+ClearCanvasButton.prototype.clearCanvas = function(canvas,visual,figureSet){
+  canvas.clear();
+  figureSet.each(function(f){
+		   figureSet.rem(f);
+		 });
+  visual.refresh();
+};
 
 
 /**
@@ -620,37 +645,34 @@ Toolbar.prototype.deselectAll = function () {
  */
 Toolbar.prototype.rebind = function (canvas,canvasObj,visual,figureSet,BorderColor,FillColor) {
   //for(var i=0;i<this._buttonList.lenght;i++){
-       if(this._buttonList[2].isSelected()==true){//line
-	  this._buttonList[2].bindCanvas(this,canvas,canvasObj,visual,figureSet,BorderColor,FillColor);
-	 return;
-       }
-       else if(this._buttonList[3].isSelected()==true){//bezier
-	 this._buttonList[3].bindCanvas(this,canvas,canvasObj,visual,figureSet,BorderColor,FillColor);
-	 return;
-	 }
-	  else if(this._buttonList[4].isSelected()==true){//square
-	 this._buttonList[4].bindCanvas(this,canvas,canvasObj,visual,figureSet,BorderColor,FillColor);
-	 return;
-	 }
-	  else if(this._buttonList[5].isSelected()==true){//circle
-	 this._buttonList[5].bindCanvas(this,canvas,canvasObj,visual,figureSet,BorderColor,FillColor);
-	 return;
-	 }
-	 else if(this._buttonList[6].isSelected()==true){//polygon
-	 this._buttonList[6].bindCanvas(this,canvas,canvasObj,visual,figureSet,BorderColor,FillColor);
-	 return;
-	 }
-	 else if(this._buttonList[7].isSelected()==true){//freeline
-	 this._buttonList[7].bindCanvas(this,canvas,canvasObj,visual,figureSet,BorderColor,FillColor);
-	 return;
-	 }
+  if(this._buttonList[2].isSelected()==true){//line
+    this._buttonList[2].bindCanvas(this,canvas,canvasObj,visual,figureSet,BorderColor,FillColor);
+    return;
+  }
+  else if(this._buttonList[3].isSelected()==true){//bezier
+    this._buttonList[3].bindCanvas(this,canvas,canvasObj,visual,figureSet,BorderColor,FillColor);
+    return;
+  }
+  else if(this._buttonList[4].isSelected()==true){//square
+    this._buttonList[4].bindCanvas(this,canvas,canvasObj,visual,figureSet,BorderColor,FillColor);
+    return;
+  }
+  else if(this._buttonList[5].isSelected()==true){//circle
+    this._buttonList[5].bindCanvas(this,canvas,canvasObj,visual,figureSet,BorderColor,FillColor);
+    return;
+  }
+  else if(this._buttonList[6].isSelected()==true){//polygon
+    this._buttonList[6].bindCanvas(this,canvas,canvasObj,visual,figureSet,BorderColor,FillColor);
+    return;
+  }
+  else if(this._buttonList[7].isSelected()==true){//freeline
+    this._buttonList[7].bindCanvas(this,canvas,canvasObj,visual,figureSet,BorderColor);
+    return;
+  }
   else if(this._buttonList[8].isSelected()==true){//text
-	 this._buttonList[8].bindCanvas(this,canvas,canvasObj,visual,figureSet,BorderColor,FillColor);
-	 return;
-	 }
-
-//}
-
+    this._buttonList[8].bindCanvas(this,canvas,canvasObj,visual,figureSet,BorderColor,FillColor);
+    return;
+  }
 };
 
 
@@ -713,7 +735,11 @@ Palette.prototype.setColour = function (col,prec1,prec2){
   return colore;
 
 };
-
+/**
+ * Convert from RGB(x,x,x) format to hex format
+ * @param {String} rgb with rgb color representation
+ * @return  the hex value
+ */
 Palette.prototype.rgbToHex= function (rgb) {
   var rgbvals = /rgb\((.+),(.+),(.+)\)/i.exec(rgb);
   var rval = parseInt(rgbvals[1]);
@@ -758,6 +784,34 @@ ColourDialog.prototype.create= function(){
 
 /**
  * @constructor
+ * Properties Dialog
+ */
+function PropertiesDialog(edge,font,bounding,rotation){
+  this._edgeSetter = edge;
+  this._fontSetter = font;
+  this._boundingSetter = bounding;
+  this._rotationSetter = rotation;
+}
+
+PropertiesDialog.prototype.create= function(){
+   $("#propertiesDialog").dialog({
+    	position: "right",
+    	width: 230,
+	height: 250
+    });
+     $(".toolbarButton").hover(
+       function(){
+	 $(this).fadeOut(100);
+	 $(this).fadeIn(200);
+       }
+     );
+
+};
+
+
+
+/**
+ * @constructor
  * Edge Number Setter
  */
 function EdgeNumberSetter(){
@@ -790,9 +844,13 @@ EdgeNumberSetter.prototype.create = function(){
 
 
 
+function FontSetter(){
+ //TODO
+}
 
-
-
+function RotationSetter(){
+ //TODO
+}
 
 function BoundingRectangleSetter(){
  //TODO

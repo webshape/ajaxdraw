@@ -98,6 +98,9 @@ menuBar5.init();
 	
 	<!--  Zona di salvataggio provvisoria -->
 	<div id="saveLoadZone">
+		<span>
+			<input type="button" id="clearCanvasButton" name="ClearButton" value="Svuota Canvas"/>
+		</span>
 		<span class="tooltip">
 			<span>Salva l'immagine in un file SVG</span>
 			<input type="button" name="SaveSVG" value="Salva SVG"/>&nbsp;
@@ -171,9 +174,9 @@ menuBar5.init();
 <div id="colorDialog" class="flora" title="Modifica colori">
 	<p>Bordo:   
 		<span id="borderColorNow" style="background-color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-		<span>
+		<div style="margin-top: -0.6em;">
 			<input type="button" id="changeBorderCol" name="ChangeCol" value="Cambia Colore Bordo"/>
-		</span>
+		</div>
 	</p>
 	<!-- Farbtastic $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ -->
 	<form id="colorx" action="" style="width: 400px;display: none;">
@@ -186,9 +189,9 @@ menuBar5.init();
 	<!-- Seconda ruota -->
 	<p>Riempimento:  
 		<span id="fillColorNow" style="background-color: #FFFFFF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> 
-		<span>
+		<div style="margin-top: -0.6em;">
 			<input type="button" id="changeFillCol" name="ChangeCol" value="Cambia Colore Riemp."/>
-		</span>
+		</div>
 	</p>
 	<form id="colory" action="" style="width: 400px;display: none;">
   		<div class="form-item" >
@@ -201,17 +204,26 @@ menuBar5.init();
 
 <!-- Parte Dialog Properties -->
 <div id="propertiesDialog" class="flora" title="Modifica attributi">
-	<p id="prova">Altezza:   
+	<p id="prova">H:  
 		<INPUT id="DialogHeight" type="text" size="2" value=" " />px
 	</p>
-	<p>Larghezza:   
+	<p>L:   
 		<INPUT id="DialogWidth" type="text" size="2" value=" " />px
 	</p>
-	<p>X:  &nbsp; <INPUT id="x" type="text" size="2" value=" " />&nbsp;&nbsp;   Y:&nbsp;<INPUT id="y" type="text" size="2"/></p>
+	<p>X:  &nbsp; 
+		<INPUT id="x" type="text" size="2" value=" " />&nbsp;&nbsp;   Y:&nbsp;
+		<INPUT id="y" type="text" size="2"/>
+	</p>
+	<p id="edgeSetterZone" style="display:none">N.di lati: 
+		<input id="edgeNumber" type="text" maxlength="4" size="6"/>
+		<span>
+			<input type="button" id="edgeSetter" value="ok"/>
+		</span>
+	</p>
 </div>
 
 
-<!-- Dialog per il numero di poligoni -->
+<!-- Dialog per il numero di poligoni 
 <div id="edgeNumberDialog" class="flora" title="Scegli il numero di lati">
 	<p>Numero di lati: 
 		<input id="edgeNumber" type="text" value="3"/>
@@ -219,7 +231,7 @@ menuBar5.init();
 			<input type="button" id="edgeSetter" value="ok"/>
 		</span>
 	</p>
-</div>
+</div> -->
 
 </body>
 </html>

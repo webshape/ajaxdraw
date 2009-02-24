@@ -49,6 +49,18 @@ a.button:hover span{background-position: bottom right}
 margin-left:0.5em;
 }
 
+
+
+#fillColorNow{
+	border:solid;	
+}
+
+#borderColorNow{
+	border:solid;	
+}
+
+
+
 /* Caratteristiche generiche  toolbar */
 #tool{
 	margin-top:0.5em;
@@ -100,7 +112,6 @@ margin-left:0.5em;
 #textButton{
 	background-image:url("../pages/images/testo.png");
 }
-
 
 /*zona salva/carica SVG */
 #saveLoadZone{

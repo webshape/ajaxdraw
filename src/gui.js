@@ -57,8 +57,6 @@ $(document).ready(function(){
   var canvas = canvasObj.getId();
 
   var ctx = canvas.getContext("2d");   //prendo il contesto
-  //var canvasLeft = ctx.canvas.offsetLeft;
-  //var canvasTop = ctx.canvas.offsetTop;
   var figureSet = new FigureSet();
   var visual = new Visualization(figureSet);
   //Toolbar Creation
@@ -71,22 +69,29 @@ $(document).ready(function(){
   var circleButton = new CircleButton();toolbar.add(circleButton);
   var polygonButton = new PolygonButton();toolbar.add(polygonButton);
   var freeLineButton = new FreeLineButton();toolbar.add(freeLineButton);
-  var polygonEdgeNumber = 7;
-  var edgeNumberSetter = new EdgeNumberSetter();
-  edgeNumberSetter.create();
-  $("#edgeNumberDialog").dialog("close");
   var textButton = new TextButton();toolbar.add(textButton);
-
-
+  var clearCanvasButton = new ClearCanvasButton();toolbar.add(clearCanvasButton);
+/* Creo il colorDialog */
   var color= {  BorderColor:"#000000", FillColor:"#000000"};
   var palette = new Palette();
   var hex = palette.rgbToHex($("#lastPalette").css("background-color"));
   color = palette.setColour(hex,color.BorderColor,color.FillColor);
-/* Creo il colorDialog */
   var colourDialog = new ColourDialog();
   colourDialog.create();
 
-/* Collegamento pulsanti toolbar */
+/* Creo dialog delle proprietà */
+  var edgeNumberSetter = new EdgeNumberSetter();
+  //edgeNumberSetter.create();
+  $("#edgeNumberDialog").dialog("close");
+  var boundingRectangleSetter = new BoundingRectangleSetter();
+  var fontSetter = new FontSetter();
+  var rotationSetter = new RotationSetter();
+  var propertiesDialog = new PropertiesDialog(edgeNumberSetter,fontSetter,boundingRectangleSetter,rotationSetter);
+  propertiesDialog.create();
+
+
+
+/* Collegamento pulsanti toolbar in caso di cambio colore e generali*/
   $(".paletteComponent").click(function () {
     var hex2 = palette.rgbToHex($(this).css("background-color"));
     color = palette.setColour(hex2,color.BorderColor,color.FillColor);
@@ -94,42 +99,51 @@ $(document).ready(function(){
     toolbar.rebind(canvas,canvasObj,visual,figureSet,color.BorderColor,color.FillColor);
   });
 
+  $("#clearCanvasButton").click(function () {
+    clearCanvasButton.clearCanvas(canvasObj,visual,figureSet);
+  });
 
   $("#selectionButton").click(function () {
     toolbar.deselectAll();
     selectionButton.bindCursor("selection");
-      selectionButton.bindCanvas(toolbar,canvas,canvasObj,visual,figureSet);
+    selectionButton.bindCanvas(toolbar,canvas,canvasObj,visual,figureSet);
   });
 
   $("#zoomButton").click(function () {
+    $("#edgeSetterZone").css({"display":"none"});
     alert("Not yet implemented" );
   });
 
   $("#straightLineButton").click(function () {
+    $("#edgeSetterZone").css({"display":"none"});
     toolbar.deselectAll();
     straightLineButton.bindCursor("line");
     straightLineButton.bindCanvas(toolbar,canvas,canvasObj,visual,figureSet,color.BorderColor,color.FillColor);
   });
 
   $("#bezierCurveButton").click(function () {
+    $("#edgeSetterZone").css({"display":"none"});
     toolbar.deselectAll();
     bezierCurveButton.bindCursor("bezier");
     bezierCurveButton.bindCanvas(toolbar,canvas,canvasObj,visual,figureSet,color.BorderColor,color.FillColor);
   });
 
   $("#squareButton").click(function () {
+    $("#edgeSetterZone").css({"display":"none"});
     toolbar.deselectAll();
     squareButton.bindCursor("square");
     squareButton.bindCanvas(toolbar,canvas,canvasObj,visual,figureSet,color.BorderColor,color.FillColor);
   });
 
   $("#circleButton").click(function () {
+    $("#edgeSetterZone").css({"display":"none"});
     circleButton.bindCursor("circle");
     toolbar.deselectAll();
     circleButton.bindCanvas(toolbar,canvas,canvasObj,visual,figureSet,color.BorderColor,color.FillColor);
   });
 
   $("#polygonButton").click(function () {
+    $("#edgeSetterZone").css({"display":"block"});
     circleButton.bindCursor("polygon");
     toolbar.deselectAll();
     edgeNumberSetter.create();
@@ -137,96 +151,97 @@ $(document).ready(function(){
   });
 
   $("#freeLineButton").click(function () {
+    $("#edgeSetterZone").css({"display":"none"});
     toolbar.deselectAll();
     freeLineButton.bindCursor("freeline");
     freeLineButton.bindCanvas(toolbar,canvas,canvasObj,visual,figureSet,color.BorderColor,color.FillColor);
   });
 
   $("#textButton").click(function () {
+    $("#edgeSetterZone").css({"display":"none"});
     toolbar.deselectAll();
     textButton.bindCursor("text");
     textButton.bindCanvas(toolbar,canvas,canvasObj,visual,figureSet,color.BorderColor,color.FillColor);
 
   });
 
+  $(".toolbarButton").click(function(){
+    $(".toolbarButton").css({"background-color":"#F4F3F2"}), //tutti grigio chiaro
+    $(this).css({"background-color":"#A0A0A0"});  //pulsante premuto grigio scuro
+  });
 
-
+/*Animazione tooltip su pulsante toolbar ritardata di 1 secondo*/
+  $(".toolbarButton").tooltip(
+    {delay: 1000}
+  );
 
 /* Ruota dei colori **********************/
-    $("#picker1").farbtastic("#color1");
-    $("#picker2").farbtastic("#color2");
+  $("#picker1").farbtastic("#color1");
+  $("#picker2").farbtastic("#color2");
+
+/* cambio colore al click su farbtastic */
+  var openBorder = false;
+  var openFill = false;
+  $("#changeBorderCol").toggle(
+    function () {
+      $("#colorx").show("slow");
+
+      if(openFill == false){
+	$(".Dialog1").height(430);
+      }
+      else $(".Dialog1").height(650);
+      openBorder = true;
+    },
+    function() {
+      $(".Dialog1").height(210),
+      $("#colorx").hide("slow");
+      $.farbtastic("#color1").setColor(document.getElementById("color1").value);
+      color.BorderColor=$.farbtastic("#color1").color;
+      document.getElementById("borderColorNow").style.backgroundColor=color.BorderColor;
+      toolbar.rebind(canvas,canvasObj,visual,figureSet,color.BorderColor,color.FillColor);
+      if(openFill == false){
+	$(".Dialog1").height(210);
+      }
+      else $(".Dialog1").height(430);
 
 
-    $("#changeBorderCol").toggle(
-       function () {
-	 $("#colorx").show("slow"),
-         $(".Dialog1").height(500);
-       },
-       function() {
-	$(".Dialog1").height(210),
-     	$("#colorx").hide("slow");
-	$.farbtastic("#color1").setColor(document.getElementById("color1").value);
-	color.BorderColor=$.farbtastic("#color1").color;
-	document.getElementById("borderColorNow").style.backgroundColor=color.BorderColor;
-	 toolbar.rebind(canvas,canvasObj,visual,figureSet,color.BorderColor,color.FillColor);
-       }
-     );
+      openBorder = false;
+    }
+  );
+  $("#changeFillCol").toggle(
+    function () {
+      $("#colory").show("slow");
+      if(openBorder==false){
+	$(".Dialog1").height(430);
+      }
+      else $(".Dialog1").height(650);
+      openFill = true;
+    },
+    function() {
+      $(".Dialog1").height(210),
+      $("#colory").hide("slow");
+      $.farbtastic("#color2").setColor(document.getElementById("color2").value);
+      color.FillColor=$.farbtastic("#color2").color;
+      document.getElementById("fillColorNow").style.backgroundColor=color.FillColor;
+      toolbar.rebind(canvas,canvasObj,visual,figureSet,color.BorderColor,color.FillColor);
+      if(openBorder==false){
+	$(".Dialog1").height(210);
+      }
+      else $(".Dialog1").height(430);
+      openFill = false;
+    }
+  );
 
 
-     $("#changeFillCol").toggle(
-       function () {
-	 $("#colory").show("slow"),
-         $(".Dialog1").height(500);
 
-       },
-       function() {
-	 $(".Dialog1").height(210),
-     	 $("#colory").hide("slow");
-	 $.farbtastic("#color2").setColor(document.getElementById("color2").value);
-	 color.FillColor=$.farbtastic("#color2").color;
-
-	 document.getElementById("fillColorNow").style.backgroundColor=color.FillColor;
-	 toolbar.rebind(canvas,canvasObj,visual,figureSet,color.BorderColor,color.FillColor);
-       }
-     );
 
 function updateInfos(figure){
   document.getElementById("DialogHeight").value=figure.getBounds().h();
   document.getElementById("DialogWidth").value=figure.getBounds().w();
 }
 
-/*Creazione dialog proprietà */
-    $("#propertiesDialog").dialog({
-    	position: "right",
-    	width: 230
-    });
-     $(".toolbarButton").hover(
-       function(){
-	 $(this).fadeOut(100);
-	 $(this).fadeIn(200);
-       }
-     );
 
-
-
-     /* Funzione gestione pulsante toolbar premuto/rilasciato*/
-     $(".toolbarButton").toggle(
-       function () {
-	 $(".toolbarButton").css({"background-color":"#F4F3F2"}), //tutti grigio chiaro
-	 $(this).css({"background-color":"#A0A0A0"});  //pulsante premuto grigio scuro
-//	 $(this).effect("highlight");//effetto highlight
-       },
-       function() {
-	 $(this).css({"background-color":"#F4F3F2"}); //torna a vecchio grigio
-//	 $(this).effect("highlight");  //highlight
-
-       }
-     );
-/*Animazione tooltip su pulsante toolbar ritardata di 1 secondo*/
-       $(".toolbarButton").tooltip(
-	 {delay: 1000}
-       );
 
 //fine documento
-  });
+});
 
