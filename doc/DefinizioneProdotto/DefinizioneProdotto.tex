@@ -604,8 +604,9 @@ Implementa \textit{Property}.
 \end{elencopuntato}
 \paragraph{Metodi pubblici:}
 \begin{elencopuntato}[\normindent]
-\item[-] \textit{setAngle} setta l'angolo di rotazione \textit{\_rad}.
-\item[-] \textit{transformPoints} effettua una trasformazione sulla figura selezionata nel canvas, ritorna la modifica dei vertici della figura ottenuti attraverso il metodo\textit{getMainPoints}; la figura viene ridisegnata con l'ausilio del metodo \textit{draw(canvas)}. 
+\item[-] \textit{get/setAngle} permette di ottenere, o di modificare l'angolo di rotazione.
+\item[-] \textit{transformPoints} effettua una trasformazione sulla figura selezionata nel canvas, ritorna la modifica delle coordinate dei vertici della figura ottenuti attraverso il metodo\textit{getMainPoints}; la figura viene ridisegnata con l'ausilio del metodo \textit{draw(canvas)}. 
+\item[-] \textit{applyToContext(context)} setta l'attributo \textit{angle} del contesto grafico alla propria rappresentazione sul canvas, e richiama il metodo \textit{applyToContext} su \textit{{\_}rad} passando \textit{context} come argomento.
 \item[-] \textit{createWidget} crea e ritorna un'istanza di \textit{RotationSetter} passando se stesso come parametro al costruttore.
 \end{elencopuntato}
 
