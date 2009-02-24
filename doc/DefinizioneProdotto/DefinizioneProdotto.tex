@@ -702,42 +702,48 @@ Usato da \textit{SVGWriter} per realizzare il documento SVG.
 
 \subsezione{SVGReader}
 \subsubsezione{Tipo, obiettivo e funzione del componente}
-Si occupa di chiamare il metodo \textit{fromSVG} su ogni tag SVG e ritornare il documento che corrisponde alla situazione corrente nel file SVG.
+Si occupa di chiamare il metodo \textit{fromSVG} su ogni tag SVG e ritornare un'istanza di \textit{FigureSet} corrispondente alla situazione corrente nel file SVG.
 \subsubsezione{Relazioni d'uso di altre componenti}
-Si serve di \textit{XMLParser} per fare il parsing del documento come XML, e per ogni comando SVG viene creato un tag SVG che lo rappresenta.
-Si serve di \textit{SVGElementRegistry} per creare la figura dal tag SVG e ritornarla, utilizzando il metodo \textit{makeFigureClassFromTag} per iterare attraverso la collezione di tag SVG.
+Mantiene un'istanza di \text{FigureSet} e si serve del metodo \textit{fromSVG}.
+Utilizza \textit{XMLParser} per fare il \underline{parsing} del documento come XML, e il metodo \textit{makeFigureClassFromTag} della classe \textit{SVGElementRegistry}.
+Si serve della classe \textit{ParsingError} per gestire gli errori.
 \subsubsezione{Interfacce e relazioni di uso da altre componenti}
-Si serve di \textit{SVGReadable}
+Nessuna.
 \subsubsezione{Attivit\`a svolte e dati trattati}
 \paragrafo{Metodi pubblici:}
 \begin{elencopuntato}[\normindent]
-\item[-]  \textit{read()} chiama il metodo \textit{fromSVG} su ogni tag SVG e ritorna il documento con le figure corrispondenti.
+\item[-]  \textit{read(doc)} ottiene un modello \underline{DOM} da \textit{doc} attraverso il metodo \textit{parsing} di \textit{XMLParser} e lancia un errore se l'operazione non ha successo. Itera il DOM per accedere ai tag; per ognuno controlla che sia presente nella tabella della classe \textit{SVGElementRegistry} e in caso affermativo chiama il metodo \textit{fromSVG} sull'istanza della corrispondente figura. Infine aggiunge la figura all'istanza di \textit{FigureSet}.
 \end{elencopuntato}
 
 \subsezione{XMLParser}
 \subsubsezione{Tipo, obiettivo e funzione del componente}
-Si occupa di fare il parsing del documento SVG come XML.
+Si occupa di fare il parsing del documento SVG come XML e di ritornare il DOM corrispondente.
 \subsubsezione{Relazioni d'uso di altre componenti}
 Nessuna
 \subsubsezione{Interfacce e relazioni di uso da altre componenti}
-Usato da \textit{SVGReader} per realizzare figure dai tag SVG.
+Usato da \textit{SVGReader} per ottenere il modello DOM dal documento SVG.
 \subsubsezione{Attivit\`a svolte e dati trattati}
 \paragrafo{Metodi pubblici:}
 \begin{elencopuntato}[\normindent]
-\item[-]
+\item[-] \textit{parsing(doc)} ??TODO
 \end{elencopuntato}
 
 \subsezione{SVGElementRegistry}
 \subsubsezione{Tipo, obiettivo e funzione del componente}
-Si occupa di creare la figura dal tag SVG e ritornarla.
+Contiene una \underline{tabella di hash} che indica quali figure sono implementate e si occupa di creare un'istanza di una figura in base al tag SVG.
 \subsubsezione{Relazioni d'uso di altre componenti}
-Nessuna
+Usa i costruttori delle figure per ritornarne un'istanza.
 \subsubsezione{Interfacce e relazioni di uso da altre componenti}
-Usato da \textit{SVGReader} per realizzare il caricamento.
+Usato da \textit{SVGReader} per ottenere una figura da un tag SVG.
 \subsubsezione{Attivit\`a svolte e dati trattati}
+\paragrafo{Attributi privati:}
+\begin{elencopuntato}[\normindent]
+\item[-] \textit{{\_}reg} tabella di hash in cui ad ogni figura corrisponde un costruttore.
+\end{elencopuntato}
 \paragrafo{Metodi pubblici:}
 \begin{elencopuntato}[\normindent]
-\item[-]
+\item[-] \textit{register(tagName, constructor)} aggiunge un elemento alla tabella di hash, usando come indice \textit{tagName} e come valore \textit{constructor}, che sar\`a un costruttore di una figura.
+\item[-] \textit{makeFigureClassFromTag(tag)} controlla se nella tabella di hash esiste un indice \textit{tag}: se \`e presente crea una figura corrispondente utilizzando il cotruttore ottenuto dalla tabella, altrimenti ritorna \textit{null}.
 \end{elencopuntato}
 
 \sezione{Tracciamento della relazione componenti - requisiti}
