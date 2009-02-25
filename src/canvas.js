@@ -608,7 +608,7 @@ TextButton.prototype.getBuilder = function () {
 };
 
 
-TextButton.prototype.bindCanvas = function (toolbar,canvas,canvasObj,visual,figureSet,BorderColor,FillColor) {
+TextButton.prototype.bindCanvas = function (toolbar,canvas,canvasObj,visual,figureSet,BorderColor,FillColor,textSetter) {
 toolbar.deselectAll();
   this.setSelection(true);
    $("#cv").unbind('mousedown click mouseup');
@@ -619,7 +619,9 @@ toolbar.deselectAll();
    var self = this;
    $("#cv").bind("mousedown", function(e){
    //  var builder = self.getBuilder();
-     var f = s[0] = new Text("Canvas");
+		   var text = textSetter.setTextString();
+     var f = s[0] = new Text(text);
+     f.setFont(new TextFont(textSetter.getTypeSetter().setFontType()));
      var coords = visual.getClickCoordsWithinTarget(e);
      //f.getFillColour().getOpacity().setVal(1);
      // f.getFillColour().fromCSS(FillColor);
@@ -780,11 +782,13 @@ Palette.prototype.setColour = function (col,prec1,prec2){
  * @param {String} rgb with rgb color representation
  * @return  the hex value
  */
-Palette.prototype.rgbToHex= function (rgb) {
+Palette.prototype.rgbToHex= function (rgb){
   var rgbvals = /rgb\((.+),(.+),(.+)\)/i.exec(rgb);
+//  if($.browser.name!="opera"){
   var rval = parseInt(rgbvals[1]);
   var gval = parseInt(rgbvals[2]);
   var bval = parseInt(rgbvals[3]);
+
   var to16 = function (x) {
     if (x < 16) {
       return '0' + x.toString(16);
@@ -794,11 +798,8 @@ Palette.prototype.rgbToHex= function (rgb) {
     }
   };
 
-  return '#' + (
-   to16( rval.toString(16)) +
-   to16( gval.toString(16)) +
-   to16( bval.toString(16))
-  ).toUpperCase();
+  return new Colour(rval, gval, bval, null).toCSS();
+
 
 };
 
@@ -840,13 +841,6 @@ PropertiesDialog.prototype.create= function(){
     	width: 230,
 	height: 250
     });
-     $(".toolbarButton").hover(
-       function(){
-	 $(this).fadeOut(100);
-	 $(this).fadeIn(200);
-       }
-     );
-
 };
 
 
@@ -885,9 +879,40 @@ EdgeNumberSetter.prototype.create = function(){
 
 
 
-function FontSetter(){
+function FontSetter(size,font){
  //TODO
+  this._fontSizeSetter = size;
+  this._fontTypeSetter = font;
+  this._text = document.getElementById("textString").value;
 }
+
+FontSetter.prototype.setTextString = function(){
+  this._text = document.getElementById("textString").value;
+  return this._text;
+};
+
+FontSetter.prototype.getSizeSetter = function(){
+  return this._fontSizeSetter;
+};
+
+FontSetter.prototype.getTypeSetter = function(){
+  return this._fontTypeSetter;
+};
+
+function FontSizeSetter(){
+  this._size = document.getElementById("fontSizeButton").value;
+};
+
+function FontTypeSetter(){
+  this._type = document.getElementById("fontTypeButton").value;
+};
+
+FontTypeSetter.prototype.setFontType = function(){
+  this._type = document.getElementById("fontTypeButton").value;
+  return this._type;
+};
+
+
 
 function RotationSetter(){
  //TODO
