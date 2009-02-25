@@ -86,7 +86,9 @@ $(document).ready(function(){
   //edgeNumberSetter.create();
   $("#edgeNumberDialog").dialog("close");
   var boundingRectangleSetter = new BoundingRectangleSetter();
-  var fontSetter = new FontSetter();
+  var fontSizeSetter = new FontSizeSetter();
+  var fontTypeSetter = new FontTypeSetter();
+  var fontSetter = new FontSetter(fontSizeSetter,fontTypeSetter);
   var rotationSetter = new RotationSetter();
   var propertiesDialog = new PropertiesDialog(edgeNumberSetter,fontSetter,boundingRectangleSetter,rotationSetter);
   propertiesDialog.create();
@@ -100,7 +102,6 @@ $(document).ready(function(){
   $(".paletteComponent").click(function () {
     var hex2 = palette.rgbToHex($(this).css("background-color"));
     color = palette.setColour(hex2,color.BorderColor,color.FillColor);
-   // alert("arrivo qua");
     toolbar.rebind(canvas,canvasObj,visual,figureSet,color.BorderColor,color.FillColor);
   });
 
@@ -109,12 +110,15 @@ $(document).ready(function(){
   });
 
   $("#selectionButton").click(function () {
+    $("#fontSetterZone").css({"display":"none"});
+    $("#edgeSetterZone").css({"display":"none"});
     toolbar.deselectAll();
     selectionButton.bindCursor("selection");
     selectionButton.bindCanvas(toolbar,canvas,canvasObj,visual,figureSet);
   });
 
   $("#zoomButton").click(function () {
+    $("#fontSetterZone").css({"display":"none"});
     $("#edgeSetterZone").css({"display":"none"});
       zoomButton.bindCanvas(toolbar,canvas,canvasObj,visual,figureSet,scale,ctx);
   });
@@ -127,6 +131,7 @@ $(document).ready(function(){
 
   $("#straightLineButton").click(function () {
     $("#edgeSetterZone").css({"display":"none"});
+    $("#fontSetterZone").css({"display":"none"});
     toolbar.deselectAll();
     straightLineButton.bindCursor("line");
     straightLineButton.bindCanvas(toolbar,canvas,canvasObj,visual,figureSet,color.BorderColor,color.FillColor);
@@ -134,6 +139,7 @@ $(document).ready(function(){
 
   $("#bezierCurveButton").click(function () {
     $("#edgeSetterZone").css({"display":"none"});
+    $("#fontSetterZone").css({"display":"none"});
     toolbar.deselectAll();
     bezierCurveButton.bindCursor("bezier");
     bezierCurveButton.bindCanvas(toolbar,canvas,canvasObj,visual,figureSet,color.BorderColor,color.FillColor);
@@ -141,6 +147,7 @@ $(document).ready(function(){
 
   $("#squareButton").click(function () {
     $("#edgeSetterZone").css({"display":"none"});
+    $("#fontSetterZone").css({"display":"none"});
     toolbar.deselectAll();
     squareButton.bindCursor("square");
     squareButton.bindCanvas(toolbar,canvas,canvasObj,visual,figureSet,color.BorderColor,color.FillColor);
@@ -148,6 +155,7 @@ $(document).ready(function(){
 
   $("#circleButton").click(function () {
     $("#edgeSetterZone").css({"display":"none"});
+    $("#fontSetterZone").css({"display":"none"});
     circleButton.bindCursor("circle");
     toolbar.deselectAll();
     circleButton.bindCanvas(toolbar,canvas,canvasObj,visual,figureSet,color.BorderColor,color.FillColor);
@@ -155,6 +163,7 @@ $(document).ready(function(){
 
   $("#polygonButton").click(function () {
     $("#edgeSetterZone").css({"display":"block"});
+    $("#fontSetterZone").css({"display":"none"});
     circleButton.bindCursor("polygon");
     toolbar.deselectAll();
     edgeNumberSetter.create();
@@ -163,6 +172,7 @@ $(document).ready(function(){
 
   $("#freeLineButton").click(function () {
     $("#edgeSetterZone").css({"display":"none"});
+    $("#fontSetterZone").css({"display":"none"});
     toolbar.deselectAll();
     freeLineButton.bindCursor("freeline");
     freeLineButton.bindCanvas(toolbar,canvas,canvasObj,visual,figureSet,color.BorderColor,color.FillColor);
@@ -170,9 +180,10 @@ $(document).ready(function(){
 
   $("#textButton").click(function () {
     $("#edgeSetterZone").css({"display":"none"});
+    $("#fontSetterZone").css({"display":"block"});
     toolbar.deselectAll();
     textButton.bindCursor("text");
-    textButton.bindCanvas(toolbar,canvas,canvasObj,visual,figureSet,color.BorderColor,color.FillColor);
+    textButton.bindCanvas(toolbar,canvas,canvasObj,visual,figureSet,color.BorderColor,color.FillColor,fontSetter);
 
   });
 
@@ -184,6 +195,12 @@ $(document).ready(function(){
 /*Animazione tooltip su pulsante toolbar ritardata di 1 secondo*/
   $(".toolbarButton").tooltip(
     {delay: 1000}
+  );
+  $(".toolbarButton").hover(
+    function(){
+      $(this).fadeOut(100);
+      $(this).fadeIn(200);
+    }
   );
 
 /* Ruota dei colori **********************/
@@ -242,7 +259,6 @@ $(document).ready(function(){
       openFill = false;
     }
   );
-
 
 
 function updateInfos(figure){

@@ -59,7 +59,18 @@
 					<li id="5000133"><a href="#">Javascript</a>	
 				</ul>
 			</li>
-			<li jsFunction='createColDialog()' id="500014"><a href="#">ColDial</a>	
+			<li jsFunction='$("#colorDialog").dialog({
+									position: ["right","top"],
+    								height: 210,
+    								width: 230,
+									resizable: false,
+    								dialogClass: "Dialog1"
+								   });' id="500014"><a href="#">ColDial</a>	
+			<li jsFunction=' $("#propertiesDialog").dialog({
+    								position: "right",
+    								width: 230,
+									height: 250
+  									  });' id="500015"><a href="#">PropDial</a>	
 		</ul>
 	</li>
 	<li id="50003" itemType="separator"></li>
@@ -208,6 +219,8 @@ menuBar5.init();
 	</form>	
 </div>
 
+
+
 <!-- Parte Dialog Properties -->
 <div id="propertiesDialog" class="flora" title="Modifica attributi">
 	<p id="prova">H:  
@@ -225,6 +238,25 @@ menuBar5.init();
 	<!--  	<span>
 			<input type="button" id="edgeSetter" value="ok"/>
 		</span> -->
+	</p>
+	
+	<p id="fontSetterZone" style="display:none">Testo: 
+	<input id="textString" type="text" value="canvas"/>		
+		<select id="fontSizeButton">
+ 			 <option value="12" >12px</option>
+ 			 <option value="14" >14px</option>  
+ 			 <option value="16" >16px</option>  
+ 			 <option value="18" >18px</option>  
+ 			 <option value="12" >20px</option>  
+		</select>
+		<select id="fontTypeButton">
+ 			 <option value="sans-serif" >sans-serif</option>
+ 			 <option value="serif" >serif</option>  
+ 			 <option value="cursive" >cursive</option>  
+ 			 <option value="monospace" >monospace</option>  
+ 			 <option value="fantasy" >fantasy</option>  
+		</select>
+		
 	</p>
 </div>
 
