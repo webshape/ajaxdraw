@@ -140,7 +140,7 @@ registry.register('path', BezierCurve);
 registry.register('text', Text);
 
 
-//TODO: every class fromSVG method
+
 /**
  * Transform an svg node into a complete rectangle
  * @param {node} n the SVG node containg the properties
