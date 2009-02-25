@@ -294,8 +294,8 @@ ClearCanvasButton.prototype.getId = function (){
 ClearCanvasButton.prototype.clearCanvas = function(canvas,visual,figureSet){
   canvas.clear();
   figureSet.each(function(f){
-		   figureSet.rem(f);
-		 });
+    figureSet.rem(f);
+  });
   visual.refresh();
 };
 
@@ -357,12 +357,50 @@ SelectionButton.prototype.bindCanvas = function (toolbar,canvas,canvasObj,visual
 function ZoomButton () {
   Button.call(this);
   this._id = document.getElementById("zoomButton");
+  this._inOrOut = false;
 }
 
 ZoomButton.prototype = new Button();
 
 ZoomButton.prototype.getId = function (){
   return this._id;
+};
+
+ZoomButton.prototype.bindCanvas = function (toolbar,canvas,canvasObj,visual,figureSet,scale,ctx) {
+  toolbar.deselectAll();
+  $("#cv").unbind('mousedown click mouseup');
+  $("#cv").bind("click", function(e){
+    alert(scale._xfactor);
+    scale.setZoom(ctx,canvas);
+    canvasObj.clear();
+    visual.refresh();
+  });
+
+
+
+};
+
+/**
+ * @constructor
+ * The Scale Object
+ */
+function Scale () {
+  this._xfactor = 1;
+  this._yfactor = 1;
+}
+Scale.prototype.setFactor = function (valuex,valuey){
+  this._xfactor=valuex;
+  this._yfactor=valuey;
+};
+
+
+
+Scale.prototype.setZoom = function(ctx,canvas){
+  var factor = document.getElementById("scaleButton").value;
+  this._xfactor = factor;
+  this._yfactor = factor;
+  ctx.scale(this._xfactor,this._yfactor);
+
 };
 
 
@@ -621,13 +659,15 @@ function Toolbar(){
   this._buttonList = [];
 }
 /**
- * Add a new figure to the collection
+ * Add a new button to the toolbar
  * @param {Button} b button to add
  */
 Toolbar.prototype.add = function (b) {
   this._buttonList.push(b);
 };
-
+/**
+ * Set the selected flag of every button to false
+ */
 Toolbar.prototype.deselectAll = function () {
    this._buttonList.each(function (f){
      f.setSelection(false);
@@ -775,6 +815,7 @@ ColourDialog.prototype.create= function(){
     	position: ["right","top"],
     	height: 210,
     	width: 230,
+	resizable: false,
     	dialogClass: "Dialog1"
 
     });
