@@ -98,6 +98,12 @@ menuBar5.init();
 	
 	<!--  Zona di salvataggio provvisoria -->
 	<div id="saveLoadZone">
+	<span >
+		<select id="scaleButton">
+ 		 <option value="1" >100%</option>
+ 		 <option value="0.5" >50%</option>  
+		</select>
+	</span>
 		<span>
 			<input type="button" id="clearCanvasButton" name="ClearButton" value="Svuota Canvas"/>
 		</span>
@@ -215,10 +221,10 @@ menuBar5.init();
 		<INPUT id="y" type="text" size="2"/>
 	</p>
 	<p id="edgeSetterZone" style="display:none">N.di lati: 
-		<input id="edgeNumber" type="text" maxlength="4" size="6"/>
-		<span>
+		<input id="edgeNumber" type="text" maxlength="4" size="6" value="3"/>
+	<!--  	<span>
 			<input type="button" id="edgeSetter" value="ok"/>
-		</span>
+		</span> -->
 	</p>
 </div>
 

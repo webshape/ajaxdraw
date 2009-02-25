@@ -146,12 +146,13 @@ Il presente documento descrive in modo dettagliato le classi e i relativi metodi
 %%%%%%%%%%%%%%FINE INTESTAZIONE COLONNE%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 		 \hline
 %%%%%%%%%%% PARTE DA MODIFICARE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%		
-    	 	0.2 &    20$\slash$02$\slash$2009 descrizione classe Rotation e metodo clone nella classe figure & Rizzo Maurizio \\
-                \hline
-                0.1 & 	 17$\slash$02$\slash$2009 Descritte classi e metodi delle figure e delle propriet\`a & Dissegna Stefano \\
-
+    	0.3 &    25$\slash$02$\slash$2009 Descrizione classi e metodi GUI & Rizzo Maurizio \\
 		\hline
-    	 	0.0 & 	 11$\slash$02$\slash$2009 Bozza & Dissegna Stefano \\
+    	0.2 &    20$\slash$02$\slash$2009 Descrizione classe Rotation e metodo clone nella classe figure & Rizzo Maurizio \\
+        \hline
+        0.1 & 	 17$\slash$02$\slash$2009 Descritte classi e metodi delle figure e delle propriet\`a & Dissegna Stefano \\
+		\hline
+    	0.0 & 	 11$\slash$02$\slash$2009 Bozza & Dissegna Stefano \\
 
 		\hline %%FINE RIGA
 %%%%%%%%%%% FINE PARTE DA MODIFICARE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -309,6 +310,23 @@ Classe concreta che rappresenta un generico pulsante tramite il quale effettuare
 \item[-]  \textit{bindCursor(type)} collega ad ogni tool un cursore visibile sopra al canvas per capire che tipo di azione si sta compiendo.
 \end{elencopuntato}
 
+\subsezione{ClearCanvasButton}
+\subsubsezione{Tipo, obiettivo e funzione del componente}
+Classe concreta che rappresenta lo specifico pulsante svuota il canvas.
+\subsubsezione{Relazioni d'uso di altre componenti}
+Estende \textit{Button}.
+\subsubsezione{Interfacce e relazioni di uso da altre componenti}
+\subsubsezione{Attivit\`a svolte e dati trattati}
+\textit{Page} e \textit{Toolbar} ne mantengono un' istanza.
+\paragrafo{Attributi privati:}
+\begin{elencopuntato}[\normindent]
+\item[-] \textit{{\_}id} l'attibuto HTML \textit{id} del pulsante.
+\end{elencopuntato}
+\paragrafo{Metodi pubblici:}
+\begin{elencopuntato}[\normindent]
+\item[-] \textit{getId()} ritorna  \textit{{\_}id};
+\item[-]  \textit{clearCanvas(canvas,visual,figureSet)} cancella completamente il contenuto del canvas (tramite \textit{clear()}) e del Figure Set tramite la funzione \textit{rem(f)} applicata ad ogni figura caricata nel set. 
+\end{elencopuntato}
 
 \subsezione{SelectionButton}
 \subsubsezione{Tipo, obiettivo e funzione del componente}
@@ -493,6 +511,69 @@ Estende \textit{Button}.
 \item[-]  \textit{bindCanvas(toolbar,canvas,canvasObj,visual,figureSet,borderColour,fillColor)} overriding del metodo ereditato da \textit{Button}, collega il canvas all'azione di disegno di una casella di testo. 
 \end{elencopuntato}
 
+\subsezione{Palette}
+\subsubsezione{Tipo, obiettivo e funzione del componente}
+Classe concreta che rappresenta la tavolozza dei colori presente al di sotto del canvas, dalla quale \` e possibile selezionare rapidamente un colore per bordo e/o riempimento.
+\subsubsezione{Relazioni d'uso di altre componenti}
+
+\subsubsezione{Interfacce e relazioni di uso da altre componenti}
+\subsubsezione{Attivit\`a svolte e dati trattati}
+\textit{Page} ne mantiene un' istanza.
+\paragrafo{Attributi privati:}
+\begin{elencopuntato}[\normindent]
+\item[-] \textit{{\_}colorList} array contenente una lista di \textit{PaletteComponent}, che compongono la \textit{Palette stessa}.
+\end{elencopuntato}
+\paragrafo{Metodi pubblici:}
+\begin{elencopuntato}[\normindent]
+\item[-] \textit{add(p)} aggiunge il componente per la scelta del colore alla fine di \textit{{\_}colorList}.
+\item[-]  \textit{each(fn)} permette di applicare una funzione ad ogni \textit{PaletteComponent}. Viene usato per iterare attraverso la collezione. Applica fn ad ogni elemento di \textit{{\_}colorList}. 
+\item[-]  \textit{setColour(col,prec1,prec2)} cambia il colore di bordo o riempimento della figura al seguito di un click dell'utente sullla tavolozza, prendendo il colore attualmente impostato e modificando uno dei due parametri a seconda del valore selezionato sul combobox a fianco. Ritorna la nuova coppia di colori bordo-riempimento.
+\item[-]  \textit{rgbToHex(rgb)} prende il valore rgb passato dalla ruota dei colori \textit{Farbtastic} e ritorna la sua rappresentazione esadecimale.
+\end{elencopuntato}
+
+\subsezione{PaletteComponent}
+\subsubsezione{Tipo, obiettivo e funzione del componente}
+Classe concreta che rappresenta un singolo colore presente sulla tavolozza.
+\subsubsezione{Relazioni d'uso di altre componenti}
+\subsubsezione{Interfacce e relazioni di uso da altre componenti}
+\subsubsezione{Attivit\`a svolte e dati trattati}
+\textit{Page} e \textit{Palette} ne mantengono pi\`u istanze.
+\paragrafo{Attributi privati:}
+\item[-] \textit{{\_}color} colore rappresentato dal componente.
+\end{elencopuntato}
+
+
+\subsezione{ColourDialog}
+\subsubsezione{Tipo, obiettivo e funzione del componente}
+Classe concreta che rappresenta il dialog sul quale sono presenti le ruote per cambiare i colori di riempimento e bordo della figura disegnata o da disegnare.
+\subsubsezione{Relazioni d'uso di altre componenti}
+\subsubsezione{Interfacce e relazioni di uso da altre componenti}
+\subsubsezione{Attivit\`a svolte e dati trattati}
+\textit{Page} ne mantiene un'istanza.
+\paragrafo{Attributi privati:}
+\end{elencopuntato}
+\paragrafo{Metodi pubblici:}
+\begin{elencopuntato}[\normindent]
+\item[-] \textit{create()} richiama la funzione jQuery atta alla creazione del Dialog.
+\end{elencopuntato}
+
+\subsezione{PropertiesDialog}
+\subsubsezione{Tipo, obiettivo e funzione del componente}
+Classe concreta che rappresenta il dialog sul quale sono presenti le caratteristiche della figura disegnata o da disegnare, quali dimensioni, numeri di lati, coordinate.
+\subsubsezione{Relazioni d'uso di altre componenti}
+\subsubsezione{Interfacce e relazioni di uso da altre componenti}
+\subsubsezione{Attivit\`a svolte e dati trattati}
+\textit{Page} ne mantiene un'istanza.
+\paragrafo{Attributi privati:}
+\item[-] \textit{{\_}{edgeSetter} oggetto che si occupa di impostare il numero di lati di un poligono;
+\item[-] \textit{{\_}{fontSetter} oggetto che si occupa di impostare il tipo di carattere e la sua dimensione;
+\item[-] \textit{{\_}{boundingSetter} oggetto che si occupa di impostare il \textit{BoundingRectangle} della figura;
+\item[-] \textit{{\_}{rotationSetter} oggetto che si occupa di impostare il grado di rotazione.
+\end{elencopuntato}
+\paragrafo{Metodi pubblici:}
+\begin{elencopuntato}[\normindent]
+\item[-] \textit{create()} richiama la funzione jQuery atta alla creazione del Dialog.
+\end{elencopuntato}
 
 %%%%%%%%Parte Dissegna
 \subsezione{ApplicationLogic}

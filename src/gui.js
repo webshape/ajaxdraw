@@ -63,6 +63,8 @@ $(document).ready(function(){
   var toolbar = new Toolbar();
   var selectionButton = new SelectionButton();toolbar.add(selectionButton);
   var zoomButton = new ZoomButton();toolbar.add(zoomButton);
+  var scale = new Scale();
+
   var straightLineButton = new StraightLineButton();toolbar.add(straightLineButton);
   var bezierCurveButton = new BezierCurveButton();toolbar.add(bezierCurveButton);
   var squareButton = new SquareButton();toolbar.add(squareButton);
@@ -91,6 +93,9 @@ $(document).ready(function(){
 
 
 
+
+
+
 /* Collegamento pulsanti toolbar in caso di cambio colore e generali*/
   $(".paletteComponent").click(function () {
     var hex2 = palette.rgbToHex($(this).css("background-color"));
@@ -111,8 +116,14 @@ $(document).ready(function(){
 
   $("#zoomButton").click(function () {
     $("#edgeSetterZone").css({"display":"none"});
-    alert("Not yet implemented" );
+      zoomButton.bindCanvas(toolbar,canvas,canvasObj,visual,figureSet,scale,ctx);
   });
+
+  $("#scaleButton").click(function () {
+      scale.setZoom(ctx,canvas);
+  });
+
+
 
   $("#straightLineButton").click(function () {
     $("#edgeSetterZone").css({"display":"none"});
@@ -234,7 +245,6 @@ $(document).ready(function(){
 
 
 
-
 function updateInfos(figure){
   document.getElementById("DialogHeight").value=figure.getBounds().h();
   document.getElementById("DialogWidth").value=figure.getBounds().w();
@@ -244,4 +254,3 @@ function updateInfos(figure){
 
 //fine documento
 });
-
