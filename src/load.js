@@ -150,7 +150,7 @@ Rectangle.prototype.fromSVG = function (n) {
   var y1 = n.getAttribute("y");
   var x2 = parseInt(x1) + parseInt(n.getAttribute("width"));
   var y2 = parseInt(y1) + parseInt(n.getAttribute("height"));
-  var p1 = new Point(x1, y1);
+  var p1 = new Point(parseInt(x1), parseInt(y1));
   var p2 = new Point(x2, y2);
   this.getBounds().setStart(p1);
   this.getBounds().setEnd(p2);
@@ -192,8 +192,8 @@ StraightLine.prototype.fromSVG = function (n) {
   var y1 = n.getAttribute("y1");
   var x2 = n.getAttribute("x2");
   var y2 = n.getAttribute("y2");
-  var p1 = new Point(x1, y1);
-  var p2 = new Point(x2, y2);
+  var p1 = new Point(parseInt(x1), parseInt(y1));
+  var p2 = new Point(parseInt(x2), parseInt(y2));
   this.getBounds().setStart(p1);
   this.getBounds().setEnd(p2);
   this.getBorderColour().fromCSS(n.getAttribute("stroke"));
@@ -214,7 +214,7 @@ BezierCurve.prototype.fromSVG = function (n) {
 	 if (d[i].length > 1){
 		var x = new Array();
 		x = d[i].split(",");
-		var p = new Point(x[0], x[1]);
+		var p = new Point(parseInt(x[0]), parseInt(x[1]));
 		this.extend(p);
 	 }
   }
@@ -232,32 +232,35 @@ Polygon.prototype.fromSVG = function (n) {
   var points = new Array();
   points = (n.getAttribute("points")).split(" ");
 
-  var x1 = 0;
-  var y1 = 0;
-  var x2 = 0;
-  var y2 = 0;
+  var z = new Array();
+  z = points[0].split(",");
+  var x1 = parseInt(z[0]);
+  var y1 = parseInt(z[1]);
+  var x2 = parseInt(z[0]);
+  var y2 = parseInt(z[1]);
   var edges = points.length;
 
-  for (var i = 0; i < points.length; ++i){
+  for (var i = 1; i < points.length; ++i){
 	 if (points[i].length > 1){
-		var z = new Array();
-		z = points[i].split(",")
-		if (x1 > z[0])
+		z = points[i].split(",");
+		z[0] = parseInt(z[0]);
+		z[1] = parseInt(z[1]);
+		if (z[0] < x1)
 		  x1 = z[0];
-		if (y1 < z[1])
+		if (z[1] < y1)
 		  y1 = z[1];
-		if (x2 < z[0])
+		if (z[0] > x2)
 		  x2 = z[0];
-		if (y2 > z[1])
+		if (z[1] > y2)
 		  y2 = z[1];
 	 }
   }
 
-  var p1 = new Point(x1, y1);
-  var p2 = new Point(x2, y2);
+  var p1 = new Point(parseInt(x1), parseInt(y1));
+  var p2 = new Point(parseInt(x2), parseInt(y2));
   this.getBounds().setStart(p1);
   this.getBounds().setEnd(p2);
-  this.getEdgeNumber().setVal(edges);
+  this.edgeNumber().setVal(edges);
   this.getFillColour().fromCSS(n.getAttribute("fill"));
   this.getFillColour().getOpacity().setVal(n.getAttribute("fill-opacity"));
   this.getBorderColour().fromCSS(n.getAttribute("stroke"));
