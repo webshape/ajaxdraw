@@ -8,17 +8,24 @@
 <script src="../utils.js"></script>
 <script src="../figures.js"></script>
 <script src="../load.js"></script>
+<script type="text/javascript">
+
+$(document).ready(function(){
+var canvas = document.getElementById("cv");
+var doc = "svg2.svg";       
+var b = [];
+r = new SVGReader();
+b = (r.read(doc));
+//document.write(b);
+
+
+b.each(function (f) { f.draw(canvas);});
+                                
+});
+</script>
 <script type="text/javascript" src="draw.js"> </script>
 </head>
 <body>
-<script type="text/javascript">
-$(document).ready(function(){
-var doc = "svg2.svg";       
-r = new SVGReader();
-b = (r.read(doc));
-document.write(b);
-
-});
-</script>
+<canvas id="cv" height="1000" width="1000"> </canvas>
 </body>
 </html>
