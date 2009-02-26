@@ -13,6 +13,7 @@ public class Request extends HttpServlet {
 		String resp="";
 		String edit="";
 		String text="";
+		String url="";
 		try {
 			MultipartRequest multi = new MultipartRequest(request,".");
 			if (multi.getParameter("name_file")==null) //se esiste il parametro
@@ -20,21 +21,24 @@ public class Request extends HttpServlet {
              	File f = multi.getFile("my_file");
 				Server s=new Server(f);
 	            resp=s.getLoad();
-	        }
+	            url = "server.jsp";
+	            request.setAttribute("result", resp);
+			}   
 			else
 			{
 				edit=multi.getParameter("name_file");
 				text=multi.getParameter("area");
 				Server s2=new Server(edit,text);
 				resp=s2.getSave();
+				url = resp;
+		        response.setContentType("application/octet-stream");
+		        response.setHeader("content-disposition","attachment;filename="+resp);		        
 			}
             } catch (Exception e) {
             	ConnessionError err=new ConnessionError();
                 resp=err.getError();
                 }
-        String url = "server.jsp";
-        request.setAttribute("result", resp);
-        RequestDispatcher rd =request.getRequestDispatcher(url);
-        rd.forward(request,response);
+            RequestDispatcher rd =request.getRequestDispatcher(url);
+            rd.forward(request,response);
         }
-	}
+}
