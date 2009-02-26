@@ -134,9 +134,9 @@ var registry = new SVGElementRegistry();
 
 registry.register('rect', Rectangle);
 registry.register('ellipse', Circle);
-registry.register('polygon', Polygon);
 registry.register('line', StraightLine);
 registry.register('path', BezierCurve);
+registry.register('polygon', Polygon);
 registry.register('text', Text);
 
 
@@ -236,12 +236,12 @@ Polygon.prototype.fromSVG = function (n) {
   var y1 = 0;
   var x2 = 0;
   var y2 = 0;
-  var edges = 0;
+  var edges = points.length;
 
   for (var i = 0; i < points.length; ++i){
 	 if (points[i].length > 1){
 		var z = new Array();
-		z = points[i].split(",");
+		z = points[i].split(",")
 		if (x1 > z[0])
 		  x1 = z[0];
 		if (y1 < z[1])
@@ -250,10 +250,7 @@ Polygon.prototype.fromSVG = function (n) {
 		  x2 = z[0];
 		if (y2 > z[1])
 		  y2 = z[1];
-
 	 }
-	 if (points.substr(i, 1) == ",")
-	   edges += 1;
   }
 
   var p1 = new Point(x1, y1);
