@@ -25,20 +25,20 @@ public class File1 {
     public String getFile() throws IOException {
     	String resp="";    	    	
     	if (name_file!=null) {
-    		String path="C://";
+    		String path="C://Programmi/Apache Software Foundation/Tomcat 6.0/webapps/Server/";
     		File file=new File (path+name_file);
     		if (file.exists()) {
     			FileWriter fw=new FileWriter(file,true);
     			fw.write(area);
     			fw.close();
-    			return "Salvato in"+" "+path+name_file;
+    			return name_file;
     		}
     		else
     		{
     			PrintWriter pw = new PrintWriter(path+name_file);
                 pw.println(area);
                 pw.close();
-                return "Salvato nel nuovo file"+" "+path+name_file;
+                return name_file;
     		}
     	}
     	else {
