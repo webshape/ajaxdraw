@@ -382,7 +382,7 @@ ZoomButton.prototype.getId = function (){
   return this._id;
 };
 
-ZoomButton.prototype.bindCanvas = function (toolbar,canvas,canvasObj,visual,figureSet,ctx) {
+ZoomButton.prototype.bindCanvas = function (toolbar,canvas,canvasObj,visual,figureSet) {
   toolbar.deselectAll();
   $("#cv").unbind('mousedown click mouseup');
   $("#cv").bind("click", function(e){

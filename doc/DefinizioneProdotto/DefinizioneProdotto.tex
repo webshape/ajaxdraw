@@ -364,7 +364,24 @@ Estende \textit{Button}.
 \end{elencopuntato}
 \paragrafo{Metodi pubblici:}
 \begin{elencopuntato}[\normindent]
-\item[-] \textit{getId()} ritorna \textit{{\_}id};
+\item[-] \textit{getId()} ritorna \textit{{\_}id}.
+\item[-] \textit{bindCanvas(toolbar,canvas,canvasObj,visual,figureSet)} collega il canvas all'azione di zoom. Collega l'evento click per prendere il punto che diventer\`a la nuova origine delle coordinate, e setta lo zoom di \textit{visual} in base al valore corrente di \textit{scaleButton}.
+\end{elencopuntato}
+
+\subsezione{MoveViewButton}
+\subsubsezione{Tipo, obiettivo e funzione del componente}
+Classe concreta che rappresenta lo specifico pulsante che attiva le funzionalit\` a di spostamento della visualizzazione nel canvas.
+\subsubsezione{Relazioni d'uso di altre componenti}
+Estende \textit{Button}.
+\subsubsezione{Interfacce e relazioni di uso da altre componenti}
+\subsubsezione{Attivit\`a svolte e dati trattati}
+\textit{Page} e \textit{Toolbar} ne mantengono un' istanza.
+\paragrafo{Attributi privati:}
+\begin{elencopuntato}[\normindent]
+\end{elencopuntato}
+\paragrafo{Metodi pubblici:}
+\begin{elencopuntato}[\normindent]
+\item[-] \textit{bindCanvas(toolbar,canvas,canvasObj,visual)} collega il canvas all'azione di spostamento. Collega l'evento mousedown per prendere il punto di riferimento per lo spostamento. L'evento mousemove sposter\`a la visualizzazione cambiandone l'offset in base allo spostamento relativo tra il punto di riferimento e la posizione attuale del mouse e far\`a un refresh del canvas. L'evento mouseup infine termina l'azione disabilitando l'evento mousemove.
 \end{elencopuntato}
 
 \subsezione{StraightLineButton}
