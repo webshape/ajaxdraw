@@ -109,7 +109,7 @@ function Visualization(figureSet){
   this._scale = new Scale(1);
 }
 
-Visualization.writer('_offset', 'setOffset');
+Visualization.accessors('_offset', 'getOffset', 'setOffset');
 Visualization.writer('_scale', 'setScale');
 
 Visualization.prototype.refresh = function(){
@@ -392,6 +392,36 @@ ZoomButton.prototype.bindCanvas = function (toolbar,canvas,canvasObj,visual,figu
                   visual.setScale(new Scale(factor));
                   canvasObj.clear();
                   visual.refresh();
+                });
+};
+
+/**
+ * @constructor
+ * Button to move the centre of the visualization 
+ */
+function MoveViewButton () {
+  Button.call(this);
+}
+
+MoveViewButton.prototype = new Button();
+
+MoveViewButton.prototype.bindCanvas = function (toolbar,canvas,canvasObj,visual) {
+  toolbar.deselectAll();
+  $("#cv").unbind('mousedown click mouseup');
+  $("#cv").bind("mousedown", function(e){
+                  var start = visual.getClickCoordsWithinTarget(e);
+                  $('#cv').bind('mousemove', function (e) {
+                                  var pos = visual.getClickCoordsWithinTarget(e);
+                                  var dx = start.x - pos.x;
+                                  var dy = start.y - pos.y;
+                                  visual.getOffset().x += dx;
+                                  visual.getOffset().y += dy;
+                                  canvasObj.clear();
+                                  visual.refresh();
+                                });
+                  $('#cv').bind('mouseup', function (e) {
+                                  $("#cv").unbind('mousedown mousemove mouseup');
+                                });
                 });
 };
 

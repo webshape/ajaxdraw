@@ -63,7 +63,7 @@ $(document).ready(function(){
   var toolbar = new Toolbar();
   var selectionButton = new SelectionButton();toolbar.add(selectionButton);
   var zoomButton = new ZoomButton();toolbar.add(zoomButton);
-
+  var moveViewButton = new MoveViewButton(); toolbar.add(moveViewButton);
   var straightLineButton = new StraightLineButton();toolbar.add(straightLineButton);
   var bezierCurveButton = new BezierCurveButton();toolbar.add(bezierCurveButton);
   var squareButton = new SquareButton();toolbar.add(squareButton);
@@ -122,6 +122,12 @@ $(document).ready(function(){
       zoomButton.bindCanvas(toolbar,canvas,canvasObj,visual,figureSet,ctx);
   });
 
+  $("#moveViewButton").click(function () {
+    $("#fontSetterZone").css({"display":"none"});
+    $("#edgeSetterZone").css({"display":"none"});
+      moveViewButton.bindCanvas(toolbar,canvas,canvasObj,visual);
+  });
+                    
   /*$("#scaleButton").click(function () {
       scale.setZoom(ctx,canvas);
   });
