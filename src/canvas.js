@@ -420,7 +420,7 @@ MoveViewButton.prototype.bindCanvas = function (toolbar,canvas,canvasObj,visual)
                                   visual.refresh();
                                 });
                   $('#cv').bind('mouseup', function (e) {
-                                  $("#cv").unbind('mousedown mousemove mouseup');
+                                  $("#cv").unbind('mousemove mouseup');
                                 });
                 });
 };
