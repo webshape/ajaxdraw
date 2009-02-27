@@ -238,6 +238,8 @@ Classe concreta che si occupa delle operazioni di visualizzazione del canvas su 
 \paragrafo{Attributi privati:}
 \begin{elencopuntato}[\normindent]
 \item[-] \textit{{\_}figureSet} insieme delle figure contenute in memoria.
+\item[-] \textit{{\_}scale} di tipo \textit{Scale}, mantiene lo zoom corrente.
+\item[-] \textit{{\_}offset} di tipo \textit{Point}, mantiene lo spostamento corrente della visualizzazione, misurato come differenza tra il punto (0, 0) e l'origine attuale.
 \end{elencopuntato}
 \paragrafo{Metodi pubblici:}
 \begin{elencopuntato}[\normindent]
@@ -245,6 +247,7 @@ Classe concreta che si occupa delle operazioni di visualizzazione del canvas su 
 \item[-] \textit{getFigureSet()} ritorna \textit{{\_}figureSet};
 \item[-] \textit{deselectAll(figureSet)} deseleziona tutte le figure presenti nel figure set.
 \item[-] \textit{getClickCoordsWithinTarget(event)} ritorna il punto esatto del canvas sul quale \`  e avvenuto il click  del mouse, differenziando le diverse interpretazioni che fa ciascun browser per uniformarle in un unico metodo funzionante universalmente.
+Le coordinate vengono poi adattate allo spostamento corrente della visualizzazione sommandogli \textit{{\_}offset}, e allo zoom corrente, moltiplicandole per \textit{{\_}scale.getFactor()}.
 \end{elencopuntato}
 
 \subsezione{Canvas}
