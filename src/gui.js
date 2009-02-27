@@ -63,7 +63,6 @@ $(document).ready(function(){
   var toolbar = new Toolbar();
   var selectionButton = new SelectionButton();toolbar.add(selectionButton);
   var zoomButton = new ZoomButton();toolbar.add(zoomButton);
-  var scale = new Scale();
 
   var straightLineButton = new StraightLineButton();toolbar.add(straightLineButton);
   var bezierCurveButton = new BezierCurveButton();toolbar.add(bezierCurveButton);
@@ -120,13 +119,13 @@ $(document).ready(function(){
   $("#zoomButton").click(function () {
     $("#fontSetterZone").css({"display":"none"});
     $("#edgeSetterZone").css({"display":"none"});
-      zoomButton.bindCanvas(toolbar,canvas,canvasObj,visual,figureSet,scale,ctx);
+      zoomButton.bindCanvas(toolbar,canvas,canvasObj,visual,figureSet,ctx);
   });
 
-  $("#scaleButton").click(function () {
+  /*$("#scaleButton").click(function () {
       scale.setZoom(ctx,canvas);
   });
-
+*/
 
 
   $("#straightLineButton").click(function () {

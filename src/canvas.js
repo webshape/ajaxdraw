@@ -105,13 +105,20 @@ Canvas.prototype.setWidth = function(val){
  */
 function Visualization(figureSet){
   this._figureSet = figureSet;
+  this._offset = new Point(0, 0);
+  this._scale = new Scale(1);
 }
+
+Visualization.writer('_offset', 'setOffset');
+Visualization.writer('_scale', 'setScale');
 
 Visualization.prototype.refresh = function(){
   var c = document.getElementById('cv');
   if ($.browser.msie) { // hack for internet explorer
     c = window.G_vmlCanvasManager.initElement(c);
   }
+  var ctx = c.getContext('2d');
+  this._scale.applyToContext(ctx, this._offset);
   this._figureSet.each(function (f) {
     f.draw(c);
    });
@@ -158,6 +165,15 @@ Visualization.prototype.getClickCoordsWithinTarget = function(event){
 		coords.y = event.pageY - CalculatedTotalOffsetTop ;
 	}
 
+        // adapt to scale & offset
+  var f = this._scale.getFactor();
+  coords.x /= f;
+  coords.y /= f;
+  coords.x += this._offset.x;
+  coords.y += this._offset.y;
+
+
+  
 	return coords;
 };
 
@@ -366,43 +382,34 @@ ZoomButton.prototype.getId = function (){
   return this._id;
 };
 
-ZoomButton.prototype.bindCanvas = function (toolbar,canvas,canvasObj,visual,figureSet,scale,ctx) {
+ZoomButton.prototype.bindCanvas = function (toolbar,canvas,canvasObj,visual,figureSet,ctx) {
   toolbar.deselectAll();
   $("#cv").unbind('mousedown click mouseup');
   $("#cv").bind("click", function(e){
-    alert(scale._xfactor);
-    scale.setZoom(ctx,canvas);
-    canvasObj.clear();
-    visual.refresh();
-  });
-
-
-
+                  var factor = document.getElementById("scaleButton").value;
+                  var start = visual.getClickCoordsWithinTarget(e);
+                  visual.setOffset(start);
+                  visual.setScale(new Scale(factor));
+                  canvasObj.clear();
+                  visual.refresh();
+                });
 };
 
 /**
  * @constructor
  * The Scale Object
+ * @param {Float} x scaling factor
  */
-function Scale () {
-  this._xfactor = 1;
-  this._yfactor = 1;
+function Scale (x) {
+  this._factor = x;
 }
-Scale.prototype.setFactor = function (valuex,valuey){
-  this._xfactor=valuex;
-  this._yfactor=valuey;
+
+Scale.reader('_factor', 'getFactor');
+
+Scale.prototype.applyToContext = function(ctx, offset) {
+  ctx.scale(this._factor, this._factor);
+  ctx.translate(-offset.x, -offset.y);
 };
-
-
-
-Scale.prototype.setZoom = function(ctx,canvas){
-  var factor = document.getElementById("scaleButton").value;
-  this._xfactor = factor;
-  this._yfactor = factor;
-  ctx.scale(this._xfactor,this._yfactor);
-
-};
-
 
 /**
  * @constructor
