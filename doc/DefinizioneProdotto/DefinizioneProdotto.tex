@@ -227,6 +227,24 @@ Nessuna.
 \item[-] \textit{loadStyleSheet()} carica il foglio di stile ativato da \textit{activateStylesheet}.
 \end{elencopuntato}
 
+\subsezione{Scale}
+\subsubsezione{Tipo, obiettivo e funzione del componente}
+Classe concreta che si occupa delle operazioni di riscalamento del canvas su schermo. 
+\subsubsezione{Relazioni d'uso di altre componenti}
+Usa il contesto grafico per applicare lo spostamento e il riscalamento della parte di canvas visualizzata.
+\subsubsezione{Interfacce e relazioni di uso da altre componenti}
+\textit{Visualization} ne utilizza un'istanza.
+\subsubsezione{Attivit\`a svolte e dati trattati}
+\paragrafo{Attributi privati:}
+\begin{elencopuntato}[\normindent]
+\item[-] \textit{{\_}factor} fattore di riscalamento. Il valore 1.0 equivale ad un riscalamento 1:1. Viene impostato al valore passato al costruttore.
+\end{elencopuntato}
+\paragrafo{Metodi pubblici:}
+\begin{elencopuntato}[\normindent]
+\item[-] \textit{getFactor()} ritorna \textit{{\_}factor};
+\item[-] \textit{applyToContext(context, offset)} applica il riscalamento al contesto passato usandone il metodo \textit{scale}, e pone l'origine nel punto specificato da \textit{offset} usando il metodo \textit{translate} del contesto grafico.
+\end{elencopuntato}
+
 \subsezione{Visualization}
 \subsubsezione{Tipo, obiettivo e funzione del componente}
 Classe concreta che si occupa delle operazioni di visualizzazione del canvas su schermo, come la riscalatura a seguito di uno zoom e la corretta visualizzazione della parte ingrandita o rimpicciolita.
