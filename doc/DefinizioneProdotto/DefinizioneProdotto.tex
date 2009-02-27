@@ -631,7 +631,7 @@ Il costruttore controlla se il browser supporta il metodo \textit{getImageData} 
 \subsezione{Property}
 \subsubsezione{Tipo, obiettivo e funzione del componente}
 Rappresenta una propriet\`a generica di una figura. Le propriet\`a influenzano 
-l'aspetto delle diverse figure, e sono modificabili dall'utente.
+l'aspetto delle diverse figure, e sono modificabili dall'utente. Non viene implementata in quanto \`e un'interfaccia.
 \subsubsezione{Relazioni d'uso di altre componenti}
 Nessuna.
 \subsubsezione{Interfacce e relazioni di uso da altre componenti}
@@ -801,7 +801,7 @@ Ogni istanza di una classe derivante da \textit{Figure} ha uno e un solo \textit
 \item[-] \textit{h()} ritorna l'altezza del rettangolo. Pu\`o essere negativa.
 \item[-] \textit{w()} ritorna la larghezza del rettangolo. Pu\`o essere negativa.
 \item[-] \textit{centre()} ritorna un \textit{Point} contenente le coordinate del centro del rettangolo.
-\item[-] \textit{applyToContext(context)} trasla le coordinate del sistema ponendo {\_}name come origine.
+\item[-] \textit{applyToContext(context)} trasla le coordinate del sistema ponendo {\_}start come origine, usando il metodo \textit{translate} di \textit{context}.
 \item[-] \textit{createWidget()} crea e ritorna un'istanza di \textit{BoundingRectangleSetter} passando se stesso come parametro al costruttore.
 \end{elencopuntato}
 
@@ -880,7 +880,8 @@ Creato dalla lettura di un file SVG oppure dall'interfaccia utente. Manipolato d
 \end{elencopuntato}
 \paragraph{Metodi pubblici:}
 \begin{elencopuntato}[\normindent]
-\item[-] \textit{extend(point)} aggiunge un punto avente coordinate assolute ai punti di controllo. Nel caso il punto esca dal \textit{BoundingRectangle}, il \textit{BoundingRectangle} viene ampliato e tutti i punti di controllo (con coordinate relative) vengono ricalcolati in modo che mantengano la posizione precedente. Per maggiori dettagli si veda il diagramma di attivit\`a [TODO: inserire diagramma].
+\item[-] \textit{extend(point)} aggiunge un punto avente coordinate assolute ai punti di controllo. Nel caso il punto esca dal \textit{BoundingRectangle}, il \textit{BoundingRectangle} viene ampliato e tutti i punti di controllo (con coordinate relative) vengono ricalcolati in modo che mantengano la posizione precedente. Per ricalcolare i punti si convertono a valore assoluto, si modifica il \textit{BoundingRectangle}, si aggiunge il nuovo punto e si riconvertono i 
+punti al loro valore relativo.
 \item[-] \textit{move(point, to)} muove il punto di controllo \textit{point} (se appartiene alla linea) e lo mette in \textit{to}. Aggiusta il \textit{BoundingRectangle} di conseguenza. I due punti hanno coordinate assolute.
 \item[-] \textit{getPoints} ritorna un array con una copia dei punti di controllo della linea convertiti a coordinate assolute in base al \textit{BoundingRectangle}.
 \item[-] \textit{getMainPoints} ritorna un array ottenuto concatenando l'array di \textit{getMainPoints} della superclasse e i punti ottenuti con \textit{getPoints}.
@@ -951,7 +952,7 @@ Nel costruttorte viene controllato se il browser supporta le API per il disegno 
 \item[-] \textit{get/setText()} ottiene/modifica \textit{{\_}txt}.
 \item[-] \textit{eachProperty(fn)} richiama \textit{eachProperty} di \textit{Figure} ed applica la funzione fn a \textit{{\_}fillColour} e a \textit{{\_}font}.
 \item[-] \textit{draw(canvas)} disegna il \textit{{\_}txt} usando le API del contesto grafico. L'altezza del testo \`e uguale all'altezza del \textit{BoundingRectangle}, mentre la larghezza del \textit{BoundingRectangle} definisce la larghezza massima del testo. Viene disegnato due volte: la prima per il riempimento, la seconda per il bordo. Prima di disegnarsi richiama \textit{applyToContext} sui colori del bordo e di riempimento, e setta l'attributo \textit{font} del contesto grafico all'altezza assoluta del \textit{BoundingRectangle} in pixel, seguita dalla rappresentazione CSS di \textit{{\_}font}.
-\item[-] \textit{fallbackDraw(canvas)} metodo usato al posto di \textit{draw} quando il browser non ha il supporto per il testo. Disegna un rettangolo in modo analogo al metodo \textit{draw} di \textit{Rectangle}.
+\item[-] \textit{fallbackDraw(canvas)} metodo usato al posto di \textit{draw} quando il browser non ha il supporto per il testo. Disegna il testo usando i metodi della libreria \textit{canvastext.js}. Visti i limiti della libreria, ignora il colore di riempimento ed il font.
 \item[-] \textit{toSVG(gen)} in sospeso.
 \item[-] \textit{fromSVG(n)} in sospeso.
 \end{elencopuntato}
