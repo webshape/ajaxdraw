@@ -82,15 +82,15 @@ $(document).ready(function(){
   colourDialog.create();
 
 /* Creo dialog delle proprietà */
-  var edgeNumberSetter = new EdgeNumberSetter();
+  //var edgeNumberSetter = new EdgeNumberSetter();
   //edgeNumberSetter.create();
-  $("#edgeNumberDialog").dialog("close");
+  //$("#edgeNumberDialog").dialog("close");
   //var boundingRectangleSetter = new BoundingRectangleSetter();
   var fontSizeSetter = new FontSizeSetter();
   var fontTypeSetter = new FontTypeSetter();
   var fontSetter = new FontSetter(fontSizeSetter,fontTypeSetter);
   var rotationSetter = new RotationSetter();
-                    var propertiesDialog = new PropertiesDialog(edgeNumberSetter,fontSetter,/*boundingRectangleSetter,*/rotationSetter);
+                    var propertiesDialog = new PropertiesDialog(/*edgeNumberSetter,*/fontSetter,/*boundingRectangleSetter,*/rotationSetter);
   propertiesDialog.create();
 
 
@@ -168,7 +168,7 @@ $(document).ready(function(){
     $("#fontSetterZone").css({"display":"none"});
     circleButton.bindCursor("polygon");
     toolbar.deselectAll();
-    edgeNumberSetter.create();
+//    edgeNumberSetter.create();
     polygonButton.bindCanvas(toolbar,canvas,canvasObj,visual,figureSet,color.BorderColor,color.FillColor);
   });
 
