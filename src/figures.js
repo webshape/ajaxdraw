@@ -285,7 +285,7 @@ function EdgeNumber (val) {
 EdgeNumber.accessors('_val', 'getVal', 'setVal');
 
 EdgeNumber.prototype.createWidget = function () {
-  // TODO: implement
+  return new EdgeNumberSetter(this);
 };
 
 /**

@@ -238,9 +238,10 @@ Button.prototype.bindCanvas = function (toolbar,canvas,canvasObj,visual,figureSe
       var coords2 = visual.getClickCoordsWithinTarget(e);
       f.getBounds().setEnd(new Point(coords2.x, coords2.y));
       if(builder==Polygon){
-        var edgeNumber = document.getElementById('edgeNumber').value;
-	// TODO: check that edgeNumber is a valid number
-	f.edgeNumber().setVal(edgeNumber);
+        var edgeNumber = parseInt(document.getElementById('edgeNumber').value);
+	if (!isNaN(edgeNumber) && edgeNumber >= 2) {
+          f.edgeNumber().setVal(edgeNumber);
+        }
       }
     canvasObj.clear();
     visual.refresh();
@@ -370,7 +371,9 @@ SelectionButton.prototype.bindCanvas = function (toolbar,canvas,canvasObj,visual
 	//updateInfos(actualFigure);
 	canvasObj.clear();
 	visual.refresh();
-        actualFigure.getBounds().createWidget();
+        actualFigure.eachProperty(function (p) {
+                                    p.createWidget();
+                                  });
       }
   });
 };
@@ -893,8 +896,22 @@ PropertiesDialog.prototype.create= function(){
  * @constructor
  * Edge Number Setter
  */
-function EdgeNumberSetter(){
-  this._polygonEdgeNumber=3;
+function EdgeNumberSetter(en) {
+  $('#edgeNumber').get(0).value = en.getVal();
+  $("#edgeSetterZone").css({"display":"block"});
+//  $('#edgeSetterZone').get(0).style = '';
+  $('#submitEdge').unbind('click');
+  $('#submitEdge').click(function (e) {
+                           var n = parseInt($('#edgeNumber').get(0).value);
+                           if (!isNaN(n)) {
+                             en.setVal(n);
+                           }
+                           canvasObj.clear();
+                           visual.refresh();
+                         });
+}
+
+/*  this._polygonEdgeNumber=3;
 }
 
 
@@ -905,8 +922,8 @@ EdgeNumberSetter.prototype.setEdgeNumber = function(value){
 EdgeNumberSetter.prototype.getEdgeNumber = function(){
   return this._polygonEdgeNumber;
 };
-
-
+  */
+/*
 EdgeNumberSetter.prototype.create = function(){
    $("#edgeNumberDialog").dialog({
    // position: ["right","top"],
@@ -920,7 +937,7 @@ EdgeNumberSetter.prototype.create = function(){
      $("#edgeNumberDialog").dialog("close");
    });
 };
-
+*/
 
 
 function FontSetter(size,font){

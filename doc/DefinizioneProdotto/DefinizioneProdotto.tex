@@ -529,7 +529,6 @@ Estende \textit{Button}.
 \begin{elencopuntato}[\normindent]
 \item[-] \textit{getId()} ritorna \textit{{\_}id};
 \item[-] \textit{getBuilder()} ritorna il tipo di oggetto disegnato tramite la pressione di questo pulsante, per permetterne il riconoscimento al metodo \textit{bindCanvas} in modo da associare correttamente la figura da disegnare al suo pulsante.
-\item[-]  \textit{bindCanvas(toolbar,canvas,canvasObj,visual,figureSet,borderColor)} overriding del metodo ereditato da \textit{Button}, collega il canvas all'azione di clonazione di una figura.
 \end{elencopuntato}
 
 \subsezione{TextButton}
@@ -628,6 +627,19 @@ Legge e modifica \textit{BoundingRectagle}.
 \item[-] \textit{BoundingRectagleSetter(bounds)} costruttore. Prende un \textit{BoundingRectagle} e setta il valore dei campi di un dialog statico implementato in HTML. I campi contengono: i valori x ed y dell'inizio di \textit{bounds} e i valori di altezza e larghezza. Collega un evento al pulsante di conferma del dialog, e se l'utente ha modificato i valori, e i valori inseriti sono dei numeri, modifica le corrispondenti propriet\`a di \textit{bounds} ed esegue un refresh.
 \end{elencopuntato}
 
+\subsezione{RotationSetter}
+\subsubsezione{Tipo, obiettivo e funzione del componente}
+Classe concreta che si occupa di impostare un angolo di rotazione e modificare le coordinate di una figura disegnata sul canvas ruotando la figura selezionata.
+\subsubsezione{Relazioni d'uso di altre componenti}
+Legge e modifica \textit{Rotation}.
+\subsubsezione{Interfacce e relazioni di uso da altre componenti}
+\textit{PropertiesDialog} ne mantiene un'istanza.
+\subsubsezione{Attivit\`a svolte e dati trattati}
+\paragrafo{Metodi pubblici:}
+\begin{elencopuntato}[\normindent]
+
+\end{elencopuntato}
+
 
 %%%%%%%%Parte Dissegna
 \subsezione{ApplicationLogic}
@@ -656,7 +668,7 @@ Viene aggregata dalla classe \textit{FigureSet}.
 \item[-]  \textit{isSelected()} dice se la figura \`e correntemente selezionata. Ritorna \textit{{\_}selected}.
 \item[-]  \textit{eachProperty(fn)} applica la funzione fn ad ogni propriet\`a della figura, ovvero a \textit{{\_}bounds} e \textit{{\_}borderColour}.
 \item[-] \textit{drawSelection(canvas)} disegna dei quadratini di colore blu e con opacit\`a 0.8 intorno ai punti principali della figura, ottenuti tramite \textit{getMainPoints}e traccia i bordi del \textit{BoundingRectangle} di colore grigio con opacit\`a 0.8, solo se la figura \`e selezionata. 
-\item[-] \textit{clone(figure)} Riceve tutte le propriet\`a della figura selezionata passate dal parametro attuale \textit{figure}; invoca il metodo \textit{getMainPoints} da cui preleva i vertici della figura. Costruisce e ritorna una figura clone dell' originale le cui coordinate sul canvas sono spostate di 10px in relazione alla posizione della figura di partenza.
+\item[-] \textit{clone(figure)} metodo statico che riceve una qualunque figura disegnata sul canvas da cui ne ricava tutte le propriet\`attraverso il parametro attuale \textit{figure}, invoca inoltre il metodo \textit{getMainPoints} da cui preleva i vertici della figura; essi servono per costruire e ritornare una figura clone dell' originale le cui coordinate sul canvas sono spostate di 10px in relazione alla posizione della figura di partenza.
 \end{elencopuntato}
 
 \subsezione{FigureSet}
