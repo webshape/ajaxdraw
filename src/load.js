@@ -282,7 +282,7 @@ Text.prototype.fromSVG = function (n) {
   this.setFont(new TextFont(n.getAttribute("font-family")));
   var y2 = parseInt(y1) + parseInt(size);
   var p1 = new Point(parseInt(x1), parseInt(y1));
-  var p2 = new Point(parseInt(x1+400), y2);
+  var p2 = new Point(parseInt(x1)+400, y2);
   this.getBounds().setStart(p1);
   this.getBounds().setEnd(p2);
   //this.getFillColour().fromCSS(n.getAttribute("fill"));
