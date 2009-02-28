@@ -146,6 +146,8 @@ Il presente documento descrive in modo dettagliato le classi e i relativi metodi
 %%%%%%%%%%%%%%FINE INTESTAZIONE COLONNE%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 		 \hline
 %%%%%%%%%%% PARTE DA MODIFICARE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%		
+        0.4 & 27$\slash$02$\slash$2009 Descritte classi Scale, MoveViewButton e aggiornato Visualization & Dissegna Stefano \\
+        \hline
     	0.3 &    25$\slash$02$\slash$2009 Descrizione classi e metodi GUI & Rizzo Maurizio \\
 		\hline
     	0.2 &    20$\slash$02$\slash$2009 Descrizione classe Rotation e metodo clone nella classe figure & Rizzo Maurizio \\
@@ -227,6 +229,24 @@ Nessuna.
 \item[-] \textit{loadStyleSheet()} carica il foglio di stile ativato da \textit{activateStylesheet}.
 \end{elencopuntato}
 
+\subsezione{Scale}
+\subsubsezione{Tipo, obiettivo e funzione del componente}
+Classe concreta che si occupa delle operazioni di riscalamento del canvas su schermo. 
+\subsubsezione{Relazioni d'uso di altre componenti}
+Usa il contesto grafico per applicare lo spostamento e il riscalamento della parte di canvas visualizzata.
+\subsubsezione{Interfacce e relazioni di uso da altre componenti}
+\textit{Visualization} ne utilizza un'istanza.
+\subsubsezione{Attivit\`a svolte e dati trattati}
+\paragrafo{Attributi privati:}
+\begin{elencopuntato}[\normindent]
+\item[-] \textit{{\_}factor} fattore di riscalamento. Il valore 1.0 equivale ad un riscalamento 1:1. Viene impostato al valore passato al costruttore.
+\end{elencopuntato}
+\paragrafo{Metodi pubblici:}
+\begin{elencopuntato}[\normindent]
+\item[-] \textit{getFactor()} ritorna \textit{{\_}factor};
+\item[-] \textit{applyToContext(context, offset)} applica il riscalamento al contesto passato usandone il metodo \textit{scale}, e pone l'origine nel punto specificato da \textit{offset} usando il metodo \textit{translate} del contesto grafico.
+\end{elencopuntato}
+
 \subsezione{Visualization}
 \subsubsezione{Tipo, obiettivo e funzione del componente}
 Classe concreta che si occupa delle operazioni di visualizzazione del canvas su schermo, come la riscalatura a seguito di uno zoom e la corretta visualizzazione della parte ingrandita o rimpicciolita.
@@ -238,6 +258,8 @@ Classe concreta che si occupa delle operazioni di visualizzazione del canvas su 
 \paragrafo{Attributi privati:}
 \begin{elencopuntato}[\normindent]
 \item[-] \textit{{\_}figureSet} insieme delle figure contenute in memoria.
+\item[-] \textit{{\_}scale} di tipo \textit{Scale}, mantiene lo zoom corrente.
+\item[-] \textit{{\_}offset} di tipo \textit{Point}, mantiene lo spostamento corrente della visualizzazione, misurato come differenza tra il punto (0, 0) e l'origine attuale.
 \end{elencopuntato}
 \paragrafo{Metodi pubblici:}
 \begin{elencopuntato}[\normindent]
@@ -245,6 +267,7 @@ Classe concreta che si occupa delle operazioni di visualizzazione del canvas su 
 \item[-] \textit{getFigureSet()} ritorna \textit{{\_}figureSet};
 \item[-] \textit{deselectAll(figureSet)} deseleziona tutte le figure presenti nel figure set.
 \item[-] \textit{getClickCoordsWithinTarget(event)} ritorna il punto esatto del canvas sul quale \`  e avvenuto il click  del mouse, differenziando le diverse interpretazioni che fa ciascun browser per uniformarle in un unico metodo funzionante universalmente.
+Le coordinate vengono poi adattate allo spostamento corrente della visualizzazione sommandogli \textit{{\_}offset}, e allo zoom corrente, moltiplicandole per \textit{{\_}scale.getFactor()}.
 \end{elencopuntato}
 
 \subsezione{Canvas}
@@ -361,7 +384,24 @@ Estende \textit{Button}.
 \end{elencopuntato}
 \paragrafo{Metodi pubblici:}
 \begin{elencopuntato}[\normindent]
-\item[-] \textit{getId()} ritorna \textit{{\_}id};
+\item[-] \textit{getId()} ritorna \textit{{\_}id}.
+\item[-] \textit{bindCanvas(toolbar,canvas,canvasObj,visual,figureSet)} collega il canvas all'azione di zoom. Collega l'evento click per prendere il punto che diventer\`a la nuova origine delle coordinate, e setta lo zoom di \textit{visual} in base al valore corrente di \textit{scaleButton}.
+\end{elencopuntato}
+
+\subsezione{MoveViewButton}
+\subsubsezione{Tipo, obiettivo e funzione del componente}
+Classe concreta che rappresenta lo specifico pulsante che attiva le funzionalit\` a di spostamento della visualizzazione nel canvas.
+\subsubsezione{Relazioni d'uso di altre componenti}
+Estende \textit{Button}.
+\subsubsezione{Interfacce e relazioni di uso da altre componenti}
+\subsubsezione{Attivit\`a svolte e dati trattati}
+\textit{Page} e \textit{Toolbar} ne mantengono un' istanza.
+\paragrafo{Attributi privati:}
+\begin{elencopuntato}[\normindent]
+\end{elencopuntato}
+\paragrafo{Metodi pubblici:}
+\begin{elencopuntato}[\normindent]
+\item[-] \textit{bindCanvas(toolbar,canvas,canvasObj,visual)} collega il canvas all'azione di spostamento. Collega l'evento mousedown per prendere il punto di riferimento per lo spostamento. L'evento mousemove sposter\`a la visualizzazione cambiandone l'offset in base allo spostamento relativo tra il punto di riferimento e la posizione attuale del mouse e far\`a un refresh del canvas. L'evento mouseup infine termina l'azione disabilitando l'evento mousemove.
 \end{elencopuntato}
 
 \subsezione{StraightLineButton}
@@ -575,6 +615,20 @@ Classe concreta che rappresenta il dialog sul quale sono presenti le caratterist
 \item[-] \textit{create()} richiama la funzione jQuery atta alla creazione del Dialog.
 \end{elencopuntato}
 
+\subsezione{BoundingRectagleSetter}
+\subsubsezione{Tipo, obiettivo e funzione del componente}
+Classe concreta che rappresenta l'oggetto che si occupa di impostare e modificare le coordinate del rettangolo contenente la figura disegnata sul canvas.
+\subsubsezione{Relazioni d'uso di altre componenti}
+Legge e modifica \textit{BoundingRectagle}.
+\subsubsezione{Interfacce e relazioni di uso da altre componenti}
+\textit{PropertiesDialog} ne mantiene un'istanza.
+\subsubsezione{Attivit\`a svolte e dati trattati}
+\paragrafo{Metodi pubblici:}
+\begin{elencopuntato}[\normindent]
+\item[-] \textit{BoundingRectagleSetter(bounds)} costruttore. Prende un \textit{BoundingRectagle} e setta il valore dei campi di un dialog statico implementato in HTML. I campi contengono: i valori x ed y dell'inizio di \textit{bounds} e i valori di altezza e larghezza. Collega un evento al pulsante di conferma del dialog, e se l'utente ha modificato i valori, e i valori inseriti sono dei numeri, modifica le corrispondenti propriet\`a di \textit{bounds} ed esegue un refresh.
+\end{elencopuntato}
+
+
 %%%%%%%%Parte Dissegna
 \subsezione{ApplicationLogic}
 
@@ -631,7 +685,7 @@ Il costruttore controlla se il browser supporta il metodo \textit{getImageData} 
 \subsezione{Property}
 \subsubsezione{Tipo, obiettivo e funzione del componente}
 Rappresenta una propriet\`a generica di una figura. Le propriet\`a influenzano 
-l'aspetto delle diverse figure, e sono modificabili dall'utente.
+l'aspetto delle diverse figure, e sono modificabili dall'utente. Non viene implementata in quanto \`e un'interfaccia.
 \subsubsezione{Relazioni d'uso di altre componenti}
 Nessuna.
 \subsubsezione{Interfacce e relazioni di uso da altre componenti}
@@ -801,7 +855,7 @@ Ogni istanza di una classe derivante da \textit{Figure} ha uno e un solo \textit
 \item[-] \textit{h()} ritorna l'altezza del rettangolo. Pu\`o essere negativa.
 \item[-] \textit{w()} ritorna la larghezza del rettangolo. Pu\`o essere negativa.
 \item[-] \textit{centre()} ritorna un \textit{Point} contenente le coordinate del centro del rettangolo.
-\item[-] \textit{applyToContext(context)} trasla le coordinate del sistema ponendo {\_}name come origine.
+\item[-] \textit{applyToContext(context)} trasla le coordinate del sistema ponendo {\_}start come origine, usando il metodo \textit{translate} di \textit{context}.
 \item[-] \textit{createWidget()} crea e ritorna un'istanza di \textit{BoundingRectangleSetter} passando se stesso come parametro al costruttore.
 \end{elencopuntato}
 
@@ -880,7 +934,8 @@ Creato dalla lettura di un file SVG oppure dall'interfaccia utente. Manipolato d
 \end{elencopuntato}
 \paragraph{Metodi pubblici:}
 \begin{elencopuntato}[\normindent]
-\item[-] \textit{extend(point)} aggiunge un punto avente coordinate assolute ai punti di controllo. Nel caso il punto esca dal \textit{BoundingRectangle}, il \textit{BoundingRectangle} viene ampliato e tutti i punti di controllo (con coordinate relative) vengono ricalcolati in modo che mantengano la posizione precedente. Per maggiori dettagli si veda il diagramma di attivit\`a [TODO: inserire diagramma].
+\item[-] \textit{extend(point)} aggiunge un punto avente coordinate assolute ai punti di controllo. Nel caso il punto esca dal \textit{BoundingRectangle}, il \textit{BoundingRectangle} viene ampliato e tutti i punti di controllo (con coordinate relative) vengono ricalcolati in modo che mantengano la posizione precedente. Per ricalcolare i punti si convertono a valore assoluto, si modifica il \textit{BoundingRectangle}, si aggiunge il nuovo punto e si riconvertono i 
+punti al loro valore relativo.
 \item[-] \textit{move(point, to)} muove il punto di controllo \textit{point} (se appartiene alla linea) e lo mette in \textit{to}. Aggiusta il \textit{BoundingRectangle} di conseguenza. I due punti hanno coordinate assolute.
 \item[-] \textit{getPoints} ritorna un array con una copia dei punti di controllo della linea convertiti a coordinate assolute in base al \textit{BoundingRectangle}.
 \item[-] \textit{getMainPoints} ritorna un array ottenuto concatenando l'array di \textit{getMainPoints} della superclasse e i punti ottenuti con \textit{getPoints}.
@@ -951,7 +1006,7 @@ Nel costruttorte viene controllato se il browser supporta le API per il disegno 
 \item[-] \textit{get/setText()} ottiene/modifica \textit{{\_}txt}.
 \item[-] \textit{eachProperty(fn)} richiama \textit{eachProperty} di \textit{Figure} ed applica la funzione fn a \textit{{\_}fillColour} e a \textit{{\_}font}.
 \item[-] \textit{draw(canvas)} disegna il \textit{{\_}txt} usando le API del contesto grafico. L'altezza del testo \`e uguale all'altezza del \textit{BoundingRectangle}, mentre la larghezza del \textit{BoundingRectangle} definisce la larghezza massima del testo. Viene disegnato due volte: la prima per il riempimento, la seconda per il bordo. Prima di disegnarsi richiama \textit{applyToContext} sui colori del bordo e di riempimento, e setta l'attributo \textit{font} del contesto grafico all'altezza assoluta del \textit{BoundingRectangle} in pixel, seguita dalla rappresentazione CSS di \textit{{\_}font}.
-\item[-] \textit{fallbackDraw(canvas)} metodo usato al posto di \textit{draw} quando il browser non ha il supporto per il testo. Disegna un rettangolo in modo analogo al metodo \textit{draw} di \textit{Rectangle}.
+\item[-] \textit{fallbackDraw(canvas)} metodo usato al posto di \textit{draw} quando il browser non ha il supporto per il testo. Disegna il testo usando i metodi della libreria \textit{canvastext.js}. Visti i limiti della libreria, ignora il colore di riempimento ed il font.
 \item[-] \textit{toSVG(gen)} in sospeso.
 \item[-] \textit{fromSVG(n)} in sospeso.
 \end{elencopuntato}
