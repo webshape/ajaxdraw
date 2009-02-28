@@ -173,7 +173,7 @@ Visualization.prototype.getClickCoordsWithinTarget = function(event){
   coords.y += this._offset.y;
 
 
-  
+
 	return coords;
 };
 
@@ -263,6 +263,12 @@ Button.prototype.bindCursor = function(type){
     switch(type){
       case "selection":
 	$("#cv").css({'cursor' : 'url("images/selectDraw.png"),auto'});
+      break;
+      case "zoom":
+	$("#cv").css({'cursor' : 'url("images/zoom.png"),auto'});
+      break;
+      case "move":
+	$("#cv").css({'cursor' : 'url("images/move.png"),auto'});
       break;
      case "line":
 	$("#cv").css({'cursor' : 'url("images/lineDraw.png"),auto'});
@@ -397,7 +403,7 @@ ZoomButton.prototype.bindCanvas = function (toolbar,canvas,canvasObj,visual,figu
 
 /**
  * @constructor
- * Button to move the centre of the visualization 
+ * Button to move the centre of the visualization
  */
 function MoveViewButton () {
   Button.call(this);

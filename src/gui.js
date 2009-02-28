@@ -117,17 +117,19 @@ $(document).ready(function(){
   });
 
   $("#zoomButton").click(function () {
+    zoomButton.bindCursor("zoom");
     $("#fontSetterZone").css({"display":"none"});
     $("#edgeSetterZone").css({"display":"none"});
       zoomButton.bindCanvas(toolbar,canvas,canvasObj,visual,figureSet,ctx);
   });
 
   $("#moveViewButton").click(function () {
+    moveViewButton.bindCursor("move");
     $("#fontSetterZone").css({"display":"none"});
     $("#edgeSetterZone").css({"display":"none"});
       moveViewButton.bindCanvas(toolbar,canvas,canvasObj,visual);
   });
-                    
+
   /*$("#scaleButton").click(function () {
       scale.setZoom(ctx,canvas);
   });
