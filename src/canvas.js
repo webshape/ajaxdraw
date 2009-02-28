@@ -110,7 +110,7 @@ function Visualization(figureSet){
 }
 
 Visualization.accessors('_offset', 'getOffset', 'setOffset');
-Visualization.writer('_scale', 'setScale');
+Visualization.accessors('_scale', 'getScale', 'setScale');
 
 Visualization.prototype.refresh = function(){
   var c = document.getElementById('cv');
@@ -357,7 +357,7 @@ SelectionButton.prototype.bindCanvas = function (toolbar,canvas,canvasObj,visual
       visual.refresh();
       var coords = visual.getClickCoordsWithinTarget(e);
       var coord = new Point(coords.x,coords.y);
-      var actualFigure = figureSet.selectFigure(coord);
+      var actualFigure = figureSet.selectFigure(coord, visual.getScale(), visual.getOffset());
       if(actualFigure==null){
 	visual.deselectAll(figureSet);
 	canvasObj.clear();

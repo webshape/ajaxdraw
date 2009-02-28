@@ -407,7 +407,7 @@ FigureSet.prototype.fallbackSelection = function (where) {
  * @param {Point} where point to match against
  * @return matching figure or null
  */
-FigureSet.prototype.selectFigure = function (where) {
+FigureSet.prototype.selectFigure = function (where, scale, offset) {
   var r = 0;
   var g = 0;
   var b = 0;
@@ -431,6 +431,14 @@ FigureSet.prototype.selectFigure = function (where) {
   var c = document.createElement('canvas');
   c.width = 760;
   c.height = 480;
+  if (scale) {
+    var f = scale.getFactor();
+    where.x -= offset.x;
+    where.y -= offset.y;
+    where.x *= f;
+    where.y *= f;
+    scale.applyToContext(c.getContext('2d'), offset);
+  }
   //var c = document.getElementById('cv');
   //c.width = c.width;
   c.getContext('2d').lineWidth = 10; // easier selection of lines
