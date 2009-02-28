@@ -883,7 +883,7 @@ PropertiesDialog.prototype.create= function(){
    $("#propertiesDialog").dialog({
     	position: "right",
     	width: 230,
-	height: 250
+	height: 280
     });
 };
 

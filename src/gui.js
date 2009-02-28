@@ -131,12 +131,6 @@ $(document).ready(function(){
       moveViewButton.bindCanvas(toolbar,canvas,canvasObj,visual);
   });
 
-  /*$("#scaleButton").click(function () {
-      scale.setZoom(ctx,canvas);
-  });
-*/
-
-
   $("#straightLineButton").click(function () {
     $("#edgeSetterZone").css({"display":"none"});
     $("#fontSetterZone").css({"display":"none"});
@@ -239,8 +233,6 @@ $(document).ready(function(){
 	$(".Dialog1").height(210);
       }
       else $(".Dialog1").height(430);
-
-
       openBorder = false;
     }
   );
@@ -268,6 +260,15 @@ $(document).ready(function(){
     }
   );
 
+  //Save & Load Dialogs handlers
+ $("#saveButton").click(function () {
+   $("#saveDialog").dialog( 'close' );
+   //TODO save link to server
+ });
+$("#loadButton").click(function () {
+  //TODO load link to server
+   $("#loadDialog").dialog( 'close' );
+ });
 
 function updateInfos(figure){
   document.getElementById("DialogHeight").value=figure.getBounds().h();
