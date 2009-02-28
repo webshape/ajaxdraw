@@ -42,22 +42,37 @@
 <ul id="menuModel5">
 	<li id="50000" itemIcon="images/menu_bar/disk.gif"><a href="#" title="Apri il menu file">File</a>
 		<ul width="150">
-			<li id="500001" jsFunction="alert('salvato')" itemIcon="images/menu_bar/disk.gif"><a href="#" title="Save your work">Save</a></li>
-			<li id="500002"><a href="#">Salva Come</a></li>
+			<li id="500001" jsFunction='$("#saveDialog").css({"display" : "block"});
+												$("#saveDialog").dialog({
+													modal: true,
+    												height: 120,
+    												width: 320,
+													resizable: false,
+    												dialogClass: "saveDialog1"
+								   			});' 
+								   itemIcon="images/menu_bar/disk.gif"><a href="#" title="Save your work">Save</a></li>
+			<!--  <li id="500002"><a href="#">Salva Come</a></li> -->
 			<li id="500004" itemType="separator"></li>
-			<li id="500003"><a href="#">Apri</a></li>
+			<li jsFunction='$("#loadDialog").css({"display" : "block"});
+										$("#loadDialog").dialog({
+													modal: true,
+    												height: 110,
+    												width: 440,
+													resizable: false,
+    												dialogClass: "loadDialog1"
+								   			});' id="500003"><a href="#">Apri</a></li>
 		</ul>
 	</li>
 	<li id="50001"><a href="#">Visualizza</a>
 		<ul width="130">
-			<li id="500011"><a href="#">Sorgente</a></li>
+		<!-- 	<li id="500011"><a href="#">Sorgente</a></li>
 			<li id="500012"><a href="#">Debug info</a></li>
 			<li id="500013"><a href="#">Layout</a>
-				<ul width="150">
+			 	<ul width="150">
 					<li id="5000131"><a href="#">CSS</a>	
 					<li id="5000132"><a href="#">HTML</a>	
 					<li id="5000133"><a href="#">Javascript</a>	
-				</ul>
+				</ul> -->
 			</li>
 			<li jsFunction='$("#colorDialog").dialog({
 									position: ["right","top"],
@@ -69,12 +84,19 @@
 			<li jsFunction=' $("#propertiesDialog").dialog({
     								position: "right",
     								width: 230,
-									height: 250
+									height: 280
   									  });' id="500015"><a href="#">PropDial</a>	
 		</ul>
 	</li>
 	<li id="50003" itemType="separator"></li>
-	<li id="50002"><a href="#">Opzioni</a></li>
+	<li jsFunction='$("#aboutDialog").css({"display" : "block"});
+										$("#aboutDialog").dialog({
+													modal: true,
+    												height: 300,
+    												width: 300,
+													resizable: false,
+    												dialogClass: "aboutDialog1"
+								   			});' id="50002"><a href="#">About</a></li> 
 </ul>
 <div id="fifthMenu"></div>
 <script>
@@ -110,23 +132,24 @@ menuBar5.init();
 	
 	<!--  Zona di salvataggio provvisoria -->
 	<div id="saveLoadZone">
-	<span >
-		<select id="scaleButton">
- 		 <option value="1" >100%</option>
- 		 <option value="0.5" >50%</option>  
-		</select>
-	</span>
+		<span >Zoom:
+			<select id="scaleButton">
+ 			 <option value="1" >100%</option>
+ 			 <option value="0.5" >50%</option>  
+ 			 <option value="0.25" >25%</option> 
+			</select>
+		</span><br/>
 		<span>
 			<input type="button" id="clearCanvasButton" name="ClearButton" value="Svuota Canvas"/>
 		</span>
-		<span class="tooltip">
+	<!--	<span class="tooltip">
 			<span>Salva l'immagine in un file SVG</span>
 			<input type="button" name="SaveSVG" value="Salva SVG"/>&nbsp;
 			<br/>
 		</span>Carica:
 		<span>
 			<input type="file" class="SVG" name="LoadSVG" value="Carica SVG"/>
-		</span>
+		</span>   -->
 	</div>
 	<br/>
 	
@@ -260,19 +283,31 @@ menuBar5.init();
 		</select>
 		
 	</p>
+	
 </div>
-
-
-<!-- Dialog per il numero di poligoni 
-<div id="edgeNumberDialog" class="flora" title="Scegli il numero di lati">
-	<p>Numero di lati: 
-		<input id="edgeNumber" type="text" value="3"/>
+<!-- Dialog di salvataggio -->
+	<p id="saveDialog" style="display:none" class="flora" title="Salva su file SVG:">
 		<span>
-			<input type="button" id="edgeSetter" value="ok"/>
-		</span>
+			Nome: 
+			<input type="text"/>
+			<input id="saveButton" type="button" value="Salva"/>				
+		</span>		
 	</p>
-</div> -->
-
+	<!-- Dialog di caricamento -->
+	<p id="loadDialog" style="display:none" class="flora" title="Carica file SVG:">
+		<span>
+			Nome: 
+			<input type="file"/>
+			<input id="loadButton" type="button" value="Carica"/>	
+		</span>		
+	</p>
+	<p id="aboutDialog" style="display:none" class="flora" title="About:">
+		<span>
+			<h1 style:"text-align:center">AJAXDRAW</h1><br/>
+			
+			<img src="../doc/logo/logo.png" width="269" height="135" name="Logo" alt="Logo WebShape" />
+		</span>		
+	</p>
 </body>
 </html>
 

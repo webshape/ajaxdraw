@@ -110,7 +110,7 @@ function Visualization(figureSet){
 }
 
 Visualization.accessors('_offset', 'getOffset', 'setOffset');
-Visualization.writer('_scale', 'setScale');
+Visualization.accessors('_scale', 'getScale', 'setScale');
 
 Visualization.prototype.refresh = function(){
   var c = document.getElementById('cv');
@@ -176,7 +176,7 @@ Visualization.prototype.getClickCoordsWithinTarget = function(event){
   coords.y += this._offset.y;
 
 
-  
+
 	return coords;
 };
 
@@ -267,6 +267,12 @@ Button.prototype.bindCursor = function(type){
       case "selection":
 	$("#cv").css({'cursor' : 'url("images/selectDraw.png"),auto'});
       break;
+      case "zoom":
+	$("#cv").css({'cursor' : 'url("images/zoom.png"),auto'});
+      break;
+      case "move":
+	$("#cv").css({'cursor' : 'url("images/move.png"),auto'});
+      break;
      case "line":
 	$("#cv").css({'cursor' : 'url("images/lineDraw.png"),auto'});
       break;
@@ -351,7 +357,7 @@ SelectionButton.prototype.bindCanvas = function (toolbar,canvas,canvasObj,visual
       visual.refresh();
       var coords = visual.getClickCoordsWithinTarget(e);
       var coord = new Point(coords.x,coords.y);
-      var actualFigure = figureSet.selectFigure(coord);
+      var actualFigure = figureSet.selectFigure(coord, visual.getScale(), visual.getOffset());
       if(actualFigure==null){
 	visual.deselectAll(figureSet);
 	canvasObj.clear();
@@ -400,7 +406,7 @@ ZoomButton.prototype.bindCanvas = function (toolbar,canvas,canvasObj,visual,figu
 
 /**
  * @constructor
- * Button to move the centre of the visualization 
+ * Button to move the centre of the visualization
  */
 function MoveViewButton () {
   Button.call(this);
@@ -877,7 +883,7 @@ PropertiesDialog.prototype.create= function(){
    $("#propertiesDialog").dialog({
     	position: "right",
     	width: 230,
-	height: 250
+	height: 280
     });
 };
 
