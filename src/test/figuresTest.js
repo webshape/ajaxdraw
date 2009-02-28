@@ -1,5 +1,10 @@
 function runFiguresTest() {
-                    
+
+test("Point", function () {
+       equals(new Point(10, 10).dist(new Point(20, 10)), 10, 
+       'point distance');
+     });
+  
 test("BoundingRectangle", function () {
        var r = new BoundingRectangle(new Point(-10, -10),
        new Point(10, 10));

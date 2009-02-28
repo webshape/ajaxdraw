@@ -19,7 +19,6 @@ a.button:hover{background-position: bottom left;color: #6B9828}
 a.button:hover span{background-position: bottom right}
 
 
-
 /*Tavolozza*/
 .paletteComponent{
 	height:4em;
@@ -90,6 +89,10 @@ margin-left:0.5em;
 #zoomButton{
 	background-image:url("../pages/images/zoom.png");
 		}	
+#moveViewButton{
+	background-image:url("../pages/images/move.png");
+		}	
+		
 #straightLineButton{
 	background-image:url("../pages/images/lineaDritta.png");
 		}	

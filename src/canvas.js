@@ -105,15 +105,25 @@ Canvas.prototype.setWidth = function(val){
  */
 function Visualization(figureSet){
   this._figureSet = figureSet;
+  this._offset = new Point(0, 0);
+  this._scale = new Scale(1);
 }
+
+Visualization.accessors('_offset', 'getOffset', 'setOffset');
+Visualization.accessors('_scale', 'getScale', 'setScale');
 
 Visualization.prototype.refresh = function(){
   var c = document.getElementById('cv');
   if ($.browser.msie) { // hack for internet explorer
     c = window.G_vmlCanvasManager.initElement(c);
   }
+  var ctx = c.getContext('2d');
+  this._scale.applyToContext(ctx, this._offset);
   this._figureSet.each(function (f) {
     f.draw(c);
+    if (f.isSelected()) {
+      f.drawSelection(c);
+    }
    });
 };
 
@@ -133,7 +143,7 @@ Visualization.prototype.deselectAll = function (figureSet) {
  * @return the coordinates of the click
  */
 Visualization.prototype.getClickCoordsWithinTarget = function(event){
-	var coords = { x: 0, y: 0};
+  var coords = new Point(0, 0);
 
 	if(!event) // then we're in a non-DOM (probably IE) browser
 	{
@@ -157,6 +167,15 @@ Visualization.prototype.getClickCoordsWithinTarget = function(event){
 		coords.x = event.pageX - CalculatedTotalOffsetLeft ;
 		coords.y = event.pageY - CalculatedTotalOffsetTop ;
 	}
+
+        // adapt to scale & offset
+  var f = this._scale.getFactor();
+  coords.x /= f;
+  coords.y /= f;
+  coords.x += this._offset.x;
+  coords.y += this._offset.y;
+
+
 
 	return coords;
 };
@@ -219,9 +238,10 @@ Button.prototype.bindCanvas = function (toolbar,canvas,canvasObj,visual,figureSe
       var coords2 = visual.getClickCoordsWithinTarget(e);
       f.getBounds().setEnd(new Point(coords2.x, coords2.y));
       if(builder==Polygon){
-        var edgeNumber = document.getElementById('edgeNumber').value;
-	// TODO: check that edgeNumber is a valid number
-	f.edgeNumber().setVal(edgeNumber);
+        var edgeNumber = parseInt(document.getElementById('edgeNumber').value);
+	if (!isNaN(edgeNumber) && edgeNumber >= 2) {
+          f.edgeNumber().setVal(edgeNumber);
+        }
       }
     canvasObj.clear();
     visual.refresh();
@@ -247,6 +267,12 @@ Button.prototype.bindCursor = function(type){
     switch(type){
       case "selection":
 	$("#cv").css({'cursor' : 'url("images/selectDraw.png"),auto'});
+      break;
+      case "zoom":
+	$("#cv").css({'cursor' : 'url("images/zoom.png"),auto'});
+      break;
+      case "move":
+	$("#cv").css({'cursor' : 'url("images/move.png"),auto'});
       break;
      case "line":
 	$("#cv").css({'cursor' : 'url("images/lineDraw.png"),auto'});
@@ -332,7 +358,7 @@ SelectionButton.prototype.bindCanvas = function (toolbar,canvas,canvasObj,visual
       visual.refresh();
       var coords = visual.getClickCoordsWithinTarget(e);
       var coord = new Point(coords.x,coords.y);
-      var actualFigure = figureSet.selectFigure(coord);
+      var actualFigure = figureSet.selectFigure(coord, visual.getScale(), visual.getOffset());
       if(actualFigure==null){
 	visual.deselectAll(figureSet);
 	canvasObj.clear();
@@ -345,7 +371,9 @@ SelectionButton.prototype.bindCanvas = function (toolbar,canvas,canvasObj,visual
 	//updateInfos(actualFigure);
 	canvasObj.clear();
 	visual.refresh();
-	actualFigure.drawSelection(canvas);
+        actualFigure.eachProperty(function (p) {
+                                    p.createWidget();
+                                  });
       }
   });
 };
@@ -366,43 +394,64 @@ ZoomButton.prototype.getId = function (){
   return this._id;
 };
 
-ZoomButton.prototype.bindCanvas = function (toolbar,canvas,canvasObj,visual,figureSet,scale,ctx) {
+ZoomButton.prototype.bindCanvas = function (toolbar,canvas,canvasObj,visual,figureSet) {
   toolbar.deselectAll();
   $("#cv").unbind('mousedown click mouseup');
   $("#cv").bind("click", function(e){
-    alert(scale._xfactor);
-    scale.setZoom(ctx,canvas);
-    canvasObj.clear();
-    visual.refresh();
-  });
+                  var factor = document.getElementById("scaleButton").value;
+                  var start = visual.getClickCoordsWithinTarget(e);
+                  visual.setOffset(start);
+                  visual.setScale(new Scale(factor));
+                  canvasObj.clear();
+                  visual.refresh();
+                });
+};
 
+/**
+ * @constructor
+ * Button to move the centre of the visualization
+ */
+function MoveViewButton () {
+  Button.call(this);
+}
 
+MoveViewButton.prototype = new Button();
 
+MoveViewButton.prototype.bindCanvas = function (toolbar,canvas,canvasObj,visual) {
+  toolbar.deselectAll();
+  $("#cv").unbind('mousedown click mouseup');
+  $("#cv").bind("mousedown", function(e){
+                  var start = visual.getClickCoordsWithinTarget(e);
+                  $('#cv').bind('mousemove', function (e) {
+                                  var pos = visual.getClickCoordsWithinTarget(e);
+                                  var dx = start.x - pos.x;
+                                  var dy = start.y - pos.y;
+                                  visual.getOffset().x += dx;
+                                  visual.getOffset().y += dy;
+                                  canvasObj.clear();
+                                  visual.refresh();
+                                });
+                  $('#cv').bind('mouseup', function (e) {
+                                  $("#cv").unbind('mousemove mouseup');
+                                });
+                });
 };
 
 /**
  * @constructor
  * The Scale Object
+ * @param {Float} x scaling factor
  */
-function Scale () {
-  this._xfactor = 1;
-  this._yfactor = 1;
+function Scale (x) {
+  this._factor = x;
 }
-Scale.prototype.setFactor = function (valuex,valuey){
-  this._xfactor=valuex;
-  this._yfactor=valuey;
+
+Scale.reader('_factor', 'getFactor');
+
+Scale.prototype.applyToContext = function(ctx, offset) {
+  ctx.scale(this._factor, this._factor);
+  ctx.translate(-offset.x, -offset.y);
 };
-
-
-
-Scale.prototype.setZoom = function(ctx,canvas){
-  var factor = document.getElementById("scaleButton").value;
-  this._xfactor = factor;
-  this._yfactor = factor;
-  ctx.scale(this._xfactor,this._yfactor);
-
-};
-
 
 /**
  * @constructor
@@ -559,9 +608,7 @@ FreeLineButton.prototype.bindCanvas = function (toolbar,canvas,canvasObj,visual,
     $("#cv").bind("mousemove",function(e){
         var coords2 = visual.getClickCoordsWithinTarget(e);
                     var minDist = 10;
-                    var dx = coords.x-coords2.x;
-                    var dy = coords.y-coords2.y;
-                    var dist = Math.sqrt(dx*dx+dy*dy);
+                    var dist = coords.dist(coords2);
 	if (dist >= minDist) {
 	     f.extend(new Point(coords2.x, coords2.y));
           coords = coords2;
@@ -839,7 +886,7 @@ PropertiesDialog.prototype.create= function(){
    $("#propertiesDialog").dialog({
     	position: "right",
     	width: 230,
-	height: 250
+	height: 280
     });
 };
 
@@ -849,8 +896,22 @@ PropertiesDialog.prototype.create= function(){
  * @constructor
  * Edge Number Setter
  */
-function EdgeNumberSetter(){
-  this._polygonEdgeNumber=3;
+function EdgeNumberSetter(en) {
+  $('#edgeNumber').get(0).value = en.getVal();
+  $("#edgeSetterZone").css({"display":"block"});
+//  $('#edgeSetterZone').get(0).style = '';
+  $('#submitEdge').unbind('click');
+  $('#submitEdge').click(function (e) {
+                           var n = parseInt($('#edgeNumber').get(0).value);
+                           if (!isNaN(n)) {
+                             en.setVal(n);
+                           }
+                           canvasObj.clear();
+                           visual.refresh();
+                         });
+}
+
+/*  this._polygonEdgeNumber=3;
 }
 
 
@@ -861,8 +922,8 @@ EdgeNumberSetter.prototype.setEdgeNumber = function(value){
 EdgeNumberSetter.prototype.getEdgeNumber = function(){
   return this._polygonEdgeNumber;
 };
-
-
+  */
+/*
 EdgeNumberSetter.prototype.create = function(){
    $("#edgeNumberDialog").dialog({
    // position: ["right","top"],
@@ -876,7 +937,7 @@ EdgeNumberSetter.prototype.create = function(){
      $("#edgeNumberDialog").dialog("close");
    });
 };
-
+*/
 
 
 function FontSetter(size,font){
@@ -918,7 +979,30 @@ function RotationSetter(){
  //TODO
 }
 
-function BoundingRectangleSetter(){
- //TODO
+function BoundingRectangleSetter(bounds){
+  $('#x').get(0).value = bounds.start().x;
+  $('#y').get(0).value = bounds.start().y;
+  $('#DialogHeight').get(0).value = bounds.h();
+  $('#DialogWidth').get(0).value = bounds.w();
+  $('#submitRect').unbind('click');
+  $('#submitRect').click(function (e) {
+                           var x = parseFloat($('#x').get(0).value);
+                           var y = parseFloat($('#y').get(0).value);
+                           var h = parseFloat($('#DialogHeight').get(0).value);
+                           var w = parseFloat($('#DialogWidth').get(0).value);
+                           if (!isNaN(x)) {
+                             bounds.start().x = x;
+                           }
+                           if (!isNaN(y)) {
+                             bounds.start().y = y;
+                           }
+                           if (!isNaN(h)) {
+                             bounds.end().y = bounds.start().y + h;
+                           }
+                           if (!isNaN(w)) {
+                             bounds.end().x = bounds.start().x + w;
+                           }
+                           canvasObj.clear();
+                           visual.refresh();
+                         });
 }
-

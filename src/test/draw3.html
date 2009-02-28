@@ -5,6 +5,7 @@
 <title> Draw Test </title>
 <script src="../lib/jquery.js"></script>
 <!--[if IE]><script type="text/javascript" src="../lib/excanvas.js"></script><![endif]-->
+<script src="../lib/canvastext.js"> </script>
 <script src="../utils.js"></script>
 <script src="../figures.js"></script>
 <script src="../load.js"></script>
@@ -12,7 +13,7 @@
 
 $(document).ready(function(){
 var canvas = document.getElementById("cv");
-var doc = "svg2.svg";       
+var doc = "svg.svg";
 var b = [];
 r = new SVGReader();
 b = (r.read(doc));

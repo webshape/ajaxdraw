@@ -1,0 +1,236 @@
+\input{../TeX/base} %BASE!!!
+\usepackage{multirow}
+\title{\TITOLODOC}
+\author{Marco Cunico}
+
+\begin{document}
+
+\renewcommand{\insertversion}{0.0} %INSERIRE LA VERSIONE QUI DENTRO STILE x.x.xx
+\renewcommand{\TITOLODOC}{Manuale Utente} %INSERIRE IL TITOLO DEL DOCUMENTO DA FAR COMPARIRE A PIE PAGINA
+\renewcommand{\glosspath}{.\glossario} %INSERIRE PERCORSO RELATIVO
+
+%%%%%%%%%%%%%%%%%%%%%%PARTE DA NON MODIFICARE%%%%%%%%%%%%%%%%%
+\begin{titlepage}
+\begin{center}
+	\begin{Large}	\today \end{Large}
+\end{center}
+
+\vspace{20pt}
+
+\begin{center}
+	\begin{Huge}
+				\textbf{\ajax}
+	\end{Huge}
+\end{center}			
+
+\begin{center}
+	\begin{large}
+				\textbf{Software per il Disegno Grafico\\ in Tecnologie Web}
+	\end{large}
+\end{center}			
+
+\vspace{20pt}
+
+\begin{center}
+\includegraphics[width=150pt]{../logo/logo}
+\end{center}
+
+\vspace{170pt}
+\begin{center} %INSERIRE ALL'INTERNO IL TITOLO DOCUMENTO CHE COMPARIRA NELLA PAGINA INIZIALE				
+	\begin{Huge}
+				\textbf{\TITOLODOC}
+	\end{Huge}
+			\\
+\end{center}
+\vspace{190pt}
+\begin{center}
+Versione: \insertversion
+\end{center}
+\end{titlepage}
+
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%FINE PARTE DA NON MODIFICARE%%%%%%%%%%%%%%%%%
+
+\begin{center} %INSERIRE ALL'INTERNO IL TITOLO DOCUMENTO CHE COMPARIRA NELLA PAGINA INIZIALE
+	\begin{Huge}	
+				\textbf{\TITOLODOC}
+			\\
+	\end{Huge}
+\end{center}
+
+%\setlength{\parindent}{18pt} %settato indentazione di default 
+\section*{\LARGE Sommario:}
+Il presente documento descrive l'analisi dei costi e delle risorse effettuata dall'azienda WebShape per lo sviluppo del Capitolato C04.
+
+ %SEZIONE SOMMARIO
+\indent \indent
+
+\section*{\LARGE Stato del documento:}
+\indent \indent
+	Formale Esterno
+
+\section*{\LARGE Redazione:}
+	\begin{table}[!h]
+		\begin{center}
+			\begin{tabular}
+				{|c|c|}
+				\hline
+				%%%%%%%%%%%%%%INTESTAZIONE COLONNE%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+				\multicolumn{2}{|c|}{ \textbf{Redazione} } \\
+				\hline
+				\textbf{Fase} & \textbf{Redattori} \\
+				%%%%%%%%%%%%%%FINE INTESTAZIONE COLONNE%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+				\hline
+				%%%%%%%%%%% PARTE DA MODIFICARE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%		
+				\multirow{2}{*}{PPP-RQ} & \\
+										& \\
+				\hline
+				%%%%%%%%%%% FINE PARTE DA MODIFICARE %%%%%%%%%%%%%%%%%%%%%%%%%%%
+			\end{tabular}
+			\caption{Lista Redattori} %INSERIRE DIDASCALIA - SE NECESSARIA - 
+			\label{tabredazione}
+		\end{center}
+	\end{table}
+	
+	
+\section*{\LARGE Approvazione:}
+\begin{table}[!h]
+	\begin{center}
+		\begin{tabular}
+			{|c|c|}
+			\hline
+			%%%%%INTESTAZIONE COLONNE%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+			\multicolumn{2}{|c|}{ \textbf{Approvazione} } \\
+			\hline
+			\textbf{Fase} & \textbf{Approvatori} \\
+			%%%%%%%%%%%%%%FINE INTESTAZIONE COLONNE%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+			\hline
+			%%%%%%%%%%% PARTE DA MODIFICARE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%		
+			\multirow{1}{*}{RPP-RQ} & \\
+									
+			\hline
+			%%%%%%%%%%% FINE PARTE DA MODIFICARE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+		\end{tabular}
+		\caption{Lista Approvatori} %INSERIRE DIDASCALIA - SE NECESSARIA - 
+		\label{tabapprovazione}
+	\end{center}
+\end{table}
+
+\textbf{}
+\newpage
+\section*{\LARGE Lista di Distribuzione:}
+
+	\begin{elenconumerato}{\normindent}
+		\item WebShape 
+		\item I committenti Conte Renato e Vardanega Tullio in rappresentanza \\  dell'azienda proponente Zucchetti SPA
+	\end{elenconumerato}
+
+
+
+
+\section*{\Large Registro delle Modifiche:}
+
+
+\begin{center}
+	\begin{table}[h]
+		  \begin{tabular*}
+			{1\textwidth}%
+				{@{\extracolsep{\fill}}|p{0.1\textwidth}|p{0.54\textwidth}|p{0.26\textwidth}|}
+			 \hline
+%%%%%%%%%%%%%%INTESTAZIONE COLONNE%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+			\textbf{Versione}  & \textbf{Descrizione} & \textbf{Autore} \\
+%%%%%%%%%%%%%%FINE INTESTAZIONE COLONNE%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+		 \hline
+%%%%%%%%%%% PARTE DA MODIFICARE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    	  \hline
+    	  0.0 & 27/02/2008 Prima stesura & \\
+
+		\hline %%FINE RIGA
+%%%%%%%%%%% FINE PARTE DA MODIFICARE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+		\end{tabular*}
+	\caption{Registro delle modifiche} %INSERIRE DIDASCALIA - SE NECESSARIA - 
+	\label{tab:modifiche}
+	\end{table}
+\end{center}
+
+
+\newpage
+\thispagestyle{fancy}
+\tableofcontents
+\thispagestyle{fancy}
+\newpage
+
+\sezione{Introduzione}
+
+\subsezione{Scopo del documento}
+Il presente documento si propone di fornire la documentazione di supporto necessaria per l'utilizzo del prodotto.\\
+
+\subsezione{Definizione dell'utente del prodotto}
+Il prodotto \`e pensato per tutti gli utenti che hanno conoscenze minime in ambiente di grafica vettoriale e che possiedono una connessione ad internet. Il sistema potr\`a anche essere usato da chiunque voglia estendere l'applicazione, secondo le norme che regolano la licenza d'utilizzo.\\
+
+\subsezione{Come leggere il manuale}
+Il presente Manuale Utente \`e suddiviso in varie sezioni. Nella sezione ''Introduzione'' il lettore pu\`o trovare riferimenti a documenti utili per l'uso del prodotto e informazioni riguardo eventuali segnalazioni di problemi riscontrati nel suo utilizzo.
+Nella sezione ''Descrizione generale'' viene descritto il prodotto illustrandone lo scopo, le modalit\`a di utilizzo, le caratteristiche salienti, i requisiti tecnici. Nella sezione ''Istruzioni d'uso'' sono presenti le operazioni da effettuare per utilizzare il software, a partire dall'installazione fino al termine di una sessione di utilizzo.\\ %integrate anche mediante vari screenshot
+
+
+\subsezione{Documenti Utili}
+\begin{elencopuntato}[\normindent]
+	\item[-] \textit{Glossario.pdf}
+\end{elencopuntato}
+
+\subsezione{Come riportare problemi e malfunzionamenti}
+Nel caso durante l'utilizzo del prodotto sorgano problemi o malfunzionamenti non descritti nel seguente documento, l'utente \`e invitato a contattare la WebShape all'indirizzo \href{mailto:webshape.contact@gmail.com}{webshape.contact@gmail.com} riportando i seguenti dati:\\
+\begin{elencopuntato}[\normindent]
+	\item[-] Versione del prodotto
+	\item[-] Sistema operativo in uso
+	\item[-] Browser in uso
+	\item[-] Configurazione hardware in uso
+	\item[-] Fase di utilizzo in cui si \`e manifestato l'errore
+	\item[-] Descrizione dell'errore
+\end{elencopuntato}
+
+\sezione{Descrizione Generale}
+
+\subsezione{Caratteristiche del Prodotto}
+Il prodotto \`e stato sviluppato come un'applicazione web. \`E possibile utilizzarlo, una volta installato sul server, semplicemente accedendovi tramite un browser. Una volta effettuato l'accesso alla pagina \`e possibile accedere a tutte le
+funzionalit\`a. Il sistema permette un salvataggio dei disegni che potranno essere ricaricati e aggiornati.
+
+\subsezione{Requisiti tecnici per il funzionamento del programma}
+\subsubsezione{lato client}
+\begin{elencopuntato}[\normindent]
+    \item[-] Requisiti software: Firefox 3.2b2 o successivo, Firefox 3.0.6 tutto tranne il disegno di testo, Opera 9.6 tutto tranne il disegno di testo, Chrome (versione attuale), Safari (versione attuale), IE8: tutto tranne il testo e la selezione che risulta non essere ottimale.\\
+    Risoluzione minima consigliata: 1024x768.\\
+N.B. Dove non \`e supportato il testo, c'\`e un supporto minimo: un solo font, colore di riempimento ignorato, set di caratteri minimo. 
+    \item[-] Requisiti hardware:  Processore Intel 2GHz o compatibili; 512MB memoria RAM 
+\end{elencopuntato}
+\subsubsezione{lato server}
+\begin{elencopuntato}[\normindent]
+    \item[-] Requisiti software:  JVM 1.5 o superiore, Tomcat (Bosco..)
+    \item[-] Requisiti hardware:  Processore Intel 1GHz; 1GB memoria RAM
+\end{elencopuntato}
+
+\sezione{Istruzioni per l'uso}
+
+\subsezione{Installazione del programma}
+\subsubsezione{lato client}
+Il programma verr\`a fornito pacchettizzato con tutte le librerie necessarie al suo funzionamento. \`E sufficiente avviare lo script per avviare l'installazione del sistema sul proprio computer.
+
+\subsubsezione{lato server}
+Rimandiamo ai seguenti link per l'installazione del server Tomcat e della JVM
+ 
+\subsezione{Avvio del programma}
+Con il programma viene consegnato anche un file index.html per l'esecuzione su browser. 
+Per avviare il programma \`e sufficente cliccare sul file.
+
+\subsezione{Descrizione funzionale}
+vari screenshot con relativa descrizione, da fare alla fine
+
+\sezione{Appendice}
+
+\subsezione{Messaggi di errore e loro significato}
+descrizione degli errori, dividendoli tra server e client\\
+Errore di parsing durante il caricamento di un file SVG.\\
+Errore di comunicazione col server. \\
+Errore interno del server (e.g. non c'e' piu' spazio su disco).\\
+
+\end{document}
