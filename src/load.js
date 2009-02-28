@@ -267,3 +267,24 @@ Polygon.prototype.fromSVG = function (n) {
   this.getBorderColour().getOpacity().setVal(n.getAttribute("stroke-opacity"));
   //this.draw(c);? or shall we draw all at the end?  how can i get canvas?
 };
+
+
+/**
+ * Transform an svg node into a text
+ * @param {node} n the SVG node containg the property
+ */
+Text.prototype.fromSVG = function (n) {
+  var x1 = n.getAttribute("x");
+  var y1 = n.getAttribute("y");
+  var size = n.getAttribute("font-size");
+  this.setText(new Text(n.data));
+  this.setFont(new TextFont(n.getAttribute("font-family")));
+  var y2 = y1 + size;
+  var p1 = new Point(parseInt(x1), parseInt(y1));
+  var p2 = new Point(parseInt(x1), parseInt(y2));
+  this.getBounds().setStart(p1);
+  this.getBounds().setEnd(p2);
+  //this.getFillColour().fromCSS(n.getAttribute("fill"));
+  this.getBorderColour().fromCSS(n.getAttribute("stroke"));
+  //this.draw(c);? or shall we draw all at the end?  how can i get canvas?
+};
