@@ -149,7 +149,7 @@ BoundingRectangle.prototype.centre = function () {
 
 
 BoundingRectangle.prototype.createWidget = function () {
-  // TODO: implement
+  return new BoundingRectangleSetter(this);
 };
 
 /**

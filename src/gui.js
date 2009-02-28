@@ -46,19 +46,20 @@ function foo(e) {
 
 /*end coordinate*/
 
-
+var visual = null; /* global */
+var canvasObj = null; /* global */
 
 /*parte di jQuery */
 $(document).ready(function(){
 /* Inizio creazione GUI */
   var page = new Page();
   page.loadStylesheet();
-  var canvasObj = new Canvas();
+  canvasObj = new Canvas();
   var canvas = canvasObj.getId();
 
   var ctx = canvas.getContext("2d");   //prendo il contesto
   var figureSet = new FigureSet();
-  var visual = new Visualization(figureSet);
+  visual = new Visualization(figureSet);
   //Toolbar Creation
   var toolbar = new Toolbar();
   var selectionButton = new SelectionButton();toolbar.add(selectionButton);
@@ -84,12 +85,12 @@ $(document).ready(function(){
   var edgeNumberSetter = new EdgeNumberSetter();
   //edgeNumberSetter.create();
   $("#edgeNumberDialog").dialog("close");
-  var boundingRectangleSetter = new BoundingRectangleSetter();
+  //var boundingRectangleSetter = new BoundingRectangleSetter();
   var fontSizeSetter = new FontSizeSetter();
   var fontTypeSetter = new FontTypeSetter();
   var fontSetter = new FontSetter(fontSizeSetter,fontTypeSetter);
   var rotationSetter = new RotationSetter();
-  var propertiesDialog = new PropertiesDialog(edgeNumberSetter,fontSetter,boundingRectangleSetter,rotationSetter);
+                    var propertiesDialog = new PropertiesDialog(edgeNumberSetter,fontSetter,/*boundingRectangleSetter,*/rotationSetter);
   propertiesDialog.create();
 
 

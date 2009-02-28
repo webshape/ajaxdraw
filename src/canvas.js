@@ -121,6 +121,9 @@ Visualization.prototype.refresh = function(){
   this._scale.applyToContext(ctx, this._offset);
   this._figureSet.each(function (f) {
     f.draw(c);
+    if (f.isSelected()) {
+      f.drawSelection(c);
+    }
    });
 };
 
@@ -361,7 +364,8 @@ SelectionButton.prototype.bindCanvas = function (toolbar,canvas,canvasObj,visual
 	//updateInfos(actualFigure);
 	canvasObj.clear();
 	visual.refresh();
-	actualFigure.drawSelection(canvas);
+//	actualFigure.drawSelection(canvas);
+        actualFigure.getBounds().createWidget();
       }
   });
 };
@@ -953,7 +957,29 @@ function RotationSetter(){
  //TODO
 }
 
-function BoundingRectangleSetter(){
- //TODO
+function BoundingRectangleSetter(bounds){
+  $('#x').get(0).value = bounds.start().x;
+  $('#y').get(0).value = bounds.start().y;
+  $('#DialogHeight').get(0).value = bounds.h();
+  $('#DialogWidth').get(0).value = bounds.w();
+  $('#submitRect').click(function (e) {
+                           var x = parseFloat($('#x').get(0).value);
+                           var y = parseFloat($('#y').get(0).value);
+                           var h = parseFloat($('#DialogHeight').get(0).value);
+                           var w = parseFloat($('#DialogWidth').get(0).value);
+                           if (!isNaN(x)) {
+                             bounds.start().x = x;
+                           }
+                           if (!isNaN(y)) {
+                             bounds.start().y = y;
+                           }
+                           if (!isNaN(h)) {
+                             bounds.end().y = bounds.start().y + h;
+                           }
+                           if (!isNaN(w)) {
+                             bounds.end().x = bounds.start().x + w;
+                           }
+                           canvasObj.clear();
+                           visual.refresh();
+                         });
 }
-
