@@ -276,8 +276,9 @@ Polygon.prototype.fromSVG = function (n) {
 Text.prototype.fromSVG = function (n) {
   var x1 = n.getAttribute("x");
   var y1 = n.getAttribute("y");
+  var txt = n.childNodes[0].nodeValue;
   var size = n.getAttribute("font-size");
-  this.setText(n.nodeValue);
+  this.setText(txt);
   this.setFont(new TextFont(n.getAttribute("font-family")));
   var y2 = y1 + size;
   var p1 = new Point(parseInt(x1), parseInt(y1));
