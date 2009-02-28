@@ -656,7 +656,7 @@ Viene aggregata dalla classe \textit{FigureSet}.
 \item[-]  \textit{isSelected()} dice se la figura \`e correntemente selezionata. Ritorna \textit{{\_}selected}.
 \item[-]  \textit{eachProperty(fn)} applica la funzione fn ad ogni propriet\`a della figura, ovvero a \textit{{\_}bounds} e \textit{{\_}borderColour}.
 \item[-] \textit{drawSelection(canvas)} disegna dei quadratini di colore blu e con opacit\`a 0.8 intorno ai punti principali della figura, ottenuti tramite \textit{getMainPoints}e traccia i bordi del \textit{BoundingRectangle} di colore grigio con opacit\`a 0.8, solo se la figura \`e selezionata. 
-\item[-] \textit{clone(figure)} Riceve tutte le propriet\`a della figura selezionata passate dal parametro attuale \textit{figure}; invoca il metodo \textit{getMainPoints} da cui preleva i vertici della figura. Costruisce e ritorna una figura clone dell' originale le cui coordinate sul canvas sono spostate di 10px in relazione alla posizione della figura di partenza.
+\item[-] \textit{clone(figure)} metodo statico che riceve una qualunque figura disegnata sul canvas da cui ne ricava tutte le propriet\`attraverso il parametro attuale \textit{figure}, invoca inoltre il metodo \textit{getMainPoints} da cui preleva i vertici della figura; essi servono per costruire e ritornare una figura clone dell' originale le cui coordinate sul canvas sono spostate di 10px in relazione alla posizione della figura di partenza.
 \end{elencopuntato}
 
 \subsezione{FigureSet}
