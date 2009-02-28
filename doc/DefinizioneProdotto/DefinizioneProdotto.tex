@@ -615,6 +615,20 @@ Classe concreta che rappresenta il dialog sul quale sono presenti le caratterist
 \item[-] \textit{create()} richiama la funzione jQuery atta alla creazione del Dialog.
 \end{elencopuntato}
 
+\subsezione{BoundingRectagleSetter}
+\subsubsezione{Tipo, obiettivo e funzione del componente}
+Classe concreta che rappresenta l'oggetto che si occupa di impostare e modificare le coordinate del rettangolo contenente la figura disegnata sul canvas.
+\subsubsezione{Relazioni d'uso di altre componenti}
+Legge e modifica \textit{BoundingRectagle}.
+\subsubsezione{Interfacce e relazioni di uso da altre componenti}
+\textit{PropertiesDialog} ne mantiene un'istanza.
+\subsubsezione{Attivit\`a svolte e dati trattati}
+\paragrafo{Metodi pubblici:}
+\begin{elencopuntato}[\normindent]
+\item[-] \textit{BoundingRectagleSetter(bounds)} costruttore. Prende un \textit{BoundingRectagle} e setta il valore dei campi di un dialog statico implementato in HTML. I campi contengono: i valori x ed y dell'inizio di \textit{bounds} e i valori di altezza e larghezza. Collega un evento al pulsante di conferma del dialog, e se l'utente ha modificato i valori, e i valori inseriti sono dei numeri, modifica le corrispondenti propriet\`a di \textit{bounds} ed esegue un refresh.
+\end{elencopuntato}
+
+
 %%%%%%%%Parte Dissegna
 \subsezione{ApplicationLogic}
 

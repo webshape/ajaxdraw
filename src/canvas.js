@@ -121,6 +121,9 @@ Visualization.prototype.refresh = function(){
   this._scale.applyToContext(ctx, this._offset);
   this._figureSet.each(function (f) {
     f.draw(c);
+    if (f.isSelected()) {
+      f.drawSelection(c);
+    }
    });
 };
 
@@ -140,7 +143,7 @@ Visualization.prototype.deselectAll = function (figureSet) {
  * @return the coordinates of the click
  */
 Visualization.prototype.getClickCoordsWithinTarget = function(event){
-	var coords = { x: 0, y: 0};
+  var coords = new Point(0, 0);
 
 	if(!event) // then we're in a non-DOM (probably IE) browser
 	{
@@ -367,7 +370,7 @@ SelectionButton.prototype.bindCanvas = function (toolbar,canvas,canvasObj,visual
 	//updateInfos(actualFigure);
 	canvasObj.clear();
 	visual.refresh();
-	actualFigure.drawSelection(canvas);
+        actualFigure.getBounds().createWidget();
       }
   });
 };
@@ -602,9 +605,7 @@ FreeLineButton.prototype.bindCanvas = function (toolbar,canvas,canvasObj,visual,
     $("#cv").bind("mousemove",function(e){
         var coords2 = visual.getClickCoordsWithinTarget(e);
                     var minDist = 10;
-                    var dx = coords.x-coords2.x;
-                    var dy = coords.y-coords2.y;
-                    var dist = Math.sqrt(dx*dx+dy*dy);
+                    var dist = coords.dist(coords2);
 	if (dist >= minDist) {
 	     f.extend(new Point(coords2.x, coords2.y));
           coords = coords2;
@@ -961,7 +962,30 @@ function RotationSetter(){
  //TODO
 }
 
-function BoundingRectangleSetter(){
- //TODO
+function BoundingRectangleSetter(bounds){
+  $('#x').get(0).value = bounds.start().x;
+  $('#y').get(0).value = bounds.start().y;
+  $('#DialogHeight').get(0).value = bounds.h();
+  $('#DialogWidth').get(0).value = bounds.w();
+  $('#submitRect').unbind('click');
+  $('#submitRect').click(function (e) {
+                           var x = parseFloat($('#x').get(0).value);
+                           var y = parseFloat($('#y').get(0).value);
+                           var h = parseFloat($('#DialogHeight').get(0).value);
+                           var w = parseFloat($('#DialogWidth').get(0).value);
+                           if (!isNaN(x)) {
+                             bounds.start().x = x;
+                           }
+                           if (!isNaN(y)) {
+                             bounds.start().y = y;
+                           }
+                           if (!isNaN(h)) {
+                             bounds.end().y = bounds.start().y + h;
+                           }
+                           if (!isNaN(w)) {
+                             bounds.end().x = bounds.start().x + w;
+                           }
+                           canvasObj.clear();
+                           visual.refresh();
+                         });
 }
-
