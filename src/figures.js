@@ -16,6 +16,17 @@ function Point(x, y) {
 }
 
 /**
+ * Distance between two points
+ * @param {Point} pt point to calculate the distance from
+ * @return {Float} the distance
+ */
+Point.prototype.dist = function (pt) {
+  var dx = this.x-pt.x;
+  var dy = this.y-pt.y;
+  return Math.sqrt(dx*dx+dy*dy);
+};
+
+/**
  * Abstract figure
  */
 function Figure() {

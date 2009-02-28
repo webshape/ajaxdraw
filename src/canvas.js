@@ -140,7 +140,7 @@ Visualization.prototype.deselectAll = function (figureSet) {
  * @return the coordinates of the click
  */
 Visualization.prototype.getClickCoordsWithinTarget = function(event){
-	var coords = { x: 0, y: 0};
+  var coords = new Point(0, 0);
 
 	if(!event) // then we're in a non-DOM (probably IE) browser
 	{
@@ -596,9 +596,7 @@ FreeLineButton.prototype.bindCanvas = function (toolbar,canvas,canvasObj,visual,
     $("#cv").bind("mousemove",function(e){
         var coords2 = visual.getClickCoordsWithinTarget(e);
                     var minDist = 10;
-                    var dx = coords.x-coords2.x;
-                    var dy = coords.y-coords2.y;
-                    var dist = Math.sqrt(dx*dx+dy*dy);
+                    var dist = coords.dist(coords2);
 	if (dist >= minDist) {
 	     f.extend(new Point(coords2.x, coords2.y));
           coords = coords2;
