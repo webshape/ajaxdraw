@@ -277,7 +277,7 @@ Text.prototype.fromSVG = function (n) {
   var x1 = n.getAttribute("x");
   var y1 = n.getAttribute("y");
   var size = n.getAttribute("font-size");
-  this.setText(new Text(n.data));
+  this.setText(n.nodeValue);
   this.setFont(new TextFont(n.getAttribute("font-family")));
   var y2 = y1 + size;
   var p1 = new Point(parseInt(x1), parseInt(y1));
