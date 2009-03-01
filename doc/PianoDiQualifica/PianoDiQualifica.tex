@@ -5,7 +5,7 @@
  
 \begin{document}
  
-\renewcommand{\insertversion}{2.0} %INSERIRE LA VERSIONE QUI DENTRO STILE x.x.xx
+\renewcommand{\insertversion}{3.0} %INSERIRE LA VERSIONE QUI DENTRO STILE x.x.xx
 \renewcommand{\TITOLODOC}{Piano di qualifica} %INSERIRE IL TITOLO DEL DOCUMENTO DA FAR COMPARIRE A PIE PAGINA
 \renewcommand{\glosspath}{.\glossario} %INSERIRE PERCORSO RELATIVO
  
@@ -85,6 +85,9 @@ Il presente documento descrive le strategie per la gestione della qualit\`a adot
         RR-RPP & Carollo Mirko\\
         
         \hline
+         RPP-RQ & Carollo Mirko\\
+        
+        \hline
         %%%%%%%%%%% FINE PARTE DA MODIFICARE %%%%%%%%%%%%%%%%%%%%%%%%%%%
       \end{tabular}
       \caption{Lista Redattori} %INSERIRE DIDASCALIA - SE NECESSARIA -
@@ -109,6 +112,9 @@ Il presente documento descrive le strategie per la gestione della qualit\`a adot
                  
       \hline
       RR-RPP & Geremia Mirco \\
+                  
+      \hline
+      RPP-RQ & Dissegna Stefano \\
                   
       \hline
       %%%%%%%%%%% FINE PARTE DA MODIFICARE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -144,7 +150,8 @@ Il presente documento descrive le strategie per la gestione della qualit\`a adot
 %%%%%%%%%%%%%%FINE INTESTAZIONE COLONNE%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
      \hline
 %%%%%%%%%%% PARTE DA MODIFICARE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-      2.0 &    23$\slash$01$\slash$2009 Verifica finale in preparazione al rilascio per la RPP & Carollo Mirko\\
+     3.0 &    27$\slash$02$\slash$2009 Sistemazione in vista rilascio RQ & Carollo Mirko\\
+      \hline     2.0 &    23$\slash$01$\slash$2009 Verifica finale in preparazione al rilascio per la RPP & Carollo Mirko\\
       \hline 
       1.1 &    19$\slash$01$\slash$2009 Aggiunti strumenti e procedure di automazione & Carollo Mirko\\
       \hline
@@ -234,10 +241,22 @@ La verifica del codice si compone dei seguenti aspetti:
 \subsezione{Strumenti, tecniche, metodi}
 Per il tracciamento degli errori e delle loro soluzioni ci si avvarr\`a degli strumenti di bug tracking messi a disposizione da \textit{SourceForge} e dagli strumenti di versionamento in uso. Per il debug del codice Javascript direttamente da browser si utilizzer\`a Firebug, un'estensione di Firefox. Le discussioni tra i verificatori e gli autori delle modifiche avverrano tramite il sistema di commenti di \textit{GitHub} qualora si tratti di annotazioni di scarsa entit\`a, mentre discussioni pi\`u rilevanti avverranno nel gruppo di discussione interno all'azienda. Entrambi i sistemi mantengono in modo persistente le informazioni, permettendo dei riferimenti futuri alle stesse. I verificatori saranno avvisati della necessit\`a di un'attivit\`a di verifica tramite un messaggio nel gruppo di discussione interno.
 
+
 \subsezione{Infrastrutture e procedure di automazione} 
 Hanno lo scopo di accelerare tutte le attivit\`a di verifica e impedire errori umani.
 Tali attivit\`a potranno quindi essere svolte dopo ogni singolo cambiamento, anche di piccola entit\`a. Saranno predisposte dai verificatori. 
-Verrano usati i seguenti prodotti: \textit{QUnit, JSCoverage, js2-mode, JSLint, FireBug}. Tutti i dettagli delle attivit\`a di verifica sono gi\`a stati esposti nel paragrafo 2.1.
+Sono raggruppabili in 3 categorie:
+
+\begin{elenconumerato}[\textbf{}]{\subsubsecindent}
+\item \textit{Test di unit\`a}
+: realizzati tramite il software QUnit. Hanno l'obiettivo di considerare un piccola frazione del software per testare se tale porzione funziona come dovrebbe. 
+\item \textit{Test di copertura}
+: realizzati tramite il software JSCoverage. Verificano che i test di Unit\`a siano stati effettuati sull'intera porzione di software stabilita. Hanno l'obiettivo di verificare se sono state saltate righe di codice. Utile per garantire l'efficacia dei test di Unit\`a. 
+
+\item \textit{Verifica e Validazione}
+: ampiamente descritte nella sezione 2.1. Sono realizzate dal personale dell'azienda hanno il compito di testare che tutte le singole unit\`a del software, messe assieme tra loro, soddisfino in maniera adeguata le richieste del committente. Molto utile per eliminare gli errori umani.
+\end{elenconumerato}
+
  
 \sezione{Gestione amministrativa della revisione}
  
@@ -253,7 +272,7 @@ L'amministratore del progetto deve assicurarsi che gli standard descritti nelle 
  
 \sezione{Resoconto delle attivit\`a di verifica}
  
-
+ 
  
 \subsezione{Dettaglio delle verifiche tramite analisi}
 \subsezione{Dettaglio delle verifiche tramite prove (test)}

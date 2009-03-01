@@ -529,7 +529,6 @@ Estende \textit{Button}.
 \begin{elencopuntato}[\normindent]
 \item[-] \textit{getId()} ritorna \textit{{\_}id};
 \item[-] \textit{getBuilder()} ritorna il tipo di oggetto disegnato tramite la pressione di questo pulsante, per permetterne il riconoscimento al metodo \textit{bindCanvas} in modo da associare correttamente la figura da disegnare al suo pulsante.
-\item[-]  \textit{bindCanvas(toolbar,canvas,canvasObj,visual,figureSet,borderColor)} overriding del metodo ereditato da \textit{Button}, collega il canvas all'azione di clonazione di una figura.
 \end{elencopuntato}
 
 \subsezione{TextButton}
@@ -615,7 +614,7 @@ Classe concreta che rappresenta il dialog sul quale sono presenti le caratterist
 \item[-] \textit{create()} richiama la funzione jQuery atta alla creazione del Dialog.
 \end{elencopuntato}
 
-\subsezione{BoundingRectagleSetter}
+\subsezione{BoundingRectangleSetter}
 \subsubsezione{Tipo, obiettivo e funzione del componente}
 Classe concreta che rappresenta l'oggetto che si occupa di impostare e modificare le coordinate del rettangolo contenente la figura disegnata sul canvas.
 \subsubsezione{Relazioni d'uso di altre componenti}
@@ -640,6 +639,19 @@ Legge e modifica \textit{EdgeNumber}.
 \begin{elencopuntato}[\normindent]
 \item[-] \textit{EdgeNumberSetter(en)} costruttore. Prende un \textit{EdgeNumber} e setta il valore di un campo di un dialog statico implementato in HTML. Il campo contiene il valore attuale di \textit{en}. Collega un evento al pulsante di conferma del dialog, e se l'utente ha modificato il valore, e il valore inserito e' un intero maggiore o uguale a 2, modifica \textit{en} ed esegue un refresh.
 \end{elencopuntato}
+
+\subsezione{RotationSetter}
+\subsubsezione{Tipo, obiettivo e funzione del componente}
+Classe concreta che si occupa di impostare un angolo di rotazione e modificare le coordinate di una figura disegnata sul canvas ruotando la figura selezionata.
+\subsubsezione{Relazioni d'uso di altre componenti}
+Legge e modifica \textit{Rotation}.
+\subsubsezione{Interfacce e relazioni di uso da altre componenti}
+\textit{PropertiesDialog} ne mantiene un'istanza.
+\subsubsezione{Attivit\`a svolte e dati trattati}
+\paragrafo{Metodi pubblici:}
+\begin{elencopuntato}[\normindent]
+\end{elencopuntato}
+
 
 
 %%%%%%%%Parte Dissegna
@@ -669,7 +681,7 @@ Viene aggregata dalla classe \textit{FigureSet}.
 \item[-]  \textit{isSelected()} dice se la figura \`e correntemente selezionata. Ritorna \textit{{\_}selected}.
 \item[-]  \textit{eachProperty(fn)} applica la funzione fn ad ogni propriet\`a della figura, ovvero a \textit{{\_}bounds} e \textit{{\_}borderColour}.
 \item[-] \textit{drawSelection(canvas)} disegna dei quadratini di colore blu e con opacit\`a 0.8 intorno ai punti principali della figura, ottenuti tramite \textit{getMainPoints}e traccia i bordi del \textit{BoundingRectangle} di colore grigio con opacit\`a 0.8, solo se la figura \`e selezionata. 
-\item[-] \textit{clone(figure)} Riceve tutte le propriet\`a della figura selezionata passate dal parametro attuale \textit{figure}; invoca il metodo \textit{getMainPoints} da cui preleva i vertici della figura. Costruisce e ritorna una figura clone dell' originale le cui coordinate sul canvas sono spostate di 10px in relazione alla posizione della figura di partenza.
+\item[-] \textit{clone(figure)} metodo statico che riceve una qualunque figura disegnata sul canvas da cui ne ricava tutte le propriet\`attraverso il parametro attuale \textit{figure}, invoca inoltre il metodo \textit{getMainPoints} da cui preleva i vertici della figura; essi servono per costruire e ritornare una figura clone dell' originale le cui coordinate sul canvas sono spostate di 10px in relazione alla posizione della figura di partenza.
 \end{elencopuntato}
 
 \subsezione{FigureSet}
@@ -772,8 +784,7 @@ Implementa \textit{Property}.
 \paragraph{Metodi pubblici:}
 \begin{elencopuntato}[\normindent]
 \item[-] \textit{get/setAngle} permette di ottenere, o di modificare l'angolo di rotazione.
-\item[-] \textit{transformPoints} effettua una trasformazione sulla figura selezionata nel canvas, ritorna la modifica delle coordinate dei vertici della figura ottenuti attraverso il metodo\textit{getMainPoints}; la figura viene ridisegnata con l'ausilio del metodo \textit{draw(canvas)}. 
-\item[-] \textit{applyToContext(context)} setta l'attributo \textit{angle} del contesto grafico alla propria rappresentazione sul canvas, e richiama il metodo \textit{applyToContext} su \textit{{\_}rad} passando \textit{context} come argomento.
+\item[-] \textit{applyToContext(context)} invoca il metodo \textit{rotate(angle)} del contesto grafico alla propria rappresentazione e richiama il metodo \textit{applyToContext} su \textit{{\_}rad} passando \textit{context} come argomento.
 \item[-] \textit{createWidget} crea e ritorna un'istanza di \textit{RotationSetter} passando se stesso come parametro al costruttore.
 \end{elencopuntato}
 
