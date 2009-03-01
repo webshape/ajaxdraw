@@ -78,9 +78,9 @@ $(document).ready(function(){
   var palette = new Palette();
   var hex = palette.rgbToHex($("#lastPalette").css("background-color"));
   color = palette.setColour(hex,color.BorderColor,color.FillColor);
-  var colourDialog = new ColourDialog();
-  colourDialog.create();
-
+//  var colourDialog = new ColourDialog();
+//  colourDialog.create();
+  ColourDialog.prototype.create();
 /* Creo dialog delle proprietà */
   //var edgeNumberSetter = new EdgeNumberSetter();
   //edgeNumberSetter.create();

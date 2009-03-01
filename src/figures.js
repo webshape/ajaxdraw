@@ -222,7 +222,7 @@ Colour.prototype.fromCSS = function (repr) {
 };
 
 Colour.prototype.createWidget = function () {
-  // TODO: implement
+  return new ColourDialog(this, true);
 };
 
 Colour.prototype.toCSS = function () {
@@ -262,6 +262,10 @@ FillColour.prototype = new Colour();
 FillColour.prototype.applyToContext = function (ctx) {
   ctx.fillStyle = this.toCSS();
   this._o.applyToContext(ctx);
+};
+
+FillColour.prototype.createWidget = function () {
+  return new ColourDialog(this, false);
 };
 
 /**

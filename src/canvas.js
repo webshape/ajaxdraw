@@ -854,8 +854,32 @@ Palette.prototype.rgbToHex= function (rgb){
  * @constructor
  * Colour Dialog
  */
-function ColourDialog(){
- //TODO
+function ColourDialog(col, border){
+  var input;
+  //var currentCol;
+  var callback = function (e) {
+    var cssColour = $(input).get(0).value;
+    try {
+      col.fromCSS(cssColour);
+//      document.getElementById(currentCol).style.backgroundColor = 
+  //      cssColour;
+    } catch (e) {
+      // invalid colour, nothing to do
+    }
+    canvasObj.clear();
+    visual.refresh();
+  };
+  if (border) {
+    input = '#color1';
+    //currentCol = 'borderColorNow';
+    $('#setBorderCol').unbind('click').click(callback);
+  } else {
+    input = '#color2';
+    //currentCol = 'fillColorNow';
+    $('#setFillCol').unbind('click').click(callback);
+  }
+  $(input).get(0).value = col.toCSS();
+  $.farbtastic(input).setColor($(input).get(0).value);
 }
 
 ColourDialog.prototype.create= function(){
