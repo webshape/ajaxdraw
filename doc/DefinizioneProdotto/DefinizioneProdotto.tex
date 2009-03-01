@@ -628,6 +628,19 @@ Legge e modifica \textit{BoundingRectagle}.
 \item[-] \textit{BoundingRectagleSetter(bounds)} costruttore. Prende un \textit{BoundingRectagle} e setta il valore dei campi di un dialog statico implementato in HTML. I campi contengono: i valori x ed y dell'inizio di \textit{bounds} e i valori di altezza e larghezza. Collega un evento al pulsante di conferma del dialog, e se l'utente ha modificato i valori, e i valori inseriti sono dei numeri, modifica le corrispondenti propriet\`a di \textit{bounds} ed esegue un refresh.
 \end{elencopuntato}
 
+\subsezione{EdgeNumberSetter}
+\subsubsezione{Tipo, obiettivo e funzione del componente}
+Classe concreta che rappresenta l'oggetto che si occupa di modificare il numero di lati della figura da disegnare o selezionata.
+\subsubsezione{Relazioni d'uso di altre componenti}
+Legge e modifica \textit{EdgeNumber}.
+\subsubsezione{Interfacce e relazioni di uso da altre componenti}
+\textit{PropertiesDialog} ne mantiene un'istanza.
+\subsubsezione{Attivit\`a svolte e dati trattati}
+\paragrafo{Metodi pubblici:}
+\begin{elencopuntato}[\normindent]
+\item[-] \textit{EdgeNumberSetter(en)} costruttore. Prende un \textit{EdgeNumber} e setta il valore di un campo di un dialog statico implementato in HTML. Il campo contiene il valore attuale di \textit{en}. Collega un evento al pulsante di conferma del dialog, e se l'utente ha modificato il valore, e il valore inserito e' un intero maggiore o uguale a 2, modifica \textit{en} ed esegue un refresh.
+\end{elencopuntato}
+
 
 %%%%%%%%Parte Dissegna
 \subsezione{ApplicationLogic}
