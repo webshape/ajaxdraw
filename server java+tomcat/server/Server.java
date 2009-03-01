@@ -7,14 +7,14 @@ import file1Pack.File1;
 
 public class Server {
 	File target;
-	String text;
-	String name;
+	String content;
+	String nameFile;
 	public Server(File file) {
 		target=file;
 		}
 	public Server(String f,String t) {
-		name=f;
-		text=t;
+		nameFile=f;
+		content=t;
 	}
 	public String getLoad() throws IOException {
 		try {
@@ -29,7 +29,7 @@ public class Server {
 
 	public String getSave() throws IOException {
 		try {
-			File1 f=new File1(name,text);
+			File1 f=new File1(nameFile,content);
 			return f.getFile();
 		} catch (Exception e) {
 			ServerError err=new ServerError();
