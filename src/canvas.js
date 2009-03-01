@@ -170,7 +170,9 @@ Visualization.prototype.getClickCoordsWithinTarget = function(event){
 	}
 
         // adapt to scale & offset
-  var f = this._scale.getFactor();
+
+  return this.getScale().scalePoint(coords, this.getOffset());
+/*  var f = this._scale.getFactor();
   coords.x /= f;
   coords.y /= f;
   coords.x += this._offset.x;
@@ -178,7 +180,7 @@ Visualization.prototype.getClickCoordsWithinTarget = function(event){
 
 
 
-	return coords;
+	return coords;*/
 };
 
 
@@ -371,10 +373,7 @@ SelectionButton.prototype.bindCanvas = function (toolbar,canvas,canvasObj,visual
 	actualFigure.setSelection(true);
 	//updateInfos(actualFigure);
 	canvasObj.clear();
-	visual.refresh();
-        actualFigure.eachProperty(function (p) {
-                                    p.createWidget();
-                                  });
+        visual.refresh();
         var prec = coord;
         $('#cv').bind('mousemove', function (e) {
                         var pt = visual.getClickCoordsWithinTarget(e);
@@ -392,6 +391,9 @@ SelectionButton.prototype.bindCanvas = function (toolbar,canvas,canvasObj,visual
                      });
         $('#cv').bind('mouseup', function (e) {
                         $('#cv').unbind('mousemove mouseup');
+                        actualFigure.eachProperty(function (p) {
+                                                    p.createWidget();
+                                                  });
                       });
       }
   });
@@ -470,6 +472,23 @@ Scale.reader('_factor', 'getFactor');
 Scale.prototype.applyToContext = function(ctx, offset) {
   ctx.scale(this._factor, this._factor);
   ctx.translate(-offset.x, -offset.y);
+};
+
+/**
+ * Apply a scale to a single point
+ * @param {Point} p point to scale
+ * @param {Point} offset origin
+ * @return {Point} new point scaled
+ */
+Scale.prototype.scalePoint = function (p, offset) {
+  var f = this.getFactor();
+  var pt = new Point(p.x, p.y);
+  pt.x /= f;
+  pt.y /= f;
+  pt.x += offset.x;
+  pt.y += offset.y;
+  
+  return pt;
 };
 
 /**
@@ -1039,11 +1058,11 @@ function RotationSetter(){
 }
 
 function BoundingRectangleSetter(bounds){
+  $('#submitRect').unbind('click');
   $('#x').get(0).value = bounds.start().x;
   $('#y').get(0).value = bounds.start().y;
   $('#DialogHeight').get(0).value = bounds.h();
   $('#DialogWidth').get(0).value = bounds.w();
-  $('#submitRect').unbind('click');
   $('#submitRect').click(function (e) {
                            var x = parseFloat($('#x').get(0).value);
                            var y = parseFloat($('#y').get(0).value);

@@ -474,7 +474,7 @@ FigureSet.prototype.selectFigure = function (where, scale, offset) {
   // get the selected pixel
   var selection = c.getContext('2d').getImageData(where.x, where.y, 1, 1).data;
   var col = new Colour(selection[0], selection[1], selection[2], o);
-  //alert(col.toCSS());
+//  alert(col.toCSS());
   var res = fs[col.toCSS()];
   if (!res) {
     return textSelected; // may be null

@@ -245,6 +245,7 @@ Usa il contesto grafico per applicare lo spostamento e il riscalamento della par
 \begin{elencopuntato}[\normindent]
 \item[-] \textit{getFactor()} ritorna \textit{{\_}factor};
 \item[-] \textit{applyToContext(context, offset)} applica il riscalamento al contesto passato usandone il metodo \textit{scale}, e pone l'origine nel punto specificato da \textit{offset} usando il metodo \textit{translate} del contesto grafico.
+\item[-] \textit{scalePoint(point, offset)} applica le stesse operazioni di \textit{applyToContext} su un singolo punto (non sul contesto). Ritorna un nuovo punto.
 \item[-] \textit{toAbs(point, offset)} prende un punto e rovescia le operazioni di \textit{applyToContext} su quel singolo punto (non sul contesto). Ritorna un nuovo punto.
 \end{elencopuntato}
 
