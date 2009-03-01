@@ -2,6 +2,7 @@
  * @GUI
  * GUI Management
  * @author Bizzotto Piero
+ * @author Dissegna Stefano
  */
 
 /**
@@ -352,8 +353,8 @@ SelectionButton.prototype.getId = function (){
 SelectionButton.prototype.bindCanvas = function (toolbar,canvas,canvasObj,visual,figureSet) {
   toolbar.deselectAll();
 
-  $("#cv").unbind('mousedown click mouseup');
-  $("#cv").bind("click", function(e){
+  $("#cv").unbind('mousedown mousemove click mouseup');
+  $("#cv").bind("mousedown", function(e){
       visual.deselectAll(figureSet);
       visual.refresh();
       var coords = visual.getClickCoordsWithinTarget(e);
@@ -374,6 +375,24 @@ SelectionButton.prototype.bindCanvas = function (toolbar,canvas,canvasObj,visual
         actualFigure.eachProperty(function (p) {
                                     p.createWidget();
                                   });
+        var prec = coord;
+        $('#cv').bind('mousemove', function (e) {
+                        var pt = visual.getClickCoordsWithinTarget(e);
+                        var start = actualFigure.getBounds().start();
+                        var end = actualFigure.getBounds().end();
+                        var dx = pt.x - prec.x;
+                        var dy = pt.y - prec.y;
+                        start.x += dx;
+                        start.y += dy;
+                        end.x += dx;
+                        end.y += dy;
+                        prec = pt;
+                        canvasObj.clear();
+	                visual.refresh();
+                     });
+        $('#cv').bind('mouseup', function (e) {
+                        $('#cv').unbind('mousemove mouseup');
+                      });
       }
   });
 };
