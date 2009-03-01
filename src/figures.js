@@ -436,11 +436,7 @@ FigureSet.prototype.selectFigure = function (where, scale, offset) {
   c.width = 760;
   c.height = 480;
   if (scale) {
-    var f = scale.getFactor();
-    where.x -= offset.x;
-    where.y -= offset.y;
-    where.x *= f;
-    where.y *= f;
+    where = scale.toAbs(where, offset);
     scale.applyToContext(c.getContext('2d'), offset);
   }
   //var c = document.getElementById('cv');

@@ -473,6 +473,22 @@ Scale.prototype.applyToContext = function(ctx, offset) {
 };
 
 /**
+ * Reverse a scale
+ * @param {Point} p scaled point
+ * @param {Point} offset origin
+ * @return {Point} new point unscaled
+ */
+Scale.prototype.toAbs = function (p, offset) {
+  var f = this.getFactor();
+  var pt = new Point(p.x, p.y);
+  pt.x -= offset.x;
+  pt.y -= offset.y;
+  pt.x *= f;
+  pt.y *= f;
+  return pt;
+};
+
+/**
  * @constructor
  * The Straight Line drawing button
  */
