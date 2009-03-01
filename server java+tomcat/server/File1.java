@@ -11,40 +11,40 @@ import java.io.PrintWriter;
 import fileNotFoundPack.FileNotFound;
 
 public class File1 {
-	File target;
-	String name_file;
-	String area;
+	File fileLoad;
+	String fileSave;
+	String text;
 	public File1(File f) {
-		target=f;
-		name_file=null;
+		fileLoad=f;
+		fileSave=null;
 		}
     public File1 (String n,String a){
-    	name_file=n;
-    	area=a;
+    	fileSave=n;
+    	text=a;
     }
     public String getFile() throws IOException {
-    	String resp="";    	    	
-    	if (name_file!=null) {
+    	String response="";    	    	
+    	if (fileSave!=null) {
     		String path="C://Programmi/Apache Software Foundation/Tomcat 6.0/webapps/Server/";
-    		File file=new File (path+name_file);
-    		if (file.exists()) {
-    			FileWriter fw=new FileWriter(file,true);
-    			fw.write(area);
+    		File absolute=new File (path+fileSave);
+    		if (absolute.exists()) {
+    			FileWriter fw=new FileWriter(absolute,false);
+    			fw.write(text);
     			fw.close();
-    			return name_file;
+    			return fileSave;
     		}
     		else
     		{
-    			PrintWriter pw = new PrintWriter(path+name_file);
-                pw.println(area);
+    			PrintWriter pw = new PrintWriter(path+fileSave);
+                pw.println(text);
                 pw.close();
-                return name_file;
+                return fileSave;
     		}
     	}
     	else {
     			BufferedReader in=null;
 	    try {
-	    	in = new BufferedReader(new FileReader(target));
+	    	in = new BufferedReader(new FileReader(fileLoad));
 	    	} catch (FileNotFoundException e) {
 	    		FileNotFound err=new FileNotFound();
 	    	    return err.getFileNotFound();
@@ -54,10 +54,10 @@ public class File1 {
 	    	if(s==null)
 	    		break;
 	    	else
-	    		resp=resp+s;
+	    		response=response+s;
 	    	}
 	    in.close();
-	    return resp;
+	    return response;
 	    }
     }
     }
