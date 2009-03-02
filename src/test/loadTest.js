@@ -1,20 +1,20 @@
 function runLoadTest () {
   test("Load Test", function () {
-        var r = new Rectangle();
-        r.startCommand("rect");
-        r.attr("x", 10, false);
-        r.attr("y", 20, false);
-        r.attr("width", 40, false);
-        r.attr("height", 20, false);
-        r.attr("fill", "#000000", false);
-        r.attr("fill-opacity", 1, false);
-        r.attr("stroke", "#ff0000", false);
-        r.attr("stroke-opacity", "1", true);
-        r.endCommand("rect");
-        var figureValue = "r.getBorderColour().set(255, 0, 0, new Opacity(1));\n" + "r.getBounds().setStart(new Point(10, 20));\n" + "r.getBounds().setEnd(new Point(50, 40));\n";
-        var s = new SVGReader(1000, 1000);
-		s._doc = "";
-        r.fromSVG(s);
-        equals(s._doc, figureValue, 'Rectangle');
+			var doc = "<svg width=\"1000\" height=\"1000\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\">";
+
+			// rectangle
+			doc += "<rect x=\"0\" y=\"250\" width=\"200\" height=\"50\" fill=\"#00ff00\" fill-opacity=\"0.8\" stroke=\"#000000\" stroke-opacity=\"1\"></rect>\n</svg>";
+			var s = new SVGReader();
+			var fs = new Array();
+			fs = s.read(doc);
+			var r = fs[0];
+			equals(r.getBounds().start().x, "0", 'Rectangle: starting x');
+			equals(r.getBounds().start().y, "250", 'Rectangle: starting y');
+			equals(r.getBounds().end().x, "200", 'Rectangle: ending x');
+			equals(r.getBounds().end().y, "300", 'Rectangle: ending y');
+			equals(r.getFillColour().toCSS(), "#00ff00", 'Rectangle: fill colour');
+			equals(r.getFillColour().getOpacity().getVal(), "0.8", 'Rectangle: fill opacity');
+			equals(r.getBorderColour().toCSS(), "#000000", 'Rectangle: border colour');
+			equals(r.getBroderColour().getOpacity().getVal(), "1", 'Rectangle: border opacity');
        });
-}}
+}

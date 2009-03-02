@@ -61,13 +61,13 @@ function XMLParser() {}
 
 /**
  * Check if it is a well-formed document
- * @param {String} doc the name fo the file SVG
+ * @param {String} doc the SVG string
  */
 XMLParser.prototype.parsing = function (doc) {
   try { //Internet Explorer
 	 var xmlDoc = new ActiveXObject("Microsoft.XMLDOM");
 	 xmlDoc.async = false;
-	 xmlDoc.load(doc);
+	 xmlDoc.loadXML(doc);
 
 	 if (xmlDoc.parseError.errorCode != 0) {
 		alert("Error in line " + xmlDoc.parseError.line +
@@ -80,9 +80,11 @@ XMLParser.prototype.parsing = function (doc) {
   }
   catch(e) {
 	 try { //Firefox
-      var xmlDoc = document.implementation.createDocument("", "", null);
-		xmlDoc.async = false;
-		xmlDoc.load(doc);
+//      var xmlDoc = document.implementation.createDocument("", "", null);
+		//	xmlDoc.async = false;
+		var parser = new DOMParser();
+		var xmlDoc = parser.parseFromString(doc, "text/xml");
+//		xmlDoc.loadXML(doc);
 		if (xmlDoc.documentElement.nodeName == "parsererror") {
 		  alert(xmlDoc.documentElement.childNodes[0].nodeValue);
         return(null);
