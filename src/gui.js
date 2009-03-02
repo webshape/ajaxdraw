@@ -55,10 +55,6 @@ $(document).ready(function(){
   propertiesDialog.create();
 
 
-
-
-
-
 /* Collegamento pulsanti toolbar in caso di cambio colore e generali*/
   $(".paletteComponent").click(function () {
     var hex2;
