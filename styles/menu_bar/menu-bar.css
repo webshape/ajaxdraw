@@ -1,22 +1,5 @@
-/************************************************************************************************************
-
-	DHTML Suite for Applications
-	(C) www.dhtmlgoodies.com, August 2006
-
-	CSS for the DHTMLsuite_tableWidget class.
-	
-	Terms of use:
-	Look at the terms of use at http://www.dhtmlgoodies.com/index.html?page=termsOfUse
-	
-	Thank you!
-	
-	www.dhtmlgoodies.com
-	Alf Magne Kalleland
-
-************************************************************************************************************/
-
 .DHTMLSuite_menuBar_top{	/* The bar that is parent of the menu strip */
-	
+	margin-top:-0.7em;
 	height:26px;
 	width:90%;
 	background-repeat:repeat-x;

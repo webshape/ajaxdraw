@@ -397,7 +397,7 @@ SelectionButton.prototype._handleCtrlPoint = function (pt, f) {
                                    p.createWidget();
                                  });
                 });
-  
+
   return setter ? true : false;
 };
 
@@ -429,7 +429,7 @@ SelectionButton.prototype.bindCanvas = function (toolbar,canvas,canvasObj,visual
         var keepSelection = false;
         if (actualFigure) {
           keepSelection = self._handleCtrlPoint(coord, actualFigure);
-        } 
+        }
         if (!keepSelection) {
           visual.deselectAll(figureSet);
 	  canvasObj.clear();
@@ -785,7 +785,7 @@ toolbar.deselectAll();
    var self = this;
    $("#cv").bind("mousedown", function(e){
    //  var builder = self.getBuilder();
-		   var text = textSetter.setTextString();
+     var text = textSetter.setTextString();
      var f = s[0] = new Text(text);
      f.setFont(new TextFont(textSetter.getTypeSetter().setFontType()));
      var coords = visual.getClickCoordsWithinTarget(e);

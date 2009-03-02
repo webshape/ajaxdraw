@@ -93,16 +93,18 @@ span.tooltip:hover span{ /*lo span verrý mostrato solo sullo stato :hover */
 
 .flora .ui-dialog,
 .flora.ui-dialog {
-	background-color: #e6f7d4;
+	//background-color: #e6f7d4;
+	background-color: #e5e5e5;
+
 }
 
 .flora .ui-dialog .ui-dialog-titlebar,
 .flora.ui-dialog .ui-dialog-titlebar {
 	border-bottom: 1px solid #d8d2aa;
-	background: #ff9900 url(i/dialog-title.gif) repeat-x;
+	background: #008000 url(i/dialog-title.png) repeat-x;
 	padding: 0px;
 	height: 28px;
-/*	_height: 29px;*/
+/*	_height: 29px; */
 }
 
 .flora .ui-draggable .ui-dialog-titlebar,
@@ -189,3 +191,4 @@ span.tooltip:hover span{ /*lo span verrý mostrato solo sullo stato :hover */
 
 .flora .ui-dialog .ui-resizable-ne,
 .flora.ui-dialog .ui-resizable-ne { cursor: ne-resize; width: 9px; height: 29px; right: 0px; top: 0px; background: transparent url(i/dialog-ne.gif); }
+
