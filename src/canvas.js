@@ -344,6 +344,38 @@ SelectionButton.prototype.getId = function (){
   return this._id;
 };
 
+SelectionButton.prototype._handleCtrlPoint = function (pt, f) {
+  var setter = null;
+  if (pt.x == f.getBounds().start().x && pt.y == f.getBounds().start().y) {
+    setter = function (newPt) {
+      f.getBounds().setStart(newPt);
+    };
+  }
+  else {
+    if (pt.x == f.getBounds().end().x && pt.y == f.getBounds().end().y) {
+      setter = function (newPt) {
+	f.getBounds().setEnd(newPt);
+      };
+    }
+    else {
+      if (f instanceof FreeLine) {
+	var pts = f.getMainPoints();
+	var found = null;
+	pts.each(function (p) {
+		   if (pt.x == p.x && pt.y == p.y) {
+		     found = p;
+		   }
+		 });
+	if (found) {
+	  setter = function (newPt) {
+	    f.move(pt, newPt);
+	  };
+	}
+      }
+    }
+ }
+};
+
 /**
  * Binds the selection function to the caller tool
  * @param {HTMLObj} canvas the canvas ref
@@ -487,7 +519,7 @@ Scale.prototype.scalePoint = function (p, offset) {
   pt.y /= f;
   pt.x += offset.x;
   pt.y += offset.y;
-  
+
   return pt;
 };
 
@@ -915,7 +947,7 @@ function ColourDialog(col, border){
     var cssColour = $(input).get(0).value;
     try {
       col.fromCSS(cssColour);
-//      document.getElementById(currentCol).style.backgroundColor = 
+//      document.getElementById(currentCol).style.backgroundColor =
   //      cssColour;
     } catch (e) {
       // invalid colour, nothing to do
