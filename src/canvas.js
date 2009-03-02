@@ -487,7 +487,7 @@ Scale.prototype.scalePoint = function (p, offset) {
   pt.y /= f;
   pt.x += offset.x;
   pt.y += offset.y;
-  
+
   return pt;
 };
 
@@ -884,11 +884,23 @@ Palette.prototype.setColour = function (col,prec1,prec2){
  * @return  the hex value
  */
 Palette.prototype.rgbToHex= function (rgb){
-  var rgbvals = /rgb\((.+),(.+),(.+)\)/i.exec(rgb);
-//  if($.browser.name!="opera"){
-  var rval = parseInt(rgbvals[1]);
-  var gval = parseInt(rgbvals[2]);
-  var bval = parseInt(rgbvals[3]);
+//  var rgbvals = /rgb\((.+),(.+),(.+)\)/i.exec(rgb);
+
+  var rgbsplit = rgb.split(",");
+  //alert(rgb+" "+rgbsplit.length+" "+rgbsplit);
+  var rval = parseInt(rgbsplit[0].substr(4,3));
+  var gval = parseInt(rgbsplit[1]);
+  var bval;
+
+  if(rgbsplit[2].length==5){
+    bval = parseInt(rgbsplit[2].substr(1,3));
+  }
+  else if(rgbsplit[2].length==4){
+    bval = parseInt(rgbsplit[2].substr(1,2));
+  }
+  else if(rgbsplit[2].length==3){
+    bval = parseInt(rgbsplit[2].substr(1,1));
+  }
 
   var to16 = function (x) {
     if (x < 16) {
@@ -915,7 +927,7 @@ function ColourDialog(col, border){
     var cssColour = $(input).get(0).value;
     try {
       col.fromCSS(cssColour);
-//      document.getElementById(currentCol).style.backgroundColor = 
+//      document.getElementById(currentCol).style.backgroundColor =
   //      cssColour;
     } catch (e) {
       // invalid colour, nothing to do

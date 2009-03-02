@@ -29,11 +29,19 @@ $(document).ready(function(){
 /* Creo il colorDialog */
   var color= {  BorderColor:"#000000", FillColor:"#000000"};
   var palette = new Palette();
-  var hex = palette.rgbToHex($("#lastPalette").css("background-color"));
+  /* Colore iniziale */
+  var hex;
+  if(page.getBrowserName()=="opera" || page.getBrowserName()=="msie"){
+    hex = $("#lastPalette").css("background-color");
+  }
+  else{
+    hex = palette.rgbToHex($("#lastPalette").css("background-color"));
+  }
   color = palette.setColour(hex,color.BorderColor,color.FillColor);
 //  var colourDialog = new ColourDialog();
 //  colourDialog.create();
   ColourDialog.prototype.create();
+
 /* Creo dialog delle proprietà */
   //var edgeNumberSetter = new EdgeNumberSetter();
   //edgeNumberSetter.create();
@@ -43,7 +51,7 @@ $(document).ready(function(){
   var fontTypeSetter = new FontTypeSetter();
   var fontSetter = new FontSetter(fontSizeSetter,fontTypeSetter);
   var rotationSetter = new RotationSetter();
-                    var propertiesDialog = new PropertiesDialog(/*edgeNumberSetter,*/fontSetter,/*boundingRectangleSetter,*/rotationSetter);
+  var propertiesDialog = new PropertiesDialog(/*edgeNumberSetter,*/fontSetter,/*boundingRectangleSetter,*/rotationSetter);
   propertiesDialog.create();
 
 
@@ -53,13 +61,21 @@ $(document).ready(function(){
 
 /* Collegamento pulsanti toolbar in caso di cambio colore e generali*/
   $(".paletteComponent").click(function () {
-    var hex2 = palette.rgbToHex($(this).css("background-color"));
+    var hex2;
+    if(page.getBrowserName()=="opera" || page.getBrowserName()=="msie"){
+      hex2 = $(this).css("background-color");
+    }
+    else{
+      hex2 = palette.rgbToHex($(this).css("background-color"));
+    }
     color = palette.setColour(hex2,color.BorderColor,color.FillColor);
     toolbar.rebind(canvas,canvasObj,visual,figureSet,color.BorderColor,color.FillColor);
   });
 
   $("#clearCanvasButton").click(function () {
     clearCanvasButton.clearCanvas(canvasObj,visual,figureSet);
+    canvasObj.clear();
+    visual.refresh();
   });
 
   $("#selectionButton").click(function () {
@@ -121,7 +137,7 @@ $(document).ready(function(){
     $("#fontSetterZone").css({"display":"none"});
     circleButton.bindCursor("polygon");
     toolbar.deselectAll();
-//    edgeNumberSetter.create();
+    //edgeNumberSetter.create();
     polygonButton.bindCanvas(toolbar,canvas,canvasObj,visual,figureSet,color.BorderColor,color.FillColor);
   });
 
@@ -194,7 +210,7 @@ $(document).ready(function(){
       $("#colory").show("slow");
       if(openBorder==false){
 	$(".Dialog1").height(430);
-      }
+     }
       else $(".Dialog1").height(650);
       openFill = true;
     },
@@ -222,12 +238,6 @@ $("#loadButton").click(function () {
   //TODO load link to server
    $("#loadDialog").dialog( 'close' );
  });
-
-function updateInfos(figure){
-  document.getElementById("DialogHeight").value=figure.getBounds().h();
-  document.getElementById("DialogWidth").value=figure.getBounds().w();
-}
-
 
 
 //fine documento
