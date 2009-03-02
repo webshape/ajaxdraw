@@ -194,7 +194,7 @@ $(document).ready(function(){
       if(openFill == false){
 	$(".Dialog1").height(430);
       }
-      else $(".Dialog1").height(650);
+      else $(".Dialog1").height(700);
       openBorder = true;
     },
     function() {
