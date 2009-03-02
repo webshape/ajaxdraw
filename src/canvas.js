@@ -346,13 +346,16 @@ SelectionButton.prototype.getId = function (){
 
 SelectionButton.prototype._handleCtrlPoint = function (pt, f) {
   var setter = null;
-  if (pt.x == f.getBounds().start().x && pt.y == f.getBounds().start().y) {
+  var onPoint = function (p) {
+    return p.dist(pt) < 10;
+  };
+  if (onPoint(f.getBounds().start())) {
     setter = function (newPt) {
       f.getBounds().setStart(newPt);
     };
   }
   else {
-    if (pt.x == f.getBounds().end().x && pt.y == f.getBounds().end().y) {
+    if (onPoint(f.getBounds().end())) {
       setter = function (newPt) {
 	f.getBounds().setEnd(newPt);
       };
@@ -362,7 +365,7 @@ SelectionButton.prototype._handleCtrlPoint = function (pt, f) {
 	var pts = f.getMainPoints();
 	var found = null;
 	pts.each(function (p) {
-		   if (pt.x == p.x && pt.y == p.y) {
+		   if (onPoint(p)) {
 		     found = p;
 		   }
 		 });
@@ -374,6 +377,13 @@ SelectionButton.prototype._handleCtrlPoint = function (pt, f) {
       }
     }
  }
+
+  if (setter) {
+    $('cv').unbind('mousemove mouseup');
+    $('cv').bind('mousemove', function (e) {
+		   setter(visual.getClickCoordsWithinTarget(e));
+		 });
+  }
 };
 
 /**
@@ -421,6 +431,7 @@ SelectionButton.prototype.bindCanvas = function (toolbar,canvas,canvasObj,visual
                         canvasObj.clear();
 	                visual.refresh();
                      });
+	this._handleCtrlPoint(coord, actualFigure);
         $('#cv').bind('mouseup', function (e) {
                         $('#cv').unbind('mousemove mouseup');
                         actualFigure.eachProperty(function (p) {
