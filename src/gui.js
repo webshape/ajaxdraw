@@ -192,14 +192,14 @@ $(document).ready(function(){
       openBorder = true;
     },
     function() {
-      $(".Dialog1").height(200),
+      $(".Dialog1").height(180),
       $("#colorx").hide("slow");
       $.farbtastic("#color1").setColor(document.getElementById("color1").value);
       color.BorderColor=$.farbtastic("#color1").color;
       document.getElementById("borderColorNow").style.backgroundColor=color.BorderColor;
       toolbar.rebind(canvas,canvasObj,visual,figureSet,color.BorderColor,color.FillColor);
       if(openFill == false){
-	$(".Dialog1").height(200);
+	$(".Dialog1").height(180);
       }
       else $(".Dialog1").height(430);
       openBorder = false;
@@ -215,14 +215,14 @@ $(document).ready(function(){
       openFill = true;
     },
     function() {
-      $(".Dialog1").height(200),
+      $(".Dialog1").height(180),
       $("#colory").hide("slow");
       $.farbtastic("#color2").setColor(document.getElementById("color2").value);
       color.FillColor=$.farbtastic("#color2").color;
       document.getElementById("fillColorNow").style.backgroundColor=color.FillColor;
       toolbar.rebind(canvas,canvasObj,visual,figureSet,color.BorderColor,color.FillColor);
       if(openBorder==false){
-	$(".Dialog1").height(200);
+	$(".Dialog1").height(180);
       }
       else $(".Dialog1").height(430);
       openFill = false;

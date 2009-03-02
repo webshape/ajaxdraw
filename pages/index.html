@@ -74,21 +74,23 @@
 					<li id="5000133"><a href="#">Javascript</a>	
 				</ul> -->
 			</li>
-			<li jsFunction='$("#colorDialog").dialog({
+			<li jsFunction='$("#colorDialog").dialog( "close" );
+								$("#colorDialog").dialog({
 									position: ["right","top"],
-    								height: 210,
+    								height: 180,
     								width: 230,
 									resizable: false,
     								dialogClass: "Dialog1"
 								   });' id="500014"><a href="#">ColDial</a>	
-			<li jsFunction=' $("#propertiesDialog").dialog({
+			<li jsFunction='$("#propertiesDialog").dialog( "close" );
+								 $("#propertiesDialog").dialog({
     								position: "right",
     								width: 230,
 									height: 280
   									  });' id="500015"><a href="#">PropDial</a>	
 		</ul>
 	</li>
-	<li id="50003" itemType="separator"></li>
+	<!--  <li id="50003" itemType="separator"></li> -->
 	<li jsFunction='$("#aboutDialog").css({"display" : "block"});
 							$("#aboutSpan").css({"display" : "block"});
 										$("#aboutDialog").dialog({

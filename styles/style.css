@@ -1,5 +1,6 @@
 canvas {
-	background-color: rgb(230, 240, 230);
+	/* background-color: rgb(230, 240, 230); */
+	
 	margin-left: 5em;
   	margin-top:0.1em;
   	border-style: solid;
@@ -151,7 +152,9 @@ span.tooltip:hover span{ /*lo span verrý mostrato solo sullo stato :hover */
 
 .flora .ui-dialog,
 .flora.ui-dialog {
-	background-color: #e6f7d4;
+	//background-color: #e6f7d4;
+	background-color: #e5e5e5;
+
 }
 
 .flora .ui-dialog .ui-dialog-titlebar,
