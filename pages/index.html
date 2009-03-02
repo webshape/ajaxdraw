@@ -53,7 +53,7 @@
 								   itemIcon="images/menu_bar/disk.gif"><a href="#" title="Save your work">Save</a></li>
 			<!--  <li id="500002"><a href="#">Salva Come</a></li> -->
 			<li id="500004" itemType="separator"></li>
-			<li jsFunction='$("#loadDialog").css({"display" : "block"});
+			<li itemIcon="images/menu_bar/open.gif" jsFunction='$("#loadDialog").css({"display" : "block"});
 										$("#loadDialog").dialog({
 													modal: true,
     												height: 110,
@@ -90,6 +90,7 @@
 	</li>
 	<li id="50003" itemType="separator"></li>
 	<li jsFunction='$("#aboutDialog").css({"display" : "block"});
+							$("#aboutSpan").css({"display" : "block"});
 										$("#aboutDialog").dialog({
 													modal: true,
     												height: 300,
@@ -226,7 +227,7 @@ menuBar5.init();
   			<input type="text" id="color1" name="color1" value="#123456" />
   		</div>
   		<div id="picker1"></div>
-                <input type="button" id="setBorderCol" value="Ok" />
+                <input type="button" id="setBorderCol" value="Cambia" />
 	</form>	
 	<!-- Seconda ruota -->
 	<p>Riempimento:  
@@ -241,8 +242,8 @@ menuBar5.init();
   			<input type="text" id="color2" name="color2" value="#123456" />
   		</div>
   		<div id="picker2"></div>
-                <input type="button" id="setFillCol" value="Ok" />
-        </form>	
+      <input type="button" id="setFillCol" value="Cambia" />
+    </form>	
 </div>
 
 
@@ -250,14 +251,14 @@ menuBar5.init();
 <!-- Parte Dialog Properties -->
 <div id="propertiesDialog" class="flora" title="Modifica attributi">
 	<p id="prova">H:  
-		<INPUT id="DialogHeight" type="text" size="2" value="" />px
+		<input id="DialogHeight" type="text" size="2" value="" />px
 	</p>
 	<p>L:   
-		<INPUT id="DialogWidth" type="text" size="2" value="" />px
+		<input id="DialogWidth" type="text" size="2" value="" />px
 	</p>
 	<p>X:  &nbsp; 
-		<INPUT id="x" type="text" size="2" value="" />&nbsp;&nbsp;   Y:&nbsp;
-		<INPUT id="y" type="text" size="2"/>
+		<input id="x" type="text" size="2" value="" />&nbsp;&nbsp;   Y:&nbsp;
+		<input id="y" type="text" size="2"/>
 	</p>
         <input id="submitRect" type="button" value="Cambia" />
 	<p id="edgeSetterZone" style="display:none">N.di lati: 
@@ -304,10 +305,10 @@ menuBar5.init();
 		</span>		
 	</p>
 	<!-- A proposito -->
-	<p id="aboutDialog" style="display:none" class="flora" title="About:">
-		<span>
+	<p id="aboutDialog"  class="flora" title="About:">
+		<span id="aboutSpan" style="display:none">
 			<h1 style="text-align:center" >AJAXDRAW</h1><br/>			
-			<img src="../doc/logo/logo.png" width="269" height="135" name="Logo" alt="Logo WebShape" />
+			<img  src="../doc/logo/logo.png" width="269" height="135" name="Logo" alt="Logo WebShape" />
 		</span>		
 	</p>
 </body>

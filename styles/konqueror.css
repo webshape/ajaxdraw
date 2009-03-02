@@ -88,9 +88,6 @@ span.tooltip:hover span{ /*lo span verrý mostrato solo sullo stato :hover */
     }
 
 
-
-
-
 /* This file skins dialog */
 
 .flora .ui-dialog,
@@ -101,7 +98,7 @@ span.tooltip:hover span{ /*lo span verrý mostrato solo sullo stato :hover */
 .flora .ui-dialog .ui-dialog-titlebar,
 .flora.ui-dialog .ui-dialog-titlebar {
 	border-bottom: 1px solid #d8d2aa;
-	background: #ff9900 url(i/dialog-title.gif) repeat-x;
+	background: #60E068 url(i/dialog-title.gif) repeat-x;
 	padding: 0px;
 	height: 28px;
 /*	_height: 29px;*/

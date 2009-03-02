@@ -392,7 +392,6 @@ SelectionButton.prototype._handleCtrlPoint = function (pt, f) {
  * @param {Canvas} canvasObj the canvas obj
  * @param {Visualization} visual che Visualization object
  * @param {FigureSet} figureSet the set of figures
- * @param {Numeric} edgeNumber the number of edges if the figure to be drawn will be a polygon
  */
 SelectionButton.prototype.bindCanvas = function (toolbar,canvas,canvasObj,visual,figureSet) {
   toolbar.deselectAll();

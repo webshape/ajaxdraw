@@ -1,6 +1,6 @@
 canvas {
-  background-color: rgb(230, 240, 230);
-  margin-left: 5em;
+	background-color: rgb(230, 240, 230);
+	margin-left: 5em;
   	margin-top:0.1em;
   	border-style: solid;
   	border-width: 2px 2px 2px 2px ;
@@ -157,7 +157,7 @@ span.tooltip:hover span{ /*lo span verrý mostrato solo sullo stato :hover */
 .flora .ui-dialog .ui-dialog-titlebar,
 .flora.ui-dialog .ui-dialog-titlebar {
 	border-bottom: 1px solid #d8d2aa;
-	background: #ff9900 url(i/dialog-title.gif) repeat-x;
+	background: #008000 url(i/dialog-title.png) repeat-x;
 	padding: 0px;
 	height: 28px;
 /*	_height: 29px; */
