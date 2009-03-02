@@ -993,7 +993,7 @@ function ColourDialog(col, border){
 ColourDialog.prototype.create= function(){
      $("#colorDialog").dialog({
     	position: ["right","top"],
-    	height: 210,
+    	height: 180,
     	width: 230,
 	resizable: false,
     	dialogClass: "Dialog1"
