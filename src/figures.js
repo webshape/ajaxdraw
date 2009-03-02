@@ -767,11 +767,14 @@ FreeLine.prototype.extend2 = function (pt) {
  */
 FreeLine.prototype.move = function (pt, to) {
   var i = null;
+  to = new Point(to.x, to.y); // copy
+  
   // amazingly slow
   var pts = this.getPoints(); // absolute points
   for (i = 0; i < pts.length; ++i) {
     var p = pts[i];
-    if (Math.round(p.x) == pt.x && Math.round(p.y) == pt.y) {
+    if (Math.round(p.x) == Math.round(pt.x) && 
+        Math.round(p.y) == Math.round(pt.y)) {
       break;
     }
   }

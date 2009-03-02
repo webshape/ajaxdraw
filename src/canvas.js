@@ -344,6 +344,9 @@ SelectionButton.prototype.getId = function (){
   return this._id;
 };
 
+/**
+ * @return true if a point was handled, false otherwise
+ */
 SelectionButton.prototype._handleCtrlPoint = function (pt, f) {
   var setter = null;
   var onPoint = function (p) {
@@ -362,7 +365,7 @@ SelectionButton.prototype._handleCtrlPoint = function (pt, f) {
     }
     else {
       if (f instanceof FreeLine) {
-	var pts = f.getMainPoints();
+	var pts = f.getPoints();
 	var found = null;
 	pts.each(function (p) {
 		   if (onPoint(p)) {
@@ -371,19 +374,31 @@ SelectionButton.prototype._handleCtrlPoint = function (pt, f) {
 		 });
 	if (found) {
 	  setter = function (newPt) {
-	    f.move(pt, newPt);
+	    f.move(found, newPt);
+            found = newPt;
 	  };
 	}
       }
     }
- }
+  }
 
   if (setter) {
-    $('cv').unbind('mousemove mouseup');
-    $('cv').bind('mousemove', function (e) {
-		   setter(visual.getClickCoordsWithinTarget(e));
-		 });
+    $('#cv').unbind('mousemove');
+    $('#cv').bind('mousemove', function (e) {
+		    setter(visual.getClickCoordsWithinTarget(e));
+                    canvasObj.clear();
+                    visual.refresh();
+		  });
   }
+  $('#cv').unbind('mouseup');
+  $('#cv').bind('mouseup', function (e) {
+                  $('#cv').unbind('mousemove mouseup');
+                  f.eachProperty(function (p) {
+                                   p.createWidget();
+                                 });
+                });
+  
+  return setter ? true : false;
 };
 
 /**
@@ -394,23 +409,37 @@ SelectionButton.prototype._handleCtrlPoint = function (pt, f) {
  * @param {FigureSet} figureSet the set of figures
  */
 SelectionButton.prototype.bindCanvas = function (toolbar,canvas,canvasObj,visual,figureSet) {
+  var self = this;
   toolbar.deselectAll();
 
   $("#cv").unbind('mousedown mousemove click mouseup');
   $("#cv").bind("mousedown", function(e){
-      visual.deselectAll(figureSet);
-      visual.refresh();
+      //visual.deselectAll(figureSet);
+      //visual.refresh();
       var coords = visual.getClickCoordsWithinTarget(e);
       var coord = new Point(coords.x,coords.y);
       var actualFigure = figureSet.selectFigure(coord, visual.getScale(), visual.getOffset());
       if(actualFigure==null){
-	visual.deselectAll(figureSet);
-	canvasObj.clear();
-	visual.refresh();
+        // is there an already selected figure?
+        figureSet.each(function (f) {
+                         if (f.isSelected()) {
+                           actualFigure = f;
+                         }
+                       });
+        var keepSelection = false;
+        if (actualFigure) {
+          keepSelection = self._handleCtrlPoint(coord, actualFigure);
+        } 
+        if (!keepSelection) {
+          visual.deselectAll(figureSet);
+	  canvasObj.clear();
+	  visual.refresh();
+        }
         // don't throw: no one will catch it
 	//throw 'No figure found';
       }
       else{
+        visual.deselectAll(figureSet); // only one selection a time
 	actualFigure.setSelection(true);
 	//updateInfos(actualFigure);
 	canvasObj.clear();
@@ -430,13 +459,7 @@ SelectionButton.prototype.bindCanvas = function (toolbar,canvas,canvasObj,visual
                         canvasObj.clear();
 	                visual.refresh();
                      });
-	this._handleCtrlPoint(coord, actualFigure);
-        $('#cv').bind('mouseup', function (e) {
-                        $('#cv').unbind('mousemove mouseup');
-                        actualFigure.eachProperty(function (p) {
-                                                    p.createWidget();
-                                                  });
-                      });
+	self._handleCtrlPoint(coord, actualFigure);
       }
   });
 };
