@@ -69,6 +69,7 @@ $(document).ready(function(){
   });
 
   $("#clearCanvasButton").click(function () {
+	visual.deselectAll(figureSet);
     clearCanvasButton.clearCanvas(canvasObj,visual,figureSet);
     canvasObj.clear();
     visual.refresh();
@@ -83,6 +84,7 @@ $(document).ready(function(){
   });
 
   $("#zoomButton").click(function () {
+    visual.deselectAll(figureSet);
     zoomButton.bindCursor("zoom");
     $("#fontSetterZone").css({"display":"none"});
     $("#edgeSetterZone").css({"display":"none"});
@@ -90,6 +92,7 @@ $(document).ready(function(){
   });
 
   $("#moveViewButton").click(function () {
+    visual.deselectAll(figureSet);
     moveViewButton.bindCursor("move");
     $("#fontSetterZone").css({"display":"none"});
     $("#edgeSetterZone").css({"display":"none"});
@@ -97,6 +100,7 @@ $(document).ready(function(){
   });
 
   $("#straightLineButton").click(function () {
+    visual.deselectAll(figureSet);
     $("#edgeSetterZone").css({"display":"none"});
     $("#fontSetterZone").css({"display":"none"});
     toolbar.deselectAll();
@@ -105,6 +109,7 @@ $(document).ready(function(){
   });
 
   $("#bezierCurveButton").click(function () {
+	visual.deselectAll(figureSet);
     $("#edgeSetterZone").css({"display":"none"});
     $("#fontSetterZone").css({"display":"none"});
     toolbar.deselectAll();
@@ -113,6 +118,7 @@ $(document).ready(function(){
   });
 
   $("#squareButton").click(function () {
+	visual.deselectAll(figureSet);
     $("#edgeSetterZone").css({"display":"none"});
     $("#fontSetterZone").css({"display":"none"});
     toolbar.deselectAll();
@@ -121,6 +127,7 @@ $(document).ready(function(){
   });
 
   $("#circleButton").click(function () {
+	visual.deselectAll(figureSet);
     $("#edgeSetterZone").css({"display":"none"});
     $("#fontSetterZone").css({"display":"none"});
     circleButton.bindCursor("circle");
@@ -129,6 +136,7 @@ $(document).ready(function(){
   });
 
   $("#polygonButton").click(function () {
+	visual.deselectAll(figureSet);
     $("#edgeSetterZone").css({"display":"block"});
     $("#fontSetterZone").css({"display":"none"});
     circleButton.bindCursor("polygon");
@@ -138,6 +146,7 @@ $(document).ready(function(){
   });
 
   $("#freeLineButton").click(function () {
+	visual.deselectAll(figureSet);
     $("#edgeSetterZone").css({"display":"none"});
     $("#fontSetterZone").css({"display":"none"});
     toolbar.deselectAll();
@@ -146,6 +155,7 @@ $(document).ready(function(){
   });
 
   $("#textButton").click(function () {
+	visual.deselectAll(figureSet);
     $("#edgeSetterZone").css({"display":"none"});
     $("#fontSetterZone").css({"display":"block"});
     toolbar.deselectAll();

@@ -611,7 +611,62 @@ BezierCurveButton.prototype.getBuilder = function () {
   return BezierCurve;
 };
 
+BezierCurveButton.prototype.bindCanvas = function (toolbar,canvas,canvasObj,visual,figureSet,borderColour) {
+  toolbar.deselectAll();
+  this.setSelection(true);
+   $("#cv").unbind('mousedown click mouseup');
+   canvasObj.clear();
+   visual.refresh();//per togliere un'eventuale selezione
+   var s = [];
+   var f;
+   var self = this;
+   var line = new StraightLine();
+   var coords;
+   $("#cv").bind("mousedown", function(e){
+	//  var builder = self.getBuilder();
+	var f = s[0] = new FreeLine();
+	coords = visual.getClickCoordsWithinTarget(e);
+	f.getBorderColour().getOpacity().setVal(1);
+	f.getBorderColour().fromCSS(borderColour);
+	line.getBorderColour().getOpacity().setVal(1);
+	line.getBorderColour().fromCSS(borderColour);
+	f.getBounds().setStart(new Point(coords.x, coords.y));
+	line.getBounds().setStart(new Point(coords.x, coords.y));
 
+    $("#cv").bind("mousemove",function(e){
+    var coords2 = visual.getClickCoordsWithinTarget(e);
+	line.getBounds().setEnd(new Point(coords2.x, coords2.y));  
+	canvasObj.clear();
+	visual.refresh();
+	line.draw(canvas);
+    });
+
+    }).bind("mouseup",function(e){  //jQuery mouseup event bind
+      $("#cv").unbind('mousemove');
+	  
+      var coords1 = visual.getClickCoordsWithinTarget(e);
+      var f = s[0];
+      f.extend(new Point(coords1.x, coords1.y));
+	  line.getBounds().setEnd(new Point(coords1.x, coords1.y));
+      f.getBounds().setEnd(new Point(coords1.x, coords1.y));
+	  $("#cv").bind("mousemove",function(e){
+	  var coords3 = visual.getClickCoordsWithinTarget(e);
+	  
+	  $("#cv").bind("click",function(e){
+	  $("#cv").unbind('mousedown click mouseup');
+	  f.extend(new Point(coords.x, coords.y));
+
+	  f.extend(new Point(coords3.x, coords3.y));
+	  f.extend(new Point(coords1.x, coords1.y));
+	  });
+	});
+	  
+	  
+      visual.getFigureSet().add(f);
+      canvasObj.clear();
+      visual.refresh();
+    });
+};
 /**
  * @constructor
  * The Square drawing button
@@ -853,32 +908,32 @@ Toolbar.prototype.deselectAll = function () {
  */
 Toolbar.prototype.rebind = function (canvas,canvasObj,visual,figureSet,BorderColor,FillColor) {
   //for(var i=0;i<this._buttonList.lenght;i++){
-  if(this._buttonList[2].isSelected()==true){//line
-    this._buttonList[2].bindCanvas(this,canvas,canvasObj,visual,figureSet,BorderColor,FillColor);
-    return;
-  }
-  else if(this._buttonList[3].isSelected()==true){//bezier
+  if(this._buttonList[3].isSelected()==true){//line
     this._buttonList[3].bindCanvas(this,canvas,canvasObj,visual,figureSet,BorderColor,FillColor);
     return;
   }
-  else if(this._buttonList[4].isSelected()==true){//square
+  else if(this._buttonList[4].isSelected()==true){//bezier
     this._buttonList[4].bindCanvas(this,canvas,canvasObj,visual,figureSet,BorderColor,FillColor);
     return;
   }
-  else if(this._buttonList[5].isSelected()==true){//circle
+  else if(this._buttonList[5].isSelected()==true){//square
     this._buttonList[5].bindCanvas(this,canvas,canvasObj,visual,figureSet,BorderColor,FillColor);
     return;
   }
-  else if(this._buttonList[6].isSelected()==true){//polygon
+  else if(this._buttonList[6].isSelected()==true){//circle
     this._buttonList[6].bindCanvas(this,canvas,canvasObj,visual,figureSet,BorderColor,FillColor);
     return;
   }
-  else if(this._buttonList[7].isSelected()==true){//freeline
-    this._buttonList[7].bindCanvas(this,canvas,canvasObj,visual,figureSet,BorderColor);
+  else if(this._buttonList[7].isSelected()==true){//polygon
+    this._buttonList[7].bindCanvas(this,canvas,canvasObj,visual,figureSet,BorderColor,FillColor);
     return;
   }
-  else if(this._buttonList[8].isSelected()==true){//text
-    this._buttonList[8].bindCanvas(this,canvas,canvasObj,visual,figureSet,BorderColor,FillColor);
+  else if(this._buttonList[8].isSelected()==true){//freeline
+    this._buttonList[8].bindCanvas(this,canvas,canvasObj,visual,figureSet,BorderColor);
+    return;
+  }
+  else if(this._buttonList[9].isSelected()==true){//text
+    this._buttonList[9].bindCanvas(this,canvas,canvasObj,visual,figureSet,BorderColor,FillColor);
     return;
   }
 };
