@@ -6,7 +6,7 @@
 
 \begin{document}
 
-\renewcommand{\insertversion}{0.0} %INSERIRE LA VERSIONE QUI DENTRO STILE x.x.xx
+\renewcommand{\insertversion}{0.7} %INSERIRE LA VERSIONE QUI DENTRO STILE x.x.xx
 \renewcommand{\TITOLODOC}{Definizione di Prodotto} %INSERIRE IL TITOLO DEL DOCUMENTO DA FAR COMPARIRE A PIE PAGINA
 \renewcommand{\glosspath}{.\glossario} %INSERIRE PERCORSO RELATIVO
 
@@ -146,11 +146,18 @@ Il presente documento descrive in modo dettagliato le classi e i relativi metodi
 %%%%%%%%%%%%%%FINE INTESTAZIONE COLONNE%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 		 \hline
 %%%%%%%%%%% PARTE DA MODIFICARE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%		
-        0.4 & 27$\slash$02$\slash$2009 Descritte classi Scale, MoveViewButton e aggiornato Visualization & Dissegna Stefano \\
+        
+        0.7 &    03$\slash$03$\slash$2009 Descritta classe Clean e metodo della classe File & Dal Bosco Davide \\
         \hline
-    	0.3 &    25$\slash$02$\slash$2009 Descrizione classi e metodi GUI & Rizzo Maurizio \\
+        0.6 &    02$\slash$03$\slash$2009 Descritte classi Request, Server, File e la gestione degli errori & Dal Bosco Davide \\
+        \hline
+        0.5 &    27$\slash$02$\slash$2009 Descritte classi Scale, MoveViewButton e aggiornato Visualization & Dissegna Stefano \\
+        \hline
+    	0.4 &    25$\slash$02$\slash$2009 Descrizione classi e metodi GUI & Rizzo Maurizio \\
 		\hline
-    	0.2 &    20$\slash$02$\slash$2009 Descrizione classe Rotation e metodo clone nella classe figure & Rizzo Maurizio \\
+    	0.3 &    20$\slash$02$\slash$2009 Descrizione classe Rotation e metodo clone nella classe figure & Rizzo Maurizio \\
+    	\hline
+    	0.2 &    19$\slash$02$\slash$2009 Descrizione classi interfaccia grafica & Bizzotto Piero \\
         \hline
         0.1 & 	 17$\slash$02$\slash$2009 Descritte classi e metodi delle figure e delle propriet\`a & Dissegna Stefano \\
 		\hline
@@ -399,8 +406,6 @@ Estende \textit{Button}.
 \subsubsezione{Attivit\`a svolte e dati trattati}
 \textit{Page} e \textit{Toolbar} ne mantengono un' istanza.
 \paragrafo{Attributi privati:}
-\begin{elencopuntato}[\normindent]
-\end{elencopuntato}
 \paragrafo{Metodi pubblici:}
 \begin{elencopuntato}[\normindent]
 \item[-] \textit{bindCanvas(toolbar,canvas,canvasObj,visual)} collega il canvas all'azione di spostamento. Collega l'evento mousedown per prendere il punto di riferimento per lo spostamento. L'evento mousemove sposter\`a la visualizzazione cambiandone l'offset in base allo spostamento relativo tra il punto di riferimento e la posizione attuale del mouse e far\`a un refresh del canvas. L'evento mouseup infine termina l'azione disabilitando l'evento mousemove.
@@ -580,6 +585,7 @@ Classe concreta che rappresenta un singolo colore presente sulla tavolozza.
 \subsubsezione{Attivit\`a svolte e dati trattati}
 \textit{Page} e \textit{Palette} ne mantengono pi\`u istanze.
 \paragrafo{Attributi privati:}
+\begin{elencopuntato}[\normindent]
 \item[-] \textit{{\_}color} colore rappresentato dal componente.
 \end{elencopuntato}
 
@@ -592,7 +598,7 @@ Classe concreta che rappresenta il dialog sul quale sono presenti le ruote per c
 \subsubsezione{Attivit\`a svolte e dati trattati}
 \textit{Page} ne mantiene un'istanza.
 \paragrafo{Attributi privati:}
-\end{elencopuntato}
+
 \paragrafo{Metodi pubblici:}
 \begin{elencopuntato}[\normindent]
 \item[-] \textit{create()} richiama la funzione jQuery atta alla creazione del Dialog.
@@ -606,10 +612,11 @@ Classe concreta che rappresenta il dialog sul quale sono presenti le caratterist
 \subsubsezione{Attivit\`a svolte e dati trattati}
 \textit{Page} ne mantiene un'istanza.
 \paragrafo{Attributi privati:}
-\item[-] \textit{{\_}{edgeSetter} oggetto che si occupa di impostare il numero di lati di un poligono;
-\item[-] \textit{{\_}{fontSetter} oggetto che si occupa di impostare il tipo di carattere e la sua dimensione;
-\item[-] \textit{{\_}{boundingSetter} oggetto che si occupa di impostare il \textit{BoundingRectangle} della figura;
-\item[-] \textit{{\_}{rotationSetter} oggetto che si occupa di impostare il grado di rotazione.
+\begin{elencopuntato}[\normindent]
+\item[-] \textit{{\_}edgeSetter} oggetto che si occupa di impostare il numero di lati di un poligono;
+\item[-] \textit{{\_}fontSetter} oggetto che si occupa di impostare il tipo di carattere e la sua dimensione;
+\item[-] \textit{{\_}boundingSetter} oggetto che si occupa di impostare il \textit{BoundingRectangle} della figura;
+\item[-] \textit{{\_}rotationSetter} oggetto che si occupa di impostare il grado di rotazione.
 \end{elencopuntato}
 \paragrafo{Metodi pubblici:}
 \begin{elencopuntato}[\normindent]
@@ -651,8 +658,7 @@ Legge e modifica \textit{Rotation}.
 \textit{PropertiesDialog} ne mantiene un'istanza.
 \subsubsezione{Attivit\`a svolte e dati trattati}
 \paragrafo{Metodi pubblici:}
-\begin{elencopuntato}[\normindent]
-\end{elencopuntato}
+
 
 
 
@@ -701,7 +707,14 @@ Il costruttore controlla se il browser supporta il metodo \textit{getImageData} 
 \end{elencopuntato}
 \paragrafo{Metodi pubblici:}
 \begin{elencopuntato}[\normindent]
-\item[-]  \textit{selectFigure(where)} permette di selezionare una figura contenente il punto passato come argomento, se tale figura esiste. Per maggiori dettagli si veda il diagramma di attivit\`a [TODO: inserire diagramma].
+\item[-]  \textit{selectFigure(where)} permette di selezionare una figura contenente il punto passato come argomento, se tale figura esiste. Per maggiori dettagli si veda il diagramma di attivit\`a [TODO: inserire label diagramma].
+
+\begin{figure}[!ht]
+\centering
+\includegraphics[scale=0.5]{defaultselection.png}
+\caption{Diagramma di attivit\`a selezione figura}
+\end{figure}
+
 \item[-] \textit{fallbackSelection(where)} metodo usato quando il browser non supporta \textit{getImageData} al posto di \textit{selectFigure}. Seleziona l'ultima figura (se esiste) il cui \textit{BoundingRectangle} contiene il punto \textit{where}. Nel caso la figura sia una linea diritta viene controllato se il punto giace sulla linea. Questo metodo \`e pi\`u impreciso rispetto a \textit{selectFigure}.
 \item[-]  \textit{each(fn)} permette di applicare una funzione ad ogni figura. Viene usato per iterare attraverso la collezione. Applica fn ad ogni elemento di \textit{{\_}figures}. 
 \item[-]  \textit{add(f)} aggiunge la figura f alla fine di \textit{{\_}figures}.
@@ -981,8 +994,8 @@ Creato dalla lettura di un file SVG oppure dall'interfaccia utente. Manipolato d
 Nessuna oltre a quelle ereditate da \textit{FreeLine}.
 \paragraph{Metodi pubblici:}
 \begin{elencopuntato}[\normindent]
-\item[-] \textit{toSVG(gen)} richiama il metodo \textit{toSVG} della classe \texti{FreeLine}.
-\item[-] \textit{fromSVG(n)} ottiene il valore degli attributi del nodo \textit{n} come stringhe e scrive i nuovi valori nelle propriet\`a della figura. Per gestire l'attributo SVG \textit{d}, spezza la stringa in coppie di coordinate, le trasforma in interi, e chiama la funzione \texti{extend} passandogli uno a uno i punti ottenuti per ricostruire la figura. Infine ottiene l'elemento canvas e chiama il metodo \textit{draw} per far si che la figura si disegni.
+\item[-] \textit{toSVG(gen)} richiama il metodo \textit{toSVG} della classe \textit{FreeLine}.
+\item[-] \textit{fromSVG(n)} ottiene il valore degli attributi del nodo \textit{n} come stringhe e scrive i nuovi valori nelle propriet\`a della figura. Per gestire l'attributo SVG \textit{d}, spezza la stringa in coppie di coordinate, le trasforma in interi, e chiama la funzione \textit{extend} passandogli uno a uno i punti ottenuti per ricostruire la figura. Infine ottiene l'elemento canvas e chiama il metodo \textit{draw} per far si che la figura si disegni.
 \end{elencopuntato}
 
 
@@ -1004,7 +1017,14 @@ Creato dalla lettura di un file SVG oppure dall'interfaccia utente. Manipolato d
 \item[-] \textit{getFillColour()} ritorna \textit{{\_}fillColour}.
 \item[-] \textit{edgeNumber()} ritorna \textit{{\_}en}.
 \item[-] \textit{eachProperty(fn)} richiama \textit{eachProperty} di \textit{Figure} ed applica la funzione fn a \textit{{\_}fillColour} e a \textit{{\_en}}.
-\item[-] \textit{getPoints()} ritorna un'array di punti, considerando come origine \textit{BoundingRectangle.start()}, che rappresentano i vertici del poligono. Per maggiori dettagli si veda [TODO: ins. diagramma].
+\item[-] \textit{getPoints()} ritorna un'array di punti, considerando come origine \textit{BoundingRectangle.start()}, che rappresentano i vertici del poligono. Per maggiori dettagli si veda il diagramma di attivit\`a [TODO: ins. lebel].
+
+\begin{figure}[!ht]
+\centering
+\includegraphics[scale=0.5]{polygonpoints.png}
+\caption{Diagramma di attivit\`a calcolo punti poligono}
+\end{figure}
+
 \item[-] \textit{draw(canvas)} disegna il poligono usando le API per i path del contesto grafico tracciando  un path che congiunge i punti ottenuti con \textit{getPoints}. Viene disegnato due volte: la prima per il riempimento, la seconda per il bordo. Prima di disegnarsi richiama \textit{applyToContext} sulle proprie propriet\`a.
 \item[-] \textit{toSVG(gen)} crea un tag \textit{polygon} con il metodo \textit{startCommand} e aggiunge gli attributi secondo lo standard SVG1.1 con il metodo \textit{attr}. Entrambi questi metodi appartengono alla classe \textit{SVGGenerator}. Per quel che riguarda l'attributo \textit{points} si prendono i punti relativi al \textit{BoundingRectangle} con il metodo \textit{getPoints} e si sommano al punto di coordinate iniziali ottenuto con il metodo \textit{start} di \textit{BoundingRectangle}, per ottenere le coordinate relative al canvas. Infine scrive il tag di chiusura con il metodo \textit{endCommand} di \textit{SVGGenerator}.
 \item[-] \textit{fromSVG(n)} ottiene il valore degli attributi del nodo \textit{n} come stringhe e scrive i nuovi valori nelle propriet\`a della figura. Dall'attributo SVG \textit{points} ottiene i punti, li converte in interi, e calcola in base a questi i vertici in alto a sinistra e in basso a destra della figura, per ricavare il \textit{BoundingRectangle} con cui costruire il poligono. Infine ottiene l'elemento canvas e chiama il metodo \textit{draw} per far si che la figura si disegni.
@@ -1119,6 +1139,131 @@ Usato da \textit{SVGReader} per ottenere una figura da un tag SVG.
 \item[-] \textit{makeFigureClassFromTag(tag)} controlla se nella tabella di hash esiste un indice \textit{tag}: se \`e presente crea una figura corrispondente utilizzando il cotruttore ottenuto dalla tabella, altrimenti ritorna \textit{null}.
 \end{elencopuntato}
 
+
+\subsezione{Request}
+\subsubsezione{Tipo, obiettivo e funzione del componente}
+Classe che accetta le richieste dal client e le inoltra alla classe \textit{Server}. Permette la comunicazione tra il client e il server.
+\subsubsezione{Relazioni d'uso di altre componenti}
+Utilizza istanze di \textit{Server} e di \textit{ConnessionError}.
+\subsubsezione{Interfacce e relazioni di uso da altre componenti}
+\`E utilizzata dal client per inviare una richiesta al server.
+\subsubsezione{Attivit\`a svolte e dati trattati}
+\paragrafo{Metodi pubblici:}
+\begin{elencopuntato}[\normindent]
+\item[-] \textit{service(HttpServletRequest,HttpServletResponse)} \`e il metodo proprio della servlet che comunica con il client, gestendo le richieste e le risposte. 
+\end{elencopuntato}[\normindent]
+
+\subsezione{Server}
+\subsubsezione{Tipo, obiettivo e funzione del componente}
+Classe che permette di effettuare un salvataggio o un caricamento in seguito ad una richiesta del client.
+\subsubsezione{Relazioni d'uso di altre componenti}
+Utilizza istanze di \textit{File}, \textit{ServerError} e \textit{Clean}.
+\subsubsezione{Interfacce e relazioni di uso da altre componenti}
+\textit{Request} ne mantiene un'istanza.
+\subsubsezione{Attivit\`a svolte e dati trattati}
+\paragrafo{Attributi privati:}
+\begin{elencopuntato}[\normindent]
+\item[-] \textit{target} \`e il file da caricare.
+\item[-] \textit{nameFile} \`e il file nel quale effettuare il salvataggio.
+\item[-] \textit{content} rappresenta il contenuto da salvare.
+\end{elencopuntato}
+\paragrafo{Metodi pubblici:}
+\begin{elencopuntato}[\normindent]
+\item[-] \textit{getSave()} richiede il salvataggio del file rappresentato da \textit{nameFile} con il contenuto \textit{content} e ritorna il nome del file. salvato.
+\item[-] \textit{getLoad()} richiede il caricamento del file rappresentato da \textit{target} e ritorna il file da caricare.
+\end{elencopuntato}
+
+
+
+\subsezione{File}
+\subsubsezione{Tipo, obiettivo e funzione del componente}
+Classe che effettua tutte le operazioni riguardanti i files risiedenti su disco. Fornisce a \textit{Server} il file salvato o caricato. 
+\subsubsezione{Relazioni d'uso di altre componenti}
+Utilizza istanze di \textit{FileNotFound}.
+\subsubsezione{Interfacce e relazioni di uso da altre componenti}
+\textit{Server} e \textit{Clean} ne mantengono un'istanza.
+\subsubsezione{Attivit\`a svolte e dati trattati}
+\paragrafo{Attributi privati:}
+\begin{elencopuntato}[\normindent]
+\item[-] \textit{fileLoad} \`e il valore che viene ritornato in seguito ad una richiesta di caricamento da parte di \textit{Server}.
+\item[-] \textit{fileSave} \`e il valore che viene ritornato in seguito ad una richiesta di salvataggio da parte di \textit{Server}.
+\item[-] \textit{text} \`e il contenuto da salvare in \textit{fileSave}.
+\paragrafo{Metodi pubblici:}
+\begin{elencopuntato}[\normindent]
+\item[-] \textit{getFile()} ritorna un file salvato o da caricare.
+\item[-] \textit{deleteFile(File)} elimina il file passato come parametro.
+\end{elencopuntato}
+
+
+\subsezione{Clean}
+\subsubsezione{Tipo, obiettivo e funzione del componente}
+Classe che permette di verificare la presenza nel server di file non utilizzati e provvedere alla loro rimozione.
+\subsubsezione{Relazioni d'uso di altre componenti}
+Mantiene un'istanza di \textit{File}.
+\subsubsezione{Interfacce e relazioni di uso da altre componenti}
+\textit{Server} ne mantiene un'istanza.
+\subsubsezione{Attivit\`a svolte e dati trattati}
+\paragrafo{Metodi pubblici:}
+\begin{elencopuntato}[\normindent]
+\item[-] \textit{sweeper()} controlla tramite una classe filtro se esistono dei file sul server inutilizzati da un determinato periodo, e li rimuove usando la classe \textit{File}.
+\end{elencopuntato}
+
+\subsezione{CommunicationError}
+\subsubsezione{Tipo, obiettivo e funzione del componente}
+Rappresenta un errore generico di comunicazione. Non viene implementata in quanto \`e un'interfaccia. 
+\subsubsezione{Relazioni d'uso di altre componenti}
+Nessuna.
+\subsubsezione{Interfacce e relazioni di uso da altre componenti}
+Implementata da \textit{ConnessionServer} e da \textit{ServerError}.
+\subsubsezione{Attivit\`a svolte e dati trattati}
+\paragrafo{Metodi pubblici:}
+\begin{elencopuntato}[\normindent]
+\item[-] \textit{getError} ritorna l'errore di comunicazione.
+\end{elencopuntato}
+
+
+\subsezione{ConnessionError}
+\subsubsezione{Tipo, obiettivo e funzione del componente}
+Classe concreta che rappresenta un errore generato da un connessione con il server.
+\subsubsezione{Relazioni d'uso di altre componenti}
+Implementa \textit{CommunicationError}.
+\subsubsezione{Interfacce e relazioni di uso da altre componenti}
+\textit{Request} ne mantiene un'istanza.
+\subsubsezione{Attivit\`a svolte e dati trattati}
+\paragrafo{Metodi pubblici:}
+\begin{elencopuntato}[\normindent]
+\item[-] \textit{getError()} ritorna l'errore di connessione riscontrato.
+\end{elencopuntato}
+
+\subsezione{ServerError}
+\subsubsezione{Tipo, obiettivo e funzione del componente}
+Classe concreta che rappresenta un errore interno del server.
+\subsubsezione{Relazioni d'uso di altre componenti}
+Implementa \textit{CommunicationError}.
+\subsubsezione{Interfacce e relazioni di uso da altre componenti}
+\textit{Server} ne mantiene un'istanza.
+\subsubsezione{Attivit\`a svolte e dati trattati}
+\paragrafo{Metodi pubblici:}
+\begin{elencopuntato}[\normindent]
+\item[-] \textit{getError()} ritorna l'errore del server riscontrato.
+\end{elencopuntato}
+
+
+\subsezione{FileNotFound}
+\subsubsezione{Tipo, obiettivo e funzione del componente}
+Classe che viene istanziata nel caso di una richiesta di un file non presente su disco.
+\subsubsezione{Relazioni d'uso di altre componenti}
+Nessuna.
+\subsubsezione{Interfacce e relazioni di uso da altre componenti}
+\textit{File} ne mantiene un'istanza.
+\subsubsezione{Attivit\`a svolte e dati trattati}
+\paragrafo{Metodi pubblici:}
+\begin{elencopuntato}[\normindent]
+\item[-] \textit{getFileNotFound()} ritorna l'errore di file non trovato.
+\end{elencopuntato}
+
+
 \sezione{Tracciamento della relazione componenti - requisiti}
+
 
 \end{document}

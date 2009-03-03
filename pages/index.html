@@ -31,6 +31,7 @@
 <script type="text/javascript" src="../src/figures.js"></script>
 <script type="text/javascript" src="../src/gui.js"></script>
 <script type="text/javascript" src="../src/canvas.js"></script>
+<script type="text/javascript" src="../src/save.js"></script>
 <script type="text/javascript" src="../src/lib/menu-for-applications.js"></script>
 <!-- Script di prova di disegno su canvas -->
 </head>
@@ -87,7 +88,7 @@
 								 $("#propertiesDialog").dialog({
     								position: "right",
     								width: 230,
-									height: 280
+									height: 210
   									  });' id="500015"><a href="#">Proprieta'</a>	
 		</ul>
 	</li>
@@ -137,23 +138,20 @@ menuBar5.init();
 	<!--  Zona di salvataggio provvisoria -->
 	<div id="saveLoadZone">
 		<span >Zoom:
-			<select id="scaleButton">
- 			 <option value="1" >100%</option>
- 			 <option value="0.5" >50%</option>  
- 			 <option value="0.25" >25%</option> 
+			<select id="scaleButton" title="Scegli la percentuale di riscalamento">
+				<option value="2" >200%</option>
+ 			 	<option value="1.5" >150%</option> 						
+ 				<option value="1" >100%</option>
+ 			 	<option value="0.5" >50%</option>  
+ 			 	<option value="0.25" >25%</option> 
 			</select>
 		</span><br/>
 		<span>
 			<input type="button" id="clearCanvasButton" name="ClearButton" value="Svuota Canvas"/>
-		</span>
-	<!--	<span class="tooltip">
-			<span>Salva l'immagine in un file SVG</span>
-			<input type="button" name="SaveSVG" value="Salva SVG"/>&nbsp;
-			<br/>
-		</span>Carica:
+		</span><br/>
 		<span>
-			<input type="file" class="SVG" name="LoadSVG" value="Carica SVG"/>
-		</span>   -->
+			<input type="button" id="eraseButton" name="EraseButton" value="Cancella elemento"/>
+		</span>
 	</div>
 	<br/>
 	
@@ -263,23 +261,18 @@ menuBar5.init();
 		<input id="x" type="text" size="2" value="" />&nbsp;&nbsp;   Y:&nbsp;
 		<input id="y" type="text" size="2"/>
 	</p>
-        <input id="submitRect" type="button" value="Cambia" />
-	<p id="edgeSetterZone" style="display:none">N.di lati: 
+      <input id="submitRect" type="button" value="Cambia" />
+      
+	<p id="edgeSetterZone" style="display:none">
+      <span id="polygonTitle"> Poligono:</span>	<br/>
+	N.di lati: 
 		<input id="edgeNumber" type="text" maxlength="4" size="6" value="3"/>
-	<!--  	<span>
-			<input type="button" id="edgeSetter" value="ok"/>
-		</span> -->
-        <input id="submitEdge" type="button" value="Cambia" />
+      <input id="submitEdge" type="button" value="Cambia" />
 	</p>
-	<p id="fontSetterZone" style="display:none">Testo: 
+	<p id="fontSetterZone" style="display:none">
+<span id="textTitle">Testo:</span> 
 	<input id="textString" type="text" value="canvas"/>		
-		<select id="fontSizeButton">
- 			 <option value="12" >12px</option>
- 			 <option value="14" >14px</option>  
- 			 <option value="16" >16px</option>  
- 			 <option value="18" >18px</option>  
- 			 <option value="12" >20px</option>  
-		</select>
+		
 		<select id="fontTypeButton">
  			 <option value="sans-serif" >sans-serif</option>
  			 <option value="serif" >serif</option>  
@@ -287,7 +280,7 @@ menuBar5.init();
  			 <option value="monospace" >monospace</option>  
  			 <option value="fantasy" >fantasy</option>  
 		</select>
-		
+		<input id="submitFont" type="button" value="Cambia" />
 	</p>
 	
 </div>

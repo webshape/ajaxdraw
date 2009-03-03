@@ -25,7 +25,9 @@ $(document).ready(function(){
   var polygonButton = new PolygonButton();toolbar.add(polygonButton);
   var freeLineButton = new FreeLineButton();toolbar.add(freeLineButton);
   var textButton = new TextButton();toolbar.add(textButton);
-  var clearCanvasButton = new ClearCanvasButton();toolbar.add(clearCanvasButton);
+  var clearCanvasButton = new ClearCanvasButton();
+  var eraseButton = new EraseButton();
+
 /* Creo il colorDialog */
   var color= {  BorderColor:"#000000", FillColor:"#000000"};
   var palette = new Palette();
@@ -43,13 +45,9 @@ $(document).ready(function(){
   ColourDialog.prototype.create();
 
 /* Creo dialog delle proprietà */
-  //var edgeNumberSetter = new EdgeNumberSetter();
-  //edgeNumberSetter.create();
-  //$("#edgeNumberDialog").dialog("close");
-  //var boundingRectangleSetter = new BoundingRectangleSetter();
-  var fontSizeSetter = new FontSizeSetter();
+
   var fontTypeSetter = new FontTypeSetter();
-  var fontSetter = new FontSetter(fontSizeSetter,fontTypeSetter);
+  var fontSetter = new FontSetter(fontTypeSetter);
   var rotationSetter = new RotationSetter();
   var propertiesDialog = new PropertiesDialog(/*edgeNumberSetter,*/fontSetter,/*boundingRectangleSetter,*/rotationSetter);
   propertiesDialog.create();
@@ -69,20 +67,23 @@ $(document).ready(function(){
   });
 
   $("#clearCanvasButton").click(function () {
+    visual.deselectAll(figureSet);
     clearCanvasButton.clearCanvas(canvasObj,visual,figureSet);
     canvasObj.clear();
     visual.refresh();
   });
 
   $("#selectionButton").click(function () {
-    $("#fontSetterZone").css({"display":"none"});
-    $("#edgeSetterZone").css({"display":"none"});
+    $("#edgeSetterZone").css({"display":"block"});
+    $("#fontSetterZone").css({"display":"block"});
     toolbar.deselectAll();
     selectionButton.bindCursor("selection");
     selectionButton.bindCanvas(toolbar,canvas,canvasObj,visual,figureSet);
   });
 
   $("#zoomButton").click(function () {
+    $(".Dialog2").height(210);
+    visual.deselectAll(figureSet);
     zoomButton.bindCursor("zoom");
     $("#fontSetterZone").css({"display":"none"});
     $("#edgeSetterZone").css({"display":"none"});
@@ -90,6 +91,7 @@ $(document).ready(function(){
   });
 
   $("#moveViewButton").click(function () {
+    visual.deselectAll(figureSet);
     moveViewButton.bindCursor("move");
     $("#fontSetterZone").css({"display":"none"});
     $("#edgeSetterZone").css({"display":"none"});
@@ -97,6 +99,8 @@ $(document).ready(function(){
   });
 
   $("#straightLineButton").click(function () {
+    visual.deselectAll(figureSet);
+    $(".Dialog2").height(210);
     $("#edgeSetterZone").css({"display":"none"});
     $("#fontSetterZone").css({"display":"none"});
     toolbar.deselectAll();
@@ -105,6 +109,8 @@ $(document).ready(function(){
   });
 
   $("#bezierCurveButton").click(function () {
+	visual.deselectAll(figureSet);
+    $(".Dialog2").height(210);
     $("#edgeSetterZone").css({"display":"none"});
     $("#fontSetterZone").css({"display":"none"});
     toolbar.deselectAll();
@@ -113,6 +119,8 @@ $(document).ready(function(){
   });
 
   $("#squareButton").click(function () {
+	visual.deselectAll(figureSet);
+    $(".Dialog2").height(210);
     $("#edgeSetterZone").css({"display":"none"});
     $("#fontSetterZone").css({"display":"none"});
     toolbar.deselectAll();
@@ -121,6 +129,8 @@ $(document).ready(function(){
   });
 
   $("#circleButton").click(function () {
+	visual.deselectAll(figureSet);
+    $(".Dialog2").height(210);
     $("#edgeSetterZone").css({"display":"none"});
     $("#fontSetterZone").css({"display":"none"});
     circleButton.bindCursor("circle");
@@ -129,6 +139,8 @@ $(document).ready(function(){
   });
 
   $("#polygonButton").click(function () {
+    visual.deselectAll(figureSet);
+    $(".Dialog2").height(300);
     $("#edgeSetterZone").css({"display":"block"});
     $("#fontSetterZone").css({"display":"none"});
     circleButton.bindCursor("polygon");
@@ -138,6 +150,8 @@ $(document).ready(function(){
   });
 
   $("#freeLineButton").click(function () {
+    visual.deselectAll(figureSet);
+    $(".Dialog2").height(210);
     $("#edgeSetterZone").css({"display":"none"});
     $("#fontSetterZone").css({"display":"none"});
     toolbar.deselectAll();
@@ -146,8 +160,10 @@ $(document).ready(function(){
   });
 
   $("#textButton").click(function () {
+    visual.deselectAll(figureSet);
     $("#edgeSetterZone").css({"display":"none"});
     $("#fontSetterZone").css({"display":"block"});
+    $(".Dialog2").height(300);
     toolbar.deselectAll();
     textButton.bindCursor("text");
     textButton.bindCanvas(toolbar,canvas,canvasObj,visual,figureSet,color.BorderColor,color.FillColor,fontSetter);
@@ -160,7 +176,7 @@ $(document).ready(function(){
   });
 
 /*Animazione tooltip su pulsante toolbar ritardata di 1 secondo*/
-  $(".toolbarButton").tooltip(
+  $("*").tooltip(
     {delay: 1000}
   );
   $(".toolbarButton").hover(
@@ -184,7 +200,7 @@ $(document).ready(function(){
       if(openFill == false){
 	$(".Dialog1").height(430);
       }
-      else $(".Dialog1").height(650);
+      else $(".Dialog1").height(700);
       openBorder = true;
     },
     function() {
@@ -225,16 +241,38 @@ $(document).ready(function(){
     }
   );
 
+
+
+
+
+
+
+
+
+
   //Save & Load Dialogs handlers
  $("#saveButton").click(function () {
    $("#saveDialog").dialog( 'close' );
    //TODO save link to server
+     var  s = new SVGWriter();
+     var  svg = (s.write(figureSet));
+     document.write(svg);
  });
-$("#loadButton").click(function () {
+
+ $("#loadButton").click(function () {
   //TODO load link to server
    $("#loadDialog").dialog( 'close' );
  });
 
+   $("#eraseButton").click(function () {
+     eraseButton.eraseElement(figureSet);
+   });
+
+   $("*").keypress(function (e){
+     if(e.keyCode==46){
+       eraseButton.eraseElement(figureSet);
+     }
+   });
 
 //fine documento
 });

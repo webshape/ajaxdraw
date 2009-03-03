@@ -16,7 +16,8 @@ function SVGWriter() {}
  * @param {FigureSet} fs contains all the figures
  */
 SVGWriter.prototype.write = function (fs) {
-  var doc = new SVGGenerator(1000, 1000);
+  var c =  $('#cv').get(0);
+  var doc = new SVGGenerator(c.width, c.height);
   fs.each(function (figure) {
 	    figure.toSVG(doc);
           });
