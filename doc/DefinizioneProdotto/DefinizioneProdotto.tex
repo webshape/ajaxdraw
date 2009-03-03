@@ -1171,10 +1171,11 @@ Utilizza istanze di \textit{File}, \textit{ServerError} e \textit{Clean}.
 \begin{elencopuntato}[\normindent]
 \item[-] \textit{getSave()} richiede il salvataggio del file rappresentato da \textit{nameFile} con il contenuto \textit{content} e ritorna il nome del file. salvato.
 \item[-] \textit{getLoad()} richiede il caricamento del file rappresentato da \textit{target} e ritorna il file da caricare.
+\end{elencopuntato}
 
 
 
-\end{elencopuntato}\subsezione{File}
+\subsezione{File}
 \subsubsezione{Tipo, obiettivo e funzione del componente}
 Classe che effettua tutte le operazioni riguardanti i files risiedenti su disco. Fornisce a \textit{Server} il file salvato o caricato. 
 \subsubsezione{Relazioni d'uso di altre componenti}
@@ -1187,7 +1188,6 @@ Utilizza istanze di \textit{FileNotFound}.
 \item[-] \textit{fileLoad} \`e il valore che viene ritornato in seguito ad una richiesta di caricamento da parte di \textit{Server}.
 \item[-] \textit{fileSave} \`e il valore che viene ritornato in seguito ad una richiesta di salvataggio da parte di \textit{Server}.
 \item[-] \textit{text} \`e il contenuto da salvare in \textit{fileSave}.
-\end{elencopuntato}
 \paragrafo{Metodi pubblici:}
 \begin{elencopuntato}[\normindent]
 \item[-] \textit{getFile()} ritorna un file salvato o da caricare.
@@ -1216,6 +1216,7 @@ Nessuna.
 \subsubsezione{Interfacce e relazioni di uso da altre componenti}
 Implementata da \textit{ConnessionServer} e da \textit{ServerError}.
 \subsubsezione{Attivit\`a svolte e dati trattati}
+\paragrafo{Metodi pubblici:}
 \begin{elencopuntato}[\normindent]
 \item[-] \textit{getError} ritorna l'errore di comunicazione.
 \end{elencopuntato}
@@ -1229,7 +1230,7 @@ Implementa \textit{CommunicationError}.
 \subsubsezione{Interfacce e relazioni di uso da altre componenti}
 \textit{Request} ne mantiene un'istanza.
 \subsubsezione{Attivit\`a svolte e dati trattati}
-\paragraph{Metodi pubblici:}
+\paragrafo{Metodi pubblici:}
 \begin{elencopuntato}[\normindent]
 \item[-] \textit{getError()} ritorna l'errore di connessione riscontrato.
 \end{elencopuntato}
@@ -1242,7 +1243,7 @@ Implementa \textit{CommunicationError}.
 \subsubsezione{Interfacce e relazioni di uso da altre componenti}
 \textit{Server} ne mantiene un'istanza.
 \subsubsezione{Attivit\`a svolte e dati trattati}
-\paragraph{Metodi pubblici:}
+\paragrafo{Metodi pubblici:}
 \begin{elencopuntato}[\normindent]
 \item[-] \textit{getError()} ritorna l'errore del server riscontrato.
 \end{elencopuntato}
@@ -1256,7 +1257,7 @@ Nessuna.
 \subsubsezione{Interfacce e relazioni di uso da altre componenti}
 \textit{File} ne mantiene un'istanza.
 \subsubsezione{Attivit\`a svolte e dati trattati}
-\paragraph{Metodi pubblici:}
+\paragrafo{Metodi pubblici:}
 \begin{elencopuntato}[\normindent]
 \item[-] \textit{getFileNotFound()} ritorna l'errore di file non trovato.
 \end{elencopuntato}
