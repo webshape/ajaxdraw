@@ -620,51 +620,40 @@ BezierCurveButton.prototype.bindCanvas = function (toolbar,canvas,canvasObj,visu
    var s = [];
    var f;
    var self = this;
-   var line = new StraightLine();
-   var coords;
+
    $("#cv").bind("mousedown", function(e){
-	//  var builder = self.getBuilder();
-	var f = s[0] = new FreeLine();
-	coords = visual.getClickCoordsWithinTarget(e);
+	var f = s[0] = new BezierCurve();
+	var line = new StraightLine();
+	var coords = visual.getClickCoordsWithinTarget(e);
 	f.getBorderColour().getOpacity().setVal(1);
 	f.getBorderColour().fromCSS(borderColour);
 	line.getBorderColour().getOpacity().setVal(1);
 	line.getBorderColour().fromCSS(borderColour);
 	f.getBounds().setStart(new Point(coords.x, coords.y));
 	line.getBounds().setStart(new Point(coords.x, coords.y));
-
-    $("#cv").bind("mousemove",function(e){
-    var coords2 = visual.getClickCoordsWithinTarget(e);
-	line.getBounds().setEnd(new Point(coords2.x, coords2.y));  
-	canvasObj.clear();
-	visual.refresh();
-	line.draw(canvas);
-    });
-
-    }).bind("mouseup",function(e){  //jQuery mouseup event bind
-      $("#cv").unbind('mousemove');
-	  
-      var coords1 = visual.getClickCoordsWithinTarget(e);
-      var f = s[0];
-      f.extend(new Point(coords1.x, coords1.y));
+	f.extend(new Point(coords.x, coords.y));
+	f.extend(new Point(coords.x+100, coords.y-50));
+	$("#cv").bind("mousemove",function(e){
+	  var coords1 = visual.getClickCoordsWithinTarget(e);
 	  line.getBounds().setEnd(new Point(coords1.x, coords1.y));
-      f.getBounds().setEnd(new Point(coords1.x, coords1.y));
-	  $("#cv").bind("mousemove",function(e){
-	  var coords3 = visual.getClickCoordsWithinTarget(e);
-	  
-	  $("#cv").bind("click",function(e){
-	  $("#cv").unbind('mousedown click mouseup');
-	  f.extend(new Point(coords.x, coords.y));
+	  canvasObj.clear();
+	  visual.refresh();
+	  line.draw(canvas);
 
-	  f.extend(new Point(coords3.x, coords3.y));
-	  f.extend(new Point(coords1.x, coords1.y));
-	  });
 	});
-	  
-	  
-      visual.getFigureSet().add(f);
-      canvasObj.clear();
-      visual.refresh();
+
+
+	}).bind("mouseup",function(e){  //jQuery mouseup event bind
+	        $("#cv").unbind('mousemove');
+		 var f = s[0];
+		 var  coords2 = visual.getClickCoordsWithinTarget(e);
+		 f.extend(new Point(coords2.x, coords2.y));
+		 f.extend(new Point(coords2.x+100, coords2.y-50));
+		 f.getBounds().setEnd(new Point(coords2.x, coords2.y));
+		 f.draw(canvas);
+		 visual.getFigureSet().add(f);
+		 canvasObj.clear();
+		 visual.refresh();
     });
 };
 /**
