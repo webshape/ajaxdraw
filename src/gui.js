@@ -17,16 +17,16 @@ $(document).ready(function(){
   visual.setCanvasDimension(canvasObj,screenHeight,screenWidth);
   //Toolbar Creation
   var toolbar = new Toolbar();
-  var selectionButton = new SelectionButton();toolbar.add(selectionButton);
-  var zoomButton = new ZoomButton();toolbar.add(zoomButton);
-  var moveViewButton = new MoveViewButton(); toolbar.add(moveViewButton);
-  var straightLineButton = new StraightLineButton();toolbar.add(straightLineButton);
-  var bezierCurveButton = new BezierCurveButton();toolbar.add(bezierCurveButton);
-  var squareButton = new SquareButton();toolbar.add(squareButton);
-  var circleButton = new CircleButton();toolbar.add(circleButton);
-  var polygonButton = new PolygonButton();toolbar.add(polygonButton);
-  var freeLineButton = new FreeLineButton();toolbar.add(freeLineButton);
-  var textButton = new TextButton();toolbar.add(textButton);
+  var selectionButton = new SelectionButton();toolbar.add(selectionButton); // 0
+  var zoomButton = new ZoomButton();toolbar.add(zoomButton);//1
+  var moveViewButton = new MoveViewButton(); toolbar.add(moveViewButton);//2
+  var straightLineButton = new StraightLineButton();toolbar.add(straightLineButton);//3
+  var bezierCurveButton = new BezierCurveButton();toolbar.add(bezierCurveButton);//4
+  var squareButton = new SquareButton();toolbar.add(squareButton);//5
+  var circleButton = new CircleButton();toolbar.add(circleButton);//6
+		    var polygonButton = new PolygonButton();toolbar.add(polygonButton);//7
+  var freeLineButton = new FreeLineButton();toolbar.add(freeLineButton);//8
+  var textButton = new TextButton();toolbar.add(textButton);//9
   var clearCanvasButton = new ClearCanvasButton();
   var eraseButton = new EraseButton();
 
@@ -80,7 +80,7 @@ $(document).ready(function(){
     $("#fontSetterZone").css({"display":"block"});
     toolbar.deselectAll();
     selectionButton.bindCursor("selection");
-    selectionButton.bindCanvas(toolbar,canvas,canvasObj,visual,figureSet);
+    selectionButton.bindCanvas(toolbar,canvas,canvasObj,visual,figureSet,eraseButton);
   });
 
   $("#zoomButton").click(function () {
@@ -111,7 +111,7 @@ $(document).ready(function(){
   });
 
   $("#bezierCurveButton").click(function () {
-	visual.deselectAll(figureSet);
+    visual.deselectAll(figureSet);
     $(".Dialog2").height(210);
     $("#edgeSetterZone").css({"display":"none"});
     $("#fontSetterZone").css({"display":"none"});

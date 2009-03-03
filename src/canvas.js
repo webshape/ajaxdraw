@@ -438,12 +438,17 @@ SelectionButton.prototype._handleCtrlPoint = function (pt, f) {
  * @param {Visualization} visual che Visualization object
  * @param {FigureSet} figureSet the set of figures
  */
-SelectionButton.prototype.bindCanvas = function (toolbar,canvas,canvasObj,visual,figureSet) {
+SelectionButton.prototype.bindCanvas = function (toolbar,canvas,canvasObj,visual,figureSet,eraseButton) {
   var self = this;
   toolbar.deselectAll();
   $(".Dialog2").height(390);
   $("#cv").unbind(' mousedown mousemove click mouseup');
   $("*").unbind('keypress');
+  $("*").bind('keypress',function(e){
+    if(e.keyCode==46){
+      eraseButton.eraseElement(figureSet);
+    }
+  });
   $("#cv").bind("mousedown", function(e){
       //visual.deselectAll(figureSet);
       //visual.refresh();
@@ -686,7 +691,7 @@ BezierCurveButton.prototype.getBuilder = function () {
   return BezierCurve;
 };
 
-BezierCurveButton.prototype.bindCanvas = function (toolbar,canvas,canvasObj,visual,figureSet,borderColour) {
+BezierCurveButton.prototype.bindCanvas = function (toolbar,canvas,canvasObj,visual,figureSet,borderColour,fillColour) {
   toolbar.deselectAll();
   this.setSelection(true);
    $("#cv").unbind('mousedown click mouseup');
@@ -695,8 +700,26 @@ BezierCurveButton.prototype.bindCanvas = function (toolbar,canvas,canvasObj,visu
    var s = [];
    var f;
    var self = this;
+   var pointcounter = 4;
+   $("#cv").bind("click", function(e){
+	var f = s[0] = new BezierCurve();
+	f.getBorderColour().getOpacity().setVal(1);
+	f.getBorderColour().fromCSS(borderColour);
+	var coords = visual.getClickCoordsWithinTarget(e);
+	f.extend(new Point(coords.x, coords.y));
+	pointcounter--;
+	if( pointcounter == 0 ){
+	  f.draw(canvas);
+	  visual.getFigureSet().add(f);
+	  canvasObj.clear();
+	  visual.refresh();
+	 // toolbar.rebind(canvas,canvasObj,visual,figureSet,borderColor,fillColor);
+	  this.bindCanvas(canvas,canvasObj,visual,figureSet,borderColor,fillColor);
+	}
+   });
 
 
+/*
    $("#cv").bind("mousedown", function(e){
 	var f = s[0] = new BezierCurve();
 	var line = new StraightLine();
@@ -730,8 +753,10 @@ BezierCurveButton.prototype.bindCanvas = function (toolbar,canvas,canvasObj,visu
 		 visual.getFigureSet().add(f);
 		 canvasObj.clear();
 		 visual.refresh();
-   });
+		});*/
 };
+
+
 /**
  * @constructor
  * The Square drawing button
@@ -904,14 +929,9 @@ toolbar.deselectAll();
    var f;
    var self = this;
    $("#cv").bind("mousedown", function(e){
-    // var f = s[0] = new Text(document.getElementById("textString").value);
-    var f = s[0] = new Text(new TextString(document.getElementById("textString").value));
-    // f.setFont(new TextFont(textSetter.getTypeSetter().setFontType()));
+     var f = s[0] = new Text(new TextString(document.getElementById("textString").value));
      f.setFont(new TextFont(document.getElementById("fontTypeButton").value));
      var coords = visual.getClickCoordsWithinTarget(e);
-     //f.getFillColour().getOpacity().setVal(1);
-     // f.getFillColour().fromCSS(FillColor);
-
      f.getBorderColour().getOpacity().setVal(1);
      f.getBorderColour().fromCSS(BorderColor);
      f.getTextColour().getOpacity().setVal(1);
@@ -996,7 +1016,6 @@ Toolbar.prototype.deselectAll = function () {
  * @param {String} FillColor the current Fill color
  */
 Toolbar.prototype.rebind = function (canvas,canvasObj,visual,figureSet,BorderColor,FillColor) {
-  //for(var i=0;i<this._buttonList.lenght;i++){
   if(this._buttonList[3].isSelected()==true){//line
     this._buttonList[3].bindCanvas(this,canvas,canvasObj,visual,figureSet,BorderColor,FillColor);
     return;
@@ -1218,7 +1237,7 @@ function FontSetter(font){
    $('#fontTypeButton').get(0).value = font.getName();
    //$("#fontSetterZone").css({"display":"block"});
    $('#submitFont').unbind('mousedown');
-  $('#submitFont').bind('mousedown',function (e) {
+   $('#submitFont').bind('mousedown',function (e) {
      font.setName($('#fontTypeButton').get(0).value);
      canvasObj.clear();
      visual.refresh();
@@ -1228,7 +1247,7 @@ function FontSetter(font){
 function TextStringSetter(text){
    $('#textString').get(0).value = text.getName();
    $('#submitFont').unbind('mouseup');
-  $('#submitFont').bind('mouseup',function (e) {
+   $('#submitFont').bind('mouseup',function (e) {
      text.setName($('#textString').get(0).value);
      canvasObj.clear();
      visual.refresh();
