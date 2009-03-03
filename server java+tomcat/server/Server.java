@@ -2,6 +2,8 @@ package serverPack;
 
 import java.io.File;
 import java.io.IOException;
+
+import cleanPack.Clean;
 import serverErrorPack.ServerError;
 import file1Pack.File1;
 
@@ -28,6 +30,8 @@ public class Server {
 	        }
 
 	public String getSave() throws IOException {
+		Clean cl=new Clean();
+		cl.sweeper();
 		try {
 			File1 f=new File1(nameFile,content);
 			return f.getFile();
