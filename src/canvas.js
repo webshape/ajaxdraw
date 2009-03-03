@@ -83,6 +83,7 @@ Canvas.prototype.clear = function () {
 
 };
 
+
 Canvas.prototype.getHeight = function(){
 	return this._height;
 };
@@ -113,6 +114,10 @@ function Visualization(figureSet){
 Visualization.accessors('_offset', 'getOffset', 'setOffset');
 Visualization.accessors('_scale', 'getScale', 'setScale');
 
+
+/**
+ * Refresh the view
+ */
 Visualization.prototype.refresh = function(){
   var c = document.getElementById('cv');
   if ($.browser.msie) { // hack for internet explorer
@@ -120,12 +125,24 @@ Visualization.prototype.refresh = function(){
   }
   var ctx = c.getContext('2d');
   this._scale.applyToContext(ctx, this._offset);
+
+  /* Quadrato di salvataggio */
+  var quad = new Rectangle();
+  quad.getBorderColour().set(100, 100, 100, new Opacity(0.5));
+  quad.getFillColour().set(255, 255, 255, new Opacity(1));
+  quad.getBounds().setStart(new Point(0, 0));
+  quad.getBounds().setEnd(new Point(1000, 1000));
+  quad.draw(c);
+
+
   this._figureSet.each(function (f) {
     f.draw(c);
     if (f.isSelected()) {
       f.drawSelection(c);
     }
    });
+
+
 };
 
 Visualization.prototype.getFigureSet = function(){
