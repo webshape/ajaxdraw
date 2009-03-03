@@ -107,13 +107,20 @@ Figure.prototype.drawSelection = function (c) {
   ctx.restore();
 };
 
+/**
+ * Copy of this figure, translated 10 px up
+ * @return {Figure} the copy
+ */
 Figure.prototype.clone = function (){
-    var figure = new Figure();
-    JQuery.extend(figure, Circle, Rectangle, StraightLine, Polygon, Text, FreeLine, BezierCurve);
-    var b = figure.getMainPoints();
-    figure.prototype.eachProperty.call(this, fn);
-    figure._bounds = ((b.start().x)+10, (b.start().y)+10, (b.end().x)+10, (b.end().y)+10);
-    return figure;
+  var copy = {}; // empty object
+  var npx = 10; // number of pixel to translate
+  jQuery.extend(true, copy, this); // deep copy
+  var b = copy.getBounds();
+  // translate
+  b.start().y -= npx;
+  b.end().y -= npx;
+  
+  return copy;
 };
 
 /**
