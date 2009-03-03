@@ -6,7 +6,7 @@
 
 \begin{document}
 
-\renewcommand{\insertversion}{0.0} %INSERIRE LA VERSIONE QUI DENTRO STILE x.x.xx
+\renewcommand{\insertversion}{0.6} %INSERIRE LA VERSIONE QUI DENTRO STILE x.x.xx
 \renewcommand{\TITOLODOC}{Definizione di Prodotto} %INSERIRE IL TITOLO DEL DOCUMENTO DA FAR COMPARIRE A PIE PAGINA
 \renewcommand{\glosspath}{.\glossario} %INSERIRE PERCORSO RELATIVO
 
@@ -146,13 +146,15 @@ Il presente documento descrive in modo dettagliato le classi e i relativi metodi
 %%%%%%%%%%%%%%FINE INTESTAZIONE COLONNE%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 		 \hline
 %%%%%%%%%%% PARTE DA MODIFICARE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%		
-        0.5 &    02$\slash$03$\slash$2009 Descritte classi Request, Server, File e la gestione degli errori & Dal Bosco Davide \\
+        0.6 &    02$\slash$03$\slash$2009 Descritte classi Request, Server, File e la gestione degli errori & Dal Bosco Davide \\
         \hline
-        0.4 &    27$\slash$02$\slash$2009 Descritte classi Scale, MoveViewButton e aggiornato Visualization & Dissegna Stefano \\
+        0.5 &    27$\slash$02$\slash$2009 Descritte classi Scale, MoveViewButton e aggiornato Visualization & Dissegna Stefano \\
         \hline
-    	0.3 &    25$\slash$02$\slash$2009 Descrizione classi e metodi GUI & Rizzo Maurizio \\
+    	0.4 &    25$\slash$02$\slash$2009 Descrizione classi e metodi GUI & Rizzo Maurizio \\
 		\hline
-    	0.2 &    20$\slash$02$\slash$2009 Descrizione classe Rotation e metodo clone nella classe figure & Rizzo Maurizio \\
+    	0.3 &    20$\slash$02$\slash$2009 Descrizione classe Rotation e metodo clone nella classe figure & Rizzo Maurizio \\
+    	\hline
+    	0.2 &    19$\slash$02$\slash$2009 Descrizione classi interfaccia grafica & Bizzotto Piero \\
         \hline
         0.1 & 	 17$\slash$02$\slash$2009 Descritte classi e metodi delle figure e delle propriet\`a & Dissegna Stefano \\
 		\hline
@@ -401,8 +403,6 @@ Estende \textit{Button}.
 \subsubsezione{Attivit\`a svolte e dati trattati}
 \textit{Page} e \textit{Toolbar} ne mantengono un' istanza.
 \paragrafo{Attributi privati:}
-\begin{elencopuntato}[\normindent]
-\end{elencopuntato}
 \paragrafo{Metodi pubblici:}
 \begin{elencopuntato}[\normindent]
 \item[-] \textit{bindCanvas(toolbar,canvas,canvasObj,visual)} collega il canvas all'azione di spostamento. Collega l'evento mousedown per prendere il punto di riferimento per lo spostamento. L'evento mousemove sposter\`a la visualizzazione cambiandone l'offset in base allo spostamento relativo tra il punto di riferimento e la posizione attuale del mouse e far\`a un refresh del canvas. L'evento mouseup infine termina l'azione disabilitando l'evento mousemove.
@@ -582,6 +582,7 @@ Classe concreta che rappresenta un singolo colore presente sulla tavolozza.
 \subsubsezione{Attivit\`a svolte e dati trattati}
 \textit{Page} e \textit{Palette} ne mantengono pi\`u istanze.
 \paragrafo{Attributi privati:}
+\begin{elencopuntato}[\normindent]
 \item[-] \textit{{\_}color} colore rappresentato dal componente.
 \end{elencopuntato}
 
@@ -594,7 +595,7 @@ Classe concreta che rappresenta il dialog sul quale sono presenti le ruote per c
 \subsubsezione{Attivit\`a svolte e dati trattati}
 \textit{Page} ne mantiene un'istanza.
 \paragrafo{Attributi privati:}
-\end{elencopuntato}
+
 \paragrafo{Metodi pubblici:}
 \begin{elencopuntato}[\normindent]
 \item[-] \textit{create()} richiama la funzione jQuery atta alla creazione del Dialog.
@@ -608,10 +609,11 @@ Classe concreta che rappresenta il dialog sul quale sono presenti le caratterist
 \subsubsezione{Attivit\`a svolte e dati trattati}
 \textit{Page} ne mantiene un'istanza.
 \paragrafo{Attributi privati:}
-\item[-] \textit{{\_}{edgeSetter} oggetto che si occupa di impostare il numero di lati di un poligono;
-\item[-] \textit{{\_}{fontSetter} oggetto che si occupa di impostare il tipo di carattere e la sua dimensione;
-\item[-] \textit{{\_}{boundingSetter} oggetto che si occupa di impostare il \textit{BoundingRectangle} della figura;
-\item[-] \textit{{\_}{rotationSetter} oggetto che si occupa di impostare il grado di rotazione.
+\begin{elencopuntato}[\normindent]
+\item[-] \textit{{\_}edgeSetter} oggetto che si occupa di impostare il numero di lati di un poligono;
+\item[-] \textit{{\_}fontSetter} oggetto che si occupa di impostare il tipo di carattere e la sua dimensione;
+\item[-] \textit{{\_}boundingSetter} oggetto che si occupa di impostare il \textit{BoundingRectangle} della figura;
+\item[-] \textit{{\_}rotationSetter} oggetto che si occupa di impostare il grado di rotazione.
 \end{elencopuntato}
 \paragrafo{Metodi pubblici:}
 \begin{elencopuntato}[\normindent]
@@ -653,8 +655,7 @@ Legge e modifica \textit{Rotation}.
 \textit{PropertiesDialog} ne mantiene un'istanza.
 \subsubsezione{Attivit\`a svolte e dati trattati}
 \paragrafo{Metodi pubblici:}
-\begin{elencopuntato}[\normindent]
-\end{elencopuntato}
+
 
 
 
@@ -983,8 +984,8 @@ Creato dalla lettura di un file SVG oppure dall'interfaccia utente. Manipolato d
 Nessuna oltre a quelle ereditate da \textit{FreeLine}.
 \paragraph{Metodi pubblici:}
 \begin{elencopuntato}[\normindent]
-\item[-] \textit{toSVG(gen)} richiama il metodo \textit{toSVG} della classe \texti{FreeLine}.
-\item[-] \textit{fromSVG(n)} ottiene il valore degli attributi del nodo \textit{n} come stringhe e scrive i nuovi valori nelle propriet\`a della figura. Per gestire l'attributo SVG \textit{d}, spezza la stringa in coppie di coordinate, le trasforma in interi, e chiama la funzione \texti{extend} passandogli uno a uno i punti ottenuti per ricostruire la figura. Infine ottiene l'elemento canvas e chiama il metodo \textit{draw} per far si che la figura si disegni.
+\item[-] \textit{toSVG(gen)} richiama il metodo \textit{toSVG} della classe \textit{FreeLine}.
+\item[-] \textit{fromSVG(n)} ottiene il valore degli attributi del nodo \textit{n} come stringhe e scrive i nuovi valori nelle propriet\`a della figura. Per gestire l'attributo SVG \textit{d}, spezza la stringa in coppie di coordinate, le trasforma in interi, e chiama la funzione \textit{extend} passandogli uno a uno i punti ottenuti per ricostruire la figura. Infine ottiene l'elemento canvas e chiama il metodo \textit{draw} per far si che la figura si disegni.
 \end{elencopuntato}
 
 
@@ -1237,5 +1238,6 @@ Nessuno.
 
 
 \sezione{Tracciamento della relazione componenti - requisiti}
+
 
 \end{document}
