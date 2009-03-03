@@ -6,7 +6,7 @@
 
 \begin{document}
 
-\renewcommand{\insertversion}{0.6} %INSERIRE LA VERSIONE QUI DENTRO STILE x.x.xx
+\renewcommand{\insertversion}{0.7} %INSERIRE LA VERSIONE QUI DENTRO STILE x.x.xx
 \renewcommand{\TITOLODOC}{Definizione di Prodotto} %INSERIRE IL TITOLO DEL DOCUMENTO DA FAR COMPARIRE A PIE PAGINA
 \renewcommand{\glosspath}{.\glossario} %INSERIRE PERCORSO RELATIVO
 
@@ -146,6 +146,9 @@ Il presente documento descrive in modo dettagliato le classi e i relativi metodi
 %%%%%%%%%%%%%%FINE INTESTAZIONE COLONNE%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 		 \hline
 %%%%%%%%%%% PARTE DA MODIFICARE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%		
+        
+        0.7 &    03$\slash$03$\slash$2009 Descritta classe Clean e metodo della classe File & Dal Bosco Davide \\
+        \hline
         0.6 &    02$\slash$03$\slash$2009 Descritte classi Request, Server, File e la gestione degli errori & Dal Bosco Davide \\
         \hline
         0.5 &    27$\slash$02$\slash$2009 Descritte classi Scale, MoveViewButton e aggiornato Visualization & Dissegna Stefano \\
@@ -1145,11 +1148,10 @@ Utilizza istanze di \textit{Server} e di \textit{ConnessionError}.
 \subsubsezione{Interfacce e relazioni di uso da altre componenti}
 \`E utilizzata dal client per inviare una richiesta al server.
 \subsubsezione{Attivit\`a svolte e dati trattati}
-\paragrafo{Attributi privati:}
-Nessuno.
 \paragrafo{Metodi pubblici:}
-[da completare service()]
-
+\begin{elencopuntato}[\normindent]
+\item[-] \textit{service(HttpServletRequest,HttpServletResponse)} \`e il metodo proprio della servlet che comunica con il client, gestendo le richieste e le risposte. 
+\end{elencopuntato}[\normindent]
 
 \subsezione{Server}
 \subsubsezione{Tipo, obiettivo e funzione del componente}
@@ -1167,8 +1169,8 @@ Utilizza istanze di \textit{File}, \textit{ServerError} e \textit{Clean}.
 \end{elencopuntato}
 \paragrafo{Metodi pubblici:}
 \begin{elencopuntato}[\normindent]
-\item[-] \textit{getSave()} richiede il salvataggio del file rappresentato da \textit{{\_}nameFile} con il contenuto \textit{{\_}content} e ritorna il nome del file. salvato;
-\item[-] \textit{getLoad()} richiede il caricamento del file rappresentato da \textit{{\_}target} e ritorna il file da caricare;
+\item[-] \textit{getSave()} richiede il salvataggio del file rappresentato da \textit{nameFile} con il contenuto \textit{content} e ritorna il nome del file. salvato.
+\item[-] \textit{getLoad()} richiede il caricamento del file rappresentato da \textit{target} e ritorna il file da caricare.
 
 
 
@@ -1189,7 +1191,22 @@ Utilizza istanze di \textit{FileNotFound}.
 \paragrafo{Metodi pubblici:}
 \begin{elencopuntato}[\normindent]
 \item[-] \textit{getFile()} ritorna un file salvato o da caricare.
+\item[-] \textit{deleteFile(File)} elimina il file passato come parametro.
 \end{elencopuntato}
+
+
+\subsezione{Clean}
+\subsubsezione{Tipo, obiettivo e funzione del componente}
+Classe che permette di verificare la presenza nel server di file non utilizzati e provvedere alla loro rimozione.
+\subsubsezione{Relazioni d'uso di altre componenti}
+Mantiene un'istanza di \textit{File}.
+\subsubsezione{Interfacce e relazioni di uso da altre componenti}
+\textit{Server} ne mantiene un'istanza.
+\subsubsezione{Attivit\`a svolte e dati trattati}
+\paragrafo{Metodi pubblici:}
+\begin{elencopuntato}[\normindent]
+\item[-] \textit{sweeper()} controlla tramite una classe filtro se esistono dei file sul server inutilizzati da un determinato periodo e tramite la classe \textit{File} li rimuove.
+\end{elencopuntato}[\normindent]
 
 \subsezione{CommunicationError}
 \subsubsezione{Tipo, obiettivo e funzione del componente}
@@ -1212,8 +1229,6 @@ Implementa \textit{CommunicationError}.
 \subsubsezione{Interfacce e relazioni di uso da altre componenti}
 \textit{Request} ne mantiene un'istanza.
 \subsubsezione{Attivit\`a svolte e dati trattati}
-\paragrafo{Attributi privati:}
-Nessuno.
 \paragraph{Metodi pubblici:}
 \begin{elencopuntato}[\normindent]
 \item[-] \textit{getError()} ritorna l'errore di connessione riscontrato.
@@ -1227,8 +1242,6 @@ Implementa \textit{CommunicationError}.
 \subsubsezione{Interfacce e relazioni di uso da altre componenti}
 \textit{Server} ne mantiene un'istanza.
 \subsubsezione{Attivit\`a svolte e dati trattati}
-\paragrafo{Attributi privati:}
-Nessuno.
 \paragraph{Metodi pubblici:}
 \begin{elencopuntato}[\normindent]
 \item[-] \textit{getError()} ritorna l'errore del server riscontrato.
@@ -1243,8 +1256,6 @@ Nessuna.
 \subsubsezione{Interfacce e relazioni di uso da altre componenti}
 \textit{File} ne mantiene un'istanza.
 \subsubsezione{Attivit\`a svolte e dati trattati}
-\paragrafo{Attributi privati:}
-Nessuno.
 \paragraph{Metodi pubblici:}
 \begin{elencopuntato}[\normindent]
 \item[-] \textit{getFileNotFound()} ritorna l'errore di file non trovato.
