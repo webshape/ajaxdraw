@@ -1,6 +1,6 @@
 function runSaveTest () {
   test("Save Test", function () {
-         var r = new Rectangle();
+        var r = new Rectangle();
          r.getBorderColour().set(255, 0, 0, new Opacity(1));
          r.getBounds().setStart(new Point(10, 20));
          r.getBounds().setEnd(new Point(50, 40));
@@ -35,7 +35,7 @@ function runSaveTest () {
          p.getBorderColour().set(255, 0, 0, new Opacity(1));
          p.getBounds().setStart(new Point(10, 10));
          p.getBounds().setEnd(new Point(50, 50));
-		 p.edgeNumber(8);
+		 p.edgeNumber(3);
          svgValue = "<polygon fill=\"#000000\" fill-opacity=\"1\" stroke=\"#ff0000\" stroke-opacity=\"1\" points=\"50,30 20.000000000000004,47.32050807568878 19.999999999999993,12.679491924311233 \"></polygon>\n";
          s = new SVGGenerator(1000, 1000);
 		 s._doc = "";
