@@ -704,7 +704,14 @@ Il costruttore controlla se il browser supporta il metodo \textit{getImageData} 
 \end{elencopuntato}
 \paragrafo{Metodi pubblici:}
 \begin{elencopuntato}[\normindent]
-\item[-]  \textit{selectFigure(where)} permette di selezionare una figura contenente il punto passato come argomento, se tale figura esiste. Per maggiori dettagli si veda il diagramma di attivit\`a [TODO: inserire diagramma].
+\item[-]  \textit{selectFigure(where)} permette di selezionare una figura contenente il punto passato come argomento, se tale figura esiste. Per maggiori dettagli si veda il diagramma di attivit\`a [TODO: inserire label diagramma].
+
+\begin{figure}[!ht]
+\centering
+\includegraphics[scale=0.5]{defaultselection.png}
+\caption{Diagramma di attivit\`a selezione figura}
+\end{figure}
+
 \item[-] \textit{fallbackSelection(where)} metodo usato quando il browser non supporta \textit{getImageData} al posto di \textit{selectFigure}. Seleziona l'ultima figura (se esiste) il cui \textit{BoundingRectangle} contiene il punto \textit{where}. Nel caso la figura sia una linea diritta viene controllato se il punto giace sulla linea. Questo metodo \`e pi\`u impreciso rispetto a \textit{selectFigure}.
 \item[-]  \textit{each(fn)} permette di applicare una funzione ad ogni figura. Viene usato per iterare attraverso la collezione. Applica fn ad ogni elemento di \textit{{\_}figures}. 
 \item[-]  \textit{add(f)} aggiunge la figura f alla fine di \textit{{\_}figures}.
@@ -1007,7 +1014,14 @@ Creato dalla lettura di un file SVG oppure dall'interfaccia utente. Manipolato d
 \item[-] \textit{getFillColour()} ritorna \textit{{\_}fillColour}.
 \item[-] \textit{edgeNumber()} ritorna \textit{{\_}en}.
 \item[-] \textit{eachProperty(fn)} richiama \textit{eachProperty} di \textit{Figure} ed applica la funzione fn a \textit{{\_}fillColour} e a \textit{{\_en}}.
-\item[-] \textit{getPoints()} ritorna un'array di punti, considerando come origine \textit{BoundingRectangle.start()}, che rappresentano i vertici del poligono. Per maggiori dettagli si veda [TODO: ins. diagramma].
+\item[-] \textit{getPoints()} ritorna un'array di punti, considerando come origine \textit{BoundingRectangle.start()}, che rappresentano i vertici del poligono. Per maggiori dettagli si veda il diagramma di attivit\`a [TODO: ins. lebel].
+
+\begin{figure}[!ht]
+\centering
+\includegraphics[scale=0.5]{polygonpoints.png}
+\caption{Diagramma di attivit\`a calcolo punti poligono}
+\end{figure}
+
 \item[-] \textit{draw(canvas)} disegna il poligono usando le API per i path del contesto grafico tracciando  un path che congiunge i punti ottenuti con \textit{getPoints}. Viene disegnato due volte: la prima per il riempimento, la seconda per il bordo. Prima di disegnarsi richiama \textit{applyToContext} sulle proprie propriet\`a.
 \item[-] \textit{toSVG(gen)} crea un tag \textit{polygon} con il metodo \textit{startCommand} e aggiunge gli attributi secondo lo standard SVG1.1 con il metodo \textit{attr}. Entrambi questi metodi appartengono alla classe \textit{SVGGenerator}. Per quel che riguarda l'attributo \textit{points} si prendono i punti relativi al \textit{BoundingRectangle} con il metodo \textit{getPoints} e si sommano al punto di coordinate iniziali ottenuto con il metodo \textit{start} di \textit{BoundingRectangle}, per ottenere le coordinate relative al canvas. Infine scrive il tag di chiusura con il metodo \textit{endCommand} di \textit{SVGGenerator}.
 \item[-] \textit{fromSVG(n)} ottiene il valore degli attributi del nodo \textit{n} come stringhe e scrive i nuovi valori nelle propriet\`a della figura. Dall'attributo SVG \textit{points} ottiene i punti, li converte in interi, e calcola in base a questi i vertici in alto a sinistra e in basso a destra della figura, per ricavare il \textit{BoundingRectangle} con cui costruire il poligono. Infine ottiene l'elemento canvas e chiama il metodo \textit{draw} per far si che la figura si disegni.
