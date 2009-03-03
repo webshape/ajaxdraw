@@ -146,7 +146,9 @@ Il presente documento descrive in modo dettagliato le classi e i relativi metodi
 %%%%%%%%%%%%%%FINE INTESTAZIONE COLONNE%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 		 \hline
 %%%%%%%%%%% PARTE DA MODIFICARE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%		
-        0.4 & 27$\slash$02$\slash$2009 Descritte classi Scale, MoveViewButton e aggiornato Visualization & Dissegna Stefano \\
+        0.5 &    02$\slash$03$\slash$2009 Descritte classi Request, Server, File e la gestione degli errori & Dal Bosco Davide \\
+        \hline
+        0.4 &    27$\slash$02$\slash$2009 Descritte classi Scale, MoveViewButton e aggiornato Visualization & Dissegna Stefano \\
         \hline
     	0.3 &    25$\slash$02$\slash$2009 Descrizione classi e metodi GUI & Rizzo Maurizio \\
 		\hline
@@ -1118,6 +1120,121 @@ Usato da \textit{SVGReader} per ottenere una figura da un tag SVG.
 \item[-] \textit{register(tagName, constructor)} aggiunge un elemento alla tabella di hash, usando come indice \textit{tagName} e come valore \textit{constructor}, che sar\`a un costruttore di una figura.
 \item[-] \textit{makeFigureClassFromTag(tag)} controlla se nella tabella di hash esiste un indice \textit{tag}: se \`e presente crea una figura corrispondente utilizzando il cotruttore ottenuto dalla tabella, altrimenti ritorna \textit{null}.
 \end{elencopuntato}
+
+
+\subsezione{Request}
+\subsubsezione{Tipo, obiettivo e funzione del componente}
+Classe che accetta le richieste dal client e le inoltra alla classe \textit{Server}. Permette la comunicazione tra il client e il server.
+\subsubsezione{Relazioni d'uso di altre componenti}
+Utilizza istanze di \textit{Server} e di \textit{ConnessionError}.
+\subsubsezione{Interfacce e relazioni di uso da altre componenti}
+\`E utilizzata dal client per inviare una richiesta al server.
+\subsubsezione{Attivit\`a svolte e dati trattati}
+\paragrafo{Attributi privati:}
+Nessuno.
+\paragrafo{Metodi pubblici:}
+[da completare service()]
+
+
+\subsezione{Server}
+\subsubsezione{Tipo, obiettivo e funzione del componente}
+Classe che permette di effettuare un salvataggio o un caricamento in seguito ad una richiesta del client.
+\subsubsezione{Relazioni d'uso di altre componenti}
+Utilizza istanze di \textit{File}, \textit{ServerError} e \textit{Clean}.
+\subsubsezione{Interfacce e relazioni di uso da altre componenti}
+\textit{Request} ne mantiene un'istanza.
+\subsubsezione{Attivit\`a svolte e dati trattati}
+\paragrafo{Attributi privati:}
+\begin{elencopuntato}[\normindent]
+\item[-] \textit{target} \`e il file da caricare.
+\item[-] \textit{nameFile} \`e il file nel quale effettuare il salvataggio.
+\item[-] \textit{content} rappresenta il contenuto da salvare.
+\end{elencopuntato}
+\paragrafo{Metodi pubblici:}
+\begin{elencopuntato}[\normindent]
+\item[-] \textit{getSave()} richiede il salvataggio del file rappresentato da \textit{{\_}nameFile} con il contenuto \textit{{\_}content} e ritorna il nome del file. salvato;
+\item[-] \textit{getLoad()} richiede il caricamento del file rappresentato da \textit{{\_}target} e ritorna il file da caricare;
+
+
+
+\end{elencopuntato}\subsezione{File}
+\subsubsezione{Tipo, obiettivo e funzione del componente}
+Classe che effettua tutte le operazioni riguardanti i files risiedenti su disco. Fornisce a \textit{Server} il file salvato o caricato. 
+\subsubsezione{Relazioni d'uso di altre componenti}
+Utilizza istanze di \textit{FileNotFound}.
+\subsubsezione{Interfacce e relazioni di uso da altre componenti}
+\textit{Server} e \textit{Clean} ne mantengono un'istanza.
+\subsubsezione{Attivit\`a svolte e dati trattati}
+\paragrafo{Attributi privati:}
+\begin{elencopuntato}[\normindent]
+\item[-] \textit{fileLoad} \`e il valore che viene ritornato in seguito ad una richiesta di caricamento da parte di \textit{Server}.
+\item[-] \textit{fileSave} \`e il valore che viene ritornato in seguito ad una richiesta di salvataggio da parte di \textit{Server}.
+\item[-] \textit{text} \`e il contenuto da salvare in \textit{fileSave}.
+\end{elencopuntato}
+\paragrafo{Metodi pubblici:}
+\begin{elencopuntato}[\normindent]
+\item[-] \textit{getFile()} ritorna un file salvato o da caricare.
+\end{elencopuntato}
+
+\subsezione{CommunicationError}
+\subsubsezione{Tipo, obiettivo e funzione del componente}
+Rappresenta un errore generico di comunicazione. Non viene implementata in quanto \`e un'interfaccia. 
+\subsubsezione{Relazioni d'uso di altre componenti}
+Nessuna.
+\subsubsezione{Interfacce e relazioni di uso da altre componenti}
+Implementata da \textit{ConnessionServer} e da \textit{ServerError}.
+\subsubsezione{Attivit\`a svolte e dati trattati}
+\begin{elencopuntato}[\normindent]
+\item[-] \textit{getError} ritorna l'errore di comunicazione.
+\end{elencopuntato}
+
+
+\subsezione{ConnessionError}
+\subsubsezione{Tipo, obiettivo e funzione del componente}
+Classe concreta che rappresenta un errore generato da un connessione con il server.
+\subsubsezione{Relazioni d'uso di altre componenti}
+Implementa \textit{CommunicationError}.
+\subsubsezione{Interfacce e relazioni di uso da altre componenti}
+\textit{Request} ne mantiene un'istanza.
+\subsubsezione{Attivit\`a svolte e dati trattati}
+\paragrafo{Attributi privati:}
+Nessuno.
+\paragraph{Metodi pubblici:}
+\begin{elencopuntato}[\normindent]
+\item[-] \textit{getError()} ritorna l'errore di connessione riscontrato.
+\end{elencopuntato}
+
+\subsezione{ServerError}
+\subsubsezione{Tipo, obiettivo e funzione del componente}
+Classe concreta che rappresenta un errore interno del server.
+\subsubsezione{Relazioni d'uso di altre componenti}
+Implementa \textit{CommunicationError}.
+\subsubsezione{Interfacce e relazioni di uso da altre componenti}
+\textit{Server} ne mantiene un'istanza.
+\subsubsezione{Attivit\`a svolte e dati trattati}
+\paragrafo{Attributi privati:}
+Nessuno.
+\paragraph{Metodi pubblici:}
+\begin{elencopuntato}[\normindent]
+\item[-] \textit{getError()} ritorna l'errore del server riscontrato.
+\end{elencopuntato}
+
+
+\subsezione{FileNotFound}
+\subsubsezione{Tipo, obiettivo e funzione del componente}
+Classe che viene istanziata nel caso di una richiesta di un file non presente su disco.
+\subsubsezione{Relazioni d'uso di altre componenti}
+Nessuna.
+\subsubsezione{Interfacce e relazioni di uso da altre componenti}
+\textit{File} ne mantiene un'istanza.
+\subsubsezione{Attivit\`a svolte e dati trattati}
+\paragrafo{Attributi privati:}
+Nessuno.
+\paragraph{Metodi pubblici:}
+\begin{elencopuntato}[\normindent]
+\item[-] \textit{getFileNotFound()} ritorna l'errore di file non trovato.
+\end{elencopuntato}
+
 
 \sezione{Tracciamento della relazione componenti - requisiti}
 
