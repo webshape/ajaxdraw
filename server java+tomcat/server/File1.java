@@ -14,6 +14,7 @@ public class File1 {
 	File fileLoad;
 	String fileSave;
 	String text;
+	public File1(){}
 	public File1(File f) {
 		fileLoad=f;
 		fileSave=null;
@@ -59,5 +60,8 @@ public class File1 {
 	    in.close();
 	    return response;
 	    }
+    }
+    public void deleteFile(File f){
+    	f.delete();
     }
     }
