@@ -680,6 +680,7 @@ BezierCurveButton.prototype.bindCanvas = function (toolbar,canvas,canvasObj,visu
    var f;
    var self = this;
 
+
    $("#cv").bind("mousedown", function(e){
 	var f = s[0] = new BezierCurve();
 	var line = new StraightLine();
@@ -712,8 +713,8 @@ BezierCurveButton.prototype.bindCanvas = function (toolbar,canvas,canvasObj,visu
 		 f.draw(canvas);
 		 visual.getFigureSet().add(f);
 		 canvasObj.clear();
-		 visual.refresh();
-    });
+		 visual.refresh(); 
+   });
 };
 /**
  * @constructor

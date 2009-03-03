@@ -183,7 +183,7 @@ $(document).ready(function(){
   });
 
 /*Animazione tooltip su pulsante toolbar ritardata di 1 secondo*/
-  $(".toolbarButton").tooltip(
+  $("*").tooltip(
     {delay: 1000}
   );
   $(".toolbarButton").hover(
@@ -256,7 +256,8 @@ $(document).ready(function(){
      var  svg = (s.write(figureSet));
      document.write(svg);
  });
-$("#loadButton").click(function () {
+
+ $("#loadButton").click(function () {
   //TODO load link to server
    $("#loadDialog").dialog( 'close' );
  });
