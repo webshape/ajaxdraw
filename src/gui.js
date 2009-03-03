@@ -2,6 +2,17 @@
 var visual = null; /* global */
 var canvasObj = null; /* global */
 
+function showKeyPress(evt)
+{
+alert("onkeypress handler: \n"
+      + "keyCode property: " + evt.keyCode + "\n"
+      + "which property: " + evt.which + "\n"
+      + "charCode property: " + evt.charCode + "\n"
+      + "Character Key Pressed: "
+      + String.fromCharCode(evt.charCode) + "\n"
+     );
+}
+
 /*parte di jQuery */
 $(document).ready(function(){
 /* Inizio creazione GUI */
@@ -25,7 +36,9 @@ $(document).ready(function(){
   var polygonButton = new PolygonButton();toolbar.add(polygonButton);
   var freeLineButton = new FreeLineButton();toolbar.add(freeLineButton);
   var textButton = new TextButton();toolbar.add(textButton);
-  var clearCanvasButton = new ClearCanvasButton();toolbar.add(clearCanvasButton);
+  var clearCanvasButton = new ClearCanvasButton();
+  var eraseButton = new EraseButton();
+
 /* Creo il colorDialog */
   var color= {  BorderColor:"#000000", FillColor:"#000000"};
   var palette = new Palette();
@@ -239,12 +252,24 @@ $(document).ready(function(){
  $("#saveButton").click(function () {
    $("#saveDialog").dialog( 'close' );
    //TODO save link to server
+     var  s = new SVGWriter();
+     var  svg = (s.write(figureSet));
+     document.write(svg);
  });
 $("#loadButton").click(function () {
   //TODO load link to server
    $("#loadDialog").dialog( 'close' );
  });
 
+   $("#eraseButton").click(function () {
+     eraseButton.eraseElement(figureSet);
+   });
+
+   $("*").keypress(function (e){
+     if(e.keyCode==46){
+       eraseButton.eraseElement(figureSet);
+     }
+   });
 
 //fine documento
 });
