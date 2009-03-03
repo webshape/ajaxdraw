@@ -1,5 +1,3 @@
-\input{../TeX/base} %BASE!!!
- 
 \title{\TITOLODOC}
 \author{Carollo Mirko}
  
@@ -247,22 +245,25 @@ Hanno lo scopo di accelerare tutte le attivit\`a di verifica e impedire errori u
 Tali attivit\`a potranno quindi essere svolte dopo ogni singolo cambiamento, anche di piccola entit\`a. Saranno predisposte dai verificatori.
 \begin{figure}[!ht]
 \centering
-\includegraphics[scale=0.5]{flussi.png}
+\includegraphics[scale=4]{flussi.png}
 \caption{flussi}
 \end{figure} 
-\newpage
 Sono raggruppabili in 3 categorie:
 
 \begin{elenconumerato}[\textbf{}]{\subsubsecindent}
 \item \textit{Test di unit\`a}
-: realizzati tramite il software QUnit. Hanno l'obiettivo di considerare un piccola frazione del software per testare se tale porzione funziona come dovrebbe. 
+: realizzati tramite il software QUnit. Hanno l'obiettivo di considerare un piccola frazione del software per testare se tale porzione funziona come dovrebbe. Il verificatore o chiunque altro esegui questo test dovr\`a constatare che il comportamento della porzione di software testato rispetti tutti i vincoli dell'Analisi dei Requisiti. \`E necessario prestare attenzione in quanto superficialit\`a e distrazione umana possono rendere inefficaci e inutili questi test.
 \item \textit{Test di copertura}
-: realizzati tramite il software JSCoverage. Verificano che i test di Unit\`a siano stati effettuati sull'intera porzione di software stabilita. Hanno l'obiettivo di verificare se sono state saltate righe di codice. Utile per garantire l'efficacia dei test di Unit\`a. 
+: realizzati tramite il software JSCoverage. Verificano che i test di Unit\`a siano stati effettuati sull'intera porzione di software stabilita. Hanno l'obiettivo di testare se sono state saltate righe di codice. Utile per garantire l'efficacia dei test di Unit\`a. 
+Il verificatore o chiunque altro esegui questo test dovr\`a constatare che tutte le righe di codice siano state coperte nel precedente test di unit\`a, altrimenti sar\`a necessario ripetere e riutilizzare il software QUnit.
 
 \item \textit{Verifica e Validazione}
-: ampiamente descritte nella sezione 2.1. Sono realizzate dal personale dell'azienda hanno il compito di testare che tutte le singole unit\`a del software, messe assieme tra loro, soddisfino in maniera adeguata le richieste del committente. Molto utile per eliminare gli errori umani.
+: ampiamente descritte nella sezione 2.1. Sono realizzate dal personale dell'azienda hanno il compito di testare che tutte le singole unit\`a del software, messe assieme tra loro, soddisfino in maniera adeguata le richieste del committente. Molto utile per eliminare gli errori umani. 
 
 \end{elenconumerato}
+
+\subsezione{Metriche di automazione}
+Per determinare il numero di test da effettuare su un porzione di software da testare verr\`a considerata la \textit{complessit\`a ciclomatica} di tale pezzo di codice, ossia la metrica strutturale relativa al flusso di controllo. L'azienda ritiene che tale metrica descriva in maniera abbastanza precisa lo sforzo impiegato per realizzare e comprendere una porzione di software. E' compito del verificatore utilizzare tale metrica e stimare il numero di test necessari.
 
 
  
@@ -298,4 +299,4 @@ La campagna di validazione si svolger\`a in due fasi distinte:
 \subsezione{Dettaglio dell'esito della campagna di validazione}
  
 \end{document}
- 
+
