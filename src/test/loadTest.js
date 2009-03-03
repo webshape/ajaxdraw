@@ -7,7 +7,7 @@ function runLoadTest () {
 			var s = new SVGReader();
 			var fs = new Array();
 			fs = s.read(doc);
-			var r = fs[0];
+			var r = fs._figures[0];
 			equals(r.getBounds().start().x, "0", 'Rectangle: starting x');
 			equals(r.getBounds().start().y, "250", 'Rectangle: starting y');
 			equals(r.getBounds().end().x, "200", 'Rectangle: ending x');
