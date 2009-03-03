@@ -898,6 +898,7 @@ EraseButton.prototype.eraseElement = function(figureSet){
        if (f.isSelected()) {
          figureSet.rem(f);
        }
+       canvasObj.clear();
        visual.refresh();
      });
 };
