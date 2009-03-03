@@ -300,11 +300,15 @@ EdgeNumber.prototype.createWidget = function () {
 function TextFont (name) {
   this._name = name;
 }
+TextFont.accessors('_name', 'getName', 'setName');
 
 TextFont.prototype.toCSS = function () {
   return this._name;
 };
 
+TextFont.prototype.createWidget = function () {
+  return new FontSetter(this);
+};
 /**
  * @constructor
  * A collection of figures

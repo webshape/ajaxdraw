@@ -878,7 +878,7 @@ TextButton.prototype.getBuilder = function () {
 };
 
 
-TextButton.prototype.bindCanvas = function (toolbar,canvas,canvasObj,visual,figureSet,BorderColor,FillColor,textSetter) {
+TextButton.prototype.bindCanvas = function (toolbar,canvas,canvasObj,visual,figureSet,BorderColor,FillColor) {
 toolbar.deselectAll();
   this.setSelection(true);
    $("#cv").unbind('mousedown click mouseup');
@@ -889,9 +889,10 @@ toolbar.deselectAll();
    var self = this;
    $("#cv").bind("mousedown", function(e){
    //  var builder = self.getBuilder();
-     var text = textSetter.setTextString();
-     var f = s[0] = new Text(text);
-     f.setFont(new TextFont(textSetter.getTypeSetter().setFontType()));
+     //var text = textSetter.setTextString();
+     var f = s[0] = new Text(document.getElementById("textString").value);
+    // f.setFont(new TextFont(textSetter.getTypeSetter().setFontType()));
+     f.setFont(new TextFont(document.getElementById("fontTypeButton").value));
      var coords = visual.getClickCoordsWithinTarget(e);
      //f.getFillColour().getOpacity().setVal(1);
      // f.getFillColour().fromCSS(FillColor);
@@ -1158,11 +1159,9 @@ ColourDialog.prototype.create= function(){
  * @constructor
  * Properties Dialog
  */
-function PropertiesDialog(edge,font,bounding,rotation){
-  this._edgeSetter = edge;
-  this._fontSetter = font;
-  this._boundingSetter = bounding;
-  this._rotationSetter = rotation;
+function PropertiesDialog(){
+ // this._fontSetter = font;
+//  this._rotationSetter = rotation;
 }
 
 PropertiesDialog.prototype.create= function(){
@@ -1200,11 +1199,19 @@ function EdgeNumberSetter(en) {
 
 function FontSetter(font){
  //TODO
-  this._fontTypeSetter = font;
+ // this._fontTypeSetter = font;
   this._text = document.getElementById("textString").value;
- 
+   $('#fontTypeButton').get(0).value = font.getName();
+   //$("#fontSetterZone").css({"display":"block"});
+   $('#submitFont').unbind('click');
+   $('#submitFont').click(function (e) {
+     font.setName($('#fontTypeButton').get(0).value);
+     canvasObj.clear();
+     visual.refresh();
+   });
 }
 
+/*
 FontSetter.prototype.setTextString = function(){
   this._text = document.getElementById("textString").value;
   return this._text;
@@ -1223,7 +1230,7 @@ function FontTypeSetter(){
 FontTypeSetter.prototype.setFontType = function(){
   this._type = document.getElementById("fontTypeButton").value;
   return this._type;
-};
+};*/
 
 
 
