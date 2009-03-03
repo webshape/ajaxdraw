@@ -1,6 +1,12 @@
+body{
+	background-color: #faf8f8;
+}
+
+
 canvas {
 	/* background-color: rgb(230, 240, 230); */
-	
+		background-color: #ffffff;
+
 	margin-left: 5em;
   	margin-top:0.1em;
   	border-style: solid;

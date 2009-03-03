@@ -476,6 +476,48 @@ SelectionButton.prototype.bindCanvas = function (toolbar,canvas,canvasObj,visual
                         canvasObj.clear();
 	                visual.refresh();
                      });
+	/*spostamento tramite tastierino numerico */
+	 $("*").keypress(function (e){
+	   if(e.keyCode==37){ //left
+	       var start = actualFigure.getBounds().start();
+               var end = actualFigure.getBounds().end();
+	       start.x -= 5;
+	       end.x -= 5;
+	       prec.x-=5;
+	       canvasObj.clear();
+	       visual.refresh();
+	   }
+	   else if(e.keyCode==38){ //up
+	       var start = actualFigure.getBounds().start();
+               var end = actualFigure.getBounds().end();
+	       start.y -= 5;
+	       end.y -= 5;
+	       prec.y-=5;
+	       canvasObj.clear();
+	       visual.refresh();
+	   }
+	   else if(e.keyCode==39){ //right
+	       var start = actualFigure.getBounds().start();
+               var end = actualFigure.getBounds().end();
+	       start.x += 5;
+	       end.x += 5;
+	       prec.x+=5;
+	       canvasObj.clear();
+	       visual.refresh();
+	   }
+	   else if(e.keyCode==40){ //down
+	       var start = actualFigure.getBounds().start();
+               var end = actualFigure.getBounds().end();
+	       start.y += 5;
+	       end.y += 5;
+	       prec.y+=5;
+	       canvasObj.clear();
+	       visual.refresh();
+	   }
+	 });
+
+
+
 	self._handleCtrlPoint(coord, actualFigure);
       }
   });
