@@ -428,7 +428,7 @@ SelectionButton.prototype._handleCtrlPoint = function (pt, f) {
 SelectionButton.prototype.bindCanvas = function (toolbar,canvas,canvasObj,visual,figureSet) {
   var self = this;
   toolbar.deselectAll();
-
+  $(".Dialog2").height(390);
   $("#cv").unbind('mousedown mousemove click mouseup');
   $("#cv").bind("mousedown", function(e){
       //visual.deselectAll(figureSet);
@@ -713,7 +713,7 @@ BezierCurveButton.prototype.bindCanvas = function (toolbar,canvas,canvasObj,visu
 		 f.draw(canvas);
 		 visual.getFigureSet().add(f);
 		 canvasObj.clear();
-		 visual.refresh(); 
+		 visual.refresh();
    });
 };
 /**
@@ -1169,7 +1169,8 @@ PropertiesDialog.prototype.create= function(){
    $("#propertiesDialog").dialog({
     	position: "right",
     	width: 230,
-	height: 280
+	height: 210,
+	dialogClass: "Dialog2"
     });
 };
 
@@ -1194,40 +1195,14 @@ function EdgeNumberSetter(en) {
                          });
 }
 
-/*  this._polygonEdgeNumber=3;
-}
 
 
-EdgeNumberSetter.prototype.setEdgeNumber = function(value){
-  this._polygonEdgeNumber=value;
-};
 
-EdgeNumberSetter.prototype.getEdgeNumber = function(){
-  return this._polygonEdgeNumber;
-};
-  */
-/*
-EdgeNumberSetter.prototype.create = function(){
-   $("#edgeNumberDialog").dialog({
-   // position: ["right","top"],
-    height: 100,
-    width:320,
-    dialogClass: "edgeDialog"
-    });
-
-   $("#edgeSetter").click(function () {
-     this._polygonEdgeNumber=parseInt(document.getElementById("edgeNumber").value,10);
-     $("#edgeNumberDialog").dialog("close");
-   });
-};
-*/
-
-
-function FontSetter(size,font){
+function FontSetter(font){
  //TODO
-  this._fontSizeSetter = size;
   this._fontTypeSetter = font;
   this._text = document.getElementById("textString").value;
+ 
 }
 
 FontSetter.prototype.setTextString = function(){
@@ -1235,17 +1210,11 @@ FontSetter.prototype.setTextString = function(){
   return this._text;
 };
 
-FontSetter.prototype.getSizeSetter = function(){
-  return this._fontSizeSetter;
-};
 
 FontSetter.prototype.getTypeSetter = function(){
   return this._fontTypeSetter;
 };
 
-function FontSizeSetter(){
-  this._size = document.getElementById("fontSizeButton").value;
-};
 
 function FontTypeSetter(){
   this._type = document.getElementById("fontTypeButton").value;

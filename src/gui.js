@@ -2,17 +2,6 @@
 var visual = null; /* global */
 var canvasObj = null; /* global */
 
-function showKeyPress(evt)
-{
-alert("onkeypress handler: \n"
-      + "keyCode property: " + evt.keyCode + "\n"
-      + "which property: " + evt.which + "\n"
-      + "charCode property: " + evt.charCode + "\n"
-      + "Character Key Pressed: "
-      + String.fromCharCode(evt.charCode) + "\n"
-     );
-}
-
 /*parte di jQuery */
 $(document).ready(function(){
 /* Inizio creazione GUI */
@@ -56,13 +45,9 @@ $(document).ready(function(){
   ColourDialog.prototype.create();
 
 /* Creo dialog delle proprietà */
-  //var edgeNumberSetter = new EdgeNumberSetter();
-  //edgeNumberSetter.create();
-  //$("#edgeNumberDialog").dialog("close");
-  //var boundingRectangleSetter = new BoundingRectangleSetter();
-  var fontSizeSetter = new FontSizeSetter();
+
   var fontTypeSetter = new FontTypeSetter();
-  var fontSetter = new FontSetter(fontSizeSetter,fontTypeSetter);
+  var fontSetter = new FontSetter(fontTypeSetter);
   var rotationSetter = new RotationSetter();
   var propertiesDialog = new PropertiesDialog(/*edgeNumberSetter,*/fontSetter,/*boundingRectangleSetter,*/rotationSetter);
   propertiesDialog.create();
@@ -82,21 +67,22 @@ $(document).ready(function(){
   });
 
   $("#clearCanvasButton").click(function () {
-	visual.deselectAll(figureSet);
+    visual.deselectAll(figureSet);
     clearCanvasButton.clearCanvas(canvasObj,visual,figureSet);
     canvasObj.clear();
     visual.refresh();
   });
 
   $("#selectionButton").click(function () {
-    $("#fontSetterZone").css({"display":"none"});
-    $("#edgeSetterZone").css({"display":"none"});
+    $("#edgeSetterZone").css({"display":"block"});
+    $("#fontSetterZone").css({"display":"block"});
     toolbar.deselectAll();
     selectionButton.bindCursor("selection");
     selectionButton.bindCanvas(toolbar,canvas,canvasObj,visual,figureSet);
   });
 
   $("#zoomButton").click(function () {
+    $(".Dialog2").height(210);
     visual.deselectAll(figureSet);
     zoomButton.bindCursor("zoom");
     $("#fontSetterZone").css({"display":"none"});
@@ -114,6 +100,7 @@ $(document).ready(function(){
 
   $("#straightLineButton").click(function () {
     visual.deselectAll(figureSet);
+    $(".Dialog2").height(210);
     $("#edgeSetterZone").css({"display":"none"});
     $("#fontSetterZone").css({"display":"none"});
     toolbar.deselectAll();
@@ -123,6 +110,7 @@ $(document).ready(function(){
 
   $("#bezierCurveButton").click(function () {
 	visual.deselectAll(figureSet);
+    $(".Dialog2").height(210);
     $("#edgeSetterZone").css({"display":"none"});
     $("#fontSetterZone").css({"display":"none"});
     toolbar.deselectAll();
@@ -132,6 +120,7 @@ $(document).ready(function(){
 
   $("#squareButton").click(function () {
 	visual.deselectAll(figureSet);
+    $(".Dialog2").height(210);
     $("#edgeSetterZone").css({"display":"none"});
     $("#fontSetterZone").css({"display":"none"});
     toolbar.deselectAll();
@@ -141,6 +130,7 @@ $(document).ready(function(){
 
   $("#circleButton").click(function () {
 	visual.deselectAll(figureSet);
+    $(".Dialog2").height(210);
     $("#edgeSetterZone").css({"display":"none"});
     $("#fontSetterZone").css({"display":"none"});
     circleButton.bindCursor("circle");
@@ -149,7 +139,8 @@ $(document).ready(function(){
   });
 
   $("#polygonButton").click(function () {
-	visual.deselectAll(figureSet);
+    visual.deselectAll(figureSet);
+    $(".Dialog2").height(300);
     $("#edgeSetterZone").css({"display":"block"});
     $("#fontSetterZone").css({"display":"none"});
     circleButton.bindCursor("polygon");
@@ -159,7 +150,8 @@ $(document).ready(function(){
   });
 
   $("#freeLineButton").click(function () {
-	visual.deselectAll(figureSet);
+    visual.deselectAll(figureSet);
+    $(".Dialog2").height(210);
     $("#edgeSetterZone").css({"display":"none"});
     $("#fontSetterZone").css({"display":"none"});
     toolbar.deselectAll();
@@ -168,9 +160,10 @@ $(document).ready(function(){
   });
 
   $("#textButton").click(function () {
-	visual.deselectAll(figureSet);
+    visual.deselectAll(figureSet);
     $("#edgeSetterZone").css({"display":"none"});
     $("#fontSetterZone").css({"display":"block"});
+    $(".Dialog2").height(300);
     toolbar.deselectAll();
     textButton.bindCursor("text");
     textButton.bindCanvas(toolbar,canvas,canvasObj,visual,figureSet,color.BorderColor,color.FillColor,fontSetter);
@@ -247,6 +240,15 @@ $(document).ready(function(){
       openFill = false;
     }
   );
+
+
+
+
+
+
+
+
+
 
   //Save & Load Dialogs handlers
  $("#saveButton").click(function () {

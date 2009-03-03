@@ -88,7 +88,7 @@
 								 $("#propertiesDialog").dialog({
     								position: "right",
     								width: 230,
-									height: 280
+									height: 210
   									  });' id="500015"><a href="#">Proprieta'</a>	
 		</ul>
 	</li>
@@ -261,23 +261,18 @@ menuBar5.init();
 		<input id="x" type="text" size="2" value="" />&nbsp;&nbsp;   Y:&nbsp;
 		<input id="y" type="text" size="2"/>
 	</p>
-        <input id="submitRect" type="button" value="Cambia" />
-	<p id="edgeSetterZone" style="display:none">N.di lati: 
+      <input id="submitRect" type="button" value="Cambia" />
+      
+	<p id="edgeSetterZone" style="display:none">
+      <span id="polygonTitle"> Poligono:</span>	<br/>
+	N.di lati: 
 		<input id="edgeNumber" type="text" maxlength="4" size="6" value="3"/>
-	<!--  	<span>
-			<input type="button" id="edgeSetter" value="ok"/>
-		</span> -->
-        <input id="submitEdge" type="button" value="Cambia" />
+      <input id="submitEdge" type="button" value="Cambia" />
 	</p>
-	<p id="fontSetterZone" style="display:none">Testo: 
+	<p id="fontSetterZone" style="display:none">
+<span id="textTitle">Testo:</span> 
 	<input id="textString" type="text" value="canvas"/>		
-		<select id="fontSizeButton">
- 			 <option value="12" >12px</option>
- 			 <option value="14" >14px</option>  
- 			 <option value="16" >16px</option>  
- 			 <option value="18" >18px</option>  
- 			 <option value="12" >20px</option>  
-		</select>
+		
 		<select id="fontTypeButton">
  			 <option value="sans-serif" >sans-serif</option>
  			 <option value="serif" >serif</option>  
@@ -285,7 +280,7 @@ menuBar5.init();
  			 <option value="monospace" >monospace</option>  
  			 <option value="fantasy" >fantasy</option>  
 		</select>
-		
+		<input id="submitFont" type="button" value="Cambia" />
 	</p>
 	
 </div>

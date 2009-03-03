@@ -131,6 +131,14 @@ margin-left:0.5em;
 
 
 
+
+#polygonTitle,#textTitle{
+text-align: center;
+text-transform: uppercase;
+text-decoration: underline;
+}
+
+
 /********************AVANZATE******************/
 
 /*Tooltip CSS*/
