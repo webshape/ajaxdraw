@@ -878,6 +878,29 @@ toolbar.deselectAll();
     });
 };
 
+/**
+ * @constructor
+ * The erase button
+ */
+function EraseButton () {
+  Button.call(this);
+  this._id = document.getElementById("eraseButton");
+}
+
+EraseButton.prototype = new Button();
+
+EraseButton.prototype.getId = function (){
+  return this._id;
+};
+
+EraseButton.prototype.eraseElement = function(figureSet){
+     figureSet.each(function (f) {
+       if (f.isSelected()) {
+         figureSet.rem(f);
+       }
+       visual.refresh();
+     });
+};
 
 
 /**
