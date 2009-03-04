@@ -119,7 +119,7 @@ Figure.prototype.clone = function (){
   // translate
   b.start().y -= npx;
   b.end().y -= npx;
-  
+
   return copy;
 };
 
@@ -222,7 +222,7 @@ Colour.prototype.set = function (r, g, b, o) {
 
 /**
  * Set the RGB components of the colour from a CSS representation
- * 
+ *
  * @param {String} repr the CSS representation
  */
 Colour.prototype.fromCSS = function (repr) {
@@ -290,7 +290,7 @@ FillColour.prototype.createWidget = function () {
 function TextColour (r, g, b, o) {
   FillColour.call(this, r, g, b, o);
 }
-  
+
 TextColour.prototype = new FillColour();
 
 /**
@@ -325,6 +325,24 @@ TextFont.prototype.toCSS = function () {
 TextFont.prototype.createWidget = function () {
   return new FontSetter(this);
 };
+
+
+/**
+ * @constructor
+ * String of a text area
+ * @param {String} name font string
+ */
+function TextString (name) {
+  this._name = name;
+}
+
+TextString.accessors('_name', 'getName', 'setName');
+
+TextString.prototype.createWidget = function () {
+  return new TextStringSetter(this);
+};
+
+
 /**
  * @constructor
  * A collection of figures
@@ -469,9 +487,9 @@ FigureSet.prototype.selectFigure = function (where, scale, offset) {
                 var b = f.getBounds();
                 var s = b.start();
                 var e = b.end();
-                if (((s.x < where.x && where.x < e.x) 
+                if (((s.x < where.x && where.x < e.x)
                   || (e.x < where.x && where.x < s.x))
-                  && ((s.y < where.y && where.y < e.y) 
+                  && ((s.y < where.y && where.y < e.y)
                   || (e.y < where.y && where.y < s.y))) {
                   textSelected = f;
                 }
@@ -714,14 +732,14 @@ FreeLine.prototype.extend2 = function (pt) {
   //if (this._pts.length === 0) {
     // first point
     //b.setStart(new Point(pt.x, pt.y));
-    //b.setEnd(new Point(pt.x, pt.y)); // min 
+    //b.setEnd(new Point(pt.x, pt.y)); // min
     //this._pts.push(new Point(0, 0));
     //return;
   //}
 
   //var w = b.w();
   //var h = b.h();
-  
+
   // if needed make the BoundingRectangle grow
 /*  if (s.x <= e.x) {
     if (pt.x < s.x) {
@@ -771,11 +789,11 @@ FreeLine.prototype.extend2 = function (pt) {
     pt.y -= s.y;
     pt.y /= h;
   }
-    
+
   */
   //pt.x -= s.x;
   //pt.y -= s.y;
-  
+
   //this._pts.push(pt);
 
 };
@@ -788,12 +806,12 @@ FreeLine.prototype.extend2 = function (pt) {
 FreeLine.prototype.move = function (pt, to) {
   var i = null;
   to = new Point(to.x, to.y); // copy
-  
+
   // amazingly slow
   var pts = this.getPoints(); // absolute points
   for (i = 0; i < pts.length; ++i) {
     var p = pts[i];
-    if (Math.round(p.x) == Math.round(pt.x) && 
+    if (Math.round(p.x) == Math.round(pt.x) &&
         Math.round(p.y) == Math.round(pt.y)) {
       break;
     }
@@ -972,7 +990,7 @@ FreeLine.prototype.drawSelection = function (c) {
   if (!this.isSelected()) {
     return;
   }
-  
+
   var pts = this.getPoints();
   var ctx = c.getContext('2d');
   ctx.save();
@@ -1019,7 +1037,7 @@ BezierCurve.prototype = new FreeLine();
  */
 function Text (txt) {
   Figure.call(this);
-  this._txt = txt;
+  this._txt = new TextString(document.getElementById('textString').value);
   this._fillColour = new TextColour(0, 0, 0, new Opacity(1));
   this._font = new TextFont('sans-serif');
   // check for text support
@@ -1044,6 +1062,7 @@ Text.reader('_fillColour', 'getTextColour');
 
 Text.prototype.eachProperty = function (fn) {
   Figure.prototype.eachProperty.call(this, fn);
+  fn.call(this, this._txt);
   fn.call(this, this._font);
   fn.call(this, this._colour);
 };
@@ -1057,9 +1076,9 @@ Text.prototype.draw = function (c) {
   var y = b.start().y > b.end().y ? b.start().y : b.end().y;
   this.getTextColour().applyToContext(ctx);
   ctx.beginPath();
-  ctx.fillText(this._txt, x, y, Math.abs(b.w()));
+  ctx.fillText(this._txt.getName(), x, y, Math.abs(b.w()));
   this.getBorderColour().applyToContext(ctx);
-  ctx.strokeText(this._txt, x, y, Math.abs(b.w()));
+  ctx.strokeText(this._txt.getName(), x, y, Math.abs(b.w()));
   ctx.closePath();
   ctx.restore();
 };
@@ -1075,7 +1094,7 @@ Text.prototype.fallbackDraw = function (c) {
   var y = b.start().y > b.end().y ? b.start().y : b.end().y;
   var font = this._font.toCSS();
   var size = Math.abs(b.h());
-  var len = CanvasTextFunctions.measure(font, size, this._txt);
+  var len = CanvasTextFunctions.measure(font, size, this._txt.getName());
 //  alert(size + ' ' + len + ' ' + Math.abs(b.w()));
   var w = Math.abs(b.w());
   if (len > w) {
@@ -1083,8 +1102,8 @@ Text.prototype.fallbackDraw = function (c) {
   }
   ctx.beginPath();
   this.getBorderColour().applyToContext(ctx);
-  CanvasTextFunctions.draw(ctx, this._font.toCSS(), 
-                           size, x, y, this._txt);
+  CanvasTextFunctions.draw(ctx, this._font.toCSS(),
+                           size, x, y, this._txt.getName());
   ctx.closePath();
   ctx.restore();
 };

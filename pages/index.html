@@ -127,6 +127,23 @@ menuBar5.init();
 		<input title="Crea poligoni" class="toolbarButton" id="polygonButton" type="button"/><br/>
 		<input title="Disegna linee a mano libera" class="toolbarButton" id="freeLineButton" type="button"/><br/>
 		<input title="Crea oggetti testuali" class="toolbarButton" id="textButton" type="button"/><br/>
+		<div id="saveLoadZone"><br/>
+		<span >
+			<select id="scaleButton" title="Scegli la percentuale di riscalamento">
+				<option value="2" >200%</option>
+ 			 	<option value="1.5" >150%</option> 						
+ 				<option value="1" >100%</option>
+ 			 	<option value="0.5" >50%</option>  
+ 			 	<option value="0.25" >25%</option> 
+			</select>
+		</span><br/>
+		<span>
+			<input type="button" id="clearCanvasButton" name="ClearButton" value="Svuota"/>
+		</span><br/>
+		<span>
+			<input type="button" id="eraseButton" name="EraseButton" value="Cancella"/>
+		</span>
+		</div>
 	</div>
 	
 	<!-- Canvas -->
@@ -136,8 +153,8 @@ menuBar5.init();
 	
 	
 	<!--  Zona di salvataggio provvisoria -->
-	<div id="saveLoadZone">
-		<span >Zoom:
+	<!-- 	<div id="saveLoadZone">
+	 <span >Zoom:
 			<select id="scaleButton" title="Scegli la percentuale di riscalamento">
 				<option value="2" >200%</option>
  			 	<option value="1.5" >150%</option> 						
@@ -152,8 +169,8 @@ menuBar5.init();
 		<span>
 			<input type="button" id="eraseButton" name="EraseButton" value="Cancella elemento"/>
 		</span>
-	</div>
-	<br/>
+	</div> 
+	<br/>-->
 	
 	
 	<!-- Tavolozza nella parte bassa dello schermo -->

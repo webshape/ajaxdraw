@@ -1,5 +1,5 @@
 body{
-	background-color: #faf8f8;
+	background-color: #efefef;
 }
 
 
@@ -7,7 +7,7 @@ canvas {
 	/* background-color: rgb(230, 240, 230); */
 		background-color: #ffffff;
 
-	margin-left: 5em;
+	margin-left: 7em;
   	margin-top:0.1em;
   	border-style: solid;
   	border-width: 2px 2px 2px 2px ;
@@ -81,6 +81,7 @@ margin-left:0.5em;
 	background-color:#F4F3F2;
 	background-repeat: no-repeat;
 	background-position: center;
+	margin-left:1em;
 	
 	
 }
