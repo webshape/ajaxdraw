@@ -27,6 +27,7 @@ $(document).ready(function(){
 		    var polygonButton = new PolygonButton();toolbar.add(polygonButton);//7
   var freeLineButton = new FreeLineButton();toolbar.add(freeLineButton);//8
   var textButton = new TextButton();toolbar.add(textButton);//9
+  //var cloneButton = new CloneButton();toolbar.add(cloneButton);//10
   var clearCanvasButton = new ClearCanvasButton();
   var eraseButton = new EraseButton();
 
@@ -171,6 +172,15 @@ $(document).ready(function(){
     textButton.bindCanvas(toolbar,canvas,canvasObj,visual,figureSet,color.BorderColor,color.FillColor);
 
   });
+
+//  $("#cloneButton").click(function () {
+  //  visual.deselectAll(figureSet);
+  
+  //  $(".Dialog2").height(300);
+  //  toolbar.deselectAll();
+  //  cloneButton.bindCursor("clone");
+
+  //}); 
 
   $(".toolbarButton").click(function(){
     $(".toolbarButton").css({"background-color":"#F4F3F2"}), //tutti grigio chiaro
