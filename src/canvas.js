@@ -698,11 +698,11 @@ BezierCurveButton.prototype.bindCanvas = function (toolbar,canvas,canvasObj,visu
    canvasObj.clear();
    visual.refresh();//per togliere un'eventuale selezione
    var s = [];
-   var f;
+   //var f;
+   var f = new FreeLine();
    var self = this;
    var pointcounter = 4;
-   $("#cv").bind("click", function(e){
-	var f = s[0] = new BezierCurve();
+   $("#cv").bind("mousedown", function(e){
 	f.getBorderColour().getOpacity().setVal(1);
 	f.getBorderColour().fromCSS(borderColour);
 	var coords = visual.getClickCoordsWithinTarget(e);
@@ -713,8 +713,9 @@ BezierCurveButton.prototype.bindCanvas = function (toolbar,canvas,canvasObj,visu
 	  visual.getFigureSet().add(f);
 	  canvasObj.clear();
 	  visual.refresh();
-	 // toolbar.rebind(canvas,canvasObj,visual,figureSet,borderColor,fillColor);
-	  this.bindCanvas(canvas,canvasObj,visual,figureSet,borderColor,fillColor);
+	  pointcounter = 4;
+	  f = new FreeLine();
+	  this.rebind(canvas,canvasObj,visual,figureSet,borderColor,fillColor);
 	}
    });
 
