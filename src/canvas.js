@@ -83,23 +83,17 @@ Canvas.prototype.clear = function () {
 
 };
 
-
-Canvas.prototype.getHeight = function(){
-	return this._height;
-};
-
-Canvas.prototype.getWidth = function(){
-	return this._width;
-};
+Canvas.reader('_height','getHeight');
+Canvas.reader('_width','getWidth');
 
 Canvas.prototype.setHeight = function(val){
 	this._height = val;
-	this.setAttribute('height', val);
+	document.getElementById("cv").setAttribute('height', val);
 };
 
 Canvas.prototype.setWidth = function(val){
 	this._width = val;
-	this.setAttribute('width', val);
+	document.getElementById("cv").setAttribute('width', val);
 };
 /**
  * @constructor
@@ -199,6 +193,25 @@ Visualization.prototype.getClickCoordsWithinTarget = function(event){
 
 	return coords;*/
 };
+
+Visualization.prototype.setCanvasDimension = function(canvasObj,height,width){
+  if(width == 1280 && height==800){
+    canvasObj.setWidth(760);
+    canvasObj.setHeight(480);
+  }
+  else if(width == 1024 && height==768){
+    canvasObj.setWidth(506);
+    canvasObj.setHeight(448);
+  }
+  else if(width == 1680 && height==1050){
+    canvasObj.setWidth(1000);
+    canvasObj.setHeight(750);
+  }
+
+};
+
+
+
 
 
 /**

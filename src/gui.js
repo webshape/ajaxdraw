@@ -6,13 +6,15 @@ var canvasObj = null; /* global */
 $(document).ready(function(){
 /* Inizio creazione GUI */
   var page = new Page();
+  var screenWidth = window.screen.width;
+  var screenHeight = window.screen.height;
   page.loadStylesheet();
   canvasObj = new Canvas();
   var canvas = canvasObj.getId();
-
   var ctx = canvas.getContext("2d");   //prendo il contesto
   var figureSet = new FigureSet();
   visual = new Visualization(figureSet);
+  visual.setCanvasDimension(canvasObj,screenHeight,screenWidth);
   //Toolbar Creation
   var toolbar = new Toolbar();
   var selectionButton = new SelectionButton();toolbar.add(selectionButton);
