@@ -46,10 +46,10 @@ $(document).ready(function(){
 
 /* Creo dialog delle proprietà */
 
-  var fontTypeSetter = new FontTypeSetter();
-  var fontSetter = new FontSetter(fontTypeSetter);
-  var rotationSetter = new RotationSetter();
-  var propertiesDialog = new PropertiesDialog(/*edgeNumberSetter,*/fontSetter,/*boundingRectangleSetter,*/rotationSetter);
+ // var fontTypeSetter = new FontTypeSetter();
+ // var fontSetter = new FontSetter(fontTypeSetter);
+ // var rotationSetter = new RotationSetter();
+  var propertiesDialog = new PropertiesDialog();
   propertiesDialog.create();
 
 
@@ -166,7 +166,7 @@ $(document).ready(function(){
     $(".Dialog2").height(300);
     toolbar.deselectAll();
     textButton.bindCursor("text");
-    textButton.bindCanvas(toolbar,canvas,canvasObj,visual,figureSet,color.BorderColor,color.FillColor,fontSetter);
+    textButton.bindCanvas(toolbar,canvas,canvasObj,visual,figureSet,color.BorderColor,color.FillColor);
 
   });
 

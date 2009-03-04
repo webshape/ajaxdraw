@@ -108,6 +108,22 @@ Figure.prototype.drawSelection = function (c) {
 };
 
 /**
+ * Copy of this figure, translated 10 px up
+ * @return {Figure} the copy
+ */
+Figure.prototype.clone = function (){
+  var copy = {}; // empty object
+  var npx = 10; // number of pixel to translate
+  jQuery.extend(true, copy, this); // deep copy
+  var b = copy.getBounds();
+  // translate
+  b.start().y -= npx;
+  b.end().y -= npx;
+  
+  return copy;
+};
+
+/**
  * @constructor
  * Rectangle containing a figure
  * Represent both position and size
@@ -300,11 +316,15 @@ EdgeNumber.prototype.createWidget = function () {
 function TextFont (name) {
   this._name = name;
 }
+TextFont.accessors('_name', 'getName', 'setName');
 
 TextFont.prototype.toCSS = function () {
   return this._name;
 };
 
+TextFont.prototype.createWidget = function () {
+  return new FontSetter(this);
+};
 /**
  * @constructor
  * A collection of figures
