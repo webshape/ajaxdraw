@@ -545,9 +545,16 @@ ZoomButton.prototype.bindCanvas = function (toolbar,canvas,canvasObj,visual,figu
   $("#cv").bind("click", function(e){
                   var factor = document.getElementById("scaleButton").value;
                   var start = visual.getClickCoordsWithinTarget(e);
+		  start.x -= start.x/factor;
+                  start.y -= start.y/factor;
                   visual.setOffset(start);
                   visual.setScale(new Scale(factor));
-                  canvasObj.clear();
+		  var c = $("#cv").get(0);
+		 // visual.getOffset().x = start.x - (c.width/2)/factor;   //centrato
+		 // visual.getOffset().y = start.y - (c.height/2)/factor;
+                //  visual.getOffset().x -= start.x /factor;
+                //  visual.getOffset().y -= start.y /factor;
+		  canvasObj.clear();
                   visual.refresh();
                 });
 };
@@ -1194,13 +1201,12 @@ function EdgeNumberSetter(en) {
                          });
 }
 
-
-
-
+/**
+ * @constructor
+ * Font Style Setter
+ * @param {TextFont} font the font type
+ */
 function FontSetter(font){
- //TODO
- // this._fontTypeSetter = font;
-  this._text = document.getElementById("textString").value;
    $('#fontTypeButton').get(0).value = font.getName();
    //$("#fontSetterZone").css({"display":"block"});
    $('#submitFont').unbind('click');
@@ -1210,28 +1216,6 @@ function FontSetter(font){
      visual.refresh();
    });
 }
-
-/*
-FontSetter.prototype.setTextString = function(){
-  this._text = document.getElementById("textString").value;
-  return this._text;
-};
-
-
-FontSetter.prototype.getTypeSetter = function(){
-  return this._fontTypeSetter;
-};
-
-
-function FontTypeSetter(){
-  this._type = document.getElementById("fontTypeButton").value;
-};
-
-FontTypeSetter.prototype.setFontType = function(){
-  this._type = document.getElementById("fontTypeButton").value;
-  return this._type;
-};*/
-
 
 
 function RotationSetter(){
