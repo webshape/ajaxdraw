@@ -547,6 +547,9 @@ ZoomButton.prototype.bindCanvas = function (toolbar,canvas,canvasObj,visual,figu
                   var start = visual.getClickCoordsWithinTarget(e);
                   visual.setOffset(start);
                   visual.setScale(new Scale(factor));
+						var c = $("#cv").get(0);
+						visual.getOffset().x = start.x - (c.width/2)/factor;
+						visual.getOffset().y = start.y - (c.height/2)/factor;
                   canvasObj.clear();
                   visual.refresh();
                 });
