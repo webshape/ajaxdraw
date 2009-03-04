@@ -1037,7 +1037,7 @@ BezierCurve.prototype = new FreeLine();
  */
 function Text (txt) {
   Figure.call(this);
-  this._txt = new TextString(document.getElementById('textString').value);
+  this._txt = new TextString(txt.getName());
   this._fillColour = new TextColour(0, 0, 0, new Opacity(1));
   this._font = new TextFont('sans-serif');
   // check for text support

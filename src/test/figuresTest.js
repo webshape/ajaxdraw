@@ -120,7 +120,7 @@ test('FigureSet.selectFigure', function () {
               'line with polygon over');
        equals(fs.selectFigure(new Point(202, 200)), null, 
               'line with polygon over, point out of both');
-       var t = new Text('#############');
+       var t = new Text(new TextString('#############'));
        t.getBounds().setStart(new Point(0, 0));
        t.getBounds().setEnd(new Point(50, 50));
        fs.add(t);
@@ -245,10 +245,10 @@ test('FreeLine', function () {
      });
 
 test('Text', function () {
-       var t = new Text('aloha!');
+       var t = new Text(new TextString('aloha!'));
        t.getTextColour().set(1, 2, 3, new Opacity(1));
        equals(t.getTextColour().toCSS(), '#010203', 'getTextColour');
-       equals(t.getText(), 'aloha!', 'getText');
+       equals(t.getText().getName(), 'aloha!', 'getText');
        t.setText('new');
        equals(t.getText(), 'new', 'setText');
        equals(t.getFont().toCSS(), 'sans-serif', 'getFont');
