@@ -959,6 +959,23 @@ toolbar.deselectAll();
 
 /**
  * @constructor
+ * The Clone button
+ */
+function CloneButton () {
+  Button.call(this);
+  this._id = document.getElementById("CloneButton");
+}
+
+CloneButton.prototype = new Button();
+
+CloneButton.prototype.getId = function (){
+  return this._id;
+};
+
+
+
+/**
+ * @constructor
  * The erase button
  */
 function EraseButton () {
