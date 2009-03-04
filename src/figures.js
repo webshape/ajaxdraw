@@ -201,6 +201,25 @@ Opacity.prototype.applyToContext = function (ctx) {
 
 /**
  * @constructor
+ * Rotation property
+ * @param rad angle of rotation 
+ */
+function Rotation(angle) {
+this._rad;
+}
+
+Rotation.prototype.set = function (rad){
+this._rad = rad;
+
+Rotation.reader('_rad', 'getAngle');
+
+
+Rotation.prototype.createWidget = function (){
+return new RotationSetter(this, true);
+};
+
+/**
+ * @constructor
  * An RGB coulour
  * @param r red component
  * @param g green component
