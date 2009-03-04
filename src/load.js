@@ -80,11 +80,8 @@ XMLParser.prototype.parsing = function (doc) {
   }
   catch(e) {
 	 try { //Firefox
-//      var xmlDoc = document.implementation.createDocument("", "", null);
-		//	xmlDoc.async = false;
 		var parser = new DOMParser();
 		var xmlDoc = parser.parseFromString(doc, "text/xml");
-//		xmlDoc.loadXML(doc);
 		if (xmlDoc.documentElement.nodeName == "parsererror") {
 		  alert(xmlDoc.documentElement.childNodes[0].nodeValue);
         return(null);
