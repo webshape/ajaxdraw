@@ -545,12 +545,16 @@ ZoomButton.prototype.bindCanvas = function (toolbar,canvas,canvasObj,visual,figu
   $("#cv").bind("click", function(e){
                   var factor = document.getElementById("scaleButton").value;
                   var start = visual.getClickCoordsWithinTarget(e);
+		  start.x -= start.x/factor;
+                  start.y -= start.y/factor;
                   visual.setOffset(start);
                   visual.setScale(new Scale(factor));
-						var c = $("#cv").get(0);
-						visual.getOffset().x = start.x - (c.width/2)/factor;
-						visual.getOffset().y = start.y - (c.height/2)/factor;
-                  canvasObj.clear();
+		  var c = $("#cv").get(0);
+		 // visual.getOffset().x = start.x - (c.width/2)/factor;   //centrato
+		 // visual.getOffset().y = start.y - (c.height/2)/factor;
+                //  visual.getOffset().x -= start.x /factor;
+                //  visual.getOffset().y -= start.y /factor;
+		  canvasObj.clear();
                   visual.refresh();
                 });
 };
