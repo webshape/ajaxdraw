@@ -205,17 +205,13 @@ Opacity.prototype.applyToContext = function (ctx) {
  * @param rad angle of rotation 
  */
 function Rotation(angle) {
-this._rad;
+  this._rad = angle;
 }
 
-Rotation.prototype.set = function (rad){
-this._rad = rad;
-
-Rotation.reader('_rad', 'getAngle');
-
+Rotation.accessors('_rad', 'getAngle', 'setAngle');
 
 Rotation.prototype.createWidget = function (){
-return new RotationSetter(this, true);
+  return new RotationSetter(this, true);
 };
 
 /**
