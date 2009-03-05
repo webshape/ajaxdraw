@@ -493,8 +493,9 @@ FigureSet.prototype.selectFigure = function (where, scale, offset) {
 
   c.width = 1000;
   c.height = 1000;
+  var absWhere = where;
   if (scale) {
-    where = scale.toAbs(where, offset);
+    absWhere = scale.toAbs(where, offset);
     scale.applyToContext(c.getContext('2d'), offset);
   }
   //var c = document.getElementById('cv');
@@ -530,7 +531,7 @@ FigureSet.prototype.selectFigure = function (where, scale, offset) {
               }
             });
   // get the selected pixel
-  var selection = c.getContext('2d').getImageData(where.x, where.y, 1, 1).data;
+  var selection = c.getContext('2d').getImageData(absWhere.x, absWhere.y, 1, 1).data;
   var col = new Colour(selection[0], selection[1], selection[2], o);
 //  alert(col.toCSS());
   var res = fs[col.toCSS()];
