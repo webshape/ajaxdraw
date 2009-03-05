@@ -491,15 +491,16 @@ FigureSet.prototype.selectFigure = function (where, scale, offset) {
      c = window.G_vmlCanvasManager.initElement(c);
   }
 
-  c.width = 1000;
-  c.height = 1000;
+  var cv = document.getElementById('cv');
+  c.width = cv.width;
+  c.height = cv.height;
+  
   var absWhere = where;
   if (scale) {
     absWhere = scale.toAbs(where, offset);
     scale.applyToContext(c.getContext('2d'), offset);
   }
-  //var c = document.getElementById('cv');
-  //c.width = c.width;
+
   c.getContext('2d').lineWidth = 10; // easier selection of lines
   var textSelected = null;
   this.each(function (f) {
