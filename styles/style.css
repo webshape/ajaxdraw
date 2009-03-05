@@ -47,7 +47,7 @@ a.button:hover span{background-position: bottom right}
 }
 	
 #palette{	
-	margin-left: 5em;
+	margin-left: 7em;
 	margin-top: 0.1em;
 }
 
@@ -94,8 +94,11 @@ margin-left:0.5em;
 #selectionButton{
 	background-image:url("../pages/images/selezione.png");
 	}
-#zoomButton{
-	background-image:url("../pages/images/zoom.png");
+#zoomInButton{
+	background-image:url("../pages/images/zoomIn.png");
+		}
+#zoomOutButton{
+	background-image:url("../pages/images/zoomOut.png");
 		}	
 #moveViewButton{
 	background-image:url("../pages/images/move.png");
