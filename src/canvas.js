@@ -748,7 +748,7 @@ BezierCurveButton.prototype.bindCanvas = function (toolbar,canvas,canvasObj,visu
    visual.refresh();//per togliere un'eventuale selezione
    var s = [];
    //var f;
-   var f = new FreeLine();
+   var f = new BezierCurve();
    var self = this;
    var pointcounter = 4;
    $("#cv").bind("mousedown", function(e){
@@ -763,8 +763,8 @@ BezierCurveButton.prototype.bindCanvas = function (toolbar,canvas,canvasObj,visu
 	  canvasObj.clear();
 	  visual.refresh();
 	  pointcounter = 4;
-	  f = new FreeLine();
-	  this.rebind(canvas,canvasObj,visual,figureSet,borderColor,fillColor);
+	  f = new BezierCurve();
+	  toolbar.rebind(canvas,canvasObj,visual,figureSet,borderColour,fillColour);
 	}
    });
 
