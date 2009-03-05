@@ -1123,8 +1123,8 @@ Nel costruttorte viene controllato se il browser supporta le API per il disegno 
 \item[-] \textit{eachProperty(fn)} richiama \textit{eachProperty} di \textit{Figure} ed applica la funzione fn a \textit{{\_}fillColour} e a \textit{{\_}font}.
 \item[-] \textit{draw(canvas)} disegna il \textit{{\_}txt} usando le API del contesto grafico. L'altezza del testo \`e uguale all'altezza del \textit{BoundingRectangle}, mentre la larghezza del \textit{BoundingRectangle} definisce la larghezza massima del testo. Viene disegnato due volte: la prima per il riempimento, la seconda per il bordo. Prima di disegnarsi richiama \textit{applyToContext} sui colori del bordo e di riempimento, e setta l'attributo \textit{font} del contesto grafico all'altezza assoluta del \textit{BoundingRectangle} in pixel, seguita dalla rappresentazione CSS di \textit{{\_}font}.
 \item[-] \textit{fallbackDraw(canvas)} metodo usato al posto di \textit{draw} quando il browser non ha il supporto per il testo. Disegna il testo usando i metodi della libreria \textit{canvastext.js}. Visti i limiti della libreria, ignora il colore di riempimento ed il font.
-\item[-] \textit{toSVG(gen)} in sospeso.
-\item[-] \textit{fromSVG(n)} in sospeso.
+\item[-] \textit{toSVG(gen)} crea un tag \textit{text} con il metodo \textit{startCommand} e aggiunge gli attributi secondo lo standard SVG1.1 con il metodo \textit{attr}. Entrambi questi metodi appartengono alla classe \textit{SVGGenerator}. Come coordinate di riferimento per la figura si ricava il punto in basso a sinistra, e si serve del metodo \textit{text} di \textit{SVGGenerator} per scrivere il testo dell'elemento. Infine scrive il tag di chiusura con il metodo \textit{endCommand} di \textit{SVGGenerator}.
+\item[-] \textit{fromSVG(n)} ottiene il valore degli attributi del nodo \textit{n} come stringhe, li trasforma in interi quando necessario, aggiorna il \textit{BoundingRectangle} su cui si basa il costruttore per disegnare il testo e scrive i nuovi valori nelle propriet\`a della figura.  
 \end{elencopuntato}
 
 
