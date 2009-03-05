@@ -1248,7 +1248,7 @@ Utilizza istanze di \textit{File}, \textit{ServerError} e \textit{Clean}.
 \end{elencopuntato}
 \paragrafo{Metodi pubblici:}
 \begin{elencopuntato}[\subsubsecindent]
-\item[-] \textit{getSave()} richiede il salvataggio del file rappresentato da \textit{nameFile} con il contenuto \textit{content} e ritorna il nome del file. salvato.
+\item[-] \textit{getSave()} richiede il salvataggio del file rappresentato da \textit{nameFile} con il contenuto \textit{content} e ritorna il nome del file salvato. Questo file viene poi scaricato in locale dal client.
 \item[-] \textit{getLoad()} richiede il caricamento del file rappresentato da \textit{target} e ritorna il file da caricare.
 \end{elencopuntato}
 
@@ -1285,7 +1285,7 @@ Mantiene un'istanza di \textit{File}.
 \subsubsezione{Attivit\`a svolte e dati trattati}
 \paragrafo{Metodi pubblici:}
 \begin{elencopuntato}[\subsubsecindent]
-\item[-] \textit{sweeper()} controlla tramite una classe filtro se esistono dei file sul server inutilizzati da un determinato periodo, e li rimuove usando la classe \textit{File}.
+\item[-] \textit{sweeper()} controlla tramite una classe filtro se esistono dei file sul server inutilizzati da un determinato periodo di tempo, e li rimuove usando la classe \textit{File}.
 \end{elencopuntato}
 
 \subsezione{CommunicationError}
