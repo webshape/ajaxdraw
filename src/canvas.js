@@ -255,6 +255,8 @@ Button.prototype.isSelected = function () {
 Button.prototype.bindCanvas = function (toolbar,canvas,canvasObj,visual,figureSet,BorderColor,FillColor) {
   toolbar.deselectAll();
   this.setSelection(true);
+  $("#cloneButton").unbind('click');
+  $("*").unbind('keypress');
   $("#cv").unbind('mousedown click mouseup');
   canvasObj.clear();
   visual.refresh();//per togliere un'eventuale selezione
@@ -450,6 +452,7 @@ SelectionButton.prototype.bindCanvas = function (toolbar,canvas,canvasObj,visual
   var self = this;
   toolbar.deselectAll();
   $(".Dialog2").height(390);
+  $("#cloneButton").unbind('click');
   $("#cv").unbind(' mousedown mousemove click mouseup');
   $("*").unbind('keypress');
   $("*").bind('keypress',function(e){
@@ -465,6 +468,7 @@ SelectionButton.prototype.bindCanvas = function (toolbar,canvas,canvasObj,visual
       var actualFigure = figureSet.selectFigure(coord, visual.getScale(), visual.getOffset());
       if(actualFigure==null){
         // is there an already selected figure?
+	$("#cloneButton").unbind('click');
 	$("*").unbind('keypress');
 	$("*").bind('keypress',function(e){
 	  if(e.keyCode==46){
@@ -489,6 +493,17 @@ SelectionButton.prototype.bindCanvas = function (toolbar,canvas,canvasObj,visual
 	//throw 'No figure found';
       }
       else{
+	$("#cloneButton").unbind('click');
+	$("#cloneButton").bind('click',function(e){
+	  var clonedFigure = actualFigure.clone();
+	  clonedFigure.draw(canvas);
+	  visual.getFigureSet().add(clonedFigure);
+	  actualFigure.setSelection(false);
+				 clonedFigure.setSelection(true);
+	  canvasObj.clear();
+	  visual.refresh();
+	});
+
         visual.deselectAll(figureSet); // only one selection a time
 	$("*").unbind('keypress');
 	$("*").bind('keypress',function(e){
@@ -587,17 +602,18 @@ function ZoomInButton () {
 
 ZoomInButton.prototype = new ZoomButton();
 
-ZoomInButton.prototype.bindCanvas = function (toolbar,canvas,canvasObj,visual,figureSet) {
+ZoomInButton.prototype.bindCanvas = function (toolbar,canvas,canvasObj,visual,figureSet,factor) {
   toolbar.deselectAll();
+  $("#cloneButton").unbind('click');
   $("#cv").unbind('mousedown click mouseup');
   $("#cv").bind("click", function(e){
-    var factor = document.getElementById("scaleButton").value;
-    var c = $("#cv").get(0);
-    var oldw = c.width/2;
-    var oldh = c.height/2;
+    var oldw = canvas.width/2;
+    var oldh = canvas.height/2;
+    factor+=0.5;
     visual.setScale(new Scale(factor));
-    var x = oldw - (c.width/2)/factor;   //centrato
-    var y = oldh - (c.height/2)/factor;
+    var clic = visual.getClickCoordsWithinTarget(e);
+    var x = oldw - (canvas.width/2)/factor;   //centrato
+    var y = oldh - (canvas.height/2)/factor;
     var p = new Point(x, y);
     visual.setOffset(p);
     canvasObj.clear();
@@ -614,17 +630,17 @@ function ZoomOutButton () {
 
 ZoomOutButton.prototype = new ZoomButton();
 
-ZoomOutButton.prototype.bindCanvas = function (toolbar,canvas,canvasObj,visual,figureSet) {
+ZoomOutButton.prototype.bindCanvas = function (toolbar,canvas,canvasObj,visual,figureSet,factor) {
   toolbar.deselectAll();
+  $("#cloneButton").unbind('click');
   $("#cv").unbind('mousedown click mouseup');
   $("#cv").bind("click", function(e){
-    var factor = document.getElementById("scaleButton").value;
-    var c = $("#cv").get(0);
-    var oldw = c.width/2;
-    var oldh = c.height/2;
+    var oldw = canvas.width*2;
+    var oldh = canvas.height*2;
+    factor-=0.5;
     visual.setScale(new Scale(factor));
-    var x = oldw - (c.width/2)/factor;   //centrato
-    var y = oldh - (c.height/2)/factor;
+    var x = oldw - (canvas.width*2)/factor;   //centrato
+    var y = oldh - (canvas.height*2)/factor;
     var p = new Point(x, y);
     visual.setOffset(p);
     canvasObj.clear();
@@ -646,7 +662,9 @@ function MoveViewButton () {
 MoveViewButton.prototype = new Button();
 
 MoveViewButton.prototype.bindCanvas = function (toolbar,canvas,canvasObj,visual) {
+  $("*").unbind('keypress');
   toolbar.deselectAll();
+  $("#cloneButton").unbind('click');
   $("#cv").unbind('mousedown click mouseup');
   $("#cv").bind("mousedown", function(e){
                   var start = visual.getClickCoordsWithinTarget(e);
@@ -754,6 +772,8 @@ BezierCurveButton.prototype.getBuilder = function () {
 };
 
 BezierCurveButton.prototype.bindCanvas = function (toolbar,canvas,canvasObj,visual,figureSet,borderColour,fillColour) {
+  $("#cloneButton").unbind('click');
+  $("*").unbind('keypress');
   toolbar.deselectAll();
   this.setSelection(true);
    $("#cv").unbind('mousedown click mouseup');
@@ -796,43 +816,6 @@ BezierCurveButton.prototype.bindCanvas = function (toolbar,canvas,canvasObj,visu
 	  toolbar.rebind(canvas,canvasObj,visual,figureSet,borderColour,fillColour);
 	}
    });
-
-
-/*
-   $("#cv").bind("mousedown", function(e){
-	var f = s[0] = new BezierCurve();
-	var line = new StraightLine();
-	var coords = visual.getClickCoordsWithinTarget(e);
-	f.getBorderColour().getOpacity().setVal(1);
-	f.getBorderColour().fromCSS(borderColour);
-	line.getBorderColour().getOpacity().setVal(1);
-	line.getBorderColour().fromCSS(borderColour);
-	f.getBounds().setStart(new Point(coords.x, coords.y));
-	line.getBounds().setStart(new Point(coords.x, coords.y));
-	f.extend(new Point(coords.x, coords.y));
-	f.extend(new Point(coords.x+100, coords.y-50));
-	$("#cv").bind("mousemove",function(e){
-	  var coords1 = visual.getClickCoordsWithinTarget(e);
-	  line.getBounds().setEnd(new Point(coords1.x, coords1.y));
-	  canvasObj.clear();
-	  visual.refresh();
-	  line.draw(canvas);
-
-	});
-
-
-	}).bind("mouseup",function(e){  //jQuery mouseup event bind
-	        $("#cv").unbind('mousemove');
-		 var f = s[0];
-		 var  coords2 = visual.getClickCoordsWithinTarget(e);
-		 f.extend(new Point(coords2.x, coords2.y));
-		 f.extend(new Point(coords2.x+100, coords2.y-50));
-		 f.getBounds().setEnd(new Point(coords2.x, coords2.y));
-		 f.draw(canvas);
-		 visual.getFigureSet().add(f);
-		 canvasObj.clear();
-		 visual.refresh();
-		});*/
 };
 
 
@@ -932,42 +915,40 @@ FreeLineButton.prototype.getBuilder = function () {
 };
 
 FreeLineButton.prototype.bindCanvas = function (toolbar,canvas,canvasObj,visual,figureSet,borderColour) {
+  $("*").unbind('keypress');
   toolbar.deselectAll();
   this.setSelection(true);
-   $("#cv").unbind('mousedown click mouseup');
-   canvasObj.clear();
-   visual.refresh();//per togliere un'eventuale selezione
-   var s = [];
-   var f;
-   var self = this;
-   $("#cv").bind("mousedown", function(e){
-   //  var builder = self.getBuilder();
-     var f = s[0] = new FreeLine();
-     var coords = visual.getClickCoordsWithinTarget(e);
-     f.getBorderColour().getOpacity().setVal(1);
-     f.getBorderColour().fromCSS(borderColour);
-     //f.getBounds().setStart(new Point(coords.x, coords.y));
-                   f.extend(new Point(coords.x, coords.y));
+  $("#cloneButton").unbind('click');
+  $("#cv").unbind('mousedown click mouseup');
+  canvasObj.clear();
+  visual.refresh();//per togliere un'eventuale selezione
+  var s = [];
+  var f;
+  var self = this;
+  $("#cv").bind("mousedown", function(e){
+    var f = s[0] = new FreeLine();
+    var coords = visual.getClickCoordsWithinTarget(e);
+    f.getBorderColour().getOpacity().setVal(1);
+    f.getBorderColour().fromCSS(borderColour);
+    f.extend(new Point(coords.x, coords.y));
     $("#cv").bind("mousemove",function(e){
-        var coords2 = visual.getClickCoordsWithinTarget(e);
-                    var minDist = 10;
-                    var dist = coords.dist(coords2);
-	if (dist >= minDist) {
-	     f.extend(new Point(coords2.x, coords2.y));
-          coords = coords2;
-	//f.getBounds().setEnd(new Point(coords2.x, coords2.y));
-}
-	canvasObj.clear();
-	visual.refresh();
-	f.draw(canvas);
+      var coords2 = visual.getClickCoordsWithinTarget(e);
+      var minDist = 10;
+      var dist = coords.dist(coords2);
+      if (dist >= minDist) {
+	f.extend(new Point(coords2.x, coords2.y));
+	coords = coords2;
+      }
+      canvasObj.clear();
+      visual.refresh();
+      f.draw(canvas);
     });
 
     }).bind("mouseup",function(e){  //jQuery mouseup event bind
       $("#cv").unbind('mousemove');
       var coords1 = visual.getClickCoordsWithinTarget(e);
       var f = s[0];
-              f.extend(new Point(coords1.x, coords1.y));
-      //f.getBounds().setEnd(new Point(coords1.x, coords1.y));
+      f.extend(new Point(coords1.x, coords1.y));
       visual.getFigureSet().add(f);
       canvasObj.clear();
       visual.refresh();
@@ -999,7 +980,9 @@ TextButton.prototype.getBuilder = function () {
 
 
 TextButton.prototype.bindCanvas = function (toolbar,canvas,canvasObj,visual,figureSet,BorderColor,FillColor) {
-toolbar.deselectAll();
+  $("*").unbind('keypress');
+  toolbar.deselectAll();
+  $("#cloneButton").unbind('click');
   this.setSelection(true);
    $("#cv").unbind('mousedown click mouseup');
    canvasObj.clear();

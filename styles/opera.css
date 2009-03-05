@@ -20,6 +20,11 @@ canvas {
 .toolbarButton{
 	width: 3.5em;
 	height:2.5em;
+	cursor:pointer;
+	background-color:#F4F3F2;
+	background-repeat: no-repeat;
+	background-position: center;
+	margin-left:1em;
 }
 #selectionButton{
 	background-image:url("../pages/images/selezione.png");

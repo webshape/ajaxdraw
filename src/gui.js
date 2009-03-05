@@ -27,9 +27,9 @@ $(document).ready(function(){
   var polygonButton = new PolygonButton();toolbar.add(polygonButton);//7
   var freeLineButton = new FreeLineButton();toolbar.add(freeLineButton);//8
   var textButton = new TextButton();toolbar.add(textButton);//9
-  //var cloneButton = new CloneButton();toolbar.add(cloneButton);//10
+  var cloneButton = new CloneButton();toolbar.add(cloneButton);//10
   var zoomOutButton = new ZoomOutButton();toolbar.add(zoomOutButton);//11
-
+  var zoomFactor = 1;
   var clearCanvasButton = new ClearCanvasButton();
   var eraseButton = new EraseButton();
 
@@ -90,7 +90,7 @@ $(document).ready(function(){
     zoomInButton.bindCursor("zoomIn");
     $("#fontSetterZone").css({"display":"none"});
     $("#edgeSetterZone").css({"display":"none"});
-      zoomInButton.bindCanvas(toolbar,canvas,canvasObj,visual,figureSet,ctx);
+    zoomInButton.bindCanvas(toolbar,canvas,canvasObj,visual,figureSet,zoomFactor);
   });
     $("#zoomOutButton").click(function () {
     $(".Dialog2").height(210);
@@ -98,7 +98,7 @@ $(document).ready(function(){
     zoomInButton.bindCursor("zoomOut");
     $("#fontSetterZone").css({"display":"none"});
     $("#edgeSetterZone").css({"display":"none"});
-      zoomOutButton.bindCanvas(toolbar,canvas,canvasObj,visual,figureSet,ctx);
+    zoomOutButton.bindCanvas(toolbar,canvas,canvasObj,visual,figureSet,zoomFactor);
   });
 
   $("#moveViewButton").click(function () {
@@ -130,7 +130,7 @@ $(document).ready(function(){
   });
 
   $("#squareButton").click(function () {
-	visual.deselectAll(figureSet);
+    visual.deselectAll(figureSet);
     $(".Dialog2").height(210);
     $("#edgeSetterZone").css({"display":"none"});
     $("#fontSetterZone").css({"display":"none"});
@@ -140,7 +140,7 @@ $(document).ready(function(){
   });
 
   $("#circleButton").click(function () {
-	visual.deselectAll(figureSet);
+    visual.deselectAll(figureSet);
     $(".Dialog2").height(210);
     $("#edgeSetterZone").css({"display":"none"});
     $("#fontSetterZone").css({"display":"none"});
@@ -181,14 +181,14 @@ $(document).ready(function(){
 
   });
 
-//  $("#cloneButton").click(function () {
-  //  visual.deselectAll(figureSet);
+ // $("#cloneButton").click(function () {
+    //visual.deselectAll(figureSet);
+    //$(".Dialog2").height(300);
+    //toolbar.deselectAll();
+    //cloneButton.bindCursor("clone");
 
-  //  $(".Dialog2").height(300);
-  //  toolbar.deselectAll();
-  //  cloneButton.bindCursor("clone");
 
-  //});
+ // });
 
   $(".toolbarButton").click(function(){
     $(".toolbarButton").css({"background-color":"#F4F3F2"}), //tutti grigio chiaro
@@ -289,18 +289,13 @@ $(document).ready(function(){
      eraseButton.eraseElement(figureSet);
    });
 
-   $("*").keypress(function (e){
-     if(e.keyCode==46){
-       eraseButton.eraseElement(figureSet);
-     }
-   });
 
 
 
-   /*Componenti non utilizzabili in certe versioni di browsers*/
-     if((page.getBrowserName()=="firefox" && page.getBrowserVersion()<3.1) || page.getBrowserName()=="opera" ){
-       $("#fontTypeButton").css({"display":"none"});
-     }
+/*Componenti non utilizzabili in certe versioni di browsers*/
+   if((page.getBrowserName()=="firefox" && page.getBrowserVersion()<3.1) || page.getBrowserName()=="opera" ){
+     $("#fontTypeButton").css({"display":"none"});
+   }
 
 
 //fine documento

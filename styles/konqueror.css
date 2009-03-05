@@ -1,8 +1,15 @@
 /* CSS da applicare a Konqueror */
 
+cbody{
+	background-color: #efefef;
+}
+
 canvas {
-  background-color: rgb(0, 240, 230);
-  margin-left: 5em;
+ 	background-color: #ffffff;
+	margin-left: 7em;
+  	margin-top:0.1em;
+  	border-style: solid;
+  	border-width: 2px 2px 2px 2px ;
 }
 /* Toolbar */
 #tool{
@@ -13,22 +20,47 @@ canvas {
 .toolbarButton{
 	width: 3.5em;
 	height:2.5em;
-	margin-bottom:-0.4em;
 	cursor:pointer;
 	background-color:#F4F3F2;
+	background-repeat: no-repeat;
+	background-position: center;
+	margin-left:1em;
 }
 
 #selectionButton{
 	background-image:url("../pages/images/selezione.png");
-		background-repeat:no-repeat;
-		background-position: center;
+	}
+#zoomInButton{
+	background-image:url("../pages/images/zoomIn.png");
+		}
+#zoomOutButton{
+	background-image:url("../pages/images/zoomOut.png");
+		}	
+#moveViewButton{
+	background-image:url("../pages/images/move.png");
+		}	
 		
-		
+#straightLineButton{
+	background-image:url("../pages/images/lineaDritta.png");
+		}	
+	
+#bezierCurveButton{
+    background-image:url("../pages/images/linea.png");
 	}
 #squareButton{
 	background-image:url("../pages/images/quadrato.png");
-	background-repeat:no-repeat;
-	background-position: center;
+}
+#circleButton{
+	background-image:url("../pages/images/cerchio.png");
+}
+#polygonButton{
+	background-image:url("../pages/images/poligono.png");
+}
+#freeLineButton{
+	background-image:url("../pages/images/freeline.png");
+}
+#textButton{
+	background-image:url("../pages/images/testo.png");
 }
 
 
