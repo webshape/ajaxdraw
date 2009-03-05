@@ -1085,7 +1085,7 @@ Text.prototype.eachProperty = function (fn) {
   Figure.prototype.eachProperty.call(this, fn);
   fn.call(this, this._txt);
   fn.call(this, this._font);
-  fn.call(this, this._colour);
+  fn.call(this, this._fillColour);
 };
 
 Text.prototype.draw = function (c) {
