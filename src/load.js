@@ -31,7 +31,7 @@ SVGReader.prototype.read = function (doc) {
   var fs = new FigureSet();
   var psr = new XMLParser();
   var xmlDoc = psr.parsing(doc);
-  if (xmlDoc == null) {
+  if (xmlDoc === null) {
     throw new ParsingError('Parsing Error');
   }
 
@@ -41,7 +41,7 @@ SVGReader.prototype.read = function (doc) {
     if (n.nodeName != "#text") {
       var f = registry.makeFigureClassFromTag(n.nodeName); // returns an instance of a figure
       // ignore unknow tags
-      if (f != null) {
+      if (f !== null) {
 		  f.fromSVG(n);
 		  fs.add(f);
       }

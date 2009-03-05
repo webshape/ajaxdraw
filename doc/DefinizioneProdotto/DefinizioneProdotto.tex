@@ -982,7 +982,8 @@ Creato dalla lettura di un file SVG oppure dall'interfaccia utente. Manipolato d
 \item[-] \textit{eachProperty(fn)} richiama \textit{eachProperty} di \textit{Figure} ed applica la funzione fn a \textit{{\_}fillColour}.
 \item[-] \textit{draw(canvas)} disegna il cerchio/ellisse usando quattro curve di bezier. Viene disegnato due volte: la prima per il riempimento, la seconda per il bordo. Prima di disegnarsi richiama \textit{applyToContext} sulle proprie propriet\`a.
 \item[-] \textit{toSVG(gen)} crea un tag \textit{ellipse} con il metodo \textit{startCommand} e aggiunge gli attributi secondo lo standard SVG1.1 con il metodo \textit{attr}. Entrambi questi metodi appartengono alla classe \textit{SVGGenerator}. Per le coordinate \textit{x} e \textit{y} che indicano la posizione della figura, controlla se il punto indicato dal metodo \textit{start} di \textit{BoundingRectangle} sia effettivamente il punto in alto a sinistra, poich\`e il cerchio/ellisse potrebbe essere rovesciato. Infine scrive il tag di chiusura con il metodo \textit{endCommand} di \textit{SVGGenerator}.
-\item[-] \textit{fromSVG(n)} ottiene il valore degli attributi del nodo \textit{n} come stringhe, li trasforma in interi quando necessario, e scrive i nuovi valori nelle propriet\`a della figura. Infine ottiene l'elemento canvas e chiama il metodo \textit{draw} per far si che la figura si disegni.
+\item[-] \textit{fromSVG(n)} ottiene il valore degli attributi del nodo \textit{n} come stringhe, li trasforma in interi quando necessario, e scrive i nuovi valori nelle propriet\`a della figura. 
+%Infine ottiene l'elemento canvas e chiama il metodo \textit{draw} per far si che la figura si disegni.
 \end{elencopuntato}
 
 \subsezione{Rectangle}
@@ -1003,7 +1004,8 @@ Creato dalla lettura di un file SVG oppure dall'interfaccia utente. Manipolato d
 \item[-] \textit{eachProperty(fn)} richiama \textit{eachProperty} di \textit{Figure} ed applica la funzione fn a \textit{{\_}fillColour}.
 \item[-] \textit{draw(canvas)} disegna il rettangolo usando le API per i path del contesto grafico, tracciando un path chiuso che contiene i quattro angoli ricavabili dal \textit{BoundingRectangle}. Viene disegnato due volte: la prima per il riempimento, la seconda per il bordo. Prima di disegnarsi richiama \textit{applyToContext} sulle proprie propriet\`a.
 \item[-] \textit{toSVG(gen)} crea un tag \textit{rect} con il metodo \textit{startCommand} e aggiunge gli attributi secondo lo standard SVG1.1 con il metodo \textit{attr}. Entrambi questi metodi appartengono alla classe \textit{SVGGenerator}. Per le coordinate \textit{x} e \textit{y} che indicano la posizione della figura, controlla se il punto indicato dal metodo \textit{start} di \textit{BoundingRectangle} sia effettivamente il punto in alto a sinistra, poich\`e il cerchio/ellisse potrebbe essere rovesciato. Infine scrive il tag di chiusura con il metodo \textit{endCommand} di \textit{SVGGenerator}.
-\item[-] \textit{fromSVG(n)} ottiene il valore degli attributi del nodo \textit{n} come stringhe, li trasforma in interi quando necessario, e scrive i nuovi valori nelle propriet\`a della figura. Infine ottiene l'elemento canvas e chiama il metodo \textit{draw} per far si che la figura si disegni.
+\item[-] \textit{fromSVG(n)} ottiene il valore degli attributi del nodo \textit{n} come stringhe, li trasforma in interi quando necessario, e scrive i nuovi valori nelle propriet\`a della figura. 
+%Infine ottiene l'elemento canvas e chiama il metodo \textit{draw} per far si che la figura si disegni.
 \end{elencopuntato}
 
 \subsezione{Line}
@@ -1022,7 +1024,8 @@ Creato dalla lettura di un file SVG oppure dall'interfaccia utente. Manipolato d
 \begin{elencopuntato}[\subsubsecindent]
 \item[-] \textit{draw(canvas)} disegna una linea diritta usando le API per i path del contesto grafico, tracciando un path da \textit{BoundingRectangle.start()} a \textit{BoundingRectangle.end()}. Prima di disegnarsi richiama \textit{applyToContext} sul colore del bordo.
 \item[-] \textit{toSVG(gen)} crea un tag \textit{line} con il metodo \textit{startCommand} e aggiunge gli attributi secondo lo standard SVG1.1 con il metodo \textit{attr}. Entrambi questi metodi appartengono alla classe \textit{SVGGenerator}. Infine scrive il tag di chiusura con il metodo \textit{endCommand} di \textit{SVGGenerator}.
-\item[-] \textit{fromSVG(n)} ottiene il valore degli attributi del nodo \textit{n} come stringhe, li trasforma in interi quando necessario, e scrive i nuovi valori nelle propriet\`a della figura. Infine ottiene l'elemento canvas e chiama il metodo \textit{draw} per far si che la figura si disegni.
+\item[-] \textit{fromSVG(n)} ottiene il valore degli attributi del nodo \textit{n} come stringhe, li trasforma in interi quando necessario, e scrive i nuovi valori nelle propriet\`a della figura. 
+%Infine ottiene l'elemento canvas e chiama il metodo \textit{draw} per far si che la figura si disegni.
 \end{elencopuntato}
 
 \subsezione{FreeLine}
@@ -1031,7 +1034,7 @@ Rappresenta una linea a mano libera. Viene implementata tramite delle curve di b
 \subsubsezione{Relazioni d'uso di altre componenti}
 Deriva da \textit{Line} e ne implementa i metodi astratti. Mantiene una lista di punti. I punti prendono come origine l'angolo in alto a sinistra del \textit{BoundingRectangle} e presuppongono un quadrato alto 1 e largo 1, in modo da essere indipendenti dal \textit{BoundingRectangle}. I punti verranno poi convertiti nei loro valori assoluti, a seconda del \textit{BoundingRectangle}, prima di disegnare la linea. Qualora ripetere questa computazione ad ogni refresh fosse troppo dispendioso, si potrebbe ricorrere ad un sistema di caching. Implementa il metodo \textit{toSVG} dell'interfaccia \textit{SVGWritable} e si serve dei metodi della classe \textit{SVGGenerator}.
 \subsubsezione{Interfacce e relazioni di uso da altre componenti}
-Creato dalla lettura di un file SVG oppure dall'interfaccia utente. Manipolato dall'interfaccia utente. Chiamato da \textit{SVGWriter} per trasformare la figura in formato SVG.
+Creato dalla lettura di un file SVG oppure dall'interfaccia utente. Manipolato dall'interfaccia utente. Chiamato da \textit{SVGWriter} per trasformare la figura in formato SVG. \textit{BezierCurve} ne eredita i metodi.
 \subsubsezione{Attivit\`a svolte e dati trattati}
 \paragrafo{Attributi privati:}
 \begin{elencopuntato}[\subsubsecindent]
@@ -1053,15 +1056,15 @@ punti al loro valore relativo.
 \subsubsezione{Tipo, obiettivo e funzione del componente}
 Rappresenta una linea curva, disegnata tramite curve di bezier.
 \subsubsezione{Relazioni d'uso di altre componenti}
-Deriva da \textit{FreeLine}. A differenza di \textit{FreeLine} la lista di punti interni contiene un numero ridotto di punti. Implementa il metodo \textit{toSVG} dell'interfaccia \textit{SVGWritable} richiamando il metodo di \textit{FreeLine}, e il metodo \textit{fromSVG} dell'interfaccia \textit{SVGReadable}.
+Deriva da \textit{FreeLine}. A differenza di \textit{FreeLine} la lista di punti interni contiene un numero ridotto di punti. Implementa il metodo \textit{fromSVG} dell'interfaccia \textit{SVGReadable}.
 \subsubsezione{Interfacce e relazioni di uso da altre componenti}
-Creato dalla lettura di un file SVG oppure dall'interfaccia utente. Manipolato dall'interfaccia utente. Chiamato da \textit{SVGWriter} per trasformare la figura in formato SVG, e da \textit{SVGReader} per creare un'istanza da un file SVG.
+Creato dalla lettura di un file SVG oppure dall'interfaccia utente. Manipolato dall'interfaccia utente. Chiamato da \textit{SVGReader} per creare un'istanza da un file SVG.
 \subsubsezione{Attivit\`a svolte e dati trattati}
 Nessuna oltre a quelle ereditate da \textit{FreeLine}.
 \paragraph{Metodi pubblici:}
 \begin{elencopuntato}[\subsubsecindent]
-\item[-] \textit{toSVG(gen)} richiama il metodo \textit{toSVG} della classe \textit{FreeLine}.
-\item[-] \textit{fromSVG(n)} ottiene il valore degli attributi del nodo \textit{n} come stringhe e scrive i nuovi valori nelle propriet\`a della figura. Per gestire l'attributo SVG \textit{d}, spezza la stringa in coppie di coordinate, le trasforma in interi, e chiama la funzione \textit{extend} passandogli uno a uno i punti ottenuti per ricostruire la figura. Infine ottiene l'elemento canvas e chiama il metodo \textit{draw} per far si che la figura si disegni.
+\item[-] \textit{fromSVG(n)} ottiene il valore degli attributi del nodo \textit{n} come stringhe e scrive i nuovi valori nelle propriet\`a della figura. Per gestire l'attributo SVG \textit{d}, spezza la stringa in coppie di coordinate, le trasforma in interi, e chiama la funzione \textit{extend} passandogli uno a uno i punti ottenuti per ricostruire la figura. 
+%Infine ottiene l'elemento canvas e chiama il metodo \textit{draw} per far si che la figura si disegni.
 \end{elencopuntato}
 
 
@@ -1093,7 +1096,8 @@ Creato dalla lettura di un file SVG oppure dall'interfaccia utente. Manipolato d
 
 \item[-] \textit{draw(canvas)} disegna il poligono usando le API per i path del contesto grafico tracciando  un path che congiunge i punti ottenuti con \textit{getPoints}. Viene disegnato due volte: la prima per il riempimento, la seconda per il bordo. Prima di disegnarsi richiama \textit{applyToContext} sulle proprie propriet\`a.
 \item[-] \textit{toSVG(gen)} crea un tag \textit{polygon} con il metodo \textit{startCommand} e aggiunge gli attributi secondo lo standard SVG1.1 con il metodo \textit{attr}. Entrambi questi metodi appartengono alla classe \textit{SVGGenerator}. Per quel che riguarda l'attributo \textit{points} si prendono i punti relativi al \textit{BoundingRectangle} con il metodo \textit{getPoints} e si sommano al punto di coordinate iniziali ottenuto con il metodo \textit{start} di \textit{BoundingRectangle}, per ottenere le coordinate relative al canvas. Infine scrive il tag di chiusura con il metodo \textit{endCommand} di \textit{SVGGenerator}.
-\item[-] \textit{fromSVG(n)} ottiene il valore degli attributi del nodo \textit{n} come stringhe e scrive i nuovi valori nelle propriet\`a della figura. Dall'attributo SVG \textit{points} ottiene i punti, li converte in interi, e calcola in base a questi i vertici in alto a sinistra e in basso a destra della figura, per ricavare il \textit{BoundingRectangle} con cui costruire il poligono. Infine ottiene l'elemento canvas e chiama il metodo \textit{draw} per far si che la figura si disegni.
+\item[-] \textit{fromSVG(n)} ottiene il valore degli attributi del nodo \textit{n} come stringhe e scrive i nuovi valori nelle propriet\`a della figura. Dall'attributo SVG \textit{points} ottiene i punti, li converte in interi, e calcola in base a questi i vertici in alto a sinistra e in basso a destra della figura, per ricavare il \textit{BoundingRectangle} con cui costruire il poligono. 
+%Infine ottiene l'elemento canvas e chiama il metodo \textit{draw} per far si che la figura si disegni.
 \end{elencopuntato}
 
 \subsezione{Text}
@@ -1148,6 +1152,13 @@ Usato da \textit{SVGWriter} per realizzare il documento SVG.
 \paragrafo{Attributi privati:}
 \begin{elencopuntato}[\subsubsecindent]
 \item[-] \textit{{\_}doc} stringa che rappresenta il documento in costruzione.
+Per maggiori dettagli si veda il diagramma di stato: \newpage[TODO: ins. lebel].
+\begin{figure}[!ht]
+\centering
+\includegraphics[scale=0.7]{svgdocument.png}
+\caption{Diagramma di stato del documento SVG}
+\end{figure}
+
 \end{elencopuntato}
 \paragrafo{Metodi pubblici:}
 \begin{elencopuntato}[\subsubsecindent]

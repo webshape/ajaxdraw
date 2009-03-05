@@ -9,7 +9,7 @@ function runSaveTest () {
 	  s._doc = "";
 	  r.toSVG(s);
 	  equals(s._doc, svgValue, 'Rectangle');
-	  
+
 	  var c = new Circle();
 	  c = new Circle();
 	  c.setSelection(true);
@@ -20,7 +20,7 @@ function runSaveTest () {
 	  s._doc = "";
 	  c.toSVG(s);
 	  equals(s._doc, svgValue, 'Circle');
-	  
+
 	  var e = new Circle();
 	  e.getBorderColour().set(255, 0, 255, new Opacity(1));
 	  e.getFillColour().set(255, 0, 0, new Opacity(1));
@@ -30,7 +30,7 @@ function runSaveTest () {
 	  s._doc = "";
 	  e.toSVG(s);
 	  equals(s._doc, svgValue, 'Ellipse');
-	  
+
 	  var p = new Polygon();
 	  p.getBorderColour().set(255, 0, 0, new Opacity(1));
 	  p.getBounds().setStart(new Point(10, 10));
@@ -40,7 +40,7 @@ function runSaveTest () {
 	  s._doc = "";
 	  p.toSVG(s);
 	  equals(s._doc, svgValue, 'Polygon');
-	  
+
 	  var l = new StraightLine();
 	  l.getBorderColour().set(0, 0, 255, new Opacity(1));
 	  l.getBounds().setStart(new Point(0, 500));
@@ -50,7 +50,7 @@ function runSaveTest () {
 	  s._doc = "";
 	  l.toSVG(s);
 	  equals(s._doc, svgValue, 'StraightLine');
-	  
+
 	  var f = new FreeLine();
 	  f.getBorderColour().set(10, 20, 40, new Opacity(1));
 	  f.getBounds().setStart(new Point(400, 500));
@@ -60,12 +60,12 @@ function runSaveTest () {
 	  f.extend(new Point(520, 520));
 	  f.extend(new Point(550, 550));
 	  f.extend(new Point(600, 700));
-	  svgValue = "<path fill=\"none\" stroke=\"#0a1428\" stroke-opacity=\"1\" d=\"M 400,500 C 400,500 500,600 520,520 Q 550,550 600,700\"></path>\n";
+	  svgValue = "<path fill=\"none\" stroke=\"#0a1428\" stroke-opacity=\"1\" d=\"M 400,500 C 500,600 520,520 550,550 L 600,700\"></path>\n";
 	  s = new SVGGenerator(1000, 1000);
 	  s._doc = "";
 	  f.toSVG(s);
 	  equals(s._doc, svgValue, 'FreeLine');
-	  
+
 	  var b = new FreeLine();
 	  b.getBorderColour().set(10, 20, 40, new Opacity(1));
 	  b.getBounds().setStart(new Point(600, 500));
@@ -76,11 +76,25 @@ function runSaveTest () {
 	  b.extend(new Point(750, 550));
 	  b.extend(new Point(780, 690));
 	  b.extend(new Point(800, 700));
-	  svgValue = "<path fill=\"none\" stroke=\"#0a1428\" stroke-opacity=\"1\" d=\"M 600,500 C 600,500 700,600 720,520 C 750,550 780,690 800,700\"></path>\n";
+	  svgValue = "<path fill=\"none\" stroke=\"#0a1428\" stroke-opacity=\"1\" d=\"M 600,500 C 700,600 720,520 750,550 Q 780,690 800,700\"></path>\n";
 	  s = new SVGGenerator(1000, 1000);
 	  s._doc = "";
 	  b.toSVG(s);
 	  equals(s._doc, svgValue, 'BezierCurve');
 
-       });
+	  // general
+	  var fs = new FigureSet();
+	  fs.add(r);
+	  fs.add(c);
+	  var w = new SVGWriter();
+	  var svg = w.write(fs);
+	  svgValue = "<?xml version=\"1.0\" standalone=\"no\"?>\n"
+	  + "<!DOCTYPE svg PUBLIC \"-//W3C//DTD SVG 1.1//EN\" \"http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd\">\n"
+	  + "<svg width=\"1000\" height=\"1000\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\">\n"
+	  +  "<rect x=\"10\" y=\"20\" width=\"40\" height=\"20\" fill=\"#000000\" fill-opacity=\"1\" stroke=\"#ff0000\" stroke-opacity=\"1\"></rect>\n"
+	  +  "<ellipse cx=\"500\" cy=\"400\" rx=\"50\" ry=\"50\" fill=\"#000000\" fill-opacity=\"1\" stroke=\"#7d00ff\" stroke-opacity=\"1\"></ellipse>\n"
+	  +  "</svg>";
+	  equals(svg, svgValue, 'Svg document');
+
+     });
 }
