@@ -237,10 +237,11 @@ Polygon.prototype.fromSVG = function (n) {
   var y1 = parseInt(z[1]);
   var x2 = parseInt(z[0]);
   var y2 = parseInt(z[1]);
-  var edges = points.length;
+  var edges = 1;
 
   for (var i = 1; i < points.length; ++i){
 	 if (points[i].length > 1){
+		edges++;
 		z = points[i].split(",");
 		z[0] = parseInt(z[0]);
 		z[1] = parseInt(z[1]);
