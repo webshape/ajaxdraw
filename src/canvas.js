@@ -305,8 +305,11 @@ Button.prototype.bindCursor = function(type){
       case "selection":
 	$("#cv").css({'cursor' : 'url("images/selectDraw.png"),auto'});
       break;
-      case "zoom":
-	$("#cv").css({'cursor' : 'url("images/zoom.png"),auto'});
+      case "zoomIn":
+	$("#cv").css({'cursor' : 'url("images/zoomIn.png"),auto'});
+      break;
+      case "zoomOut":
+	$("#cv").css({'cursor' : 'url("images/zoomOut.png"),auto'});
       break;
       case "move":
 	$("#cv").css({'cursor' : 'url("images/move.png"),auto'});
@@ -559,7 +562,19 @@ ZoomButton.prototype.getId = function (){
   return this._id;
 };
 
-ZoomButton.prototype.bindCanvas = function (toolbar,canvas,canvasObj,visual,figureSet) {
+
+
+/**
+ * @constructor
+ * The Zoom In  button
+ */
+function ZoomInButton () {
+  ZoomButton.call(this);
+  }
+
+ZoomInButton.prototype = new ZoomButton();
+
+ZoomInButton.prototype.bindCanvas = function (toolbar,canvas,canvasObj,visual,figureSet) {
   toolbar.deselectAll();
   $("#cv").unbind('mousedown click mouseup');
   $("#cv").bind("click", function(e){
@@ -576,6 +591,36 @@ ZoomButton.prototype.bindCanvas = function (toolbar,canvas,canvasObj,visual,figu
     visual.refresh();
   });
 };
+/**
+ * @constructor
+ * The Zoom Out  button
+ */
+function ZoomOutButton () {
+  ZoomButton.call(this);
+  }
+
+ZoomOutButton.prototype = new ZoomButton();
+
+ZoomOutButton.prototype.bindCanvas = function (toolbar,canvas,canvasObj,visual,figureSet) {
+  toolbar.deselectAll();
+  $("#cv").unbind('mousedown click mouseup');
+  $("#cv").bind("click", function(e){
+    var factor = document.getElementById("scaleButton").value;
+    var c = $("#cv").get(0);
+    var oldw = c.width/2;
+    var oldh = c.height/2;
+    visual.setScale(new Scale(factor));
+    var x = oldw - (c.width/2)/factor;   //centrato
+    var y = oldh - (c.height/2)/factor;
+    var p = new Point(x, y);
+    visual.setOffset(p);
+    canvasObj.clear();
+    visual.refresh();
+  });
+};
+
+
+
 
 /**
  * @constructor
@@ -703,7 +748,7 @@ BezierCurveButton.prototype.bindCanvas = function (toolbar,canvas,canvasObj,visu
    visual.refresh();//per togliere un'eventuale selezione
    var s = [];
    //var f;
-   var f = new FreeLine();
+   var f = new BezierCurve();
    var self = this;
    var pointcounter = 4;
    $("#cv").bind("mousedown", function(e){
@@ -718,8 +763,8 @@ BezierCurveButton.prototype.bindCanvas = function (toolbar,canvas,canvasObj,visu
 	  canvasObj.clear();
 	  visual.refresh();
 	  pointcounter = 4;
-	  f = new FreeLine();
-	  this.rebind(canvas,canvasObj,visual,figureSet,borderColor,fillColor);
+	  f = new BezierCurve();
+	  toolbar.rebind(canvas,canvasObj,visual,figureSet,borderColour,fillColour);
 	}
    });
 
