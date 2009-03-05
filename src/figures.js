@@ -491,14 +491,16 @@ FigureSet.prototype.selectFigure = function (where, scale, offset) {
      c = window.G_vmlCanvasManager.initElement(c);
   }
 
-  c.width = 1000;
-  c.height = 1000;
+  var cv = document.getElementById('cv');
+  c.width = cv.width;
+  c.height = cv.height;
+  
+  var absWhere = where;
   if (scale) {
-    where = scale.toAbs(where, offset);
+    absWhere = scale.toAbs(where, offset);
     scale.applyToContext(c.getContext('2d'), offset);
   }
-  //var c = document.getElementById('cv');
-  //c.width = c.width;
+
   c.getContext('2d').lineWidth = 10; // easier selection of lines
   var textSelected = null;
   this.each(function (f) {
@@ -530,7 +532,7 @@ FigureSet.prototype.selectFigure = function (where, scale, offset) {
               }
             });
   // get the selected pixel
-  var selection = c.getContext('2d').getImageData(where.x, where.y, 1, 1).data;
+  var selection = c.getContext('2d').getImageData(absWhere.x, absWhere.y, 1, 1).data;
   var col = new Colour(selection[0], selection[1], selection[2], o);
 //  alert(col.toCSS());
   var res = fs[col.toCSS()];
@@ -1084,7 +1086,7 @@ Text.prototype.eachProperty = function (fn) {
   Figure.prototype.eachProperty.call(this, fn);
   fn.call(this, this._txt);
   fn.call(this, this._font);
-  fn.call(this, this._colour);
+  fn.call(this, this._fillColour);
 };
 
 Text.prototype.draw = function (c) {
