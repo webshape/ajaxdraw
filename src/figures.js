@@ -486,6 +486,11 @@ FigureSet.prototype.selectFigure = function (where, scale, offset) {
 
   var fs = {};
   var c = document.createElement('canvas');
+
+  if ($.browser.name=="msie") { // hack for internet explorer
+     c = window.G_vmlCanvasManager.initElement(c);
+  }
+
   c.width = 1000;
   c.height = 1000;
   if (scale) {

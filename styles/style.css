@@ -2,11 +2,8 @@ body{
 	background-color: #efefef;
 }
 
-
 canvas {
-	/* background-color: rgb(230, 240, 230); */
-		background-color: #ffffff;
-
+	background-color: #ffffff;
 	margin-left: 7em;
   	margin-top:0.1em;
   	border-style: solid;
@@ -134,12 +131,16 @@ margin-left:0.5em;
 }
 
 
-
-
+#divBorderCol,#divFillCol{
+margin-top: -0.6em;
+}
 #polygonTitle,#textTitle{
 text-align: center;
 text-transform: uppercase;
 text-decoration: underline;
+}
+#colorx,#colory{
+width: 400px;display: none;
 }
 
 

@@ -1,10 +1,15 @@
 /* CSS da applicare a Apple Safari */
-
-canvas {
-  background-color: rgb(0, 240, 230);
-  margin-left: 5em;
+body{
+	background-color: #efefef;
 }
 
+canvas {
+ 	background-color: #ffffff;
+	margin-left: 7em;
+  	margin-top:0.1em;
+  	border-style: solid;
+  	border-width: 2px 2px 2px 2px ;
+}
 /*Toolbar */
 
 #tool{
@@ -13,8 +18,8 @@ canvas {
 	}
 
 .toolbarButton{
-	width: 3.5em;
-	height:2.5em;
+	width: 4em;
+	height:3em;
 	cursor:pointer;
 }
 
@@ -68,26 +73,18 @@ canvas {
 }
 
 
-/*tooltip CSS avanzato */
-span.tooltip{ 
-	position:relative; /*questa è fondamentale*/
-    z-index:24; 
-    text-decoration: none
-    }
-
-span.tooltip:hover{ 
-	z-index: 25; 
-	}
-span.tooltip span{
-	display: none}
-
-span.tooltip:hover span{ /*lo span verrý mostrato solo sullo stato :hover */
-    display: block; position:absolute;
-    top: 2em; left: 2em; width: 15em;
-    border: 1px solid #0cf; background-color: #cff; color:#000;
-    font-size: 80%;text-align: center
-    }
-
+/* Dialog colori e proprietà */
+#divBorderCol,#divFillCol{
+margin-top: -0.6em;
+}
+#polygonTitle,#textTitle{
+text-align: center;
+text-transform: uppercase;
+text-decoration: underline;
+}
+#colorx,#colory{
+width: 400px;display: none;
+}
 
 /* This file skins dialog */
 

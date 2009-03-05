@@ -45,8 +45,6 @@ $(document).ready(function(){
     hex = palette.rgbToHex($("#lastPalette").css("background-color"));
   }
   color = palette.setColour(hex,color.BorderColor,color.FillColor);
-//  var colourDialog = new ColourDialog();
-//  colourDialog.create();
   ColourDialog.prototype.create();
 
 /* Creo dialog delle proprietà */
@@ -199,7 +197,7 @@ $(document).ready(function(){
 
 /*Animazione tooltip su pulsante toolbar ritardata di 1 secondo*/
   $("*").tooltip(
-    {delay: 1000}
+    {delay: 750}
   );
   $(".toolbarButton").hover(
     function(){
@@ -296,6 +294,14 @@ $(document).ready(function(){
        eraseButton.eraseElement(figureSet);
      }
    });
+
+
+
+   /*Componenti non utilizzabili in certe versioni di browsers*/
+     if((page.getBrowserName()=="firefox" && page.getBrowserVersion()<3.1) || page.getBrowserName()=="opera" ){
+       $("#fontTypeButton").css({"display":"none"});
+     }
+
 
 //fine documento
 });

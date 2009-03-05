@@ -79,6 +79,7 @@
 			<li jsFunction='$("#colorDialog").dialog( "close" );
 								$("#colorDialog").dialog({
 									position: ["right","top"],
+									title: "Modifica Colori",
     								height: 180,
     								width: 230,
 									resizable: false,
@@ -86,6 +87,7 @@
 								   });' id="500014"><a href="#">Colori</a>	
 			<li jsFunction='$("#propertiesDialog").dialog( "close" );
 								 $("#propertiesDialog").dialog({
+									title: "Modifica Attributi",
     								position: "right",
     								width: 230,
 									height: 210
@@ -96,6 +98,7 @@
 	<li jsFunction='$("#aboutDialog").css({"display" : "block"});
 							$("#aboutSpan").css({"display" : "block"});
 										$("#aboutDialog").dialog({
+													title: "Riconoscimenti:",
 													modal: true,
     												height: 300,
     												width: 300,
@@ -235,12 +238,12 @@ menuBar5.init();
 <div id="colorDialog" class="flora" title="Modifica colori">
 	<p>Bordo:   
 		<span id="borderColorNow" style="background-color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-		<div style="margin-top: -0.6em;">
+		<div id="divBorderCol" >
 			<input type="button" id="changeBorderCol" name="ChangeCol" value="Cambia Colore Bordo"/>
 		</div>
 	</p>
 	<!-- Farbtastic $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ -->
-	<form id="colorx" action="" style="width: 400px;display: none;">
+	<form id="colorx" action="">
   		<div class="form-item" >
   			<label for="color">Color:</label>
   			<input type="text" id="color1" name="color1" value="#123456" />
@@ -251,11 +254,11 @@ menuBar5.init();
 	<!-- Seconda ruota -->
 	<p>Riempimento:  
 		<span id="fillColorNow" style="background-color: #FFFFFF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> 
-		<div style="margin-top: -0.6em;">
+		<div id="divFillCol">
 			<input type="button" id="changeFillCol" name="ChangeCol" value="Cambia Colore Riemp."/>
 		</div>
 	</p>
-	<form id="colory" action="" style="width: 400px;display: none;">
+	<form id="colory" action="">
   		<div class="form-item" >
   			<label for="color">Color:</label>
   			<input type="text" id="color2" name="color2" value="#123456" />

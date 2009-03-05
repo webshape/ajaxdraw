@@ -11,7 +11,7 @@
  */
 function Page(){
   this._browserName = $.browser.name;
-  this._browserVersion = $.browser.version;
+  this._browserVersion = $.browser.versionNumber;
   this._widgets = [];
 }
 
@@ -68,16 +68,16 @@ function Canvas(){
  *
  */
 Canvas.prototype.getId = function (){
-  if ($.browser.msie) { // hack for internet explorer
+  if ($.browser.name=="msie") { // hack for internet explorer
      return window.G_vmlCanvasManager.initElement(this._id);
   }
   return this._id;
 };
 
 Canvas.prototype.clear = function () {
-   if ($.browser.msie) { // hack for internet explorer
+  if ($.browser.name=="msie") { // hack for internet explorer
     var canvas= window.G_vmlCanvasManager.initElement(this._id);
-     canvas.width = canvas.width;
+    canvas.width = canvas.width;
   }
  else{ this._id.width = this._id.width;}
 
@@ -114,8 +114,9 @@ Visualization.accessors('_scale', 'getScale', 'setScale');
  */
 Visualization.prototype.refresh = function(){
   var c = document.getElementById('cv');
-  if ($.browser.msie) { // hack for internet explorer
+  if ($.browser.name=="msie") { // hack for internet explorer
     c = window.G_vmlCanvasManager.initElement(c);
+   // alert("refresh");
   }
   var ctx = c.getContext('2d');
   this._scale.applyToContext(ctx, this._offset);
@@ -464,6 +465,12 @@ SelectionButton.prototype.bindCanvas = function (toolbar,canvas,canvasObj,visual
       var actualFigure = figureSet.selectFigure(coord, visual.getScale(), visual.getOffset());
       if(actualFigure==null){
         // is there an already selected figure?
+	$("*").unbind('keypress');
+	$("*").bind('keypress',function(e){
+	  if(e.keyCode==46){
+	    eraseButton.eraseElement(figureSet);
+	  }
+	});
         figureSet.each(function (f) {
                          if (f.isSelected()) {
                            actualFigure = f;
@@ -483,6 +490,12 @@ SelectionButton.prototype.bindCanvas = function (toolbar,canvas,canvasObj,visual
       }
       else{
         visual.deselectAll(figureSet); // only one selection a time
+	$("*").unbind('keypress');
+	$("*").bind('keypress',function(e){
+	  if(e.keyCode==46){
+	    eraseButton.eraseElement(figureSet);
+	  }
+	});
 	actualFigure.setSelection(true);
 	canvasObj.clear();
         visual.refresh();

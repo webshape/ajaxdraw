@@ -1,13 +1,16 @@
+body{
+	background-color: #efefef;
+}
 canvas {
-  background-color: rgb(230, 240, 230);
-  margin-left: 5em;
-  margin-top: -15em;
+  background-color: #ffffff;
+  margin-left: 5.5em;
+  margin-top: -23em;
 }
 
 #tool{
 	margin-left: 0.5em;
 	position: fixed;
-	}
+}
 
 
 /*Tavolozza*/
@@ -18,12 +21,11 @@ canvas {
 	border-top:solid;
 	border-bottom:solid;
 	border-width:thin;
-	}
+}
 	
 #firstPalette{
 	border-left:solid;
-	border-width:thin;
-	
+	border-width:thin;	
 }
 #lastPalette{
 	border-right:solid;
@@ -32,28 +34,34 @@ canvas {
 }
 	
 #palette{
-	margin-left: 5em;
+	margin-left: 5.5em;
 	margin-top: 0.1em;
 }
 
-span.tooltip{ 
-	position:relative; /*questa è fondamentale*/
-    z-index:24; 
-    text-decoration: none
-    }
 
-span.tooltip:hover{ 
-	z-index: 25; 
-	}
-span.tooltip span{
-	display: none}
+#fillColorNow{
+	border:solid;	
+}
 
-span.tooltip:hover span{ /*lo span verrý mostrato solo sullo stato :hover */
-    display: block; position:absolute;
-    top: 2em; left: 2em; width: 15em;
-    border: 1px solid #0cf; background-color: #cff; color:#000;
-    font-size: 80%;text-align: center
-    }
+#borderColorNow{
+	margin-top:0.2em;	
+	border:solid;	
+}
+
+#divBorderCol,#divFillCol{
+margin-top: 0.5em;
+}
+
+#polygonTitle,#textTitle{
+text-align: center;
+text-transform: uppercase;
+text-decoration: underline;
+}
+
+#colorx,#colory{
+width: 400px;display: none;
+}
+
 
 .toolbarButton{
 	width: 3em;
@@ -71,8 +79,7 @@ span.tooltip:hover span{ /*lo span verrý mostrato solo sullo stato :hover */
 
 /*zona salva/carica SVG */
 #saveLoadZone{
-	display: inline-block;
-	
+	display: inline-block;	
 }
 
 
@@ -82,13 +89,15 @@ span.tooltip:hover span{ /*lo span verrý mostrato solo sullo stato :hover */
 
 .flora .ui-dialog,
 .flora.ui-dialog {
-	background-color: #e6f7d4;
+	//background-color: #e6f7d4;
+	background-color: #e5e5e5;
+
 }
 
 .flora .ui-dialog .ui-dialog-titlebar,
 .flora.ui-dialog .ui-dialog-titlebar {
 	border-bottom: 1px solid #d8d2aa;
-	background: #ff9900 url(i/dialog-title.gif) repeat-x;
+	background: #008000 url(i/dialog-title.png) repeat-x;
 	padding: 0px;
 	height: 28px;
 /*	_height: 29px; */
