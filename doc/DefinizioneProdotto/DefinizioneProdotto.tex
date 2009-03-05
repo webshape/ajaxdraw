@@ -310,6 +310,7 @@ Classe concreta che si occupa delle operazioni di visualizzazione del canvas su 
 \item[-] \textit{deselectAll(figureSet)} deseleziona tutte le figure presenti nel figure set.
 \item[-] \textit{getClickCoordsWithinTarget(event)} ritorna il punto esatto del canvas sul quale \`  e avvenuto il click  del mouse, differenziando le diverse interpretazioni che fa ciascun browser per uniformarle in un unico metodo funzionante universalmente.
 Le coordinate vengono poi adattate allo spostamento corrente della visualizzazione sommandogli \textit{{\_}offset}, e allo zoom corrente, moltiplicandole per \textit{{\_}scale.getFactor()}.
+\item[-] \textit{setCanvasDimension(canvasObj,height,width)} regola le dimensioni del canvas al caricamento della pagina in proporzione alla risoluzione del monitor dell'utente.
 \end{elencopuntato}
 
 \subsezione{Canvas}
@@ -414,7 +415,7 @@ Estende \textit{Button}.
 
 \subsezione{ZoomButton}
 \subsubsezione{Tipo, obiettivo e funzione del componente}
-Classe concreta che rappresenta lo specifico pulsante che attiva le funzionalit\` a di zoom nel canvas.
+Classe astratta che rappresenta un pulsante che attiva le funzionalit\` a di zoom nel canvas.
 \subsubsezione{Relazioni d'uso di altre componenti}
 Estende \textit{Button}.
 \subsubsezione{Interfacce e relazioni di uso da altre componenti}
@@ -427,7 +428,37 @@ Estende \textit{Button}.
 \paragrafo{Metodi pubblici:}
 \begin{elencopuntato}[\subsubsecindent]
 \item[-] \textit{getId()} ritorna \textit{{\_}id}.
-\item[-] \textit{bindCanvas(toolbar,canvas,canvasObj,visual,figureSet)} collega il canvas all'azione di zoom. Collega l'evento click per prendere il punto che diventer\`a la nuova origine delle coordinate, e setta lo zoom di \textit{visual} in base al valore corrente di \textit{scaleButton}.
+\end{elencopuntato}
+
+\subsezione{ZoomInButton}
+\subsubsezione{Tipo, obiettivo e funzione del componente}
+Classe aconcreta che rappresenta pulsante che attiva le funzionalit\` a di ingrandimento dell'area di visualizzazione del canvas.
+\subsubsezione{Relazioni d'uso di altre componenti}
+Estende \textit{ZoomButton}.
+\subsubsezione{Interfacce e relazioni di uso da altre componenti}
+\subsubsezione{Attivit\`a svolte e dati trattati}
+\textit{Page} e \textit{Toolbar} ne mantengono un' istanza.
+\paragrafo{Attributi privati:}
+\paragrafo{Metodi pubblici:}
+\begin{elencopuntato}[\subsubsecindent]
+\item[-] \textit{bindCanvas(toolbar,canvas,canvasObj,visual,figureSet)} collega il canvas all'azione di ingrandimento dell'area visualizzata. Collega l'evento click per prendere il punto che diventer\`a la nuova origine delle coordinate, e setta lo zoom di \textit{visual} in base al valore corrente di \textit{scaleButton}.
+\end{elencopuntato}
+
+\subsezione{ZoomOutButton}
+\subsubsezione{Tipo, obiettivo e funzione del componente}
+Classe astrattache rappresenta pulsante che attiva le funzionalit\` a di rimpicciolimento dell'area di visualizzazione del canvas.
+\subsubsezione{Relazioni d'uso di altre componenti}
+Estende \textit{ZoomButton}.
+\subsubsezione{Interfacce e relazioni di uso da altre componenti}
+\subsubsezione{Attivit\`a svolte e dati trattati}
+\textit{Page} e \textit{Toolbar} ne mantengono un' istanza.
+\paragrafo{Attributi privati:}
+\begin{elencopuntato}[\subsubsecindent]
+\item[-] \textit{{\_}id} l'attibuto HTML \textit{id} del pulsante.
+\end{elencopuntato}
+\paragrafo{Metodi pubblici:}
+\begin{elencopuntato}[\subsubsecindent]
+\item[-] \textit{bindCanvas(toolbar,canvas,canvasObj,visual,figureSet)} collega il canvas all'azione di rimpicciolimento della'area visualizzata. Collega l'evento click per prendere il punto che diventer\`a la nuova origine delle coordinate, e setta lo zoom di \textit{visual} in base al valore corrente di \textit{scaleButton}.
 \end{elencopuntato}
 
 \subsezione{MoveViewButton}
@@ -478,6 +509,7 @@ Estende \textit{Button}.
 \begin{elencopuntato}[\subsubsecindent]
 \item[-] \textit{getId()} ritorna \textit{{\_}id};
 \item[-] \textit{getBuilder()} ritorna il tipo di oggetto disegnato tramite la pressione di questo pulsante, per permetterne il riconoscimento al metodo \textit{bindCanvas} in modo da associare correttamente la figura da disegnare al suo pulsante.
+\item[-]  \textit{bindCanvas(toolbar,canvas,canvasObj,visual,figureSet,borderColor)} overriding del metodo ereditato da \textit{Button}, collega il canvas all'azione di disegno di una curva di Bezier cubica,  chiedendo all'utente di cliccare su 4 punti diversi dell'area di disegno per ottenere infine la curva voluta.
 \end{elencopuntato}
 
 \subsezione{SquareButton}

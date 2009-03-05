@@ -756,6 +756,15 @@ BezierCurveButton.prototype.bindCanvas = function (toolbar,canvas,canvasObj,visu
 	f.getBorderColour().fromCSS(borderColour);
 	var coords = visual.getClickCoordsWithinTarget(e);
 	f.extend(new Point(coords.x, coords.y));
+	var rect = new Rectangle();
+	rect.getFillColour().getOpacity().setVal(0);
+	rect.getFillColour().fromCSS("#FFFFFF");
+
+	rect.getBorderColour().getOpacity().setVal(0.7);
+	rect.getBorderColour().fromCSS("#0000FF");
+	rect.getBounds().setStart(new Point(coords.x-5, coords.y-5));
+	rect.getBounds().setEnd(new Point(coords.x+5, coords.y+5));
+	rect.draw(canvas);
 	pointcounter--;
 	if( pointcounter == 0 ){
 	  f.draw(canvas);

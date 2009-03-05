@@ -218,6 +218,7 @@ $(document).ready(function(){
   $("#changeBorderCol").toggle(
     function () {
       $("#colorx").show("slow");
+      $("#colory").css({"display":"none"});
 
       if(openFill == false){
 	$(".Dialog1").height(430);
