@@ -159,8 +159,8 @@ FreeLine.prototype.toSVG = function(gen) {
            false);
   var p = this.getPoints();
   var c = "M " + p[0].x + "," + p[0].y;
-  var i = 0;
-  for (i = 0; i+2 < p.length; i += 3) {
+  var i = 1;
+  for (i = 1; i+2 < p.length; i += 3) {
     c += " C";
     for (var j = i; j < i+3; j++) {
       c += " " + p[j].x + "," + p[j].y;
@@ -189,8 +189,8 @@ FreeLine.prototype.toSVG = function(gen) {
 /*BezierCurve.prototype.toSVG = function(gen) {
   FreeLine.call(this, this, gen);
 };Non serve viene già chiamato in automatico su freeline*/
-BezierCurve.prototype.toSVG = function(gen) {
-};
+//BezierCurve.prototype.toSVG = function(gen) {
+//};
 
 
 
