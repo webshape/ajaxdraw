@@ -122,12 +122,12 @@ menuBar5.init();
 		<input title="Diminuisce la visualizzazione" class="toolbarButton" id="zoomOutButton" type="button"/><br/>
 		<input title="Sposta la visualizzazione" class="toolbarButton" id="moveViewButton" type="button"/><br/>
 		<input title="Disegna una linea diritta" class="toolbarButton" id="straightLineButton" type="button"/><br/>
-		<input title="Disegna una linea di Bezier" class="toolbarButton" id="bezierCurveButton" type="button"/><br/>
+		<input title="Disegna una curva di Bezier cubica" class="toolbarButton" id="bezierCurveButton" type="button"/><br/>
 		<input title="Crea rettangoli e quadrati" class="toolbarButton" id="squareButton" type="button"/><br/>
 		<input title="Crea cerchi ed ellissi" class="toolbarButton" id="circleButton" type="button"/><br/>
 		<input title="Crea poligoni" class="toolbarButton" id="polygonButton" type="button"/><br/>
 		<input title="Disegna linee a mano libera" class="toolbarButton" id="freeLineButton" type="button"/><br/>
-		<input title="Crea oggetti testuali" class="toolbarButton" id="textButton" type="button"/><br/>
+		<input title="Crea caselle di testo" class="toolbarButton" id="textButton" type="button"/><br/>
 		<div id="saveLoadZone"><br/>	
 		<span >
 			<select id="scaleButton" title="Scegli la percentuale di riscalamento">
@@ -139,10 +139,10 @@ menuBar5.init();
 			</select>
 		</span><br/>
 		<span>
-			<input type="button" id="clearCanvasButton" name="ClearButton" value="Svuota"/>
+			<input type="button" id="clearCanvasButton" name="ClearButton" value="Svuota" title="Svuota il canvas"/>
 		</span><br/>
 		<span>
-			<input type="button" id="eraseButton" name="EraseButton" value="Cancella"/>
+			<input type="button" id="eraseButton" name="EraseButton" value="Cancella" title="Cancella un singolo elemento"/>
 		</span>
 		</div>
 	</div>
@@ -175,7 +175,7 @@ menuBar5.init();
 	
 	
 	<!-- Tavolozza nella parte bassa dello schermo -->
-	<div id="palette">
+	<div id="palette" title="Scegli il colore da applicare">
 		<span id="firstPalette" class="paletteComponent" style="background-color:#EEC73E">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
 		<!-- ><span class="paletteComponent" style="background-color:#F0A513">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> -->
 		<span class="paletteComponent" style="background-color:#FB8B00">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>

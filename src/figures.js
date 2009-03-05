@@ -202,7 +202,7 @@ Opacity.prototype.applyToContext = function (ctx) {
 /**
  * @constructor
  * Rotation property
- * @param rad angle of rotation 
+ * @param rad angle of rotation
  */
 function Rotation(angle) {
   this._rad = angle;
@@ -486,8 +486,8 @@ FigureSet.prototype.selectFigure = function (where, scale, offset) {
 
   var fs = {};
   var c = document.createElement('canvas');
-  c.width = 760;
-  c.height = 480;
+  c.width = 1000;
+  c.height = 1000;
   if (scale) {
     where = scale.toAbs(where, offset);
     scale.applyToContext(c.getContext('2d'), offset);
