@@ -609,11 +609,11 @@ ZoomInButton.prototype.bindCanvas = function (toolbar,canvas,canvasObj,visual,fi
   $("#cv").bind("click", function(e){
     var oldw = canvas.width/2;
     var oldh = canvas.height/2;
-    factor+=0.5;
-    visual.setScale(new Scale(factor));
+    factor=visual.getScale().getFactor()/0.5;
+						visual.setScale(new Scale(factor));
     var clic = visual.getClickCoordsWithinTarget(e);
-    var x = oldw - (canvas.width/2)/factor;   //centrato
-    var y = oldh - (canvas.height/2)/factor;
+						var x = visual.getOffset().x + 500/factor;//oldw - (canvas.width/2)*factor;   //centrato
+						var y = visual.getOffset().y + 300/factor;//oldh - (canvas.height/2)*factor;
     var p = new Point(x, y);
     visual.setOffset(p);
     canvasObj.clear();
@@ -635,12 +635,12 @@ ZoomOutButton.prototype.bindCanvas = function (toolbar,canvas,canvasObj,visual,f
   $("#cloneButton").unbind('click');
   $("#cv").unbind('mousedown click mouseup');
   $("#cv").bind("click", function(e){
-    var oldw = canvas.width*2;
-    var oldh = canvas.height*2;
-    factor-=0.5;
-    visual.setScale(new Scale(factor));
-    var x = oldw - (canvas.width*2)/factor;   //centrato
-    var y = oldh - (canvas.height*2)/factor;
+    var oldw = canvas.width/2;
+    var oldh = canvas.height/2;
+						factor=visual.getScale().getFactor()*0.5;
+						visual.setScale(new Scale(factor));
+						var x = visual.getOffset().x - 500*factor;//oldw - (canvas.width/2)/factor;   //centrato
+						var y = visual.getOffset().y - 300*factor;//oldh - (canvas.height/2)/factor;
     var p = new Point(x, y);
     visual.setOffset(p);
     canvasObj.clear();
