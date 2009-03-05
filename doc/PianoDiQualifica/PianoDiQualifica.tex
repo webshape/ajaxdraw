@@ -281,6 +281,20 @@ Qualora un prodotto si discostasse da quanto descritto nell'analisi dei requisit
 L'amministratore del progetto deve assicurarsi che gli standard descritti nelle \textit{NormeDiProgetto} siano rispettati e deve segnalare eventuali infrazioni al responsabile, in modo che provveda a risolverle. Il responsabile della qualit\`a controlla che le attivit\`a di verifica vengano svolte, e che seguano le procedure descritte in questo documento.
 \newpage
  
+
+\sezione{Metriche di valutazione della qualit\`a}
+Verranno utilizzate delle metriche per valutare lo stato di avanzamento del progetto e la sua qualit\`a. 
+Le metriche scelte tengono conto dell'utilit\`a della metrica stessa e della disponibilit\`a di strumenti software
+adatti a misurarla.
+
+\subsezione{Copertura dei test}
+La copertura indica, in percentuale, quante linee di codice vengono eseguite durante i test automatici. Permette di capire se i test scritti sono sufficienti oppure no, anche se un'ottima copertura non garantisce di per s\`e l'adeguatezza dei test, ma ne \`e comunque una buona stima. La copertura attesa dipende da quale sottosistema dell'applicazione si sta prendendo in considerazione:
+\begin{elencopuntato}[\subsecindent]
+\item[-] GUI: dipende quasi completamente dall'interazione con l'utente ed \`e quindi poco automatizzabile. Ci si aspetta una copertura tra il 20\% ed il 30\%.
+\item[-] Logica interna: ci si aspetta una copertura tra l'80\% ed il 90\% su un singolo browser. Alcune parti vengono eseguite a seconda del browser, e quindi ci si aspetta di superare il 90\% solo eseguendo i test su pi\`u browser.
+\item[-] Server: ci si attende una copertura vicina al 100\%.
+\end{elencopuntato}
+
 \sezione{Resoconto delle attivit\`a di verifica}
  
  
