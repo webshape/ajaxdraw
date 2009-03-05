@@ -15,24 +15,52 @@ canvas {
 #tool{
 	margin-left: 0.5em;
 	position: fixed;
-	}
+}
+
 .toolbarButton{
 	width: 3em;
 	height:2em;
 	cursor:pointer;
+	background-color:#F4F3F2;
+	background-repeat: no-repeat;
+	background-position: center;
+	margin-left:1em;
 }
 
 #selectionButton{
 	background-image:url("../pages/images/selezione.png");
-		background-repeat:no-repeat;
-		background-position: center;
+	}
+#zoomInButton{
+	background-image:url("../pages/images/zoomIn.png");
+		}
+#zoomOutButton{
+	background-image:url("../pages/images/zoomOut.png");
+		}	
+#moveViewButton{
+	background-image:url("../pages/images/move.png");
+		}	
 		
-		
+#straightLineButton{
+	background-image:url("../pages/images/lineaDritta.png");
+		}	
+	
+#bezierCurveButton{
+    background-image:url("../pages/images/linea.png");
 	}
 #squareButton{
 	background-image:url("../pages/images/quadrato.png");
-	background-repeat:no-repeat;
-	background-position: center;
+}
+#circleButton{
+	background-image:url("../pages/images/cerchio.png");
+}
+#polygonButton{
+	background-image:url("../pages/images/poligono.png");
+}
+#freeLineButton{
+	background-image:url("../pages/images/freeline.png");
+}
+#textButton{
+	background-image:url("../pages/images/testo.png");
 }
 
 

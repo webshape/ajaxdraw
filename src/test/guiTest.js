@@ -5,7 +5,7 @@ function runGuiTest() {
     var p = new Page();
     var name = p.getBrowserName();
     same(p.getBrowserName(),$.browser.name,'getBrowserName()');
-    same(p.getBrowserVersion(),$.browser.version,'getVersionName()');
+    same(p.getBrowserVersion(),$.browser.versionNumber,'getBrowserVersion()');
 
 
        });
