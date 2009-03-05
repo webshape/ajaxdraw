@@ -31,7 +31,7 @@ function runLoadTest () {
 	    equals(c.getFillColour().getOpacity().getVal(), "1", 'Circle: fill opacity');
 	    equals(c.getBorderColour().toCSS(), "#7d00ff", 'Circle: border colour');
 	    equals(c.getBorderColour().getOpacity().getVal(), "1", 'Circle: border opacity');
-	    
+
 	    //ellipse
             doc = "<svg width=\"1000\" height=\"1000\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\">";
 	    doc += "<ellipse cx=\"250\" cy=\"250\" rx=\"150\" ry=\"50\" fill=\"#ff0000\" fill-opacity=\"1\" stroke=\"#ff00ff\" stroke-opacity=\"1\"></ellipse>\n</svg>";
@@ -45,14 +45,14 @@ function runLoadTest () {
 	    equals(e.getFillColour().getOpacity().getVal(), "1", 'Ellipse: fill opacity');
 	    equals(e.getBorderColour().toCSS(), "#ff00ff", 'Ellipse: border colour');
 	    equals(e.getBorderColour().getOpacity().getVal(), "1", 'Ellipse: border opacity');
-	    
+
 	    //polygon
             doc = "<svg width=\"1000\" height=\"1000\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\">";
-	    doc += "<polygon fill=\"#000000\" fill-opacity=\"1\" stroke=\"#ff0000\" stroke-opacity=\"1\" points=\"50,30 20.000000000000004,47.32050807568878 19.999999999999993,12.679491924311233 \"></polygon>\n</svg>";
+		 doc += "<polygon fill=\"#000000\" fill-opacity=\"1\" stroke=\"#ff0000\" stroke-opacity=\"1\" points=\"50,30 20,47 20,13 \"></polygon>\n</svg>";
 	    fs = s.read(doc);
 	    var p = fs._figures[0];
 	    equals(p.getBounds().start().x, "20", 'Polygon: starting x');
-	    equals(p.getBounds().start().y, "12", 'Polygon: starting y');
+	    equals(p.getBounds().start().y, "13", 'Polygon: starting y');
 	    equals(p.getBounds().end().x, "50", 'Polygon: ending x');
 	    equals(p.getBounds().end().y, "47", 'Polygon: ending y');
 	    equals(p.edgeNumber().getVal(),"3",'Polygon: edges');
@@ -60,7 +60,7 @@ function runLoadTest () {
 	    equals(p.getFillColour().getOpacity().getVal(), "1", 'Polygon: fill opacity');
 	    equals(p.getBorderColour().toCSS(), "#ff0000", 'Polygon: border colour');
 	    equals(p.getBorderColour().getOpacity().getVal(), "1", 'Polygon: border opacity');
-	    
+
 	    //straightline
             doc = "<svg width=\"1000\" height=\"1000\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\">";
 	    doc += "<line x1=\"0\" y1=\"500\" x2=\"200\" y2=\"600\" stroke=\"#0000ff\" stroke-opacity=\"1\"></line>\n</svg>";
@@ -72,7 +72,7 @@ function runLoadTest () {
 	    equals(l.getBounds().end().y, "600", 'StraightLine: ending y');
 	    equals(l.getBorderColour().toCSS(), "#0000ff", 'StraightLine: border colour');
 	    equals(l.getBorderColour().getOpacity().getVal(), "1", 'StraightLine: border opacity');
-	    
+
             //freeline
             doc = "<svg width=\"1000\" height=\"1000\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\">";
 	    doc += "<path fill=\"none\" stroke=\"#0a1428\" stroke-opacity=\"1\" d=\"M 400,500 C 400,500 500,600 520,520 Q 550,550 600,700\"></path>\n</svg>";
@@ -98,7 +98,7 @@ function runLoadTest () {
 	    equals(f.getBorderColour().toCSS(), "#0a1428", 'FreeLine: border colour');
 	    equals(f.getBorderColour().getOpacity().getVal(), "1", 'FreeLine: border opacity');
 
-             
+
             //beziercurve
             doc = "<svg width=\"1000\" height=\"1000\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\">";
 	    doc += "<path fill=\"none\" stroke=\"#0a1428\" stroke-opacity=\"1\" d=\"M 600,500 C 600,500 700,600 720,520 C 750,550 780,690 800,700\"></path>\n</svg>";

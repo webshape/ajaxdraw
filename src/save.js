@@ -208,7 +208,7 @@ Polygon.prototype.toSVG = function(gen) {
   var aPoints = this.getPoints();
   var points = "";
   for (var i = 0; i < aPoints.length; ++i) {
-    points += (aPoints[i].x + this.getBounds().start().x) + "," + (aPoints[i].y + this.getBounds().start().y) + " ";
+	 points += (Math.round(aPoints[i].x) + this.getBounds().start().x) + "," + (Math.round(aPoints[i].y) + this.getBounds().start().y) + " ";
   }
   gen.attr("points", points, true);
   gen.endCommand("polygon");
