@@ -858,7 +858,7 @@ Implementa \textit{Property} e \textit{CSSProperty}. Mantiene un'istanza di \tex
 \item[-] \textit{set(r, g, b, o)} modifica i valori dei quattro attributi.
 \item[-] \textit{fromCSS(repr)} inizializza le componenti RGB del colore a partire dalla loro rappresentazione CSS. Diivide la stringa \textit{repr} in tre parti di due cifre esadecimali l'una, le converte in numeri e le assegna alle tre componenti. Se \textit{repr} \`e invalida viene sollevata un'eccezione.
 \item[-] \textit{createWidget()} crea e ritorna un'istanza di \textit{ColourDialog} passando se stesso come parametro al costruttore.
-\item[-] \textit{toCSS()} ritorna il colore come una stringa di tipo \"{\#}EEEEEE\" formata da tre coppie di due cifre esadecimali. Le coppie rappresentano rispettivamente il rosso, il verde, il blu. L'opacit\`a viene ignorata da questo metodo.
+\item[-] \textit{toCSS()} ritorna il colore come una stringa di tipo {\#}EEEEEE formata da tre coppie di due cifre esadecimali. Le coppie rappresentano rispettivamente il rosso, il verde, il blu. L'opacit\`a viene ignorata da questo metodo.
 \item[-] \textit{applyToContext(context)} setta l'attributo \textit{strokeStyle} del contesto grafico alla propria rappresentazione CSS, e richiama il metodo \textit{applyToContext} su \textit{{\_}o} passando \textit{context} come argomento.
 \end{elencopuntato}
 
@@ -885,7 +885,7 @@ Rappresenta il colore di un testo.
 \subsubsezione{Relazioni d'uso di altre componenti}
 Deriva da \textit{FillColour}.
 \subsubsezione{Interfacce e relazioni di uso da altre componenti}
-Nessuna.
+\textit{Text} ne mantiene un'istanza.
 \subsubsezione{Attivit\`a svolte e dati trattati}
 \leftskip=36pt{Nessuna.}
 
@@ -1010,8 +1010,8 @@ Creato dalla lettura di un file SVG oppure dall'interfaccia utente. Manipolato d
 \item[-] \textit{extend(point)} aggiunge un punto avente coordinate assolute ai punti di controllo. Nel caso il punto esca dal \textit{BoundingRectangle}, il \textit{BoundingRectangle} viene ampliato e tutti i punti di controllo (con coordinate relative) vengono ricalcolati in modo che mantengano la posizione precedente. Per ricalcolare i punti si convertono a valore assoluto, si modifica il \textit{BoundingRectangle}, si aggiunge il nuovo punto e si riconvertono i 
 punti al loro valore relativo.
 \item[-] \textit{move(point, to)} muove il punto di controllo \textit{point} (se appartiene alla linea) e lo mette in \textit{to}. Aggiusta il \textit{BoundingRectangle} di conseguenza. I due punti hanno coordinate assolute.
-\item[-] \textit{getPoints} ritorna un array con una copia dei punti di controllo della linea convertiti a coordinate assolute in base al \textit{BoundingRectangle}.
-\item[-] \textit{getMainPoints} ritorna un array ottenuto concatenando l'array di \textit{getMainPoints} della superclasse e i punti ottenuti con \textit{getPoints}.
+\item[-] \textit{getPoints()} ritorna un array con una copia dei punti di controllo della linea convertiti a coordinate assolute in base al \textit{BoundingRectangle}.
+\item[-] \textit{getMainPoints()} ritorna un array ottenuto concatenando l'array di \textit{getMainPoints} della superclasse e i punti ottenuti con \textit{getPoints}.
 \item[-] \textit{draw(canvas)} chiama \textit{applyToContext} sul colore del bordo e ottiene i punti di controllo assoluti tramite \textit{getPoints}. Usa il primo punto come inizio della prima curva e raggruppa i punti a 3 a 3 e per ogni gruppo traccia una curva di bezier. Se rimangono due punti traccia una quadratica e se ne rimane uno solo una linea diritta.
 \item[-] \textit{drawSelection(canvas)} richiama \textit{drawSelection} di \textit{Figure} e disegna le tangenti alla curva di colore grigio con opacit\`a 0.8. Le tangenti sono dei segmenti che congiungono il punto di inizio/fine curva al relativo punto di controllo.
 \item[-] \textit{toSVG(gen)} crea un tag \textit{line} con il metodo \textit{startCommand} e aggiunge gli attributi secondo lo standard SVG1.1 con il metodo \textit{attr}. Entrambi questi metodi appartengono alla classe \textit{SVGGenerator}. Per costruire l'attributo SVG \textit{d} il metodo scrive delle curve cubiche i punti a tre a tre, e per i punti rimanenti scrive una curva quadratica se ne restano due e una linea retta se ne resta uno. Infine scrive il tag di chiusura con il metodo \textit{endCommand} di \textit{SVGGenerator}.
