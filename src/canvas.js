@@ -200,8 +200,12 @@ Visualization.prototype.setCanvasDimension = function(canvasObj,height,width){
     canvasObj.setHeight(480);
   }
   else if(width == 1024 && height==768){
-    canvasObj.setWidth(506);
+    canvasObj.setWidth(620);
     canvasObj.setHeight(448);
+  }
+  else if(width == 1440 && height==900){
+    canvasObj.setWidth(1000);
+    canvasObj.setHeight(600);
   }
   else if(width == 1680 && height==1050){
     canvasObj.setWidth(1000);
