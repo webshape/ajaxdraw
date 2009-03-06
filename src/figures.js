@@ -509,10 +509,10 @@ FigureSet.prototype.selectFigure = function (where, scale, offset) {
                 var b = f.getBounds();
                 var s = b.start();
                 var e = b.end();
-                if (((s.x < where.x && where.x < e.x)
-                  || (e.x < where.x && where.x < s.x))
-                  && ((s.y < where.y && where.y < e.y)
-                  || (e.y < where.y && where.y < s.y))) {
+                if (((s.x < where.x && where.x < e.x) ||
+                  (e.x < where.x && where.x < s.x)) &&
+                  ((s.y < where.y && where.y < e.y) ||
+                    (e.y < where.y && where.y < s.y))) {
                   textSelected = f;
                 }
               } else {
@@ -744,82 +744,6 @@ function FreeLine () {
 
 FreeLine.prototype = new Figure();
 
-FreeLine.prototype.extend2 = function (pt) {
-  var b = this.getBounds();
-  var s = b.start();
-  var newStart = new Point(s.x, s.y);
-  var e = b.end();
-  var newEnd = new Point(e.x, e.y);
-
-  //if (this._pts.length === 0) {
-    // first point
-    //b.setStart(new Point(pt.x, pt.y));
-    //b.setEnd(new Point(pt.x, pt.y)); // min
-    //this._pts.push(new Point(0, 0));
-    //return;
-  //}
-
-  //var w = b.w();
-  //var h = b.h();
-
-  // if needed make the BoundingRectangle grow
-/*  if (s.x <= e.x) {
-    if (pt.x < s.x) {
-      newStart.x = pt.x;
-    }
-    if (pt.x > e.x) {
-      newEnd.x = pt.x;
-    }
-  } else {
-    if (pt.x > s.x) {
-      newStart.x = pt.x;
-    }
-    if (pt.x < e.x) {
-      newEnd.x = pt.x;
-    }
-  }
-  if (s.y <= e.y) {
-    if (pt.y < s.y) {
-      newStart.y = pt.y;
-    }
-    if (pt.y > e.y) {
-      newEnd.y = pt.y;
-    }
-  } else {
-    if (pt.y > s.y) {
-      newStart.y = pt.y;
-    }
-    if (pt.y < e.y) {
-      newEnd.y = pt.y;
-    }
-  }*/
-  // change rect
-//  alert(newEnd.x);
-//  s.x = newStart.x; s.y = newStart.y;
-//  e.x = newEnd.x; e.y = newEnd.y;
-//  var w = b.w();
-//  var h = b.h();
-/*  if (w === 0) {
-    pt.x = 0;
-  } else {
-    pt.x -= s.x;
-    pt.x /= w;
-  }
-  if (h === 0) {
-    pt.y = 0;
-  } else {
-    pt.y -= s.y;
-    pt.y /= h;
-  }
-
-  */
-  //pt.x -= s.x;
-  //pt.y -= s.y;
-
-  //this._pts.push(pt);
-
-};
-
 /**
  * Move a point of the line
  * @param {Point} pt point to move
@@ -981,7 +905,7 @@ FreeLine.prototype.draw = function (c) {
   var ctx = c.getContext('2d');
   ctx.save();
   var pts = this.getPoints();
-  if (pts.length == 0) {
+  if (pts.length === 0) {
     return;
   }
   ctx.beginPath();
