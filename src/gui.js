@@ -1,7 +1,6 @@
 
 var visual = null; /* global */
 var canvasObj = null; /* global */
-var zoomFactor = 1; /*global*/
 
 /*parte di jQuery */
 $(document).ready(function(){
@@ -31,7 +30,7 @@ $(document).ready(function(){
   var cloneButton = new CloneButton();toolbar.add(cloneButton);//10
   var zoomOutButton = new ZoomOutButton();toolbar.add(zoomOutButton);//11
   var clearCanvasButton = new ClearCanvasButton();
-  var eraseButton = new EraseButton();
+ // var eraseButton = new EraseButton();
 
 /* Creo il colorDialog */
   var color= {  BorderColor:"#000000", FillColor:"#000000"};
@@ -90,7 +89,7 @@ $(document).ready(function(){
     zoomInButton.bindCursor("zoomIn");
     $("#fontSetterZone").css({"display":"none"});
     $("#edgeSetterZone").css({"display":"none"});
-    zoomInButton.bindCanvas(toolbar,canvas,canvasObj,visual,figureSet,zoomFactor);
+    zoomInButton.bindCanvas(toolbar,canvas,canvasObj,visual,figureSet);
   });
     $("#zoomOutButton").click(function () {
     $(".Dialog2").height(210);
@@ -98,7 +97,7 @@ $(document).ready(function(){
     zoomInButton.bindCursor("zoomOut");
     $("#fontSetterZone").css({"display":"none"});
     $("#edgeSetterZone").css({"display":"none"});
-    zoomOutButton.bindCanvas(toolbar,canvas,canvasObj,visual,figureSet,zoomFactor);
+    zoomOutButton.bindCanvas(toolbar,canvas,canvasObj,visual,figureSet);
   });
 
   $("#moveViewButton").click(function () {
@@ -191,7 +190,7 @@ $(document).ready(function(){
  // });
 
   $(".toolbarButton").click(function(){
-    $(".toolbarButton").css({"background-color":"#F4F3F2"}), //tutti grigio chiaro
+    $(".toolbarButton").css({"background-color":"#F4F3F2"}); //tutti grigio chiaro
     $(this).css({"background-color":"#A0A0A0"});  //pulsante premuto grigio scuro
   });
 
@@ -218,46 +217,54 @@ $(document).ready(function(){
       $("#colorx").show("slow");
       $("#colory").css({"display":"none"});
 
-      if(openFill == false){
+      if(openFill === false){
 	$(".Dialog1").height(430);
       }
-      else $(".Dialog1").height(700);
+      else {
+        $(".Dialog1").height(700);
+      }
       openBorder = true;
     },
     function() {
-      $(".Dialog1").height(190),
+      $(".Dialog1").height(190);
       $("#colorx").hide("slow");
       $.farbtastic("#color1").setColor(document.getElementById("color1").value);
       color.BorderColor=$.farbtastic("#color1").color;
       document.getElementById("borderColorNow").style.backgroundColor=color.BorderColor;
       toolbar.rebind(canvas,canvasObj,visual,figureSet,color.BorderColor,color.FillColor);
-      if(openFill == false){
+      if(openFill === false){
 	$(".Dialog1").height(190);
       }
-      else $(".Dialog1").height(430);
+      else {
+        $(".Dialog1").height(430);
+      }
       openBorder = false;
     }
   );
   $("#changeFillCol").toggle(
     function () {
       $("#colory").show("slow");
-      if(openBorder==false){
+      if(openBorder === false){
 	$(".Dialog1").height(430);
      }
-      else $(".Dialog1").height(670);
+      else {
+        $(".Dialog1").height(670);
+      }
       openFill = true;
     },
     function() {
-      $(".Dialog1").height(190),
+      $(".Dialog1").height(190);
       $("#colory").hide("slow");
       $.farbtastic("#color2").setColor(document.getElementById("color2").value);
       color.FillColor=$.farbtastic("#color2").color;
       document.getElementById("fillColorNow").style.backgroundColor=color.FillColor;
       toolbar.rebind(canvas,canvasObj,visual,figureSet,color.BorderColor,color.FillColor);
-      if(openBorder==false){
+      if(openBorder === false){
 	$(".Dialog1").height(190);
       }
-      else $(".Dialog1").height(430);
+      else {
+        $(".Dialog1").height(430);
+      }
       openFill = false;
     }
   );
@@ -285,9 +292,9 @@ $(document).ready(function(){
    $("#loadDialog").dialog( 'close' );
  });
 
-   $("#eraseButton").click(function () {
-     eraseButton.eraseElement(figureSet);
-   });
+  // $("#eraseButton").click(function () {
+    // eraseButton.eraseElement(figureSet);
+  // });
 
 
 

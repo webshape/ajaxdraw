@@ -62,6 +62,7 @@ test('EdgeNumber', function () {
 test('TextFont', function () {
        var t = new TextFont('verdana');
        equals(t.toCSS(), 'verdana', 'toCSS');
+       ok(t.createWidget() instanceof FontSetter, 'createWidget');
      });
 
 test('FigureSet', function () {
@@ -150,6 +151,17 @@ test('Figure', function () {
                                                  new Point(0,0)),
             'getBounds()');
        equals(f.getBorderColour().toCSS(), '#000000', 'getBorderColour');
+       var f2 = f.clone();
+       var f3 = f.clone();
+       same(f2, f3, 'same clones');
+       ok(f2.getFillColour() !== f.getFillColour(), 
+          'clone: not same fill colour address');
+       ok(f2.getBorderColour() !== f3.getBorderColour(),
+          'clones: not same border colour address');
+       equals(f2.getBounds().start().y, f.getBounds().start().y - 10, 
+              'clone: moved');
+       equals(f2.getBounds().end().y, f.getBounds().end().y - 10, 
+              'clone: moved (2)');
      });
   
 test('Circle', function () {

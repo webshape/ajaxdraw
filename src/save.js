@@ -31,9 +31,9 @@ SVGWriter.prototype.write = function (fs) {
  * @param {Integer} h height of the canvas element
  */
 function SVGGenerator(w, h) {
-  this._doc = "<?xml version=\"1.0\" standalone=\"no\"?>\n\
-<!DOCTYPE svg PUBLIC \"-//W3C//DTD SVG 1.1//EN\" \"http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd\">\n\
-<svg width=\"" + w + "\" height=\"" + h + "\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\">\n";
+  this._doc = '<?xml version="1.0" standalone="no"?>\n' +
+    '<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">\n' +
+'<svg width="' + w + '" height="' + h + '" version="1.1" xmlns="http://www.w3.org/2000/svg">\n';
 }
 
 /**
@@ -222,11 +222,13 @@ Polygon.prototype.toSVG = function(gen) {
 Circle.prototype.toSVG = function(gen) {
   gen.startCommand("ellipse");
   var x = this.getBounds().start().x;
-  if (x > this.getBounds().end().x)
-	 x = this.getBounds().end().x;
+  if (x > this.getBounds().end().x) {
+    x = this.getBounds().end().x;
+  }
   var y = this.getBounds().start().y;
-  if (y > this.getBounds().end().y)
-	 y = this.getBounds().end().y;
+  if (y > this.getBounds().end().y) {
+    y = this.getBounds().end().y;
+  }
   var cx = x + Math.abs(this.getBounds().centre().x);
   var cy = y + Math.abs(this.getBounds().centre().y);
   gen.attr("cx", cx, false);
@@ -249,11 +251,13 @@ Circle.prototype.toSVG = function(gen) {
 Text.prototype.toSVG = function(gen) {
   gen.startCommand("text");
   var x = this.getBounds().start().x;
-  if (x > this.getBounds().end().x)
-	 x = this.getBounds().end().x;
+  if (x > this.getBounds().end().x) {
+    x = this.getBounds().end().x;
+  }
   var y = this.getBounds().end().y;
-  if (y < this.getBounds().start().y)
-	 y = this.getBounds().start().y;
+  if (y < this.getBounds().start().y) {
+    y = this.getBounds().start().y;
+  }
   gen.attr("x", x, false);
   gen.attr("y", y, false);
   gen.attr("font-family", this.getFont().toCSS(), false);
