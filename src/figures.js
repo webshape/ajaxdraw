@@ -174,10 +174,6 @@ BoundingRectangle.prototype.createWidget = function () {
  */
 BoundingRectangle.prototype.applyToContext = function (ctx) {
   ctx.translate(this._start.x, this._start.y);
-  //var scaley = this._end.y - this._start.y;
-  //ctx.scale(this._end.x - this._start.x, scaley);
-  // avoid too thick lines
-  //ctx.lineWidth = 1/scaley;
 };
 
 /**
@@ -443,20 +439,6 @@ FigureSet.prototype.fallbackSelection = function (where) {
     }
   }
   return null;
-
-/*
-  var selected = null;
-  var c = document.createElement('canvas');
-  c.height = c.width = 1000;
-  this._figures.each(function (f) {
-                       c.width = 1000; // clear
-                       var ctx = c.getContext('2d');
-                       f.draw(c);
-                       if (ctx.isPointInPath(where.x, where.y)) {
-                         selected = f;
-                       }
-                     });
-  return selected;*/
 };
 
 /**
@@ -512,7 +494,7 @@ FigureSet.prototype.selectFigure = function (where, scale, offset) {
                 if (((s.x < where.x && where.x < e.x) ||
                   (e.x < where.x && where.x < s.x)) &&
                   ((s.y < where.y && where.y < e.y) ||
-                    (e.y < where.y && where.y < s.y))) {
+                  (e.y < where.y && where.y < s.y))) {
                   textSelected = f;
                 }
               } else {
@@ -524,7 +506,7 @@ FigureSet.prototype.selectFigure = function (where, scale, offset) {
                 var old2 = f._fillColour;
                 f._borderColour = col[0];
                 // figure may not have a fillColour
-                // this won't create any error
+                // this won't raise any error
                 f._fillColour = col[1];
                 f.draw(c);
                 f._borderColour = old1;
@@ -534,7 +516,6 @@ FigureSet.prototype.selectFigure = function (where, scale, offset) {
   // get the selected pixel
   var selection = c.getContext('2d').getImageData(absWhere.x, absWhere.y, 1, 1).data;
   var col = new Colour(selection[0], selection[1], selection[2], o);
-//  alert(col.toCSS());
   var res = fs[col.toCSS()];
   if (!res) {
     return textSelected; // may be null
@@ -727,7 +708,6 @@ StraightLine.prototype.draw = function (c) {
   ctx.moveTo(start.x, start.y);
   ctx.lineTo(end.x, end.y);
   this.getBorderColour().applyToContext(ctx);
-//  alert(this.getBorderColour().toCSS());
   ctx.stroke();
   ctx.closePath();
   ctx.restore();
@@ -778,7 +758,6 @@ FreeLine.prototype.move = function (pt, to) {
  * @param {Point} pt the point to add. Coords of pt are absolute
  */
 FreeLine.prototype.extend = function (pt) {
-//  alert('called');
   var b = this.getBounds();
   var s = b.start();
   var newStart = new Point(s.x, s.y);
@@ -832,8 +811,6 @@ FreeLine.prototype.extend = function (pt) {
     // bounding rectangle changed
     w = b.w();
     h = b.h();
-    //s.x = newStart.x; s.y = newStart.y;
-    //e.x = newEnd.x; e.y = newEnd.y;
     // get all abs values
     var p = null;
     for (var i = 0; i < this._pts.length; i++) {
@@ -890,9 +867,7 @@ FreeLine.prototype.getPoints = function () {
   var w = bounds.w();
   var h = bounds.h();
   return this._pts.map(function (pt) {
-                         var p = new Point(pt.x*w+tx, pt.y*h+ty);
-                         //alert(p.x + ' ' + p.y);
-                         return p;
+                         return new Point(pt.x*w+tx, pt.y*h+ty);
                        });
 };
 
@@ -1041,7 +1016,6 @@ Text.prototype.fallbackDraw = function (c) {
   var font = this._font.toCSS();
   var size = Math.abs(b.h());
   var len = CanvasTextFunctions.measure(font, size, this._txt.getName());
-//  alert(size + ' ' + len + ' ' + Math.abs(b.w()));
   var w = Math.abs(b.w());
   if (len > w) {
     size *= w/len;
