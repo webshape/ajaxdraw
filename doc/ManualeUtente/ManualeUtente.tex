@@ -261,10 +261,46 @@ Per completare l'installazione, premere su \textit{Install}.
 
 \indent{\textbf{Installazione su sistemi Linux:}}\\
 \\
-(inserire qua)
- 
+Scaricato il .tar.gz, estrarre il contenuto su una cartella. 
+Aprire una shell e posizionarsi sulla cartella estratta.
+A questo punto \`e necessario provare ad avviare il processo di Tomcat. Per farlo, eseguire i seguenti comandi:\\
+\textit{cd bin}\\
+\textit{./catalina.sh start}\\
 
- 
+Se tutto è andato per il meglio. dovrebbe comparire una scritta tipo:\\
+\textit{Using CATALINA_BASE: /home/red/apache-tomcat-6.0.14}\\
+Using CATALINA_HOME: /home/red/apache-tomcat-6.0.14\\
+Using CATALINA_TMPDIR: /home/red/apache-tomcat-6.0.14/temp\\
+Using JRE_HOME: /usr/lib/jvm/java-6-sun-1.6.0.03\\
+\\
+Avviare un browser e inserire l'indirizzo \textit{http://localhost:8080}\\
+Se compare la pagina principale di Tomcat, significa il Web Server funziona correttamente.
+A questo punto, \`e necessario procedere alla configurazione dell'utente amministratore per poter usare il Tomcat Manager.
+Per fare questo, da shell, spostarsi nella cartella principale di Tomcat ed eseguire i seguenti comandi:\\
+\textit{cd conf}\\
+\textit{sudo gedit tomcat-users.xml}\\
+Sostituire il file aperto, con il seguente codice:\\
+<?xml version='1.0' encoding='utf-8'?>\\
+<tomcat-users>\\
+  <role rolename="manager"/>\\
+  <role rolename="admin"/>\\
+  <user username="admin" password="admin" roles="manager"/>\\
+</tomcat-users> \\
+\\
+In questo modo \`e stato impostato uno User Name con valore \textit{admin} e una Password con valore \textit{admin]. Queste credenziali sono da usare per accedere al Tomcat Manager.\\
+A questo punto avviare un browser e digitare il seguente indirizzo\\ \textit{http://localhost:8080/manager/html}\\
+Dopo aver inserito User Name e Password richiesti, si entrer\`a nel manager di Tomcat.\\
+Andare nella sezione \textit{WAR file to deploy} della pagina.
+
+\newpage
+\begin{figure}[!ht]
+\centering
+\includegraphics[scale=0.7]{images/DeployTomcat.png}
+\caption{Deploy}
+\end{figure} 
+
+Selezionare il file .war dell'applicazione e quindi premere su Deploy.\\
+
 \subsezione{Avvio del programma}
 \subsubsezione{Lato client}
 \`E sufficiente aprire la pagina web con un browser supportato. L'indirizzo dipende dall'host in cui viene installato il server.
