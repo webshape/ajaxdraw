@@ -52,7 +52,7 @@
 													resizable: false,
     												dialogClass: "saveDialog1"
 								   			});' 
-								   itemIcon="images/menu_bar/disk.gif"><a href="#" title="Save your work">Save</a></li>
+								   itemIcon="images/menu_bar/disk.gif"><a href="#" title="Save your work">Salva</a></li>
 			<!--  <li id="500002"><a href="#">Salva Come</a></li> -->
 			<li id="500004" itemType="separator"></li>
 			<li itemIcon="images/menu_bar/open.gif" jsFunction='$("#loadDialog").css({"display" : "block"});
@@ -65,7 +65,13 @@
 								   			});' id="500003"><a href="#">Apri</a></li>
 		</ul>
 	</li>
-	<li id="50001"><a href="#">Visualizza</a>
+	<li id="50001" <a href="#" title="Apri il menu modifica">Modifica</a>
+		<ul width="160">
+	
+			<li jsFunction='ClearCanvasButton()' id="500017"><a href="#">Svuota Canvas</a>	
+		</ul>
+	</li>
+	<li id="50002"><a href="#">Visualizza</a>
 		<ul width="130">
 		<!-- 	<li id="500011"><a href="#">Sorgente</a></li>
 			<li id="500012"><a href="#">Debug info</a></li>
@@ -74,8 +80,8 @@
 					<li id="5000131"><a href="#">CSS</a>	
 					<li id="5000132"><a href="#">HTML</a>	
 					<li id="5000133"><a href="#">Javascript</a>	
-				</ul> -->
-			</li>
+				</ul> 
+			</li>-->
 			<li jsFunction='$("#colorDialog").dialog( "close" );
 								$("#colorDialog").dialog({
 									position: ["right","top"],
@@ -85,17 +91,21 @@
 									resizable: false,
     								dialogClass: "Dialog1"
 								   });' id="500014"><a href="#">Colori</a>	
+			</li>
 			<li jsFunction='$("#propertiesDialog").dialog( "close" );
 								 $("#propertiesDialog").dialog({
 									title: "Modifica Attributi",
     								position: "right",
     								width: 230,
 									height: 210
-  									  });' id="500015"><a href="#">Proprieta'</a>	
+  									  });' id="500015"><a href="#">Proprieta'</a>
+  			</li>
 		</ul>
 	</li>
 	<!--  <li id="50003" itemType="separator"></li> -->
-	<li jsFunction='$("#aboutDialog").css({"display" : "block"});
+	<li id="50003"><a href="#">Guida</a> 
+			<ul width="160">
+				<li jsFunction='$("#aboutDialog").css({"display" : "block"});
 							$("#aboutSpan").css({"display" : "block"});
 										$("#aboutDialog").dialog({
 													title: "Riconoscimenti:",
@@ -104,7 +114,10 @@
     												width: 300,
 													resizable: false,
     												dialogClass: "aboutDialog1"
-								   			});' id="50002"><a href="#">About</a></li> 
+								   			});' id="50024"><a href="#">Informazioni</a>
+				</li> 
+			</ul>		
+			</li>
 </ul>
 <div id="fifthMenu"></div>
 <script>
