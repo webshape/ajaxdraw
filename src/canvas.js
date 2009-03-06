@@ -28,10 +28,11 @@ Page.prototype.getBrowserVersion = function (){
  * @param {String} sheetref the name of the alternate stylesheet
  * */
 Page.prototype.activateStylesheet = function (sheetref){
+        var ss = null;
 	if(document.getElementsByTagName) {
-		var ss = document.getElementsByTagName('link');}
+		ss = document.getElementsByTagName('link');}
 	else if (document.styleSheets){
-		var ss = document.styleSheets;}
+		ss = document.styleSheets;}
 	for(var i=0;ss[i];i++){
 		if(ss[i].href.indexOf(sheetref) != -1){
 			ss[i].disabled = true;
@@ -307,7 +308,8 @@ Button.prototype.bindCanvas = function (toolbar,canvas,canvasObj,visual,figureSe
   var self = this;
   $("#cv").bind("mousedown", function(e){
     var builder = self.getBuilder();
-    var f = s[0] = new builder();
+    s[0] = new builder();
+    var f = s[0];
     var coords = visual.getClickCoordsWithinTarget(e);
     if(builder==Rectangle || builder == Circle || builder==Polygon){ //lines have no fillColour parameter
       f.getFillColour().getOpacity().setVal(1);
@@ -320,7 +322,7 @@ Button.prototype.bindCanvas = function (toolbar,canvas,canvasObj,visual,figureSe
       var coords2 = visual.getClickCoordsWithinTarget(e);
       f.getBounds().setEnd(new Point(coords2.x, coords2.y));
       if(builder==Polygon){
-        var edgeNumber = parseInt(document.getElementById('edgeNumber').value);
+        var edgeNumber = parseInt(document.getElementById('edgeNumber').value, 10);
 	if (!isNaN(edgeNumber) && edgeNumber >= 2) {
           f.edgeNumber().setVal(edgeNumber);
         }
@@ -507,7 +509,7 @@ SelectionButton.prototype.bindCanvas = function (toolbar,canvas,canvasObj,visual
       var coords = visual.getClickCoordsWithinTarget(e);
       var coord = new Point(coords.x,coords.y);
       var actualFigure = figureSet.selectFigure(coord, visual.getScale(), visual.getOffset());
-      if(actualFigure==null){
+      if(actualFigure===null){
         // is there an already selected figure?
 	$("#cloneButton").unbind('click');
 	$("*").unbind('keypress');
@@ -515,7 +517,7 @@ SelectionButton.prototype.bindCanvas = function (toolbar,canvas,canvasObj,visual
 	$("*").bind('keypress',function(e){
 	  if(e.keyCode==46){
 	    visual.eraseElement(figureSet,canvasObj);
-	  };
+	  }
 	});
 	$("#eraseButton").click(function () {
 	  visual.eraseElement(figureSet,canvasObj);
@@ -575,9 +577,11 @@ SelectionButton.prototype.bindCanvas = function (toolbar,canvas,canvasObj,visual
                      });
 	/*spostamento tramite tastierino numerico */
 	$("*").bind('keypress',function (e){
+           var start = null;
+           var end = null;
 	   if(e.keyCode==37){ //left
-	       var start = actualFigure.getBounds().start();
-               var end = actualFigure.getBounds().end();
+	       start = actualFigure.getBounds().start();
+               end = actualFigure.getBounds().end();
 	       start.x -= 5;
 	       end.x -= 5;
 	       prec.x-=5;
@@ -585,8 +589,8 @@ SelectionButton.prototype.bindCanvas = function (toolbar,canvas,canvasObj,visual
 	       visual.refresh();
 	   }
 	   else if(e.keyCode==38){ //up
-	       var start = actualFigure.getBounds().start();
-               var end = actualFigure.getBounds().end();
+	       start = actualFigure.getBounds().start();
+               end = actualFigure.getBounds().end();
 	       start.y -= 5;
 	       end.y -= 5;
 	       prec.y-=5;
@@ -594,8 +598,8 @@ SelectionButton.prototype.bindCanvas = function (toolbar,canvas,canvasObj,visual
 	       visual.refresh();
 	   }
 	   else if(e.keyCode==39){ //right
-	       var start = actualFigure.getBounds().start();
-               var end = actualFigure.getBounds().end();
+	       start = actualFigure.getBounds().start();
+               end = actualFigure.getBounds().end();
 	       start.x += 5;
 	       end.x += 5;
 	       prec.x+=5;
@@ -603,8 +607,8 @@ SelectionButton.prototype.bindCanvas = function (toolbar,canvas,canvasObj,visual
 	       visual.refresh();
 	   }
 	   else if(e.keyCode==40){ //down
-	       var start = actualFigure.getBounds().start();
-               var end = actualFigure.getBounds().end();
+	       start = actualFigure.getBounds().start();
+               end = actualFigure.getBounds().end();
 	       start.y += 5;
 	       end.y += 5;
 	       prec.y+=5;
@@ -850,7 +854,7 @@ BezierCurveButton.prototype.bindCanvas = function (toolbar,canvas,canvasObj,visu
 	  squareList[i].draw(canvas);
 	}
 	pointcounter--;
-	if( pointcounter == 0 ){
+	if( pointcounter === 0 ){
 	  f.draw(canvas);
 	  visual.getFigureSet().add(f);
 	  canvasObj.clear();
@@ -922,25 +926,6 @@ PolygonButton.prototype.getBuilder = function () {
 
 /**
  * @constructor
- * The Polygon drawing button
- */
-function PolygonButton () {
-  Button.call(this);
-  this._id = document.getElementById("polygonButton");
-}
-
-PolygonButton.prototype = new Button();
-
-PolygonButton.prototype.getId = function (){
-  return this._id;
-};
-
-PolygonButton.prototype.getBuilder = function () {
-  return Polygon;
-};
-
-/**
- * @constructor
  * The FreeLine drawing button
  */
 function FreeLineButton () {
@@ -970,7 +955,8 @@ FreeLineButton.prototype.bindCanvas = function (toolbar,canvas,canvasObj,visual,
   var f;
   var self = this;
   $("#cv").bind("mousedown", function(e){
-    var f = s[0] = new FreeLine();
+    s[0] = new FreeLine();
+    var f = s[0];
     var coords = visual.getClickCoordsWithinTarget(e);
     f.getBorderColour().getOpacity().setVal(1);
     f.getBorderColour().fromCSS(borderColour);
@@ -1035,7 +1021,8 @@ TextButton.prototype.bindCanvas = function (toolbar,canvas,canvasObj,visual,figu
    var f;
    var self = this;
    $("#cv").bind("mousedown", function(e){
-     var f = s[0] = new Text(new TextString(document.getElementById("textString").value));
+     s[0] = new Text(new TextString(document.getElementById("textString").value));
+     var f = s[0];
      f.setFont(new TextFont(document.getElementById("fontTypeButton").value));
      var coords = visual.getClickCoordsWithinTarget(e);
      f.getBorderColour().getOpacity().setVal(1);
@@ -1098,31 +1085,31 @@ Toolbar.prototype.deselectAll = function () {
  * @param {String} FillColor the current Fill color
  */
 Toolbar.prototype.rebind = function (canvas,canvasObj,visual,figureSet,BorderColor,FillColor) {
-  if(this._buttonList[3].isSelected()==true){//line
+  if(this._buttonList[3].isSelected()===true){//line
     this._buttonList[3].bindCanvas(this,canvas,canvasObj,visual,figureSet,BorderColor,FillColor);
     return;
   }
-  else if(this._buttonList[4].isSelected()==true){//bezier
+  else if(this._buttonList[4].isSelected()===true){//bezier
     this._buttonList[4].bindCanvas(this,canvas,canvasObj,visual,figureSet,BorderColor,FillColor);
     return;
   }
-  else if(this._buttonList[5].isSelected()==true){//square
+  else if(this._buttonList[5].isSelected()===true){//square
     this._buttonList[5].bindCanvas(this,canvas,canvasObj,visual,figureSet,BorderColor,FillColor);
     return;
   }
-  else if(this._buttonList[6].isSelected()==true){//circle
+  else if(this._buttonList[6].isSelected()===true){//circle
     this._buttonList[6].bindCanvas(this,canvas,canvasObj,visual,figureSet,BorderColor,FillColor);
     return;
   }
-  else if(this._buttonList[7].isSelected()==true){//polygon
+  else if(this._buttonList[7].isSelected()===true){//polygon
     this._buttonList[7].bindCanvas(this,canvas,canvasObj,visual,figureSet,BorderColor,FillColor);
     return;
   }
-  else if(this._buttonList[8].isSelected()==true){//freeline
+  else if(this._buttonList[8].isSelected()===true){//freeline
     this._buttonList[8].bindCanvas(this,canvas,canvasObj,visual,figureSet,BorderColor);
     return;
   }
-  else if(this._buttonList[9].isSelected()==true){//text
+  else if(this._buttonList[9].isSelected()===true){//text
     this._buttonList[9].bindCanvas(this,canvas,canvasObj,visual,figureSet,BorderColor,FillColor);
     return;
   }
@@ -1202,18 +1189,18 @@ Palette.prototype.rgbToHex= function (rgb){
 
   var rgbsplit = rgb.split(",");
   //alert(rgb+" "+rgbsplit.length+" "+rgbsplit);
-  var rval = parseInt(rgbsplit[0].substr(4,3));
-  var gval = parseInt(rgbsplit[1]);
+  var rval = parseInt(rgbsplit[0].substr(4,3), 10);
+  var gval = parseInt(rgbsplit[1], 10);
   var bval;
 
   if(rgbsplit[2].length==5){
-    bval = parseInt(rgbsplit[2].substr(1,3));
+    bval = parseInt(rgbsplit[2].substr(1,3), 10);
   }
   else if(rgbsplit[2].length==4){
-    bval = parseInt(rgbsplit[2].substr(1,2));
+    bval = parseInt(rgbsplit[2].substr(1,2), 10);
   }
   else if(rgbsplit[2].length==3){
-    bval = parseInt(rgbsplit[2].substr(1,1));
+    bval = parseInt(rgbsplit[2].substr(1,1), 10);
   }
 
   var to16 = function (x) {
@@ -1243,7 +1230,7 @@ function ColourDialog(col, border){
       col.fromCSS(cssColour);
 //      document.getElementById(currentCol).style.backgroundColor =
   //      cssColour;
-    } catch (e) {
+    } catch (e2) {
       // invalid colour, nothing to do
     }
     canvasObj.clear();
@@ -1305,7 +1292,7 @@ function EdgeNumberSetter(en) {
 //  $('#edgeSetterZone').get(0).style = '';
   $('#submitEdge').unbind('click');
   $('#submitEdge').click(function (e) {
-                           var n = parseInt($('#edgeNumber').get(0).value);
+                           var n = parseInt($('#edgeNumber').get(0).value, 10);
                            if (!isNaN(n)) {
                              en.setVal(n);
                            }
