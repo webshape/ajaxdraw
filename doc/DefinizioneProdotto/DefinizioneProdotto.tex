@@ -409,7 +409,7 @@ Estende \textit{Button}.
 \paragrafo{Metodi pubblici:}
 \begin{elencopuntato}[\subsubsecindent]
 \item[-] \textit{getId()} ritorna  \textit{{\_}id};
-\item[-]  \textit{bindCanvas(toolbar,canvas,canvasObj,visual,figureSet)} overriding del metodo ereditato da \textit{Button}, collega il canvas all'azione di selezione di una figura disegnata sul canvas.
+\item[-]  \textit{bindCanvas(toolbar,canvas,canvasObj,visual,figureSet,eraseButton)} overriding del metodo ereditato da \textit{Button}, collega il canvas all'azione di selezione di una figura disegnata sul canvas.
 \end{elencopuntato}
 
 
@@ -1344,6 +1344,193 @@ Nessuna.
 
 
 \sezione{Tracciamento della relazione componenti - requisiti}
+\begin{table}[h]
+\begin{center}
+     \begin{tabular}
+           {@{\extracolsep{\fill}}|c|c|}
+     \hline
+     \multicolumn{2}{|c|}{ \textbf{Componenti GUI} } \\
+     \hline
+%%%%%%%%%%%%%%INTESTAZIONE COLONNE%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+      \textbf{Componenti} & \textbf{Requisiti} \\
+%%%%%%%%%%%%%%FINE INTESTAZIONE COLONNE%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+      \hline
+     Page & RQO-7, RQO-9, RAO-1, RAO-6\\
+     \hline
+     Scale & RFO-14\\
+     \hline
+     Visualization & RFO-13, RFO-14 \\
+     \hline   
+     Canvas & RFO-17 \\
+     \hline  
+     Toolbar & RFO-11, RIO-1 \\
+     \hline        
+     Button & RIO-1\\
+     \hline
+     ClearCanvasButton & RFO-17\\
+     \hline     
+     SelectionButton & RFO-8, RFO-10\\
+     \hline     
+     ZoomButton & RFO-14\\
+     \hline       
+     ZoomInButton & RFO-14\\
+     \hline    
+     ZoomOutButton & RFO-14\\
+     \hline 
+     MoveViewButton & RFO-13\\
+     \hline
+     StraightLineButton & RFO-1\\
+     \hline
+ 	 BezierCurveButton & RFO-2\\
+ 	 \hline
+ 	 SquareButton & RFO-3\\
+ 	 \hline
+ 	 CircleButton & RFO-5\\
+ 	 \hline 
+ 	 PolygonButton & RFO-4\\
+ 	 \hline
+ 	 FreeLineButton & RFD-1\\
+ 	 \hline
+ 	 CloneButton & RFD-3\\
+ 	 \hline
+ 	 Textbutton & RFO-6\\
+ 	 \hline
+     Palette & RFO-9 \\
+     \hline
+     PaletteComponent & RFO-9\\
+     \hline
+     ColourDialog & RFO-9\\
+     \hline
+     PropertiesDialog & RFO-12 \\ 
+     \hline 
+     BoundingRectangleSetter & RFO-10 \\
+     \hline     	              
+	 EdgeNumberSetter & RFO-12\\
+	 \hline
+	 RotationSetter & RFF-3 \\
+%%%%%%%%%%% FINE PARTE DA MODIFICARE %%%%%%%%%%%%%%%%
+    \hline %%FINE RIGA
+%%%%%%%%%%% FINE PARTE DA MODIFICARE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \end{tabular}
+  \caption{Componenti GUI - Requisiti} %INSERIRE DIDASCALIA - SE NECESSARIA -
+  \label{tab:requisitiGUI}
+  \end{center}
+\end{table}
 
+
+\begin{table}[h]
+\begin{center}
+     \begin{tabular}
+           {@{\extracolsep{\fill}}|c|c|}
+      		\hline
+           \multicolumn{2}{|c|}{ \textbf{Componenti ApplicationLogic} } \\
+     \hline
+%%%%%%%%%%%%%%INTESTAZIONE COLONNE%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+      \textbf{Componenti} & \textbf{Requisiti} \\
+%%%%%%%%%%%%%%FINE INTESTAZIONE COLONNE%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+      \hline
+     SVGWriter & RFO-15 \\
+     \hline
+     SVGWritable & RFO-15\\
+     \hline
+     SVGReader & RFO-16\\
+     \hline
+     SVGGenerator & RFO-15, RFO-16\\
+     \hline
+     SVGElementRegistry & RFO-16\\
+     \hline
+     SVGTag & RFO-16\\
+     \hline
+     XMLParser & RFO-16\\
+     \hline
+     FigureSet & RFO-8, RFO-12, RFO-18 \\
+     \hline
+     Figure & RFO-8, RFO-12, RFD-3 \\
+     \hline
+     Manual & RIO-2, RIO-3 \\
+     \hline
+     StraightLine & RFO-1 \\
+     \hline
+     BezierCurve & RFO-2 \\
+     \hline
+     Rectangle & RFO-3 \\
+     \hline
+     Polygon & RFO-4 \\ 
+     \hline
+     EdgeNumebr & RFO-4 \\
+     \hline
+     Circle & RFO-5 \\
+     \hline
+     Text & RFO-6, RFO-7 \\
+     \hline
+     TextProperty & RFO-7 \\
+     \hline
+     TextFont & RFO-7 \\
+     \hline
+     TextSize & RFO-7\\
+     \hline
+     Colour & RFO-9 \\
+     \hline
+     FillColour & RFO-9 \\
+     \hline
+     Rotation & RFF-3 \\
+     \hline
+     TextColour & RFO-9 \\
+     \hline
+     Opacity & RFO-9 \\
+     \hline
+     CssProperty & RFO-9 \\
+     \hline
+     BoundingRectangle & RFO-10 \\
+     \hline
+     Property & RFO-12 \\
+     \hline
+     FreeLine & RFD-1 \\ 
+     \hline
+     Line & RFO-1, RFD-1 \\
+%%%%%%%%%%% PARTE DA MODIFICARE %%%%%%%%%%%%%%%%
+    \hline %%FINE RIGA
+%%%%%%%%%%% FINE PARTE DA MODIFICARE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \end{tabular}
+  \caption{Componenti ApplicationLogic - Requisiti} %INSERIRE DIDASCALIA - SE NECESSARIA -
+  \label{tab:requisitiAL}
+  \end{center}
+\end{table}
+
+\begin{table}[h]
+\begin{center}
+     \begin{tabular}
+           {@{\extracolsep{\fill}}|c|c|}
+           \hline
+           \multicolumn{2}{|c|}{ \textbf{Componenti DocBackend} }\\
+     \hline
+%%%%%%%%%%%%%%INTESTAZIONE COLONNE%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+      \textbf{Componenti} & \textbf{Requisiti} \\
+%%%%%%%%%%%%%%FINE INTESTAZIONE COLONNE%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+      \hline
+     Request & RFO-15, RFO-16 \\
+     \hline
+     CommunicationError & RFO-15, RFO-16 \\
+     \hline
+     ConnectionError & RFO-15, RFO-16 \\
+     \hline
+     ServerError & RFO-15, RFO-16 \\
+     \hline
+     Server & RFO-15, RFO-16, RIO-2, RIO-3 \\
+     \hline
+     FileNotFound & RFO-15 \\
+     \hline
+     File & RFO-15 \\
+     \hline
+     Clean & RFO-15 \\
+         
+%%%%%%%%%%% PARTE DA MODIFICARE %%%%%%%%%%%%%%%%
+    \hline %%FINE RIGA
+%%%%%%%%%%% FINE PARTE DA MODIFICARE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \end{tabular}
+  \caption{Componenti DocBackend - Requisiti} %INSERIRE DIDASCALIA - SE NECESSARIA -
+  \label{tab:requisitiDocBackend}
+  \end{center}
+\end{table}
 
 \end{document}

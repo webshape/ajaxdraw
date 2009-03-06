@@ -1,7 +1,6 @@
 
 var visual = null; /* global */
 var canvasObj = null; /* global */
-var zoomFactor = 1; /*global*/
 
 /*parte di jQuery */
 $(document).ready(function(){
@@ -28,10 +27,8 @@ $(document).ready(function(){
   var polygonButton = new PolygonButton();toolbar.add(polygonButton);//7
   var freeLineButton = new FreeLineButton();toolbar.add(freeLineButton);//8
   var textButton = new TextButton();toolbar.add(textButton);//9
-  var cloneButton = new CloneButton();toolbar.add(cloneButton);//10
-  var zoomOutButton = new ZoomOutButton();toolbar.add(zoomOutButton);//11
+  var zoomOutButton = new ZoomOutButton();toolbar.add(zoomOutButton);//10
   var clearCanvasButton = new ClearCanvasButton();
-  var eraseButton = new EraseButton();
 
 /* Creo il colorDialog */
   var color= {  BorderColor:"#000000", FillColor:"#000000"};
@@ -90,7 +87,7 @@ $(document).ready(function(){
     zoomInButton.bindCursor("zoomIn");
     $("#fontSetterZone").css({"display":"none"});
     $("#edgeSetterZone").css({"display":"none"});
-    zoomInButton.bindCanvas(toolbar,canvas,canvasObj,visual,figureSet,zoomFactor);
+    zoomInButton.bindCanvas(toolbar,canvas,canvasObj,visual,figureSet);
   });
     $("#zoomOutButton").click(function () {
     $(".Dialog2").height(210);
@@ -98,7 +95,7 @@ $(document).ready(function(){
     zoomInButton.bindCursor("zoomOut");
     $("#fontSetterZone").css({"display":"none"});
     $("#edgeSetterZone").css({"display":"none"});
-    zoomOutButton.bindCanvas(toolbar,canvas,canvasObj,visual,figureSet,zoomFactor);
+    zoomOutButton.bindCanvas(toolbar,canvas,canvasObj,visual,figureSet);
   });
 
   $("#moveViewButton").click(function () {
@@ -293,9 +290,9 @@ $(document).ready(function(){
    $("#loadDialog").dialog( 'close' );
  });
 
-   $("#eraseButton").click(function () {
-     eraseButton.eraseElement(figureSet);
-   });
+  // $("#eraseButton").click(function () {
+    // eraseButton.eraseElement(figureSet);
+  // });
 
 
 
