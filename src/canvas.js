@@ -394,7 +394,14 @@ Button.prototype.bindCursor = function(type){
  * The Clear Canvas Button
  */
 function ClearCanvasButton () {
-  Button.call(this);
+  canvasObj.clear();
+  visual.getFigureSet().each(function(f){
+    visual.getFigureSet().rem(f);
+  });
+  visual.refresh();
+};
+
+ /* Button.call(this);
   this._id = document.getElementById("clearCanvasButton");
 }
 
@@ -412,6 +419,11 @@ ClearCanvasButton.prototype.clearCanvas = function(canvas,visual,figureSet){
   visual.refresh();
 };
 
+
+function ClearCanvas(){
+  var clear = new ClearCanvasButton();
+  clear.clearCanvas(canvasObj,visual,visual.getFigureSet());
+}*/
 
 /**
  * @constructor

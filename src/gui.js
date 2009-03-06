@@ -66,12 +66,12 @@ $(document).ready(function(){
     toolbar.rebind(canvas,canvasObj,visual,figureSet,color.BorderColor,color.FillColor);
   });
 
-  $("#clearCanvasButton").click(function () {
-    visual.deselectAll(figureSet);
-    clearCanvasButton.clearCanvas(canvasObj,visual,figureSet);
-    canvasObj.clear();
-    visual.refresh();
-  });
+//  $("#clearCanvasButton").click(function () {
+//    visual.deselectAll(figureSet);
+ //   clearCanvasButton.clearCanvas(canvasObj,visual,figureSet);
+ //   canvasObj.clear();
+ //   visual.refresh();
+ // });
 
   $("#selectionButton").click(function () {
     $("#edgeSetterZone").css({"display":"block"});
@@ -177,15 +177,6 @@ $(document).ready(function(){
     textButton.bindCanvas(toolbar,canvas,canvasObj,visual,figureSet,color.BorderColor,color.FillColor);
 
   });
-
- // $("#cloneButton").click(function () {
-    //visual.deselectAll(figureSet);
-    //$(".Dialog2").height(300);
-    //toolbar.deselectAll();
-    //cloneButton.bindCursor("clone");
-
-
- // });
 
   $(".toolbarButton").click(function(){
     $(".toolbarButton").css({"background-color":"#F4F3F2"}); //tutti grigio chiaro
