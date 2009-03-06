@@ -5,7 +5,7 @@
 
 \begin{document}
 
-\renewcommand{\insertversion}{0.0} %INSERIRE LA VERSIONE QUI DENTRO STILE x.x.xx
+\renewcommand{\insertversion}{0.3} %INSERIRE LA VERSIONE QUI DENTRO STILE x.x.xx
 \renewcommand{\TITOLODOC}{Manuale Utente} %INSERIRE IL TITOLO DEL DOCUMENTO DA FAR COMPARIRE A PIE PAGINA
 \renewcommand{\glosspath}{.\glossario} %INSERIRE PERCORSO RELATIVO
 
@@ -82,8 +82,9 @@ Il presente documento si propone di fornire la documentazione di supporto necess
 				%%%%%%%%%%%%%%FINE INTESTAZIONE COLONNE%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 				\hline
 				%%%%%%%%%%% PARTE DA MODIFICARE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%		
-				\multirow{2}{*}{PPP-RQ} & \\
-										& \\
+				\multirow{2}{*}{PPP-RQ} & Rizzo Maurizio\\
+										& Carollo Mirco\\
+										& Dal Bosco Davide\\
 				\hline
 				%%%%%%%%%%% FINE PARTE DA MODIFICARE %%%%%%%%%%%%%%%%%%%%%%%%%%%
 			\end{tabular}
@@ -142,6 +143,11 @@ Il presente documento si propone di fornire la documentazione di supporto necess
 %%%%%%%%%%%%%%FINE INTESTAZIONE COLONNE%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 		 \hline
 %%%%%%%%%%% PARTE DA MODIFICARE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+          0.3 & 6/03/09  Inserimento descrizione funzionale lato server & Dal Bosco Davide \\
+          \hline
+          0.2 & 5/03/09 Rifinitura, Inserimento descrizione funzionale lato client Bezier e Dialogs & Rizzo Maurizio \\
+          \hline
+          0.1 & 5/03/09 Inserimento descrizione funzionale lato client Toolbar e Menu & Carollo Mirco \\
     	  \hline
     	  0.0 & 27/02/2008 Prima stesura & \\
 
@@ -249,9 +255,8 @@ premere \textit{Next}.
 \caption{Configuration}
 \end{figure} 
 
-Nella schermata successiva, \`e necessario indicare il percorso dell'installazione della Java Virtual Machine (J2SE). Se gia installata, lasciare il percorso di default
-indicato.
-Per completare l'installazione, premere su \textit{Install}.
+Nella schermata successiva, \`e necessario indicare il percorso dell'installazione della Java Virtual Machine (J2SE). Se gia installata, lasciare il percorso di default indicato. \\
+Per completare l'installazione, premere su \textit{Install}.\\
 
 \begin{figure}[!ht]
 \centering
@@ -260,37 +265,37 @@ Per completare l'installazione, premere su \textit{Install}.
 \end{figure} 
 
 \indent{\textbf{Installazione su sistemi Linux:}}\\
-%\\
-%Scaricato il .tar.gz, estrarre il contenuto su una cartella. 
-%Aprire una shell e posizionarsi sulla cartella estratta.
-%A questo punto \`e necessario provare ad avviare il processo di Tomcat. Per farlo, eseguire i seguenti comandi:\\
+
+Scaricato il .tar.gz, estrarre il contenuto su una cartella. \\
+Aprire una shell e posizionarsi sulla cartella estratta. \\
+A questo punto \`e necessario provare ad avviare il processo di Tomcat. Per farlo, eseguire i seguenti comandi:\\
 \textit{cd bin}\\
 \textit{./catalina.sh start}\\
 
-%Se tutto è andato per il meglio. dovrebbe comparire una scritta tipo:\\
-%\textit{Using CATALINA_BASE: /home/red/apache-tomcat-6.0.14}\\
-%Using CATALINA_HOME: /home/red/apache-tomcat-6.0.14\\
-%Using CATALINA_TMPDIR: /home/red/apache-tomcat-6.0.14/temp\\
-%Using JRE_HOME: /usr/lib/jvm/java-6-sun-1.6.0.03\\
-\\
-%Avviare un browser e inserire l'indirizzo \textit{http://localhost:8080}\\
-%Se compare la pagina principale di Tomcat, significa il Web Server funziona correttamente.
-%A questo punto, \`e necessario procedere alla configurazione dell'utente amministratore per poter usare il Tomcat Manager.
-%Per fare questo, da shell, spostarsi nella cartella principale di Tomcat ed eseguire i seguenti comandi:\\
-%\textit{cd conf}\\
-%\textit{sudo gedit tomcat-users.xml}\\
-%Sostituire il file aperto, con il seguente codice:\\
-%<?xml version='1.0' encoding='utf-8'?>\\
-%<tomcat-users>\\
-%  <role rolename="manager"/>\\
-%  <role rolename="admin"/>\\
-%  <user username="admin" password="admin" roles="manager"/>\\
-%</tomcat-users> \\
-%\\
-%In questo modo \`e stato impostato uno User Name con valore \textit{admin} e una Password con valore \textit{admin]. Queste credenziali sono da usare per accedere al Tomcat Manager.\\
-%A questo punto avviare un browser e digitare il seguente indirizzo\\ \textit{http://localhost:8080/manager/html}\\
-%Dopo aver inserito User Name e Password richiesti, si entrer\`a nel manager di Tomcat.\\
-%Andare nella sezione \textit{WAR file to deploy} della pagina.
+Se tutto \`e andato per il meglio, dovrebbe comparire una scritta tipo\\
+Using CATALINA{\_}BASE: /home/red/apache-tomcat-6.0.14\\ 
+Using CATALINA{\_}HOME: /home/red/apache-tomcat-6.0.14\\
+Using CATALINA{\_}TMPDIR: /home/red/apache-tomcat-6.0.14/temp\\
+Using JRE{\_}HOME: /usr/lib/jvm/java-6-sun-1.6.0.03\\
+
+Avviare un browser e inserire l'indirizzo \textit{http://localhost:8080}\\
+Se compare la pagina principale di Tomcat, significa il Web Server funziona correttamente.\\
+A questo punto, \`e necessario procedere alla configurazione dell'utente amministratore per poter usare il Tomcat Manager.\\
+Per fare questo, da shell, spostarsi nella cartella principale di Tomcat ed eseguire i seguenti comandi:\\
+\textit{cd conf}\\
+\textit{sudo gedit tomcat-users.xml}\\
+Sostituire il file aperto, con il seguente codice:\\
+< ?xml version='1.0' encoding='utf-8'?\> \\
+<tomcat-users>\\
+  <role rolename="manager"/>\\
+  <role rolename="admin"/>\\
+  <user username="admin" password="admin" roles="manager"/>\\
+</tomcat-users> \\
+
+In questo modo \`e stato impostato uno User Name con valore \textit{admin} e una Password con valore \textit{admin}. Queste credenziali sono da usare per accedere al Tomcat Manager.\\
+A questo punto avviare un browser e digitare il seguente indirizzo\\ \textit{http://localhost:8080/manager/html}\\
+Dopo aver inserito User Name e Password richiesti, si entrer\`a nel manager di Tomcat.\\
+Andare nella sezione \textit{WAR file to deploy} della pagina.
 
 \newpage
 \begin{figure}[!ht]
@@ -328,7 +333,7 @@ Il programma dispone di un menu a tendina nella parte alta dell'interfaccia graf
 
 \begin{figure}[!ht]
 \centering
-\includegraphics[scale=0.5]{images/menu.png}
+\includegraphics[scale=0.4]{images/menu.png}
 \caption{menu a tendina}
 \end{figure} 
 
@@ -450,8 +455,6 @@ Qui \`e stata selezionata la funzione \textit{Curva di Bezier}. Per disegnare la
 %%%%%%%%%%%%%%%%%%%%%%%%%%%% BOTTONI E DIALOG %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsezione{bottoni e finestre di dialogo}
 
-\vspace{100pt}
-Facendo click sul pulsante \textit{Svuota} in basso a sinistra, l'utente pu\`o cancellare tutto ci\`o che \`e stato di segnato sul piano di disegno fino a quel punto e ripartire da zero con un nuovo disegno. Si consiglia di salvare prima di cancellare per evitare di perdere il lavoro svolto finora.
 
 \begin{figure}[!ht]
 \centering
@@ -525,17 +528,32 @@ Qui \`e stata selezionata la funzione di cambiamento del numero di lati per il d
 \begin{figure}[!ht]
 \centering
 \includegraphics[scale=0.4]{images/clona.png}
-\caption{cambio colore del bordo  - PRIMA}
+\caption{clonazione  - PRIMA}
 \end{figure} 
 
 \begin{figure}[!ht]
 \centering
 \includegraphics[scale=0.4]{images/clona_dopo.png}
-\caption{cambio colore del bordo  - DOPO}
+\caption{clonazione  - DOPO}
 \end{figure} 
 
 \vspace{100pt}
 Qui \`e stata selezionata la funzione di clonazione di un oggetto presente sul piano di disegno e precedentemente selezionato. Tale funzione permette di fare una copia di tutti gli oggetti disegnabili mediante un semplice click sul pulsante apposito \textit{Clona} posto in basso a sinistra. \\
+
+%\begin{figure}[!ht]
+%\centering
+%\includegraphics[scale=0.4]{images/ruota.png}
+%\caption{rotazione  - PRIMA}
+%\end{figure} 
+
+%\begin{figure}[!ht]
+%\centering
+%\includegraphics[scale=0.4]{images/ruota_dopo.png}
+%\caption{rotazione  - DOPO}
+%\end{figure} 
+
+\vspace{100pt}
+Qui \`e stata selezionata la funzione di rotazione di un oggetto presente sul piano di disegno e precedentemente selezionato. Tale funzione permette di ruotare tutti gli oggetti disegnabili mediante l'inserimento di un numero che esprime l'angolo e successivamente semplice click sul pulsante apposito \textit{Ruota}. \\
 
 \sezione{Appendice}
 
