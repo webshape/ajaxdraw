@@ -64,12 +64,13 @@ function XMLParser() {}
  * @param {String} doc the SVG string
  */
 XMLParser.prototype.parsing = function (doc) {
+  var xmlDoc = null;
   try { //Internet Explorer
-	 var xmlDoc = new ActiveXObject("Microsoft.XMLDOM");
+	 xmlDoc = new ActiveXObject("Microsoft.XMLDOM");
 	 xmlDoc.async = false;
 	 xmlDoc.loadXML(doc);
 
-	 if (xmlDoc.parseError.errorCode != 0) {
+	 if (xmlDoc.parseError.errorCode !== 0) {
 		alert("Error in line " + xmlDoc.parseError.line +
 				" position " + xmlDoc.parseError.linePos +
 				"\nError Code: " + xmlDoc.parseError.errorCode +
@@ -81,18 +82,18 @@ XMLParser.prototype.parsing = function (doc) {
   catch(e) {
 	 try { //Firefox
 		var parser = new DOMParser();
-		var xmlDoc = parser.parseFromString(doc, "text/xml");
+		xmlDoc = parser.parseFromString(doc, "text/xml");
 		if (xmlDoc.documentElement.nodeName == "parsererror") {
 		  alert(xmlDoc.documentElement.childNodes[0].nodeValue);
         return(null);
       }
     }
-	 catch(e) {alert(e.message);}
+	 catch(e2) {alert(e2.message);}
   }
   try {
 	 return (xmlDoc);
   }
-  catch(e) {alert(e.message);}
+  catch(e3) {alert(e3.message);}
   return (null);
 };
 
@@ -147,9 +148,9 @@ registry.register('text', Text);
 Rectangle.prototype.fromSVG = function (n) {
   var x1 = n.getAttribute("x");
   var y1 = n.getAttribute("y");
-  var x2 = parseInt(x1) + parseInt(n.getAttribute("width"));
-  var y2 = parseInt(y1) + parseInt(n.getAttribute("height"));
-  var p1 = new Point(parseInt(x1), parseInt(y1));
+  var x2 = parseInt(x1, 10) + parseInt(n.getAttribute("width"), 10);
+  var y2 = parseInt(y1, 10) + parseInt(n.getAttribute("height"), 10);
+  var p1 = new Point(parseInt(x1, 10), parseInt(y1, 10));
   var p2 = new Point(x2, y2);
   this.getBounds().setStart(p1);
   this.getBounds().setEnd(p2);
@@ -170,8 +171,8 @@ Circle.prototype.fromSVG = function (n) {
   var cy = n.getAttribute("cy");
   var rx = n.getAttribute("rx");
   var ry = n.getAttribute("ry");
-  var p1 = new Point((parseInt(cx) - parseInt(rx)), (parseInt(cy) - parseInt(ry)));
-  var p2 = new Point((parseInt(cx) + parseInt(rx)), (parseInt(cy) + parseInt(ry)));
+  var p1 = new Point((parseInt(cx, 10) - parseInt(rx, 10)), (parseInt(cy, 10) - parseInt(ry, 10)));
+  var p2 = new Point((parseInt(cx, 10) + parseInt(rx, 10)), (parseInt(cy, 10) + parseInt(ry, 10)));
   this.getBounds().setStart(p1);
   this.getBounds().setEnd(p2);
   this.getFillColour().fromCSS(n.getAttribute("fill"));
@@ -191,8 +192,8 @@ StraightLine.prototype.fromSVG = function (n) {
   var y1 = n.getAttribute("y1");
   var x2 = n.getAttribute("x2");
   var y2 = n.getAttribute("y2");
-  var p1 = new Point(parseInt(x1), parseInt(y1));
-  var p2 = new Point(parseInt(x2), parseInt(y2));
+  var p1 = new Point(parseInt(x1, 10), parseInt(y1, 10));
+  var p2 = new Point(parseInt(x2, 10), parseInt(y2, 10));
   this.getBounds().setStart(p1);
   this.getBounds().setEnd(p2);
   this.getBorderColour().fromCSS(n.getAttribute("stroke"));
@@ -206,14 +207,14 @@ StraightLine.prototype.fromSVG = function (n) {
  * @param {node} n the SVG node containg the properties
  */
 BezierCurve.prototype.fromSVG = function (n) {
-  var d = new Array();
+  var d = [];
   d = (n.getAttribute("d")).split(" ");
 
   for (var i = 0; i < d.length; i++){
 	 if (d[i].length > 1){
-		var x = new Array();
+		var x = [];
 		x = d[i].split(",");
-		var p = new Point(parseInt(x[0]), parseInt(x[1]));
+	   var p = new Point(parseInt(x[0], 10), parseInt(x[1], 10));
 		this.extend(p);
 	 }
   }
@@ -228,36 +229,40 @@ BezierCurve.prototype.fromSVG = function (n) {
  * @param {node} n the SVG node containg the property
  */
 Polygon.prototype.fromSVG = function (n) {
-  var points = new Array();
+  var points = [];
   points = (n.getAttribute("points")).split(" ");
 
-  var z = new Array();
+  var z = [];
   z = points[0].split(",");
-  var x1 = parseInt(z[0]);
-  var y1 = parseInt(z[1]);
-  var x2 = parseInt(z[0]);
-  var y2 = parseInt(z[1]);
+  var x1 = parseInt(z[0], 10);
+  var y1 = parseInt(z[1], 10);
+  var x2 = parseInt(z[0], 10);
+  var y2 = parseInt(z[1], 10);
   var edges = 1;
 
   for (var i = 1; i < points.length; ++i){
 	 if (points[i].length > 1){
 		edges++;
 		z = points[i].split(",");
-		z[0] = parseInt(z[0]);
-		z[1] = parseInt(z[1]);
-		if (z[0] < x1)
-		  x1 = z[0];
-		if (z[1] < y1)
-		  y1 = z[1];
-		if (z[0] > x2)
-		  x2 = z[0];
-		if (z[1] > y2)
-		  y2 = z[1];
+	   z[0] = parseInt(z[0], 10);
+	   z[1] = parseInt(z[1], 10);
+		if (z[0] < x1) {
+                  x1 = z[0];
+                }
+		if (z[1] < y1) {
+                  y1 = z[1];
+                }
+		if (z[0] > x2) {
+                  x2 = z[0];
+                }
+		if (z[1] > y2) {
+                  y2 = z[1];
+                }
 	 }
   }
 
-  var p1 = new Point(parseInt(x1), parseInt(y1));
-  var p2 = new Point(parseInt(x2), parseInt(y2));
+  var p1 = new Point(parseInt(x1, 10), parseInt(y1, 10));
+  var p2 = new Point(parseInt(x2, 10), parseInt(y2, 10));
   this.getBounds().setStart(p1);
   this.getBounds().setEnd(p2);
   this.edgeNumber().setVal(edges);
@@ -280,9 +285,9 @@ Text.prototype.fromSVG = function (n) {
   var size = n.getAttribute("font-size");
   this.setText(txt);
   this.setFont(new TextFont(n.getAttribute("font-family")));
-  var y2 = parseInt(y1) + parseInt(size);
-  var p1 = new Point(parseInt(x1), parseInt(y1));
-  var p2 = new Point(parseInt(x1)+400, y2);
+  var y2 = parseInt(y1, 10) + parseInt(size, 10);
+  var p1 = new Point(parseInt(x1, 10), parseInt(y1, 10));
+  var p2 = new Point(parseInt(x1, 10)+400, y2);
   this.getBounds().setStart(p1);
   this.getBounds().setEnd(p2);
   //this.getFillColour().fromCSS(n.getAttribute("fill"));
