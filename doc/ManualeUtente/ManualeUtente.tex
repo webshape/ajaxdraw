@@ -5,7 +5,7 @@
 
 \begin{document}
 
-\renewcommand{\insertversion}{0.0} %INSERIRE LA VERSIONE QUI DENTRO STILE x.x.xx
+\renewcommand{\insertversion}{0.2} %INSERIRE LA VERSIONE QUI DENTRO STILE x.x.xx
 \renewcommand{\TITOLODOC}{Manuale Utente} %INSERIRE IL TITOLO DEL DOCUMENTO DA FAR COMPARIRE A PIE PAGINA
 \renewcommand{\glosspath}{.\glossario} %INSERIRE PERCORSO RELATIVO
 
@@ -142,6 +142,9 @@ Il presente documento si propone di fornire la documentazione di supporto necess
 %%%%%%%%%%%%%%FINE INTESTAZIONE COLONNE%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 		 \hline
 %%%%%%%%%%% PARTE DA MODIFICARE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+          0.2 & 06/03/2008 Inserito manuale installazione e avvio di Tomcat per sistemi Linux & Dal Bosco Davide \\
+    	  \hline
+          0.1 & 04/03/2008 Inserito manuale installazione e avvio di Tomcat per sistemi Windows & Dal Bosco Davide \\
     	  \hline
     	  0.0 & 27/02/2008 Prima stesura & \\
 
@@ -214,12 +217,15 @@ Il programma non necessita di installazione.
 
 \subsubsezione{Lato server}
 Per permettere il funzionamento del sistema, \`e necessario installare un Web Server: Apache Tomcat. Oltre a essere un Web Server, Tomcat \`e anche un
-Application Server, cio\`e una piattaforma per l'esecuzione di applicazioni Web sviluppate nel linguaggio Java.
-Prima di tutto bisogna scaricare Tomcat dal link del sito ufficiale \textit{http://tomcat.apache.org/download-60.cgi}\\
+Application Server, cio\`e una piattaforma per l'esecuzione di applicazioni Web sviluppate nel linguaggio Java.\\
+\\
+Prima di tutto \`e necessario disporre di una Java Virtual Machine. Per il download visitare il link al sito ufficiale della Sun Microsystem:\\
+http://java.com/download/index.jsp\\
+\\
+Per effettuare il download di Apache Tomcat 6.0 andare al link del sito ufficiale \textit{http://tomcat.apache.org/download-60.cgi}\\
 Nella sezione \textit{Binary Distribution} della pagina web, \`e possibile effettuare il download sia per sistemi Windows che per sistemi Linux.\\
-\\
+\\\\
 \indent{\textbf{Installazione su sistemi Windows:}}\\
-\\
 Terminato il download, fare doppio click sul file scaricato per iniziare l'installazione.\\
 La schermata \`e la seguente:
 
@@ -241,7 +247,7 @@ Giunti alla schermata per la scelta della cartella di installazione, mantenere q
 
 Premere \textit{Next}, e si presenter\`a la finestra di configurazione di Tomcat:
 Alla voce \textit{http/1.1 Connector Port} lasciare il valore di default (di solito 8080), quindi impostare una User Name e Password a scelta necessarie per accedere alla configurazione di Tomcat.\\
-premere \textit{Next}.
+Quindi premere \textit{Next}.
 
 \begin{figure}[!ht]
 \centering
@@ -260,58 +266,21 @@ Per completare l'installazione, premere su \textit{Install}.
 \end{figure} 
 
 \indent{\textbf{Installazione su sistemi Linux:}}\\
-\\
-Scaricato il .tar.gz, estrarre il contenuto su una cartella. 
-Aprire una shell e posizionarsi sulla cartella estratta.
-A questo punto \`e necessario provare ad avviare il processo di Tomcat. Per farlo, eseguire i seguenti comandi:\\
-\textit{cd bin}\\
-\textit{./catalina.sh start}\\
-
-Se tutto è andato per il meglio. dovrebbe comparire una scritta tipo:\\
-\textit{Using CATALINA_BASE: /home/red/apache-tomcat-6.0.14}\\
-Using CATALINA_HOME: /home/red/apache-tomcat-6.0.14\\
-Using CATALINA_TMPDIR: /home/red/apache-tomcat-6.0.14/temp\\
-Using JRE_HOME: /usr/lib/jvm/java-6-sun-1.6.0.03\\
-\\
-Avviare un browser e inserire l'indirizzo \textit{http://localhost:8080}\\
-Se compare la pagina principale di Tomcat, significa il Web Server funziona correttamente.
-A questo punto, \`e necessario procedere alla configurazione dell'utente amministratore per poter usare il Tomcat Manager.
-Per fare questo, da shell, spostarsi nella cartella principale di Tomcat ed eseguire i seguenti comandi:\\
-\textit{cd conf}\\
-\textit{sudo gedit tomcat-users.xml}\\
-Sostituire il file aperto, con il seguente codice:\\
-<?xml version='1.0' encoding='utf-8'?>\\
-<tomcat-users>\\
-  <role rolename="manager"/>\\
-  <role rolename="admin"/>\\
-  <user username="admin" password="admin" roles="manager"/>\\
-</tomcat-users> \\
-\\
-In questo modo \`e stato impostato uno User Name con valore \textit{admin} e una Password con valore \textit{admin]. Queste credenziali sono da usare per accedere al Tomcat Manager.\\
-A questo punto avviare un browser e digitare il seguente indirizzo\\ \textit{http://localhost:8080/manager/html}\\
-Dopo aver inserito User Name e Password richiesti, si entrer\`a nel manager di Tomcat.\\
-Andare nella sezione \textit{WAR file to deploy} della pagina.
-
-\newpage
-\begin{figure}[!ht]
-\centering
-\includegraphics[scale=0.7]{images/DeployTomcat.png}
-\caption{Deploy}
-\end{figure} 
-
-Selezionare il file .war dell'applicazione e quindi premere su Deploy.\\
+Scaricato il .tar.gz, estrarre il contenuto su una cartella.
+Non \`e necessaria una installazione vera e propria e per la sua esecuzione si rimanda al paraggrafo \textit{Avvio del programma} sezione \textit{Linux}.
 
 \subsezione{Avvio del programma}
 \subsubsezione{Lato client}
 \`E sufficiente aprire la pagina web con un browser supportato. L'indirizzo dipende dall'host in cui viene installato il server.
 \subsubsezione{Lato server}
-Per l'avvio del server, andare su \textit{Start--Programmi--Apache Tomcat 6.0} e avviare \textit{Monitor Tomcat}.
+Sono presenti due sezioni per effettuare l'avvio su sistemi Windows e su sistemi Linux.\\
+\\\\
+\indent{\textbf{Avvio del programma su sistemi Windows:}}\\
+Per l'avvio del server, andare su \textit{Start-$ > $Programmi-$ > $Apache Tomcat 6.0} e avviare \textit{Monitor Tomcat}.
 Nella barra delle applicazioni in esecuzione, apparir\`a l'icona che indica l'avvio di Tomcat.\\
 A questo punto avviare un browser e digitare il seguente indirizzo\\ \textit{http://localhost:8080/manager/html}\\
 Dopo aver inserito User Name e Password richiesti, si entrer\`a nel manager di Tomcat.\\
-Andare nella sezione \textit{WAR file to deploy} della pagina.
-
-\newpage
+Andare nella sezione \textit{WAR file to deploy} della pagina.\\
 \begin{figure}[!ht]
 \centering
 \includegraphics[scale=0.7]{images/DeployTomcat.png}
@@ -319,8 +288,50 @@ Andare nella sezione \textit{WAR file to deploy} della pagina.
 \end{figure} 
 
 Selezionare il file .war dell'applicazione e quindi premere su Deploy.\\
-A questo punto nella cartella \textit{webapps} della cartella di installazione di Tomcat sar\`a presente l'applicazione AJAXDRAW pronta per la sua esecuzione. 
+A questo punto nella cartella \textit{webapps} della cartella di installazione di Tomcat sar\`a presente l'applicazione AJAXDRAW pronta per la sua esecuzione.\\ 
+\\\\
+\indent{\textbf{Avvio del programma su sistemi Linux:}}\\
+Aprire una shell e posizionarsi sulla cartella di Apache Tomcat (precedentemente estratta).
+A questo punto \`e necessario provare ad avviare il processo di Tomcat. Per farlo, eseguire i seguenti comandi:\\
+\\
+\textit{cd bin}\\
+\textit{./catalina.sh start}\\
 
+Se tutto \`e andato per il meglio, dovrebbero comparire i path di CATALINA e JRE.\\
+%Using CATALINA_BASE: /home/red/apache-tomcat-6.0.14\\
+%Using CATALINA\{_}HOME: /home/red/apache-tomcat-6.0.14\\
+%Using CATALINA\{_}TMPDIR: /home/red/apache-tomcat-6.0.14/temp\\
+%Using JRE\{_}HOME: /usr/lib/jvm/java-6-sun-1.6.0.03\\
+\\
+Avviare un browser e inserire l'indirizzo \textit{http://localhost:8080}\\
+Se compare la pagina principale di Tomcat, significa che il Web Server funziona correttamente.
+A questo punto, \`e necessario procedere alla configurazione dell'utente amministratore per poter usare il Tomcat Manager.
+Per fare questo, da shell, spostarsi nella cartella principale di Tomcat ed eseguire i seguenti comandi:\\
+\\
+\textit{cd conf}\\
+\textit{sudo gedit tomcat-users.xml}\\
+\\
+Sostituire il file aperto, con il seguente codice:\\
+\\
+\textit{$ < $?xml version='1.0' encoding='utf-8'?$ > $}\\
+\textit{$ < $tomcat-users$ > $}\\
+\textit{  $ < $role rolename='manager'/$ > $}\\
+\textit{  $ < $role rolename='admin'/$ > $}\\
+\textit{  $ < $user username='admin' password='admin' roles='manager'/$ > $}\\
+\textit{$ < $/tomcat-users$ > $} \\
+\\
+In questo modo \`e stato impostato uno User Name con valore \textit{admin} e una Password con valore \textit{admin}. Queste credenziali sono da usare per accedere al Tomcat Manager.\\
+A questo punto avviare un browser e digitare il seguente indirizzo\\ \textit{http://localhost:8080/manager/html}\\
+Dopo aver inserito User Name e Password richiesti, si entrer\`a nel manager di Tomcat.\\
+Andare nella sezione \textit{WAR file to deploy} della pagina.
+
+\begin{figure}[!ht]
+\centering
+\includegraphics[scale=0.7]{images/DeployTomcat.png}
+\caption{Deploy}
+\end{figure} 
+
+Selezionare il file .war dell'applicazione e quindi premere su Deploy.\\
 
 \subsezione{Descrizione funzionale - Lato client}
 \subsubsezione{Il Menu}
