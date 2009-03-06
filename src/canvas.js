@@ -660,8 +660,8 @@ ZoomInButton.prototype.bindCanvas = function (toolbar,canvas,canvasObj,visual,fi
     var factor = visual.getScale().getFactor();
     visual.setScale(new Scale(factor+=0.5));
     var clic = visual.getClickCoordsWithinTarget(e);
-    var x = oldw - (canvas.width/2)/factor;   //centrato
-    var y = oldh - (canvas.height/2)/factor;
+						var x = oldw - (canvas.width/2)*factor;   //centrato
+						var y = oldh - (canvas.height/2)*factor;
     var p = new Point(x, y);
     visual.setOffset(p);
     canvasObj.clear();
