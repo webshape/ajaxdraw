@@ -655,16 +655,17 @@ ZoomInButton.prototype.bindCanvas = function (toolbar,canvas,canvasObj,visual,fi
   $("#cloneButton").unbind('click');
   $("#cv").unbind('mousedown click mouseup');
   $("#cv").bind("click", function(e){
-    var oldw = canvas.width/2;
-    var oldh = canvas.height/2;
-    var factor = visual.getScale().getFactor();
-    visual.setScale(new Scale(factor+=0.5));
-    var clic = visual.getClickCoordsWithinTarget(e);
-						var x = oldw - (canvas.width/2)*factor;   //centrato
-						var y = oldh - (canvas.height/2)*factor;
-    var p = new Point(x, y);
-    visual.setOffset(p);
-    canvasObj.clear();
+	 var factor = visual.getScale().getFactor();
+	 var oldw = canvas.width/(factor*2);
+	 var oldh = canvas.height/(factor*2);
+ 	 factor += 0.5;
+	 var w = canvas.width/(factor*2);
+	 var h = canvas.height/(factor*2);
+	 visual.getOffset().x += oldw - w;
+	 visual.getOffset().y += oldh - h;
+	 visual.setScale(new Scale(factor));
+//	 alert(oldw + ", " + canvas.width/2 + ", " + visual.getOffset().x + ", " + factor);
+	 canvasObj.clear();
     visual.refresh();
   });
 };
@@ -683,14 +684,17 @@ ZoomOutButton.prototype.bindCanvas = function (toolbar,canvas,canvasObj,visual,f
   $("#cloneButton").unbind('click');
   $("#cv").unbind('mousedown click mouseup');
   $("#cv").bind("click", function(e){
-    var oldw = canvas.width*2;
-    var oldh = canvas.height*2;
-    var factor = visual.getScale().getFactor();
-    visual.setScale(new Scale(factor-=0.25));
-    var x = oldw + (canvas.width*2)/factor;   //centrato
-    var y = oldh + (canvas.height*2)/factor;
-    var p = new Point(x, y);
-    visual.setOffset(p);
+	 var factor = visual.getScale().getFactor();
+	 var oldw = canvas.width/(factor*2);
+	 var oldh = canvas.height/(factor*2);
+	 if (factor > 0.5) {
+		factor -= 0.5;
+		var w = canvas.width/(factor*2);
+		var h = canvas.height/(factor*2);
+		visual.getOffset().x -= w - oldw;
+		visual.getOffset().y -= h - oldh;
+		visual.setScale(new Scale(factor));
+	}
     canvasObj.clear();
     visual.refresh();
   });
