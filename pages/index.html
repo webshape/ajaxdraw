@@ -80,7 +80,7 @@
 								$("#colorDialog").dialog({
 									position: ["right","top"],
 									title: "Modifica Colori",
-    								height: 180,
+    								height: 190,
     								width: 230,
 									resizable: false,
     								dialogClass: "Dialog1"
@@ -158,28 +158,6 @@ menuBar5.init();
 		<canvas id="cv" height="480" width="760"></canvas>
 	</span>
 	
-	
-	<!--  Zona di salvataggio provvisoria -->
-	<!-- 	<div id="saveLoadZone">
-	 <span >Zoom:
-			<select id="scaleButton" title="Scegli la percentuale di riscalamento">
-				<option value="2" >200%</option>
- 			 	<option value="1.5" >150%</option> 						
- 				<option value="1" >100%</option>
- 			 	<option value="0.5" >50%</option>  
- 			 	<option value="0.25" >25%</option> 
-			</select>
-		</span><br/>
-		<span>
-			<input type="button" id="clearCanvasButton" name="ClearButton" value="Svuota Canvas"/>
-		</span><br/>
-		<span>
-			<input type="button" id="eraseButton" name="EraseButton" value="Cancella elemento"/>
-		</span>
-	</div> 
-	<br/>-->
-	
-	
 	<!-- Tavolozza nella parte bassa dello schermo -->
 	<div id="palette" title="Scegli il colore da applicare">
 		<span id="firstPalette" class="paletteComponent" style="background-color:#EEC73E">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
@@ -235,12 +213,11 @@ menuBar5.init();
 
 
 <!-- Fine interfaccia -->
-
-
 <!-- Inizio Parte Dialog Colori-->
 <div id="colorDialog" class="flora" title="Modifica colori">
 	<p>Bordo:   
 		<span id="borderColorNow" style="background-color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+		<input type="button" id="setBorderCol" value="Cambia" />
 		<div id="divBorderCol" >
 			<input type="button" id="changeBorderCol" name="ChangeCol" value="Cambia Colore Bordo"/>
 		</div>
@@ -252,11 +229,12 @@ menuBar5.init();
   			<input type="text" id="color1" name="color1" value="#123456" />
   		</div>
   		<div id="picker1"></div>
-                <input type="button" id="setBorderCol" value="Cambia" />
+                
 	</form>	
 	<!-- Seconda ruota -->
-	<p>Riempimento:  
+	<p>Riemp.:  
 		<span id="fillColorNow" style="background-color: #FFFFFF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> 
+		<span><input type="button" id="setFillCol" value="Cambia" /></span>
 		<div id="divFillCol">
 			<input type="button" id="changeFillCol" name="ChangeCol" value="Cambia Colore Riemp."/>
 		</div>
@@ -267,7 +245,7 @@ menuBar5.init();
   			<input type="text" id="color2" name="color2" value="#123456" />
   		</div>
   		<div id="picker2"></div>
-      <input type="button" id="setFillCol" value="Cambia" />
+
     </form>	
 </div>
 
