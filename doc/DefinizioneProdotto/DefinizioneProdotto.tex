@@ -229,7 +229,7 @@ Il presente documento \`e redatto utilizzando le convenzioni inserite nel docume
 \item[-] \textit{NormeDiProgetto.pdf}
 \item[-] Raccomandazione SVG: \href{http://www.w3.org/TR/SVG11/}{http://www.w3.org/TR/SVG11/}
 \item[-] Raccomandazione CSS: \href{http://www.w3.org/TR/CSS21/}{http://www.w3.org/TR/CSS21/}
-\item[-] Working Draft HTML 5: \href{http://www.w3.org/TR/html5/}{http://www.w3.org/TR/html5/}
+\item[-] Working Draft \underline{HTML 5}: \href{http://www.w3.org/TR/html5/}{http://www.w3.org/TR/html5/}
 \item[-] Specifiche UML: \href{http://www.omg.org/spec/UML/2.1.2/}{http://www.omg.org/spec/UML/2.1.2/}
 \end{elencopuntato}
 
@@ -250,7 +250,7 @@ Si occupa di gestire l'interazione tra l'utente e la logica interna dell'applica
 
 \subsezione{Page}
 \subsubsezione{Tipo, obiettivo e funzione del componente}
-Classe concreta che rappresenta la pagina web visualizzata dall'utente tramite l'internet browser, contenitore di tutti i widgets componenti l'interfaccia.
+Classe concreta che rappresenta la pagina \underline{web} visualizzata dall'utente tramite l'internet \underline{browser}, contenitore di tutti i widgets componenti l'interfaccia.
 \subsubsezione{Relazioni d'uso di altre componenti}
 \` E composta da istanze delle classi \textit{Toolbar}, \textit{Button}, \textit{Palette}, \textit{ColourDialog}, \textit{PropertiesDialog} e \textit{Visualization}.
 \subsubsezione{Interfacce e relazioni di uso da altre componenti}
@@ -271,7 +271,7 @@ Nessuna.
 
 \subsezione{Scale}
 \subsubsezione{Tipo, obiettivo e funzione del componente}
-Classe concreta che si occupa delle operazioni di riscalamento del canvas su schermo. 
+Classe concreta che si occupa delle operazioni di riscalamento del \underline{canvas} su schermo. 
 \subsubsezione{Relazioni d'uso di altre componenti}
 Usa il contesto grafico per applicare lo spostamento e il riscalamento della parte di canvas visualizzata.
 \subsubsezione{Interfacce e relazioni di uso da altre componenti}
@@ -311,6 +311,8 @@ Classe concreta che si occupa delle operazioni di visualizzazione del canvas su 
 \item[-] \textit{getClickCoordsWithinTarget(event)} ritorna il punto esatto del canvas sul quale \`  e avvenuto il click  del mouse, differenziando le diverse interpretazioni che fa ciascun browser per uniformarle in un unico metodo funzionante universalmente.
 Le coordinate vengono poi adattate allo spostamento corrente della visualizzazione sommandogli \textit{{\_}offset}, e allo zoom corrente, moltiplicandole per \textit{{\_}scale.getFactor()}.
 \item[-] \textit{setCanvasDimension(canvasObj,height,width)} regola le dimensioni del canvas al caricamento della pagina in proporzione alla risoluzione del monitor dell'utente.
+\item[-] \textit{eraseElement(figureSet,canvasObj)} cancella l'elemento attualmente selezionato sul canvas tramite la pressione del pulsante apposito oppure con il tasto "canc" della tastiera;
+\item[-] \textit{cloneElement(actualFigure,canvasObj)} clona l'elemento attualmente selezionato tramite la pressione dell'apposito pulsante.
 \end{elencopuntato}
 
 \subsezione{Canvas}
@@ -409,7 +411,7 @@ Estende \textit{Button}.
 \paragrafo{Metodi pubblici:}
 \begin{elencopuntato}[\subsubsecindent]
 \item[-] \textit{getId()} ritorna  \textit{{\_}id};
-\item[-]  \textit{bindCanvas(toolbar,canvas,canvasObj,visual,figureSet,eraseButton)} overriding del metodo ereditato da \textit{Button}, collega il canvas all'azione di selezione di una figura disegnata sul canvas.
+\item[-]  \textit{bindCanvas(toolbar,canvas,canvasObj,visual,figureSet)} overriding del metodo ereditato da \textit{Button}, collega il canvas all'azione di selezione di una figura disegnata sul canvas.
 \end{elencopuntato}
 
 
@@ -432,7 +434,7 @@ Estende \textit{Button}.
 
 \subsezione{ZoomInButton}
 \subsubsezione{Tipo, obiettivo e funzione del componente}
-Classe aconcreta che rappresenta pulsante che attiva le funzionalit\` a di ingrandimento dell'area di visualizzazione del canvas.
+Classe concreta che rappresenta pulsante che attiva le funzionalit\` a di ingrandimento dell'area di visualizzazione del canvas.
 \subsubsezione{Relazioni d'uso di altre componenti}
 Estende \textit{ZoomButton}.
 \subsubsezione{Interfacce e relazioni di uso da altre componenti}
@@ -446,7 +448,7 @@ Estende \textit{ZoomButton}.
 
 \subsezione{ZoomOutButton}
 \subsubsezione{Tipo, obiettivo e funzione del componente}
-Classe astrattache rappresenta pulsante che attiva le funzionalit\` a di rimpicciolimento dell'area di visualizzazione del canvas.
+Classe concreta che rappresenta pulsante che attiva le funzionalit\` a di rimpicciolimento dell'area di visualizzazione del canvas.
 \subsubsezione{Relazioni d'uso di altre componenti}
 Estende \textit{ZoomButton}.
 \subsubsezione{Interfacce e relazioni di uso da altre componenti}
@@ -585,23 +587,6 @@ Estende \textit{Button}.
 \item[-]  \textit{bindCanvas(toolbar,canvas,canvasObj,visual,figureSet,borderColor)} overriding del metodo ereditato da \textit{Button}, collega il canvas all'azione di disegno di una linea a mano libera.
 \end{elencopuntato}
 
-\subsezione{CloneButton}
-\subsubsezione{Tipo, obiettivo e funzione del componente}
-Classe concreta che rappresenta lo specifico pulsante che attiva le funzionalit\` a di clonazione di una figura.
-\subsubsezione{Relazioni d'uso di altre componenti}
-Estende \textit{Button}.
-\subsubsezione{Interfacce e relazioni di uso da altre componenti}
-\subsubsezione{Attivit\`a svolte e dati trattati}
-\textit{Page} e \textit{Toolbar} ne mantengono un' istanza.
-\paragrafo{Attributi privati:}
-\begin{elencopuntato}[\subsubsecindent]
-\item[-] \textit{{\_}id} l'attibuto HTML \textit{id} del pulsante.
-\end{elencopuntato}
-\paragrafo{Metodi pubblici:}
-\begin{elencopuntato}[\subsubsecindent]
-\item[-] \textit{getId()} ritorna \textit{{\_}id};
-\item[-] \textit{getBuilder()} ritorna il tipo di oggetto disegnato tramite la pressione di questo pulsante, per permetterne il riconoscimento al metodo \textit{bindCanvas} in modo da associare correttamente la figura da disegnare al suo pulsante.
-\end{elencopuntato}
 
 \subsezione{TextButton}
 \subsubsezione{Tipo, obiettivo e funzione del componente}
@@ -641,19 +626,6 @@ Classe concreta che rappresenta la tavolozza dei colori presente al di sotto del
 \item[-]  \textit{setColour(col,prec1,prec2)} cambia il colore di bordo o riempimento della figura al seguito di un click dell'utente sullla tavolozza, prendendo il colore attualmente impostato e modificando uno dei due parametri a seconda del valore selezionato sul combobox a fianco. Ritorna la nuova coppia di colori bordo-riempimento.
 \item[-]  \textit{rgbToHex(rgb)} prende il valore rgb passato dalla ruota dei colori \textit{Farbtastic} e ritorna la sua rappresentazione esadecimale.
 \end{elencopuntato}
-
-\subsezione{PaletteComponent}
-\subsubsezione{Tipo, obiettivo e funzione del componente}
-Classe concreta che rappresenta un singolo colore presente sulla tavolozza.
-\subsubsezione{Relazioni d'uso di altre componenti}
-\subsubsezione{Interfacce e relazioni di uso da altre componenti}
-\subsubsezione{Attivit\`a svolte e dati trattati}
-\textit{Page} e \textit{Palette} ne mantengono pi\`u istanze.
-\paragrafo{Attributi privati:}
-\begin{elencopuntato}[\subsubsecindent]
-\item[-] \textit{{\_}color} colore rappresentato dal componente.
-\end{elencopuntato}
-
 
 \subsezione{ColourDialog}
 \subsubsezione{Tipo, obiettivo e funzione del componente}
@@ -724,12 +696,36 @@ Legge e modifica \textit{Rotation}.
 \subsubsezione{Attivit\`a svolte e dati trattati}
 \paragrafo{Metodi pubblici:}
 
+\subsezione{FontSetter}
+\subsubsezione{Tipo, obiettivo e funzione del componente}
+Classe concreta che rappresenta l'oggetto che si occupa di modificare il tipo di carattere della casella di testo da disegnare o selezionata.
+\subsubsezione{Relazioni d'uso di altre componenti}
+Legge e modifica \textit{TextFont}.
+\subsubsezione{Interfacce e relazioni di uso da altre componenti}
+\textit{PropertiesDialog} ne mantiene un'istanza.
+\subsubsezione{Attivit\`a svolte e dati trattati}
+\paragrafo{Metodi pubblici:}
+\begin{elencopuntato}[\subsubsecindent]
+\item[-] \textit{FontSetter(font)} costruttore. Prende un \textit{TextFont} e setta il valore di un campo a scelta multipla di un dialog statico implementato in HTML. Il campo contiene il tipo di carattere attuale di \textit{font}. Collega un evento al pulsante di conferma del dialog, e se l'utente ha modificato il tipo di carattere, modifica \textit{en} ed esegue un refresh.
+\end{elencopuntato}
 
+\subsezione{TextStringSetter}
+\subsubsezione{Tipo, obiettivo e funzione del componente}
+Classe concreta che rappresenta l'oggetto che si occupa di modificare la stringa della casella di testo da disegnare o selezionata.
+\subsubsezione{Relazioni d'uso di altre componenti}
+Legge e modifica \textit{TextString}.
+\subsubsezione{Interfacce e relazioni di uso da altre componenti}
+\textit{PropertiesDialog} ne mantiene un'istanza.
+\subsubsezione{Attivit\`a svolte e dati trattati}
+\paragrafo{Metodi pubblici:}
+\begin{elencopuntato}[\subsubsecindent]
+\item[-] \textit{TextStringSetter(text)} costruttore. Prende un \textit{TextString} e setta il valore di un campo di un dialog statico implementato in HTML. Il campo contiene la stringa attuale di \textit{text}. Collega un evento al pulsante di conferma del dialog, e se l'utente ha modificato la stringa, modifica \textit{txt} ed esegue un refresh.
+\end{elencopuntato}
 
 
 %%%%%%%%Parte Dissegna
 \sezione{Specifica delle componenti - ApplicationLogic}
-Gestisce completamente le figure: il disegno, la conversione da e verso SVG, le loro propriet\`a, la loro manipolazione e creazione. Utilizza le interfacce messe a disposizione dallo strato server e offre le proprie funzionalit\`a allo strato GUI.
+Gestisce completamente le figure: il disegno, la conversione da e verso \underline{SVG}, le loro propriet\`a, la loro manipolazione e creazione. Utilizza le interfacce messe a disposizione dallo strato server e offre le proprie funzionalit\`a allo strato GUI.
 
 \subsezione{Figure}
 \subsubsezione{Tipo, obiettivo e funzione del componente}
@@ -909,7 +905,7 @@ Deriva da \textit{Colour}.
 
 \subsezione{TextProperty}
 \subsubsezione{Tipo, obiettivo e funzione del componente}
-Propriet\`a di un testo grafico. Non serve implementarla in JavaScript.
+Propriet\`a di un testo grafico. Non serve implementarla in \underline{JavaScript}.
 
 \subsezione{TextColour}
 \subsubsezione{Tipo, obiettivo e funzione del componente}
@@ -937,6 +933,25 @@ Usata dalla classe \textit{Text} che ne mantiene un'istanza.
 \begin{elencopuntato}[\subsubsecindent]
 \item[-] \textit{toCSS()} ritorna {\_}name.
 \item[-] \textit{applyToContext(context)} setta l'attributo \textit{font} del contesto grafico alla propria rappresentazione CSS.
+\item[-] \textit{createWidget} crea e ritorna un'istanza di \textit{FontSetter} passando se stesso come parametro al costruttore.
+\end{elencopuntato}
+
+\subsezione{TextString}
+\subsubsezione{Tipo, obiettivo e funzione del componente}
+Rappresenta la stringa di un testo. Mantiene la stringa attualmente scritta.
+\subsubsezione{Relazioni d'uso di altre componenti}
+Deriva da \textit{TextProperty}.
+\subsubsezione{Interfacce e relazioni di uso da altre componenti}
+Usata dalla classe \textit{Text} che ne mantiene un'istanza.
+\subsubsezione{Attivit\`a svolte e dati trattati}
+\paragrafo{Attributi privati:}
+\begin{elencopuntato}[\subsubsecindent]
+\item[-] \textit{{\_}name} stringa di testo da scrivere o scritta.
+\end{elencopuntato}
+\paragraph{Metodi pubblici:}
+\begin{elencopuntato}[\subsubsecindent]
+\item[-] \textit{get/setName} permette di ottenere, o di modificare, la stringa di testo della casella.
+\item[-] \textit{createWidget} crea e ritorna un'istanza di \textit{TextStringSetter} passando se stesso come parametro al costruttore.
 \end{elencopuntato}
 
 \subsezione{BoundingRectangle}
@@ -1216,12 +1231,12 @@ Usato da \textit{SVGReader} per ottenere una figura da un tag SVG.
 \item[-] \textit{makeFigureClassFromTag(tag)} controlla se nella tabella di hash esiste un indice \textit{tag}: se \`e presente crea una figura corrispondente utilizzando il cotruttore ottenuto dalla tabella, altrimenti ritorna \textit{null}.
 \end{elencopuntato}
 
-\sezione{Specifica delle componenti - Server}
+\sezione{Specifica delle componenti - \underline{Server}}
 Permette l'accesso all'applicazione ed al manuale utente, gestisce il salvataggio ed il caricamento di file.
 
 \subsezione{Request}
 \subsubsezione{Tipo, obiettivo e funzione del componente}
-Classe che accetta le richieste dal client e le inoltra alla classe \textit{Server}. Permette la comunicazione tra il client e il server.
+Classe che accetta le richieste dal \underline{client} e le inoltra alla classe \textit{Server}. Permette la comunicazione tra il client e il server.
 \subsubsezione{Relazioni d'uso di altre componenti}
 Utilizza istanze di \textit{Server} e di \textit{ConnectionError}.
 \subsubsezione{Interfacce e relazioni di uso da altre componenti}
@@ -1344,6 +1359,7 @@ Nessuna.
 
 
 \sezione{Tracciamento della relazione componenti - requisiti}
+
 
 \subsezione{Tracciamento Componenti - Resuisiti}
 \begin{table}[h]
@@ -1529,16 +1545,17 @@ Nessuna.
   \end{center}
 \end{table}
 
+
 \subsezione{Tracciamento Requisiti - Componenti}
 \begin{table}[h]
 \begin{center}
      \begin{tabular}
            {@{\extracolsep{\fill}}|c|c|}
       		\hline
-           \multicolumn{2}{|c|}{ \textbf{Componenti ApplicationLogic} } \\
+           \multicolumn{2}{|c|}{ \textbf{Requisiti - Componenti} } \\
      \hline
 %%%%%%%%%%%%%%INTESTAZIONE COLONNE%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-      \textbf{Componenti} & \textbf{Requisiti} \\
+      \textbf{Requisiti} & \textbf{Componenti} \\
 %%%%%%%%%%%%%%FINE INTESTAZIONE COLONNE%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
       \hline
       RFO-1 & StraightLineButton, StraightLine, Line\\
@@ -1602,8 +1619,8 @@ Nessuna.
     \hline %%FINE RIGA
 %%%%%%%%%%% FINE PARTE DA MODIFICARE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     \end{tabular}
-  \caption{Componenti ApplicationLogic - Requisiti} %INSERIRE DIDASCALIA - SE NECESSARIA -
-  \label{tab:requisitiAL}
+  \caption{Requisiti - Componenti} %INSERIRE DIDASCALIA - SE NECESSARIA -
+  \label{tab:requisiti}
   \end{center}
 \end{table}
 
