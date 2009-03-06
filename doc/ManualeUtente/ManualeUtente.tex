@@ -166,7 +166,7 @@ Il presente documento si propone di fornire la documentazione di supporto necess
 \sezione{Introduzione}
 
 \subsezione{Definizione dell'utente del prodotto}
-Il prodotto \`e pensato per tutti gli utenti che hanno conoscenze minime in ambiente di grafica vettoriale e che possiedono una connessione ad internet. Il sistema potr\`a anche essere usato da chiunque voglia estendere l'applicazione, secondo le norme che regolano la licenza d'utilizzo.\\
+Il prodotto \`e pensato per tutti gli utenti che hanno conoscenze minime in ambiente di grafica vettoriale e che possiedono una connessione ad internet. Il sistema potr\`a essere modificato da chiunque voglia estendere l'applicazione, secondo le norme che regolano la licenza d'utilizzo.\\
 
 \subsezione{Come leggere il manuale}
 Il presente Manuale Utente \`e suddiviso in varie sezioni. Nella sezione ''Introduzione'' il lettore pu\`o trovare riferimenti a documenti utili per l'uso del prodotto e informazioni riguardo eventuali segnalazioni di problemi riscontrati nel suo utilizzo.
@@ -181,12 +181,12 @@ Nella sezione ''Descrizione generale'' viene descritto il prodotto illustrandone
 \subsezione{Come riportare problemi e malfunzionamenti}
 Nel caso durante l'utilizzo del prodotto sorgano problemi o malfunzionamenti non descritti nel seguente documento, l'utente \`e invitato a contattare la WebShape all'indirizzo \href{mailto:webshape.contact@gmail.com}{webshape.contact@gmail.com} riportando i seguenti dati:\\
 \begin{elencopuntato}[\normindent]
-	\item[-] Versione del prodotto
-	\item[-] Sistema operativo in uso
-	\item[-] \underline{Browser} in uso
-	\item[-] Configurazione hardware in uso
-	\item[-] Fase di utilizzo in cui si \`e manifestato l'errore
-	\item[-] Descrizione dell'errore
+	\item[-] Versione del prodotto;
+	\item[-] Sistema operativo in uso;
+	\item[-] \underline{Browser} in uso;
+	\item[-] Configurazione hardware in uso;
+	\item[-] Fase di utilizzo in cui si \`e manifestato l'errore;
+	\item[-] Descrizione dell'errore.
 \end{elencopuntato}
 
 \sezione{Descrizione Generale}
@@ -196,14 +196,14 @@ Il prodotto \`e stato sviluppato come un'applicazione web. \`E possibile utilizz
 funzionalit\`a. Il sistema permette un salvataggio dei disegni che potranno essere ricaricati e aggiornati.
 
 \subsezione{Requisiti tecnici per il funzionamento del programma}
-\subsubsezione{lato client}
+\subsubsezione{Lato client}
 \begin{elencopuntato}[\normindent]
-    \item[-] Requisiti software: Firefox 3.2b2 o successivo, Firefox 3.0.6 tutto tranne il disegno di testo, Opera 9.6 tutto tranne il disegno di testo, Chrome (versione attuale), Safari (versione attuale), IE8: tutto tranne il testo e la selezione che risulta non essere ottimale.\\
+    \item[-] Requisiti software: Firefox 3.1b2 o successivo, Firefox 3.0.6 tutto tranne il disegno di testo, Opera 9.6 tutto tranne il disegno di testo, Chrome (versione attuale), Safari (versione attuale), IE8: tutto tranne il testo e la selezione che risulta non essere ottimale.\\
     Risoluzione minima consigliata: 1024x768.\\
 N.B. Dove non \`e supportato il testo, c'\`e un supporto minimo: un solo font, colore di riempimento ignorato, set di caratteri minimo. 
     \item[-] Requisiti hardware:  Processore Intel 2GHz o compatibili; 512MB memoria RAM 
 \end{elencopuntato}
-\subsubsezione{lato server}
+\subsubsezione{Lato server}
 \begin{elencopuntato}[\normindent]
     \item[-] Requisiti software:  \underline{JVM} 1.5 o superiore, Apache \underline{Tomcat} 6.0 o superiore.
     \item[-] Requisiti hardware:  Processore Intel 1GHz; 1GB memoria RAM
@@ -216,17 +216,17 @@ N.B. Dove non \`e supportato il testo, c'\`e un supporto minimo: un solo font, c
 Il programma non necessita di installazione. 
 
 \subsubsezione{Lato server}
-Per permettere il funzionamento del sistema, \`e necessario installare un Web Server: Apache Tomcat. Oltre a essere un Web Server, Tomcat \`e anche un
+Per permettere il funzionamento del sistema, \`e necessario installare un Web Server: Apache Tomcat. Oltre ad essere un Web Server, Tomcat \`e anche un
 Application Server, cio\`e una piattaforma per l'esecuzione di applicazioni Web sviluppate nel linguaggio Java.\\
 \\
 Prima di tutto \`e necessario disporre di una Java Virtual Machine. Per il download visitare il link al sito ufficiale della Sun Microsystem:\\
-http://java.com/download/index.jsp\\
+\href{http://java.com/download/index.jsp}{http://java.com/download/index.jsp}\\
 \\
-Per effettuare il download di Apache Tomcat 6.0 andare al link del sito ufficiale \textit{http://tomcat.apache.org/download-60.cgi}\\
+Per effettuare il download di Apache Tomcat 6.0 seguire il link del sito ufficiale: \href{http://tomcat.apache.org/download-60.cgi}{http://tomcat.apache.org/download-60.cgi}\\
 Nella sezione \textit{Binary Distribution} della pagina web, \`e possibile effettuare il download sia per sistemi Windows che per sistemi Linux.\\
 \\\\
 \indent{\textbf{Installazione su sistemi Windows:}}\\
-Terminato il download, fare doppio click sul file scaricato per iniziare l'installazione.\\
+Terminato il download, aprire il file scaricato per iniziare l'installazione.\\
 La schermata \`e la seguente:
 
 \begin{figure}[!ht]
@@ -235,7 +235,7 @@ La schermata \`e la seguente:
 \caption{Setup Wizard Apache Tomcat}
 \end{figure} 
 
-Premere \textit{Next} per andare avanti e accettare la licenza.
+Premere \textit{Next} per proseguire e accettare la licenza.
 Giunti alla schermata per la scelta della cartella di installazione, mantenere quella indicata di default.
 
 \begin{figure}[!ht]
@@ -246,7 +246,7 @@ Giunti alla schermata per la scelta della cartella di installazione, mantenere q
 \newpage
 
 Premere \textit{Next}, e si presenter\`a la finestra di configurazione di Tomcat:
-Alla voce \textit{http/1.1 Connector Port} lasciare il valore di default (di solito 8080), quindi impostare una User Name e Password a scelta necessarie per accedere alla configurazione di Tomcat.\\
+Alla voce \textit{http/1.1 Connector Port} lasciare il valore di default (solitamente 8080), quindi impostare Username e Password, necessarie per accedere alla configurazione di Tomcat.\\
 Quindi premere \textit{Next}.
 
 \begin{figure}[!ht]
@@ -255,9 +255,7 @@ Quindi premere \textit{Next}.
 \caption{Configuration}
 \end{figure} 
 
-Nella schermata successiva, \`e necessario indicare il percorso dell'installazione della Java Virtual Machine (J2SE). Se gia installata, lasciare il percorso di default
-indicato.
-Per completare l'installazione, premere su \textit{Install}.
+Nella schermata successiva, \`e necessario indicare il percorso dell'installazione della Java Virtual Machine (J2SE). Se g\`a  installata, mantenere il percorso di default indicato. Per completare l'installazione, cliccare su \textit{Install}.
 
 \begin{figure}[!ht]
 \centering
@@ -266,20 +264,19 @@ Per completare l'installazione, premere su \textit{Install}.
 \end{figure} 
 
 \indent{\textbf{Installazione su sistemi Linux:}}\\
-Scaricato il .tar.gz, estrarre il contenuto su una cartella.
-Non \`e necessaria una installazione vera e propria e per la sua esecuzione si rimanda al paraggrafo \textit{Avvio del programma} sezione \textit{Linux}.
+Scaricato il .tar.gz, estrarre il contenuto in una cartella. Non \`e necessaria un'installazione vera e propria e per la sua esecuzione si rimanda al paragrafo \textit{Avvio del programma} sezione \textit{Linux}.
 
 \subsezione{Avvio del programma}
 \subsubsezione{Lato client}
-\`E sufficiente aprire la pagina web con un browser supportato. L'indirizzo dipende dall'host in cui viene installato il server.
+\`E sufficiente aprire la pagina web con un browser supportato. L'indirizzo dipende dall'host nel quale viene installato il web server.
 \subsubsezione{Lato server}
-Sono presenti due sezioni per effettuare l'avvio su sistemi Windows e su sistemi Linux.\\
-\\\\
+Sono presenti due sezioni per effettuare l'avvio su sistemi Windows e su sistemi Linux.\\ \\ \\
 \indent{\textbf{Avvio del programma su sistemi Windows:}}\\
-Per l'avvio del server, andare su \textit{Start-$ > $Programmi-$ > $Apache Tomcat 6.0} e avviare \textit{Monitor Tomcat}.
+Per l'avvio del web server, andare su \textit{Start-$ > $Programmi-$ > $Apache Tomcat 6.0} e avviare \textit{Monitor Tomcat}.
 Nella barra delle applicazioni in esecuzione, apparir\`a l'icona che indica l'avvio di Tomcat.\\
-A questo punto avviare un browser e digitare il seguente indirizzo\\ \textit{http://localhost:8080/manager/html}\\
-Dopo aver inserito User Name e Password richiesti, si entrer\`a nel manager di Tomcat.\\
+A questo punto avviare un browser e digitare il seguente indirizzo:\\ 
+\href{http://localhost:8080/manager/html}{http://localhost:8080/manager/html}\\
+Dopo aver inserito Username e Password richiesti, si entrer\`a nell'area di gestione di Tomcat.\\
 Andare nella sezione \textit{WAR file to deploy} della pagina.\\
 \begin{figure}[!ht]
 \centering
@@ -287,7 +284,7 @@ Andare nella sezione \textit{WAR file to deploy} della pagina.\\
 \caption{Deploy}
 \end{figure} 
 
-Selezionare il file .war dell'applicazione e quindi premere su Deploy.\\
+Selezionare il file \textit{.war} dell'applicazione e quindi cliccare su \textit{Deploy}.\\
 A questo punto nella cartella \textit{webapps} della cartella di installazione di Tomcat sar\`a presente l'applicazione AJAXDRAW pronta per la sua esecuzione.\\ 
 \\\\
 \indent{\textbf{Avvio del programma su sistemi Linux:}}\\
@@ -303,15 +300,15 @@ Se tutto \`e andato per il meglio, dovrebbero comparire i path di CATALINA e JRE
 %Using CATALINA\{_}TMPDIR: /home/red/apache-tomcat-6.0.14/temp\\
 %Using JRE\{_}HOME: /usr/lib/jvm/java-6-sun-1.6.0.03\\
 \\
-Avviare un browser e inserire l'indirizzo \textit{http://localhost:8080}\\
+Avviare un browser e inserire l'indirizzo \href{http://localhost:8080}{http://localhost:8080}.\\
 Se compare la pagina principale di Tomcat, significa che il Web Server funziona correttamente.
-A questo punto, \`e necessario procedere alla configurazione dell'utente amministratore per poter usare il Tomcat Manager.
+A questo punto, \`e necessario procedere alla configurazione dell'utente amministratore per poter utilizzare il Tomcat Manager.
 Per fare questo, da shell, spostarsi nella cartella principale di Tomcat ed eseguire i seguenti comandi:\\
 \\
 \textit{cd conf}\\
 \textit{sudo gedit tomcat-users.xml}\\
 \\
-Sostituire il file aperto, con il seguente codice:\\
+Sostituire il contenuto del file aperto con il seguente codice:\\
 \\
 \textit{$ < $?xml version='1.0' encoding='utf-8'?$ > $}\\
 \textit{$ < $tomcat-users$ > $}\\
@@ -320,10 +317,10 @@ Sostituire il file aperto, con il seguente codice:\\
 \textit{  $ < $user username='admin' password='admin' roles='manager'/$ > $}\\
 \textit{$ < $/tomcat-users$ > $} \\
 \\
-In questo modo \`e stato impostato uno User Name con valore \textit{admin} e una Password con valore \textit{admin}. Queste credenziali sono da usare per accedere al Tomcat Manager.\\
-A questo punto avviare un browser e digitare il seguente indirizzo\\ \textit{http://localhost:8080/manager/html}\\
-Dopo aver inserito User Name e Password richiesti, si entrer\`a nel manager di Tomcat.\\
-Andare nella sezione \textit{WAR file to deploy} della pagina.
+In questo modo \`e stato impostato uno Username con valore \textit{admin} e una Password con valore \textit{admin}. Queste credenziali possono essere utilizzate per accedere al Tomcat Manager.\\
+A questo punto avviare un browser e digitare il seguente indirizzo\\ \href{http://localhost:8080/manager/html}{http://localhost:8080/manager/html}\\
+Dopo aver inserito Username e Password richiesti, si acceder\` a al manager di Tomcat.\\
+Raggiungere la sezione \textit{WAR file to deploy} della pagina.
 
 \begin{figure}[!ht]
 \centering
@@ -332,7 +329,7 @@ Andare nella sezione \textit{WAR file to deploy} della pagina.
 \end{figure} 
 
 Selezionare il file .war dell'applicazione e quindi premere su Deploy.\\
-
+\newpage
 \subsezione{Descrizione funzionale - Lato client}
 \subsubsezione{Il Menu}
 Il programma dispone di un menu a tendina nella parte alta dell'interfaccia grafica.
@@ -343,12 +340,13 @@ Il programma dispone di un menu a tendina nella parte alta dell'interfaccia graf
 \caption{menu a tendina}
 \end{figure} 
 
-Nella sezione \textit{File} \`e possibile salvare il lavoro effettuato sul proprio computer in formato \underline{svg}, oppure caricare un lavoro realizzato in precedenza.
-Per aprire un file si deve selezionare \textit{File > Carica} e inserire il percorso del file nel dialog che si aprir\`a oppure selezionarlo cliccando sul pulsante \textit{Sfoglia}. 
-Per salvare un file si deve selezionare \textit{File > Salva} e inserire un nome nel dialog che si aprir\`a in seguito e confermare la scelta. Comparir\`a un link che permette di scaricare il file.
-La sezione \textit{Visualizza} permette di visualizzare i dialog delle propriet\`a nel caso fossero stati chiusi tramite il tasto di chiusura in alto a destra (la classica X). \textit{Colori} si riferisce alla finestra che modifica i colori di una figura mentre \textit{Propriet\`a} gestisce la posizione e la dimensione di una figura.
-Infine la sezione \textit{About} permette di visualizzare informazioni sul prodotto e sull'azienda sviluppatrice.
-
+Nella sezione \textit{File} \`e possibile salvare il lavoro svolto fino a quel momento sul proprio computer in formato \underline{svg}, oppure caricare un lavoro realizzato in precedenza.
+Per aprire un file si deve selezionare \textit{File -$ > $Carica} e inserire il percorso del file nel dialog che si aprir\`a oppure selezionarlo cliccando sul pulsante \textit{Sfoglia}. 
+Per salvare un file si deve selezionare \textit{File -$ > $Salva} e inserire un nome nel dialog che si aprir\`a in seguito e confermare la scelta. Comparir\`a un link che permette di scaricare il file.
+La sezione \textit{Modifica} contiene il pulsante \textit{Svuota Canvas}, che permette di eliminare tutte le figure disegnate sul canvas e ricominciare dall'inizio.
+La sezione \textit{Visualizza} permette di visualizzare i dialog delle propriet\`a nel caso fossero stati chiusi tramite il tasto di chiusura in alto a destra (la classica X). \textit{Colori} si riferisce alla finestra che modifica i colori di una figura mentre \textit{Propriet\`a} gestisce la posizione e la dimensione di una figura, e altre opzioni dipendenti dallo strumento in uso.
+Infine la sezione \textit{Guida} contiene il link alla guida in linea, e permette di visualizzare informazioni sul prodotto e sull'azienda sviluppatrice.
+\newpage
 \subsubsezione{La Toolbar}
 Le funzioni di disegno del programma sono accessibili attraverso i bottoni presenti nel lato sinistro dell'interfaccia grafica. Cliccando su un pulsante si attiva la funzione desiderata. Il puntatore del mouse cambia a seconda della funzione di disegno scelta, nei browser che lo supportano.
 
@@ -358,7 +356,7 @@ Le funzioni di disegno del programma sono accessibili attraverso i bottoni prese
 \caption{Selezione}
 \end{figure} 
 
-Qui \`e stata usata la funzione \textit{seleziona} per selezionare una figura. Selezionata una figura, tutti i suoi parametri sono visualizzati nelle finestre grafiche sulla destra. \`E possibile spostare i punti evidenziati cliccando su di essi e trascinare il mouse tenendo premuto il pulsante. Rilasciare il pulsante per fermare lo spostamento. Modificando questi punti \`e possibile modificare le dimensioni delle figure, e nel caso delle linee a mano libera e delle curve di bezier \`e possibile spostare i punti per cui passano le tangenti alle curve. Cliccando e tenendo premuto il pulsante sinistro del mouse dentro ad una figura \`e possibile spostarla all'interno dell'area di disegno.
+Qui \`e stata usata la funzione di \textit{selezione}. Una volta selezionata una figura, tutti i suoi parametri sono visualizzati nel dialog delle propriet\` a sulla destra. \`E possibile spostare i punti evidenziati cliccando su di essi e trascinare il mouse tenendo premuto il pulsante. Rilasciare il pulsante per fermare lo spostamento. Modificando questi punti \`e possibile regolare la dimensione delle figure, e nel caso specifico delle linee a mano libera e delle curve di Bezier si possono spostare i punti per cui passano le tangenti alle curve. Cliccando e mantenendo la pressione del pulsante sinistro del mouse all'interno di una figura, \`e possibile spostarla all'interno dell'area di disegno, azione effettuabile anche tramite le frecce direzionali della tastiera.
 
 \begin{figure}[!ht]
 \centering
@@ -367,7 +365,7 @@ Qui \`e stata usata la funzione \textit{seleziona} per selezionare una figura. S
 \end{figure} 
 
 \vspace{100pt}
-Qui \`e stata selezionata la funzione \textit{Ellisse}. Si deve fare click nella pozione in cui si vuole disegnare la figura (vertice alto a sinistra della figura), poi col puntatore del mouse premuto si modifica la dimensione della figura. Seguendo la stessa procedura \`e possibile disegnare rettangoli dopo aver selezionato il relativo strumento.
+In questo caso \`e stata selezionata la funzione per il disegno di un'\textit{ellisse}. Cliccando e spostando il mouse sopra all'area disegnabile, si ha la possibilit\` a di creare una figura di dimensioni arbitrarie, che verr\` a effettivamente disegnata al rilascio del pulsante sinistro del mouse. Per il disegno di un \textit{rettangolo}, valgono le stesse considerazioni.
 
 \begin{figure}[!ht]
 \centering
@@ -376,17 +374,17 @@ Qui \`e stata selezionata la funzione \textit{Ellisse}. Si deve fare click nella
 \end{figure} 
 
 \vspace{300pt}
-Qui \`e stato disegnato un \textit{poligono regolare}. L'unica differenze rispetto ad ellissi e rettangoli consiste nella finestra di propriet\`a a destra dell'interfaccia grafica, che permette di modificare il numero di lati del poligono inserendo il valore desiderato a fianco dell'etichettta \textit{N. di lati} e confermando tale scelta cliccando sul bottone \textit{Cambia}.
+Qui \`e stato disegnato un \textit{poligono regolare}. L'unica differenza rispetto ad ellissi e rettangoli consiste nella composizione della finestra di propriet\`a, alla quale si aggiunge una casella che permette di modificare il numero di lati del poligono da disegnare o disegnato, inserendo il valore desiderato a fianco dell'etichettta \textit{N. di lati} e confermando tale scelta cliccando sul pulsante \textit{Cambia}.
 
 \begin{figure}[!ht]
 \centering
 \includegraphics[scale=0.5]{images/mano.png}
-\caption{Strumento Mano per spostare, trascinare le figure}
+\caption{Strumento Mano per spostare l'area visualizzata}
 \end{figure} 
 \newpage
 
 \vspace{300pt}
-Qui \`e stata selezionata la funzione \textit{Mano}. Cliccando in un punto qualsiasi del \underline{canvas} \`e possibile cambiare l'area di disegno correntemente visualizzata spostando il mouse mantenendo premuto il tasto sinistro.
+Qui \`e stata selezionata la funzione di \textit{spostamento} dell'area di disegno. Cliccando su un punto qualsiasi del \underline{canvas} \`e possibile cambiare l'area di disegno correntemente visualizzata spostando il mouse mantenendo premuto il tasto sinistro.
 
 \begin{figure}[!ht]
 \centering
@@ -397,7 +395,7 @@ Qui \`e stata selezionata la funzione \textit{Mano}. Cliccando in un punto quals
 \newpage
 
 \vspace{300pt}
-Qui \`e stata selezionata la funzione \textit{Disegno a mano libera} cliccando sull'apposito bottone (evidenziato in grigio). \`E possibile tracciare una linea a mano libera tenendo premuto il pulsante sinistro del mouse e muovendo il mouse.
+Qui \`e stata selezionata la funzione di \textit{Disegno a mano libera}. \`E possibile tracciare una linea a mano libera tenendo premuto il pulsante sinistro del mouse e muovendo il mouse. 
 
 \begin{figure}[!ht]
 \centering
@@ -406,7 +404,7 @@ Qui \`e stata selezionata la funzione \textit{Disegno a mano libera} cliccando s
 \end{figure} 
 
 \vspace{300pt}
-Qui \`e stata selezionata la funzione \textit{Disegno di una retta}. Si deve tenere premuto il pulsante sinistro del mouse e spostare il cursore per disegnare la linea retta. La fine della retta \`e determinata dal rilascio del pulsante del mouse.
+Qui \`e stata selezionata la funzione \textit{Disegno di una retta}. Si deve premere il pulsante sinistro del mouse e spostare il cursore per disegnare la linea retta. La fine della retta \`e determinata dal rilascio del pulsante del mouse.
 
 \begin{figure}[!ht]
 \centering
@@ -415,7 +413,7 @@ Qui \`e stata selezionata la funzione \textit{Disegno di una retta}. Si deve ten
 \end{figure} 
 
 \vspace{300pt}
-Qui \`e stata selezionata la funzione \textit{Etichetta di testo}. Si deve cliccare sull'area di disegno per scegliere la posizione del testo ed utilizzare la finestra di propriet\`a a destra per cambiare il testo dell'etichetta ed il font.
+Qui \`e stata selezionata la funzione per la creazione di una\textit{casella di testo}. Si deve cliccare sull'area di disegno come per le altre figure, per stabilire posizione e dimensioni della casella,  ed utilizzare il dialog di propriet\`a per cambiare la stringa contenuta all'interno ed il tipo di carattere (solo per i browser che supportano tale funzionalit\` a).
  
 \begin{figure}[!ht]
 \centering
@@ -430,9 +428,8 @@ Qui \`e stata selezionata la funzione \textit{Etichetta di testo}. Si deve clicc
 \end{figure} 
 
 \vspace{100pt}
-Qui \`e stata selezionata la funzione \textit{Zoom}. \`E possibile impostare manualmente la percentuale di zoom agendo sulla combobox posta in basso a sinistra dell'applicazione con un click sulla combobox apposita e un click sulla percentuale desiderata. A questo punto \`e possibile aumentare o diminuire lo zoom della percentuale desiderata mediante l'tuilizzo dei pulsanti lente (evidenziati in grigio) per aumentare o diminuire il grado di zoom.
+Qui \`e stata selezionata la funzione di \textit{Zoom}. \`E possibile aumentare o diminuire il livello di zoom mediante l'utilizzo dei pulsanti appositi.
  
-
 \begin{figure}[!ht]
 \centering
 \includegraphics[scale=0.4]{images/bezier.png}
@@ -440,7 +437,7 @@ Qui \`e stata selezionata la funzione \textit{Zoom}. \`E possibile impostare man
 \end{figure} 
 
 \vspace{100pt}
-Qui \`e stata selezionata la funzione \textit{Curva di Bezier}. Per disegnare la curva, si deve fare click sul piano di disegno dove si desidera disegnare la curva. Il punto selezionato sar\`a il punto iniziale della curva, poi eseguire due click sul piano di disegno per descrivere i due punti controllo per cui passeranno le tangenti alla curva ed infine un ultimo click per selezionare il punto finale della curva.
+Qui \`e stata selezionata la funzione per il disegno di una \textit{Curva di Bezier} cubica. Per disegnare la curva, \` e necessario impostare i 4 punti necessari al suo calcolo. Il primo punto sar\`a l'inizio della curva, seguito dai due punti controllo per cui passeranno le tangenti ed infine l'ultimo imposter\` a il punto finale della curva. Si avr\` a comunque la possibilit\` a di controllare ad ogni passaggio la conformazione della figura in fase di creazione.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%% FINE TOOLBAR %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%% BOTTONI E DIALOG %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
