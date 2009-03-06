@@ -195,6 +195,14 @@ Visualization.prototype.getClickCoordsWithinTarget = function(event){
 	return coords;*/
 };
 
+
+
+/**
+ * Set the canvas dimensions depending to the user monitor resolution
+ * @param {Canvas} canvasObj the canvas element
+ * @param {Numeric} height the height of user screen resolution
+ * @param {Numeric} width the width of user screen resolution
+ */
 Visualization.prototype.setCanvasDimension = function(canvasObj,height,width){
   if(width == 1280 && height==800){
     canvasObj.setWidth(760);
@@ -215,7 +223,41 @@ Visualization.prototype.setCanvasDimension = function(canvasObj,height,width){
 
 };
 
+/**
+ * Erase the selected element
+ * @param {FigureSet} figureSet the set of figures
+ * @param {Canvas} canvasObj the canvas element
+ */
+Visualization.prototype.eraseElement = function(figureSet,canvasObj){
+   figureSet.each(function (f) {
+     if (f.isSelected()) {
+       figureSet.rem(f);
+     }
+     canvasObj.clear();
+     visual.refresh();
+   });
+};
 
+
+/**
+ * Clone the selected element
+ * @param {Figure} actualFigure the figure actually selected
+ * @param {Canvas} canvasObj the canvas element
+ */
+Visualization.prototype.cloneElement = function(actualFigure,canvasObj){
+  var clonedFigure = actualFigure.clone();
+  clonedFigure.draw(canvasObj.getId());
+  visual.getFigureSet().add(clonedFigure);
+  actualFigure.setSelection(false);
+  clonedFigure.setSelection(true);
+  canvasObj.clear();
+  visual.refresh();
+  $("#cloneButton").unbind('click');
+  $("#cloneButton").bind('click',function(e){
+    visual.cloneElement(clonedFigure,canvasObj); //se riclona clona l'ultima
+  });
+
+};
 
 
 
@@ -448,21 +490,20 @@ SelectionButton.prototype._handleCtrlPoint = function (pt, f) {
  * @param {Visualization} visual che Visualization object
  * @param {FigureSet} figureSet the set of figures
  */
-SelectionButton.prototype.bindCanvas = function (toolbar,canvas,canvasObj,visual,figureSet,eraseButton) {
+SelectionButton.prototype.bindCanvas = function (toolbar,canvas,canvasObj,visual,figureSet) {
   var self = this;
   toolbar.deselectAll();
-  $(".Dialog2").height(390);
-  $("#cloneButton").unbind('click');
+  $(".Dialog2").height(390); //per far vedere le parti di poligono e testo
+  $("#cloneButton").unbind('click'); //unbind clonazione
   $("#cv").unbind(' mousedown mousemove click mouseup');
+  $("#eraseButton").unbind('click');
   $("*").unbind('keypress');
   $("*").bind('keypress',function(e){
     if(e.keyCode==46){
-      eraseButton.eraseElement(figureSet);
+      visual.eraseElement(figureSet,canvasObj);
     }
   });
   $("#cv").bind("mousedown", function(e){
-      //visual.deselectAll(figureSet);
-      //visual.refresh();
       var coords = visual.getClickCoordsWithinTarget(e);
       var coord = new Point(coords.x,coords.y);
       var actualFigure = figureSet.selectFigure(coord, visual.getScale(), visual.getOffset());
@@ -470,10 +511,15 @@ SelectionButton.prototype.bindCanvas = function (toolbar,canvas,canvasObj,visual
         // is there an already selected figure?
 	$("#cloneButton").unbind('click');
 	$("*").unbind('keypress');
+      /*zona gestione cancellazione*/
 	$("*").bind('keypress',function(e){
 	  if(e.keyCode==46){
-	    eraseButton.eraseElement(figureSet);
-	  }
+	    visual.eraseElement(figureSet,canvasObj);
+	  };
+	});
+	$("#eraseButton").click(function () {
+	  visual.eraseElement(figureSet,canvasObj);
+	  // eraseButton.eraseElement(figureSet);
 	});
         figureSet.each(function (f) {
                          if (f.isSelected()) {
@@ -492,24 +538,22 @@ SelectionButton.prototype.bindCanvas = function (toolbar,canvas,canvasObj,visual
         // don't throw: no one will catch it
 	//throw 'No figure found';
       }
-      else{
+      else{/*clonazione*/
 	$("#cloneButton").unbind('click');
 	$("#cloneButton").bind('click',function(e){
-	  var clonedFigure = actualFigure.clone();
-	  clonedFigure.draw(canvas);
-	  visual.getFigureSet().add(clonedFigure);
-	  actualFigure.setSelection(false);
-				 clonedFigure.setSelection(true);
-	  canvasObj.clear();
-	  visual.refresh();
+	  visual.cloneElement(actualFigure,canvasObj);
 	});
 
         visual.deselectAll(figureSet); // only one selection a time
 	$("*").unbind('keypress');
 	$("*").bind('keypress',function(e){
 	  if(e.keyCode==46){
-	    eraseButton.eraseElement(figureSet);
+	    visual.eraseElement(figureSet,canvasObj);
 	  }
+	});
+	$("#eraseButton").click(function () {
+	  visual.eraseElement(figureSet,canvasObj);
+	  // eraseButton.eraseElement(figureSet);
 	});
 	actualFigure.setSelection(true);
 	canvasObj.clear();
@@ -602,15 +646,15 @@ function ZoomInButton () {
 
 ZoomInButton.prototype = new ZoomButton();
 
-ZoomInButton.prototype.bindCanvas = function (toolbar,canvas,canvasObj,visual,figureSet,factor) {
+ZoomInButton.prototype.bindCanvas = function (toolbar,canvas,canvasObj,visual,figureSet) {
   toolbar.deselectAll();
   $("#cloneButton").unbind('click');
   $("#cv").unbind('mousedown click mouseup');
   $("#cv").bind("click", function(e){
     var oldw = canvas.width/2;
     var oldh = canvas.height/2;
-    factor+=0.5;
-    visual.setScale(new Scale(factor));
+    var factor = visual.getScale().getFactor();
+    visual.setScale(new Scale(factor+=0.5));
     var clic = visual.getClickCoordsWithinTarget(e);
     var x = oldw - (canvas.width/2)/factor;   //centrato
     var y = oldh - (canvas.height/2)/factor;
@@ -637,10 +681,10 @@ ZoomOutButton.prototype.bindCanvas = function (toolbar,canvas,canvasObj,visual,f
   $("#cv").bind("click", function(e){
     var oldw = canvas.width*2;
     var oldh = canvas.height*2;
-    factor-=0.5;
-    visual.setScale(new Scale(factor));
-    var x = oldw - (canvas.width*2)/factor;   //centrato
-    var y = oldh - (canvas.height*2)/factor;
+    var factor = visual.getScale().getFactor();
+    visual.setScale(new Scale(factor-=0.25));
+    var x = oldw + (canvas.width*2)/factor;   //centrato
+    var y = oldh + (canvas.height*2)/factor;
     var p = new Point(x, y);
     visual.setOffset(p);
     canvasObj.clear();
@@ -1019,47 +1063,6 @@ TextButton.prototype.bindCanvas = function (toolbar,canvas,canvasObj,visual,figu
     });
 };
 
-/**
- * @constructor
- * The Clone button
- */
-function CloneButton () {
-  Button.call(this);
-  this._id = document.getElementById("CloneButton");
-}
-
-CloneButton.prototype = new Button();
-
-CloneButton.prototype.getId = function (){
-  return this._id;
-};
-
-
-
-/**
- * @constructor
- * The erase button
- */
-function EraseButton () {
-  Button.call(this);
-  this._id = document.getElementById("eraseButton");
-}
-
-EraseButton.prototype = new Button();
-
-EraseButton.prototype.getId = function (){
-  return this._id;
-};
-
-EraseButton.prototype.eraseElement = function(figureSet){
-     figureSet.each(function (f) {
-       if (f.isSelected()) {
-         figureSet.rem(f);
-       }
-       canvasObj.clear();
-       visual.refresh();
-     });
-};
 
 
 /**
