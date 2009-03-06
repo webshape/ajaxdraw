@@ -123,7 +123,10 @@ margin-left:0.5em;
 #textButton{
 	background-image:url("../pages/images/testo.png");
 }
+#cloneButton{
+margin-left:0.5em;
 
+}
 /*zona salva/carica SVG */
 #saveLoadZone{
 	display: inline-block;

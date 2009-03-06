@@ -42,7 +42,7 @@
 
 <!-- Barra di salvataggio -->
 <ul id="menuModel5">
-	<li id="50000" itemIcon="images/menu_bar/disk.gif"><a href="#" title="Apri il menu file">File</a>
+	<li id="50000"><a href="#" title="Apri il menu file">File</a>
 		<ul width="150">
 			<li id="500001" jsFunction='$("#saveDialog").css({"display" : "block"});
 												$("#saveDialog").dialog({
@@ -83,7 +83,7 @@
     								dialogClass: "Dialog1"
 								   });' id="500014"><a href="#">Colori</a>	
 			</li>
-			<li jsFunction='$("#propertiesDialog").dialog( "close" );
+			<li itemIcon="images/menu_bar/propDialog.gif" jsFunction='$("#propertiesDialog").dialog( "close" );
 								 $("#propertiesDialog").dialog({
 									title: "Modifica Attributi",
     								position: "right",
@@ -96,10 +96,11 @@
 	<!--  <li id="50003" itemType="separator"></li> -->
 	<li id="50003"><a href="#">Guida</a> 
 			<ul width="160">
-				<li itemIcon="images/menu_bar/guida.gif" jsFunction='' id="50025"><a href="#">Guida</a>
+				<li id="40000"itemIcon="images/menu_bar/guida.gif" 
+				jsFunction="window.open('../doc/ManualeUtente/help/index.html')" id="50025"><a href="#">Manuale</a>
 				
 				
-				<li jsFunction='$("#aboutDialog").css({"display" : "block"});
+				<li itemIcon="images/menu_bar/info.gif" jsFunction='$("#aboutDialog").css({"display" : "block"});
 							$("#aboutSpan").css({"display" : "block"});
 										$("#aboutDialog").dialog({
 													title: "Riconoscimenti:",
