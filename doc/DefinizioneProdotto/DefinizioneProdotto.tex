@@ -1344,6 +1344,8 @@ Nessuna.
 
 
 \sezione{Tracciamento della relazione componenti - requisiti}
+
+\subsezione{Tracciamento Componenti - Resuisiti}
 \begin{table}[h]
 \begin{center}
      \begin{tabular}
@@ -1361,7 +1363,7 @@ Nessuna.
      \hline
      Visualization & RFO-13, RFO-14 \\
      \hline   
-     Canvas & RFO-17 \\
+     Canvas & RFO-17, RAD-1 \\
      \hline  
      Toolbar & RFO-11, RIO-1 \\
      \hline        
@@ -1431,23 +1433,17 @@ Nessuna.
       \hline
      SVGWriter & RFO-15 \\
      \hline
-     SVGWritable & RFO-15\\
-     \hline
      SVGReader & RFO-16\\
      \hline
      SVGGenerator & RFO-15, RFO-16\\
      \hline
      SVGElementRegistry & RFO-16\\
      \hline
-     SVGTag & RFO-16\\
-     \hline
      XMLParser & RFO-16\\
      \hline
      FigureSet & RFO-8, RFO-12, RFO-18 \\
      \hline
      Figure & RFO-8, RFO-12, RFD-3 \\
-     \hline
-     Manual & RIO-2, RIO-3 \\
      \hline
      StraightLine & RFO-1 \\
      \hline
@@ -1530,6 +1526,84 @@ Nessuna.
     \end{tabular}
   \caption{Componenti DocBackend - Requisiti} %INSERIRE DIDASCALIA - SE NECESSARIA -
   \label{tab:requisitiDocBackend}
+  \end{center}
+\end{table}
+
+\subsezione{Tracciamento Requisiti - Componenti}
+\begin{table}[h]
+\begin{center}
+     \begin{tabular}
+           {@{\extracolsep{\fill}}|c|c|}
+      		\hline
+           \multicolumn{2}{|c|}{ \textbf{Componenti ApplicationLogic} } \\
+     \hline
+%%%%%%%%%%%%%%INTESTAZIONE COLONNE%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+      \textbf{Componenti} & \textbf{Requisiti} \\
+%%%%%%%%%%%%%%FINE INTESTAZIONE COLONNE%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+      \hline
+      RFO-1 & StraightLineButton, StraightLine, Line\\
+      \hline
+      RFO-2 & BezierCurveButton, BezierCurve, Line\\
+      \hline
+      RFO-3 & SquareButton, Rectangle\\
+      \hline
+      RFO-4 & PolygonButton, Polygon\\
+      \hline
+      RFO-5 & CircleButton, Circle\\
+      \hline
+      RFO-6 & TextButton, Text\\
+      \hline
+      RFO-7 & Text, TextProperty, TextFont, TextSize\\
+      \hline
+      RFO-8 & SelectionButton, FigureSet, Figure\\
+      \hline
+      RFO-9 & Palette, PaletteComponent, ColourDialog, Colour, FillColour, TextColour, Opacity, CssProperty\\
+      \hline
+      RFO-10 & BoundingRectangleSetter, SelectionButton, BoundingRectangle\\
+      \hline
+      RFO-11 & Toolbar\\
+      \hline
+      RFO-12 & PropertiesDialog, EdgeNumberSetter, FigureSet, Figure, Property\\
+      \hline
+      RFO-13 & Visualization, MoveViewButton\\
+      \hline
+      RFO-14 & Scale, Visualization, ZoomButton, ZoomInButton, ZoomOutButton\\
+      \hline
+      RFO-15 & SVGWriter, SVGGenerator, Request, CommunicationError, ConnectionError, ServerError, Server, FileNotFound, File, Clean\\
+      \hline
+      RFO-16 & SVGReader, SVGGenerator, SVGElementRegistry, XMLParser, Request, CommunicationError, ConnectionError, ServerError, Server\\
+      \hline
+      RFO-17 & Canvas, ClearCanvasButton\\
+      \hline
+      RFO-18 & FigureSet\\
+      \hline
+      RFD-1 & FreeLineButton, FreeLine, Line\\
+      \hline
+      RFD-3 & CloneButton, Figure\\
+      \hline
+      RFF-3 & RotationSetter, Rotation\\
+      \hline
+      RQO-7 & Page\\
+      \hline
+      RQO-9 & Page\\
+      \hline
+      RIO-1 & Button\\
+      \hline
+      RIO-2 & Server \\
+      \hline
+      RIO-3 & Server \\
+      \hline
+      RAO-1 & Page\\
+      \hline
+      RAO-6 & Page\\
+      \hline
+      RAD-1 & Canvas\\
+%%%%%%%%%%% PARTE DA MODIFICARE %%%%%%%%%%%%%%%%
+    \hline %%FINE RIGA
+%%%%%%%%%%% FINE PARTE DA MODIFICARE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \end{tabular}
+  \caption{Componenti ApplicationLogic - Requisiti} %INSERIRE DIDASCALIA - SE NECESSARIA -
+  \label{tab:requisitiAL}
   \end{center}
 \end{table}
 
