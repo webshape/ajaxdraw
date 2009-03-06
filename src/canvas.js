@@ -1113,23 +1113,7 @@ Toolbar.prototype.rebind = function (canvas,canvasObj,visual,figureSet,BorderCol
     this._buttonList[9].bindCanvas(this,canvas,canvasObj,visual,figureSet,BorderColor,FillColor);
     return;
   }
-  //else if(this._buttonList[10].isSelected()==true){//clone
-    //this._buttonList[10].bindCanvas(this,canvas,canvasObj,visual,figureSet,BorderColor,FillColor);
-    //return;
-  //}
 };
-
-
-
-//Colors
-/**
- * @constructor
- * The Palette single color
- */
-function PaletteComponent(color){
-  this._color = color;
-}
-
 
 /**
  * @constructor
