@@ -1,21 +1,19 @@
+var visual = null; // global
+var canvasObj = null; // global
 
-var visual = null; /* global */
-var canvasObj = null; /* global */
-
-/*parte di jQuery */
 $(document).ready(function(){
-/* Inizio creazione GUI */
+  // GUI creation
   var page = new Page();
   var screenWidth = window.screen.width;
   var screenHeight = window.screen.height;
   page.loadStylesheet();
   canvasObj = new Canvas();
   var canvas = canvasObj.getId();
-  var ctx = canvas.getContext("2d");   //prendo il contesto
+  var ctx = canvas.getContext("2d"); // take the context
   var figureSet = new FigureSet();
   visual = new Visualization(figureSet);
   visual.setCanvasDimension(canvasObj,screenHeight,screenWidth);
-  //Toolbar Creation
+  // Toolbar Creation
   var toolbar = new Toolbar();
   var selectionButton = new SelectionButton();toolbar.add(selectionButton); // 0
   var zoomInButton = new ZoomInButton();toolbar.add(zoomInButton);//1
@@ -29,10 +27,10 @@ $(document).ready(function(){
   var textButton = new TextButton();toolbar.add(textButton);//9
   var zoomOutButton = new ZoomOutButton();toolbar.add(zoomOutButton);//10
 
-/* Creo il colorDialog */
+  // ColourDialog creation
   var color= {  BorderColor:"#000000", FillColor:"#000000"};
   var palette = new Palette();
-  /* Colore iniziale */
+  // Initial colour
   var hex;
   if(page.getBrowserName()=="opera" || page.getBrowserName()=="msie"){
     hex = $("#lastPalette").css("background-color");
@@ -43,12 +41,11 @@ $(document).ready(function(){
   color = palette.setColour(hex,color.BorderColor,color.FillColor);
   ColourDialog.prototype.create();
 
-/* Creo dialog delle proprietà */
+  // Property dialog creation
   var propertiesDialog = new PropertiesDialog();
   propertiesDialog.create();
 
-
-/* Collegamento pulsanti toolbar in caso di cambio colore e generali*/
+  // Connect toolbar buttons on color change
   $(".paletteComponent").click(function () {
     var hex2;
     if(page.getBrowserName()=="opera" || page.getBrowserName()=="msie"){
@@ -142,7 +139,6 @@ $(document).ready(function(){
     $("#fontSetterZone").css({"display":"none"});
     circleButton.bindCursor("polygon");
     toolbar.deselectAll();
-    //edgeNumberSetter.create();
     polygonButton.bindCanvas(toolbar,canvas,canvasObj,visual,figureSet,color.BorderColor,color.FillColor);
   });
 
@@ -172,9 +168,9 @@ $(document).ready(function(){
     $(this).css({"background-color":"#A0A0A0"});  //pulsante premuto grigio scuro
   });
 
-/*Animazione tooltip su pulsante toolbar ritardata di 1 secondo*/
+  // Tooltip animation
   $("*").tooltip(
-    {delay: 750}
+    {delay: 750} // 0.75 secs
   );
   $(".toolbarButton").hover(
     function(){
@@ -183,11 +179,11 @@ $(document).ready(function(){
     }
   );
 
-/* Ruota dei colori **********************/
+  // Colour wheel
   $("#picker1").farbtastic("#color1");
   $("#picker2").farbtastic("#color2");
 
-/* cambio colore al click su farbtastic */
+  // Change colour on click on farbstastic
   var openBorder = false;
   var openFill = false;
   $("#changeBorderCol").toggle(
@@ -208,8 +204,10 @@ $(document).ready(function(){
       $("#colorx").hide("slow");
       $.farbtastic("#color1").setColor(document.getElementById("color1").value);
       color.BorderColor=$.farbtastic("#color1").color;
-      document.getElementById("borderColorNow").style.backgroundColor=color.BorderColor;
-      toolbar.rebind(canvas,canvasObj,visual,figureSet,color.BorderColor,color.FillColor);
+      document.getElementById("borderColorNow").style.backgroundColor = 
+        color.BorderColor;
+      toolbar.rebind(canvas,canvasObj,visual,figureSet,
+                     color.BorderColor,color.FillColor);
       if(openFill === false){
 	$(".Dialog1").height(190);
       }
@@ -234,9 +232,11 @@ $(document).ready(function(){
       $(".Dialog1").height(190);
       $("#colory").hide("slow");
       $.farbtastic("#color2").setColor(document.getElementById("color2").value);
-      color.FillColor=$.farbtastic("#color2").color;
-      document.getElementById("fillColorNow").style.backgroundColor=color.FillColor;
-      toolbar.rebind(canvas,canvasObj,visual,figureSet,color.BorderColor,color.FillColor);
+      color.FillColor = $.farbtastic("#color2").color;
+      document.getElementById("fillColorNow").style.backgroundColor = 
+        color.FillColor;
+      toolbar.rebind(canvas,canvasObj,visual,figureSet,
+                     color.BorderColor,color.FillColor);
       if(openBorder === false){
 	$(".Dialog1").height(190);
       }
@@ -247,41 +247,24 @@ $(document).ready(function(){
     }
   );
 
-
-
-
-
-
-
-
-
-
-  //Save & Load Dialogs handlers
+  // Save & Load Dialogs handlers
  $("#saveButton").click(function () {
    $("#saveDialog").dialog( 'close' );
-   //TODO save link to server
-     var  s = new SVGWriter();
-     var  svg = (s.write(figureSet));
-     document.write(svg);
+   // TODO: save link to server
+   var s = new SVGWriter();
+   var svg = s.write(figureSet);
+   document.write(svg);
  });
 
  $("#loadButton").click(function () {
-  //TODO load link to server
+   // TODO: load link to server
    $("#loadDialog").dialog( 'close' );
  });
 
-  // $("#eraseButton").click(function () {
-    // eraseButton.eraseElement(figureSet);
-  // });
-
-
-
-
-/*Componenti non utilizzabili in certe versioni di browsers*/
-   if((page.getBrowserName()=="firefox" && page.getBrowserVersion()<3.1) || page.getBrowserName()=="opera" ){
+ // Components unusable on certain browsers
+ if((page.getBrowserName()=="firefox" && page.getBrowserVersion()<3.1) || 
+   page.getBrowserName()=="opera"){
      $("#fontTypeButton").css({"display":"none"});
-   }
+ }
 
-
-//fine documento
 });
