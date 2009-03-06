@@ -229,7 +229,7 @@ Il presente documento \`e redatto utilizzando le convenzioni inserite nel docume
 \item[-] \textit{NormeDiProgetto.pdf}
 \item[-] Raccomandazione SVG: \href{http://www.w3.org/TR/SVG11/}{http://www.w3.org/TR/SVG11/}
 \item[-] Raccomandazione CSS: \href{http://www.w3.org/TR/CSS21/}{http://www.w3.org/TR/CSS21/}
-\item[-] Working Draft HTML 5: \href{http://www.w3.org/TR/html5/}{http://www.w3.org/TR/html5/}
+\item[-] Working Draft \underline{HTML 5}: \href{http://www.w3.org/TR/html5/}{http://www.w3.org/TR/html5/}
 \item[-] Specifiche UML: \href{http://www.omg.org/spec/UML/2.1.2/}{http://www.omg.org/spec/UML/2.1.2/}
 \end{elencopuntato}
 
@@ -250,7 +250,7 @@ Si occupa di gestire l'interazione tra l'utente e la logica interna dell'applica
 
 \subsezione{Page}
 \subsubsezione{Tipo, obiettivo e funzione del componente}
-Classe concreta che rappresenta la pagina web visualizzata dall'utente tramite l'internet browser, contenitore di tutti i widgets componenti l'interfaccia.
+Classe concreta che rappresenta la pagina \underline{web} visualizzata dall'utente tramite l'internet \underline{browser}, contenitore di tutti i widgets componenti l'interfaccia.
 \subsubsezione{Relazioni d'uso di altre componenti}
 \` E composta da istanze delle classi \textit{Toolbar}, \textit{Button}, \textit{Palette}, \textit{ColourDialog}, \textit{PropertiesDialog} e \textit{Visualization}.
 \subsubsezione{Interfacce e relazioni di uso da altre componenti}
@@ -271,7 +271,7 @@ Nessuna.
 
 \subsezione{Scale}
 \subsubsezione{Tipo, obiettivo e funzione del componente}
-Classe concreta che si occupa delle operazioni di riscalamento del canvas su schermo. 
+Classe concreta che si occupa delle operazioni di riscalamento del \underline{canvas} su schermo. 
 \subsubsezione{Relazioni d'uso di altre componenti}
 Usa il contesto grafico per applicare lo spostamento e il riscalamento della parte di canvas visualizzata.
 \subsubsezione{Interfacce e relazioni di uso da altre componenti}
@@ -411,7 +411,7 @@ Estende \textit{Button}.
 \paragrafo{Metodi pubblici:}
 \begin{elencopuntato}[\subsubsecindent]
 \item[-] \textit{getId()} ritorna  \textit{{\_}id};
-\item[-]  \textit{bindCanvas(toolbar,canvas,canvasObj,visual,figureSet,eraseButton)} overriding del metodo ereditato da \textit{Button}, collega il canvas all'azione di selezione di una figura disegnata sul canvas e a tutte le operazioni disponibili su di essa.
+\item[-]  \textit{bindCanvas(toolbar,canvas,canvasObj,visual,figureSet)} overriding del metodo ereditato da \textit{Button}, collega il canvas all'azione di selezione di una figura disegnata sul canvas.
 \end{elencopuntato}
 
 
@@ -725,7 +725,7 @@ Legge e modifica \textit{TextString}.
 
 %%%%%%%%Parte Dissegna
 \sezione{Specifica delle componenti - ApplicationLogic}
-Gestisce completamente le figure: il disegno, la conversione da e verso SVG, le loro propriet\`a, la loro manipolazione e creazione. Utilizza le interfacce messe a disposizione dallo strato server e offre le proprie funzionalit\`a allo strato GUI.
+Gestisce completamente le figure: il disegno, la conversione da e verso \underline{SVG}, le loro propriet\`a, la loro manipolazione e creazione. Utilizza le interfacce messe a disposizione dallo strato server e offre le proprie funzionalit\`a allo strato GUI.
 
 \subsezione{Figure}
 \subsubsezione{Tipo, obiettivo e funzione del componente}
@@ -905,7 +905,7 @@ Deriva da \textit{Colour}.
 
 \subsezione{TextProperty}
 \subsubsezione{Tipo, obiettivo e funzione del componente}
-Propriet\`a di un testo grafico. Non serve implementarla in JavaScript.
+Propriet\`a di un testo grafico. Non serve implementarla in \underline{JavaScript}.
 
 \subsezione{TextColour}
 \subsubsezione{Tipo, obiettivo e funzione del componente}
@@ -1231,12 +1231,12 @@ Usato da \textit{SVGReader} per ottenere una figura da un tag SVG.
 \item[-] \textit{makeFigureClassFromTag(tag)} controlla se nella tabella di hash esiste un indice \textit{tag}: se \`e presente crea una figura corrispondente utilizzando il cotruttore ottenuto dalla tabella, altrimenti ritorna \textit{null}.
 \end{elencopuntato}
 
-\sezione{Specifica delle componenti - Server}
+\sezione{Specifica delle componenti - \underline{Server}}
 Permette l'accesso all'applicazione ed al manuale utente, gestisce il salvataggio ed il caricamento di file.
 
 \subsezione{Request}
 \subsubsezione{Tipo, obiettivo e funzione del componente}
-Classe che accetta le richieste dal client e le inoltra alla classe \textit{Server}. Permette la comunicazione tra il client e il server.
+Classe che accetta le richieste dal \underline{client} e le inoltra alla classe \textit{Server}. Permette la comunicazione tra il client e il server.
 \subsubsezione{Relazioni d'uso di altre componenti}
 Utilizza istanze di \textit{Server} e di \textit{ConnectionError}.
 \subsubsezione{Interfacce e relazioni di uso da altre componenti}
@@ -1359,193 +1359,6 @@ Nessuna.
 
 
 \sezione{Tracciamento della relazione componenti - requisiti}
-\begin{table}[h]
-\begin{center}
-     \begin{tabular}
-           {@{\extracolsep{\fill}}|c|c|}
-     \hline
-     \multicolumn{2}{|c|}{ \textbf{Componenti GUI} } \\
-     \hline
-%%%%%%%%%%%%%%INTESTAZIONE COLONNE%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-      \textbf{Componenti} & \textbf{Requisiti} \\
-%%%%%%%%%%%%%%FINE INTESTAZIONE COLONNE%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-      \hline
-     Page & RQO-7, RQO-9, RAO-1, RAO-6\\
-     \hline
-     Scale & RFO-14\\
-     \hline
-     Visualization & RFO-13, RFO-14 \\
-     \hline   
-     Canvas & RFO-17 \\
-     \hline  
-     Toolbar & RFO-11, RIO-1 \\
-     \hline        
-     Button & RIO-1\\
-     \hline
-     ClearCanvasButton & RFO-17\\
-     \hline     
-     SelectionButton & RFO-8, RFO-10\\
-     \hline     
-     ZoomButton & RFO-14\\
-     \hline       
-     ZoomInButton & RFO-14\\
-     \hline    
-     ZoomOutButton & RFO-14\\
-     \hline 
-     MoveViewButton & RFO-13\\
-     \hline
-     StraightLineButton & RFO-1\\
-     \hline
- 	 BezierCurveButton & RFO-2\\
- 	 \hline
- 	 SquareButton & RFO-3\\
- 	 \hline
- 	 CircleButton & RFO-5\\
- 	 \hline 
- 	 PolygonButton & RFO-4\\
- 	 \hline
- 	 FreeLineButton & RFD-1\\
- 	 \hline
- 	 CloneButton & RFD-3\\
- 	 \hline
- 	 Textbutton & RFO-6\\
- 	 \hline
-     Palette & RFO-9 \\
-     \hline
-     PaletteComponent & RFO-9\\
-     \hline
-     ColourDialog & RFO-9\\
-     \hline
-     PropertiesDialog & RFO-12 \\ 
-     \hline 
-     BoundingRectangleSetter & RFO-10 \\
-     \hline     	              
-	 EdgeNumberSetter & RFO-12\\
-	 \hline
-	 RotationSetter & RFF-3 \\
-%%%%%%%%%%% FINE PARTE DA MODIFICARE %%%%%%%%%%%%%%%%
-    \hline %%FINE RIGA
-%%%%%%%%%%% FINE PARTE DA MODIFICARE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    \end{tabular}
-  \caption{Componenti GUI - Requisiti} %INSERIRE DIDASCALIA - SE NECESSARIA -
-  \label{tab:requisitiGUI}
-  \end{center}
-\end{table}
 
-
-\begin{table}[h]
-\begin{center}
-     \begin{tabular}
-           {@{\extracolsep{\fill}}|c|c|}
-      		\hline
-           \multicolumn{2}{|c|}{ \textbf{Componenti ApplicationLogic} } \\
-     \hline
-%%%%%%%%%%%%%%INTESTAZIONE COLONNE%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-      \textbf{Componenti} & \textbf{Requisiti} \\
-%%%%%%%%%%%%%%FINE INTESTAZIONE COLONNE%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-      \hline
-     SVGWriter & RFO-15 \\
-     \hline
-     SVGWritable & RFO-15\\
-     \hline
-     SVGReader & RFO-16\\
-     \hline
-     SVGGenerator & RFO-15, RFO-16\\
-     \hline
-     SVGElementRegistry & RFO-16\\
-     \hline
-     SVGTag & RFO-16\\
-     \hline
-     XMLParser & RFO-16\\
-     \hline
-     FigureSet & RFO-8, RFO-12, RFO-18 \\
-     \hline
-     Figure & RFO-8, RFO-12, RFD-3 \\
-     \hline
-     Manual & RIO-2, RIO-3 \\
-     \hline
-     StraightLine & RFO-1 \\
-     \hline
-     BezierCurve & RFO-2 \\
-     \hline
-     Rectangle & RFO-3 \\
-     \hline
-     Polygon & RFO-4 \\ 
-     \hline
-     EdgeNumebr & RFO-4 \\
-     \hline
-     Circle & RFO-5 \\
-     \hline
-     Text & RFO-6, RFO-7 \\
-     \hline
-     TextProperty & RFO-7 \\
-     \hline
-     TextFont & RFO-7 \\
-     \hline
-     TextSize & RFO-7\\
-     \hline
-     Colour & RFO-9 \\
-     \hline
-     FillColour & RFO-9 \\
-     \hline
-     Rotation & RFF-3 \\
-     \hline
-     TextColour & RFO-9 \\
-     \hline
-     Opacity & RFO-9 \\
-     \hline
-     CssProperty & RFO-9 \\
-     \hline
-     BoundingRectangle & RFO-10 \\
-     \hline
-     Property & RFO-12 \\
-     \hline
-     FreeLine & RFD-1 \\ 
-     \hline
-     Line & RFO-1, RFD-1 \\
-%%%%%%%%%%% PARTE DA MODIFICARE %%%%%%%%%%%%%%%%
-    \hline %%FINE RIGA
-%%%%%%%%%%% FINE PARTE DA MODIFICARE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    \end{tabular}
-  \caption{Componenti ApplicationLogic - Requisiti} %INSERIRE DIDASCALIA - SE NECESSARIA -
-  \label{tab:requisitiAL}
-  \end{center}
-\end{table}
-
-\begin{table}[h]
-\begin{center}
-     \begin{tabular}
-           {@{\extracolsep{\fill}}|c|c|}
-           \hline
-           \multicolumn{2}{|c|}{ \textbf{Componenti DocBackend} }\\
-     \hline
-%%%%%%%%%%%%%%INTESTAZIONE COLONNE%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-      \textbf{Componenti} & \textbf{Requisiti} \\
-%%%%%%%%%%%%%%FINE INTESTAZIONE COLONNE%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-      \hline
-     Request & RFO-15, RFO-16 \\
-     \hline
-     CommunicationError & RFO-15, RFO-16 \\
-     \hline
-     ConnectionError & RFO-15, RFO-16 \\
-     \hline
-     ServerError & RFO-15, RFO-16 \\
-     \hline
-     Server & RFO-15, RFO-16, RIO-2, RIO-3 \\
-     \hline
-     FileNotFound & RFO-15 \\
-     \hline
-     File & RFO-15 \\
-     \hline
-     Clean & RFO-15 \\
-         
-%%%%%%%%%%% PARTE DA MODIFICARE %%%%%%%%%%%%%%%%
-    \hline %%FINE RIGA
-%%%%%%%%%%% FINE PARTE DA MODIFICARE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    \end{tabular}
-  \caption{Componenti DocBackend - Requisiti} %INSERIRE DIDASCALIA - SE NECESSARIA -
-  \label{tab:requisitiDocBackend}
-  \end{center}
-\end{table}
 
 \end{document}
