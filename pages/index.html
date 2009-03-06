@@ -68,21 +68,12 @@
 	<li id="50001" <a href="#" title="Apri il menu modifica">Modifica</a>
 		<ul width="160">
 	
-			<li jsFunction='ClearCanvasButton()' id="500017"><a href="#">Svuota Canvas</a>	
+			<li itemIcon="images/menu_bar/trash.gif" jsFunction='ClearCanvasButton()' id="500017"><a href="#">Svuota Canvas</a>	
 		</ul>
 	</li>
 	<li id="50002"><a href="#">Visualizza</a>
 		<ul width="130">
-		<!-- 	<li id="500011"><a href="#">Sorgente</a></li>
-			<li id="500012"><a href="#">Debug info</a></li>
-			<li id="500013"><a href="#">Layout</a>
-			 	<ul width="150">
-					<li id="5000131"><a href="#">CSS</a>	
-					<li id="5000132"><a href="#">HTML</a>	
-					<li id="5000133"><a href="#">Javascript</a>	
-				</ul> 
-			</li>-->
-			<li jsFunction='$("#colorDialog").dialog( "close" );
+			<li itemIcon="images/menu_bar/colorDialog.gif" jsFunction='$("#colorDialog").dialog( "close" );
 								$("#colorDialog").dialog({
 									position: ["right","top"],
 									title: "Modifica Colori",
@@ -105,6 +96,9 @@
 	<!--  <li id="50003" itemType="separator"></li> -->
 	<li id="50003"><a href="#">Guida</a> 
 			<ul width="160">
+				<li itemIcon="images/menu_bar/guida.gif" jsFunction='' id="50025"><a href="#">Guida</a>
+				
+				
 				<li jsFunction='$("#aboutDialog").css({"display" : "block"});
 							$("#aboutSpan").css({"display" : "block"});
 										$("#aboutDialog").dialog({
@@ -154,9 +148,9 @@ menuBar5.init();
  			 	<option value="0.25" >25%</option> 
 			</select> -->	
 		</span><br/>
-		<span>
+		<!--  <span>
 			<input type="button" id="clearCanvasButton" name="ClearButton" value="Svuota" title="Svuota il canvas"/>
-		</span><br/>
+		</span><br/> -->
 		<span>
 			<input type="button" id="eraseButton" name="EraseButton" value="Cancella" title="Cancella un singolo elemento"/>
 		</span><br/>
@@ -246,7 +240,7 @@ menuBar5.init();
 	</form>	
 	<!-- Seconda ruota -->
 	<p>Riemp.:  
-		<span id="fillColorNow" style="background-color: #FFFFFF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> 
+		<span id="fillColorNow" style="background-color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> 
 		<span><input type="button" id="setFillCol" value="Cambia" /></span>
 		<div id="divFillCol">
 			<input type="button" id="changeFillCol" name="ChangeCol" value="Cambia Colore Riemp."/>

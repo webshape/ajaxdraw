@@ -28,7 +28,6 @@ $(document).ready(function(){
   var freeLineButton = new FreeLineButton();toolbar.add(freeLineButton);//8
   var textButton = new TextButton();toolbar.add(textButton);//9
   var zoomOutButton = new ZoomOutButton();toolbar.add(zoomOutButton);//10
-  var clearCanvasButton = new ClearCanvasButton();
 
 /* Creo il colorDialog */
   var color= {  BorderColor:"#000000", FillColor:"#000000"};
@@ -45,10 +44,6 @@ $(document).ready(function(){
   ColourDialog.prototype.create();
 
 /* Creo dialog delle proprietà */
-
- // var fontTypeSetter = new FontTypeSetter();
- // var fontSetter = new FontSetter(fontTypeSetter);
- // var rotationSetter = new RotationSetter();
   var propertiesDialog = new PropertiesDialog();
   propertiesDialog.create();
 
@@ -66,12 +61,6 @@ $(document).ready(function(){
     toolbar.rebind(canvas,canvasObj,visual,figureSet,color.BorderColor,color.FillColor);
   });
 
-//  $("#clearCanvasButton").click(function () {
-//    visual.deselectAll(figureSet);
- //   clearCanvasButton.clearCanvas(canvasObj,visual,figureSet);
- //   canvasObj.clear();
- //   visual.refresh();
- // });
 
   $("#selectionButton").click(function () {
     $("#edgeSetterZone").css({"display":"block"});

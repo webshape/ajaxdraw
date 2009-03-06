@@ -401,29 +401,6 @@ function ClearCanvasButton () {
   visual.refresh();
 };
 
- /* Button.call(this);
-  this._id = document.getElementById("clearCanvasButton");
-}
-
-ClearCanvasButton.prototype = new Button();
-
-ClearCanvasButton.prototype.getId = function (){
-  return this._id;
-};
-
-ClearCanvasButton.prototype.clearCanvas = function(canvas,visual,figureSet){
-  canvas.clear();
-  figureSet.each(function(f){
-    figureSet.rem(f);
-  });
-  visual.refresh();
-};
-
-
-function ClearCanvas(){
-  var clear = new ClearCanvasButton();
-  clear.clearCanvas(canvasObj,visual,visual.getFigureSet());
-}*/
 
 /**
  * @constructor
