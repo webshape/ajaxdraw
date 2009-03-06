@@ -80,24 +80,3 @@ Array.prototype.grep = function (fn) {
 
   return res;
 };
-
-/**
- * Find the element with the best best score
- * @param {Function} scorer function to get the score of an element
- * @return list of 2 elems: best element and its score. If the array is empty,
- * return a list with null elements
- */
-Array.prototype.best = function (scorer) {
-  var max = null;
-  var the_best = null;
-  var score = 0;
-  for (var i = 0; i < this.length; ++i) {
-    score = scorer.call(this, this[i]);
-    if (!max  || score > max) {
-      max = score;
-      the_best = this[i];
-    }
-  }
-  
-  return [the_best, max];
-};
