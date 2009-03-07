@@ -204,7 +204,7 @@ $(document).ready(function(){
       $("#colorx").hide("slow");
       $.farbtastic("#color1").setColor(document.getElementById("color1").value);
       color.BorderColor=$.farbtastic("#color1").color;
-      document.getElementById("borderColorNow").style.backgroundColor = 
+      document.getElementById("borderColorNow").style.backgroundColor =
         color.BorderColor;
       toolbar.rebind(canvas,canvasObj,visual,figureSet,
                      color.BorderColor,color.FillColor);
@@ -233,7 +233,7 @@ $(document).ready(function(){
       $("#colory").hide("slow");
       $.farbtastic("#color2").setColor(document.getElementById("color2").value);
       color.FillColor = $.farbtastic("#color2").color;
-      document.getElementById("fillColorNow").style.backgroundColor = 
+      document.getElementById("fillColorNow").style.backgroundColor =
         color.FillColor;
       toolbar.rebind(canvas,canvasObj,visual,figureSet,
                      color.BorderColor,color.FillColor);
@@ -261,9 +261,11 @@ $(document).ready(function(){
    $("#loadDialog").dialog( 'close' );
  });
 
- // Components unusable on certain browsers
- if((page.getBrowserName()=="firefox" && page.getBrowserVersion()<3.1) || 
-   page.getBrowserName()=="opera"){
+ // Advanced functions disabled for older browsers
+ if((page.getBrowserName()=="firefox" && page.getBrowserVersion()<3.1) ||
+   page.getBrowserName()=="opera" ||
+   (page.getBrowserName()=="chrome" &&  page.getBrowserVersion()<2)||
+   (page.getBrowserName()=="safari" &&  page.getBrowserVersion()<4)) {
      $("#fontTypeButton").css({"display":"none"});
  }
 

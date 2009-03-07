@@ -6,7 +6,7 @@
 
 \begin{document}
 
-\renewcommand{\insertversion}{0.7} %INSERIRE LA VERSIONE QUI DENTRO STILE x.x.xx
+\renewcommand{\insertversion}{1.0} %INSERIRE LA VERSIONE QUI DENTRO STILE x.x.xx
 \renewcommand{\TITOLODOC}{Definizione di Prodotto} %INSERIRE IL TITOLO DEL DOCUMENTO DA FAR COMPARIRE A PIE PAGINA
 \renewcommand{\glosspath}{.\glossario} %INSERIRE PERCORSO RELATIVO
 
@@ -178,7 +178,8 @@ Il presente documento descrive in modo dettagliato le classi e i relativi metodi
 %%%%%%%%%%%%%%FINE INTESTAZIONE COLONNE%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 		 \hline
 %%%%%%%%%%% PARTE DA MODIFICARE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%		
-        
+        1.0 &    07$\slash$03$\slash$2009 Modifica per rilascio RQ & Dissegna Stefano \\
+        \hline        
         0.7 &    03$\slash$03$\slash$2009 Descritta classe Clean e metodo della classe File & Dal Bosco Davide \\
         \hline
         0.6 &    02$\slash$03$\slash$2009 Descritte classi Request, Server, File e la gestione degli errori & Dal Bosco Davide \\
@@ -695,7 +696,7 @@ Legge e modifica \textit{Rotation}.
 \paragrafo{Metodi pubblici:}
 \begin{elencopuntato}[\subsubsecindent]
 \item[-] \textit{RotationSetter(angle)} costruttore. Prende un \textit{Rotation} e setta il valore di un campo di un dialog statico implementato in HTML. Il campo contiene il valore attuale di \textit{angle}. Un evento viene collegato al pulsante di conferma \textit{Ruota} e se l'utente ha modificato l'angolo di rotazione, modifica \textit{angle} ed esegue un refresh. 
-
+\end{elencopuntato}
 
 \subsezione{FontSetter}
 \subsubsezione{Tipo, obiettivo e funzione del componente}
@@ -770,7 +771,7 @@ Il costruttore controlla se il browser supporta il metodo \textit{getImageData} 
 \end{elencopuntato}
 \paragrafo{Metodi pubblici:}
 \begin{elencopuntato}[\subsubsecindent]
-\item[-]  \textit{selectFigure(where)} permette di selezionare una figura contenente il punto passato come argomento, se tale figura esiste. Per maggiori dettagli si veda il diagramma di attivit\`a [TODO: inserire label diagramma].
+\item[-]  \textit{selectFigure(where)} permette di selezionare una figura contenente il punto passato come argomento, se tale figura esiste. Per maggiori dettagli si veda il diagramma di attivit\`a in figura 1.
 
 \begin{figure}[!ht]
 \centering
@@ -1102,7 +1103,7 @@ Creato dalla lettura di un file SVG oppure dall'interfaccia utente. Manipolato d
 \item[-] \textit{getFillColour()} ritorna \textit{{\_}fillColour}.
 \item[-] \textit{edgeNumber()} ritorna \textit{{\_}en}.
 \item[-] \textit{eachProperty(fn)} richiama \textit{eachProperty} di \textit{Figure} ed applica la funzione fn a \textit{{\_}fillColour} e a \textit{{\_en}}.
-\item[-] \textit{getPoints()} ritorna un'array di punti, considerando come origine \textit{BoundingRectangle.start()}, che rappresentano i vertici del poligono. Per maggiori dettagli si veda il diagramma di attivit\`a [TODO: ins. lebel].
+\item[-] \textit{getPoints()} ritorna un'array di punti, considerando come origine \textit{BoundingRectangle.start()}, che rappresentano i vertici del poligono. Per maggiori dettagli si veda il diagramma di attivit\`a in figura 2.
 
 \begin{figure}[!ht]
 \centering
