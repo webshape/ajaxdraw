@@ -4,7 +4,7 @@
 \author{Marco Cunico}
  
 \begin{document}
- 
+
 \renewcommand{\insertversion}{0.4} %INSERIRE LA VERSIONE QUI DENTRO STILE x.x.xx
 \renewcommand{\TITOLODOC}{Manuale Utente} %INSERIRE IL TITOLO DEL DOCUMENTO DA FAR COMPARIRE A PIE PAGINA
 \renewcommand{\glosspath}{.\glossario} %INSERIRE PERCORSO RELATIVO
@@ -143,6 +143,7 @@ Il presente documento si propone di fornire la documentazione di supporto necess
 %%%%%%%%%%%%%%FINE INTESTAZIONE COLONNE%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
      \hline
 %%%%%%%%%%% PARTE DA MODIFICARE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
           0.4 & 05/03/09 Inserimento manuale di Tomcat per sistemi Linux & Dal Bosco Davide \\
           \hline
           0.3 & 05/03/09 Inserimento manuale di Tomcat per sistemi Windows & Dal Bosco Davide \\
@@ -150,10 +151,11 @@ Il presente documento si propone di fornire la documentazione di supporto necess
           0.2 & 04/03/09 Rifinitura, Inserimento descrizione funzionale lato client Bezier e Dialogs & Rizzo Maurizio \\
           \hline
           0.1 & 04/03/09 Inserimento descrizione funzionale lato client Toolbar e Menu & Carollo Mirco \\
-       \hline
-       0.0 & 27/02/2008 Prima stesura & \\
- 
-    \hline %%FINE RIGA
+    	  \hline
+    	  0.0 & 27/02/2008 Prima stesura & \\
+
+		\hline %%FINE RIGA
+
 %%%%%%%%%%% FINE PARTE DA MODIFICARE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     \end{tabular*}
   \caption{Registro delle modifiche} %INSERIRE DIDASCALIA - SE NECESSARIA -
@@ -238,8 +240,10 @@ La schermata \`e la seguente:
 \centering
 \includegraphics[scale=0.7]{images/InstallTomcat1.png}
 \caption{Setup Wizard Apache Tomcat}
-\end{figure}
- 
+
+\end{figure} 
+
+
 Premere \textit{Next} per andare avanti e accettare la licenza.
 Giunti alla schermata per la scelta della cartella di installazione, mantenere quella indicata di default.
  
@@ -253,28 +257,28 @@ Giunti alla schermata per la scelta della cartella di installazione, mantenere q
 Premere \textit{Next}, e si presenter\`a la finestra di configurazione di Tomcat:
 Alla voce \textit{http/1.1 Connector Port} lasciare il valore di default (di solito 8080), quindi impostare una User Name e Password a scelta, necessarie per accedere alla configurazione di Tomcat.\\
 Quindi premere \textit{Next}.
- 
+
 \begin{figure}[!ht]
 \centering
 \includegraphics[scale=0.7]{images/InstallTomcat3.png}
 \caption{Configuration}
-\end{figure}
- 
+\end{figure} 
+
 Nella schermata successiva, \`e necessario indicare il percorso dell'installazione della Java Virtual Machine (J2SE). Se gia installata, lasciare il percorso di default
 indicato.
 Per completare l'installazione, premere su \textit{Install}.
- 
+
 \begin{figure}[!ht]
 \centering
 \includegraphics[scale=0.7]{images/InstallTomcat4.png}
 \caption{Java Virtual Machine}
-\end{figure}
- 
+\end{figure} 
+
 \indent{\underline{\textbf{Installazione su sistemi Linux}}}\\
 \\
 Scaricato il .tar.gz, estrarre il contenuto su una cartella.
 Non \`e necessaria una installazione vera e propria e per la sua esecuzione si rimanda al paraggrafo \textit{Avvio del programma} sezione \textit{Linux}.
- 
+
 \subsezione{Avvio del programma}
 \subsubsezione{Lato client}
 \`E sufficiente aprire la pagina web con un browser supportato. L'indirizzo dipende dall'host in cui viene installato il server.
@@ -288,13 +292,13 @@ Nella barra delle applicazioni in esecuzione, apparir\`a l'icona che indica l'av
 A questo punto avviare un browser e digitare il seguente indirizzo\\ \textit{http://localhost:8080/manager/html}\\
 Dopo aver inserito User Name e Password richiesti, si entrer\`a nel manager di Tomcat.\\
 Andare nella sezione \textit{WAR file to deploy} della pagina.\\
- 
-\begin{figure}[!ht]
+
 \centering
 \includegraphics[scale=0.7]{images/DeployTomcat.png}
 \caption{Deploy}
-\end{figure}
- 
+
+\end{figure} 
+
 Selezionare il file .war dell'applicazione e quindi premere su Deploy.\\
 A questo punto nella cartella \textit{webapps} della cartella di installazione di Tomcat sar\`a presente l'applicazione AJAXDRAW pronta per la sua esecuzione.\\
 \\\\
@@ -306,14 +310,16 @@ A questo punto \`e necessario provare ad avviare il processo di Tomcat. Per farl
 \\
 \textit{cd bin}\\
 \textit{./catalina.sh start}\\
+
 \\
 Se tutto \`e andato per il meglio, dovrebbero comparire delle scritte simili alle seguenti:\\
- 
+
 \textit{Using CATALINA{\_}BASE: /home/red/apache-tomcat-6.0.14}\\
 \textit{Using CATALINA{\_}HOME: /home/red/apache-tomcat-6.0.14}\\
 \textit{Using CATALINA{\_}TMPDIR: /home/red/apache-tomcat-6.0.14/temp}\\
 \textit{Using JRE{\_}HOME: /usr/lib/jvm/java-6-sun-1.6.0.03}\\
 \\
+
 Ora, avviare un browser e inserire l'indirizzo \textit{http://localhost:8080}\\
 Se compare la pagina principale di Tomcat, significa che il Web Server funziona correttamente.
 A questo punto, \`e necessario procedere alla configurazione dell'utente amministratore per poter usare il Tomcat Manager.
@@ -335,7 +341,7 @@ In questo modo \`e stato impostato uno User Name con valore \textit{admin} e una
 A questo punto avviare un browser e digitare il seguente indirizzo\\ \textit{http://localhost:8080/manager/html}\\
 Dopo aver inserito User Name e Password richiesti, si entrer\`a nel manager di Tomcat.\\
 Andare nella sezione \textit{WAR file to deploy} della pagina.\\
- 
+
 \begin{figure}[!ht]
 \centering
 \includegraphics[scale=0.7]{images/DeployTomcat.png}
@@ -348,9 +354,7 @@ Per chiudere Tomcat, posizionarsi via shell sulla cartella di installazione e in
 \textit{cd bin}\\
 \textit{./catalina.sh stop}\\
 \\
- 
- 
- 
+
 \subsezione{Descrizione funzionale - Lato client}
 \subsubsezione{Il Menu}
 Il programma dispone di un menu a tendina nella parte alta dell'interfaccia grafica.
