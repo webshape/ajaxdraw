@@ -205,7 +205,9 @@ funzionalit\`a. Il sistema permette un salvataggio dei disegni che potranno esse
 \subsezione{Requisiti tecnici per il funzionamento del programma}
 \subsubsezione{Lato client}
 \begin{elencopuntato}[\normindent]
-    \item[-] Requisiti software: Firefox 3.1b2 o successivo, Firefox 3.0.6 tutto tranne il disegno di testo, Opera 9.6 tutto tranne il disegno di testo, Chrome (versione attuale), Safari (versione attuale), IE8: tutto tranne il testo e la selezione che risulta non essere ottimale.\\
+    \item[-] Requisiti software:  \\
+    \leftskip=42pt{	Firefox 3.1b2 o successivo, Firefox 3.0.6 tutto tranne il disegno di testo}
+     Opera 9.6 tutto tranne il disegno di testo, Chrome (versione attuale), Safari (versione attuale), IE8: tutto tranne il testo e la selezione che risulta non essere ottimale.\\
     Risoluzione minima consigliata: 1024x768.\\
 N.B. Dove non \`e supportato il testo, c'\`e un supporto minimo: un solo font, colore di riempimento ignorato, set di caratteri minimo.
     \item[-] Requisiti hardware: Processore Intel 2GHz o compatibili; 512MB memoria RAM
@@ -223,10 +225,10 @@ N.B. Dove non \`e supportato il testo, c'\`e un supporto minimo: un solo font, c
 Il programma non necessita di installazione.
  
 \subsubsezione{Lato server}
-Per permettere il funzionamento del sistema, \`e necessario installare un Web Server: Apache Tomcat. Oltre a essere un Web Server, Tomcat \`e anche un
+Per permettere il funzionamento del sistema, \`e necessario installare un Web Server: \textit{Apache Tomcat}. Oltre a essere un Web Server, Tomcat \`e anche un
 Application Server, cio\`e una piattaforma per l'esecuzione di applicazioni web sviluppate nel linguaggio Java.\\
 Prima di tutto \`e necessario disporre di una Java Virtual Machine. Per il download visitare il link del sito ufficiale della Sun Microsystem:\\
-http://java.com/download/index.jsp\\
+\href{http://java.com/download/index.jsp}{http://java.com/download/index.jsp}\\
 \\
 Per effettuare il download di Apache Tomcat 6.0 andare al link del sito ufficiale \textit{http://tomcat.apache.org/download-60.cgi}\\
 Nella sezione \textit{Binary Distribution} della pagina web, \`e possibile effettuare il download sia per sistemi Windows che per sistemi Linux.\\
@@ -264,8 +266,7 @@ Quindi premere \textit{Next}.
 \caption{Configuration}
 \end{figure} 
 
-Nella schermata successiva, \`e necessario indicare il percorso dell'installazione della Java Virtual Machine (J2SE). Se gia installata, lasciare il percorso di default
-indicato.
+Nella schermata successiva, \`e necessario indicare il percorso dell'installazione della Java Virtual Machine (J2SE). Nel caso sia gi\` a installata, mantenere il percorso di default indicato.
 Per completare l'installazione, premere su \textit{Install}.
 
 \begin{figure}[!ht]
@@ -276,13 +277,13 @@ Per completare l'installazione, premere su \textit{Install}.
 
 \indent{\underline{\textbf{Installazione su sistemi Linux}}}\\
 \\
-Scaricato il .tar.gz, estrarre il contenuto su una cartella.
-Non \`e necessaria una installazione vera e propria e per la sua esecuzione si rimanda al paraggrafo \textit{Avvio del programma} sezione \textit{Linux}.
+Scaricato il file \textit{.tar.gz}, estrarre il suo contenuto in una cartella.
+Non \`e necessaria un'installazione vera e propria e per la sua esecuzione si rimanda al paragrafo \textit{Avvio del programma} sezione \textit{Linux}.
 
 \subsezione{Avvio del programma}
 \subsubsezione{Lato client}
 \`E sufficiente aprire la pagina web con un browser supportato. L'indirizzo dipende dall'host in cui viene installato il server.
--\subsubsezione{Lato server}
+\subsubsezione{Lato server}
 Sono presenti due sezioni per effettuare l'avvio su sistemi Windows e su sistemi Linux.\\
 \\\\
 \indent{\underline{\textbf{Avvio del programma su sistemi Windows}}}\\
@@ -293,10 +294,10 @@ A questo punto avviare un browser e digitare il seguente indirizzo\\ \textit{htt
 Dopo aver inserito User Name e Password richiesti, si entrer\`a nel manager di Tomcat.\\
 Andare nella sezione \textit{WAR file to deploy} della pagina.\\
 
+\begin{figure}[!ht]
 \centering
 \includegraphics[scale=0.7]{images/DeployTomcat.png}
 \caption{Deploy}
-
 \end{figure} 
 
 Selezionare il file .war dell'applicazione e quindi premere su Deploy.\\
@@ -311,7 +312,6 @@ A questo punto \`e necessario provare ad avviare il processo di Tomcat. Per farl
 \textit{cd bin}\\
 \textit{./catalina.sh start}\\
 
-\\
 Se tutto \`e andato per il meglio, dovrebbero comparire delle scritte simili alle seguenti:\\
 
 \textit{Using CATALINA{\_}BASE: /home/red/apache-tomcat-6.0.14}\\

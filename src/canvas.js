@@ -312,10 +312,10 @@ Button.prototype.bindCanvas = function (toolbar,canvas,canvasObj,visual,figureSe
     var f = s[0];
     var coords = visual.getClickCoordsWithinTarget(e);
     if(builder==Rectangle || builder == Circle || builder==Polygon){ //lines have no fillColour parameter
-      f.getFillColour().getOpacity().setVal(1);
+      f.getFillColour().getOpacity().setVal(document.getElementById("fillOp").value);
       f.getFillColour().fromCSS(FillColor);
     }
-    f.getBorderColour().getOpacity().setVal(1);
+    f.getBorderColour().getOpacity().setVal(document.getElementById("borderOp").value);
     f.getBorderColour().fromCSS(BorderColor);
     f.getBounds().setStart(new Point(coords.x, coords.y));
     $("#cv").bind("mousemove",function(e){
@@ -827,7 +827,7 @@ BezierCurveButton.prototype.bindCanvas = function (toolbar,canvas,canvasObj,visu
    var squareList = [];
 
    $("#cv").bind("mousedown", function(e){
-	f.getBorderColour().getOpacity().setVal(1);
+	f.getBorderColour().getOpacity().setVal(document.getElementById("borderOp").value);
 	f.getBorderColour().fromCSS(borderColour);
 	var coords = visual.getClickCoordsWithinTarget(e);
 	f.extend(new Point(coords.x, coords.y));
@@ -950,7 +950,7 @@ FreeLineButton.prototype.bindCanvas = function (toolbar,canvas,canvasObj,visual,
     s[0] = new FreeLine();
     var f = s[0];
     var coords = visual.getClickCoordsWithinTarget(e);
-    f.getBorderColour().getOpacity().setVal(1);
+    f.getBorderColour().getOpacity().setVal(document.getElementById("borderOp").value);
     f.getBorderColour().fromCSS(borderColour);
     f.extend(new Point(coords.x, coords.y));
     $("#cv").bind("mousemove",function(e){
@@ -1017,9 +1017,9 @@ TextButton.prototype.bindCanvas = function (toolbar,canvas,canvasObj,visual,figu
      var f = s[0];
      f.setFont(new TextFont(document.getElementById("fontTypeButton").value));
      var coords = visual.getClickCoordsWithinTarget(e);
-     f.getBorderColour().getOpacity().setVal(1);
+     f.getBorderColour().getOpacity().setVal(document.getElementById("borderOp").value);
      f.getBorderColour().fromCSS(BorderColor);
-     f.getTextColour().getOpacity().setVal(1);
+     f.getTextColour().getOpacity().setVal(document.getElementById("borderOp").value);
      f.getTextColour().fromCSS(BorderColor);
      f.getBounds().setStart(new Point(coords.x, coords.y));
 
