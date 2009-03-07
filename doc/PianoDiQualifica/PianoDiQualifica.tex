@@ -1,4 +1,5 @@
 \input{../TeX/base} %BASE!!!
+\usepackage{multirow}
  
 \title{\TITOLODOC}
 \author{Carollo Mirko}
@@ -85,9 +86,8 @@ Il presente documento descrive le strategie per la gestione della qualit\`a adot
         RR-RPP & Carollo Mirko\\
         
         \hline
-         RPP-RQ 
-				& Carollo Mirko \\
-				& Dissegna Stefano \\
+        \multirow{2}{*}{RPP-RQ} & Carollo Mirko \\
+							& Dissegna Stefano \\
         
         \hline
         %%%%%%%%%%% FINE PARTE DA MODIFICARE %%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -97,16 +97,16 @@ Il presente documento descrive le strategie per la gestione della qualit\`a adot
     \end{center}
   \end{table}  
  
-\section*{\LARGE Approvazione:}
+\section*{\LARGE Verifica:}
 \begin{table}[!h]
   \begin{center}
     \begin{tabular}
       {|c|c|}
       \hline
       %%%%%INTESTAZIONE COLONNE%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-      \multicolumn{2}{|c|}{ \textbf{Approvazione} } \\
+      \multicolumn{2}{|c|}{ \textbf{Verifica} } \\
       \hline
-      \textbf{Fase} & \textbf{Approvatori} \\
+      \textbf{Fase} & \textbf{Verificatori} \\
       %%%%%%%%%%%%%%FINE INTESTAZIONE COLONNE%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
       \hline
       %%%%%%%%%%% PARTE DA MODIFICARE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    
@@ -121,11 +121,40 @@ Il presente documento descrive le strategie per la gestione della qualit\`a adot
       \hline
       %%%%%%%%%%% FINE PARTE DA MODIFICARE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     \end{tabular}
-    \caption{Lista Approvatori} %INSERIRE DIDASCALIA - SE NECESSARIA -
-    \label{tabapprovazione}
+    \caption{Lista Verificatori} %INSERIRE DIDASCALIA - SE NECESSARIA -
+    \label{tabverifica}
   \end{center}
 \end{table}
  
+ 
+\section*{\LARGE Approvazione:}
+\begin{table}[!h]
+  \begin{center}
+    \begin{tabular}
+      {|c|c|}
+      \hline
+      %%%%%INTESTAZIONE COLONNE%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+      \multicolumn{2}{|c|}{ \textbf{Approvazione} } \\
+      \hline
+      \textbf{Fase} & \textbf{Approvatori} \\
+      %%%%%%%%%%%%%%FINE INTESTAZIONE COLONNE%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+      \hline
+      %%%%%%%%%%% PARTE DA MODIFICARE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    
+      Pre-RR & Cunico Marco\\
+                 
+      \hline
+      RR-RPP & Bizzotto Piero \\
+                  
+      \hline
+      RPP-RQ & Dal Bosco Davide \\
+                  
+      \hline
+      %%%%%%%%%%% FINE PARTE DA MODIFICARE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \end{tabular}
+    \caption{Lista Approvatori} %INSERIRE DIDASCALIA - SE NECESSARIA -
+    \label{tabapprovazione}
+  \end{center}
+\end{table} 
  
 \section*{\LARGE Lista di Distribuzione:}
  
