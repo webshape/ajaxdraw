@@ -5,7 +5,7 @@
 
 \begin{document}
 
-\renewcommand{\insertversion}{2.1} %INSERIRE LA VERSIONE QUI DENTRO STILE x.x.xx
+\renewcommand{\insertversion}{3.0} %INSERIRE LA VERSIONE QUI DENTRO STILE x.x.xx
 \renewcommand{\TITOLODOC}{Piano di Progetto} %INSERIRE IL TITOLO DEL DOCUMENTO DA FAR COMPARIRE A PIE PAGINA
 \renewcommand{\glosspath}{.\glossario} %INSERIRE PERCORSO RELATIVO
 
@@ -85,8 +85,9 @@ Il presente documento descrive l'analisi dei costi e delle risorse effettuata da
 				\multirow{2}{*}{Pre-RR} & Cunico Marco\\
 										& Dal Bosco Davide\\
 				\hline
-				\multirow{1}{*}{RR-RPP} & Bizzotto Piero\\
-										
+				RR-RPP & Bizzotto Piero\\
+				\hline
+				RPP-RQ & Geremia Mirco\\
 				\hline
 				%%%%%%%%%%% FINE PARTE DA MODIFICARE %%%%%%%%%%%%%%%%%%%%%%%%%%%
 			\end{tabular}
@@ -95,6 +96,32 @@ Il presente documento descrive l'analisi dei costi e delle risorse effettuata da
 		\end{center}
 	\end{table}
 	
+	
+\section*{\LARGE Verifica:}
+\begin{table}[!h]
+	\begin{center}
+		\begin{tabular}
+			{|c|c|}
+			\hline
+			%%%%%INTESTAZIONE COLONNE%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+			\multicolumn{2}{|c|}{ \textbf{Verifica} } \\
+			\hline
+			\textbf{Fase} & \textbf{Verificatori} \\
+			%%%%%%%%%%%%%%FINE INTESTAZIONE COLONNE%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+			\hline
+			%%%%%%%%%%% PARTE DA MODIFICARE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%		
+			Pre-RR & Geremia Mirco \\
+			\hline
+			RR-RPP & Geremia Mirco\\
+			\hline
+			RPP-RQ & Carollo Mirko \\									
+			\hline
+			%%%%%%%%%%% FINE PARTE DA MODIFICARE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+		\end{tabular}
+		\caption{Lista Verificatori} %INSERIRE DIDASCALIA - SE NECESSARIA - 
+		\label{tabverifica}
+	\end{center}
+\end{table}	
 	
 \section*{\LARGE Approvazione:}
 \begin{table}[!h]
@@ -109,11 +136,11 @@ Il presente documento descrive l'analisi dei costi e delle risorse effettuata da
 			%%%%%%%%%%%%%%FINE INTESTAZIONE COLONNE%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 			\hline
 			%%%%%%%%%%% PARTE DA MODIFICARE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%		
-			\multirow{1}{*}{Pre-RR} & Geremia Mirco \\
-									
+			Pre-RR & Dissegna Stefano \\
 			\hline
-			\multirow{1}{*}{RR-RPP} & Geremia Mirco\\
-									
+			RR-RPP & Bizzotto Piero\\
+			\hline
+			RPP-RQ & Rizzo Maurizio \\
 			\hline
 			%%%%%%%%%%% FINE PARTE DA MODIFICARE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 		\end{tabular}
@@ -123,7 +150,6 @@ Il presente documento descrive l'analisi dei costi e delle risorse effettuata da
 \end{table}
 
 \textbf{}
-\newpage
 \section*{\LARGE Lista di Distribuzione:}
 
 	\begin{elenconumerato}{\normindent}
@@ -131,7 +157,7 @@ Il presente documento descrive l'analisi dei costi e delle risorse effettuata da
 		\item I committenti Conte Renato e Vardanega Tullio in rappresentanza \\  dell'azienda proponente Zucchetti SPA
 	\end{elenconumerato}
 
-
+\newpage
 
 
 \section*{\Large Registro delle Modifiche:}
@@ -148,8 +174,11 @@ Il presente documento descrive l'analisi dei costi e delle risorse effettuata da
 %%%%%%%%%%%%%%FINE INTESTAZIONE COLONNE%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 		 \hline
 %%%%%%%%%%% PARTE DA MODIFICARE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+			3.0 & 07/03/2009 Verifica in preparazione al rilascio & Geremia Mirco\\
+			\hline
+			2.2 & 04/03/2009 Aggiunto consuntivo fase RPP-RQ & Geremia Mirco\\
             \hline
-            2.1 & 13$\slash$12$\slash$2008    Modifiche post integrazione  & Rizzo Maurizio \\
+            2.1 & 13$\slash$02$\slash$2009    Modifiche post integrazione  & Rizzo Maurizio \\
             \hline
 			2.0 & 23/01/2009	Verifica in preparazione al rilascio & Bizzotto Piero \\
 			\hline
@@ -271,7 +300,7 @@ I ruoli saranno assegnati a rotazione nell'arco dello sviluppo del progetto, in 
 
 
 \subsezione{Attribuzione dei Ruoli}
-Date le Assunzioni Iniziali precedentemente descritte, ed essendo il gruppo WebShape costituito da sei membri, si avr\`a una media di circa 105 ore di lavoro per persona. La durata complessiva del progetto sar\`a di circa 669 ore, ogni componente lavorer\`a quindi una media di circa 2 ore giornaliere. Sono previste altre tre revisioni:
+Date le Assunzioni Iniziali precedentemente descritte, ed essendo il gruppo WebShape costituito da sette membri, si avr\`a una media di circa 95 ore di lavoro per persona. La durata complessiva del progetto sar\`a di circa 669 ore, ogni componente lavorer\`a quindi una media di circa 2 ore giornaliere. Sono previste altre tre revisioni:
 \begin{elenconumerato}{\normindent}
 				\item Revisione di Progetto Preliminare (RPP)
 				\item Revisione di Qualifica (RQ)
@@ -285,7 +314,7 @@ Dato che ogni componente del gruppo dovr\`a assumere tutti i ruoli, \`e previsto
 Per la realizzazione del progetto l'azienda WebShape ha valutato con attenzione i possibili modelli di cicli di vita da utilizzare, tenendo conto di eventuali pregi e difetti. 
 La scelta \`e ricaduta sul modello incrementale, in quanto, vista la tipologia modulare del progetto, si adatta meglio alle esigenze dell'azienda stessa. Con il modello incrementale si ha la possibilit\`a di effettuare dei rilasci di versioni parziali in modo da avvicinarsi incrementalmente al prodotto finale ed effettuare una pianificazione ben definita, che sono dei vantaggi importanti per una nuova azienda. Sono stati invece scartati gli altri modelli: il modello sequenziale, perch\`e troppo orientato ai documenti e per il fatto che il primo prodotto del progetto \`e visionabile solo al termine della Fase di Qualifica; il modello evolutivo, per la necessit\`a di un costante rilascio di versioni; infine il modello a spirale, per l'esigenza di avere continui contatti col cliente.\\
 \subsezione{Ore e costi totali}
-In questa sottosezione verr\` a illustrato il preventivo totale, comprendente i costi e le ore stimate necessarie per la realizzazione del progetto. Il preventivo considera tutte le fasi di progettazione sostenute dall'azienda.
+In questa sottosezione verr\`a illustrato il preventivo totale, comprendente i costi e le ore stimate necessarie per la realizzazione del progetto. Il preventivo considera tutte le fasi di progettazione sostenute dall'azienda.
 
 \begin{table}[h]
 	\begin{center}
@@ -509,7 +538,7 @@ Per conoscenza del cliente, \`e fornita anche una stima approssimativa dell'impi
 			\hline
 			Carollo Mirko & Verif.   \\
 			\hline
-			Cunico Marco & Amm. & Program.   \\
+			Cunico Marco & Amm. - Program.   \\
 			\hline
 			Dal Bosco Davide & Amm. - Program.  \\
 			\hline
@@ -714,12 +743,9 @@ risorse del previsto anche grazie al buon lavoro svolto nella fase PRE-RR.
 
 Si pu\`o notare dai dati che in generale \`e stato richiesto un impegno leggermente minore rispetto a quanto previsto, in particolare il ruolo di Analista ha richiesto meno impegno, poich\`e nel preventivo l'azienda si era tutelata su questo campo inserendo ore extra per eventuali problemi. Sono state utilizzate meno ore anche per quel che riguarda la verifica, dove hanno giocato un ruolo importante gli stumenti adottati e le modalit\`a di automazione della gestione degli errori, che hanno permesso di velocizzare i processi di verifica. L'unico ruolo che ha richiesto un maggiore impegno \`e stato quello del Programmatore, poich\`e si sono riscontrati problemi non previsti nell'implementazione di alcuni elementi.
 
-meno analisi perche' era di cuscinetto;
-meno progettista .. boh
-piu' programmatore perche' desiderabili (?)
-meno verifica perche' strumenti hanno aiutato e automatizzato molto...
+\subsubsezione{Implicazioni del consuntivo}
+In questa fase il progetto \`e quasi completato e ci si aspetta un lavoro minimo nella fase seguente per quel che riguarda la codifica e la relativa verifica. Il preventivo relativo alla fase RQ-RA \`e stato quindi aggiornato per questo motivo, e soprattutto per l'acquisizione e l'integrazione di un nuovo membro all'interno dell'azienda.
 
-\newpage
 
 \sezione{Gestione del Piano di Progetto}
 \subsezione{Obiettivi}
@@ -728,19 +754,19 @@ contenente lo sviluppo del capitolato d'appalto. Questa distribuzione ovviamente
 nella sezione "Assunzioni Iniziali".
 
 \sezione{Analisi e Gestione dei Rischi}
-In questa sezione saranno presi in considerazione i possibili problemi che potrebbero sorgere durante la realizzazione del progetto, sia dal punto di vista della pianificazione delle fasi di lavoro, che da quello di eventuali rischi relativi alla tecnologia usata.\\
+In questa sezione saranno presi in considerazione i possibili problemi che potrebbero sorgere durante la realizzazione del progetto, sia dal punto di vista della pianificazione delle fasi di lavoro, che da quello di eventuali rischi relativi alla tecnologia usata. Per ogni rischio \`e presente (\textit{in italico}) la situazione attuale.\\
 I punti di rischio da noi identificati e valutati sono i seguenti:
 \begin{itemize}
 \item \textbf{Rischi inerenti al modello di ciclo di vita incrementale}\\
-\`E molto importante effettuare una corretta scelta delle attivit\`a, da coordinare durante le varie fasi di lavoro.
+\`E molto importante effettuare una corretta scelta delle attivit\`a, da coordinare durante le varie fasi di lavoro. \textit{La pianificazione delle attivit\`a ha permesso di seguire questo modello di ciclo di vita, e l'azienda \`e riuscita a svolgere il progetto con le iterazioni previste.}
 \item \textbf{Pianificazione e distribuzione dei ruoli}\\
-Un punto fondamentale al quale bisogna prestare molta attenzione \`e la suddivisione dei ruoli e la sua gestione. Ogni componente dovr\`a assumere tutti i ruoli durante le varie fasi di progetto. Questo pu\`o portare ad una scarsa specializzazione dei membri dell'azienda, ma si tratta di un vincolo didattico indispensabile.
+Un punto fondamentale al quale bisogna prestare molta attenzione \`e la suddivisione dei ruoli e la sua gestione. Ogni componente dovr\`a assumere tutti i ruoli durante le varie fasi di progetto. Questo pu\`o portare ad una scarsa specializzazione dei membri dell'azienda, ma si tratta di un vincolo didattico indispensabile. \textit{Ogni componente ha ricoperto quasi tutti i ruoli; ai membri che non hanno svolto alcuni ruoli questi gli saranno assegnati come previsto nella fase seguente, in modo da riuscire a soddisfare il vincolo didattico richiesto.}
 \item \textbf{Mancanza del personale}\\
-Essendo l'azienda composta da sette membri, nell'eventualit\`a che uno di questi non possa pi\`u partecipare alle attivit\`a di progetto, c'\`e comunque la possibilit\'a che l'azienda abbia un numero sufficiente di persone per continuare il lavoro sotto le ipotesi e le stime preventivate. In tutti gli altri possibili caso, l'azienda WebShape porter\`a comunque a termine il suo lavoro.
+Essendo l'azienda composta da sei membri, nell'eventualit\`a che uno di questi non possa pi\`u partecipare alle attivit\`a di progetto, c'\`e comunque la possibilit\'a che l'azienda abbia un numero sufficiente di persone per continuare il lavoro sotto le ipotesi e le stime preventivate. In tutti gli altri casi possibili, l'azienda WebShape porter\`a comunque a termine il suo lavoro. \textit{Il suddetto rischio non \`e pi\`u presente in seguito all'integrazione di un nuovo componente. L'azienda \`e ora composta da sette membri.}
 \item \textbf{Compatibilit\`a e portabilit\`a del prodotto}\\
 Il prodotto finale, come da Requisiti, dovr\`a risultare funzionante sui pi\`u moderni {\underline{browser}} in circolazione. Questo fatto \`e per\`o  a discrezione dell'utente finale, il quale deve essere consapevole della non retrocompatibilit\`a del prodotto, e quindi anche la portabilit\`a risulta essere  a sua discrezione.
 \item \textbf{Funzionalit\`a del prodotto}\\
-Essendo il prodotto finale utilizzato da un qualsiasi tipo di utente finale, \`e necessario prestare attenzione a come il prodotto si presenta, rendendo l'accessibilit\`a a tutte le sue funzioni, semplice e immediata.
+Essendo il prodotto finale utilizzato da un qualsiasi tipo di utente finale, \`e necessario prestare attenzione a come il prodotto si presenta, rendendo l'accessibilit\`a a tutte le sue funzioni semplice e immediata. \textit{Il prodotto presenta un'interfaccia grafica intuitiva, dotata di toolbar laterale e men\`u a tendina per facilitare l'interazione con l'utente.}
 \end{itemize}			
 
 \end{document}
