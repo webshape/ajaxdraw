@@ -383,7 +383,6 @@ Button.prototype.bindCursor = function(type){
        $("#cv").css({'cursor' : 'url("images/textDraw.png"),auto'});
       break;
      default:
-      alert("fatto");
     }
   }
 };
