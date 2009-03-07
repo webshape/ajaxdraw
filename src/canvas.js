@@ -1200,36 +1200,40 @@ Palette.prototype.rgbToHex= function (rgb){
  */
 function ColourDialog(col, border){
   var input;
-  //var currentCol;
+  var opInput;
   var callback = function (e) {
     var cssColour = $(input).get(0).value;
     try {
       col.fromCSS(cssColour);
-//      document.getElementById(currentCol).style.backgroundColor =
-  //      cssColour;
     } catch (e2) {
       // invalid colour, nothing to do
+    }
+    var opacity = parseFloat($(opInput).get(0).value);
+    if (!isNaN(opacity) && 0.0 <= opacity && opacity <= 1.0) {
+      // valid
+      col.getOpacity().setVal(opacity);
     }
     canvasObj.clear();
     visual.refresh();
   };
   if (border) {
     input = '#color1';
-    //currentCol = 'borderColorNow';
+    opInput = '#borderOp';
     $('#setBorderCol').unbind('click').click(callback);
   } else {
     input = '#color2';
-    //currentCol = 'fillColorNow';
+    opInput = '#fillOp';
     $('#setFillCol').unbind('click').click(callback);
   }
   $(input).get(0).value = col.toCSS();
+  $(opInput).get(0).value = col.getOpacity().getVal();
   $.farbtastic(input).setColor($(input).get(0).value);
 }
 
 ColourDialog.prototype.create= function(){
      $("#colorDialog").dialog({
     	position: ["right","top"],
-    	height: 190,
+    	height: 260,
     	width: 230,
 	resizable: false,
     	dialogClass: "Dialog1"
