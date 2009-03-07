@@ -205,14 +205,19 @@ funzionalit\`a. Il sistema permette un salvataggio dei disegni che potranno esse
 \subsezione{Requisiti tecnici per il funzionamento del programma}
 \subsubsezione{Lato client}
 \begin{elencopuntato}[\normindent]
-    \item[-] Requisiti software:  \\
-    \leftskip=42pt{	Firefox 3.1b2 o successivo, Firefox 3.0.6 tutto tranne il disegno di testo}
-     Opera 9.6 tutto tranne il disegno di testo, Chrome (versione attuale), Safari (versione attuale), IE8: tutto tranne il testo e la selezione che risulta non essere ottimale.\\
-    Risoluzione minima consigliata: 1024x768.\\
-N.B. Dove non \`e supportato il testo, c'\`e un supporto minimo: un solo font, colore di riempimento ignorato, set di caratteri minimo.
-    \item[-] Requisiti hardware: Processore Intel 2GHz o compatibili; 512MB memoria RAM
+    \item[-] Requisiti software: 
+\begin{elencopuntato}[\normindent]
+ \item[-]   Firefox 3.0.x o superiore;
+ \item[-]   Opera 9.5 o superiore; 
+ \item[-]   Google Chrome 1.0; 
+ \item[-]   Safari 3.2 o superiore; 
+% \item[-]   Internet Explorer: tutto tranne il testo e la selezione che risulta non essere ottimale.\\
+  \item[-]    Risoluzione minima consigliata: 1024x768 pixels.
 \end{elencopuntato}
-\subsubsezione{lato server}
+N.B. Alcune funzionalit\`a avanzate, come il cambiamento del tipo di carattere di una casella di testo, sono attualmente supportate solamente dalle versioni non stabili dei succitati browsers; saranno pertanto disabilitate dove non sono disponibili.
+    \item[-] Requisiti hardware: Processore Intel 2GHz o equivalente; 512MB memoria RAM.
+\end{elencopuntato}
+\subsubsezione{Lato server}
 \begin{elencopuntato}[\normindent]
     \item[-] Requisiti software: \underline{JVM} 1.5 o superiore, Apache \underline{Tomcat} 6.0 o superiore.
     \item[-] Requisiti hardware: Processore Intel 1GHz; 1GB memoria RAM
@@ -230,7 +235,7 @@ Application Server, cio\`e una piattaforma per l'esecuzione di applicazioni web 
 Prima di tutto \`e necessario disporre di una Java Virtual Machine. Per il download visitare il link del sito ufficiale della Sun Microsystem:\\
 \href{http://java.com/download/index.jsp}{http://java.com/download/index.jsp}\\
 \\
-Per effettuare il download di Apache Tomcat 6.0 andare al link del sito ufficiale \textit{http://tomcat.apache.org/download-60.cgi}\\
+Per effettuare il download di Apache Tomcat 6.0 andare al link del sito ufficiale \href{http://tomcat.apache.org/download-60.cgi}{http://tomcat.apache.org/download-60.cgi}\\
 Nella sezione \textit{Binary Distribution} della pagina web, \`e possibile effettuare il download sia per sistemi Windows che per sistemi Linux.\\
 \\\\
 \indent{\underline{\textbf{Installazione su sistemi Windows}}}\\
@@ -257,8 +262,7 @@ Giunti alla schermata per la scelta della cartella di installazione, mantenere q
 \newpage
  
 Premere \textit{Next}, e si presenter\`a la finestra di configurazione di Tomcat:
-Alla voce \textit{http/1.1 Connector Port} lasciare il valore di default (di solito 8080), quindi impostare una User Name e Password a scelta, necessarie per accedere alla configurazione di Tomcat.\\
-Quindi premere \textit{Next}.
+Alla voce \textit{http/1.1 Connector Port} lasciare il valore di default (di solito 8080), quindi impostare Username e Password a scelta, necessarie per accedere alla configurazione di Tomcat. Quindi proseguire.
 
 \begin{figure}[!ht]
 \centering
@@ -266,7 +270,7 @@ Quindi premere \textit{Next}.
 \caption{Configuration}
 \end{figure} 
 
-Nella schermata successiva, \`e necessario indicare il percorso dell'installazione della Java Virtual Machine (J2SE). Nel caso sia gi\` a installata, mantenere il percorso di default indicato.
+Nella schermata successiva, \`e necessario indicare il percorso d'installazione della Java Virtual Machine (J2SE). Nel caso sia gi\` a installata, mantenere il percorso di default indicato.
 Per completare l'installazione, premere su \textit{Install}.
 
 \begin{figure}[!ht]
@@ -279,7 +283,7 @@ Per completare l'installazione, premere su \textit{Install}.
 \\
 Scaricato il file \textit{.tar.gz}, estrarre il suo contenuto in una cartella.
 Non \`e necessaria un'installazione vera e propria e per la sua esecuzione si rimanda al paragrafo \textit{Avvio del programma} sezione \textit{Linux}.
-
+\newpage
 \subsezione{Avvio del programma}
 \subsubsezione{Lato client}
 \`E sufficiente aprire la pagina web con un browser supportato. L'indirizzo dipende dall'host in cui viene installato il server.
@@ -290,8 +294,8 @@ Sono presenti due sezioni per effettuare l'avvio su sistemi Windows e su sistemi
 \\
 Per l'avvio del server, andare su \textit{Start-$ > $Programmi-$ > $Apache Tomcat 6.0} e avviare \textit{Monitor Tomcat}.
 Nella barra delle applicazioni in esecuzione, apparir\`a l'icona che indica l'avvio di Tomcat.\\
-A questo punto avviare un browser e digitare il seguente indirizzo\\ \textit{http://localhost:8080/manager/html}\\
-Dopo aver inserito User Name e Password richiesti, si entrer\`a nel manager di Tomcat.\\
+A questo punto avviare un browser e digitare il seguente indirizzo\\ \href{http://localhost:8080/manager/html}{http://localhost:8080/manager/html}\\
+Dopo aver inserito Username e Password richiesti, si entrer\`a nel manager di Tomcat.\\
 Andare nella sezione \textit{WAR file to deploy} della pagina.\\
 
 \begin{figure}[!ht]
@@ -337,8 +341,8 @@ Sostituire il file aperto, con il seguente codice:\\
 \textit{ $ < $user username='admin' password='admin' roles='manager'/$ > $}\\
 \textit{$ < $/tomcat-users$ > $} \\
 \\
-In questo modo \`e stato impostato uno User Name con valore \textit{admin} e una Password con valore \textit{admin}. Queste credenziali sono da usare per accedere al Tomcat Manager.\\
-A questo punto avviare un browser e digitare il seguente indirizzo\\ \textit{http://localhost:8080/manager/html}\\
+In questo modo \`e sono stati impostati uno Username  \textit{admin} e una Password  \textit{admin}. Queste credenziali serviranno per accedere al Tomcat Manager.\\
+A questo punto avviare un browser e digitare il seguente indirizzo\\ \href{http://localhost:8080/manager/html}{http://localhost:8080/manager/html}\\
 Dopo aver inserito User Name e Password richiesti, si entrer\`a nel manager di Tomcat.\\
 Andare nella sezione \textit{WAR file to deploy} della pagina.\\
 
