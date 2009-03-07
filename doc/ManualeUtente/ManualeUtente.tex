@@ -174,9 +174,9 @@ Il presente documento si propone di fornire la documentazione di supporto necess
           \hline
           0.2 & 04/03/09 Rifinitura, Inserimento descrizione funzionale lato client Bezier e Dialogs & Rizzo Maurizio \\
           \hline
-          0.1 & 04/03/09 Inserimento descrizione funzionale lato client Toolbar e Menu & Carollo Mirco \\
+          0.1 & 04/03/09 Inserimento descrizione funzionale lato client Toolbar e Menu & Carollo Mirko \\
     	  \hline
-    	  0.0 & 27/02/2008 Prima stesura & \\
+    	  0.0 & 27/02/2008 Prima stesura & Carollo Mirko\\
 
 		\hline %%FINE RIGA
 
@@ -223,8 +223,7 @@ Nel caso durante l'utilizzo del prodotto sorgano problemi o malfunzionamenti non
 \sezione{Descrizione Generale}
  
 \subsezione{Caratteristiche del Prodotto}
-Il prodotto \`e stato sviluppato come un'applicazione web. \`E possibile utilizzarlo, una volta installato sul \underline{server}, semplicemente accedendovi tramite un browser. Una volta effettuato l'accesso alla pagina \`e possibile accedere a tutte le
-funzionalit\`a. Il sistema permette un salvataggio dei disegni che potranno essere ricaricati e aggiornati.
+Il prodotto \`e stato sviluppato come un'applicazione web. \`E possibile utilizzarlo, dopo aver effettuato l'installazione sul \underline{server}, semplicemente accedendovi tramite un browser. Una volta effettuato l'accesso alla pagina \`e possibile accedere a tutte le funzionalit\`a. Il sistema permette un salvataggio dei disegni che potranno essere ricaricati e aggiornati.
  
 \subsezione{Requisiti tecnici per il funzionamento del programma}
 \subsubsezione{Lato client}
@@ -415,7 +414,7 @@ Le funzioni di disegno del programma sono accessibili attraverso i bottoni prese
 \caption{Selezione}
 \end{figure}
  
-Qui \`e stata usata la funzione di \textit{selezione}. Una volta selezionata una figura, tutti i suoi parametri sono visualizzati nel dialog delle propriet\` a sulla destra. \`E possibile spostare i punti evidenziati cliccando su di essi e trascinare il mouse tenendo premuto il pulsante. Rilasciare il pulsante per fermare lo spostamento. Modificando questi punti \`e possibile regolare la dimensione delle figure, e nel caso specifico delle linee a mano libera e delle curve di Bezier si possono spostare i punti per cui passano le tangenti alle curve. Cliccando e mantenendo la pressione del pulsante sinistro del mouse all'interno di una figura, \`e possibile spostarla all'interno dell'area di disegno, azione effettuabile anche tramite le frecce direzionali della tastiera.
+Qui \`e stata usata la funzione di \textit{selezione}. Una volta selezionata una figura, tutti i suoi parametri sono visualizzati nel dialog delle propriet\` a sulla destra. \`E possibile spostare i punti evidenziati cliccando su di essi e trascinando il mouse. Rilasciare il pulsante per fermare lo spostamento. Modificando questi punti \`e possibile regolare la dimensione delle figure, e nel caso specifico delle linee a mano libera e delle curve di Bezier si possono spostare i punti per cui passano le tangenti alle curve. Cliccando e mantenendo la pressione del pulsante sinistro del mouse all'interno di una figura, \`e possibile spostarla all'interno dell'area di disegno, azione effettuabile anche tramite le frecce direzionali della tastiera.
  \newpage
  \textbf{Disegno di un ellisse:}\\
 \begin{figure}[!ht]
@@ -429,7 +428,7 @@ In questo caso \`e stata selezionata la funzione per il disegno di un'\textit{el
 \newpage
 
 
-  \textbf{Disegno di un poligono:}\\
+\textbf{Disegno di un poligono:}\\
  
 \begin{figure}[!ht]
 \centering
@@ -439,12 +438,11 @@ In questo caso \`e stata selezionata la funzione per il disegno di un'\textit{el
  
  
 \vspace{50pt}
-Qui \`e stato disegnato un \textit{poligono regolare}. L'unica differenza rispetto ad ellissi e rettangoli consiste nella composizione della finestra di propriet\`a, alla quale si aggiunge una casella che permette di modificare il numero di lati del poligono da disegnare o disegnato, inserendo il valore desiderato a fianco dell'etichettta \textit{N. di lati} e confermando tale scelta cliccando sul pulsante \textit{Cambia}.
- 
+Qui \`e stato disegnato un \textit{poligono regolare}. L'unica differenza rispetto ad ellissi e rettangoli consiste nella composizione della finestra delle propriet\`a, alla quale si aggiunge una casella che permette di modificare il numero di lati del poligono da disegnare o disegnato, inserendo il valore desiderato a fianco dell'etichettta \textit{N. di lati} e confermando tale scelta cliccando sul pulsante \textit{Cambia}.
  
 \newpage
  
-  \textbf{Spostamento dell'area di visualizzazione:}\\
+\textbf{Spostamento dell'area di visualizzazione:}\\
 \begin{figure}[!ht]
 \centering
 \includegraphics[scale=0.5]{images/mano.png}
@@ -452,8 +450,9 @@ Qui \`e stato disegnato un \textit{poligono regolare}. L'unica differenza rispet
 \end{figure}
 
 \vspace{50pt}
-Qui \`e stata selezionata la funzione di \textit{spostamento} dell'area di disegno. Cliccando su un punto qualsiasi del \underline{canvas} \`e possibile cambiare l'area di disegno correntemente visualizzata spostando il mouse mantenendo premuto il tasto sinistro.
+In questo caso \`e selezionata la funzione di \textit{spostamento} dell'area di disegno. Cliccando su un punto qualsiasi del \underline{canvas} \`e possibile cambiare la visualizzazione corrente spostando il mouse mantenendone premuto il tasto sinistro.
 \newpage
+
 \textbf{Disegno di una linea a mano libera:}\\
 \begin{figure}[!ht]
 \centering
@@ -462,7 +461,7 @@ Qui \`e stata selezionata la funzione di \textit{spostamento} dell'area di diseg
 \end{figure}
  
 \vspace{100pt}
-Qui \`e stata selezionata la funzione di \textit{Disegno a mano libera}. \`E possibile tracciare una linea a mano libera tenendo premuto il pulsante sinistro del mouse e muovendo il mouse.
+Qui viene utilizzata la funzione di \textit{Disegno a mano libera}. \`E possibile tracciare una linea a mano libera tenendo premuto il pulsante sinistro e trascinando il mouse. La linea verr\` a disegnata seguendo il cursore fino al rilascio.
 \newpage
 
 \textbf{Disegno di una linea diritta:}\\ 
@@ -485,25 +484,25 @@ Qui \`e stata selezionata la funzione \textit{Disegno di una retta}. Si deve pre
  
  
 \vspace{100pt}
-Qui \`e stata selezionata la funzione per la creazione di una\textit{casella di testo}. Si deve cliccare sull'area di disegno come per le altre figure, per stabilire posizione e dimensioni della casella, ed utilizzare il dialog di propriet\`a per cambiare la stringa contenuta all'interno ed il tipo di carattere (solo per i browser che supportano tale funzionalit\` a).
+In questo caso \`e stata scelta la funzione per la creazione di una \textit{casella di testo}. Si deve cliccare sull'area di disegno come per le altre figure, per stabilire posizione e dimensioni della casella, ed utilizzare il dialog delle propriet\`a per cambiare la stringa contenuta all'interno ed il tipo di carattere (quest'ultimo paramento, come detto precedentemente solo per i browser che supportano tale funzionalit\` a).
 \newpage
  
 \textbf{Zoom:}
 \begin{figure}[!ht]
 \centering
 \includegraphics[scale=0.4]{images/zoom_piu.png}
-\caption{Uso dello Zoom per ingrandimento al 150 per cento}
+\caption{Uso dello zoom per l'ingrandimento}
 \end{figure}
  
 \begin{figure}[!ht]
 \centering
 \includegraphics[scale=0.4]{images/zoom_meno.png}
-\caption{Uso dello Zoom per diminuzione dell' ingrandimento al 50 per cento}
+\caption{Uso dello zoom per il rimpicciolimento dell'area visualizzata}
 \end{figure}
  
 \vspace{20pt}
-Qui \`e stata selezionata la funzione di \textit{Zoom}. \`E possibile aumentare o diminuire il livello di zoom mediante l'utilizzo dei pulsanti appositi.
- \newpage
+Qui \`e mostrato l'utilizzo della funzione di \textit{Zoom}. \`E possibile aumentare o diminuire il livello di zoom mediante l'uso degli appositi pulsanti.
+\newpage
  
 \textbf{Disegno di una curva di Bezier:}\\
 \begin{figure}[!ht]
@@ -514,7 +513,7 @@ Qui \`e stata selezionata la funzione di \textit{Zoom}. \`E possibile aumentare 
  
 \vspace{100pt}
  
-Qui \`e stata selezionata la funzione per il disegno di una \textit{Curva di Bezier} cubica. Per disegnare la curva, \` e necessario impostare i 4 punti necessari al suo calcolo. Il primo punto sar\`a l'inizio della curva, seguito dai due punti controllo per cui passeranno le tangenti ed infine l'ultimo imposter\` a il punto finale della curva. Si avr\` a comunque la possibilit\` a di controllare ad ogni passaggio la conformazione della figura in fase di creazione.
+L'ultima funzionalit\` a illustrata consiste nel disegno di una \textit{Curva di Bezier} cubica. Per disegnare la curva, \` e necessario impostare i 4 punti necessari al suo calcolo. Il primo punto sar\`a l'inizio della curva, seguito dai due punti controllo per cui passeranno le tangenti ed infine l'ultimo imposter\` a il punto finale della curva. Si avr\` a comunque la possibilit\` a di controllare ad ogni passaggio la conformazione della figura in fase di creazione.
  
 \newpage
  
@@ -538,7 +537,7 @@ Qui \`e stata selezionata la funzione per il disegno di una \textit{Curva di Bez
 %\end{figure}
  
 \vspace{50pt}
-Il bottone \textit{Cancella} in basso a sinistra (sotto la toolbar di disegno) permette di cancellare la figura correntemente selezionata cliccando sul pulsante suddetto. La medesima funzione pu\`o essere svolta direttamente da tastiera premendo il tasto \textit{Canc}.
+Il pulsante \textit{Cancella} in basso a sinistra (al di sotto della toolbar) permette di cancellare la figura correntemente selezionata. La medesima funzione pu\`o essere svolta direttamente da tastiera premendo il tasto \textit{Canc}.
 \newpage
 
 \textbf{Cambiamento colore di bordo e riempimento di una figura:}\\
@@ -562,17 +561,16 @@ Il bottone \textit{Cancella} in basso a sinistra (sotto la toolbar di disegno) p
  
  
 \vspace{20pt}
-Qui \`e stata selezionata la funzione di cambiamento del colore del riempimento della figura selezionata con l'ausilio del dialog \textit{Modifica Colori}. Per il colore del bordo la procedura \` e la medesima.
-Per modificare il colore di una figura da disegnare:
+L'utilizzo della funzione di cambiamento del colore del riempimento di una figura da disegnare o selezionata avviene tramite l'interazione con il dialog \textit{Modifica Colori}. Per il colore del bordo la procedura \` e la medesima.
+Per modificare il colore di una figura da disegnare \` e necessario:
 \begin{elencopuntato}[\subsubsecindent]
-\item[-] Cliccare sul pulsante \textit{Cambia Colore Riempimento}.
-\item[-] Appare sul dialog la ruota dei colori.
-\item[-] Selezionare un colore a piacere sulla ruota e impostare il grado di opacit\`a dal rettangolo iscritto all'interno della ruota.
-\item[-] Quando il colore e l'opacit\`a sono stati impostati procedere con il disegno della figura selezionata.
+\item[-] Cliccare sul pulsante \textit{Cambia Colore Riempimento};
+\item[-] Selezionare un colore a piacere sulla ruota a comparsa e impostare il grado di opacit\`a;
+\item[-] Quando il colore e l'opacit\`a sono stati impostati, procedere con il disegno della figura selezionata.
 \end{elencopuntato}
 
-Questa funzionalit\`a prevede la possibilit\`a per l'utente di cambiare il colore scegliendolo dalla \textit{Tavolozza} di colori posta sotto il piano di disegno: \`e necessario selezioonare sulla combobox a destra della \textit{Palette} quale dei due colori si vuole modificare e cliccare sul colore preferito. \\
-Nel caso del cambiamento del colore di un oggetto gi\` a disegnato e selezionato, \`e necessario selezionarlo sempre nel dialog apposito e cliccare sul pulsante \textit{Cambia} per confermare.\\
+Questa funzionalit\`a prevede la possibilit\`a per l'utente di cambiare il colore scegliendolo dalla \textit{Tavolozza} di colori posta sotto il piano di disegno: \`e necessario selezionare sulla combobox a destra quale dei due colori si vuole modificare e cliccare sul colore preferito. \\
+Nel caso in cui su voglia cambiare il colore di un oggetto gi\` a disegnato e selezionato, \`e necessario impostarlo sempre nel dialog apposito e cliccare sul pulsante \textit{Cambia} per confermare l'operazione.\\
  
 %\begin{figure}[!ht]
 %\centering
@@ -602,7 +600,7 @@ Nel caso del cambiamento del colore di un oggetto gi\` a disegnato e selezionato
 %\end{figure}
  
 \vspace{50pt}
-Qui \`e stata selezionata la funzione di cambiamento del numero di lati per il disegno di poligoni. Tale funzione viene gestita con l'ausilio del dialog \textit{Modifica Attributi} posto in alto a destra e precisamente nella parte riguardante il numero di lati. Modificando il valore e confermando cliccando sul pulsante a destra viene modificato il numero di lati del poligono correntemente selezionato e del prossimo poligono che verr\`a disegnato. \\
+Qui \`e stata selezionata la funzione di cambiamento del numero di lati per il disegno di poligoni. Tale funzione viene gestita sempre con l'ausilio del dialog \textit{Modifica Attributi} e precisamente nella casella riguardante il numero di lati. Modificando il valore e confermando viene modificato il numero di lati del poligono correntemente selezionato, oppure del prossimo poligono che verr\`a disegnato. \\
 \newpage
  \textbf{Clonazione di una figura:}
 \begin{figure}[!ht]
@@ -618,7 +616,7 @@ Qui \`e stata selezionata la funzione di cambiamento del numero di lati per il d
 %\end{figure}
  
 \vspace{50pt}
-Qui \`e stata selezionata la funzione di clonazione di un oggetto presente sul piano di disegno e precedentemente selezionato. Tale funzione permette di fare una copia di tutti gli oggetti disegnabili mediante un semplice click sul pulsante apposito \textit{Clona} posto in basso a sinistra. \\
+Qui \`e stata selezionata la funzione di clonazione di un oggetto presente sul piano di disegno e precedentemente selezionato. Tale funzione permette di ottenere una copia di qualsiasi figura mediante un semplice click sul pulsante apposito \textit{Clona} posto in basso a sinistra. \\
 \newpage
 
 \textbf{Cambiamento della posizione e delle dimensioni di una figura tramite coordinate:}\\
@@ -635,7 +633,7 @@ Qui \`e stata selezionata la funzione di clonazione di un oggetto presente sul p
 %\end{figure}
  
 \vspace{50pt}
-Qui \`e stata utilizzata la funzione di cambiamento delle coordinate spaziali all'interno dell'area di disegno, e allo stesso tempo \`e stata cambiata anche la dimensione di altezza e larghezza della figura. tutte le modifiche suddette sono effettuabili tramite la finestra di dialogo \textit{Modifica Attributi} modificando i parametri appositi rispettivamente X e Y per la posizione sul piano di disegno, e H e L per altezza e larghezza della figura.
+In quest'immagine \` e stata utilizzata la funzione di cambiamento delle coordinate spaziali all'interno dell'area di disegno, e allo stesso tempo sono state cambiate anche la dimensione di altezza e larghezza della figura. Tutte le modifiche suddette sono effettuabili tramite la finestra di dialogo \textit{Modifica Attributi} cambiando i parametri appositi, rispettivamente X e Y per la posizione sul piano, e H e L per altezza e larghezza della figura.
 \newpage
  
 %\begin{figure}[!ht]
