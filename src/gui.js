@@ -64,7 +64,7 @@ $(document).ready(function(){
     $("#fontSetterZone").css({"display":"block"});
     toolbar.deselectAll();
     selectionButton.bindCursor("selection");
-    selectionButton.bindCanvas(toolbar,canvas,canvasObj,visual,figureSet,eraseButton);
+    selectionButton.bindCanvas(toolbar,canvas,canvasObj,visual,figureSet);
   });
 
   $("#zoomInButton").click(function () {
