@@ -1254,6 +1254,7 @@ function PropertiesDialog(){
 PropertiesDialog.prototype.create= function(){
    $("#propertiesDialog").dialog({
     	position: "right",
+	resizable: false,
     	width: 230,
 	height: 210,
 	dialogClass: "Dialog2"

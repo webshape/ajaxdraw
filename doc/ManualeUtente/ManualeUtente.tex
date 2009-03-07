@@ -5,7 +5,7 @@
  
 \begin{document}
 
-\renewcommand{\insertversion}{0.4} %INSERIRE LA VERSIONE QUI DENTRO STILE x.x.xx
+\renewcommand{\insertversion}{1.0} %INSERIRE LA VERSIONE QUI DENTRO STILE x.x.xx
 \renewcommand{\TITOLODOC}{Manuale Utente} %INSERIRE IL TITOLO DEL DOCUMENTO DA FAR COMPARIRE A PIE PAGINA
 \renewcommand{\glosspath}{.\glossario} %INSERIRE PERCORSO RELATIVO
  
@@ -82,7 +82,7 @@ Il presente documento si propone di fornire la documentazione di supporto necess
         %%%%%%%%%%%%%%FINE INTESTAZIONE COLONNE%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
         \hline
         %%%%%%%%%%% PARTE DA MODIFICARE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    
-        \multirow{2}{*}{PPP-RQ} & Rizzo Maurizio\\
+        \multirow{2}{*}{RPP-RQ} & Rizzo Maurizio\\
                     & Carollo Mirco\\
                     & Dal Bosco Davide\\
         \hline
@@ -93,6 +93,33 @@ Il presente documento si propone di fornire la documentazione di supporto necess
     \end{center}
   \end{table}
   
+\section*{\LARGE Verifica:}
+\begin{table}[!h]
+	\begin{center}
+		\begin{tabular}
+			{|c|c|}
+			\hline
+			%%%%%INTESTAZIONE COLONNE%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+			\multicolumn{2}{|c|}{ \textbf{Verifica} } \\
+			\hline
+			\textbf{Fase} & \textbf{Verificatori} \\
+			%%%%%%%%%%%%%%FINE INTESTAZIONE COLONNE%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+			\hline
+			%%%%%%%%%%% PARTE DA MODIFICARE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%		
+			\multirow{1}{*}{RPP-RQ} &  Cunico Marco \\
+									
+			\hline
+			\multirow{1}{*}{RQ-RA} & \\
+									
+			\hline
+			%%%%%%%%%%% FINE PARTE DA MODIFICARE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+		\end{tabular}
+		\caption{Lista Verificatori} %INSERIRE DIDASCALIA - SE NECESSARIA - 
+		\label{tabverifica}
+	\end{center}
+\end{table}
+
+
   
 \section*{\LARGE Approvazione:}
 \begin{table}[!h]
@@ -107,7 +134,7 @@ Il presente documento si propone di fornire la documentazione di supporto necess
       %%%%%%%%%%%%%%FINE INTESTAZIONE COLONNE%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
       \hline
       %%%%%%%%%%% PARTE DA MODIFICARE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    
-      \multirow{1}{*}{RPP-RQ} & \\
+      \multirow{1}{*}{RPP-RQ} & Dissegna Stefano \\
                   
       \hline
       %%%%%%%%%%% FINE PARTE DA MODIFICARE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -143,7 +170,8 @@ Il presente documento si propone di fornire la documentazione di supporto necess
 %%%%%%%%%%%%%%FINE INTESTAZIONE COLONNE%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
      \hline
 %%%%%%%%%%% PARTE DA MODIFICARE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
+          1.0 & 07/03/09 Preparazione in vista rilascio RQ & Dal Bosco Davide \\
+          \hline
           0.4 & 05/03/09 Inserimento manuale di Tomcat per sistemi Linux & Dal Bosco Davide \\
           \hline
           0.3 & 05/03/09 Inserimento manuale di Tomcat per sistemi Windows & Dal Bosco Davide \\
@@ -205,14 +233,20 @@ funzionalit\`a. Il sistema permette un salvataggio dei disegni che potranno esse
 \subsezione{Requisiti tecnici per il funzionamento del programma}
 \subsubsezione{Lato client}
 \begin{elencopuntato}[\normindent]
-    \item[-] Requisiti software:  \\
-    \leftskip=42pt{	Firefox 3.1b2 o successivo, Firefox 3.0.6 tutto tranne il disegno di testo}
-     Opera 9.6 tutto tranne il disegno di testo, Chrome (versione attuale), Safari (versione attuale), IE8: tutto tranne il testo e la selezione che risulta non essere ottimale.\\
-    Risoluzione minima consigliata: 1024x768.\\
-N.B. Dove non \`e supportato il testo, c'\`e un supporto minimo: un solo font, colore di riempimento ignorato, set di caratteri minimo.
-    \item[-] Requisiti hardware: Processore Intel 2GHz o compatibili; 512MB memoria RAM
+    \item[-] Requisiti software: 
+\begin{elencopuntato}[\normindent]
+ \item[-]   Firefox 3.0.x o superiore;
+ \item[-]   Opera 9.5 o superiore; 
+ \item[-]   Google Chrome 1.0; 
+ \item[-]   Safari 3.2 o superiore; 
+% \item[-]   Internet Explorer: tutto tranne il testo e la selezione che risulta non essere ottimale.\\
+  \item[-]    Risoluzione minima consigliata: 1024x768 pixels.
 \end{elencopuntato}
-\subsubsezione{lato server}
+N.B. Alcune funzionalit\`a avanzate, come il cambiamento del tipo di carattere di una casella di testo, sono attualmente supportate solamente dalle versioni non stabili dei succitati browsers; saranno pertanto disabilitate dove non sono disponibili.
+    \item[-] Requisiti hardware: Processore Intel 2GHz o equivalente; 512MB memoria RAM.
+
+\end{elencopuntato}
+\subsubsezione{Lato server}
 \begin{elencopuntato}[\normindent]
     \item[-] Requisiti software: \underline{JVM} 1.5 o superiore, Apache \underline{Tomcat} 6.0 o superiore.
     \item[-] Requisiti hardware: Processore Intel 1GHz; 1GB memoria RAM
@@ -230,7 +264,7 @@ Application Server, cio\`e una piattaforma per l'esecuzione di applicazioni web 
 Prima di tutto \`e necessario disporre di una Java Virtual Machine. Per il download visitare il link del sito ufficiale della Sun Microsystem:\\
 \href{http://java.com/download/index.jsp}{http://java.com/download/index.jsp}\\
 \\
-Per effettuare il download di Apache Tomcat 6.0 andare al link del sito ufficiale \textit{http://tomcat.apache.org/download-60.cgi}\\
+Per effettuare il download di Apache Tomcat 6.0 andare al link del sito ufficiale \href{http://tomcat.apache.org/download-60.cgi}{http://tomcat.apache.org/download-60.cgi}\\
 Nella sezione \textit{Binary Distribution} della pagina web, \`e possibile effettuare il download sia per sistemi Windows che per sistemi Linux.\\
 \\\\
 \indent{\underline{\textbf{Installazione su sistemi Windows}}}\\
@@ -257,8 +291,7 @@ Giunti alla schermata per la scelta della cartella di installazione, mantenere q
 \newpage
  
 Premere \textit{Next}, e si presenter\`a la finestra di configurazione di Tomcat:
-Alla voce \textit{http/1.1 Connector Port} lasciare il valore di default (di solito 8080), quindi impostare una User Name e Password a scelta, necessarie per accedere alla configurazione di Tomcat.\\
-Quindi premere \textit{Next}.
+Alla voce \textit{http/1.1 Connector Port} lasciare il valore di default (di solito 8080), quindi impostare Username e Password a scelta, necessarie per accedere alla configurazione di Tomcat. Quindi proseguire.
 
 \begin{figure}[!ht]
 \centering
@@ -266,7 +299,7 @@ Quindi premere \textit{Next}.
 \caption{Configuration}
 \end{figure} 
 
-Nella schermata successiva, \`e necessario indicare il percorso dell'installazione della Java Virtual Machine (J2SE). Nel caso sia gi\` a installata, mantenere il percorso di default indicato.
+Nella schermata successiva, \`e necessario indicare il percorso d'installazione della Java Virtual Machine (J2SE). Nel caso sia gi\` a installata, mantenere il percorso di default indicato.
 Per completare l'installazione, premere su \textit{Install}.
 
 \begin{figure}[!ht]
@@ -279,7 +312,7 @@ Per completare l'installazione, premere su \textit{Install}.
 \\
 Scaricato il file \textit{.tar.gz}, estrarre il suo contenuto in una cartella.
 Non \`e necessaria un'installazione vera e propria e per la sua esecuzione si rimanda al paragrafo \textit{Avvio del programma} sezione \textit{Linux}.
-
+\newpage
 \subsezione{Avvio del programma}
 \subsubsezione{Lato client}
 \`E sufficiente aprire la pagina web con un browser supportato. L'indirizzo dipende dall'host in cui viene installato il server.
@@ -290,8 +323,8 @@ Sono presenti due sezioni per effettuare l'avvio su sistemi Windows e su sistemi
 \\
 Per l'avvio del server, andare su \textit{Start-$ > $Programmi-$ > $Apache Tomcat 6.0} e avviare \textit{Monitor Tomcat}.
 Nella barra delle applicazioni in esecuzione, apparir\`a l'icona che indica l'avvio di Tomcat.\\
-A questo punto avviare un browser e digitare il seguente indirizzo\\ \textit{http://localhost:8080/manager/html}\\
-Dopo aver inserito User Name e Password richiesti, si entrer\`a nel manager di Tomcat.\\
+A questo punto avviare un browser e digitare il seguente indirizzo\\ \href{http://localhost:8080/manager/html}{http://localhost:8080/manager/html}\\
+Dopo aver inserito Username e Password richiesti, si entrer\`a nel manager di Tomcat.\\
 Andare nella sezione \textit{WAR file to deploy} della pagina.\\
 
 \begin{figure}[!ht]
@@ -337,8 +370,8 @@ Sostituire il file aperto, con il seguente codice:\\
 \textit{ $ < $user username='admin' password='admin' roles='manager'/$ > $}\\
 \textit{$ < $/tomcat-users$ > $} \\
 \\
-In questo modo \`e stato impostato uno User Name con valore \textit{admin} e una Password con valore \textit{admin}. Queste credenziali sono da usare per accedere al Tomcat Manager.\\
-A questo punto avviare un browser e digitare il seguente indirizzo\\ \textit{http://localhost:8080/manager/html}\\
+In questo modo \`e sono stati impostati uno Username  \textit{admin} e una Password  \textit{admin}. Queste credenziali serviranno per accedere al Tomcat Manager.\\
+A questo punto avviare un browser e digitare il seguente indirizzo\\ \href{http://localhost:8080/manager/html}{http://localhost:8080/manager/html}\\
 Dopo aver inserito User Name e Password richiesti, si entrer\`a nel manager di Tomcat.\\
 Andare nella sezione \textit{WAR file to deploy} della pagina.\\
 
@@ -597,9 +630,10 @@ Qui \`e stata selezionata la funzione di rotazione di un oggetto presente sul pi
 \sezione{Appendice}
  
 \subsezione{Messaggi di errore e loro significato}
-descrizione degli errori, dividendoli tra server e \underline{client}\\
-Errore di \underline{parsing} durante il caricamento di un file SVG.\\
-Errore di comunicazione col server. \\
-Errore interno del server (e.g. non c'e' piu' spazio su disco).\\
- 
+Durante l'utilizzo del programma \`e possibile che vengano segnalati i seguenti errori:
+\begin{elencopuntato}[\subsecindent]
+\item[-] \textit{Errore di \underline{parsing} durante il caricamento di un file SVG}: significa che il file SVG caricato non \`e valido.
+\item[-] \textit{Errore di comunicazione col server}: il server non \`e al momento raggiungibile. Riprovare pi\`u tardi, e se il problema persiste controllare lo stato della propria connessione ad internet. Se la connessione \`e funzionante, contattare l'amministratore del server.
+\item[-] \textit{Errore interno del server}: il server ha riscontrato un problema interno. Contattare l'amministratore del server.
+\end{elencopuntato} 
 \end{document}

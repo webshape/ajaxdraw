@@ -1,4 +1,5 @@
 \input{../TeX/base} %BASE!!!
+\usepackage{multirow}
  
 \title{\TITOLODOC}
 \author{Carollo Mirko}
@@ -85,9 +86,8 @@ Il presente documento descrive le strategie per la gestione della qualit\`a adot
         RR-RPP & Carollo Mirko\\
         
         \hline
-         RPP-RQ 
-				& Carollo Mirko \\
-				& Dissegna Stefano \\
+        \multirow{2}{*}{RPP-RQ} & Carollo Mirko \\
+							& Dissegna Stefano \\
         
         \hline
         %%%%%%%%%%% FINE PARTE DA MODIFICARE %%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -97,16 +97,16 @@ Il presente documento descrive le strategie per la gestione della qualit\`a adot
     \end{center}
   \end{table}  
  
-\section*{\LARGE Approvazione:}
+\section*{\LARGE Verifica:}
 \begin{table}[!h]
   \begin{center}
     \begin{tabular}
       {|c|c|}
       \hline
       %%%%%INTESTAZIONE COLONNE%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-      \multicolumn{2}{|c|}{ \textbf{Approvazione} } \\
+      \multicolumn{2}{|c|}{ \textbf{Verifica} } \\
       \hline
-      \textbf{Fase} & \textbf{Approvatori} \\
+      \textbf{Fase} & \textbf{Verificatori} \\
       %%%%%%%%%%%%%%FINE INTESTAZIONE COLONNE%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
       \hline
       %%%%%%%%%%% PARTE DA MODIFICARE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    
@@ -121,11 +121,40 @@ Il presente documento descrive le strategie per la gestione della qualit\`a adot
       \hline
       %%%%%%%%%%% FINE PARTE DA MODIFICARE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     \end{tabular}
-    \caption{Lista Approvatori} %INSERIRE DIDASCALIA - SE NECESSARIA -
-    \label{tabapprovazione}
+    \caption{Lista Verificatori} %INSERIRE DIDASCALIA - SE NECESSARIA -
+    \label{tabverifica}
   \end{center}
 \end{table}
  
+ 
+\section*{\LARGE Approvazione:}
+\begin{table}[!h]
+  \begin{center}
+    \begin{tabular}
+      {|c|c|}
+      \hline
+      %%%%%INTESTAZIONE COLONNE%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+      \multicolumn{2}{|c|}{ \textbf{Approvazione} } \\
+      \hline
+      \textbf{Fase} & \textbf{Approvatori} \\
+      %%%%%%%%%%%%%%FINE INTESTAZIONE COLONNE%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+      \hline
+      %%%%%%%%%%% PARTE DA MODIFICARE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    
+      Pre-RR & Cunico Marco\\
+                 
+      \hline
+      RR-RPP & Bizzotto Piero \\
+                  
+      \hline
+      RPP-RQ & Dal Bosco Davide \\
+                  
+      \hline
+      %%%%%%%%%%% FINE PARTE DA MODIFICARE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \end{tabular}
+    \caption{Lista Approvatori} %INSERIRE DIDASCALIA - SE NECESSARIA -
+    \label{tabapprovazione}
+  \end{center}
+\end{table} 
  
 \section*{\LARGE Lista di Distribuzione:}
  
@@ -152,7 +181,9 @@ Il presente documento descrive le strategie per la gestione della qualit\`a adot
 %%%%%%%%%%%%%%FINE INTESTAZIONE COLONNE%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
      \hline
 %%%%%%%%%%% PARTE DA MODIFICARE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-     3.0 &    6$\slash$03$\slash$2009 Sistemazione in vista rilascio RQ & Carollo Mirko\\
+     3.0 &    7$\slash$03$\slash$2009 Sistemazione in vista rilascio RQ & Carollo Mirko\\
+      \hline
+      2.2 &  6$\slash$03$\slash$2009 Valutazione qualit\`a prima di consegna RQ & Dissegna Stefano \\
       \hline
       2.1 &  5$\slash$03$\slash$2009 Aggiunte metriche di valutazione ed aspettative & Dissegna Stefano \\
       \hline     2.0 &    23$\slash$01$\slash$2009 Verifica finale in preparazione al rilascio per la RPP & Carollo Mirko\\
@@ -294,7 +325,7 @@ adatti a misurarla.
 \subsezione{Copertura dei test}
 La copertura indica, in percentuale, quante linee di codice vengono eseguite durante i test automatici. Permette di capire se i test scritti sono sufficienti oppure no, anche se un'ottima copertura non garantisce di per s\`e l'adeguatezza dei test, ma ne \`e comunque una buona stima. La copertura attesa dipende da quale sottosistema dell'applicazione si sta prendendo in considerazione:
 \begin{elencopuntato}[\subsecindent]
-\item[-] GUI: dipende quasi completamente dall'interazione con l'utente ed \`e quindi poco automatizzabile. Ci si aspetta una copertura tra il 20\% ed il 30\%.
+\item[-] GUI: dipende quasi completamente dall'interazione con l'utente ed \`e quindi poco automatizzabile. Ci si aspetta una copertura tra il 20\% ed il 30\%. Con dei test manuali si prevede di raggiungere una copertura tra il 90\% ed il 100\% su un singolo browser. 
 \item[-] Logica interna: ci si aspetta una copertura tra l'80\% ed il 90\% su un singolo browser. Alcune parti vengono eseguite a seconda del browser, e quindi ci si aspetta di superare il 90\% solo eseguendo i test su pi\`u browser.
 \item[-] Server: ci si attende una copertura vicina al 100\%.
 \end{elencopuntato}
@@ -322,14 +353,14 @@ Misura l'aderenza alle norme di codifica, ed \`e il numero di errori riportati d
 Vengono ora riassunti i risultati raggiunti per la fase RQ, usando le metriche precedentemente descritte.
 \paragrafo{Copertura dei test}
 \begin{elencopuntato}[\subsubsecindent]
-\item[-] GUI: 21\%.
+\item[-] GUI: 21\%. 97\% con i test manuali.
 \item[-] Application Logic: 85\% su un singolo browser.
 \item[-] Server: 0\%.
 \end{elencopuntato}
 Dai dati si evince che la copertura \`e buona per quanto riguarda la logica interna e nei limiti previsti per l'interfaccia. Per quanto riguarda il lato server non sono tuttora presenti test, ma il problema verr\`a risolto entro l'RA. Il server \`e comunque minimale, e rappresenta solo una piccola frazione del codice totale.
 
 \paragrafo{Numero di test superati}
-Vengono superati 151 test su 151 su tutti i browser supportati.
+Vengono superati 151 test su 151 su tutti i browser supportati. Per maggiori dettagli, si apra il file \textit{src/test/allTests.html} con un browser supportato.
 
 \paragrafo{Numero di requisiti soddisfatti}
 Si faccia riferimento al tracciamento presente in \textit{DefinizioneDiProdotto.pdf}.
