@@ -192,15 +192,15 @@ $(document).ready(function(){
       $("#colory").css({"display":"none"});
 
       if(openFill === false){
-	$(".Dialog1").height(430);
+	$(".Dialog1").height(500);
       }
       else {
-        $(".Dialog1").height(700);
+        $(".Dialog1").height(770);
       }
       openBorder = true;
     },
     function() {
-      $(".Dialog1").height(190);
+      $(".Dialog1").height(260);
       $("#colorx").hide("slow");
       $.farbtastic("#color1").setColor(document.getElementById("color1").value);
       color.BorderColor=$.farbtastic("#color1").color;
@@ -209,10 +209,10 @@ $(document).ready(function(){
       toolbar.rebind(canvas,canvasObj,visual,figureSet,
                      color.BorderColor,color.FillColor);
       if(openFill === false){
-	$(".Dialog1").height(190);
+	$(".Dialog1").height(260);
       }
       else {
-        $(".Dialog1").height(430);
+        $(".Dialog1").height(500);
       }
       openBorder = false;
     }
@@ -221,15 +221,15 @@ $(document).ready(function(){
     function () {
       $("#colory").show("slow");
       if(openBorder === false){
-	$(".Dialog1").height(430);
+	$(".Dialog1").height(500);
      }
       else {
-        $(".Dialog1").height(670);
+        $(".Dialog1").height(740);
       }
       openFill = true;
     },
     function() {
-      $(".Dialog1").height(190);
+      $(".Dialog1").height(260);
       $("#colory").hide("slow");
       $.farbtastic("#color2").setColor(document.getElementById("color2").value);
       color.FillColor = $.farbtastic("#color2").color;
@@ -238,10 +238,10 @@ $(document).ready(function(){
       toolbar.rebind(canvas,canvasObj,visual,figureSet,
                      color.BorderColor,color.FillColor);
       if(openBorder === false){
-	$(".Dialog1").height(190);
+	$(".Dialog1").height(260);
       }
       else {
-        $(".Dialog1").height(430);
+        $(".Dialog1").height(500);
       }
       openFill = false;
     }
