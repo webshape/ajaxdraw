@@ -261,6 +261,13 @@ L'ambiente di sviluppo \LaTeX \ non \`e definito poich\`e non influisce nel risu
 \subsezione{Editor di testo}
 L'editor utilizzato per la scrittura del codice JavaScript \`e Emacs con js2-mode; quest'ultimo permette di catturare la maggior parte degli errori di battitura e suggerisce la sintassi corretta mentre il codice viene digitato. 
  
+\subsezione{Editor Java}
+Per la scrittura del codice Java relativa alla parte server, \`e stato utilizzato l'ambiente di sviluppo Eclipse WTP (Web Tools Platform) in quanto permette una scrittura del codice molto veloce, ma soprattuto perch\`e ha la funzionalit\`a di esportare le servlet e le classi create in WAR, che rappresenta il formato usato dal server web Apache Tomcat per effettuare il deploy automatico, senza eseguire una configurazione esclusivamente manuale.
+
+\subsezione{Server Web}
+Su consiglio dell'azienda proponente Zucchetti SPA, \`e stato scelto Apache Tomcat, in quanto rappresenta il server di riferimento per il mondo Java.
+
+
 \subsezione{Ricerca di errori}
 Oltre alle utili funzionalit\`a di js2-mode, l'azienda utilizza il programma JSLint, un noto verificatore di codice JavaScript, il quale rilever\`a tutti gli altri errori.
 
@@ -282,6 +289,11 @@ Si \` e scelto di utilizzare jQuery (\href{http://jquery.com/}{http://jquery.com
     \item[-]\textit{canvastext} (\href{http://jim.studt.net/canvastext/}{http://jim.studt.net/canvastext/}) per permettere di disegnare caselle di testo anche sui browser che non supportano tale funzionalit\` a;
      \item[-]\textit{menu-for-applications} (\href{http://www.dhtmlgoodies.com/scripts/menu-for-applications/demos/demo-menu-bar.html}{dhtmlgoodies.com/scripts/menu-for-applications/}) per avere a disposizione una comoda barra nella parte alta della pagina utile per richiamare le funzioni pi\` u varie.
   \end{elencopuntato}
+  
+\subsezione{Librerie Java}
+Si \`e scelto di utilizzare una libreria non standard Java chiamata \textit{cos} presente nel package \textit{com.oreilly.servlet} in quanto permette una gestione pi\`u efficiente delle comunicazioni client-server. La libreria \`e reperibile all'indirizzo \href{http://www.servlets.com/cos}{http://www.servlets.com/cos}.
+  
+
 
 \sezione{Stile del codice}
 Lo stile del codice deve essere conforme alle regole utilizzate da \textit{Mozilla}, reperibili ai seguenti due indirizzi: \href{https://developer.mozilla.org/en/JavaScript_style_guide}{https://developer.mozilla.org/en/JavaScript Style Guide} e \href{http://neil.rashbrook.org/Js.htm}{http://neil.rashbrook.org/Js.htm}.
