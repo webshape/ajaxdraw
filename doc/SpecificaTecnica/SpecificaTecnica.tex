@@ -1,4 +1,4 @@
-	\input{../TeX/base} %BASE!!!
+\input{../TeX/base} %BASE!!!
 \usepackage{multirow}
 \title{\TITOLODOC}
 \author{Dal Bosco Davide}
@@ -161,7 +161,7 @@ Il presente documento descrive le scelte tecniche, architetturali e tecnologiche
 
 
 
-
+\newpage
 \section*{\Large Registro delle Modifiche:}
 
 
@@ -314,7 +314,8 @@ un particolare elemento grafico a seconda della propriet\`a coinvolta. \\
 \end{figure}
 \newpage
 
-La GUI \` e  il client che verr\` a utilizzato nel sistema AJAXDRAW, e verr\` a descritta brevemente, in quanto rappresenta solo un'unit\` a che andr\`  a a lavorare sulle altre componenti di sistema. \` E costruita nella sua totalit\` a nella pagina web caricata dal browser, rappresentata dalla classe \textit{Page}, e composta da tutti i widgets con i quali interagire (che implementano tutti l'interfaccia generica \textit{Widget}).  I widgets si suddividono in \textit{Toolbar} (barra degli strumenti), \textit{Button} (pulsanti generici, che compongono anche la toolbar stessa), \textit{Palette} e \textit{ColourDialog}(per la gestione del colore), e \textit{PropertiesDialog}(per la modifica delle propriet\` a, che aggrega gli specifici \textit{Setter}). La pagina \` e composta inoltre dalla classe \textit{Visualization}, la quale gestisce il \textit{Canvas} e tutte le operazioni su di esso eseguite, tra cui la conversione tra coordinate utente e coordinate interne e lo zoom. Le classi che rappresentano oggetti con cui \`e necessario interagire tramite mouse implementano, tutte l'interfaccia \textit{UserClickEvent}, e tra queste vi \` e ovviamente la classe \textit{Canvas}, che oltre a questa implementa anche \textit{MouseMovePressed} e \textit{MouseMoveReleased}, necessarie al disegno tramite il mouse.  \` E infine presente la possibilit\` a per il programma di avvertire l'utente in caso di errore interno all'applicazione, tramite l'oggetto \textit{Alert}. \\ \\ \\
+La GUI \` e  il client che verr\` a utilizzato nel sistema AJAXDRAW, e verr\` a descritta brevemente, in quanto rappresenta solo un'unit\` a che andr\`  a a lavorare sulle altre componenti di sistema. \` E costruita nella sua totalit\` a nella pagina web caricata dal browser, rappresentata dalla classe \textit{Page}, e composta da tutti i widgets con i quali interagire (che implementano tutti l'interfaccia generica \textit{Widget}).  I widgets si suddividono in \textit{Toolbar} (barra degli strumenti), \textit{Button} (pulsanti generici, che compongono anche la toolbar stessa), \textit{Palette} e \textit{ColourDialog}(per la gestione del colore), e \textit{PropertiesDialog}(per la modifica delle propriet\` a, che aggrega gli specifici \textit{Setter}). La pagina \` e composta inoltre dalla classe \textit{Visualization}, la quale gestisce il \textit{Canvas} e tutte le operazioni su di esso eseguite, tra cui la conversione tra coordinate utente e coordinate interne e lo zoom. Le classi che rappresentano oggetti con cui \`e necessario interagire tramite mouse implementano, tutte l'interfaccia \textit{UserClickEvent}, e tra queste vi \` e ovviamente la classe \textit{Canvas}, che oltre a questa implementa anche \textit{MouseMovePressed} e \textit{MouseMoveReleased}, necessarie al disegno tramite il mouse.  \` E infine presente la possibilit\` a per il programma di avvertire l'utente in caso di errore interno all'applicazione, tramite l'oggetto \textit{Alert}. Nella figura 6 \`e illustrata una bozza di come l'applicazione si dovrebbe presentare all'utente, con il canvas posizionato al centro, ai lati dello schermo le funzionalit\` a di disegno e modifica, e la tavolozza al di sotto per una rapida selezione dei colori principali. 
+\\
 
 \begin{figure}[!ht]
 \centering
