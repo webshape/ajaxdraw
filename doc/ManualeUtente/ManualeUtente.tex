@@ -5,7 +5,7 @@
  
 \begin{document}
 
-\renewcommand{\insertversion}{0.4} %INSERIRE LA VERSIONE QUI DENTRO STILE x.x.xx
+\renewcommand{\insertversion}{1.0} %INSERIRE LA VERSIONE QUI DENTRO STILE x.x.xx
 \renewcommand{\TITOLODOC}{Manuale Utente} %INSERIRE IL TITOLO DEL DOCUMENTO DA FAR COMPARIRE A PIE PAGINA
 \renewcommand{\glosspath}{.\glossario} %INSERIRE PERCORSO RELATIVO
  
@@ -82,7 +82,7 @@ Il presente documento si propone di fornire la documentazione di supporto necess
         %%%%%%%%%%%%%%FINE INTESTAZIONE COLONNE%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
         \hline
         %%%%%%%%%%% PARTE DA MODIFICARE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    
-        \multirow{2}{*}{PPP-RQ} & Rizzo Maurizio\\
+        \multirow{2}{*}{RPP-RQ} & Rizzo Maurizio\\
                     & Carollo Mirco\\
                     & Dal Bosco Davide\\
         \hline
@@ -93,6 +93,33 @@ Il presente documento si propone di fornire la documentazione di supporto necess
     \end{center}
   \end{table}
   
+\section*{\LARGE Verifica:}
+\begin{table}[!h]
+	\begin{center}
+		\begin{tabular}
+			{|c|c|}
+			\hline
+			%%%%%INTESTAZIONE COLONNE%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+			\multicolumn{2}{|c|}{ \textbf{Verifica} } \\
+			\hline
+			\textbf{Fase} & \textbf{Verificatori} \\
+			%%%%%%%%%%%%%%FINE INTESTAZIONE COLONNE%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+			\hline
+			%%%%%%%%%%% PARTE DA MODIFICARE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%		
+			\multirow{1}{*}{RPP-RQ} &  Cunico Marco \\
+									
+			\hline
+			\multirow{1}{*}{RQ-RA} & \\
+									
+			\hline
+			%%%%%%%%%%% FINE PARTE DA MODIFICARE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+		\end{tabular}
+		\caption{Lista Verificatori} %INSERIRE DIDASCALIA - SE NECESSARIA - 
+		\label{tabverifica}
+	\end{center}
+\end{table}
+
+
   
 \section*{\LARGE Approvazione:}
 \begin{table}[!h]
@@ -107,7 +134,7 @@ Il presente documento si propone di fornire la documentazione di supporto necess
       %%%%%%%%%%%%%%FINE INTESTAZIONE COLONNE%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
       \hline
       %%%%%%%%%%% PARTE DA MODIFICARE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    
-      \multirow{1}{*}{RPP-RQ} & \\
+      \multirow{1}{*}{RPP-RQ} & Dissegna Stefano \\
                   
       \hline
       %%%%%%%%%%% FINE PARTE DA MODIFICARE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -143,7 +170,8 @@ Il presente documento si propone di fornire la documentazione di supporto necess
 %%%%%%%%%%%%%%FINE INTESTAZIONE COLONNE%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
      \hline
 %%%%%%%%%%% PARTE DA MODIFICARE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
+          1.0 & 07/03/09 Preparazione in vista rilascio RQ & Dal Bosco Davide \\
+          \hline
           0.4 & 05/03/09 Inserimento manuale di Tomcat per sistemi Linux & Dal Bosco Davide \\
           \hline
           0.3 & 05/03/09 Inserimento manuale di Tomcat per sistemi Windows & Dal Bosco Davide \\
@@ -207,7 +235,7 @@ funzionalit\`a. Il sistema permette un salvataggio dei disegni che potranno esse
 \begin{elencopuntato}[\normindent]
     \item[-] Requisiti software:  \\
     \leftskip=42pt{	Firefox 3.1b2 o successivo, Firefox 3.0.6 tutto tranne il disegno di testo}
-     Opera 9.6 tutto tranne il disegno di testo, Chrome (versione attuale), Safari (versione attuale), IE8: tutto tranne il testo e la selezione che risulta non essere ottimale.\\
+     Opera 9.6 tutto tranne il disegno di testo, Chrome (versione attuale), Safari (versione attuale): tutto tranne il testo e la selezione che risulta non essere ottimale.\\
     Risoluzione minima consigliata: 1024x768.\\
 N.B. Dove non \`e supportato il testo, c'\`e un supporto minimo: un solo font, colore di riempimento ignorato, set di caratteri minimo.
     \item[-] Requisiti hardware: Processore Intel 2GHz o compatibili; 512MB memoria RAM
@@ -597,9 +625,10 @@ Qui \`e stata selezionata la funzione di rotazione di un oggetto presente sul pi
 \sezione{Appendice}
  
 \subsezione{Messaggi di errore e loro significato}
-descrizione degli errori, dividendoli tra server e \underline{client}\\
-Errore di \underline{parsing} durante il caricamento di un file SVG.\\
-Errore di comunicazione col server. \\
-Errore interno del server (e.g. non c'e' piu' spazio su disco).\\
- 
+Durante l'utilizzo del programma \`e possibile che vengano segnalati i seguenti errori:
+\begin{elencopuntato}[\subsecindent]
+\item[-] \textit{Errore di \underline{parsing} durante il caricamento di un file SVG}: significa che il file SVG caricato non \`e valido.
+\item[-] \textit{Errore di comunicazione col server}: il server non \`e al momento raggiungibile. Riprovare pi\`u tardi, e se il problema persiste controllare lo stato della propria connessione ad internet. Se la connessione \`e funzionante, contattare l'amministratore del server.
+\item[-] \textit{Errore interno del server}: il server ha riscontrato un problema interno. Contattare l'amministratore del server.
+\end{elencopuntato} 
 \end{document}
