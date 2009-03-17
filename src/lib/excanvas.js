@@ -13,7 +13,7 @@
 // limitations under the License.
 
 
-// Known Issues:
+// Known Issues: (From VML version)
 //
 // * Patterns are not implemented.
 // * Radial gradient are not implemented. The VML version of these look very
@@ -30,79 +30,56 @@
 //   (http://webfx.eae.net/dhtml/boxsizing/boxsizing.html)
 // * Optimize. There is always room for speed improvements.
 
+//Known Issues: Silverlight version
+//
+// * Doing a transformation during a path (ie lineTo, transform, lineTo) will
+//   not work corerctly because the transform is done to the whole path (ie
+//   transform, lineTo, lineTo)
+// * Patterns are not yet implemented.
+
+
 // only add this code if we do not already have a canvas implementation
 if (!window.CanvasRenderingContext2D) {
 
 (function () {
 
-  // alias some functions to make (compiled) code shorter
-  var m = Math;
-  var mr = m.round;
-  var ms = m.sin;
-  var mc = m.cos;
-
-  // this is used for sub pixel precision
-  var Z = 10;
-  var Z2 = Z / 2;
+  var xamlId;
 
   var G_vmlCanvasManager_ = {
     init: function (opt_doc) {
       var doc = opt_doc || document;
+      // Create a dummy element so that IE will allow canvas elements to be
+      // recognized.
+      doc.createElement('canvas');
       if (/MSIE/.test(navigator.userAgent) && !window.opera) {
         var self = this;
-        doc.attachEvent("onreadystatechange", function () {
+
+        createXamlScriptTag();
+
+        doc.attachEvent('onreadystatechange', function () {
           self.init_(doc);
         });
       }
     },
 
     init_: function (doc) {
-      if (doc.readyState == "complete") {
-        // create xmlns
-        if (!doc.namespaces["g_vml_"]) {
-          doc.namespaces.add("g_vml_", "urn:schemas-microsoft-com:vml");
-        }
+      // setup default css
+      var ss = doc.createStyleSheet();
+      ss.cssText = 'canvas{display:inline-block;overflow:hidden;' +
+          // default size is 300x150 in Gecko and Opera
+          'text-align:left;width:300px;height:150px}' +
+          'canvas object{width:100%;height:100%;border:0;' +
+          'background:transparen;margin:0}';
 
-        // setup default css
-        var ss = doc.createStyleSheet();
-        ss.cssText = "canvas{display:inline-block;overflow:hidden;" +
-            // default size is 300x150 in Gecko and Opera
-            "text-align:left;width:300px;height:150px}" +
-            "g_vml_\\:*{behavior:url(#default#VML)}";
-
-        // find all canvas elements
-        var els = doc.getElementsByTagName("canvas");
-        for (var i = 0; i < els.length; i++) {
-          if (!els[i].getContext) {
-            this.initElement(els[i]);
-          }
+      // find all canvas elements
+      var els = doc.getElementsByTagName('canvas');
+      for (var i = 0; i < els.length; i++) {
+        if (!els[i].getContext) {
+          this.initElement(els[i]);
         }
       }
     },
 
-    fixElement_: function (el) {
-      // in IE before version 5.5 we would need to add HTML: to the tag name
-      // but we do not care about IE before version 6
-      var outerHTML = el.outerHTML;
-
-      var newEl = el.ownerDocument.createElement(outerHTML);
-      // if the tag is still open IE has created the children as siblings and
-      // it has also created a tag with the name "/FOO"
-      if (outerHTML.slice(-2) != "/>") {
-        var tagName = "/" + el.tagName;
-        var ns;
-        // remove content
-        while ((ns = el.nextSibling) && ns.tagName != tagName) {
-          ns.removeNode();
-        }
-        // remove the incorrect closing tag
-        if (ns) {
-          ns.removeNode();
-        }
-      }
-      el.parentNode.replaceChild(newEl, el);
-      return newEl;
-    },
 
     /**
      * Public initializes a canvas element so that it can be used as canvas
@@ -113,7 +90,6 @@ if (!window.CanvasRenderingContext2D) {
      * @return {HTMLElement} the element that was created.
      */
     initElement: function (el) {
-      el = this.fixElement_(el);
       el.getContext = function () {
         if (this.context_) {
           return this.context_;
@@ -121,26 +97,27 @@ if (!window.CanvasRenderingContext2D) {
         return this.context_ = new CanvasRenderingContext2D_(this);
       };
 
-      // do not use inline function because that will leak memory
-      el.attachEvent('onpropertychange', onPropertyChange);
-      el.attachEvent('onresize', onResize);
-
       var attrs = el.attributes;
       if (attrs.width && attrs.width.specified) {
         // TODO: use runtimeStyle and coordsize
         // el.getContext().setWidth_(attrs.width.nodeValue);
-        el.style.width = attrs.width.nodeValue + "px";
+        el.style.width = attrs.width.nodeValue + 'px';
       } else {
         el.width = el.clientWidth;
       }
       if (attrs.height && attrs.height.specified) {
         // TODO: use runtimeStyle and coordsize
         // el.getContext().setHeight_(attrs.height.nodeValue);
-        el.style.height = attrs.height.nodeValue + "px";
+        el.style.height = attrs.height.nodeValue + 'px';
       } else {
         el.height = el.clientHeight;
       }
-      //el.getContext().setCoordsize_()
+
+      // insert object tag
+      el.innerHTML = getObjectHtml();
+
+      // do not use inline function because that will leak memory
+      el.attachEvent('onpropertychange', onPropertyChange);
       return el;
     }
   };
@@ -150,25 +127,52 @@ if (!window.CanvasRenderingContext2D) {
 
     switch (e.propertyName) {
       case 'width':
-        el.style.width = el.attributes.width.nodeValue + "px";
+        el.style.width = el.attributes.width.nodeValue + 'px';
         el.getContext().clearRect();
         break;
       case 'height':
-        el.style.height = el.attributes.height.nodeValue + "px";
+        el.style.height = el.attributes.height.nodeValue + 'px';
         el.getContext().clearRect();
         break;
-    }
-  }
-
-  function onResize(e) {
-    var el = e.srcElement;
-    if (el.firstChild) {
-      el.firstChild.style.width =  el.clientWidth + 'px';
-      el.firstChild.style.height = el.clientHeight + 'px';
     }
   }
 
   G_vmlCanvasManager_.init();
+
+  function createXamlScriptTag() {
+    // This script tag contains the boilerplate XAML.
+    document.write('<script type=text/xaml>' +
+        '<Canvas x:Name="root" ' +
+        'xmlns="http://schemas.microsoft.com/client/2007" ' +
+        'xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" ' +
+        'Width="300" ' +
+        'Height="150" ' +
+        'Background="Transparent"> ' +
+        '</Canvas>' +
+        '</script>');
+    // Find the id of the writtenscript file.
+    var scripts = document.scripts;
+    var script = scripts[scripts.length - 1];
+    xamlId = script.uniqueID;
+    script.id = xamlId;
+  }
+
+  function getObjectHtml(fn) {
+    return '<object type="application/x-silverlight" >' +
+        '<param name="windowless" value="true">' +
+        '<param name="background" value="transparent">' +
+        '<param name="source" value="#' + xamlId + '">' +
+        '</object>';
+  }
+
+  function hasSilverlight() {
+    try {
+      new ActiveXObject('AgControl.AgControl');
+      return true;
+    } catch(_) {
+      return false;
+    }
+  }
 
   // precompute "00" to "FF"
   var dec2hex = [];
@@ -203,6 +207,30 @@ if (!window.CanvasRenderingContext2D) {
     return result;
   }
 
+  function doTransform(ctx) {
+    transformObject(ctx, getRoot(ctx), ctx.m_);
+  }
+
+  function transformObject(ctx, obj, m) {
+    var transform = obj.renderTransform;
+    var matrix;
+    if (!transform) {
+      transform = create(ctx, '<MatrixTransform/>');
+      matrix = create(ctx, '<Matrix/>');
+      transform.matrix = matrix;
+      obj.renderTransform = transform;
+    } else {
+      matrix = transform.matrix;
+    }
+
+    matrix.m11 = m[0][0];
+    matrix.m12 = m[0][1];
+    matrix.m21 = m[1][0];
+    matrix.m22 = m[1][1];
+    matrix.offsetX = m[2][0];
+    matrix.offsetY = m[2][1];
+  }
+
   function copyState(o1, o2) {
     o2.fillStyle     = o1.fillStyle;
     o2.lineCap       = o1.lineCap;
@@ -214,43 +242,82 @@ if (!window.CanvasRenderingContext2D) {
     o2.shadowOffsetX = o1.shadowOffsetX;
     o2.shadowOffsetY = o1.shadowOffsetY;
     o2.strokeStyle   = o1.strokeStyle;
+    o2.globalAlpha   = o1.globalAlpha;
     o2.arcScaleX_    = o1.arcScaleX_;
     o2.arcScaleY_    = o1.arcScaleY_;
   }
 
-  function processStyle(styleString) {
-    var str, alpha = 1;
-
-    styleString = String(styleString);
-    if (styleString.substring(0, 3) == "rgb") {
-      var start = styleString.indexOf("(", 3);
-      var end = styleString.indexOf(")", start + 1);
-      var guts = styleString.substring(start + 1, end).split(",");
-
-      str = "#";
-      for (var i = 0; i < 3; i++) {
-        str += dec2hex[Number(guts[i])];
-      }
-
-      if ((guts.length == 4) && (styleString.substr(3, 1) == "a")) {
-        alpha = guts[3];
-      }
-    } else {
-      str = styleString;
+  function translateColor(s) {
+    var rgbaMatch = /rgba\(([^)]+)\)/gi.exec(s);
+    if (rgbaMatch) {
+      var parts = rgbaMatch[1].split(',');
+      return '#' + dec2hex[Math.floor(Number(parts[3]) * 255)] +
+          dec2hex[Number(parts[0])] +
+          dec2hex[Number(parts[1])] +
+          dec2hex[Number(parts[2])];
     }
 
-    return [str, alpha];
+    var rgbMatch  = /rgb\(([^)]+)\)/gi.exec(s);
+    if (rgbMatch) {
+      var parts = rgbMatch[1].split(',');
+      return '#FF' + dec2hex[Number(parts[0])] +
+          dec2hex[Number(parts[1])] +
+          dec2hex[Number(parts[2])];
+    }
+
+    return s;
   }
 
   function processLineCap(lineCap) {
     switch (lineCap) {
-      case "butt":
-        return "flat";
-      case "round":
-        return "round";
-      case "square":
+      case 'butt':
+        return 'flat';
+      case 'round':
+        return 'round';
+      case 'square':
       default:
-        return "square";
+        return 'square';
+    }
+  }
+
+  function getRoot(ctx) {
+    return ctx.canvas.firstChild.content.findName('root');
+  }
+
+  function create(ctx, s, opt_args) {
+    if (opt_args) {
+      s = s.replace(/\%(\d+)/g, function(match, index) {
+        return opt_args[Number(index) - 1];
+      });
+    }
+
+    try {
+      return ctx.canvas.firstChild.content.createFromXaml(s);
+    } catch (ex) {
+      throw Error('Could not create XAML from: ' + s);
+    }
+  }
+
+  function drawShape(ctx, s, opt_args) {
+    var canvas = ctx.lastCanvas_ || create(ctx, '<Canvas/>');
+    var shape = create(ctx, s, opt_args);
+    canvas.children.add(shape);
+    transformObject(ctx, canvas, ctx.m_);
+    if (!ctx.lastCanvas_) {
+      getRoot(ctx).children.add(canvas);
+      ctx.lastCanvas_ = canvas;
+    }
+    return shape;
+  }
+
+  function createBrushObject(ctx, value) {
+    if (value instanceof CanvasGradient_) {
+      return value.createBrush_(ctx);
+    } else if (value instanceof CanvasPattern_) {
+      throw Error('Not implemented');
+    } else {
+      return create(ctx, '<SolidColorBrush Color="%1"/>',
+                    [translateColor(value)]);
     }
   }
 
@@ -258,42 +325,39 @@ if (!window.CanvasRenderingContext2D) {
    * This class implements CanvasRenderingContext2D interface as described by
    * the WHATWG.
    * @param {HTMLElement} surfaceElement The element that the 2D context should
-   * be associated with
+   *     be associated with
    */
    function CanvasRenderingContext2D_(surfaceElement) {
     this.m_ = createMatrixIdentity();
+    this.lastCanvas_ = null;
 
     this.mStack_ = [];
     this.aStack_ = [];
     this.currentPath_ = [];
 
     // Canvas context properties
-    this.strokeStyle = "#000";
-    this.fillStyle = "#000";
+    this.strokeStyle = '#000';
+    this.fillStyle = '#000';
 
     this.lineWidth = 1;
-    this.lineJoin = "miter";
-    this.lineCap = "butt";
-    this.miterLimit = Z * 1;
+    this.lineJoin = 'miter';
+    this.lineCap = 'butt';
+    this.miterLimit = 10;
     this.globalAlpha = 1;
     this.canvas = surfaceElement;
-
-    var el = surfaceElement.ownerDocument.createElement('div');
-    el.style.width =  surfaceElement.clientWidth + 'px';
-    el.style.height = surfaceElement.clientHeight + 'px';
-    el.style.overflow = 'hidden';
-    el.style.position = 'absolute';
-    surfaceElement.appendChild(el);
-
-    this.element_ = el;
-    this.arcScaleX_ = 1;
-    this.arcScaleY_ = 1;
   };
 
+
   var contextPrototype = CanvasRenderingContext2D_.prototype;
+
   contextPrototype.clearRect = function() {
-    this.element_.innerHTML = "";
+    var root = getRoot(this);
+    root.children.clear();
+
+    // TODO: Implement
     this.currentPath_ = [];
+    this.lastCanvas_ = null;
+
   };
 
   contextPrototype.beginPath = function() {
@@ -304,67 +368,74 @@ if (!window.CanvasRenderingContext2D) {
   };
 
   contextPrototype.moveTo = function(aX, aY) {
-    this.currentPath_.push({type: "moveTo", x: aX, y: aY});
-    this.currentX_ = aX;
-    this.currentY_ = aY;
+    this.currentPath_.push('M' + aX + ',' + aY);
   };
 
   contextPrototype.lineTo = function(aX, aY) {
-    this.currentPath_.push({type: "lineTo", x: aX, y: aY});
-    this.currentX_ = aX;
-    this.currentY_ = aY;
+    if (this.currentPath_.length == 0) return;
+    this.currentPath_.push('L' + aX + ',' + aY);
   };
 
   contextPrototype.bezierCurveTo = function(aCP1x, aCP1y,
                                             aCP2x, aCP2y,
                                             aX, aY) {
-    this.currentPath_.push({type: "bezierCurveTo",
-                           cp1x: aCP1x,
-                           cp1y: aCP1y,
-                           cp2x: aCP2x,
-                           cp2y: aCP2y,
-                           x: aX,
-                           y: aY});
-    this.currentX_ = aX;
-    this.currentY_ = aY;
+    if (this.currentPath_.length == 0) return;
+    this.currentPath_.push('C' + aCP1x + ',' + aCP1y + ' ' +
+                           aCP2x + ',' + aCP2y + ' ' +
+                           aX + ' ' + aY);
   };
 
   contextPrototype.quadraticCurveTo = function(aCPx, aCPy, aX, aY) {
-    // the following is lifted almost directly from
-    // http://developer.mozilla.org/en/docs/Canvas_tutorial:Drawing_shapes
-    var cp1x = this.currentX_ + 2.0 / 3.0 * (aCPx - this.currentX_);
-    var cp1y = this.currentY_ + 2.0 / 3.0 * (aCPy - this.currentY_);
-    var cp2x = cp1x + (aX - this.currentX_) / 3.0;
-    var cp2y = cp1y + (aY - this.currentY_) / 3.0;
-    this.bezierCurveTo(cp1x, cp1y, cp2x, cp2y, aX, aY);
+    if (this.currentPath_.length == 0) return;
+    this.currentPath_.push('Q' + aCPx + ',' + aCPy + ' ' +
+                           aX + ',' + aY);
+  };
+
+  contextPrototype.arcTo = function(x1, y1, x2, y2, radius) {
+    if (this.currentPath_.length == 0) return;
+    // TODO: Implement
   };
 
   contextPrototype.arc = function(aX, aY, aRadius,
                                   aStartAngle, aEndAngle, aClockwise) {
-    aRadius *= Z;
-    var arcType = aClockwise ? "at" : "wa";
-
-    var xStart = aX + (mc(aStartAngle) * aRadius) - Z2;
-    var yStart = aY + (ms(aStartAngle) * aRadius) - Z2;
-
-    var xEnd = aX + (mc(aEndAngle) * aRadius) - Z2;
-    var yEnd = aY + (ms(aEndAngle) * aRadius) - Z2;
-
-    // IE won't render arches drawn counter clockwise if xStart == xEnd.
-    if (xStart == xEnd && !aClockwise) {
-      xStart += 0.125; // Offset xStart by 1/80 of a pixel. Use something
-                       // that can be represented in binary
+    var deltaAngle = Math.abs(aStartAngle - aEndAngle);
+    // If start and stop are the same WebKit and Moz does nothing
+    if (aStartAngle == aEndAngle) {
+      // different browsers behave differently here so we do the easiest thing
+      return;
     }
 
-    this.currentPath_.push({type: arcType,
-                           x: aX,
-                           y: aY,
-                           radius: aRadius,
-                           xStart: xStart,
-                           yStart: yStart,
-                           xEnd: xEnd,
-                           yEnd: yEnd});
+    var endX = aX + aRadius * Math.cos(aEndAngle);
+    var endY = aY + aRadius * Math.sin(aEndAngle);
 
+    if (deltaAngle >= 2 * Math.PI) {
+      // if larger than 2PI
+      this.arc(aX, aY, aRadius, aStartAngle, aStartAngle + Math.PI, aClockwise);
+      this.arc(aX, aY, aRadius, aStartAngle + Math.PI,
+               aStartAngle + 2 * Math.PI, aClockwise);
+      // now move to end point
+      this.moveTo(endX, endY);
+      return;
+    }
+
+    var startX = aX + aRadius * Math.cos(aStartAngle);
+    var startY = aY + aRadius * Math.sin(aStartAngle);
+    var rotationAngle = deltaAngle * 180 / Math.PI; // sign, abs?
+    var sweepDirection = aClockwise ? 0 : 1;
+    var isLargeArc = rotationAngle >= 180 == Boolean(aClockwise) ? 0 : 1;
+
+    if (this.currentPath_.length != 0) {
+      // add line to start point
+      this.lineTo(startX, startY);
+    } else {
+      this.moveTo(startX, startY);
+    }
+
+    this.currentPath_.push('A' + aRadius + ',' + aRadius + ' ' +
+                           rotationAngle + ' ' +
+                           isLargeArc + ' ' +
+                           sweepDirection + ' ' +
+                           endX + ',' + endY);
   };
 
   contextPrototype.rect = function(aX, aY, aWidth, aHeight) {
@@ -384,6 +455,7 @@ if (!window.CanvasRenderingContext2D) {
     this.lineTo(aX, aY + aHeight);
     this.closePath();
     this.stroke();
+    this.currentPath_ = [];
   };
 
   contextPrototype.fillRect = function(aX, aY, aWidth, aHeight) {
@@ -395,55 +467,35 @@ if (!window.CanvasRenderingContext2D) {
     this.lineTo(aX, aY + aHeight);
     this.closePath();
     this.fill();
+    this.currentPath_ = [];
   };
 
   contextPrototype.createLinearGradient = function(aX0, aY0, aX1, aY1) {
-    var gradient = new CanvasGradient_("gradient");
-    return gradient;
+    return new LinearCanvasGradient_(aX0, aY0, aX1, aY1);
   };
 
-  contextPrototype.createRadialGradient = function(aX0, aY0,
-                                                   aR0, aX1,
-                                                   aY1, aR1) {
-    var gradient = new CanvasGradient_("gradientradial");
-    gradient.radius1_ = aR0;
-    gradient.radius2_ = aR1;
-    gradient.focus_.x = aX0;
-    gradient.focus_.y = aY0;
-    return gradient;
+  contextPrototype.createRadialGradient = function(x0, y0,
+                                                   r0, x1,
+                                                   y1, r1) {
+    return new RadialCanvasGradient_(x0, y0, r0, x1, y1, r1);
   };
 
   contextPrototype.drawImage = function (image, var_args) {
     var dx, dy, dw, dh, sx, sy, sw, sh;
 
-    // to find the original width we overide the width and height
-    var oldRuntimeWidth = image.runtimeStyle.width;
-    var oldRuntimeHeight = image.runtimeStyle.height;
-    image.runtimeStyle.width = 'auto';
-    image.runtimeStyle.height = 'auto';
-
-    // get the original size
-    var w = image.width;
-    var h = image.height;
-
-    // and remove overides
-    image.runtimeStyle.width = oldRuntimeWidth;
-    image.runtimeStyle.height = oldRuntimeHeight;
+    // For Silverlight we don't need to get the size of the image since
+    // Silverlight uses the image original dimension if not provided.
 
     if (arguments.length == 3) {
       dx = arguments[1];
       dy = arguments[2];
-      sx = sy = 0;
-      sw = dw = w;
-      sh = dh = h;
+      // Keep sx, sy, sw, dw, sh and dh undefined
     } else if (arguments.length == 5) {
       dx = arguments[1];
       dy = arguments[2];
       dw = arguments[3];
       dh = arguments[4];
-      sx = sy = 0;
-      sw = w;
-      sh = h;
+      // Keep sx, sy, sw and sh undefined
     } else if (arguments.length == 9) {
       sx = arguments[1];
       sy = arguments[2];
@@ -454,247 +506,84 @@ if (!window.CanvasRenderingContext2D) {
       dw = arguments[7];
       dh = arguments[8];
     } else {
-      throw "Invalid number of arguments";
+      throw Error('Invalid number of arguments');
     }
 
-    var d = this.getCoords_(dx, dy);
+    var slImage;
 
-    var w2 = sw / 2;
-    var h2 = sh / 2;
+    // If we have a source rect we need to clip the image.
+    if (arguments.length == 9) {
+      slImage = drawShape(this, '<Image Source="%1"/>', [image.src]);
 
-    var vmlStr = [];
+      var clipRect = create(this,
+          '<RectangleGeometry Rect="%1,%2,%3,%4"/>', [sx, sy, sw, sh]);
+      slImage.clip = clipRect;
 
-    var W = 10;
-    var H = 10;
+      var m = createMatrixIdentity();
 
-    // For some reason that I've now forgotten, using divs didn't work
-    vmlStr.push(' <g_vml_:group',
-                ' coordsize="', Z * W, ',', Z * H, '"',
-                ' coordorigin="0,0"' ,
-                ' style="width:', W, ';height:', H, ';position:absolute;');
+      // translate to 0,0
+      m[2][0] = -sx;
+      m[2][1] = -sy;
 
-    // If filters are necessary (rotation exists), create them
-    // filters are bog-slow, so only create them if abbsolutely necessary
-    // The following check doesn't account for skews (which don't exist
-    // in the canvas spec (yet) anyway.
+      // scale
+      var m2 = createMatrixIdentity();
+      m2[0][0] = dw / sw;
+      m2[1][1] = dh / sh;
 
-    if (this.m_[0][0] != 1 || this.m_[0][1]) {
-      var filter = [];
+      m = matrixMultiply(m, m2);
 
-      // Note the 12/21 reversal
-      filter.push("M11='", this.m_[0][0], "',",
-                  "M12='", this.m_[1][0], "',",
-                  "M21='", this.m_[0][1], "',",
-                  "M22='", this.m_[1][1], "',",
-                  "Dx='", mr(d.x / Z), "',",
-                  "Dy='", mr(d.y / Z), "'");
+      // translate to destination
+      m[2][0] += dx;
+      m[2][1] += dy;
 
-      // Bounding box calculation (need to minimize displayed area so that
-      // filters don't waste time on unused pixels.
-      var max = d;
-      var c2 = this.getCoords_(dx + dw, dy);
-      var c3 = this.getCoords_(dx, dy + dh);
-      var c4 = this.getCoords_(dx + dw, dy + dh);
+      transformObject(this, slImage, m);
 
-      max.x = Math.max(max.x, c2.x, c3.x, c4.x);
-      max.y = Math.max(max.y, c2.y, c3.y, c4.y);
-
-      vmlStr.push("padding:0 ", mr(max.x / Z), "px ", mr(max.y / Z),
-                  "px 0;filter:progid:DXImageTransform.Microsoft.Matrix(",
-                  filter.join(""), ", sizingmethod='clip');")
     } else {
-      vmlStr.push("top:", mr(d.y / Z), "px;left:", mr(d.x / Z), "px;")
+      slImage = drawShape(this,
+          '<Image Source="%1" Canvas.Left="%2" Canvas.Top="%3"/>',
+          [image.src, dx, dy]);
+      if (dw != undefined || dh != undefined) {
+        slImage.width = dw;
+        slImage.height = dh;
+        slImage.stretch = 'fill';
+      }
     }
-
-    vmlStr.push(' ">' ,
-                '<g_vml_:image src="', image.src, '"',
-                ' style="width:', Z * dw, ';',
-                ' height:', Z * dh, ';"',
-                ' cropleft="', sx / w, '"',
-                ' croptop="', sy / h, '"',
-                ' cropright="', (w - sx - sw) / w, '"',
-                ' cropbottom="', (h - sy - sh) / h, '"',
-                ' />',
-                '</g_vml_:group>');
-
-    this.element_.insertAdjacentHTML("BeforeEnd",
-                                    vmlStr.join(""));
   };
 
-  contextPrototype.stroke = function(aFill) {
-    var lineStr = [];
-    var lineOpen = false;
-    var a = processStyle(aFill ? this.fillStyle : this.strokeStyle);
-    var color = a[0];
-    var opacity = a[1] * this.globalAlpha;
-
-    var W = 10;
-    var H = 10;
-
-    lineStr.push('<g_vml_:shape',
-                 ' fillcolor="', color, '"',
-                 ' filled="', Boolean(aFill), '"',
-                 ' style="position:absolute;width:', W, ';height:', H, ';"',
-                 ' coordorigin="0 0" coordsize="', Z * W, ' ', Z * H, '"',
-                 ' stroked="', !aFill, '"',
-                 ' strokeweight="', this.lineWidth, '"',
-                 ' strokecolor="', color, '"',
-                 ' path="');
-
-    var newSeq = false;
-    var min = {x: null, y: null};
-    var max = {x: null, y: null};
-
-    for (var i = 0; i < this.currentPath_.length; i++) {
-      var p = this.currentPath_[i];
-
-      if (p.type == "moveTo") {
-        lineStr.push(" m ");
-        var c = this.getCoords_(p.x, p.y);
-        lineStr.push(mr(c.x), ",", mr(c.y));
-      } else if (p.type == "lineTo") {
-        lineStr.push(" l ");
-        var c = this.getCoords_(p.x, p.y);
-        lineStr.push(mr(c.x), ",", mr(c.y));
-      } else if (p.type == "close") {
-        lineStr.push(" x ");
-      } else if (p.type == "bezierCurveTo") {
-        lineStr.push(" c ");
-        var c = this.getCoords_(p.x, p.y);
-        var c1 = this.getCoords_(p.cp1x, p.cp1y);
-        var c2 = this.getCoords_(p.cp2x, p.cp2y);
-        lineStr.push(mr(c1.x), ",", mr(c1.y), ",",
-                     mr(c2.x), ",", mr(c2.y), ",",
-                     mr(c.x), ",", mr(c.y));
-      } else if (p.type == "at" || p.type == "wa") {
-        lineStr.push(" ", p.type, " ");
-        var c  = this.getCoords_(p.x, p.y);
-        var cStart = this.getCoords_(p.xStart, p.yStart);
-        var cEnd = this.getCoords_(p.xEnd, p.yEnd);
-
-        lineStr.push(mr(c.x - this.arcScaleX_ * p.radius), ",",
-                     mr(c.y - this.arcScaleY_ * p.radius), " ",
-                     mr(c.x + this.arcScaleX_ * p.radius), ",",
-                     mr(c.y + this.arcScaleY_ * p.radius), " ",
-                     mr(cStart.x), ",", mr(cStart.y), " ",
-                     mr(cEnd.x), ",", mr(cEnd.y));
-      }
-
-
-      // TODO: Following is broken for curves due to
-      //       move to proper paths.
-
-      // Figure out dimensions so we can do gradient fills
-      // properly
-      if(c) {
-        if (min.x == null || c.x < min.x) {
-          min.x = c.x;
-        }
-        if (max.x == null || c.x > max.x) {
-          max.x = c.x;
-        }
-        if (min.y == null || c.y < min.y) {
-          min.y = c.y;
-        }
-        if (max.y == null || c.y > max.y) {
-          max.y = c.y;
-        }
-      }
-    }
-    lineStr.push(' ">');
-
-    if (typeof this.fillStyle == "object") {
-      var focus = {x: "50%", y: "50%"};
-      var width = (max.x - min.x);
-      var height = (max.y - min.y);
-      var dimension = (width > height) ? width : height;
-
-      focus.x = mr((this.fillStyle.focus_.x / width) * 100 + 50) + "%";
-      focus.y = mr((this.fillStyle.focus_.y / height) * 100 + 50) + "%";
-
-      var colors = [];
-
-      // inside radius (%)
-      if (this.fillStyle.type_ == "gradientradial") {
-        var inside = (this.fillStyle.radius1_ / dimension * 100);
-
-        // percentage that outside radius exceeds inside radius
-        var expansion = (this.fillStyle.radius2_ / dimension * 100) - inside;
-      } else {
-        var inside = 0;
-        var expansion = 100;
-      }
-
-      var insidecolor = {offset: null, color: null};
-      var outsidecolor = {offset: null, color: null};
-
-      // We need to sort 'colors' by percentage, from 0 > 100 otherwise ie
-      // won't interpret it correctly
-      this.fillStyle.colors_.sort(function (cs1, cs2) {
-        return cs1.offset - cs2.offset;
-      });
-
-      for (var i = 0; i < this.fillStyle.colors_.length; i++) {
-        var fs = this.fillStyle.colors_[i];
-
-        colors.push( (fs.offset * expansion) + inside, "% ", fs.color, ",");
-
-        if (fs.offset > insidecolor.offset || insidecolor.offset == null) {
-          insidecolor.offset = fs.offset;
-          insidecolor.color = fs.color;
-        }
-
-        if (fs.offset < outsidecolor.offset || outsidecolor.offset == null) {
-          outsidecolor.offset = fs.offset;
-          outsidecolor.color = fs.color;
-        }
-      }
-      colors.pop();
-
-      lineStr.push('<g_vml_:fill',
-                   ' color="', outsidecolor.color, '"',
-                   ' color2="', insidecolor.color, '"',
-                   ' type="', this.fillStyle.type_, '"',
-                   ' focusposition="', focus.x, ', ', focus.y, '"',
-                   ' colors="', colors.join(""), '"',
-                   ' opacity="', opacity, '" />');
-    } else if (aFill) {
-      lineStr.push('<g_vml_:fill color="', color, '" opacity="', opacity, '" />');
-    } else {
-      lineStr.push(
-        '<g_vml_:stroke',
-        ' opacity="', opacity,'"',
-        ' joinstyle="', this.lineJoin, '"',
-        ' miterlimit="', this.miterLimit, '"',
-        ' endcap="', processLineCap(this.lineCap) ,'"',
-        ' weight="', this.lineWidth, 'px"',
-        ' color="', color,'" />'
-      );
-    }
-
-    lineStr.push("</g_vml_:shape>");
-
-    this.element_.insertAdjacentHTML("beforeEnd", lineStr.join(""));
-
-    this.currentPath_ = [];
+  contextPrototype.stroke = function() {
+    if (this.currentPath_.length == 0) return;
+    var path = drawShape(this, '<Path Data="%1"/>',
+                         [this.currentPath_.join(' ')]);
+    path.stroke = createBrushObject(this, this.strokeStyle);
+    path.opacity = this.globalAlpha;
+    path.strokeThickness = this.lineWidth;
+    path.strokeMiterLimit = this.miterLimit;
+    path.strokeLineJoin = this.lineJoin;
+    // Canvas does not differentiate start from end
+    path.strokeEndLineCap = path.strokeStartLineCap =
+        processLineCap(this.lineCap);
   };
 
   contextPrototype.fill = function() {
-    this.stroke(true);
-  }
+    if (this.currentPath_.length == 0) return;
+    var path = drawShape(this, '<Path Data="%1"/>',
+                         [this.currentPath_.join(' ')]);
+    // The spec says to use non zero but Silverlight uses EvenOdd by defaul
+    path.data.fillRule = 'NonZero';
+    path.fill = createBrushObject(this, this.fillStyle);
+    // TODO: What about even-odd etc?
+  };
 
   contextPrototype.closePath = function() {
-    this.currentPath_.push({type: "close"});
+    this.currentPath_.push('z');
   };
 
   /**
-   * @private
+   * Sets the transformation matrix and marks things as dirty
    */
-  contextPrototype.getCoords_ = function(aX, aY) {
-    return {
-      x: Z * (aX * this.m_[0][0] + aY * this.m_[1][0] + this.m_[2][0]) - Z2,
-      y: Z * (aX * this.m_[0][1] + aY * this.m_[1][1] + this.m_[2][1]) - Z2
-    }
+  function setM(self, m) {
+    self.m_ = m;
+    self.lastCanvas_ = null;
   };
 
   contextPrototype.save = function() {
@@ -702,12 +591,12 @@ if (!window.CanvasRenderingContext2D) {
     copyState(this, o);
     this.aStack_.push(o);
     this.mStack_.push(this.m_);
-    this.m_ = matrixMultiply(createMatrixIdentity(), this.m_);
+    setM(this, matrixMultiply(createMatrixIdentity(), this.m_));
   };
 
   contextPrototype.restore = function() {
     copyState(this.aStack_.pop(), this);
-    this.m_ = this.mStack_.pop();
+    setM(this, this.mStack_.pop());
   };
 
   contextPrototype.translate = function(aX, aY) {
@@ -717,12 +606,12 @@ if (!window.CanvasRenderingContext2D) {
       [aX, aY, 1]
     ];
 
-    this.m_ = matrixMultiply(m1, this.m_);
+    setM(this, matrixMultiply(m1, this.m_));
   };
 
   contextPrototype.rotate = function(aRot) {
-    var c = mc(aRot);
-    var s = ms(aRot);
+    var c = Math.cos(aRot);
+    var s = Math.sin(aRot);
 
     var m1 = [
       [c,  s, 0],
@@ -730,27 +619,39 @@ if (!window.CanvasRenderingContext2D) {
       [0,  0, 1]
     ];
 
-    this.m_ = matrixMultiply(m1, this.m_);
+    setM(this, matrixMultiply(m1, this.m_));
   };
 
   contextPrototype.scale = function(aX, aY) {
-    this.arcScaleX_ *= aX;
-    this.arcScaleY_ *= aY;
     var m1 = [
       [aX, 0,  0],
       [0,  aY, 0],
       [0,  0,  1]
     ];
 
-    this.m_ = matrixMultiply(m1, this.m_);
+    setM(this, matrixMultiply(m1, this.m_));
+  };
+
+  contextPrototype.transform = function(m11, m12, m21, m22, dx, dy) {
+    var m1 = [
+      [m11, m12, 0],
+      [m21, m22, 0],
+      [ dx,  dy, 1]
+    ];
+
+    setM(this, matrixMultiply(m1, this.m_));
+  };
+
+  contextPrototype.setTransform = function(m11, m12, m21, m22, dx, dy) {
+    setM(this, [
+      [m11, m12, 0],
+      [m21, m22, 0],
+      [ dx,  dy, 1],
+    ]);
   };
 
   /******** STUBS ********/
   contextPrototype.clip = function() {
-    // TODO: Implement
-  };
-
-  contextPrototype.arcTo = function() {
     // TODO: Implement
   };
 
@@ -759,17 +660,101 @@ if (!window.CanvasRenderingContext2D) {
   };
 
   // Gradient / Pattern Stubs
-  function CanvasGradient_(aType) {
-    this.type_ = aType;
-    this.radius1_ = 0;
-    this.radius2_ = 0;
+  function CanvasGradient_() {
     this.colors_ = [];
-    this.focus_ = {x: 0, y: 0};
   }
 
   CanvasGradient_.prototype.addColorStop = function(aOffset, aColor) {
-    aColor = processStyle(aColor);
-    this.colors_.push({offset: 1-aOffset, color: aColor});
+    aColor = translateColor(aColor);
+    this.colors_.push({offset: aOffset, color: aColor});
+  };
+
+  CanvasGradient_.prototype.createStops_ = function(ctx, brushObj, colors) {
+    var gradientStopCollection = brushObj.gradientStops;
+    for (var i = 0, c; c = colors[i]; i++) {
+      var color = translateColor(c.color);
+      gradientStopCollection.add(create(ctx,
+          '<GradientStop Color="%1" Offset="%2"/>', [color, c.offset]));
+    }
+  };
+
+  function LinearCanvasGradient_(x0, y0, x1, y1) {
+    CanvasGradient_.call(this);
+    this.x0_ = x0;
+    this.y0_ = y0;
+    this.x1_ = x1;
+    this.y1_ = y1;
+  }
+  LinearCanvasGradient_.prototype = new CanvasGradient_;
+
+  LinearCanvasGradient_.prototype.createBrush_ = function(ctx) {
+    var brushObj = create(ctx, '<LinearGradientBrush MappingMode="Absolute" ' +
+                          'StartPoint="%1,%2" EndPoint="%3,%4"/>',
+                          [this.x0_, this.y0_, this.x1_, this.y1_]);
+    this.createStops_(ctx, brushObj, this.colors_);
+    return brushObj;
+  };
+
+  function isNanOrInfinite(v) {
+    return isNaN(v) || !isFinite(v);
+  }
+
+  function RadialCanvasGradient_(x0, y0, r0, x1, y1, r1) {
+    if (r0 < 0 || r1 < 0 || isNanOrInfinite(x0) || isNanOrInfinite(y0) ||
+        isNanOrInfinite(x1) || isNanOrInfinite(y1)) {
+      // IE does not support DOMException so this is as close as we get.
+      var error = Error('DOMException.INDEX_SIZE_ERR');
+      error.code = 1;
+      throw error;
+    }
+
+    CanvasGradient_.call(this);
+    this.x0_ = x0;
+    this.y0_ = y0;
+    this.r0_ = r0;
+    this.x1_ = x1;
+    this.y1_ = y1;
+    this.r1_ = r1;
+  }
+  RadialCanvasGradient_.prototype = new CanvasGradient_;
+
+  CanvasGradient_.prototype.createBrush_ = function(ctx) {
+    if (this.x0_ == this.x1_ && this.y0_ == this.y1_ && this.r0_ == this.r1_) {
+      return null;
+    }
+
+    var radius = Math.max(this.r0_, this.r1_);
+    var minRadius = Math.min(this.r0_, this.r1_);
+    var brushObj = create(ctx, '<RadialGradientBrush MappingMode="Absolute" ' +
+                          'GradientOrigin="%1,%2" Center="%3,%4" ' +
+                          'RadiusX="%5" RadiusY="%5"/>',
+                          [this.x0_, this.y0_, this.x1_, this.y1_, radius]);
+
+    var colors = this.colors_.concat();
+
+    if (this.r1_ < this.r0_) {
+      // reverse color stop array
+      colors.reverse();
+      for (var i = 0, c; c = colors[i]; i++) {
+        c.offset = 1 - c.offset;
+      }
+    }
+
+    // sort the color stops
+    colors.sort(function(c1, c2) {
+      return c1.offset - c2.offset;
+    });
+
+    if (minRadius > 0) {
+      // We need to adjust the color stops since SL always have the inner radius
+      // at (0, 0) so we change the stops in case the min radius is not 0.
+      for (var i = 0, c; c = colors[i]; i++) {
+        c.offset = minRadius / radius + (radius - minRadius) / radius * c.offset;
+      }
+    }
+
+    this.createStops_(ctx, brushObj, colors);
+    return brushObj;
   };
 
   function CanvasPattern_() {}

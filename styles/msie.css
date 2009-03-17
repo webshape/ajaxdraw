@@ -114,9 +114,15 @@ width: 400px;display: none;
 	display: inline-block;	
 }
 
+#opBorder,#opFill{
+  margin-top:0.5em;
+  
+}
 
-
-
+#changeBorderCol, #changeFillCol{
+	margin-top: -0.5em;
+	
+}
 /* This file skins dialog */
 
 .flora .ui-dialog,

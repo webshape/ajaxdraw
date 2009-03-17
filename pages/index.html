@@ -43,7 +43,7 @@
 <!-- Barra di salvataggio -->
 <ul id="menuModel5">
 	<li id="50000"><a href="#" title="Apri il menu file">File</a>
-		<ul width="150">
+		<ul style="width:150px">
 			<li id="500001" jsFunction='$("#saveDialog").css({"display" : "block"});
 												$("#saveDialog").dialog({
 													modal: true,
@@ -65,14 +65,13 @@
 								   			});' id="500003"><a href="#">Apri</a></li>
 		</ul>
 	</li>
-	<li id="50001" <a href="#" title="Apri il menu modifica">Modifica</a>
-		<ul width="160">
-	
+	<li id="50001"> <a href="#" title="Apri il menu modifica">Modifica</a>
+		<ul style="width:160px">	
 			<li itemIcon="images/menu_bar/trash.gif" jsFunction='ClearCanvasButton()' id="500017"><a href="#">Svuota Canvas</a>	
 		</ul>
 	</li>
 	<li id="50002"><a href="#">Visualizza</a>
-		<ul width="130">
+		<ul style="width:130px">
 			<li itemIcon="images/menu_bar/colorDialog.gif" jsFunction='$("#colorDialog").dialog( "close" );
 								$("#colorDialog").dialog({
 									position: ["right","top"],
@@ -97,9 +96,9 @@
 	</li>
 	<!--  <li id="50003" itemType="separator"></li> -->
 	<li id="50003"><a href="#">Guida</a> 
-			<ul width="160">
-				<li id="40000"itemIcon="images/menu_bar/guida.gif" 
-				jsFunction="window.open('../doc/ManualeUtente/help/index.html')" id="50025"><a href="#">Manuale</a>
+			<ul style="width:160px">
+				<li id="40000" itemIcon="images/menu_bar/guida.gif" 
+				jsFunction="window.open('../doc/ManualeUtente/help/index.html')"><a href="#">Manuale</a>
 				
 				
 				<li itemIcon="images/menu_bar/info.gif" jsFunction='$("#aboutDialog").css({"display" : "block"});
@@ -142,18 +141,6 @@ menuBar5.init();
 		<input title="Disegna linee a mano libera" class="toolbarButton" id="freeLineButton" type="button"/><br/>
 		<input title="Crea caselle di testo" class="toolbarButton" id="textButton" type="button"/><br/>
 		<div id="saveLoadZone"><br/>	
-		<span >
-		<!--  <select id="scaleButton" title="Scegli la percentuale di riscalamento">
-				<option value="2" >200%</option>
- 			 	<option value="1.5" >150%</option> 						
- 				<option value="1" >100%</option>
- 			 	<option value="0.5" >50%</option>  
- 			 	<option value="0.25" >25%</option> 
-			</select> -->	
-		</span><br/>
-		<!--  <span>
-			<input type="button" id="clearCanvasButton" name="ClearButton" value="Svuota" title="Svuota il canvas"/>
-		</span><br/> -->
 		<span>
 			<input type="button" id="eraseButton" name="EraseButton" value="Cancella" title="Cancella un singolo elemento"/>
 		</span><br/>
@@ -175,85 +162,81 @@ menuBar5.init();
 		<span class="paletteComponent" style="background-color:#FB8B00">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
 		<span class="paletteComponent" style="background-color:#F44800">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
 		<span class="paletteComponent" style="background-color:#FFFF99">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-		<span class="paletteComponent"  style="background-color:#FFFF00">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>	
-		<span class="paletteComponent"  style="background-color:#FDCA01">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>	
-		<span class="paletteComponent"  style="background-color:#986601">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>	
-		<span class="paletteComponent"  style="background-color:#F44800">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-		<span class="paletteComponent"  style="background-color:#FD3301">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-		<span class="paletteComponent"  style="background-color:#D40000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-		<span class="paletteComponent"  style="background-color:#980101">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-		<span class="paletteComponent"  style="background-color:#FDD99B">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-		<span class="paletteComponent"  style="background-color:#D9BB7A">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-		<span class="paletteComponent"  style="background-color:#816647">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-		<span class="paletteComponent"  style="background-color:#565248">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-		<span class="paletteComponent"  style="background-color:#AACCEE">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-		<span class="paletteComponent"  style="background-color:#6699CC">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-		<span class="paletteComponent"  style="background-color:#336699">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>		
-		<span class="paletteComponent"  style="background-color:#003366">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>		
-		<span class="paletteComponent"  style="background-color:#B3DEFD">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>		
-		<span class="paletteComponent"  style="background-color:#0197FD">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>		
-		<span class="paletteComponent"  style="background-color:#0169C9">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>		
-		<span class="paletteComponent"  style="background-color:#013397">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>		
-		<span class="paletteComponent"  style="background-color:#CCFF99">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>		
-		<span class="paletteComponent"  style="background-color:#98FC66">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>	
-		<span class="paletteComponent"  style="background-color:#339900">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>	
-		<span class="paletteComponent"  style="background-color:#015A01">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>				
-		<span class="paletteComponent"  style="background-color:#002B3D">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>				
-		<span class="paletteComponent"  style="background-color:#FF9BFF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>				
-		<span class="paletteComponent"  style="background-color:#FF00FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>				
-		<span class="paletteComponent"  style="background-color:#6600CC">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>				
-		<span class="paletteComponent"  style="background-color:#EEEEEE">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>				
-		<span class="paletteComponent"  style="background-color:#CCCCCF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>		
-		<span class="paletteComponent"  style="background-color:#AAAAAA">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>	
-		<span class="paletteComponent"  style="background-color:#888888">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>	
-		<span class="paletteComponent"  style="background-color:#666666">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>	
-		<span class="paletteComponent"  style="background-color:#333333">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>	
+		<span class="paletteComponent" style="background-color:#FFFF00">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>	
+		<span class="paletteComponent" style="background-color:#FDCA01">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>	
+		<span class="paletteComponent" style="background-color:#986601">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>	
+		<span class="paletteComponent" style="background-color:#F44800">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+		<span class="paletteComponent" style="background-color:#FD3301">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+		<span class="paletteComponent" style="background-color:#D40000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+		<span class="paletteComponent" style="background-color:#980101">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+		<span class="paletteComponent" style="background-color:#FDD99B">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+		<span class="paletteComponent" style="background-color:#D9BB7A">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+		<span class="paletteComponent" style="background-color:#816647">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+		<span class="paletteComponent" style="background-color:#565248">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+		<span class="paletteComponent" style="background-color:#AACCEE">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+		<span class="paletteComponent" style="background-color:#6699CC">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+		<span class="paletteComponent" style="background-color:#336699">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>		
+		<span class="paletteComponent" style="background-color:#003366">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>		
+		<span class="paletteComponent" style="background-color:#B3DEFD">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>		
+		<span class="paletteComponent" style="background-color:#0197FD">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>		
+		<span class="paletteComponent" style="background-color:#0169C9">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>		
+		<span class="paletteComponent" style="background-color:#013397">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>		
+		<span class="paletteComponent" style="background-color:#CCFF99">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>		
+		<span class="paletteComponent" style="background-color:#98FC66">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>	
+		<span class="paletteComponent" style="background-color:#339900">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>	
+		<span class="paletteComponent" style="background-color:#015A01">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>				
+		<span class="paletteComponent" style="background-color:#002B3D">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>				
+		<span class="paletteComponent" style="background-color:#FF9BFF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>				
+		<span class="paletteComponent" style="background-color:#FF00FF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>				
+		<span class="paletteComponent" style="background-color:#6600CC">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>				
+		<span class="paletteComponent" style="background-color:#EEEEEE">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>				
+		<span class="paletteComponent" style="background-color:#CCCCCF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>		
+		<span class="paletteComponent" style="background-color:#AAAAAA">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>	
+		<span class="paletteComponent" style="background-color:#888888">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>	
+		<span class="paletteComponent" style="background-color:#666666">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>	
+		<span class="paletteComponent" style="background-color:#333333">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>	
 		<span id="lastPalette" class="paletteComponent" style="background-color:#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>	
-<span >
-<select id="comboColor">
-  <option value="border">Bordo</option>
-  <option value="fill">Riempimento</option>  
-</select>
-</span>
+		<span>
+			<select id="comboColor">
+				<option value="border">Bordo</option>
+				<option value="fill">Riempimento</option>  
+			</select>
+		</span>
 
 	</div>
-
-<div/>
-
+</div>
 
 
 <!-- Fine interfaccia -->
 <!-- Inizio Parte Dialog Colori-->
-<div id="colorDialog" class="flora" title="Modifica colori">
-  
+<div id="colorDialog" class="flora" title="Modifica colori">  
 	<p>Bordo:   
 		<span id="borderColorNow" style="background-color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-		<input type="button" id="setBorderCol" title="Cambia il colore del bordo della figura selezionata" value="Cambia" />
-		 <p style="margin-top:-0.5em"> Opacit&agrave;: <input type="text" id="borderOp" size="5" value="1"/> </p>
+		<input type="button" id="setBorderCol" value="Cambia" />
+		 <p id="opBorder"> Opacit&agrave;: <input type="text" id="borderOp" size="5" value="1"/> </p>
 		<div id="divBorderCol" >
 			<input type="button" id="changeBorderCol" name="ChangeCol" value="Cambia Colore Bordo"/>
 		</div>
 	</p>
 	<!-- Farbtastic $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ -->
-	<form id="colorx" action="">
+	<form id="colorx" >
   		<div class="form-item" >
   			<label for="color">Color:</label>
   			<input type="text" id="color1" name="color1" value="#123456" />
   		</div>
-  		<div id="picker1"></div>
-                
+  		<div id="picker1"></div>               
 	</form>	
 	<!-- Seconda ruota -->
        
 	<p>Riemp.:  
 		<span id="fillColorNow" style="background-color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> 
-		<span title="Cambia il colore di riempimento della figura selezionata"><input type="button" id="setFillCol" title="Cambia il colore di riempimento della figura selezionata"value="Cambia" /></span>
-		 <p style="margin-top:-0.5em"> Opacit&agrave;: <input type="text" id="fillOp" size="5"value="1" /> </p>
+		<span><input type="button" id="setFillCol" value="Cambia" /></span>
+		 <p id="opFill"> Opacit&agrave;: <input type="text" id="fillOp" size="5" value="1" /> </p>
 		<div id="divFillCol">
 			<input type="button" id="changeFillCol" name="ChangeCol" value="Cambia Colore Riemp."/>
 		</div>
 	</p>
-	<form id="colory" action="">
+	<form id="colory">
   		<div class="form-item" >
   			<label for="color">Color:</label>
   			<input type="text" id="color2" name="color2" value="#123456" />
@@ -317,9 +300,9 @@ menuBar5.init();
 	</p>
 	<!-- A proposito -->
 	<p id="aboutDialog"  class="flora" title="About:">
-		<span id="aboutSpan" style="display:none">
-			<h1 style="text-align:center" >AJAXDRAW</h1><br/>			
-			<img  src="images/logo.png" width="269" height="135" name="Logo" alt="Logo WebShape" />
+		<span id="aboutSpan" style="display:none;text-align:center">
+			<strong>AJAXDRAW</strong><br/><br/>			
+			<img src="images/logo.png" width="269" height="135" alt="Logo WebShape" />
 		</span>		
 	</p>
 </body>

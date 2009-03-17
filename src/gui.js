@@ -170,8 +170,8 @@ $(document).ready(function(){
 
   // Tooltip animation
   $("*").tooltip(
-    {delay: 750} // 0.75 secs
-  );
+  {delay: 750} // 0.75 secs
+ );
   $(".toolbarButton").hover(
     function(){
       $(this).fadeOut(100);
