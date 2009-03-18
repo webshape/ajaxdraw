@@ -823,6 +823,8 @@ Il costruttore controlla se il browser supporta il metodo \textit{getImageData} 
 \item[-]  \textit{each(fn)} permette di applicare una funzione ad ogni figura. Viene usato per iterare attraverso la collezione. Applica fn ad ogni elemento di \textit{{\_}figures}. 
 \item[-]  \textit{add(f)} aggiunge la figura f alla fine di \textit{{\_}figures}.
 \item[-]  \textit{rem(f)} rimuove da \textit{{\_}figures} tutte le figure identiche (ovvero aventi lo stesso indirizzo) di f.
+\item[-] \textit{toTop(f)} prende la figura f e l'aggiunge in cima a tutte le altre ponendola come ultima nell'array \textit{{\_}figures}. Se \`e gi\`a presente, la sposta. Usa il metodo \textit{rem} per togliere la figura e il metodo \textit{add} per aggiungerla in coda.
+\item[-] \textit{toBottom(f)} prende la figura f e l'aggiunge sotto tutte le altre ponendola come prima nell'array \textit{{\_}figures}. Se \`e gi\`a presente, la sposta. Usa il metodo \textit{rem} per togliere la figura e il metodo \textit{unshift} di \textit{{\_}figures} per aggiungerla in testa.
 \end{elencopuntato}
 
 
@@ -1195,28 +1197,28 @@ Gestisce i processi di conversione da e verso il formato SVG. Si riportano i dia
 
 \subsezione{SVGWriter}
 \subsubsezione{Tipo, obiettivo e funzione del componente}
-Si occupa di chiamare il metodo \textit{toSVG} su ogni figura e ritornare il documento SVG che corrisponde alla situazione corrente del canvas.
+Si occupa di chiamare il metodo \textit{toSVG} su ogni figura e ritornare una stringa rappresentate il documento SVG che corrisponde alla situazione corrente del canvas.
 \subsubsezione{Relazioni d'uso di altre componenti}
-Si serve di \textit{SVGGenerator} per creare il documento e ritornarlo, del metodo \textit{each} per iterare attraverso la collezione di figure.
+Si serve di \textit{SVGGenerator} per creare la stringa e ritornarla, del metodo \textit{each} per iterare attraverso la collezione di figure.
 \subsubsezione{Interfacce e relazioni di uso da altre componenti}
-Nessuna
+Nessuna.
 \subsubsezione{Attivit\`a svolte e dati trattati}
 \paragrafo{Metodi pubblici:}
 \begin{elencopuntato}[\subsubsecindent]
-\item[-]  \textit{write()} chiama il metodo \textit{toSVG} su ogni figura e ritorna il documento SVG.
+\item[-]  \textit{write()} chiama il costruttore \textit{SVGGenerator} ottenendo cos\`i il documento sotto forma di stringa con l'header SVG gi\`a inserito. Poi chiama il metodo \textit{toSVG} su ogni figura e ritorna la stringa rappresentante il documento SVG con il metodo \textit{flush} di \textit{SVGGenerator}.
 \end{elencopuntato}
 
 \subsezione{SVGGenerator}
 \subsubsezione{Tipo, obiettivo e funzione del componente}
-Contiene il documento SVG in costruzione e i metodi per gestirlo.
+Contiene la stringa rappresentante il documento SVG in costruzione e i metodi per gestirlo.
 \subsubsezione{Relazioni d'uso di altre componenti}
-Nessuna
+Nessuna.
 \subsubsezione{Interfacce e relazioni di uso da altre componenti}
-Usato da \textit{SVGWriter} per realizzare il documento SVG.
+Usato da \textit{SVGWriter} per ottenere e ritornare la stringa rappresentateil documento SVG.
 \subsubsezione{Attivit\`a svolte e dati trattati}
 \paragrafo{Attributi privati:}
 \begin{elencopuntato}[\subsubsecindent]
-\item[-] \textit{{\_}doc} stringa che rappresenta il documento in costruzione.
+\item[-] \textit{{\_}doc} stringa che rappresenta il documento SVG in costruzione.
 Per maggiori dettagli si veda il diagramma di stato: \newpage
 
 \begin{figure}[!ht]
@@ -1228,11 +1230,11 @@ Per maggiori dettagli si veda il diagramma di stato: \newpage
 \end{elencopuntato}
 \paragrafo{Metodi pubblici:}
 \begin{elencopuntato}[\subsubsecindent]
-\item[-]  \textit{startCommand(name)} apre un tag svg con il valore \textit{name}. 
+\item[-]  \textit{startCommand(name)} apre un tag SVG con il valore \textit{name}. 
 \item[-]  \textit{attr(name, value, last)} aggiunge un attributo \textit{name} con valore \textit{value}. Se il valore booleano \textit{last} \`e \textit{true} chiude il tag di apertura.
 \item[-]  \textit{text(t)} scrive il testo contenuto nella stringa \textit{t} tra un tag di apertura e il corrispondente di chiusura.
-\item[-]  \textit{endCommand(name)} aggiunge un tag svg di chiusura con il valore \textit{name}.
-\item[-]  \textit{flush()} chiude il documento e lo ritorna come stringa.
+\item[-]  \textit{endCommand(name)} aggiunge un tag SVG di chiusura con il valore \textit{name}.
+\item[-]  \textit{flush()} aggiunge il tag di chiusura \textit{</svg>} e ritorna la stringa rappresentante il documento SVG.
 \end{elencopuntato}
 
 
@@ -1248,20 +1250,20 @@ Nessuna.
 \subsubsezione{Attivit\`a svolte e dati trattati}
 \paragrafo{Metodi pubblici:}
 \begin{elencopuntato}[\subsubsecindent]
-\item[-]  \textit{read(doc)} ottiene un modello \underline{DOM} da \textit{doc} attraverso il metodo \textit{parsing} di \textit{XMLParser} e lancia un errore se l'operazione non ha successo. Itera il DOM per accedere ai tag; per ognuno controlla che sia presente nella tabella della classe \textit{SVGElementRegistry} e in caso affermativo chiama il metodo \textit{fromSVG} sull'istanza della corrispondente figura. Infine aggiunge la figura all'istanza di \textit{FigureSet}.
+\item[-]  \textit{read(doc)} ottiene un modello \underline{DOM} dalla stringa \textit{doc} attraverso il metodo \textit{parsing} di \textit{XMLParser} e lancia un errore se l'operazione non ha successo. Itera il DOM per accedere ai tag; per ognuno controlla che sia presente nella tabella della classe \textit{SVGElementRegistry} e in caso affermativo chiama il metodo \textit{fromSVG} sull'istanza della corrispondente figura. Infine aggiunge la figura all'istanza di \textit{FigureSet}.
 \end{elencopuntato}
 
 \subsezione{XMLParser}
 \subsubsezione{Tipo, obiettivo e funzione del componente}
-Si occupa di fare il parsing del documento SVG come XML e di ritornare il DOM corrispondente.
+Si occupa di fare il parsing XML della stringa rappresentante il documento SVG e di ritornare il DOM corrispondente.
 \subsubsezione{Relazioni d'uso di altre componenti}
 Nessuna.
 \subsubsezione{Interfacce e relazioni di uso da altre componenti}
-Usato da \textit{SVGReader} per ottenere il modello DOM dal documento SVG.
+Usato da \textit{SVGReader} per ottenere il modello DOM dalla stringa rappresentante il documento SVG.
 \subsubsezione{Attivit\`a svolte e dati trattati}
 \paragrafo{Metodi pubblici:}
 \begin{elencopuntato}[\subsubsecindent]
-\item[-] \textit{parsing(doc)} crea un documento XML vuoto (un documento Microsoft se il browser in uso \`e Internet Explorer) e ci carica dentro il file \textit{doc}. Se riscontra un errore nel parsing del file fa apparire una finestra che da informazioni sulla posizione e sulla natura di tale errore.
+\item[-] \textit{parsing(doc)} crea un documento XML vuoto (un documento Microsoft se il browser in uso \`e Internet Explorer) e ci carica dentro la stringa \textit{doc}. Se riscontra un errore nel parsing del file fa apparire una finestra che da informazioni sulla posizione e sulla natura di tale errore.
 \end{elencopuntato}
 
 \subsezione{SVGElementRegistry}

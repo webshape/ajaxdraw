@@ -118,7 +118,10 @@ function SVGElementRegistry() {
 SVGElementRegistry.prototype.makeFigureClassFromTag = function (tag) {
   var fn = this._reg[tag];
   if (fn) {
-    return new fn();
+	 if (tag == 'text')
+		return new fn(new TextString("canvas"));
+	 else
+		return new fn();
   }
   return null;
 };
@@ -179,7 +182,7 @@ Rectangle.prototype.fromSVG = function (n) {
   if (sottostringa != "#")
       alert("manca il # prima del valore esadecimale di fill")
 
-  errorEx = /^#?[\dabcdef]{6}$/gi;
+  var errorEx = /^#?[\dabcdef]{6}$/gi;
   if(!(errorEx.test(n.getAttribute("fill"))))
     alert("Il valore di fill non e' un valore esadecimale valido");
   this.getFillColour().fromCSS(n.getAttribute("fill"));
@@ -324,13 +327,19 @@ Text.prototype.fromSVG = function (n) {
   /*}
   else {
 	 var x2 = (h/2) * txt.length;
+
   }*/
-  var p1 = new Point(parseInt(x1, 10), parseInt(y1, 10));
-  var p2 = new Point(x2, y2);
+  //var p1 = new Point(parseInt(x1, 10), parseInt(y1, 10));
+  //var p2 = new Point(x2, y2);
+
+  
+  var p1 = new Point(x1, y1);
+  var p2 = new Point(x1+400, y2);
+
   this.getBounds().setStart(p1);
   this.getBounds().setEnd(p2);
-  this.getFillColour().fromCSS(n.getAttribute("fill"));
-  this.getFillColour().getOpacity().setVal(n.getAttribute("fill-opacity"));
+  this.getTextColour().fromCSS(n.getAttribute("fill"));
+//  this.getTextColour().getOpacity().setVal(n.getAttribute("fill-opacity"));
   this.getBorderColour().fromCSS(n.getAttribute("stroke"));
-  this.getBorderColour().getOpacity().setVal(n.getAttribute("stroke-opacity"));
+//  this.getBorderColour().getOpacity().setVal(n.getAttribute("stroke-opacity"));
 };
