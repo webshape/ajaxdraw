@@ -46,7 +46,14 @@ Page.prototype.activateStylesheet = function (sheetref){
  * */
 Page.prototype.loadStylesheet = function (){
   var name = this._browserName;
-  var nameComp = name+".css";
+  var nameComp;
+  if (name=="msie"){
+    nameComp = $.browser.className +".css";
+   // alert(nameComp);    //msie7 mod.non standard, msie8 mod.standard IE8
+  }
+  else{
+    nameComp = name+".css";
+  }
   this.activateStylesheet(nameComp);
 };
 
@@ -117,7 +124,6 @@ Visualization.prototype.refresh = function(){
   var c = document.getElementById('cv');
   if ($.browser.name=="msie") { // hack for internet explorer
     c = window.G_vmlCanvasManager.initElement(c);
-   // alert("refresh");
   }
   var ctx = c.getContext('2d');
   this._scale.applyToContext(ctx, this._offset);
@@ -495,6 +501,7 @@ SelectionButton.prototype.bindCanvas = function (toolbar,canvas,canvasObj,visual
   });
   $("#cv").bind("mousedown", function(e){
       var coords = visual.getClickCoordsWithinTarget(e);
+      //alert(coords.x+" "+coords.y);
       var coord = new Point(coords.x,coords.y);
       var actualFigure = figureSet.selectFigure(coord, visual.getScale(), visual.getOffset());
       if(actualFigure===null){
@@ -512,10 +519,10 @@ SelectionButton.prototype.bindCanvas = function (toolbar,canvas,canvasObj,visual
 	  // eraseButton.eraseElement(figureSet);
 	});
         figureSet.each(function (f) {
-                         if (f.isSelected()) {
-                           actualFigure = f;
-                         }
-                       });
+          if (f.isSelected()) {
+            actualFigure = f;
+          }
+        });
         var keepSelection = false;
         if (actualFigure) {
           keepSelection = self._handleCtrlPoint(coord, actualFigure);
@@ -654,9 +661,10 @@ ZoomInButton.prototype.bindCanvas = function (toolbar,canvas,canvasObj,visual,fi
 	 visual.setScale(new Scale(factor));
 //	 alert(oldw + ", " + canvas.width/2 + ", " + visual.getOffset().x + ", " + factor);
 	 canvasObj.clear();
-    visual.refresh();
+	 visual.refresh();
   });
 };
+
 /**
  * @constructor
  * The Zoom Out  button

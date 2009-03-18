@@ -363,6 +363,9 @@ function FigureSet () {
   // check if we have getImageData
   var hasImageData = false;
   var c = document.createElement('canvas');
+ // if ($.browser.name=="msie") { // hack for internet explorer
+ //   c = window.G_vmlCanvasManager.initElement(c);
+//  }
   if (c && c.getContext) {
     c = c.getContext('2d');
     if (c) {
@@ -468,15 +471,11 @@ FigureSet.prototype.selectFigure = function (where, scale, offset) {
 
   var fs = {};
   var c = document.createElement('canvas');
-
-  if ($.browser.name=="msie") { // hack for internet explorer
-     c = window.G_vmlCanvasManager.initElement(c);
-  }
-
   var cv = document.getElementById('cv');
+
   c.width = cv.width;
   c.height = cv.height;
-  
+
   var absWhere = where;
   if (scale) {
     absWhere = scale.toAbs(where, offset);
