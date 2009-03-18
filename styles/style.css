@@ -137,9 +137,9 @@ width: 400px;display: none;
 
 #toTopButton{
 	
-	background-image:url("../pages/images/go-up.png");
+	background-image:url("../pages/images/go-top.png");
 	width: 3em;
-	height:2.5em;
+	height:2.6em;
 	background-color:#F4F3F2;
 	background-repeat: no-repeat;
 	background-position: center;
@@ -149,9 +149,9 @@ width: 400px;display: none;
 
 
 #toBottomButton{
-	background-image:url("../pages/images/go-down.png");
+	background-image:url("../pages/images/go-bottom.png");
 	width: 3em;
-	height:2.5em;
+	height:2.6em;
 	background-color:#F4F3F2;
 	background-repeat: no-repeat;
 	background-position: center;
