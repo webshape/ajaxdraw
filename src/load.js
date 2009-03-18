@@ -322,24 +322,20 @@ Text.prototype.fromSVG = function (n) {
   this.setText(new TextString(txt));
   this.setFont(new TextFont(n.getAttribute("font-family")));
   var y2 = y1 + h;
-  /*if (w) {*/
+  if (w) {
 	  var x2 = x1 + w;
-  /*}
+  }
   else {
 	 var x2 = (h/2) * txt.length;
 
-  }*/
-  //var p1 = new Point(parseInt(x1, 10), parseInt(y1, 10));
-  //var p2 = new Point(x2, y2);
-
-  
+  }
   var p1 = new Point(x1, y1);
-  var p2 = new Point(x1+400, y2);
+  var p2 = new Point(x2, y2);
 
   this.getBounds().setStart(p1);
   this.getBounds().setEnd(p2);
   this.getTextColour().fromCSS(n.getAttribute("fill"));
-  this.getTextColour().getOpacity().setVal(n.getAttribute("fill-opacity"));
+//  this.getTextColour().getOpacity().setVal(n.getAttribute("fill-opacity"));
   this.getBorderColour().fromCSS(n.getAttribute("stroke"));
-  this.getBorderColour().getOpacity().setVal(n.getAttribute("stroke-opacity"));
+//  this.getBorderColour().getOpacity().setVal(n.getAttribute("stroke-opacity"));
 };
