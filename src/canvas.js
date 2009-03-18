@@ -46,7 +46,14 @@ Page.prototype.activateStylesheet = function (sheetref){
  * */
 Page.prototype.loadStylesheet = function (){
   var name = this._browserName;
-  var nameComp = name+".css";
+  var nameComp;
+  if (name=="msie"){
+    nameComp = $.browser.className +".css";
+   // alert(nameComp);    //msie7 mod.non standard, msie8 mod.standard IE8
+  }
+  else{
+    nameComp = name+".css";
+  }
   this.activateStylesheet(nameComp);
 };
 
