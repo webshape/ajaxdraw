@@ -10,18 +10,42 @@
  * SVGReader create a figureSet and an elementRegistry
  * @constructor
  */
-function SVGReader() {
-}
+function SVGReader() {}
 
 /**
  * Error manager
  * @param {String} msg the description of the error
  */
-function ParsingError (msg) {
-  this._msg = msg;
-}
+function ParsingError () {}
 
-ParsingError.reader('_msg', 'msg');
+ParsingError.prototype.err = function (msg) {
+  alert(msg);
+};
+
+ParsingError.prototype.hexCheck = function (str, fs){
+  var errorHex = /^#?[\dabcdef]{6}$/gi;
+  if(!(errorHex.test(str))){
+	 this.err("Il valore di " +  fs + " non e' un valore esadecimale valido");
+	 return false;
+  }
+  return true;
+};
+
+ParsingError.prototype.opCheck = function (op, fs){
+  if (isNaN(op)){
+	 perr.err(fs + "-opacity deve avere un valore numerico");
+	 return false;
+  }
+  if (op < 0 || op > 1){
+	 perr.err("Il valore di" + fs + "-opacity deve essere compreso tra 0 e 1");
+	 return false;
+  }
+  return true;
+};
+
+var perr = new ParsingError();
+
+//ParsingError.reader('_msg', 'msg');
 
 /**
  * Create an instance of FigureSet parsing an SVG document
@@ -31,7 +55,7 @@ SVGReader.prototype.read = function (doc) {
   var fs = new FigureSet();
   var psr = new XMLParser();
   var xmlDoc = psr.parsing(doc);
-  if (xmlDoc === null) {
+  if (xmlDoc == null) {
     throw new ParsingError('Parsing Error');
   }
 
@@ -42,8 +66,9 @@ SVGReader.prototype.read = function (doc) {
       var f = registry.makeFigureClassFromTag(n.nodeName); // returns an instance of a figure
       // ignore unknow tags
       if (f !== null) {
-		  f.fromSVG(n);
-		  fs.add(f);
+		  if (f.fromSVG(n)){
+			 fs.add(f);
+		  }
       }
     }
   }
@@ -68,7 +93,8 @@ XMLParser.prototype.parsing = function (doc) {
   try { //Internet Explorer
 	 xmlDoc = new ActiveXObject("Microsoft.XMLDOM");
 	 xmlDoc.async = false;
-	 xmlDoc.loadXML(doc);
+     xmlDoc.load(doc);
+	 /*xmlDoc.loadXML(doc);*/
 
 	 if (xmlDoc.parseError.errorCode !== 0) {
 		alert("Error in line " + xmlDoc.parseError.line +
@@ -81,8 +107,11 @@ XMLParser.prototype.parsing = function (doc) {
   }
   catch(e) {
 	 try { //Firefox
-		var parser = new DOMParser();
-		xmlDoc = parser.parseFromString(doc, "text/xml");
+		/*var parser = new DOMParser();
+		xmlDoc = parser.parseFromString(doc, "text/xml");*/
+        xmlDoc=document.implementation.createDocument("","",null);
+        xmlDoc.async="false";
+        xmlDoc.load(doc);
 		if (xmlDoc.documentElement.nodeName == "parsererror") {
 		  alert(xmlDoc.documentElement.childNodes[0].nodeValue);
         return(null);
@@ -114,7 +143,10 @@ function SVGElementRegistry() {
 SVGElementRegistry.prototype.makeFigureClassFromTag = function (tag) {
   var fn = this._reg[tag];
   if (fn) {
-    return new fn();
+	 if (tag == 'text')
+		return new fn(new TextString("canvas"));
+	 else
+		return new fn();
   }
   return null;
 };
@@ -147,17 +179,46 @@ registry.register('text', Text);
  */
 Rectangle.prototype.fromSVG = function (n) {
   var x1 = n.getAttribute("x");
+  if(isNaN(x1))
+ {
+    perr.err("Solo valori numerici");
+ }
   var y1 = n.getAttribute("y");
+
+ if((n.getAttribute("width"))<0)
+ {
+    perr.err("Il valore di width non puo' essere negativo");
+ }
+
+ if((n.getAttribute("height"))<0)
+ {
+    perr.err("Il valore di height non puo' essere negativo");
+ }
+
   var x2 = parseInt(x1, 10) + parseInt(n.getAttribute("width"), 10);
   var y2 = parseInt(y1, 10) + parseInt(n.getAttribute("height"), 10);
   var p1 = new Point(parseInt(x1, 10), parseInt(y1, 10));
   var p2 = new Point(x2, y2);
   this.getBounds().setStart(p1);
   this.getBounds().setEnd(p2);
+
+  var stringa = n.getAttribute("fill");
+  var sottostringa = stringa.substr(0,1);
+  if (sottostringa != "#")
+    perr.err("manca il # prima del valore esadecimale di fill");
+
+  var errorEx = /^#?[\dabcdef]{6}$/gi;
+  if(!(errorEx.test(n.getAttribute("fill"))))
+    perr.err("Il valore di fill non e' un valore esadecimale valido");
   this.getFillColour().fromCSS(n.getAttribute("fill"));
+
+  if (((n.getAttribute("fill-opacity"))<=0) || ((n.getAttribute("fill-opacity"))>=1 ))
+    perr.err("il valore di fill-opacity non e' un valore valido \n (un valore valido e' compreso tra 0 e 1)");
+
   this.getFillColour().getOpacity().setVal(n.getAttribute("fill-opacity"));
   this.getBorderColour().fromCSS(n.getAttribute("stroke"));
   this.getBorderColour().getOpacity().setVal(n.getAttribute("stroke-opacity"));
+  return 1;
   //this.draw(c);? or shall we draw all at the end?  how can i get canvas?
 };
 
@@ -179,6 +240,7 @@ Circle.prototype.fromSVG = function (n) {
   this.getFillColour().getOpacity().setVal(n.getAttribute("fill-opacity"));
   this.getBorderColour().fromCSS(n.getAttribute("stroke"));
   this.getBorderColour().getOpacity().setVal(n.getAttribute("stroke-opacity"));
+  return 1;
   //this.draw(c);? or shall we draw all at the end?  how can i get canvas?
 };
 
@@ -198,6 +260,7 @@ StraightLine.prototype.fromSVG = function (n) {
   this.getBounds().setEnd(p2);
   this.getBorderColour().fromCSS(n.getAttribute("stroke"));
   this.getBorderColour().getOpacity().setVal(n.getAttribute("stroke-opacity"));
+  return 1;
   //this.draw(c);? or shall we draw all at the end?  how can i get canvas?
 };
 
@@ -220,6 +283,7 @@ BezierCurve.prototype.fromSVG = function (n) {
   }
   this.getBorderColour().fromCSS(n.getAttribute("stroke"));
   this.getBorderColour().getOpacity().setVal(n.getAttribute("stroke-opacity"));
+  return 1;
   //this.draw(c);? or shall we draw all at the end?  how can i get canvas?
 };
 
@@ -270,6 +334,7 @@ Polygon.prototype.fromSVG = function (n) {
   this.getFillColour().getOpacity().setVal(n.getAttribute("fill-opacity"));
   this.getBorderColour().fromCSS(n.getAttribute("stroke"));
   this.getBorderColour().getOpacity().setVal(n.getAttribute("stroke-opacity"));
+  return 1;
   //this.draw(c);? or shall we draw all at the end?  how can i get canvas?
 };
 
@@ -279,18 +344,78 @@ Polygon.prototype.fromSVG = function (n) {
  * @param {node} n the SVG node containg the property
  */
 Text.prototype.fromSVG = function (n) {
-  var x1 = n.getAttribute("x");
-  var y1 = n.getAttribute("y");
+  //get all the attributes
+  var x1 = parseInt(n.getAttribute("x"), 10);
+  if (x1){
+	 if (isNaN(x1)){ // if x has not a number value
+		perr.err("x deve avere un valore numerico");
+		return 0;
+	 }
+  }
+  else { // x doesn't exist
+	 perr.err("L'attributo x non e' definito");
+	 return 0;
+  }
+  var y1 = parseInt(n.getAttribute("y"), 10);
+  if (y1){
+	 if (isNaN(y1)){
+		perr.err("y deve avere un valore numerico");
+		return 0;
+	 }
+  }
+  else {
+	 perr.err("L'attributo y non e' definito");
+	 return 0;
+  }
   var txt = n.childNodes[0].nodeValue;
-  var size = n.getAttribute("font-size");
-  this.setText(txt);
-  this.setFont(new TextFont(n.getAttribute("font-family")));
-  var y2 = parseInt(y1, 10) + parseInt(size, 10);
-  var p1 = new Point(parseInt(x1, 10), parseInt(y1, 10));
-  var p2 = new Point(parseInt(x1, 10)+400, y2);
+  var h = parseInt(n.getAttribute("font-size"), 10);
+  if (h){
+	 if (h < 0){ // font-size can't be negative
+		perr.err("font-size deve essere positivo");
+		return 0;
+	 }
+  }
+  else {
+	 perr.err("L'attributo font-size non e' definito");
+	 return 0;
+  }
+  var ff = n.getAttribute("font-family");
+  if (!ff){
+	 perr.err("L'attributo font-family non e' definito");
+	 return 0;
+  }
+  // following are optional attributes
+  var w = parseInt(n.getAttribute("textLength"), 10);
+  var fc = n.getAttribute("fill");
+  var fo = parseFloat(n.getAttribute("fill-opacity"));
+  var sc = n.getAttribute("stroke");
+  var so = parseFloat(n.getAttribute("stroke-opacity"));
+
+  this.setText(new TextString(txt));
+  this.setFont(new TextFont(ff));
+  var y2 = y1 + h;
+  if (w && !isNaN(w)) {
+	  var x2 = x1 + w;
+  }
+  else {
+	 var x2 = (h/2) * txt.length;
+  }
+  var p1 = new Point(x1, y1);
+  var p2 = new Point(x2, y2);
+
   this.getBounds().setStart(p1);
   this.getBounds().setEnd(p2);
-  //this.getFillColour().fromCSS(n.getAttribute("fill"));
-  this.getBorderColour().fromCSS(n.getAttribute("stroke"));
-  //this.draw(c);? or shall we draw all at the end?  how can i get canvas?
+  if (fc && perr.hexCheck(fc, "fill")){
+	 this.getTextColour().fromCSS(fc);
+  }
+  if (sc && perr.hexCheck(sc, "stroke")){
+	 this.getTextColour().fromCSS(fc);
+  }
+  if (fo && perr.opCheck(fo, "fill")){
+	 this.getTextColour().getOpacity().setVal(fo);
+  }
+  if (so && perr.opCheck(so, "stroke")){
+	 this.getBorderColour().getOpacity().setVal(so);
+  }
+  return 1; // everything's fine
 };

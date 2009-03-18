@@ -409,18 +409,30 @@ function ClearCanvasButton () {
 
 /**
  * @constructor
+ * The Save Button
+ */
+function SaveButton () {
+   var s = new SVGWriter();
+   var svg = s.write(visual.getFigureSet());
+   alert(svg);
+   $("#saveDestination").text(svg);
+};
+
+
+/**
+ * @constructor
  * The Figure Selection button
  */
 function SelectionButton () {
   Button.call(this);
-  this._id = document.getElementById("selectionButton");
+ // this._id = document.getElementById("selectionButton");
 }
 
 SelectionButton.prototype = new Button();
 
-SelectionButton.prototype.getId = function (){
-  return this._id;
-};
+//SelectionButton.prototype.getId = function (){
+//  return this._id;
+//};
 
 /**
  * @return true if a point was handled, false otherwise
@@ -493,6 +505,8 @@ SelectionButton.prototype.bindCanvas = function (toolbar,canvas,canvasObj,visual
   $("#cloneButton").unbind('click'); //unbind clonazione
   $("#cv").unbind(' mousedown mousemove click mouseup');
   $("#eraseButton").unbind('click');
+  $("#toTopButton").unbind('click');
+  $("#toBottomButton").unbind('click');
   $("*").unbind('keypress');
   $("*").bind('keypress',function(e){
     if(e.keyCode==46){
@@ -507,6 +521,8 @@ SelectionButton.prototype.bindCanvas = function (toolbar,canvas,canvasObj,visual
       if(actualFigure===null){
         // is there an already selected figure?
 	$("#cloneButton").unbind('click');
+	$("#toTopButton").unbind('click');
+	$("#toBottomButton").unbind('click');
 	$("*").unbind('keypress');
       /*zona gestione cancellazione*/
 	$("*").bind('keypress',function(e){
@@ -535,7 +551,21 @@ SelectionButton.prototype.bindCanvas = function (toolbar,canvas,canvasObj,visual
         // don't throw: no one will catch it
 	//throw 'No figure found';
       }
-      else{/*clonazione*/
+      else {
+	/*gestione livelli */
+	$("#toTopButton").click(function () {
+	  figureSet.toTop(actualFigure);
+	  canvasObj.clear();
+	  visual.refresh();
+	});
+
+	$("#toBottomButton").click(function () {
+	  figureSet.toBottom(actualFigure);
+	  canvasObj.clear();
+	  visual.refresh();
+	});
+
+	/*clonazione*/
 	$("#cloneButton").unbind('click');
 	$("#cloneButton").bind('click',function(e){
 	  visual.cloneElement(actualFigure,canvasObj);
@@ -623,15 +653,15 @@ SelectionButton.prototype.bindCanvas = function (toolbar,canvas,canvasObj,visual
  */
 function ZoomButton () {
   Button.call(this);
-  this._id = document.getElementById("zoomButton");
+ // this._id = document.getElementById("zoomButton");
   this._inOrOut = false;
 }
 
 ZoomButton.prototype = new Button();
 
-ZoomButton.prototype.getId = function (){
-  return this._id;
-};
+//ZoomButton.prototype.getId = function (){
+//  return this._id;
+//};
 
 
 
@@ -787,14 +817,14 @@ Scale.prototype.toAbs = function (p, offset) {
 
 function StraightLineButton () {
   Button.call(this);
-  this._id = document.getElementById("straightLineButton");
+ // this._id = document.getElementById("straightLineButton");
 }
 
 StraightLineButton.prototype = new Button();
 
-StraightLineButton.prototype.getId = function (){
-  return this._id;
-};
+//StraightLineButton.prototype.getId = function (){
+//  return this._id;
+//};
 
 StraightLineButton.prototype.getBuilder = function () {
   return StraightLine;
@@ -806,14 +836,14 @@ StraightLineButton.prototype.getBuilder = function () {
  */
 function BezierCurveButton () {
   Button.call(this);
-  this._id = document.getElementById("bezierCurveButton");
+ // this._id = document.getElementById("bezierCurveButton");
 }
 
 BezierCurveButton.prototype = new Button();
 
-BezierCurveButton.prototype.getId = function (){
-  return this._id;
-};
+//BezierCurveButton.prototype.getId = function (){
+//  return this._id;
+//};
 
 BezierCurveButton.prototype.getBuilder = function () {
   return BezierCurve;
@@ -873,14 +903,14 @@ BezierCurveButton.prototype.bindCanvas = function (toolbar,canvas,canvasObj,visu
  */
 function SquareButton () {
   Button.call(this);
-  this._id = document.getElementById("squareButton");
+ // this._id = document.getElementById("squareButton");
 }
 
 SquareButton.prototype = new Button();
 
-SquareButton.prototype.getId = function (){
-  return this._id;
-};
+//SquareButton.prototype.getId = function (){
+ // return this._id;
+//};
 
 SquareButton.prototype.getBuilder = function () {
   return Rectangle;
@@ -892,14 +922,14 @@ SquareButton.prototype.getBuilder = function () {
  */
 function CircleButton () {
   Button.call(this);
-  this._id = document.getElementById("circleButton");
+//  this._id = document.getElementById("circleButton");
 }
 
 CircleButton.prototype = new Button();
 
-CircleButton.prototype.getId = function (){
-  return this._id;
-};
+//CircleButton.prototype.getId = function (){
+//  return this._id;
+//};
 
 CircleButton.prototype.getBuilder = function () {
   return Circle;
@@ -911,14 +941,14 @@ CircleButton.prototype.getBuilder = function () {
  */
 function PolygonButton () {
   Button.call(this);
-  this._id = document.getElementById("polygonButton");
+ // this._id = document.getElementById("polygonButton");
 }
 
 PolygonButton.prototype = new Button();
 
-PolygonButton.prototype.getId = function (){
-  return this._id;
-};
+//PolygonButton.prototype.getId = function (){
+//  return this._id;
+//};
 
 PolygonButton.prototype.getBuilder = function () {
   return Polygon;
@@ -930,14 +960,14 @@ PolygonButton.prototype.getBuilder = function () {
  */
 function FreeLineButton () {
   Button.call(this);
-  this._id = document.getElementById("textButton");
+ // this._id = document.getElementById("textButton");
 }
 
 FreeLineButton.prototype = new Button();
 
-FreeLineButton.prototype.getId = function (){
-  return this._id;
-};
+//FreeLineButton.prototype.getId = function (){
+//  return this._id;
+//};
 
 FreeLineButton.prototype.getBuilder = function () {
   return FreeLine;
@@ -995,14 +1025,14 @@ FreeLineButton.prototype.bindCanvas = function (toolbar,canvas,canvasObj,visual,
  */
 function TextButton () {
   Button.call(this);
-  this._id = document.getElementById("textButton");
+ // this._id = document.getElementById("textButton");
 }
 
 TextButton.prototype = new Button();
 
-TextButton.prototype.getId = function (){
-  return this._id;
-};
+//TextButton.prototype.getId = function (){
+//  return this._id;
+//};
 
 TextButton.prototype.getBuilder = function () {
   return Text;

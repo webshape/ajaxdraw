@@ -248,11 +248,12 @@ Text.prototype.toSVG = function(gen) {
   gen.attr("y", y, false);
   gen.attr("font-family", this.getFont().toCSS(), false);
   gen.attr("font-size", Math.abs(this.getBounds().h()), false);
+
   gen.attr("textLength", Math.abs(this.getBounds().w()), false);
   gen.attr("fill", this.getTextColour().toCSS(), false);
-//  gen.attr("fill-opacity", this.getFillColour().getOpacity().getVal(), false);
+  gen.attr("fill-opacity", this.getFillColour().getOpacity().getVal(), false);
   gen.attr("stroke", this.getBorderColour().toCSS(), true);
-//  gen.attr("stroke-opacity", this.getBorderColour().getOpacity().getVal(), true);
+  gen.attr("stroke-opacity", this.getBorderColour().getOpacity().getVal(), true);
   gen.text(this.getText().getName());
   gen.endCommand("text");
 };
