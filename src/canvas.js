@@ -12,7 +12,7 @@
 function Page(){
   this._browserName = $.browser.name;
   this._browserVersion = $.browser.versionNumber;
-  this._widgets = [];
+ // this._widgets = [];
 }
 
 Page.prototype.getBrowserName = function (){

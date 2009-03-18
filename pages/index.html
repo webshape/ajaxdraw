@@ -1,8 +1,8 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!DOCTYPE HTML>
 <html>
 <head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" >
 <title>AJAXDRAW</title>
-
 <link rel="stylesheet" title="mozilla" type="text/css" href="../styles/style.css"/>
 <link rel="alternate stylesheet" title="opera" type="text/css" href="../styles/opera.css"/>
 <link rel="alternate stylesheet" title="safari" type="text/css" href="../styles/safari.css"/>
@@ -34,10 +34,8 @@
 <script type="text/javascript" src="../src/canvas.js"></script>
 <script type="text/javascript" src="../src/save.js"></script>
 <script type="text/javascript" src="../src/lib/menu-for-applications.js"></script>
-<!-- Script di prova di disegno su canvas -->
 </head>
 <body>
-
 <!-- Interfaccia -->
 <div>
 
@@ -57,7 +55,6 @@
 								   			});
 								   			' 
 								   itemIcon="images/menu_bar/disk.gif"><a href="#" title="Save your work">Salva</a></li>
-			<!--  <li id="500002"><a href="#">Salva Come</a></li> -->
 			<li id="500004" itemType="separator"></li>
 			<li itemIcon="images/menu_bar/open.gif" jsFunction='$("#loadDialog").css({"display" : "block"});
 										$("#loadDialog").dialog({
@@ -98,13 +95,10 @@
   			</li>
 		</ul>
 	</li>
-	<!--  <li id="50003" itemType="separator"></li> -->
 	<li id="50003"><a href="#">Guida</a> 
 			<ul style="width:160px">
 				<li id="40000" itemIcon="images/menu_bar/guida.gif" 
-				jsFunction="window.open('../doc/ManualeUtente/help/index.html')"><a href="#">Manuale</a>
-				
-				
+				jsFunction="window.open('../doc/ManualeUtente/help/index.html')"><a href="#">Manuale</a>				
 				<li itemIcon="images/menu_bar/info.gif" jsFunction='$("#aboutDialog").css({"display" : "block"});
 							$("#aboutSpan").css({"display" : "block"});
 										$("#aboutDialog").dialog({
@@ -162,7 +156,7 @@ menuBar5.init();
 	<!-- Tavolozza nella parte bassa dello schermo -->
 	<div id="palette" title="Scegli il colore da applicare">
 		<span id="firstPalette" class="paletteComponent" style="background-color:#EEC73E">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-		<!-- ><span class="paletteComponent" style="background-color:#F0A513">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> -->
+		<span class="paletteComponent" style="background-color:#F0A513">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
 		<span class="paletteComponent" style="background-color:#FB8B00">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
 		<span class="paletteComponent" style="background-color:#F44800">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
 		<span class="paletteComponent" style="background-color:#FFFF99">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
@@ -206,19 +200,15 @@ menuBar5.init();
 				<option value="fill">Riempimento</option>  
 			</select>
 		</span>
-
 	</div>
-
 </div>
-
-
 <!-- Fine interfaccia -->
 <!-- Inizio Parte Dialog Colori-->
 <div id="colorDialog" class="flora" title="Modifica colori">  
 	<p>Bordo:   
 		<span id="borderColorNow" style="background-color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
 		<input type="button" id="setBorderCol" value="Cambia" />
-		 <p id="opBorder"> Opacit&agrave;: <input type="text" id="borderOp" size="5" value="1"/> </p>
+		<p id="opBorder"> Opacit&agrave;: <input type="text" id="borderOp" size="5" value="1"/> </p>
 		<div id="divBorderCol" >
 			<input type="button" id="changeBorderCol" name="ChangeCol" value="Cambia Colore Bordo"/>
 		</div>
@@ -231,8 +221,7 @@ menuBar5.init();
   		</div>
   		<div id="picker1"></div>               
 	</form>	
-	<!-- Seconda ruota -->
-       
+	<!-- Seconda ruota -->      
 	<p>Riemp.:  
 		<span id="fillColorNow" style="background-color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> 
 		<span><input type="button" id="setFillCol" value="Cambia" /></span>
@@ -247,7 +236,6 @@ menuBar5.init();
   			<input type="text" id="color2" name="color2" value="#123456" />
   		</div>
   		<div id="picker2"></div>
-
     </form>	
 </div>
 
@@ -257,10 +245,10 @@ menuBar5.init();
 <div id="propertiesDialog" class="flora" title="Modifica attributi">
 	<p id="prova">  
 		A:&nbsp;<input id="DialogHeight" type="text" size="2" value=" " />px &nbsp; / &nbsp;	   
-		X:&nbsp;<input id="x" type="text" size="2" value="" />&nbsp;&nbsp; 
+		X:&nbsp;<input id="x" type="text" size="2" value=" " />
 	</p>
 	<p>
-		L:&nbsp;<input id="DialogWidth" type="text" size="2" value=" " />px  &nbsp;/ &nbsp;
+		L:&nbsp;<input id="DialogWidth" type="text" size="2" value=" " />px  &nbsp; / &nbsp;
 		Y:&nbsp;<input id="y" type="text" size="2"/>
 	</p>
       <input id="submitRect" type="button" value="Cambia" /><br/>
@@ -313,7 +301,6 @@ menuBar5.init();
 			<img src="images/logo.png" width="269" height="135" alt="Logo WebShape" />
 		</span>		
 	</p>
-
 </body>
 </html>
 

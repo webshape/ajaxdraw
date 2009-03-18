@@ -262,12 +262,13 @@ Si occupa di gestire l'interazione tra l'utente e la logica interna dell'applica
 
 \subsezione{Page}
 \subsubsezione{Tipo, obiettivo e funzione del componente}
-Classe concreta che rappresenta la pagina \underline{web} visualizzata dall'utente tramite l'internet \underline{browser}, contenitore di tutti i widgets componenti l'interfaccia.
+Classe concreta che rappresenta la pagina \underline{web} visualizzata dall'utente tramite l'internet \underline{browser}, utilizzata principalmente per il riconoscimento del browser e per operazioni da questo dipendenti.
 \subsubsezione{Relazioni d'uso di altre componenti}
-\` E composta da istanze delle classi \textit{Toolbar}, \textit{Button}, \textit{Palette}, \textit{ColourDialog}, \textit{PropertiesDialog} e \textit{Visualization}.
+Nessuna.
 \subsubsezione{Interfacce e relazioni di uso da altre componenti}
 Nessuna.
 \subsubsezione{Attivit\`a svolte e dati trattati}
+Nessuna.
 \paragrafo{Attributi privati:}
 \begin{elencopuntato}[\subsubsecindent]
 \item[-] \textit{{\_}browserName} nome del browser utilizzato;
@@ -351,7 +352,7 @@ Classe concreta che rappresenta la toolbar dalla quale l'utente pu\` o scegliere
 \subsubsezione{Relazioni d'uso di altre componenti}
 \` E formata da pi\`u istanze aggregate della classe \textit{Button}, per rappresentare ciascun tool selezionabile. 
 \subsubsezione{Interfacce e relazioni di uso da altre componenti}
-\textit{Page} ne mantiene un'istanza.
+Nessuna.
 \subsubsezione{Attivit\`a svolte e dati trattati}
 \leftskip=36pt{Nessuna a questo livello.}
 \paragrafo{Attributi privati:}
@@ -391,17 +392,12 @@ Viene estesa da tutti i pulsanti creati.
 Classe concreta che rappresenta lo specifico pulsante che si occupa di svuotare totalmente il canvas, integrato nella sezione "Modifica" della barra in alto.
 \subsubsezione{Relazioni d'uso di altre componenti}
 Nessuna.
-%Estende \textit{Button}.
 \subsubsezione{Interfacce e relazioni di uso da altre componenti}
 Nessuna.
 \subsubsezione{Attivit\`a svolte e dati trattati}
 Nessuna.
-%\textit{Page} ne mantiene un' istanza.
 \paragrafo{Attributi privati:}
 Nessuna.
-%\begin{elencopuntato}[\subsubsecindent]
-%\item[-] \textit{{\_}id} l'attibuto HTML \textit{id} del pulsante.
-%\end{elencopuntato}
 \paragrafo{Metodi pubblici:}
 Nessuno.
 %\begin{elencopuntato}[\subsubsecindent]
@@ -670,7 +666,7 @@ Nessuna.
 \subsubsezione{Interfacce e relazioni di uso da altre componenti}
 Nessuna.
 \subsubsezione{Attivit\`a svolte e dati trattati}
-\textit{Page} ne mantiene un' istanza.
+Nessuna.
 \paragrafo{Attributi privati:}
 \begin{elencopuntato}[\subsubsecindent]
 \item[-] \textit{{\_}colorList} array contenente una lista di \textit{PaletteComponent}, che compongono la \textit{Palette stessa}.
@@ -691,9 +687,9 @@ Nessuna.
 \subsubsezione{Interfacce e relazioni di uso da altre componenti}
 Nessuna.
 \subsubsezione{Attivit\`a svolte e dati trattati}
-\textit{Page} ne mantiene un'istanza.
+Nessuna.
 \paragrafo{Attributi privati:}
-
+Nessuno.
 \paragrafo{Metodi pubblici:}
 \begin{elencopuntato}[\subsubsecindent]
 \item[-] \textit{create()} richiama la funzione jQuery atta alla creazione del Dialog.
@@ -707,7 +703,7 @@ Nessuna.
 \subsubsezione{Interfacce e relazioni di uso da altre componenti}
 Nessuna.
 \subsubsezione{Attivit\`a svolte e dati trattati}
-\textit{Page} ne mantiene un'istanza.
+Nessuna.
 \paragrafo{Attributi privati:}
 \begin{elencopuntato}[\subsubsecindent]
 \item[-] \textit{{\_}edgeSetter} oggetto che si occupa di impostare il numero di lati di un poligono;
