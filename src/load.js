@@ -23,9 +23,8 @@ ParsingError.prototype.err = function (msg) {
 };
 
 ParsingError.prototype.hexCheck = function (str, fs){
-  var errorHex = /^#?[\dabcdef]{6}$/gi;
-  if(!(errorHex.test(str))){
-	 this.err("Il valore di " +  fs + " non e' un valore esadecimale valido");
+  if (!str.match(/^#([0-9]|a|A|b|B|c|C|d|D|e|E|f|F){6}$/) && str != "none"){
+	 this.err("Figura n. " + nf + "\nIl valore di " +  fs + " non e' un valore valido");
 	 return false;
   }
   return true;
@@ -33,24 +32,46 @@ ParsingError.prototype.hexCheck = function (str, fs){
 
 ParsingError.prototype.opCheck = function (op, fs){
   if (isNaN(op)){
-	 perr.err(fs + "-opacity deve avere un valore numerico");
+	 this.err("Figura n. " + nf + "\n" + fs + "-opacity deve avere un valore numerico");
 	 return false;
   }
   if (op < 0 || op > 1){
-	 perr.err("Il valore di" + fs + "-opacity deve essere compreso tra 0 e 1");
+	 this.err("Figura n. " + nf + "\nIl valore di " + fs + "-opacity deve essere compreso tra 0 e 1");
 	 return false;
   }
   return true;
 };
 
+ParsingError.prototype.intCheck = function (n, name){
+  if (n !== null){
+	 if (isNaN(n)){
+		this.err("Figura n. " + nf + "\n" + name + " deve avere un valore numerico");
+		return false;
+	 }
+
+	 if ((name == "height" || name == "width" || name == "font-size" || name == "rx" || name == "ry") && n < 0){
+		// h, w and font-size can't be negative
+		this.err("Figura n. " + nf + "\n" + name + " non puo' avere un valore negativo");
+		return false;
+	 }
+  }
+  else { // the attribute missed
+	 this.err("Figura n. " + nf + "\nL'attributo " + name + " non e' definito");
+	 return false;
+  }
+  return true;
+};
+
+// global variable to call error methods
 var perr = new ParsingError();
 
-//ParsingError.reader('_msg', 'msg');
 
 /**
  * Create an instance of FigureSet parsing an SVG document
  * @param {String} doc the name of the file SVG
  */
+// global variable used to know which figures is currently parsing
+var nf = 0;
 SVGReader.prototype.read = function (doc) {
   var fs = new FigureSet();
   var psr = new XMLParser();
@@ -63,6 +84,7 @@ SVGReader.prototype.read = function (doc) {
   for (var i = 0; i < x[0].childNodes.length; i++) {
     var n = x[0].childNodes[i];
     if (n.nodeName != "#text") {
+		nf++;
       var f = registry.makeFigureClassFromTag(n.nodeName); // returns an instance of a figure
       // ignore unknow tags
       if (f !== null) {
@@ -178,48 +200,39 @@ registry.register('text', Text);
  * @param {node} n the SVG node containg the properties
  */
 Rectangle.prototype.fromSVG = function (n) {
-  var x1 = n.getAttribute("x");
-  if(isNaN(x1))
- {
-    perr.err("Solo valori numerici");
- }
-  var y1 = n.getAttribute("y");
-
- if((n.getAttribute("width"))<0)
- {
-    perr.err("Il valore di width non puo' essere negativo");
- }
-
- if((n.getAttribute("height"))<0)
- {
-    perr.err("Il valore di height non puo' essere negativo");
- }
-
-  var x2 = parseInt(x1, 10) + parseInt(n.getAttribute("width"), 10);
-  var y2 = parseInt(y1, 10) + parseInt(n.getAttribute("height"), 10);
-  var p1 = new Point(parseInt(x1, 10), parseInt(y1, 10));
+  var x1 = parseInt(n.getAttribute("x"), 10);
+  var y1 = parseInt(n.getAttribute("y"), 10);
+  var w = parseInt(n.getAttribute("width"), 10);
+  var h = parseInt(n.getAttribute("height"), 10);
+  if (!(perr.intCheck(x1, "x") && perr.intCheck(y1, "y") && perr.intCheck(h, "height") && perr.intCheck(w, "width"))){
+	 return 0;
+  }
+  var x2 = x1 + w;
+  var y2 = y1 + h;
+  var p1 = new Point(x1, y1);
   var p2 = new Point(x2, y2);
   this.getBounds().setStart(p1);
   this.getBounds().setEnd(p2);
 
-  var stringa = n.getAttribute("fill");
-  var sottostringa = stringa.substr(0,1);
-  if (sottostringa != "#")
-    perr.err("manca il # prima del valore esadecimale di fill");
+  // optional attributes
+  var fc = n.getAttribute("fill");
+  var fo = parseFloat(n.getAttribute("fill-opacity"));
+  var sc = n.getAttribute("stroke");
+  var so = parseFloat(n.getAttribute("stroke-opacity"));
 
-  var errorEx = /^#?[\dabcdef]{6}$/gi;
-  if(!(errorEx.test(n.getAttribute("fill"))))
-    perr.err("Il valore di fill non e' un valore esadecimale valido");
-  this.getFillColour().fromCSS(n.getAttribute("fill"));
-
-  if (((n.getAttribute("fill-opacity"))<=0) || ((n.getAttribute("fill-opacity"))>=1 ))
-    perr.err("il valore di fill-opacity non e' un valore valido \n (un valore valido e' compreso tra 0 e 1)");
-
-  this.getFillColour().getOpacity().setVal(n.getAttribute("fill-opacity"));
-  this.getBorderColour().fromCSS(n.getAttribute("stroke"));
-  this.getBorderColour().getOpacity().setVal(n.getAttribute("stroke-opacity"));
-  return 1;
-  //this.draw(c);? or shall we draw all at the end?  how can i get canvas?
+  if (fc && perr.hexCheck(fc, "fill")){
+	 this.getFillColour().fromCSS(fc);
+  }
+  if (sc && perr.hexCheck(sc, "stroke")){
+	 this.getBorderColour().fromCSS(sc);
+  }
+  if (fo && perr.opCheck(fo, "fill")){
+	 this.getFillColour().getOpacity().setVal(fo);
+  }
+  if (so && perr.opCheck(so, "stroke")){
+	 this.getBorderColour().getOpacity().setVal(so);
+  }
+  return 1; // everything's fine
 };
 
 
@@ -228,20 +241,37 @@ Rectangle.prototype.fromSVG = function (n) {
  * @param {node} n the SVG node containg the properties
  */
 Circle.prototype.fromSVG = function (n) {
-  var cx = n.getAttribute("cx");
-  var cy = n.getAttribute("cy");
-  var rx = n.getAttribute("rx");
-  var ry = n.getAttribute("ry");
-  var p1 = new Point((parseInt(cx, 10) - parseInt(rx, 10)), (parseInt(cy, 10) - parseInt(ry, 10)));
-  var p2 = new Point((parseInt(cx, 10) + parseInt(rx, 10)), (parseInt(cy, 10) + parseInt(ry, 10)));
+  var cx = parseInt(n.getAttribute("cx"), 10);
+  var cy = parseInt(n.getAttribute("cy"), 10);
+  var rx = parseInt(n.getAttribute("rx"), 10);
+  var ry = parseInt(n.getAttribute("ry"), 10);
+  if (!(perr.intCheck(cx, "cx") && perr.intCheck(cy, "cy") && perr.intCheck(rx, "rx") && perr.intCheck(ry, "ry"))){
+	 return 0;
+  }
+  var p1 = new Point((cx - rx), (cy - ry));
+  var p2 = new Point((cx + rx), (cy + ry));
   this.getBounds().setStart(p1);
   this.getBounds().setEnd(p2);
-  this.getFillColour().fromCSS(n.getAttribute("fill"));
-  this.getFillColour().getOpacity().setVal(n.getAttribute("fill-opacity"));
-  this.getBorderColour().fromCSS(n.getAttribute("stroke"));
-  this.getBorderColour().getOpacity().setVal(n.getAttribute("stroke-opacity"));
-  return 1;
-  //this.draw(c);? or shall we draw all at the end?  how can i get canvas?
+
+  // optional attributes
+  var fc = n.getAttribute("fill");
+  var fo = parseFloat(n.getAttribute("fill-opacity"));
+  var sc = n.getAttribute("stroke");
+  var so = parseFloat(n.getAttribute("stroke-opacity"));
+
+  if (fc && perr.hexCheck(fc, "fill")){
+	 this.getFillColour().fromCSS(fc);
+  }
+  if (sc && perr.hexCheck(sc, "stroke")){
+	 this.getBorderColour().fromCSS(sc);
+  }
+  if (fo && perr.opCheck(fo, "fill")){
+	 this.getFillColour().getOpacity().setVal(fo);
+  }
+  if (so && perr.opCheck(so, "stroke")){
+	 this.getBorderColour().getOpacity().setVal(so);
+  }
+  return 1; // everything's fine
 };
 
 
@@ -254,14 +284,25 @@ StraightLine.prototype.fromSVG = function (n) {
   var y1 = n.getAttribute("y1");
   var x2 = n.getAttribute("x2");
   var y2 = n.getAttribute("y2");
-  var p1 = new Point(parseInt(x1, 10), parseInt(y1, 10));
-  var p2 = new Point(parseInt(x2, 10), parseInt(y2, 10));
+  if (!(perr.intCheck(x1, "x1") && perr.intCheck(y1, "y1") && perr.intCheck(x2, "x2") && perr.intCheck(y2, "y2"))){
+	 return 0;
+  }
+  var p1 = new Point(x1, y1);
+  var p2 = new Point(x2, y2);
   this.getBounds().setStart(p1);
   this.getBounds().setEnd(p2);
-  this.getBorderColour().fromCSS(n.getAttribute("stroke"));
-  this.getBorderColour().getOpacity().setVal(n.getAttribute("stroke-opacity"));
-  return 1;
-  //this.draw(c);? or shall we draw all at the end?  how can i get canvas?
+
+  // optional attributes
+  var sc = n.getAttribute("stroke");
+  var so = parseFloat(n.getAttribute("stroke-opacity"));
+
+  if (sc && perr.hexCheck(sc, "stroke")){
+	 this.getBorderColour().fromCSS(sc);
+  }
+  if (so && perr.opCheck(so, "stroke")){
+	 this.getBorderColour().getOpacity().setVal(so);
+  }
+  return 1; // everything's fine
 };
 
 
@@ -281,10 +322,18 @@ BezierCurve.prototype.fromSVG = function (n) {
 		this.extend(p);
 	 }
   }
-  this.getBorderColour().fromCSS(n.getAttribute("stroke"));
-  this.getBorderColour().getOpacity().setVal(n.getAttribute("stroke-opacity"));
-  return 1;
-  //this.draw(c);? or shall we draw all at the end?  how can i get canvas?
+
+  // optional attributes
+  var sc = n.getAttribute("stroke");
+  var so = parseFloat(n.getAttribute("stroke-opacity"));
+
+  if (sc && perr.hexCheck(sc, "stroke")){
+	 this.getBorderColour().fromCSS(sc);
+  }
+  if (so && perr.opCheck(so, "stroke")){
+	 this.getBorderColour().getOpacity().setVal(so);
+  }
+  return 1; // everything's fine
 };
 
 
@@ -311,17 +360,17 @@ Polygon.prototype.fromSVG = function (n) {
 	   z[0] = parseInt(z[0], 10);
 	   z[1] = parseInt(z[1], 10);
 		if (z[0] < x1) {
-                  x1 = z[0];
-                }
+        x1 = z[0];
+      }
 		if (z[1] < y1) {
-                  y1 = z[1];
-                }
+        y1 = z[1];
+      }
 		if (z[0] > x2) {
-                  x2 = z[0];
-                }
+        x2 = z[0];
+      }
 		if (z[1] > y2) {
-                  y2 = z[1];
-                }
+        y2 = z[1];
+      }
 	 }
   }
 
@@ -330,12 +379,26 @@ Polygon.prototype.fromSVG = function (n) {
   this.getBounds().setStart(p1);
   this.getBounds().setEnd(p2);
   this.edgeNumber().setVal(edges);
-  this.getFillColour().fromCSS(n.getAttribute("fill"));
-  this.getFillColour().getOpacity().setVal(n.getAttribute("fill-opacity"));
-  this.getBorderColour().fromCSS(n.getAttribute("stroke"));
-  this.getBorderColour().getOpacity().setVal(n.getAttribute("stroke-opacity"));
-  return 1;
-  //this.draw(c);? or shall we draw all at the end?  how can i get canvas?
+
+  // optional attributes
+  var fc = n.getAttribute("fill");
+  var fo = parseFloat(n.getAttribute("fill-opacity"));
+  var sc = n.getAttribute("stroke");
+  var so = parseFloat(n.getAttribute("stroke-opacity"));
+
+  if (fc && perr.hexCheck(fc, "fill")){
+	 this.getFillColour().fromCSS(fc);
+  }
+  if (sc && perr.hexCheck(sc, "stroke")){
+	 this.getBorderColour().fromCSS(sc);
+  }
+  if (fo && perr.opCheck(fo, "fill")){
+	 this.getFillColour().getOpacity().setVal(fo);
+  }
+  if (so && perr.opCheck(so, "stroke")){
+	 this.getBorderColour().getOpacity().setVal(so);
+  }
+  return 1; // everything's fine
 };
 
 
@@ -346,37 +409,11 @@ Polygon.prototype.fromSVG = function (n) {
 Text.prototype.fromSVG = function (n) {
   //get all the attributes
   var x1 = parseInt(n.getAttribute("x"), 10);
-  if (x1){
-	 if (isNaN(x1)){ // if x has not a number value
-		perr.err("x deve avere un valore numerico");
-		return 0;
-	 }
-  }
-  else { // x doesn't exist
-	 perr.err("L'attributo x non e' definito");
-	 return 0;
-  }
   var y1 = parseInt(n.getAttribute("y"), 10);
-  if (y1){
-	 if (isNaN(y1)){
-		perr.err("y deve avere un valore numerico");
-		return 0;
-	 }
-  }
-  else {
-	 perr.err("L'attributo y non e' definito");
-	 return 0;
-  }
   var txt = n.childNodes[0].nodeValue;
   var h = parseInt(n.getAttribute("font-size"), 10);
-  if (h){
-	 if (h < 0){ // font-size can't be negative
-		perr.err("font-size deve essere positivo");
-		return 0;
-	 }
-  }
-  else {
-	 perr.err("L'attributo font-size non e' definito");
+  if (!(perr.intCheck(x1, "x") && perr.intCheck(y1, "y") && perr.intCheck(h, "font-size"))){
+	 // something goes wrong
 	 return 0;
   }
   var ff = n.getAttribute("font-family");
@@ -409,7 +446,7 @@ Text.prototype.fromSVG = function (n) {
 	 this.getTextColour().fromCSS(fc);
   }
   if (sc && perr.hexCheck(sc, "stroke")){
-	 this.getTextColour().fromCSS(fc);
+	 this.getBorderColour().fromCSS(sc);
   }
   if (fo && perr.opCheck(fo, "fill")){
 	 this.getTextColour().getOpacity().setVal(fo);
