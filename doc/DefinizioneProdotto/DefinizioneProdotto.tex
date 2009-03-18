@@ -1203,7 +1203,7 @@ Nessuna
 \subsubsezione{Attivit\`a svolte e dati trattati}
 \paragrafo{Metodi pubblici:}
 \begin{elencopuntato}[\subsubsecindent]
-\item[-]  \textit{write()} chiama il metodo \textit{toSVG} su ogni figura e ritorna il documento SVG.
+\item[-]  \textit{write()} chiama il costruttore \textit{SVGGenerator} ottenendo cos\`i il documento sotto forma di stringa con l'header SVG. Poi chiama il metodo \textit{toSVG} su ogni figura e ritorna il documento SVG con il metodo \textit{flush} di \textit{SVGGenerator}.
 \end{elencopuntato}
 
 \subsezione{SVGGenerator}
