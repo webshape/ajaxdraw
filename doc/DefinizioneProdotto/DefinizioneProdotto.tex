@@ -823,6 +823,8 @@ Il costruttore controlla se il browser supporta il metodo \textit{getImageData} 
 \item[-]  \textit{each(fn)} permette di applicare una funzione ad ogni figura. Viene usato per iterare attraverso la collezione. Applica fn ad ogni elemento di \textit{{\_}figures}. 
 \item[-]  \textit{add(f)} aggiunge la figura f alla fine di \textit{{\_}figures}.
 \item[-]  \textit{rem(f)} rimuove da \textit{{\_}figures} tutte le figure identiche (ovvero aventi lo stesso indirizzo) di f.
+\item[-] \textit{toTop(f)} prende la figura f e l'aggiunge in cima a tutte le altre ponendola come ultima nell'array \textit{{\_}figures}. Se \`e gi\`a presente, la sposta. Usa il metodo \textit{rem} per togliere la figura e il metodo \textit{add} per aggiungerla in coda.
+\item[-] \textit{toBottom(f)} prende la figura f e l'aggiunge sotto tutte le altre ponendola come prima nell'array \textit{{\_}figures}. Se \`e gi\`a presente, la sposta. Usa il metodo \textit{rem} per togliere la figura e il metodo \textit{unshift} di \textit{{\_}figures} per aggiungerla in testa.
 \end{elencopuntato}
 
 
