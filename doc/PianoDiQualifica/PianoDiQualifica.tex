@@ -289,13 +289,10 @@ Sono raggruppabili in 3 categorie:
 
 \begin{elenconumerato}[\textbf{}]{\subsubsecindent}
 \item \textit{Test di unit\`a}
-: realizzati tramite il software QUnit. Hanno l'obiettivo di considerare un piccola frazione del software per testare se tale porzione funziona come dovrebbe. Il verificatore o chiunque altro esegua questo test dovr\`a constatare che il comportamento della porzione di software testato rispetti tutti i vincoli dell'Analisi dei Requisiti. \`E necessario prestare attenzione in quanto superficialit\`a e distrazione umana possono rendere inefficaci e inutili questi test.
+: realizzati tramite il software QUnit. Ogni test ha l'obiettivo di considerare una unit\`a del software per testare se  funziona come dovrebbe. Il verificatore o chiunque altro esegua questo test dovr\`a constatare che il comportamento della porzione di software testato rispetti tutti i vincoli dell'Analisi dei Requisiti. \`E necessario prestare attenzione in quanto superficialit\`a e distrazione umana possono rendere inefficaci e inutili questi test.
 \item \textit{Test di copertura}
 : realizzati tramite il software JSCoverage. Verificano che i test di Unit\`a siano stati effettuati sull'intera porzione di software stabilita. Hanno l'obiettivo di testare se sono state saltate righe di codice. Utile per garantire l'efficacia dei test di Unit\`a. 
 Il verificatore o chiunque altro esegui questo test dovr\`a constatare che tutte le righe di codice siano state coperte nel precedente test di unit\`a, altrimenti sar\`a necessario ripetere e riutilizzare il software QUnit.
-
-\item \textit{Verifica e Validazione}
-: ampiamente descritte nella sezione 2.1. Sono realizzate dal personale dell'azienda hanno il compito di testare che tutte le singole unit\`a del software, messe assieme tra loro, soddisfino in maniera adeguata le richieste del committente. Molto utile per eliminare gli errori umani. 
 
 \end{elenconumerato}
 
@@ -323,9 +320,9 @@ Le metriche scelte tengono conto dell'utilit\`a della metrica stessa e della dis
 adatti a misurarla.
 
 \subsezione{Copertura dei test}
-La copertura indica, in percentuale, quante linee di codice vengono eseguite durante i test automatici. Permette di capire se i test scritti sono sufficienti oppure no, anche se un'ottima copertura non garantisce di per s\`e l'adeguatezza dei test, ma ne \`e comunque una buona stima. La copertura attesa dipende da quale sottosistema dell'applicazione si sta prendendo in considerazione:
+La copertura indica, in percentuale, quante linee di codice vengono eseguite durante i test automatici. Permette di capire se i test scritti sono sufficienti oppure no, anche se un'ottima copertura non garantisce di per s\`e l'adeguatezza dei test, ma ne \`e comunque una buona stima. Il tool \textit{JSCoverage} permette di ottenere la copertura del codice JavaScript anche effettuando test manuali, \`e sufficiente profilare il codice, eseguire ed interagire con l'applicazione. Al termine dei test manuali, sar\`a possibile visualizzare la copertura ottenuta. La copertura attesa dipende da quale sottosistema dell'applicazione si sta prendendo in considerazione:
 \begin{elencopuntato}[\subsecindent]
-\item[-] GUI: dipende quasi completamente dall'interazione con l'utente ed \`e quindi poco automatizzabile. Ci si aspetta una copertura tra il 20\% ed il 30\%. Con dei test manuali si prevede di raggiungere una copertura tra il 90\% ed il 100\% su un singolo browser. 
+\item[-] GUI: dipende quasi completamente dall'interazione con l'utente ed \`e quindi poco automatizzabile, in quanto gli eventi generati dall'utente sono difficili da simulare, anche se \`e possibile, mentre l'output atteso \`e praticamente impossibile da confrontare in automatico con un output atteso, in quanto si tratta per la maggior parte di disegni effettuati sul canvas, che vanno quindi controllati a mano. Ci si aspetta una copertura tra il 20\% ed il 30\%. Con dei test manuali si prevede di raggiungere una copertura tra il 90\% ed il 100\% su un singolo browser, in quanto alcune parti vengono eseguite a seconda del browser in uso.
 \item[-] Logica interna: ci si aspetta una copertura tra l'80\% ed il 90\% su un singolo browser. Alcune parti vengono eseguite a seconda del browser, e quindi ci si aspetta di superare il 90\% solo eseguendo i test su pi\`u browser.
 \item[-] Server: ci si attende una copertura vicina al 100\%.
 \end{elencopuntato}
@@ -352,6 +349,7 @@ Misura l'aderenza alle norme di codifica, ed \`e il numero di errori riportati d
 \subsubsezione{Fase RQ}
 Vengono ora riassunti i risultati raggiunti per la fase RQ, usando le metriche precedentemente descritte.
 \paragrafo{Copertura dei test}
+I risultati sono stati ottenuti usando il tool \textit{JSCoverage}, precedentemente descritto.
 \begin{elencopuntato}[\subsubsecindent]
 \item[-] GUI: 21\%. 97\% con i test manuali.
 \item[-] Application Logic: 85\% su un singolo browser.
@@ -360,12 +358,13 @@ Vengono ora riassunti i risultati raggiunti per la fase RQ, usando le metriche p
 Dai dati si evince che la copertura \`e buona per quanto riguarda la logica interna e nei limiti previsti per l'interfaccia. Per quanto riguarda il lato server non sono tuttora presenti test, ma il problema verr\`a risolto entro l'RA. Il server \`e comunque minimale, e rappresenta solo una piccola frazione del codice totale.
 
 \paragrafo{Numero di test superati}
-Vengono superati 151 test su 151 su tutti i browser supportati. Per maggiori dettagli, si apra il file \textit{src/test/allTests.html} con un browser supportato.
+Eseguendo i test usando il tool \textit{QUnit}, vengono superati 151 test su 151 su tutti i browser supportati. Per maggiori dettagli, si apra il file \textit{src/test/allTests.html} con un browser supportato.
 
 \paragrafo{Numero di requisiti soddisfatti}
 Si faccia riferimento al tracciamento presente in \textit{DefinizioneDiProdotto.pdf}.
 
 \paragrafo{Numero di errori di stile}
+Gli errori di stile trovati dal software \textit{JSLint} sono:
 \begin{elencopuntato}[\subsubsecindent]
 \item[-] gui.js: un warning.
 \item[-] canvas.js: nessun warning.
