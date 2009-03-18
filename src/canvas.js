@@ -412,11 +412,10 @@ function ClearCanvasButton () {
  * The Save Button
  */
 function SaveButton () {
-  canvasObj.clear();
-  visual.getFigureSet().each(function(f){
-    visual.getFigureSet().rem(f);
-  });
-  visual.refresh();
+   var s = new SVGWriter();
+   var svg = s.write(visual.getFigureSet());
+   alert(svg);
+   $("#saveDestination").text(svg);
 };
 
 
