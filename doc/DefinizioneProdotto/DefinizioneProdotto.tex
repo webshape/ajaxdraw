@@ -270,8 +270,8 @@ Nessuna.
 \begin{elencopuntato}[\subsubsecindent]
 \item[-] \textit{getBrowserName()} ritorna \textit{{\_}browserName};
 \item[-] \textit{getBrowserVersion()} ritorna \textit{{\_}browserVersion};
-\item[-] \textit{activateStylesheet(sheetref)} attiva un foglio di stile a seconda del browser utilizzato;
-\item[-] \textit{loadStyleSheet()} carica il foglio di stile ativato da \textit{activateStylesheet}.
+\item[-] \textit{activateStylesheet(sheetref)} attiva un foglio di stile dopo aver ricevuto da \textit{loadStyleSheet} il suo nome, analizzando gli elementi \textit{link} che si riferiscono ai fogli CSS alernativi presenti nella pagina HTML principale selezionandone quello corretto.  
+\item[-] \textit{loadStyleSheet()} richiama \textit{activateStyleSheet} passandogli come parametro il nome del foglio di stile alternativo da utilizzare, dopo averlo ricavato dal nome e (in alcuni casi specifici) dalla versione del browser in uso; tale nome viene passato nella forma \textit{nome.css}.
 \end{elencopuntato}
 
 \subsezione{Scale}
@@ -298,7 +298,7 @@ Usa il contesto grafico per applicare lo spostamento e il riscalamento della par
 \subsubsezione{Tipo, obiettivo e funzione del componente}
 Classe concreta che si occupa delle operazioni di visualizzazione del canvas su schermo, come la riscalatura a seguito di uno zoom e la corretta visualizzazione della parte ingrandita o rimpicciolita.
 \subsubsezione{Relazioni d'uso di altre componenti}
-\` E composta da un'istanza della classe \textit{Canvas}. Utilizza istanze di \textit{Scale} e \textit{BoundingRectangle}.
+Utilizza istanze di \textit{Scale} e \textit{BoundingRectangle}.
 \subsubsezione{Interfacce e relazioni di uso da altre componenti}
 \textit{Page} ne mantiene un'istanza.
 \subsubsezione{Attivit\`a svolte e dati trattati}
@@ -324,7 +324,7 @@ Le coordinate vengono poi adattate allo spostamento corrente della visualizzazio
 \subsubsezione{Tipo, obiettivo e funzione del componente}
 Classe che rappresenta il canvas, oggetto sul quale verrano visualizzate le figure disegnate, modificate e spostate dall'utente, tramite l'utilizzo del mouse. 
 \subsubsezione{Relazioni d'uso di altre componenti}
-
+Nessuna.
 \subsubsezione{Interfacce e relazioni di uso da altre componenti}
 Compone un'istanza di \textit{Visualization}, che si occupa della sua visualizzazione su schermo.
 \subsubsezione{Attivit\`a svolte e dati trattati}
@@ -348,7 +348,7 @@ Compone un'istanza di \textit{Visualization}, che si occupa della sua visualizza
 \subsubsezione{Tipo, obiettivo e funzione del componente}
 Classe concreta che rappresenta la toolbar dalla quale l'utente pu\` o scegliere la funzione desiderata, posizionata in maniera da essere facilmente accessibile e sempre pronta all'uso.
 \subsubsezione{Relazioni d'uso di altre componenti}
-\` E formata da pi\` u istanze aggregate della classe \textit{Button}, per rappresentare ciascun tool selezionabile. 
+\` E formata da pi\`u istanze aggregate della classe \textit{Button}, per rappresentare ciascun tool selezionabile. 
 \subsubsezione{Interfacce e relazioni di uso da altre componenti}
 \textit{Page} ne mantiene un'istanza.
 \subsubsezione{Attivit\`a svolte e dati trattati}
