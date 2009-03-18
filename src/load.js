@@ -31,7 +31,7 @@ SVGReader.prototype.read = function (doc) {
   var fs = new FigureSet();
   var psr = new XMLParser();
   var xmlDoc = psr.parsing(doc);
-  if (xmlDoc === null) {
+  if (xmlDoc == null) {
     throw new ParsingError('Parsing Error');
   }
 
@@ -159,16 +159,37 @@ Rectangle.prototype.fromSVG = function (n) {
     alert("Solo valori numerici");
  }
   var y1 = n.getAttribute("y");
+
+ if((n.getAttribute("width"))<0)
+ {
+    alert("Il valore di width non puo' essere negativo");
+ }
+
+ if((n.getAttribute("height"))<0)
+ {
+    alert("Il valore di height non puo' essere negativo");
+ }
+
   var x2 = parseInt(x1, 10) + parseInt(n.getAttribute("width"), 10);
   var y2 = parseInt(y1, 10) + parseInt(n.getAttribute("height"), 10);
   var p1 = new Point(parseInt(x1, 10), parseInt(y1, 10));
   var p2 = new Point(x2, y2);
   this.getBounds().setStart(p1);
   this.getBounds().setEnd(p2);
+
+  var stringa = n.getAttribute("fill");
+  var sottostringa = stringa.substr(0,1);
+  if (sottostringa != "#")
+      alert("manca il # prima del valore esadecimale di fill")
+
   var errorEx = /^#?[\dabcdef]{6}$/gi;
   if(!(errorEx.test(n.getAttribute("fill"))))
     alert("Il valore di fill non e' un valore esadecimale valido");
   this.getFillColour().fromCSS(n.getAttribute("fill"));
+
+  if (((n.getAttribute("fill-opacity"))<=0) || ((n.getAttribute("fill-opacity"))>=1 ))
+      alert("il valore di fill-opacity non e' un valore valido \n (un valore valido e' compreso tra 0 e 1)")
+
   this.getFillColour().getOpacity().setVal(n.getAttribute("fill-opacity"));
   this.getBorderColour().fromCSS(n.getAttribute("stroke"));
   this.getBorderColour().getOpacity().setVal(n.getAttribute("stroke-opacity"));
@@ -301,14 +322,20 @@ Text.prototype.fromSVG = function (n) {
   this.setText(txt);
   this.setFont(new TextFont(n.getAttribute("font-family")));
   var y2 = y1 + h;
-  if (w) {
+  /*if (w) {*/
 	  var x2 = x1 + w;
-  }
+  /*}
   else {
 	 var x2 = (h/2) * txt.length;
-  }
+
+  }*/
+  //var p1 = new Point(parseInt(x1, 10), parseInt(y1, 10));
+  //var p2 = new Point(x2, y2);
+
+  
   var p1 = new Point(x1, y1);
   var p2 = new Point(x1+400, y2);
+
   this.getBounds().setStart(p1);
   this.getBounds().setEnd(p2);
   this.getTextColour().fromCSS(n.getAttribute("fill"));
