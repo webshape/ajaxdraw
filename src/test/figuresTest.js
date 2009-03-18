@@ -97,6 +97,28 @@ test('FigureSet', function () {
                  i++;
                });
        ok(res, 'last added, last position');
+       fs.toBottom(f2);
+       i = 0;
+       res = false;
+       fs.each(function (f) {
+                 if (i == 0) {
+                   res = f instanceof Rectangle;
+                 }
+                 i++;
+               });
+       ok(res, 'toBottom');
+       equals(count(), 3, "toBottom doesn't change number of elements");
+       fs.toTop(f2);
+       i = 0;
+       res = false;
+       fs.each(function (f) {
+                 if (i == 2) {
+                   res = f instanceof Rectangle;
+                 }
+                 i++;
+               });
+       ok(res, 'toTop');
+       equals(count(), 3, "toTop doesn't change number of elements");
      });
   
 test('FigureSet.selectFigure', function () {

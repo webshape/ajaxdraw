@@ -407,6 +407,28 @@ FigureSet.prototype.rem = function (f) {
 };
 
 /**
+ * Place the figure f on top of all the other figures
+ * @param {Figure} f the figure to place on top
+ */
+FigureSet.prototype.toTop = function (f) {
+  // remove the figure
+  this.rem(f);
+  // add() automatically places it on top of all the other figures
+  this.add(f);
+};
+
+/**
+ * Place the figure f under all the other figures
+ * @param {Figure} f the figure
+ */
+FigureSet.prototype.toBottom = function (f) {
+  // remove the figure
+  this.rem(f);
+  // add it as the first
+  this._figures.unshift(f);
+};
+
+/**
  * Select the figure matching the given point. Fallback function
  * for browsers without getImageData. Less precise.
  * @param {Point} where point to match against
