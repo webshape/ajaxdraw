@@ -135,6 +135,28 @@ text-decoration: underline;
 width: 400px;display: none;
 }
 
+#toTopButton{
+	
+	background-image:url("../pages/images/go-top.png");
+	width: 3em;
+	height:2.6em;
+	background-color:#F4F3F2;
+	background-repeat: no-repeat;
+	background-position: center;
+	margin-top:0.4em;
+	
+}
+
+
+#toBottomButton{
+	background-image:url("../pages/images/go-bottom.png");
+	width: 3em;
+	height:2.6em;
+	background-color:#F4F3F2;
+	background-repeat: no-repeat;
+	background-position: center;
+	margin-top:0.4em;
+}
 
 /********************AVANZATE******************/
 

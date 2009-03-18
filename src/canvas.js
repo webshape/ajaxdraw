@@ -409,6 +409,19 @@ function ClearCanvasButton () {
 
 /**
  * @constructor
+ * The Save Button
+ */
+function SaveButton () {
+  canvasObj.clear();
+  visual.getFigureSet().each(function(f){
+    visual.getFigureSet().rem(f);
+  });
+  visual.refresh();
+};
+
+
+/**
+ * @constructor
  * The Figure Selection button
  */
 function SelectionButton () {
@@ -493,6 +506,8 @@ SelectionButton.prototype.bindCanvas = function (toolbar,canvas,canvasObj,visual
   $("#cloneButton").unbind('click'); //unbind clonazione
   $("#cv").unbind(' mousedown mousemove click mouseup');
   $("#eraseButton").unbind('click');
+  $("#toTopButton").unbind('click');
+  $("#toBottomButton").unbind('click');
   $("*").unbind('keypress');
   $("*").bind('keypress',function(e){
     if(e.keyCode==46){
@@ -507,6 +522,8 @@ SelectionButton.prototype.bindCanvas = function (toolbar,canvas,canvasObj,visual
       if(actualFigure===null){
         // is there an already selected figure?
 	$("#cloneButton").unbind('click');
+	$("#toTopButton").unbind('click');
+	$("#toBottomButton").unbind('click');
 	$("*").unbind('keypress');
       /*zona gestione cancellazione*/
 	$("*").bind('keypress',function(e){
@@ -535,7 +552,21 @@ SelectionButton.prototype.bindCanvas = function (toolbar,canvas,canvasObj,visual
         // don't throw: no one will catch it
 	//throw 'No figure found';
       }
-      else{/*clonazione*/
+      else {
+	/*gestione livelli */
+	$("#toTopButton").click(function () {
+	  figureSet.toTop(actualFigure);
+	  canvasObj.clear();
+	  visual.refresh();
+	});
+
+	$("#toBottomButton").click(function () {
+	  figureSet.toBottom(actualFigure);
+	  canvasObj.clear();
+	  visual.refresh();
+	});
+
+	/*clonazione*/
 	$("#cloneButton").unbind('click');
 	$("#cloneButton").bind('click',function(e){
 	  visual.cloneElement(actualFigure,canvasObj);
