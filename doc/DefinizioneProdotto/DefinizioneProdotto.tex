@@ -220,7 +220,7 @@ Il presente documento descrive in modo dettagliato le classi e i relativi metodi
 \sezione{Introduzione}
 
 \subsezione{Scopo del documento}
-Il documento descrive a livello di dettaglio l'architettura del sistema.
+Il documento presenta e descrive a livello di dettaglio le componenti del sistema che dovranno essere implementate.
 
 \subsezione{Scopo del prodotto}
 Il software AJAXDRAW \`e proposto per verificare e dimostrare la fattibilit\`a di realizzazione di un'applicazione di disegno grafico, in grado di poter elaborare figure vettoriali primitive e complesse utilizzando le tecnologie web.
@@ -240,15 +240,22 @@ Il presente documento \`e redatto utilizzando le convenzioni inserite nel docume
 
 \sezione{Standard di progetto}
 \subsezione{Standard di progettazione architetturale}
-La progettazione verr\`a presentata tramite una descrizione testuale delle componenti accompagnata da diagrammi UML.
+La progettazione verr\`a presentata tramite una descrizione testuale delle componenti accompagnata da diagrammi UML. Per ogni componente si descrive:
+\begin{elencopuntato}[\subsecindent]
+\item[-] \texit{Tipo, obiettivo e funzione del componente} qui viene descritta il componente (classe) da un punto di vista generale.
+\item[-] \textit{Relazioni d'uso di altre componenti} qui vengono descritte le componenti che vengono utilizzate da questo componente e in che modo queste vengano utilizzate.
+\item[-] \textit{Interfacce e relazioni di uso da altre componenti} qui vengono elencate le componenti che utilizzano questo componente, e il modo in cui viene utilizzato.
+\item[-] \textit{Attivit\`a svolte e dati trattati} suddiviso in due sezioni. \textit{Attributi privati}, dove vengono descritti il tipo e la funzione degli attributi privati della classe e gli eventuali vincoli a cui devono sottostare questi campi. \textit{Metodi pubblici}, dove vengono descritti i metodi che la classe offre verso l'esterno, sia nella loro funzione, sia nei loro dettagli implementativi. La descrizione dei metodi pi\`u complessi \`e accompagnata da un diagramma.
+\end{elencopuntato}
+
 \subsezione{Standard di documentazione del codice}
-Si vedano le \textit{NormeDiprogetto}.
+Si vedano le \textit{NormeDiprogetto}, versione 4.0.
 \subsezione{Standard di denominazione di entit\`a e relazioni}
-Si vedano le \textit{NormeDiprogetto}.
+Si vedano le \textit{NormeDiprogetto}, versione 4.0.
 \subsezione{Standard di programmazione}
-Si vedano le \textit{NormeDiprogetto}.
+Si vedano le \textit{NormeDiprogetto}, versione 4.0.
 \subsezione{Strumenti di lavoro}
-Si vedano le \textit{NormeDiprogetto}.
+Si vedano le \textit{NormeDiprogetto}, versione 4.0.
 
 \sezione{Specifica delle componenti - GUI }
 Si occupa di gestire l'interazione tra l'utente e la logica interna dell'applicazione, descritta in seguito.
