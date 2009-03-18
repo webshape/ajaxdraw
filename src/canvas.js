@@ -409,6 +409,19 @@ function ClearCanvasButton () {
 
 /**
  * @constructor
+ * The Save Button
+ */
+function SaveButton () {
+  canvasObj.clear();
+  visual.getFigureSet().each(function(f){
+    visual.getFigureSet().rem(f);
+  });
+  visual.refresh();
+};
+
+
+/**
+ * @constructor
  * The Figure Selection button
  */
 function SelectionButton () {
