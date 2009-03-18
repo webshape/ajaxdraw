@@ -290,18 +290,26 @@ Polygon.prototype.fromSVG = function (n) {
  * @param {node} n the SVG node containg the property
  */
 Text.prototype.fromSVG = function (n) {
-  var x1 = n.getAttribute("x");
-  var y1 = n.getAttribute("y");
+  var x1 = parseInt(n.getAttribute("x"), 10);
+  var y1 = parseInt(n.getAttribute("y"), 10);
   var txt = n.childNodes[0].nodeValue;
-  var size = n.getAttribute("font-size");
+  var h = parseInt(n.getAttribute("font-size"), 10);
+  var w = parseInt(n.getAttribute("textLength"), 10);
   this.setText(txt);
   this.setFont(new TextFont(n.getAttribute("font-family")));
-  var y2 = parseInt(y1, 10) + parseInt(size, 10);
+  var y2 = y1 + h;
+  if (w) {
+	  var x2 = x1 + w;
+  }
+  else {
+	 var x2 = (h/2) * txt.length;
+  }
   var p1 = new Point(parseInt(x1, 10), parseInt(y1, 10));
-  var p2 = new Point(parseInt(x1, 10)+400, y2);
+  var p2 = new Point(x2, y2);
   this.getBounds().setStart(p1);
   this.getBounds().setEnd(p2);
-  //this.getFillColour().fromCSS(n.getAttribute("fill"));
+  this.getFillColour().fromCSS(n.getAttribute("fill"));
+  this.getFillColour().getOpacity().setVal(n.getAttribute("fill-opacity"));
   this.getBorderColour().fromCSS(n.getAttribute("stroke"));
-  //this.draw(c);? or shall we draw all at the end?  how can i get canvas?
+  this.getBorderColour().getOpacity().setVal(n.getAttribute("stroke-opacity"));
 };
