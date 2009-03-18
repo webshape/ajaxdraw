@@ -347,19 +347,29 @@ Misura l'aderenza alle norme di codifica, ed \`e il numero di errori riportati d
 \subsezione{Dettaglio delle verifiche tramite prove (test)}
 
 \subsubsezione{Descrizione dei test}
-In questa sezione vengono descritti gli obiettivi che si prefiggono i test. Vengono presentati divisi per file. Ogni file suddivide i test in sezioni.
+In questa sezione vengono descritti gli obiettivi che si prefiggono i test. Vengono presentati divisi per file. Ogni file suddivide i test in sezioni. Per ogni sezione \`e elencato cosa viene testato.
 \paragrafo{guiTest.js}
 Controlla il funzionamento dell'interfaccia grafica.
 \begin{elencopuntato}[\subsubsecindent]
-\item[-] Page: controlla l'identificazione del browser.
-\item[-] Canvas & Visualization: controlla le dimensioni del canvas, e la corretta instanziazione di \textit{Visualization}.
+\item[-] Page: identificazione del browser.
+\item[-] Canvas & Visualization: dimensioni del canvas, corretta instanziazione di \textit{Visualization}.
 \end{elencopuntato}
 \paragrafo{figuresTest.js}
 Controlla la gestione delle figure e delle loro propriet\`a.
 \begin{elencopuntato}[\subsubsecindent]
 \item[-] Point: instanziazione.
 \item[-] BoundingRectangle: instanziazione, calcoli corretti da parte dei metodi, letture e scrittura degli attributi, creazione del tipo di widget corretto.
-\item[-] Colour & Opacity:
+\item[-] Colour & Opacity: istanziazione, lettura e scrittura valori, conversione da e verso CSS, creazione del tipo di widget corretto.
+\item[-] EdgeNumber: istanziazione, lettura e scrittura valori, creazione del tipo di widget corretto.
+\item[-] TextFont: istanziazione, lettura e scrittura valori, conversione verso CSS, creazione del tipo di widget corretto.
+\item[-] FigureSet: aggiunta, rimozione e spostamento di figure, iterazione lungo le figure. La selezione viene testata in una sezione apposita, vista la complessit\`a.
+\item[-] FigureSet.selectFigure: selezione della figura corretta con una singola figura nel set, con piu' figure, con piu' figure sovrapposte e corretto ritorno del valore nullo se il punto selezionato \`e al di fuori delle figure.
+\item[-] Figure: cambio dello stato di selezione, accesso agli attributi.
+\item[-] Circle: istanziazione, accesso agli attributi.
+\item[-] Polygon: istanziazione, accesso agli attributi, calcolo corretto dei punti a seconda del numero dei lati e del \textit{BoundingRectangle}.
+\item[-] Rectangle: istanziazione, accesso agli attributi.
+\item[-] FreeLine: istanziazione, accesso agli attributi, aggiunta e spostamento di punti con corretta modifica del \textit{BoundingRectangle}, adattamento dei punti a modifiche al \textit{BoundingRectangle}, iterazione lungo tutti i punti, corretta conversione in valore assoluto dei punti.
+\item[-] Text: istanziazione, accesso agli attributi, modifica degli attributi.
 \end{elencopuntato}
 
 
