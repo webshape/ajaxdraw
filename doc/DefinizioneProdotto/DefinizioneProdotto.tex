@@ -750,9 +750,9 @@ Viene aggregata dalla classe \textit{FigureSet}.
 \subsubsezione{Attivit\`a svolte e dati trattati}
 \paragrafo{Attributi privati:}
 \begin{elencopuntato}[\subsubsecindent]
-\item[-] \textit{{\_}selected} dice se la figura \`e selezionata
+\item[-] \textit{{\_}selected} valore booleano, dice se la figura \`e selezionata
 \item[-] \textit{{\_}bounds} \textit{BoundingRectangle} che racchiude la figura
-\item[-] \textit{{\_}borderColour} colore del bordo della figura
+\item[-] \textit{{\_}borderColour} colore del bordo della figura, di tipo \textit{Colour}
 \end{elencopuntato}
 \paragrafo{Metodi pubblici:}
 \begin{elencopuntato}[\subsubsecindent]
@@ -763,8 +763,8 @@ Viene aggregata dalla classe \textit{FigureSet}.
 \item[-]  \textit{setSelection(value)} permette di selezionare/deselezionare la figura. Modifica \textit{{\_}selected}.
 \item[-]  \textit{isSelected()} dice se la figura \`e correntemente selezionata. Ritorna \textit{{\_}selected}.
 \item[-]  \textit{eachProperty(fn)} applica la funzione fn ad ogni propriet\`a della figura, ovvero a \textit{{\_}bounds} e \textit{{\_}borderColour}.
-\item[-] \textit{drawSelection(canvas)} disegna dei quadratini di colore blu e con opacit\`a 0.8 intorno ai punti principali della figura, ottenuti tramite \textit{getMainPoints}e traccia i bordi del \textit{BoundingRectangle} di colore grigio con opacit\`a 0.8, solo se la figura \`e selezionata. 
-\item[-] \textit{clone()} esegue una copia profonda di se stesso utilizzando il metodo \textit{jQuery.extend()}. Sposta il \textit{BoundingRectangle} della copia di 10px verso l'alto e ritorna la copia.
+\item[-] \textit{drawSelection(canvas)} disegna dei quadratini di colore blu e con opacit\`a 0.8 intorno ai punti principali della figura, ottenuti tramite \textit{getMainPoints} e traccia i bordi del \textit{BoundingRectangle} di colore grigio con opacit\`a 0.8, solo se la figura \`e selezionata. Sia per disegnare i qudrati, si per disegnare i bordi, utilizza il metodo \textit{strokeRect} del contesto grafico.
+\item[-] \textit{clone()} esegue una copia profonda di se stesso utilizzando il metodo \textit{jQuery.extend()}. Sposta il \textit{BoundingRectangle} della copia di 10px verso l'alto sottraendo questo valore alle componenti y dei punti di inizio e di fine, e ritorna la copia.
 \end{elencopuntato}
 
 \subsezione{FigureSet}
@@ -782,7 +782,7 @@ Il costruttore controlla se il browser supporta il metodo \textit{getImageData} 
 \end{elencopuntato}
 \paragrafo{Metodi pubblici:}
 \begin{elencopuntato}[\subsubsecindent]
-\item[-]  \textit{selectFigure(where)} permette di selezionare una figura contenente il punto passato come argomento, se tale figura esiste. Per maggiori dettagli si veda il diagramma di attivit\`a in figura 1.
+\item[-]  \textit{selectFigure(where)} permette di selezionare una figura contenente il punto passato come argomento, se tale figura esiste. Come si vede nel diagramma di attivit\`a in figura 1, si crea un canvas non visibile all'utente sul quale verranno disegnate tutte le figure. Ogni figura viene disegnata usando un solo colore, ed ognuna ha un colore diverso da tutte le altre figure. Durante questo processo, si costruisce una tabella di hash che associa il colore alla figura. Finito di disegnare, si usa il metodo \textit{getImageData} del contesto grafico per ottenere il colore del pixel nel punto selezionato. Questo colore viene usato come indice nella tabella di hash per ottenere la figura selezionata. Se il colore non \`e presente nella tabella, allora nessuna figura \`e stata selezionata.
 
 \begin{figure}[!ht]
 \centering
@@ -851,17 +851,17 @@ Implementa \textit{Property}.
 \subsubsezione{Attivit\`a svolte e dati trattati}
 \paragrafo{Attributi privati:}
 \begin{elencopuntato}[\subsubsecindent]
-\item[-] \textit{\_val} il numero dei lati.
+\item[-] \textit{\_val} un intero che indica il numero di lati.
 \end{elencopuntato}
 \paragraph{Metodi pubblici:}
 \begin{elencopuntato}[\subsubsecindent]
-\item[-] \textit{get/setVal} permette di ottenere, o di modificare, il numero dei lati.
+\item[-] \textit{get/setVal} permette di ottenere, o di modificare, il numero di lati.
 \item[-] \textit{createWidget} crea e ritorna un'istanza di \textit{EdgeNumberSetter} passando se stesso come parametro al costruttore.
 \end{elencopuntato}
 
 \subsezione{Rotation}
 \subsubsezione{Tipo, obiettivo e funzione del componente}
-Rappresenta la proprietà di una figura di essere ruotata.
+Rappresenta la propriet\`a di una figura di essere ruotata.
 \subsubsezione{Relazioni d'uso di altre componenti}
 Implementa \textit{Property}.
 \subsubsezione{Interfacce e relazioni di uso da altre componenti}
@@ -895,11 +895,11 @@ Implementa \textit{Property} e \textit{CSSProperty}. Mantiene un'istanza di \tex
 \end{elencopuntato}
 \paragraph{Metodi pubblici:}
 \begin{elencopuntato}[\subsubsecindent]
-\item[-] \textit{getOpacity()} ritorna l'attributi \textit{{\_}o}.
+\item[-] \textit{getOpacity()} ritorna l'attributo \textit{{\_}o}.
 \item[-] \textit{set(r, g, b, o)} modifica i valori dei quattro attributi.
-\item[-] \textit{fromCSS(repr)} inizializza le componenti RGB del colore a partire dalla loro rappresentazione CSS. Diivide la stringa \textit{repr} in tre parti di due cifre esadecimali l'una, le converte in numeri e le assegna alle tre componenti. Se \textit{repr} \`e invalida viene sollevata un'eccezione.
+\item[-] \textit{fromCSS(repr)} inizializza le componenti RGB del colore a partire dalla loro rappresentazione CSS. Divide la stringa \textit{repr} in tre parti di due cifre esadecimali l'una, le converte in numeri e le assegna alle tre componenti. Se \textit{repr} \`e invalida viene sollevata un'eccezione.
 \item[-] \textit{createWidget()} crea e ritorna un'istanza di \textit{ColourDialog} passando se stesso come parametro al costruttore.
-\item[-] \textit{toCSS()} ritorna il colore come una stringa di tipo {\#}EEEEEE formata da tre coppie di due cifre esadecimali. Le coppie rappresentano rispettivamente il rosso, il verde, il blu. L'opacit\`a viene ignorata da questo metodo.
+\item[-] \textit{toCSS()} ritorna il colore come una stringa di tipo {\#}EEEEEE formata da tre coppie di due cifre esadecimali l'una. Le coppie rappresentano rispettivamente il rosso, il verde, il blu. Per la conversione da intero a stringa esadecimale si usa il metodo \textit{toString} della classe \textit{Number}. L'opacit\`a viene ignorata da questo metodo.
 \item[-] \textit{applyToContext(context)} setta l'attributo \textit{strokeStyle} del contesto grafico alla propria rappresentazione CSS, e richiama il metodo \textit{applyToContext} su \textit{{\_}o} passando \textit{context} come argomento.
 \end{elencopuntato}
 
@@ -918,7 +918,7 @@ Deriva da \textit{Colour}.
 
 \subsezione{TextProperty}
 \subsubsezione{Tipo, obiettivo e funzione del componente}
-Propriet\`a di un testo grafico. Non serve implementarla in \underline{JavaScript}.
+Propriet\`a di un testo grafico. Non serve implementarla in \underline{JavaScript}, in quanto \`e un'interfaccia.
 
 \subsezione{TextColour}
 \subsubsezione{Tipo, obiettivo e funzione del componente}
@@ -932,7 +932,7 @@ Deriva da \textit{FillColour}.
 
 \subsezione{TextFont}
 \subsubsezione{Tipo, obiettivo e funzione del componente}
-Rappresenta il font di un testo. Mantiene il nome del font.
+Rappresenta il font di un testo. Mantiene il nome del font, che prende come argomento il costruttore. Non viene fatto nessun controllo di validit\`a, in quanto la lista di font supportati dipende troppo dal browser usato e dalla sua versione, e i font invalidi vengono semplicemente ignorati. 
 \subsubsezione{Relazioni d'uso di altre componenti}
 Deriva da \textit{TextProperty} e implementa \textit{CSSProperty}.
 \subsubsezione{Interfacce e relazioni di uso da altre componenti}
@@ -1038,7 +1038,7 @@ Creato dalla lettura di un file SVG oppure dall'interfaccia utente. Manipolato d
 
 \subsezione{Line}
 \subsubsezione{Tipo, obiettivo e funzione del componente}
-Rappresenta una linea generica. Non viene implementata in JavaScript.
+Rappresenta una linea generica. Non viene implementata in JavaScript, in quanto \`e un'interfaccia.
 
 \subsezione{StraightLine}
 \subsubsezione{Tipo, obiettivo e funzione del componente}
@@ -1060,7 +1060,7 @@ Creato dalla lettura di un file SVG oppure dall'interfaccia utente. Manipolato d
 \subsubsezione{Tipo, obiettivo e funzione del componente}
 Rappresenta una linea a mano libera. Viene implementata tramite delle curve di bezier brevi e ravvicinate tra di loro.
 \subsubsezione{Relazioni d'uso di altre componenti}
-Deriva da \textit{Line} e ne implementa i metodi astratti. Mantiene una lista di punti. I punti prendono come origine l'angolo in alto a sinistra del \textit{BoundingRectangle} e presuppongono un quadrato alto 1 e largo 1, in modo da essere indipendenti dal \textit{BoundingRectangle}. I punti verranno poi convertiti nei loro valori assoluti, a seconda del \textit{BoundingRectangle}, prima di disegnare la linea. Qualora ripetere questa computazione ad ogni refresh fosse troppo dispendioso, si potrebbe ricorrere ad un sistema di caching. Implementa il metodo \textit{toSVG} dell'interfaccia \textit{SVGWritable} e si serve dei metodi della classe \textit{SVGGenerator}.
+Deriva da \textit{Line} e ne implementa i metodi astratti. Mantiene una lista di punti. I punti prendono come origine l'angolo in alto a sinistra del \textit{BoundingRectangle} e presuppongono un quadrato alto 1 e largo 1, in modo da essere indipendenti dal \textit{BoundingRectangle}. I punti verranno poi convertiti nei loro valori assoluti, a seconda del \textit{BoundingRectangle}, prima di disegnare la linea. Qualora ripetere questa computazione ad ogni refresh fosse troppo dispendioso, si potrebbe ricorrere ad un sistema di caching, ma non sembra necessario. Implementa il metodo \textit{toSVG} dell'interfaccia \textit{SVGWritable} e si serve dei metodi della classe \textit{SVGGenerator}.
 \subsubsezione{Interfacce e relazioni di uso da altre componenti}
 Creato dalla lettura di un file SVG oppure dall'interfaccia utente. Manipolato dall'interfaccia utente. Chiamato da \textit{SVGWriter} per trasformare la figura in formato SVG. \textit{BezierCurve} ne eredita i metodi.
 \subsubsezione{Attivit\`a svolte e dati trattati}
@@ -1073,7 +1073,7 @@ Creato dalla lettura di un file SVG oppure dall'interfaccia utente. Manipolato d
 \item[-] \textit{extend(point)} aggiunge un punto avente coordinate assolute ai punti di controllo. Nel caso il punto esca dal \textit{BoundingRectangle}, il \textit{BoundingRectangle} viene ampliato e tutti i punti di controllo (con coordinate relative) vengono ricalcolati in modo che mantengano la posizione precedente. Per ricalcolare i punti si convertono a valore assoluto, si modifica il \textit{BoundingRectangle}, si aggiunge il nuovo punto e si riconvertono i 
 punti al loro valore relativo.
 \item[-] \textit{move(point, to)} muove il punto di controllo \textit{point} (se appartiene alla linea) e lo mette in \textit{to}. Aggiusta il \textit{BoundingRectangle} di conseguenza. I due punti hanno coordinate assolute.
-\item[-] \textit{getPoints()} ritorna un array con una copia dei punti di controllo della linea convertiti a coordinate assolute in base al \textit{BoundingRectangle}.
+\item[-] \textit{getPoints()} ritorna un array con una copia dei punti di controllo della linea convertiti a coordinate assolute in base al \textit{BoundingRectangle}. Per ogni punto, si somma \textit{{\_}start} e si moltiplica la x per la larghezza e la y per l'altezza del \textit{BoundingRectangle}.
 \item[-] \textit{getMainPoints()} ritorna un array ottenuto concatenando l'array di \textit{getMainPoints} della superclasse e i punti ottenuti con \textit{getPoints}.
 \item[-] \textit{draw(canvas)} chiama \textit{applyToContext} sul colore del bordo e ottiene i punti di controllo assoluti tramite \textit{getPoints}. Usa il primo punto come inizio della prima curva e raggruppa i punti a 3 a 3 e per ogni gruppo traccia una curva di bezier. Se rimangono due punti traccia una quadratica e se ne rimane uno solo una linea diritta.
 \item[-] \textit{drawSelection(canvas)} richiama \textit{drawSelection} di \textit{Figure} e disegna le tangenti alla curva di colore grigio con opacit\`a 0.8. Le tangenti sono dei segmenti che congiungono il punto di inizio/fine curva al relativo punto di controllo.
@@ -1114,7 +1114,7 @@ Creato dalla lettura di un file SVG oppure dall'interfaccia utente. Manipolato d
 \item[-] \textit{getFillColour()} ritorna \textit{{\_}fillColour}.
 \item[-] \textit{edgeNumber()} ritorna \textit{{\_}en}.
 \item[-] \textit{eachProperty(fn)} richiama \textit{eachProperty} di \textit{Figure} ed applica la funzione fn a \textit{{\_}fillColour} e a \textit{{\_en}}.
-\item[-] \textit{getPoints()} ritorna un'array di punti, considerando come origine \textit{BoundingRectangle.start()}, che rappresentano i vertici del poligono. Per maggiori dettagli si veda il diagramma di attivit\`a in figura 2.
+\item[-] \textit{getPoints()} ritorna un'array di punti, considerando come origine \textit{BoundingRectangle.start()}, che rappresentano i vertici del poligono. Come si vede nel diagramma di attivit\`a in figura 2, si calcolano i punti usando le formule x = cos(angolo*i)*w+xs e y = sin(angolo*i)*h+ys dove \textit{angolo} \`e l'angolo giro diviso per il numero di lati, i \`e il numero del punto attuale (da 0 al numero di lati meno uno) e la coppia (xs, ys) \`e \textit{BoundingRectangle.start()}.
 
 \begin{figure}[!ht]
 \centering
