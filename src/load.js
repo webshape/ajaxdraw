@@ -68,7 +68,8 @@ XMLParser.prototype.parsing = function (doc) {
   try { //Internet Explorer
 	 xmlDoc = new ActiveXObject("Microsoft.XMLDOM");
 	 xmlDoc.async = false;
-	 xmlDoc.loadXML(doc);
+     xmlDoc.load(doc);
+	 /*xmlDoc.loadXML(doc);*/
 
 	 if (xmlDoc.parseError.errorCode !== 0) {
 		alert("Error in line " + xmlDoc.parseError.line +
@@ -81,8 +82,11 @@ XMLParser.prototype.parsing = function (doc) {
   }
   catch(e) {
 	 try { //Firefox
-		var parser = new DOMParser();
-		xmlDoc = parser.parseFromString(doc, "text/xml");
+		/*var parser = new DOMParser();
+		xmlDoc = parser.parseFromString(doc, "text/xml");*/
+        xmlDoc=document.implementation.createDocument("","",null);
+        xmlDoc.async="false";
+        xmlDoc.load(doc);
 		if (xmlDoc.documentElement.nodeName == "parsererror") {
 		  alert(xmlDoc.documentElement.childNodes[0].nodeValue);
         return(null);
@@ -147,6 +151,10 @@ registry.register('text', Text);
  */
 Rectangle.prototype.fromSVG = function (n) {
   var x1 = n.getAttribute("x");
+  if(isNaN(x1))
+ {
+    alert("Solo valori numerici");
+ }
   var y1 = n.getAttribute("y");
   var x2 = parseInt(x1, 10) + parseInt(n.getAttribute("width"), 10);
   var y2 = parseInt(y1, 10) + parseInt(n.getAttribute("height"), 10);
@@ -154,6 +162,9 @@ Rectangle.prototype.fromSVG = function (n) {
   var p2 = new Point(x2, y2);
   this.getBounds().setStart(p1);
   this.getBounds().setEnd(p2);
+  errorEx = /^#?[\dabcdef]{6}$/gi;
+  if(!(errorEx.test(n.getAttribute("fill"))))
+    alert("Il valore di fill non e' un valore esadecimale valido");
   this.getFillColour().fromCSS(n.getAttribute("fill"));
   this.getFillColour().getOpacity().setVal(n.getAttribute("fill-opacity"));
   this.getBorderColour().fromCSS(n.getAttribute("stroke"));
