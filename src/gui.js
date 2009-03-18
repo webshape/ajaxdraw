@@ -253,7 +253,10 @@ $(document).ready(function(){
    // TODO: save link to server
    var s = new SVGWriter();
    var svg = s.write(figureSet);
-   document.write(svg);
+   //alert(svg);
+   $("#saveDestination").text(svg);
+
+  // document.write(svg);
  });
 
  $("#loadButton").click(function () {
