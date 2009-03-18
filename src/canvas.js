@@ -1366,8 +1366,10 @@ function RotationSetter(){}
 					var costheta = Math.cos(rotation);
 					var sintheta = Math.sin(rotation);
                                         var d = x.dist(this.centre());
-					bounds.start().x = x+(d-(d*sintheta));
-                                        bounds.start().y = y+(d) 
+					bounds.start().x = x+(d-(d*costheta));
+                                        bounds.start().y = y+(d*sintheta); 
+                                        bounds.end().x = x-(d*sintheta);
+                                        bounds.end().y = y+(d-(d*costheta));
 					
      canvasObj.clear();
      visual.refresh();
