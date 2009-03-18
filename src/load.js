@@ -298,7 +298,7 @@ Text.prototype.fromSVG = function (n) {
   var txt = n.childNodes[0].nodeValue;
   var h = parseInt(n.getAttribute("font-size"), 10);
   var w = parseInt(n.getAttribute("textLength"), 10);
-  this.setText(txt);
+  this.setText(new TextString(txt));
   this.setFont(new TextFont(n.getAttribute("font-family")));
   var y2 = y1 + h;
   if (w) {
@@ -312,7 +312,7 @@ Text.prototype.fromSVG = function (n) {
   this.getBounds().setStart(p1);
   this.getBounds().setEnd(p2);
   this.getTextColour().fromCSS(n.getAttribute("fill"));
-//  this.getTextColour().getOpacity().setVal(n.getAttribute("fill-opacity"));
+  this.getTextColour().getOpacity().setVal(n.getAttribute("fill-opacity"));
   this.getBorderColour().fromCSS(n.getAttribute("stroke"));
-//  this.getBorderColour().getOpacity().setVal(n.getAttribute("stroke-opacity"));
+  this.getBorderColour().getOpacity().setVal(n.getAttribute("stroke-opacity"));
 };
