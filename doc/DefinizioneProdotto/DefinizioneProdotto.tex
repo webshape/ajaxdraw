@@ -242,7 +242,7 @@ Il presente documento \`e redatto utilizzando le convenzioni inserite nel docume
 \subsezione{Standard di progettazione architetturale}
 La progettazione verr\`a presentata tramite una descrizione testuale delle componenti accompagnata da diagrammi UML. Per ogni componente si descrive:
 \begin{elencopuntato}[\subsecindent]
-\item[-] \texit{Tipo, obiettivo e funzione del componente} qui viene descritta il componente (classe) da un punto di vista generale.
+\item[-] \textit{Tipo, obiettivo e funzione del componente} qui viene descritta il componente (classe) da un punto di vista generale.
 \item[-] \textit{Relazioni d'uso di altre componenti} qui vengono descritte le componenti che vengono utilizzate da questo componente e in che modo queste vengano utilizzate.
 \item[-] \textit{Interfacce e relazioni di uso da altre componenti} qui vengono elencate le componenti che utilizzano questo componente, e il modo in cui viene utilizzato.
 \item[-] \textit{Attivit\`a svolte e dati trattati} suddiviso in due sezioni. \textit{Attributi privati}, dove vengono descritti il tipo e la funzione degli attributi privati della classe e gli eventuali vincoli a cui devono sottostare questi campi. \textit{Metodi pubblici}, dove vengono descritti i metodi che la classe offre verso l'esterno, sia nella loro funzione, sia nei loro dettagli implementativi. La descrizione dei metodi pi\`u complessi \`e accompagnata da un diagramma.
@@ -277,7 +277,7 @@ Nessuna.
 \begin{elencopuntato}[\subsubsecindent]
 \item[-] \textit{getBrowserName()} ritorna \textit{{\_}browserName};
 \item[-] \textit{getBrowserVersion()} ritorna \textit{{\_}browserVersion};
-\item[-] \textit{activateStylesheet(sheetref)} attiva un foglio di stile dopo aver ricevuto da \textit{loadStyleSheet} il suo nome, analizzando gli elementi \textit{link} che si riferiscono ai fogli CSS alernativi presenti nella pagina HTML principale selezionandone quello corretto.  
+\item[-] \textit{activateStylesheet(sheetref)} attiva un foglio di stile dopo averne ricevuto il nome da \textit{loadStyleSheet}, analizzando gli elementi \textit{link} che si riferiscono ai fogli CSS alternativi presenti nella pagina HTML principale, e selezionando quello corretto.  
 \item[-] \textit{loadStyleSheet()} richiama \textit{activateStyleSheet} passandogli come parametro il nome del foglio di stile alternativo da utilizzare, dopo averlo ricavato dal nome e (in alcuni casi specifici) dalla versione del browser in uso; tale nome viene passato nella forma \textit{nome.css}.
 \end{elencopuntato}
 
