@@ -45,7 +45,8 @@
 <ul id="menuModel5">
 	<li id="50000"><a href="#" title="Apri il menu file">File</a>
 		<ul style="width:150px">
-			<li id="500001" jsFunction='$("#saveDialog").css({"display" : "block"});
+			<li id="500001" jsFunction='SaveButton();
+					$("#saveDialog").css({"display" : "block"});
 												$("#saveDialog").dialog({
 													title: "Salva in SVG",
 													modal: true,
@@ -53,7 +54,8 @@
     												width: 350,
 													resizable: false,
     												dialogClass: "saveDialog1"
-								   			});' 
+								   			});
+								   			' 
 								   itemIcon="images/menu_bar/disk.gif"><a href="#" title="Save your work">Salva</a></li>
 			<!--  <li id="500002"><a href="#">Salva Come</a></li> -->
 			<li id="500004" itemType="separator"></li>

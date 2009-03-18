@@ -251,10 +251,10 @@ $(document).ready(function(){
  $("#saveButton").click(function () {
    $("#saveDialog").dialog( 'close' );
    // TODO: save link to server
-   var s = new SVGWriter();
-   var svg = s.write(figureSet);
-   alert(svg);
-   $("#saveDestination").text(svg);
+  // var s = new SVGWriter();
+  // var svg = s.write(figureSet);
+  // alert(svg);
+  // $("#saveDestination").text(svg);
 
   // document.write(svg);
  });
