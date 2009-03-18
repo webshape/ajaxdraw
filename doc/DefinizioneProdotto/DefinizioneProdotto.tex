@@ -737,7 +737,7 @@ Legge e modifica \textit{TextString}.
 
 
 %%%%%%%%Parte Dissegna
-\sezione{Specifica delle componenti - ApplicationLogic}
+\sezione{Specifica delle componenti - ApplicationLogic, gestione figure}
 Gestisce completamente le figure: il disegno, la conversione da e verso \underline{SVG}, le loro propriet\`a, la loro manipolazione e creazione. Utilizza le interfacce messe a disposizione dallo strato server e offre le proprie funzionalit\`a allo strato GUI. Nel grafico in figura 1 si riportano le classi per la gestione delle figure con le loro relazioni. Nel diagramma non si mostrano attributi e metodi in quanto ampiamente descritti testualmente in seguito.
 
 \begin{figure}[!ht]
@@ -1161,6 +1161,14 @@ Nel costruttorte viene controllato se il browser supporta le API per il disegno 
 \item[-] \textit{fromSVG(n)} ottiene il valore degli attributi del nodo \textit{n} come stringhe, li trasforma in interi quando necessario, aggiorna il \textit{BoundingRectangle} su cui si basa il costruttore per disegnare il testo e scrive i nuovi valori nelle propriet\`a della figura.  
 \end{elencopuntato}
 
+\sezione{Specifica delle componenti - ApplicationLogic, conversione SVG}
+Gestisce i processi di conversione da e verso il formato SVG. Si riportano i diagrammi delle classi che implementano le funzionalit\`a di serializzazione e deserializzazione. Metodi e attributi non sono riportati nel diagramma perch\`e ampiamente descritti testualmente in seguito.
+
+\begin{figure}[!ht]
+\centering
+\includegraphics[scale=0.5]{applogic_readwrite.png}
+\caption{Classi e loro relazioni - scrittura e lettura}
+\end{figure}
 
 \subsezione{SVGWriter}
 \subsubsezione{Tipo, obiettivo e funzione del componente}
