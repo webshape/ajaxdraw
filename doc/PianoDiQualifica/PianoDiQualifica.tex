@@ -373,7 +373,11 @@ Controlla la gestione delle figure e delle loro propriet\`a.
 \end{elencopuntato}
 
 \paragrafo{saveTest.js}
-Quseti test controllano il corretto funzionamento della conversione verso SVG, creando immagini, covertendole e confrontando 
+Questi test controllano il corretto funzionamento della conversione verso SVG. Sono tutti molto simili, quindi una descrizione generale \`e sufficiente. Ogni test crea una figura, la converte in SVG e confronta la stringa prodotta con quella attesa. Questo per ogni tipo di figura. Vi \`e poi un test pi\`u generale che controlla la generazione di un documento SVG completo con pi\`u figure: crea delle figure, le aggiunge ad un \textit{FigureSet} che viene poi convertito in SVG.
+
+\paragrafo{loadTest.js}
+In modo analogo al paragrafo precedente, \`e sufficiente una descrizione generale. Ogni test crea la rappresentazione SVG di una figura, che viene caricata. Gli attributi della figura risultante vengono controllati per accertarsi che abbiano i valori corretti. Tutti questi test controllano che ogni figura venga estratta in modo corretto dalla string SVG. 
+
 
 \subsubsezione{Fase RQ}
 Vengono ora riassunti i risultati raggiunti per la fase RQ, usando le metriche precedentemente descritte.
