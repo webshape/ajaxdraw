@@ -287,7 +287,7 @@ Classe concreta che si occupa delle operazioni di visualizzazione del canvas su 
 \subsubsezione{Relazioni d'uso di altre componenti}
 Utilizza istanze di \textit{Scale} e \textit{BoundingRectangle}.
 \subsubsezione{Interfacce e relazioni di uso da altre componenti}
-\textit{Page} ne mantiene un'istanza.
+\` E usato da \textit{Canvas}, per le operazioni descritte precedentemente.
 \subsubsezione{Attivit\`a svolte e dati trattati}
 \paragrafo{Attributi privati:}
 \begin{elencopuntato}[\subsubsecindent]
@@ -311,9 +311,9 @@ Le coordinate vengono poi adattate allo spostamento corrente della visualizzazio
 \subsubsezione{Tipo, obiettivo e funzione del componente}
 Classe che rappresenta il canvas, oggetto sul quale verrano visualizzate le figure disegnate, modificate e spostate dall'utente, tramite l'utilizzo del mouse. 
 \subsubsezione{Relazioni d'uso di altre componenti}
-Nessuna.
+Usa un'istanza di \textit{Visualization}, che si occupa della sua visualizzazione su schermo.
 \subsubsezione{Interfacce e relazioni di uso da altre componenti}
-Compone un'istanza di \textit{Visualization}, che si occupa della sua visualizzazione su schermo.
+Nessuna.
 \subsubsezione{Attivit\`a svolte e dati trattati}
 \paragrafo{Attributi privati:}
 \begin{elencopuntato}[\subsubsecindent]

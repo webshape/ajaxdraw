@@ -90,6 +90,9 @@ Il presente documento descrive le strategie per la verifica della correttezza de
 							& Dissegna Stefano \\
         
         \hline
+        \multirow{1}{*}{RQ-RA} & Dissegna Stefano \\
+        \hline
+
         %%%%%%%%%%% FINE PARTE DA MODIFICARE %%%%%%%%%%%%%%%%%%%%%%%%%%%
       \end{tabular}
       \caption{Lista Redattori} %INSERIRE DIDASCALIA - SE NECESSARIA -
@@ -181,6 +184,16 @@ Il presente documento descrive le strategie per la verifica della correttezza de
 %%%%%%%%%%%%%%FINE INTESTAZIONE COLONNE%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
      \hline
 %%%%%%%%%%% PARTE DA MODIFICARE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+     3.5 &    18$\slash$03$\slash$2009 Breve descrizione dei test manuali & Dissegna Stefano\\
+      \hline
+     3.4 &    18$\slash$03$\slash$2009 Descrizione dei test automatici & Dissegna Stefano\\
+      \hline
+     3.3 &    18$\slash$03$\slash$2009 Resoconto dei test & Dissegna Stefano\\
+      \hline
+     3.2 & 18$\slash$03$\slash$2009 Giustificato meglio la copertura attesa & Dissegna Stefano\\
+      \hline
+     3.1 &    18$\slash$03$\slash$2009 Correzioni minori & Dissegna Stefano\\
+      \hline
      3.0 &    7$\slash$03$\slash$2009 Sistemazione in vista rilascio RQ & Carollo Mirko\\
       \hline
       2.2 &  6$\slash$03$\slash$2009 Valutazione qualit\`a prima di consegna RQ & Dissegna Stefano \\
@@ -348,6 +361,7 @@ Misura l'aderenza alle norme di codifica, ed \`e il numero di errori riportati d
 
 \subsubsezione{Descrizione dei test}
 In questa sezione vengono descritti gli obiettivi che si prefiggono i test. Vengono presentati divisi per file. Ogni file suddivide i test in sezioni. Per ogni sezione \`e elencato cosa viene testato.
+
 \paragrafo{guiTest.js}
 Controlla il funzionamento dell'interfaccia grafica.
 \begin{elencopuntato}[\subsubsecindent]
@@ -372,6 +386,17 @@ Controlla la gestione delle figure e delle loro propriet\`a.
 \item[-] Text: istanziazione, accesso agli attributi, modifica degli attributi.
 \end{elencopuntato}
 
+\paragrafo{saveTest.js}
+Questi test controllano il corretto funzionamento della conversione verso SVG. Sono tutti molto simili, quindi una descrizione generale \`e sufficiente. Ogni test crea una figura, la converte in SVG e confronta la stringa prodotta con quella attesa. Questo per ogni tipo di figura. Vi \`e poi un test pi\`u generale che controlla la generazione di un documento SVG completo con pi\`u figure: crea delle figure, le aggiunge ad un \textit{FigureSet} che viene poi convertito in SVG.
+
+\paragrafo{loadTest.js}
+In modo analogo al paragrafo precedente, \`e sufficiente una descrizione generale. Ogni test crea la rappresentazione SVG di una figura, che viene caricata. Gli attributi della figura risultante vengono controllati per accertarsi che abbiano i valori corretti. Tutti questi test controllano che ogni figura venga estratta in modo corretto dalla string SVG. Un test generale carica un intero documento SVG.
+
+\paragrafo{draw.html}
+Qui vengono testate le funzioni di disegno. Ogni tipo di figura viene disegnata con diverse combinazioni di colori ed opacit\`a, con \textit{BoundingRectangle} con larghezze e altezze sia positive sia negative. I poligoni vengono disegnati con diversi numeri di lati. Le linee a mano libera vengono disegnate con diversi numeri di punti. Questo test \`e semiautomatico: l'ouput \`e generato in automatico, ma deve essere controllato a mano.
+
+\subsubsezione{Descrizione dei test manuali}
+I test manuali consistono nell'esecuzione del programma, provandone tutte le funzionalit\`a. Ha diversi obiettivi: controllare il funzionamento dell'interfaccia, testare l'integrazione tra le tre macrocomponenti (interfaccia, logica interna, server), controllare che tutte le funzionalit\`a previste siano presenti ed utilizzabili.
 
 \subsubsezione{Fase RQ}
 Vengono ora riassunti i risultati raggiunti per la fase RQ, usando le metriche precedentemente descritte.

@@ -45,14 +45,17 @@
 <ul id="menuModel5">
 	<li id="50000"><a href="#" title="Apri il menu file">File</a>
 		<ul style="width:150px">
-			<li id="500001" jsFunction='$("#saveDialog").css({"display" : "block"});
+			<li id="500001" jsFunction='SaveButton();
+					$("#saveDialog").css({"display" : "block"});
 												$("#saveDialog").dialog({
+													title: "Salva in SVG",
 													modal: true,
     												height: 120,
-    												width: 320,
+    												width: 350,
 													resizable: false,
     												dialogClass: "saveDialog1"
-								   			});' 
+								   			});
+								   			' 
 								   itemIcon="images/menu_bar/disk.gif"><a href="#" title="Save your work">Salva</a></li>
 			<!--  <li id="500002"><a href="#">Salva Come</a></li> -->
 			<li id="500004" itemType="separator"></li>
@@ -252,17 +255,19 @@ menuBar5.init();
 
 <!-- Parte Dialog Properties -->
 <div id="propertiesDialog" class="flora" title="Modifica attributi">
-	<p id="prova">H:  
-		<input id="DialogHeight" type="text" size="2" value="" />px
+	<p id="prova">  
+		A:&nbsp;<input id="DialogHeight" type="text" size="2" value=" " />px &nbsp; / &nbsp;	   
+		X:&nbsp;<input id="x" type="text" size="2" value="" />&nbsp;&nbsp; 
 	</p>
-	<p>L:   
-		<input id="DialogWidth" type="text" size="2" value="" />px
+	<p>
+		L:&nbsp;<input id="DialogWidth" type="text" size="2" value=" " />px  &nbsp;/ &nbsp;
+		Y:&nbsp;<input id="y" type="text" size="2"/>
 	</p>
-	<p>X:  &nbsp; 
-		<input id="x" type="text" size="2" value="" />&nbsp;&nbsp;   Y:&nbsp;
-		<input id="y" type="text" size="2"/>
-	</p>
-      <input id="submitRect" type="button" value="Cambia" />
+      <input id="submitRect" type="button" value="Cambia" /><br/>
+      <span>     
+     		 <input id="toTopButton" type="button" />
+     		 <input id="toBottomButton" type="button"  /> Livello
+      </span>
       
 	<p id="edgeSetterZone" style="display:none">
       <span id="polygonTitle"> Poligono:</span>	<br/>
@@ -288,9 +293,10 @@ menuBar5.init();
 	<p id="saveDialog" style="display:none" class="flora" title="Salva su file SVG:">
 		<span>
 			Nome: 
-			<input type="text"/>
-			<input id="saveButton" type="button" value="Salva"/>				
-		</span>		
+			<input id="saveFileName" type="text"/>
+			<input id="saveButton" type="button" value="Salva"/>						
+		</span><br/>
+		<div><textarea style="display:none" id="saveDestination"></textarea></div>		
 	</p>
 	<!-- Dialog di caricamento -->
 	<p id="loadDialog" style="display:none" class="flora" title="Carica file SVG:">
@@ -307,7 +313,7 @@ menuBar5.init();
 			<img src="images/logo.png" width="269" height="135" alt="Logo WebShape" />
 		</span>		
 	</p>
-	<textarea style="margin-left:3.5em;display:none" id="saveDestination"></textarea>
+
 </body>
 </html>
 
