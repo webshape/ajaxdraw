@@ -10,18 +10,21 @@
  * SVGReader create a figureSet and an elementRegistry
  * @constructor
  */
-function SVGReader() {
-}
+function SVGReader() {}
 
 /**
  * Error manager
  * @param {String} msg the description of the error
  */
-function ParsingError (msg) {
-  this._msg = msg;
-}
+function ParsingError () {}
 
-ParsingError.reader('_msg', 'msg');
+ParsingError.prototype.err = function (msg) {
+  alert(msg);
+};
+
+var perr = new ParsingError();
+
+//ParsingError.reader('_msg', 'msg');
 
 /**
  * Create an instance of FigureSet parsing an SVG document
@@ -156,18 +159,18 @@ Rectangle.prototype.fromSVG = function (n) {
   var x1 = n.getAttribute("x");
   if(isNaN(x1))
  {
-    alert("Solo valori numerici");
+    perr.err("Solo valori numerici");
  }
   var y1 = n.getAttribute("y");
 
  if((n.getAttribute("width"))<0)
  {
-    alert("Il valore di width non puo' essere negativo");
+    perr.err("Il valore di width non puo' essere negativo");
  }
 
  if((n.getAttribute("height"))<0)
  {
-    alert("Il valore di height non puo' essere negativo");
+    perr.err("Il valore di height non puo' essere negativo");
  }
 
   var x2 = parseInt(x1, 10) + parseInt(n.getAttribute("width"), 10);
@@ -180,15 +183,15 @@ Rectangle.prototype.fromSVG = function (n) {
   var stringa = n.getAttribute("fill");
   var sottostringa = stringa.substr(0,1);
   if (sottostringa != "#")
-      alert("manca il # prima del valore esadecimale di fill")
+    perr.err("manca il # prima del valore esadecimale di fill");
 
   var errorEx = /^#?[\dabcdef]{6}$/gi;
   if(!(errorEx.test(n.getAttribute("fill"))))
-    alert("Il valore di fill non e' un valore esadecimale valido");
+    perr.err("Il valore di fill non e' un valore esadecimale valido");
   this.getFillColour().fromCSS(n.getAttribute("fill"));
 
   if (((n.getAttribute("fill-opacity"))<=0) || ((n.getAttribute("fill-opacity"))>=1 ))
-      alert("il valore di fill-opacity non e' un valore valido \n (un valore valido e' compreso tra 0 e 1)")
+    perr.err("il valore di fill-opacity non e' un valore valido \n (un valore valido e' compreso tra 0 e 1)");
 
   this.getFillColour().getOpacity().setVal(n.getAttribute("fill-opacity"));
   this.getBorderColour().fromCSS(n.getAttribute("stroke"));
