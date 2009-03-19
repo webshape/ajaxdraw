@@ -24,7 +24,7 @@ ParsingError.prototype.err = function (msg) {
 
 ParsingError.prototype.hexCheck = function (str, fs){
   if (!str.match(/^#([0-9]|a|A|b|B|c|C|d|D|e|E|f|F){6}$/) && str != "none"){
-	 this.err("Figura n. " + nf + "\nIl valore di " +  fs + " non e' un valore valido");
+	 this.err("Figura n. " + nf + "\nIl valore di " +  fs + " non e' un valore esadecimale valido");
 	 return false;
   }
   return true;
@@ -51,7 +51,10 @@ ParsingError.prototype.intCheck = function (n, name){
 
 	 if ((name == "height" || name == "width" || name == "font-size" || name == "rx" || name == "ry") && n < 0){
 		// h, w and font-size can't be negative
-		this.err("Figura n. " + nf + "\n" + name + " non puo' avere un valore negativo");
+        if (nf == 0)
+            this.err("Errore elemento SVG \n" + name + " non puo' avere un valore negativo");
+        else
+            this.err("Figura n. " + nf + "\n" + name + " non puo' avere un valore negativo");
 		return false;
 	 }
   }
@@ -81,6 +84,12 @@ SVGReader.prototype.read = function (doc) {
   }
 
   var x = xmlDoc.getElementsByTagName("svg");
+
+  var w = x[0].getAttribute("width");
+  var h = x[0].getAttribute("height");
+  if (!(perr.intCheck(h, "height") && perr.intCheck(w, "width")))
+    return 0;
+
   for (var i = 0; i < x[0].childNodes.length; i++) {
     var n = x[0].childNodes[i];
     if (n.nodeName != "#text") {
