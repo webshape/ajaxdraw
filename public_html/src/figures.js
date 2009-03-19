@@ -73,6 +73,7 @@ Figure.prototype.eachProperty = function (fn) {
  */
 Figure.prototype.getMainPoints = function () {
   var b = this.getBounds();
+  // get coords of the start and end points
   var x1 = b.start().x;
   var y1 = b.start().y;
   var x2 = b.end().x;
@@ -98,14 +99,17 @@ Figure.prototype.drawSelection = function (c) {
   ctx.save();
   this.getMainPoints().each(function (pt) {
                               color.applyToContext(ctx);
+                              // draw a square around the point
                               ctx.strokeRect(pt.x - half, pt.y - half,
                                              size, size);
                             });
   // draw the bounds
   (new Colour(100, 100, 100, new Opacity(0.8))).applyToContext(ctx); // gray
   var b = this.getBounds();
+  // find upper left point
   var x0 = b.start().x < b.end().x ? b.start().x : b.end().x;
   var y0 = b.start().y < b.end().y ? b.start().y : b.end().y;
+  // bounding rectangle
   ctx.strokeRect(x0, y0, Math.abs(b.w()), Math.abs(b.h()));
   ctx.restore();
 };
@@ -227,6 +231,13 @@ function Colour(r, g, b, o) {
 
 Colour.reader('_o', 'getOpacity');
 
+/**
+ * Set the four components of the colour
+ * @param {Integer} r red component
+ * @param {Integer} g green component
+ * @param {Integer} b blue component
+ * @param {Opacity} o color opacity
+ */
 Colour.prototype.set = function (r, g, b, o) {
   this._r = r;
   this._g = g;
@@ -243,6 +254,8 @@ Colour.prototype.fromCSS = function (repr) {
   if (!repr.match(/^#([0-9]|a|A|b|B|c|C|d|D|e|E|f|F){6}$/)) {
     throw 'Illegal CSS representation of a colour';
   }
+  // parse as ints the three hex numbers with starting position 1, 3, 5
+  // in the string
   var res = [1, 3, 5].map(function (i) {
                             return parseInt(repr.substr(i, 2), 16);
                           });
@@ -258,6 +271,7 @@ Colour.prototype.createWidget = function () {
 Colour.prototype.toCSS = function () {
   var to16 = function (x) {
     if (x < 16) {
+      // pad with a 0
       return '0' + x.toString(16);
     } else {
       return x.toString(16);
@@ -340,7 +354,6 @@ TextFont.prototype.createWidget = function () {
   return new FontSetter(this);
 };
 
-
 /**
  * @constructor
  * String of a text area
@@ -356,7 +369,6 @@ TextString.prototype.createWidget = function () {
   return new TextStringSetter(this);
 };
 
-
 /**
  * @constructor
  * A collection of figures
@@ -366,9 +378,6 @@ function FigureSet () {
   // check if we have getImageData
   var hasImageData = false;
   var c = document.createElement('canvas');
- // if ($.browser.name=="msie") { // hack for internet explorer
- //   c = window.G_vmlCanvasManager.initElement(c);
-//  }
   if (c && c.getContext) {
     c = c.getContext('2d');
     if (c) {
@@ -405,6 +414,7 @@ FigureSet.prototype.add = function (f) {
 FigureSet.prototype.rem = function (f) {
   // maybe slow
   this._figures = this._figures.grep(function (el) {
+                                       // everything except f
                                        return el != f;
                                      });
 };
@@ -443,6 +453,7 @@ FigureSet.prototype.fallbackSelection = function (where) {
     var b = this._figures[i].getBounds();
     var s = b.start();
     var e = b.end();
+    // needed because end() coords may be lesser than start() coords
     var minx = s.x; var maxx = e.x;
     var miny = s.y; var maxy = e.y;
     if (maxx < minx) {
@@ -453,6 +464,7 @@ FigureSet.prototype.fallbackSelection = function (where) {
       maxy = miny;
       miny = e.x;
     }
+    // is the point within the rectangle?
     if (minx <= where.x && where.x <= maxx &&
         miny <= where.y && where.y <= maxy) {
         return this._figures[i];
@@ -472,6 +484,7 @@ FigureSet.prototype.selectFigure = function (where, scale, offset) {
   var g = 0;
   var b = 0;
   var o = new Opacity(1);
+  // return a unique colour (for the first 2^24 times)
   var next = function () {
     if (r < 255) {
       r++;
@@ -487,8 +500,8 @@ FigureSet.prototype.selectFigure = function (where, scale, offset) {
     return [new Colour(r, g, b, o), new FillColour(r, g, b, o)];
   };
 
-  var fs = {};
-  var c = document.createElement('canvas');
+  var fs = {}; // maps colors to figures
+  var c = document.createElement('canvas'); // auxiliary canvas
   var cv = document.getElementById('cv');
 
   c.width = cv.width;
@@ -501,7 +514,6 @@ FigureSet.prototype.selectFigure = function (where, scale, offset) {
   }
 
   c.getContext('2d').lineWidth = 10; // easier selection of lines
-  var textSelected = null;
   this.each(function (f) {
               if (f instanceof Text) {
                 // using a different lineWidth moves the text
@@ -528,9 +540,9 @@ FigureSet.prototype.selectFigure = function (where, scale, offset) {
   // get the selected pixel
   var selection = c.getContext('2d').getImageData(absWhere.x, absWhere.y, 1, 1).data;
   var col = new Colour(selection[0], selection[1], selection[2], o);
-  var res = fs[col.toCSS()];
-  if (!res) {
-    return textSelected; // may be null
+  var res = fs[col.toCSS()]; // is it associated with a figure?
+  if (!res) { // no figure selected
+    return null;
   }
   return res;
 };
@@ -853,6 +865,7 @@ FreeLine.prototype.extend = function (pt) {
       }
     }
   } else {
+    // convert the point to relative and add it
     w = b.w();
     h = b.h();
     if (w === 0) {
@@ -1026,10 +1039,14 @@ Text.prototype.fallbackDraw = function (c) {
   var x = b.start().x < b.end().x ? b.start().x : b.end().x;
   var y = b.start().y > b.end().y ? b.start().y : b.end().y;
   var font = this._font.toCSS();
+  // canvastext.js doesn't deform text, so we have to adapt the size
+  // to avoid a text that goes out of the bounding rectangle
   var size = Math.abs(b.h());
+  // get the length using maximum height
   var len = CanvasTextFunctions.measure(font, size, this._txt.getName());
   var w = Math.abs(b.w());
   if (len > w) {
+    // reduce height to fit width within the bounds
     size *= w/len;
   }
   ctx.beginPath();
