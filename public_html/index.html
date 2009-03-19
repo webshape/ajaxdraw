@@ -16,7 +16,7 @@
 <link rel="stylesheet" type="text/css" href="styles/menu_bar/menu-bar.css"/>
 <link rel="stylesheet" type="text/css" href="styles/menu_bar/menu-item.css"/>
 <script type="text/javascript" src="src/lib/jquery.js"></script>
-<!--[if IE]><script type="text/javascript" src="../src/lib/excanvas.js"></script><![endif]-->
+<!--[if IE]><script type="text/javascript" src="src/lib/excanvas.js"></script><![endif]-->
 <script type="text/javascript" src="src/lib/farbtastic.js"></script>
 <script type="text/javascript" src="src/lib/jquery.dimensions.js"></script>
 <script type="text/javascript" src="src/lib/jquery.tooltip.js"></script>
@@ -33,6 +33,7 @@
 <script type="text/javascript" src="src/gui.js"></script>
 <script type="text/javascript" src="src/canvas.js"></script>
 <script type="text/javascript" src="src/save.js"></script>
+<script type="text/javascript" src="src/load.js"></script>
 <script type="text/javascript" src="src/lib/menu-for-applications.js"></script>
 </head>
 <body>
@@ -58,9 +59,10 @@
 			<li id="500004" itemType="separator"></li>
 			<li itemIcon="images/menu_bar/open.gif" jsFunction='$("#loadDialog").css({"display" : "block"});
 										$("#loadDialog").dialog({
+													title: "Carica da file SVG",
 													modal: true,
     												height: 110,
-    												width: 440,
+    												width: 470,
 													resizable: false,
     												dialogClass: "loadDialog1"
 								   			});' id="500003"><a href="#">Apri</a></li>
@@ -278,22 +280,25 @@ menuBar5.init();
 	
 </div>
 <!-- Dialog di salvataggio -->
-	<p id="saveDialog" style="display:none" class="flora" title="Salva su file SVG:">
+<div id="saveDialog" style="display:none" class="flora" title="Salva su file SVG:">
+    <form name="MyForm2" method="post" action="Request" enctype="multipart/form-data" target="my_iframe">
 		<span>
 			Nome: 
-			<input id="saveFileName" type="text"/>
-			<input id="saveButton" type="button" value="Salva"/>						
+			<input id="saveFileName" type="text" name="name_file"/>
+			<input id="saveButton" type="submit" value="Salva" name="save"/>
 		</span><br/>
-		<div><textarea style="display:none" id="saveDestination"></textarea></div>		
-	</p>
+		<textarea style="display:none" id="saveDestination" name="area"></textarea>				
+	</form>
+<iframe id="my_iframe" name="my_iframe" scrolling="no" frameborder="0" style="display:none"></iframe></div>
 	<!-- Dialog di caricamento -->
-	<p id="loadDialog" style="display:none" class="flora" title="Carica file SVG:">
-		<span>
-			Nome: 
-			<input type="file"/>
-			<input id="loadButton" type="button" value="Carica"/>	
-		</span>		
-	</p>
+	<div id="loadDialog" style="display:none" class="flora" title="Carica file SVG:">
+		<form name="MyForm" method="post" action="Request" enctype="multipart/form-data" target="my_iframe">
+			<input name="my_file" type="file">
+			<input type="submit" name="salva" value="Carica" id="loadButton">&nbsp;&nbsp;
+			<input type="button" value="Chiudi" id="loadButton2">
+		</form>		
+		
+	</div>
 	<!-- A proposito -->
 	<p id="aboutDialog"  class="flora" title="About:">
 		<span id="aboutSpan" style="display:none;text-align:center">

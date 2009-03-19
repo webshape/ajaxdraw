@@ -258,19 +258,26 @@ $(document).ready(function(){
   // Save & Load Dialogs handlers
  $("#saveButton").click(function () {
    $("#saveDialog").dialog( 'close' );
-   // TODO: save link to server
-  // var s = new SVGWriter();
-  // var svg = s.write(figureSet);
-  // alert(svg);
-  // $("#saveDestination").text(svg);
-
-  // document.write(svg);
  });
 
+
+ var doc;
  $("#loadButton").click(function () {
-   // TODO: load link to server
-   $("#loadDialog").dialog( 'close' );
+  doc = $("#my_iframe").contents().find('body').html();//alert(doc);
  });
+
+ $("#loadButton2").click(function () {
+   $("#loadDialog").dialog( 'close' );
+   ClearCanvasButton();
+   doc = $("#my_iframe").contents().find('body').html();alert(doc);
+   var b = [];
+   var  r = new SVGReader();
+   b = (r.read(doc));
+   b.each(function (f) {
+     visual.getFigureSet().add(f);
+     f.draw(canvas);});
+ });
+
 
  // Advanced functions disabled for older browsers
  if((page.getBrowserName()=="firefox" && page.getBrowserVersion()<3.1) ||

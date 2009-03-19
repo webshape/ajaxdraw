@@ -1,5 +1,0 @@
-Lanciare con (da dentro questa directory):
-
-/usr/sbin/lighttpd -D -f lighttpd.conf
-
-a andare a: http://localhost:8080/
