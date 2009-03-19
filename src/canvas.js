@@ -82,6 +82,9 @@ Canvas.prototype.getId = function (){
   return this._id;
 };
 
+/**
+ * Clear the canvas element
+ */
 Canvas.prototype.clear = function () {
   if ($.browser.name=="msie") { // hack for internet explorer
     var canvas= window.G_vmlCanvasManager.initElement(this._id);
@@ -147,11 +150,18 @@ Visualization.prototype.refresh = function(){
 
 };
 
+/**
+ * Get the actual figureset
+ * @return the actual figureset
+ */
 Visualization.prototype.getFigureSet = function(){
   return this._figureSet;
 };
 
-
+/**
+ * Deselect all the figures in the figureset
+ * @param {FigureSet} figureSet the actual figureset
+ */
 Visualization.prototype.deselectAll = function (figureSet) {
    figureSet.each(function (f){
      f.setSelection(false);
@@ -266,15 +276,12 @@ Visualization.prototype.cloneElement = function(actualFigure,canvasObj){
 
 };
 
-
-
 /**
  * @constructor
  * A generic Button
  */
 function Button(){
   this._selected = false;
- // this._class = $(".toolbarButton");
 }
 
 
@@ -349,8 +356,9 @@ Button.prototype.bindCanvas = function (toolbar,canvas,canvasObj,visual,figureSe
   });
 };
 
-/*
+/**
  * Binds a specified cursor to every tool
+ * @param {String} type the figure for the cursor selection
  */
 Button.prototype.bindCursor = function(type){
   if(($.browser.name!="opera")){
@@ -425,14 +433,10 @@ function SaveButton () {
  */
 function SelectionButton () {
   Button.call(this);
- // this._id = document.getElementById("selectionButton");
 }
 
 SelectionButton.prototype = new Button();
 
-//SelectionButton.prototype.getId = function (){
-//  return this._id;
-//};
 
 /**
  * @return true if a point was handled, false otherwise
@@ -532,7 +536,6 @@ SelectionButton.prototype.bindCanvas = function (toolbar,canvas,canvasObj,visual
 	});
 	$("#eraseButton").click(function () {
 	  visual.eraseElement(figureSet,canvasObj);
-	  // eraseButton.eraseElement(figureSet);
 	});
         figureSet.each(function (f) {
           if (f.isSelected()) {
@@ -653,16 +656,10 @@ SelectionButton.prototype.bindCanvas = function (toolbar,canvas,canvasObj,visual
  */
 function ZoomButton () {
   Button.call(this);
- // this._id = document.getElementById("zoomButton");
   this._inOrOut = false;
 }
 
 ZoomButton.prototype = new Button();
-
-//ZoomButton.prototype.getId = function (){
-//  return this._id;
-//};
-
 
 
 /**
@@ -817,14 +814,9 @@ Scale.prototype.toAbs = function (p, offset) {
 
 function StraightLineButton () {
   Button.call(this);
- // this._id = document.getElementById("straightLineButton");
 }
 
 StraightLineButton.prototype = new Button();
-
-//StraightLineButton.prototype.getId = function (){
-//  return this._id;
-//};
 
 StraightLineButton.prototype.getBuilder = function () {
   return StraightLine;
@@ -836,14 +828,9 @@ StraightLineButton.prototype.getBuilder = function () {
  */
 function BezierCurveButton () {
   Button.call(this);
- // this._id = document.getElementById("bezierCurveButton");
 }
 
 BezierCurveButton.prototype = new Button();
-
-//BezierCurveButton.prototype.getId = function (){
-//  return this._id;
-//};
 
 BezierCurveButton.prototype.getBuilder = function () {
   return BezierCurve;
@@ -903,14 +890,9 @@ BezierCurveButton.prototype.bindCanvas = function (toolbar,canvas,canvasObj,visu
  */
 function SquareButton () {
   Button.call(this);
- // this._id = document.getElementById("squareButton");
 }
 
 SquareButton.prototype = new Button();
-
-//SquareButton.prototype.getId = function (){
- // return this._id;
-//};
 
 SquareButton.prototype.getBuilder = function () {
   return Rectangle;
@@ -922,14 +904,9 @@ SquareButton.prototype.getBuilder = function () {
  */
 function CircleButton () {
   Button.call(this);
-//  this._id = document.getElementById("circleButton");
 }
 
 CircleButton.prototype = new Button();
-
-//CircleButton.prototype.getId = function (){
-//  return this._id;
-//};
 
 CircleButton.prototype.getBuilder = function () {
   return Circle;
@@ -941,14 +918,10 @@ CircleButton.prototype.getBuilder = function () {
  */
 function PolygonButton () {
   Button.call(this);
- // this._id = document.getElementById("polygonButton");
 }
 
 PolygonButton.prototype = new Button();
 
-//PolygonButton.prototype.getId = function (){
-//  return this._id;
-//};
 
 PolygonButton.prototype.getBuilder = function () {
   return Polygon;
@@ -960,14 +933,10 @@ PolygonButton.prototype.getBuilder = function () {
  */
 function FreeLineButton () {
   Button.call(this);
- // this._id = document.getElementById("textButton");
 }
 
 FreeLineButton.prototype = new Button();
 
-//FreeLineButton.prototype.getId = function (){
-//  return this._id;
-//};
 
 FreeLineButton.prototype.getBuilder = function () {
   return FreeLine;
@@ -1149,29 +1118,13 @@ Toolbar.prototype.rebind = function (canvas,canvasObj,visual,figureSet,BorderCol
  * @constructor
  * The Palette
  */
-function Palette(){
-  this._colorList = [];
-}
-
-/**
- * Add a new color to the collection
- * @param {PaletteComponent} p color to add
- */
-Palette.prototype.add = function (p) {
-  this._colorList.push(p);
-};
-/**
- * Apply a function to each color
- * @param {Function} fn function to apply
- */
-Palette.prototype.each = function (fn) {
-  this._figures.each(fn);
-};
-
+function Palette(){}
 
 /**
  * Change figure color by clicking on the palette's preffered color
- * @param {String} string with hex color representation
+ * @param {String} col with hex color representation
+ * @param {String} prec1 previously BorderColor
+ * @param {String} prec2 previously FillColor
  * @return  null
  */
 Palette.prototype.setColour = function (col,prec1,prec2){
@@ -1199,10 +1152,7 @@ Palette.prototype.setColour = function (col,prec1,prec2){
  * @return  the hex value
  */
 Palette.prototype.rgbToHex= function (rgb){
-//  var rgbvals = /rgb\((.+),(.+),(.+)\)/i.exec(rgb);
-
   var rgbsplit = rgb.split(",");
-  //alert(rgb+" "+rgbsplit.length+" "+rgbsplit);
   var rval = parseInt(rgbsplit[0].substr(4,3), 10);
   var gval = parseInt(rgbsplit[1], 10);
   var bval;
@@ -1284,10 +1234,7 @@ ColourDialog.prototype.create= function(){
  * @constructor
  * Properties Dialog
  */
-function PropertiesDialog(){
- // this._fontSetter = font;
-//  this._rotationSetter = rotation;
-}
+function PropertiesDialog(){}
 
 PropertiesDialog.prototype.create= function(){
    $("#propertiesDialog").dialog({
@@ -1360,7 +1307,7 @@ function RotationSetter(){}
                         var w = parseFloat($('#DialogWidth').get(0).value);
                         if (angle >= 0) {
 		            var rotation = Math.PI * angle / 180;
-	                                } 
+	                                }
                         else {
 			    var rotation = Math.PI * (360+angle) / 180;
 					}
@@ -1368,7 +1315,7 @@ function RotationSetter(){}
 			var sintheta = Math.sin(rotation);
                         var d = x.dist(this.centre());
 			bounds.start().x = x+(d-(d*costheta));
-                        bounds.start().y = y+(d*sintheta); 
+                        bounds.start().y = y+(d*sintheta);
                         bounds.end().x = x-(d*sintheta);
                         bounds.end().y = y+(d-(d*costheta));
      canvasObj.clear();

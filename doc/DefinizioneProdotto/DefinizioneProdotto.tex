@@ -177,7 +177,9 @@ Il presente documento descrive in modo dettagliato le classi e i relativi metodi
 			\textbf{Versione}  & \textbf{Descrizione} & \textbf{Autore} \\
 %%%%%%%%%%%%%%FINE INTESTAZIONE COLONNE%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 		 \hline
-%%%%%%%%%%% PARTE DA MODIFICARE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%		
+%%%%%%%%%%% PARTE DA MODIFICARE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
+        1.4 &    19$\slash$03$\slash$2009 Diagrammi delle Classi suddivisi per GuiLogic & Bizzotto Piero \\
+		\hline
         1.3 &    19$\slash$03$\slash$2009 Ulteriori dettagli sull'implementazione dei metodi del sottosistema ApplicationLogic & Dissegna Stefano \\
         \hline
         1.2 &    18$\slash$03$\slash$2009 Maggiori dettagli sull'implementazione dei metodi del sottosistema ApplicationLogic & Dissegna Stefano \\
@@ -232,7 +234,8 @@ Il documento presenta e descrive a livello di dettaglio le componenti del sistem
 Il software AJAXDRAW \`e proposto per verificare e dimostrare la fattibilit\`a di realizzazione di un'applicazione di disegno grafico, in grado di poter elaborare figure vettoriali primitive e complesse utilizzando le tecnologie web.
 
 \subsezione{Glossario}
-All'interno del documento \textit{Glossario}, sono presentati i termini tecnici utilizzati in tutti i documenti. Il glossario \`e fornito in allegato al presente documento.
+\leftskip=36pt All'interno del documento \textit{Glossario}, sono presentati i termini tecnici utilizzati in tutti i documenti. Il glossario \`e fornito in allegato al presente documento.
+
 \subsezione{Riferimenti}
 Il presente documento \`e redatto utilizzando le convenzioni inserite nel documento \textit{NormeDiProgetto}, consultabile dal repository pubblico al quale WebShape si appoggia per i suoi progetti.
 \subsubsezione{Normativi}
@@ -266,6 +269,12 @@ Si vedano le \textit{NormeDiprogetto}, versione 4.0.
 \sezione{Specifica delle componenti - GUI }
 Si occupa di gestire l'interazione tra l'utente e la logica interna dell'applicazione, descritta in seguito.
 
+\begin{figure}[!ht]
+\centering
+\includegraphics[scale=0.7]{visual.jpg}
+\caption{Classi e loro relazioni - Canvas e Visualizzazione}
+\end{figure}
+
 \subsezione{Page}
 \subsubsezione{Tipo, obiettivo e funzione del componente}
 Classe concreta che rappresenta la pagina \underline{web} visualizzata dall'utente tramite l'internet \underline{browser}, utilizzata principalmente per il riconoscimento del browser e per operazioni da questo dipendenti.
@@ -274,7 +283,6 @@ Nessuna.
 \subsubsezione{Interfacce e relazioni di uso da altre componenti}
 Nessuna.
 \subsubsezione{Attivit\`a svolte e dati trattati}
-Nessuna.
 \paragrafo{Attributi privati:}
 \begin{elencopuntato}[\subsubsecindent]
 \item[-] \textit{{\_}browserName} nome del browser utilizzato;
@@ -360,7 +368,6 @@ Classe concreta che rappresenta la toolbar dalla quale l'utente pu\` o scegliere
 \subsubsezione{Interfacce e relazioni di uso da altre componenti}
 Nessuna.
 \subsubsezione{Attivit\`a svolte e dati trattati}
-\leftskip=36pt{Nessuna a questo livello.}
 \paragrafo{Attributi privati:}
 \begin{elencopuntato}[\subsubsecindent]
 \item[-] \textit{{\_}buttonList} la lista dei pulsanti presenti nella toolbar;
@@ -380,7 +387,6 @@ Nessuna.
 \subsubsezione{Interfacce e relazioni di uso da altre componenti}
 Viene estesa da tutti i pulsanti creati.
 \subsubsezione{Attivit\`a svolte e dati trattati}
-\textit{Toolbar} ne mantiene una o pi\` u istanze.
 \paragrafo{Attributi privati:}
 \begin{elencopuntato}[\subsubsecindent]
 \item[-] \textit{{\_}selected} dice se il pulsante \`e selezionato.
@@ -401,13 +407,18 @@ Nessuna.
 \subsubsezione{Interfacce e relazioni di uso da altre componenti}
 Nessuna.
 \subsubsezione{Attivit\`a svolte e dati trattati}
+\leftskip=36pt Nessuna.
+
+
+\subsezione{SaveButton}
+\subsubsezione{Tipo, obiettivo e funzione del componente}
+Classe concreta che rappresenta lo specifico pulsante che si occupa di salvare il set di figure attualemente disegnato sul canvas, integrato nella sezione "File" della barra in alto.
+\subsubsezione{Relazioni d'uso di altre componenti}
 Nessuna.
-\paragrafo{Attributi privati:}
+\subsubsezione{Interfacce e relazioni di uso da altre componenti}
 Nessuna.
-\paragrafo{Metodi pubblici:}
-Nessuno.
-%\begin{elencopuntato}[\subsubsecindent]
-%\end{elencopuntato}
+\subsubsezione{Attivit\`a svolte e dati trattati}
+\leftskip=36pt Nessuna.
 
 \subsezione{SelectionButton}
 \subsubsezione{Tipo, obiettivo e funzione del componente}
@@ -415,20 +426,12 @@ Classe concreta che rappresenta lo specifico pulsante che attiva le funzionalit\
 \subsubsezione{Relazioni d'uso di altre componenti}
 Estende \textit{Button}.
 \subsubsezione{Interfacce e relazioni di uso da altre componenti}
-Nessuna.
-\subsubsezione{Attivit\`a svolte e dati trattati}
 \textit{Toolbar} ne mantiene un' istanza.
-\paragrafo{Attributi privati:}
-Nessuno.
-%\begin{elencopuntato}[\subsubsecindent]
-%\item[-] \textit{{\_}id} l'attibuto HTML \textit{id} del pulsante.
-%\end{elencopuntato}
+\subsubsezione{Attivit\`a svolte e dati trattati}
 \paragrafo{Metodi pubblici:}
 \begin{elencopuntato}[\subsubsecindent]
-%\item[-] \textit{getId()} ritorna  \textit{{\_}id};
 \item[-]  \textit{bindCanvas(toolbar,canvas,canvasObj,visual,figureSet)} overriding del metodo ereditato da \textit{Button}, collega il canvas all'azione di selezione di una figura disegnata sul canvas.
 \end{elencopuntato}
-
 
 \subsezione{ZoomButton}
 \subsubsezione{Tipo, obiettivo e funzione del componente}
@@ -436,19 +439,9 @@ Classe astratta che rappresenta un pulsante che attiva le funzionalit\` a di zoo
 \subsubsezione{Relazioni d'uso di altre componenti}
 Estende \textit{Button}.
 \subsubsezione{Interfacce e relazioni di uso da altre componenti}
-Nessuna.
+Viene estasa da \textit{ZoomInButton} e \textit{ZoomOutButton}.
 \subsubsezione{Attivit\`a svolte e dati trattati}
-\textit{Toolbar} ne mantiene un' istanza.
-\paragrafo{Attributi privati:}
-Nessuno.
-%\begin{elencopuntato}[\subsubsecindent]
-%\item[-] \textit{{\_}id} l'attibuto HTML \textit{id} del pulsante.
-%\end{elencopuntato}
-\paragrafo{Metodi pubblici:}
-Nessuno.
-%\begin{elencopuntato}[\subsubsecindent]
-%\item[-] \textit{getId()} ritorna \textit{{\_}id}.
-%\end{elencopuntato}
+\leftskip=36pt Nessuna.
 
 \subsezione{ZoomInButton}
 \subsubsezione{Tipo, obiettivo e funzione del componente}
@@ -456,10 +449,8 @@ Classe concreta che rappresenta pulsante che attiva le funzionalit\` a di ingran
 \subsubsezione{Relazioni d'uso di altre componenti}
 Estende \textit{ZoomButton}.
 \subsubsezione{Interfacce e relazioni di uso da altre componenti}
-\subsubsezione{Attivit\`a svolte e dati trattati}
 \textit{Toolbar} ne mantiene un' istanza.
-\paragrafo{Attributi privati:}
-Nessuno.
+\subsubsezione{Attivit\`a svolte e dati trattati}
 \paragrafo{Metodi pubblici:}
 \begin{elencopuntato}[\subsubsecindent]
 \item[-] \textit{bindCanvas(toolbar,canvas,canvasObj,visual,figureSet)} collega il canvas all'azione di ingrandimento dell'area visualizzata. Collega l'evento click per prendere il punto che diventer\`a la nuova origine delle coordinate, e setta lo zoom di \textit{visual} in base al valore corrente di \textit{scaleButton}.
@@ -471,14 +462,8 @@ Classe concreta che rappresenta pulsante che attiva le funzionalit\` a di rimpic
 \subsubsezione{Relazioni d'uso di altre componenti}
 Estende \textit{ZoomButton}.
 \subsubsezione{Interfacce e relazioni di uso da altre componenti}
-Nessuna.
-\subsubsezione{Attivit\`a svolte e dati trattati}
 \textit{Toolbar} ne mantiene un' istanza.
-\paragrafo{Attributi privati:}
-Nessuno.
-%\begin{elencopuntato}[\subsubsecindent]
-%\item[-] \textit{{\_}id} l'attibuto HTML \textit{id} del pulsante.
-%\end{elencopuntato}
+\subsubsezione{Attivit\`a svolte e dati trattati}
 \paragrafo{Metodi pubblici:}
 \begin{elencopuntato}[\subsubsecindent]
 \item[-] \textit{bindCanvas(toolbar,canvas,canvasObj,visual,figureSet)} collega il canvas all'azione di rimpicciolimento della'area visualizzata. Collega l'evento click per prendere il punto che diventer\`a la nuova origine delle coordinate, e setta lo zoom di \textit{visual} in base al valore corrente di \textit{scaleButton}.
@@ -510,11 +495,8 @@ Classe concreta che rappresenta lo specifico pulsante che attiva le funzionalit\
 \subsubsezione{Relazioni d'uso di altre componenti}
 Estende \textit{Button}.
 \subsubsezione{Interfacce e relazioni di uso da altre componenti}
-Nessuna.
-\subsubsezione{Attivit\`a svolte e dati trattati}
 \textit{Toolbar} ne mantiene un' istanza.
-\paragrafo{Attributi privati:}
-Nessuno.
+\subsubsezione{Attivit\`a svolte e dati trattati}
 \paragrafo{Metodi pubblici:}
 \begin{elencopuntato}[\subsubsecindent]
 \item[-] \textit{bindCanvas(toolbar,canvas,canvasObj,visual)} collega il canvas all'azione di spostamento. Collega l'evento mousedown per prendere il punto di riferimento per lo spostamento. L'evento mousemove sposter\`a la visualizzazione cambiandone l'offset in base allo spostamento relativo tra il punto di riferimento e la posizione attuale del mouse e far\`a un refresh del canvas. L'evento mouseup infine termina l'azione disabilitando l'evento mousemove.
@@ -526,17 +508,10 @@ Classe concreta che rappresenta lo specifico pulsante che attiva le funzionalit\
 \subsubsezione{Relazioni d'uso di altre componenti}
 Estende \textit{Button}.
 \subsubsezione{Interfacce e relazioni di uso da altre componenti}
-Nessuna.
-\subsubsezione{Attivit\`a svolte e dati trattati}
 \textit{Toolbar} ne mantiene un' istanza.
-\paragrafo{Attributi privati:}
-Nessuno.
-%\begin{elencopuntato}[\subsubsecindent]
-%\item[-] \textit{{\_}id} l'attibuto HTML \textit{id} del pulsante.
-%\end{elencopuntato}
+\subsubsezione{Attivit\`a svolte e dati trattati}
 \paragrafo{Metodi pubblici:}
 \begin{elencopuntato}[\subsubsecindent]
-%\item[-] \textit{getId()} ritorna \textit{{\_}id};
 \item[-] \textit{getBuilder()} ritorna il tipo di oggetto disegnato tramite la pressione di questo pulsante, per permetterne il riconoscimento al metodo \textit{bindCanvas} in modo da associare correttamente la figura da disegnare al suo pulsante.
 \end{elencopuntato}
 
@@ -546,17 +521,10 @@ Classe concreta che rappresenta lo specifico pulsante che attiva le funzionalit\
 \subsubsezione{Relazioni d'uso di altre componenti}
 Estende \textit{Button}.
 \subsubsezione{Interfacce e relazioni di uso da altre componenti}
-Nessuna.
-\subsubsezione{Attivit\`a svolte e dati trattati}
 \textit{Toolbar} ne mantiene un' istanza.
-\paragrafo{Attributi privati:}
-Nessuno.
-%\begin{elencopuntato}[\subsubsecindent]
-%\item[-] \textit{{\_}id} l'attibuto HTML \textit{id} del pulsante.
-%\end{elencopuntato}
+\subsubsezione{Attivit\`a svolte e dati trattati}
 \paragrafo{Metodi pubblici:}
 \begin{elencopuntato}[\subsubsecindent]
-%\item[-] \textit{getId()} ritorna \textit{{\_}id};
 \item[-] \textit{getBuilder()} ritorna il tipo di oggetto disegnato tramite la pressione di questo pulsante, per permetterne il riconoscimento al metodo \textit{bindCanvas} in modo da associare correttamente la figura da disegnare al suo pulsante.
 \item[-]  \textit{bindCanvas(toolbar,canvas,canvasObj,visual,figureSet,borderColor)} overriding del metodo ereditato da \textit{Button}, collega il canvas all'azione di disegno di una curva di Bezier cubica,  chiedendo all'utente di cliccare su 4 punti diversi dell'area di disegno per ottenere infine la curva voluta.
 \end{elencopuntato}
@@ -567,17 +535,10 @@ Classe concreta che rappresenta lo specifico pulsante che attiva le funzionalit\
 \subsubsezione{Relazioni d'uso di altre componenti}
 Estende \textit{Button}.
 \subsubsezione{Interfacce e relazioni di uso da altre componenti}
-Nessuna.
-\subsubsezione{Attivit\`a svolte e dati trattati}
 \textit{Toolbar} ne mantiene un' istanza.
-\paragrafo{Attributi privati:}
-Nessuno.
-%\begin{elencopuntato}[\subsubsecindent]
-%\item[-] \textit{{\_}id} l'attibuto HTML \textit{id} del pulsante.
-%\end{elencopuntato}
+\subsubsezione{Attivit\`a svolte e dati trattati}
 \paragrafo{Metodi pubblici:}
 \begin{elencopuntato}[\subsubsecindent]
-%\item[-] \textit{getId()} ritorna \textit{{\_}id};
 \item[-] \textit{getBuilder()} ritorna il tipo di oggetto disegnato tramite la pressione di questo pulsante, per permetterne il riconoscimento al metodo \textit{bindCanvas} in modo da associare correttamente la figura da disegnare al suo pulsante.
 \end{elencopuntato}
 
@@ -587,17 +548,10 @@ Classe concreta che rappresenta lo specifico pulsante che attiva le funzionalit\
 \subsubsezione{Relazioni d'uso di altre componenti}
 Estende \textit{Button}.
 \subsubsezione{Interfacce e relazioni di uso da altre componenti}
-Nessuna.
-\subsubsezione{Attivit\`a svolte e dati trattati}
 \textit{Toolbar} ne mantiene un' istanza.
-\paragrafo{Attributi privati:}
-Nessuno.
-%\begin{elencopuntato}[\subsubsecindent]
-%\item[-] \textit{{\_}id} l'attibuto HTML \textit{id} del pulsante.
-%\end{elencopuntato}
+\subsubsezione{Attivit\`a svolte e dati trattati}
 \paragrafo{Metodi pubblici:}
 \begin{elencopuntato}[\subsubsecindent]
-%\item[-] \textit{getId()} ritorna \textit{{\_}id};
 \item[-] \textit{getBuilder()} ritorna il tipo di oggetto disegnato tramite la pressione di questo pulsante, per permetterne il riconoscimento al metodo \textit{bindCanvas} in modo da associare correttamente la figura da disegnare al suo pulsante.
 \end{elencopuntato}
 
@@ -607,17 +561,10 @@ Classe concreta che rappresenta lo specifico pulsante che attiva le funzionalit\
 \subsubsezione{Relazioni d'uso di altre componenti}
 Estende \textit{Button}.
 \subsubsezione{Interfacce e relazioni di uso da altre componenti}
-Nessuna.
-\subsubsezione{Attivit\`a svolte e dati trattati}
 \textit{Toolbar} ne mantiene un' istanza.
-\paragrafo{Attributi privati:}
-Nessuno.
-%\begin{elencopuntato}[\subsubsecindent]
-%\item[-] \textit{{\_}id} l'attibuto HTML \textit{id} del pulsante.
-%\end{elencopuntato}
+\subsubsezione{Attivit\`a svolte e dati trattati}
 \paragrafo{Metodi pubblici:}
 \begin{elencopuntato}[\subsubsecindent]
-%\item[-] \textit{getId()} ritorna \textit{{\_}id};
 \item[-] \textit{getBuilder()} ritorna il tipo di oggetto disegnato tramite la pressione di questo pulsante, per permetterne il riconoscimento al metodo \textit{bindCanvas} in modo da associare correttamente la figura da disegnare al suo pulsante.
 \end{elencopuntato}
 
@@ -627,17 +574,10 @@ Classe concreta che rappresenta lo specifico pulsante che attiva le funzionalit\
 \subsubsezione{Relazioni d'uso di altre componenti}
 Estende \textit{Button}.
 \subsubsezione{Interfacce e relazioni di uso da altre componenti}
-Nessuna.
-\subsubsezione{Attivit\`a svolte e dati trattati}
 \textit{Toolbar} ne mantiene un' istanza.
-\paragrafo{Attributi privati:}
-Nessuno.
-%\begin{elencopuntato}[\subsubsecindent]
-%\item[-] \textit{{\_}id} l'attibuto HTML \textit{id} del pulsante.
-%\end{elencopuntato}
+\subsubsezione{Attivit\`a svolte e dati trattati}
 \paragrafo{Metodi pubblici:}
 \begin{elencopuntato}[\subsubsecindent]
-%\item[-] \textit{getId()} ritorna \textit{{\_}id};
 \item[-] \textit{getBuilder()} ritorna il tipo di oggetto disegnato tramite la pressione di questo pulsante, per permetterne il riconoscimento al metodo \textit{bindCanvas} in modo da associare correttamente la figura da disegnare al suo pulsante.
 \item[-]  \textit{bindCanvas(toolbar,canvas,canvasObj,visual,figureSet,borderColor)} overriding del metodo ereditato da \textit{Button}, collega il canvas all'azione di disegno di una linea a mano libera.
 \end{elencopuntato}
@@ -649,20 +589,19 @@ Classe concreta che rappresenta lo specifico pulsante che attiva le funzionalit\
 \subsubsezione{Relazioni d'uso di altre componenti}
 Estende \textit{Button}.
 \subsubsezione{Interfacce e relazioni di uso da altre componenti}
-Nessuna.
-\subsubsezione{Attivit\`a svolte e dati trattati}
 \textit{Toolbar} ne mantiene un' istanza.
-\paragrafo{Attributi privati:}
-Nessuno.
-%\begin{elencopuntato}[\subsubsecindent]
-%\item[-] \textit{{\_}id} l'attibuto HTML \textit{id} del pulsante.
-%\end{elencopuntato}
+\subsubsezione{Attivit\`a svolte e dati trattati}
 \paragrafo{Metodi pubblici:}
 \begin{elencopuntato}[\subsubsecindent]
-%\item[-] \textit{getId()} ritorna \textit{{\_}id};
 \item[-] \textit{getBuilder()} ritorna il tipo di oggetto disegnato tramite la pressione di questo pulsante, per permetterne il riconoscimento al metodo \textit{bindCanvas} in modo da associare correttamente la figura da disegnare al suo pulsante.
 \item[-]  \textit{bindCanvas(toolbar,canvas,canvasObj,visual,figureSet,borderColour,fillColor)} overriding del metodo ereditato da \textit{Button}, collega il canvas all'azione di disegno di una casella di testo. 
 \end{elencopuntato}
+\newpage
+\begin{figure}[!ht]
+\centering
+\includegraphics[scale=0.7]{dialogs.jpg}
+\caption{Classi e loro relazioni - Dialogs e Tavolozza}
+\end{figure}
 
 \subsezione{Palette}
 \subsubsezione{Tipo, obiettivo e funzione del componente}
@@ -672,15 +611,8 @@ Nessuna.
 \subsubsezione{Interfacce e relazioni di uso da altre componenti}
 Nessuna.
 \subsubsezione{Attivit\`a svolte e dati trattati}
-Nessuna.
-\paragrafo{Attributi privati:}
-\begin{elencopuntato}[\subsubsecindent]
-\item[-] \textit{{\_}colorList} array contenente una lista di \textit{PaletteComponent}, che compongono la \textit{Palette stessa}.
-\end{elencopuntato}
 \paragrafo{Metodi pubblici:}
 \begin{elencopuntato}[\subsubsecindent]
-\item[-] \textit{add(p)} aggiunge il componente per la scelta del colore alla fine di \textit{{\_}colorList}.
-\item[-]  \textit{each(fn)} permette di applicare una funzione ad ogni \textit{PaletteComponent}. Viene usato per iterare attraverso la collezione. Applica fn ad ogni elemento di \textit{{\_}colorList}. 
 \item[-]  \textit{setColour(col,prec1,prec2)} cambia il colore di bordo o riempimento della figura al seguito di un click dell'utente sullla tavolozza, prendendo il colore attualmente impostato e modificando uno dei due parametri a seconda del valore selezionato sul combobox a fianco. Ritorna la nuova coppia di colori bordo-riempimento.
 \item[-]  \textit{rgbToHex(rgb)} prende il valore rgb passato dalla ruota dei colori \textit{Farbtastic} e ritorna la sua rappresentazione esadecimale.
 \end{elencopuntato}
@@ -693,9 +625,6 @@ Nessuna.
 \subsubsezione{Interfacce e relazioni di uso da altre componenti}
 Nessuna.
 \subsubsezione{Attivit\`a svolte e dati trattati}
-Nessuna.
-\paragrafo{Attributi privati:}
-Nessuno.
 \paragrafo{Metodi pubblici:}
 \begin{elencopuntato}[\subsubsecindent]
 \item[-] \textit{create()} richiama la funzione jQuery atta alla creazione del Dialog.
@@ -709,14 +638,6 @@ Nessuna.
 \subsubsezione{Interfacce e relazioni di uso da altre componenti}
 Nessuna.
 \subsubsezione{Attivit\`a svolte e dati trattati}
-Nessuna.
-\paragrafo{Attributi privati:}
-\begin{elencopuntato}[\subsubsecindent]
-\item[-] \textit{{\_}edgeSetter} oggetto che si occupa di impostare il numero di lati di un poligono;
-\item[-] \textit{{\_}fontSetter} oggetto che si occupa di impostare il tipo di carattere e la sua dimensione;
-\item[-] \textit{{\_}boundingSetter} oggetto che si occupa di impostare il \textit{BoundingRectangle} della figura;
-\item[-] \textit{{\_}rotationSetter} oggetto che si occupa di impostare il grado di rotazione.
-\end{elencopuntato}
 \paragrafo{Metodi pubblici:}
 \begin{elencopuntato}[\subsubsecindent]
 \item[-] \textit{create()} richiama la funzione jQuery atta alla creazione del Dialog.
@@ -790,7 +711,7 @@ Legge e modifica \textit{TextString}.
 
 %%%%%%%%Parte Dissegna
 \sezione{Specifica delle componenti - ApplicationLogic, gestione figure}
-Gestisce completamente le figure: il disegno, la conversione da e verso \underline{SVG}, le loro propriet\`a, la loro manipolazione e creazione. Utilizza le interfacce messe a disposizione dallo strato server e offre le proprie funzionalit\`a allo strato GUI. Nel grafico in figura 3 si riportano le classi per la gestione delle figure con le loro relazioni. Nel diagramma non si mostrano attributi e metodi in quanto ampiamente descritti testualmente in seguito.
+Gestisce completamente le figure: il disegno, la conversione da e verso \underline{SVG}, le loro propriet\`a, la loro manipolazione e creazione. Utilizza le interfacce messe a disposizione dallo strato server e offre le proprie funzionalit\`a allo strato GUI. Nel grafico in figura 5 si riportano le classi per la gestione delle figure con le loro relazioni. Nel diagramma non si mostrano attributi e metodi in quanto ampiamente descritti testualmente in seguito.
 
 \begin{figure}[!ht]
 \centering
@@ -848,7 +769,7 @@ Il costruttore controlla se il browser supporta il metodo \textit{getImageData} 
 \caption{Diagramma di attivit\`a selezione figura}
 \end{figure}
 
-\item[-] \textit{fallbackSelection(where)} metodo usato quando il browser non supporta \textit{getImageData} al posto di \textit{selectFigure}. Seleziona l'ultima figura (se esiste) il cui \textit{BoundingRectangle} contiene il punto \textit{where}. Per farlo itera lungo l'array \textit{_figures} a partire dalla fine, e quando trova un rettangolo che racchiude il punto si ferma e ritorna la figura corrispondente. Questo metodo \`e pi\`u impreciso rispetto a \textit{selectFigure}.
+\item[-] \textit{fallbackSelection(where)} metodo usato quando il browser non supporta \textit{getImageData} al posto di \textit{selectFigure}. Seleziona l'ultima figura (se esiste) il cui \textit{BoundingRectangle} contiene il punto \textit{where}. Per farlo itera lungo l'array \textit{{\_}figures} a partire dalla fine, e quando trova un rettangolo che racchiude il punto si ferma e ritorna la figura corrispondente. Questo metodo \`e pi\`u impreciso rispetto a \textit{selectFigure}.
 \item[-]  \textit{each(fn)} permette di applicare una funzione ad ogni figura. Viene usato per iterare attraverso la collezione. Applica fn ad ogni elemento di \textit{{\_}figures}. 
 \item[-]  \textit{add(f)} aggiunge la figura f alla fine di \textit{{\_}figures} usando il metodo \textit{push()} dell'array.
 \item[-]  \textit{rem(f)} rimuove da \textit{{\_}figures} tutte le figure identiche (ovvero aventi lo stesso indirizzo) di f. Crea un array vuoto, itera lungo \textit{{\_}figures}, e aggiunge al nuovo array la figura solo se \`e diversa da \textit{f}. Setta \textit{{\_}figures} al nuovo array.
@@ -866,6 +787,7 @@ Nessuna.
 \subsubsezione{Interfacce e relazioni di uso da altre componenti}
 Implementata da tutte le propriet\`a concrete delle diverse figure.
 \subsubsezione{Attivit\`a svolte e dati trattati}
+\paragrafo{Metodi pubblici:}
 \begin{elencopuntato}[\subsubsecindent]
 \item[-] \textit{createWidget} crea un widget grafico che permetter\`a all'utente di modificare la propriet\`a.
 \end{elencopuntato}
@@ -878,6 +800,7 @@ Nessuna.
 \subsubsezione{Interfacce e relazioni di uso da altre componenti}
 Implementata da \textit{Colour} e \textit{TextFont}. 
 \subsubsezione{Attivit\`a svolte e dati trattati}
+\paragrafo{Metodi pubblici:}
 \begin{elencopuntato}[\subsubsecindent]
 \item[-] \textit{toCSS} genera una stringa che rappresenta la propriet\`a come propriet\`a CSS.
 \end{elencopuntato}
