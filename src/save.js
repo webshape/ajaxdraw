@@ -251,7 +251,7 @@ Text.prototype.toSVG = function(gen) {
 
   gen.attr("textLength", Math.abs(this.getBounds().w()), false);
   gen.attr("fill", this.getTextColour().toCSS(), false);
-  gen.attr("fill-opacity", this.getFillColour().getOpacity().getVal(), false);
+  gen.attr("fill-opacity", this.getTextColour().getOpacity().getVal(), false);
   gen.attr("stroke", this.getBorderColour().toCSS(), true);
   gen.attr("stroke-opacity", this.getBorderColour().getOpacity().getVal(), true);
   gen.text(this.getText().getName());
