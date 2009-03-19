@@ -1,4 +1,7 @@
 /**
+ * Copyright (C) 2009 WebShape
+ * Use, modification and distribution is subject to the GPL license
+ *
  * @fileoverview
  * Abstract figure and figures management
  * @author Dissegna Stefano

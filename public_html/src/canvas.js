@@ -1,5 +1,8 @@
 /**
- * @GUI
+ * Copyright (C) 2009 WebShape
+ * Use, modification and distribution is subject to the GPL license
+ *
+ * @fileoverview
  * GUI Management
  * @author Bizzotto Piero
  * @author Dissegna Stefano

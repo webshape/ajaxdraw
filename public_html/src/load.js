@@ -1,5 +1,8 @@
 /**
- *	@fileoverview
+ * Copyright (C) 2009 WebShape
+ * Use, modification and distribution is subject to the GPL license
+ *
+ * @fileoverview
  * Transform an SVG document in a FigureSet istance
  * @author Marco Cunico
  * @author Mirco Geremia

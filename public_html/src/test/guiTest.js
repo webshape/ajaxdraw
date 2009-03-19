@@ -1,5 +1,9 @@
-function runGuiTest() {
+/**
+ * Copyright (C) 2009 WebShape
+ * Use, modification and distribution is subject to the GPL license
+ */
 
+function runGuiTest() {
 
   test("Page",function(){
     var p = new Page();
@@ -9,7 +13,6 @@ function runGuiTest() {
 
 
        });
-
 
   test("Canvas & Visualization",function(){
 	 var c = new Canvas();

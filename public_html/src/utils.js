@@ -1,4 +1,7 @@
 /**
+ * Copyright (C) 2009 WebShape
+ * Use, modification and distribution is subject to the GPL license
+ *
  * @fileoverview
  * General utilities to write js code
  * @author Dissegna Stefano

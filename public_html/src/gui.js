@@ -1,3 +1,11 @@
+/**
+ * Copyright (C) 2009 WebShape
+ * Use, modification and distribution is subject to the GPL license
+ *
+ * @fileoverview
+ * GUI initialization
+ */
+
 var visual = null; // global
 var canvasObj = null; // global
 
