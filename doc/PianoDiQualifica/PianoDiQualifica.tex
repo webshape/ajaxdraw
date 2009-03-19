@@ -6,7 +6,7 @@
  
 \begin{document}
  
-\renewcommand{\insertversion}{3.0} %INSERIRE LA VERSIONE QUI DENTRO STILE x.x.xx
+\renewcommand{\insertversion}{4.0} %INSERIRE LA VERSIONE QUI DENTRO STILE x.x.xx
 \renewcommand{\TITOLODOC}{Piano di qualifica} %INSERIRE IL TITOLO DEL DOCUMENTO DA FAR COMPARIRE A PIE PAGINA
 \renewcommand{\glosspath}{.\glossario} %INSERIRE PERCORSO RELATIVO
  
@@ -184,6 +184,8 @@ Il presente documento descrive le strategie per la verifica della correttezza de
 %%%%%%%%%%%%%%FINE INTESTAZIONE COLONNE%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
      \hline
 %%%%%%%%%%% PARTE DA MODIFICARE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+     3.6 &    19$\slash$03$\slash$2009 Aggiunta sezione sulle azioni da intraprendere dopo un errore & Dissegna Stefano\\
+      \hline
      3.5 &    18$\slash$03$\slash$2009 Breve descrizione dei test manuali & Dissegna Stefano\\
       \hline
      3.4 &    18$\slash$03$\slash$2009 Descrizione dei test automatici & Dissegna Stefano\\
@@ -326,6 +328,13 @@ Qualora un prodotto si discostasse da quanto descritto nell'analisi dei requisit
 L'amministratore del progetto deve assicurarsi che gli standard descritti nelle \textit{NormeDiProgetto} siano rispettati e deve segnalare eventuali infrazioni al responsabile, in modo che provveda a risolverle. Il responsabile della qualit\`a controlla che le attivit\`a di verifica vengano svolte, e che seguano le procedure descritte in questo documento.
 \newpage
  
+\subsezione{Azioni intraprese dopo un errore}
+\subsubsezione{Errori nei test automatici} 
+Quando un test di una funzionalit\`a gi\`a implementata fallisce, deve essere corretto il prima possibile. In particolare, prima di una consegna i problemi noti devono essere corretti.
+\subsubsezione{Copertura insufficiente}
+Quando la copertura dei test non rientra nei limiti previsti, devono venire scritti ulteriori test per coprire le parti di codice non ancora testate. Il tool utilizzato, \textit{JSCoverage}, permette di vedere quali parti di codice non sono state ancora testate.
+\subsubsezione{Errori di stile}
+Gli errori di stile sono facilmente riscontrabili subito dopo la codifica in automatico e la loro correzione \`e veloce, quindi devono venire corretti subito dopo la stesura del codice.
 
 \sezione{Metriche di valutazione della qualit\`a}
 Verranno utilizzate delle metriche per valutare lo stato di avanzamento del progetto e la sua qualit\`a. 
@@ -426,7 +435,7 @@ Gli errori di stile trovati dal software \textit{JSLint} sono:
 \item[-] utils.js: nessun warning.
 \end{elencopuntato}
 
-\paragrafo{Resoconto} Lo stile adottato durante la programmazione \`e buono, considerati i pochi errori (1) trovati dal software \textit{JSLint}. Mettendo insieme i dati sulla copertura e sull'esito positivo dei test, si evince che i test controllano in modo adeguato la correttezza delle diverse funzionalit\`a del prodotto finora. Inoltre, tutti i requisiti obbligatori sono stati soddisfatti, quindi i risultati positivi dei test e della copertura non dipendono dal fatto che ci sia poco da controllare. Da questo segue che i test sono abbastanza completi. Il server invece \`e completamente privo di test.
+\paragrafo{Resoconto} Lo stile adottato durante la programmazione \`e buono, considerati i pochi errori (1) trovati dal software \textit{JSLint}. Mettendo insieme i dati sulla copertura e sull'esito positivo dei test, si evince che i test controllano in modo adeguato la correttezza delle diverse funzionalit\`a del prodotto finora. Inoltre, tutti i requisiti obbligatori sono stati soddisfatti, quindi i risultati positivi dei test e della copertura non dipendono dal fatto che ci sia poco da controllare. Da questo segue che i test sono abbastanza completi. Il server invece \`e completamente privo di test. 
 
 \subsezione{Dettaglio dell'esito delle revisioni}
  
