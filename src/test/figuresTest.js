@@ -129,7 +129,7 @@ test('FigureSet.selectFigure', function () {
        fs.add(f);
        equals(fs.selectFigure(new Point(10, 10)), f, 'line selection in');
        equals(fs.selectFigure(new Point(99, 99)), f, 'line selection in');
-       equals(fs.selectFigure(new Point(10, 19)), null, 'line selection out');
+       equals(fs.selectFigure(new Point(120, 19)), null, 'line selection out');
        equals(fs.selectFigure(new Point(102, 102)), null, 
               'line selection out');
        var p = new Polygon();

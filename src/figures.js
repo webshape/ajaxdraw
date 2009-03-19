@@ -452,17 +452,10 @@ FigureSet.prototype.fallbackSelection = function (where) {
     }
     if (minx <= where.x && where.x <= maxx &&
         miny <= where.y && where.y <= maxy) {
-      if (f instanceof StraightLine) {
-        // default algorithm works really bad with straight lines
-        if (minx == where.x || maxx == where.x ||
-            ((miny-where.y)/(minx-where.x) == (maxy-where.y)/(maxx-where.x))) {
-          return this._figures[i];
-        }
-      } else {
         return this._figures[i];
-      }
     }
   }
+
   return null;
 };
 
@@ -508,30 +501,25 @@ FigureSet.prototype.selectFigure = function (where, scale, offset) {
   var textSelected = null;
   this.each(function (f) {
               if (f instanceof Text) {
-                // standard method doesn't seem to work with text
-                var b = f.getBounds();
-                var s = b.start();
-                var e = b.end();
-                if (((s.x < where.x && where.x < e.x) ||
-                  (e.x < where.x && where.x < s.x)) &&
-                  ((s.y < where.y && where.y < e.y) ||
-                  (e.y < where.y && where.y < s.y))) {
-                  textSelected = f;
-                }
-              } else {
-                var col = next();
-                fs[col[0].toCSS()] = f;
-                // momentarily change the colour
-                // !! straight access to private attributes
-                var old1 = f._borderColour;
-                var old2 = f._fillColour;
-                f._borderColour = col[0];
-                // figure may not have a fillColour
-                // this won't raise any error
-                f._fillColour = col[1];
-                f.draw(c);
-                f._borderColour = old1;
-                f._fillColour = old2;
+                // using a different lineWidth moves the text
+                // use lineWidth 1 only for text
+                c.getContext('2d').lineWidth = 1;
+              }
+              var col = next();
+              fs[col[0].toCSS()] = f;
+              // momentarily change the colour
+              // !! straight access to private attributes
+              var old1 = f._borderColour;
+              var old2 = f._fillColour;
+              f._borderColour = col[0];
+              // figure may not have a fillColour
+              // this won't raise any error
+              f._fillColour = col[1];
+              f.draw(c);
+              f._borderColour = old1;
+              f._fillColour = old2;
+              if (f instanceof Text) {
+                c.getContext('2d').lineWidth = 10;
               }
             });
   // get the selected pixel
