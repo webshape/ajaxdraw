@@ -127,8 +127,8 @@ XMLParser.prototype.parsing = function (doc) {
   try { //Internet Explorer
 	 xmlDoc = new ActiveXObject("Microsoft.XMLDOM");
 	 xmlDoc.async = false;
-     xmlDoc.load(doc);
-	 /*xmlDoc.loadXML(doc);*/
+    // xmlDoc.load(doc);
+	 xmlDoc.loadXML(doc);
 
 	 if (xmlDoc.parseError.errorCode !== 0) {
 		alert("Error in line " + xmlDoc.parseError.line +
@@ -141,11 +141,11 @@ XMLParser.prototype.parsing = function (doc) {
   }
   catch(e) {
 	 try { //Firefox
-		/*var parser = new DOMParser();
-		xmlDoc = parser.parseFromString(doc, "text/xml");*/
-        xmlDoc=document.implementation.createDocument("","",null);
+		var parser = new DOMParser();
+		xmlDoc = parser.parseFromString(doc, "text/xml");
+/*        xmlDoc=document.implementation.createDocument("","",null);
         xmlDoc.async="false";
-        xmlDoc.load(doc);
+        xmlDoc.load(doc);*/
 		if (xmlDoc.documentElement.nodeName == "parsererror") {
 		  alert(xmlDoc.documentElement.childNodes[0].nodeValue);
         return(null);
