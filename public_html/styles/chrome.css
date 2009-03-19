@@ -1,69 +1,21 @@
-/* CSS per IE7, in modalità non standard */
+/* CSS da applicare a Google Chrome */
 
 body{
 	background-color: #efefef;
 }
-canvas {
-  background-color: #ffffff;
-  margin-left: 5.5em;
-  margin-top: -23em;
-}
 
+canvas {
+ 	background-color: #ffffff;
+	margin-left: 7em;
+  	margin-top:0.1em;
+  	border-style: solid;
+  	border-width: 2px 2px 2px 2px ;
+}
+/* Toolbar */
 #tool{
 	margin-left: 0.5em;
 	position: fixed;
 }
-
-
-/*Tavolozza*/
-.paletteComponent{
-	height:1em;
-	margin-right:-0.35em;
-	cursor:pointer;
-	border-top:solid;
-	border-bottom:solid;
-	border-width:thin;
-}
-	
-#firstPalette{
-	border-left:solid;
-	border-width:thin;	
-}
-#lastPalette{
-	border-right:solid;
-	border-width:thin;
-	
-}
-	
-#palette{
-	margin-left: 5.5em;
-	margin-top: 0.1em;
-}
-
-
-#fillColorNow{
-	border:solid;	
-}
-
-#borderColorNow{
-	margin-top:0.2em;	
-	border:solid;	
-}
-
-#divBorderCol,#divFillCol{
-margin-top: 0.5em;
-}
-
-#polygonTitle,#textTitle{
-text-align: center;
-text-transform: uppercase;
-text-decoration: underline;
-}
-
-#colorx,#colory{
-width: 400px;display: none;
-}
-
 
 .toolbarButton{
 	width: 3em;
@@ -76,54 +28,110 @@ width: 400px;display: none;
 }
 
 #selectionButton{
-	background-image:url("../pages/images/selezione.png");
+	background-image:url("../images/selezione.png");
 	}
 #zoomInButton{
-	background-image:url("../pages/images/zoomIn.png");
+	background-image:url("../images/zoomIn.png");
 		}
 #zoomOutButton{
-	background-image:url("../pages/images/zoomOut.png");
+	background-image:url("../images/zoomOut.png");
 		}	
 #moveViewButton{
-	background-image:url("../pages/images/move.png");
+	background-image:url("../images/move.png");
 		}	
 		
 #straightLineButton{
-	background-image:url("../pages/images/lineaDritta.png");
+	background-image:url("../images/lineaDritta.png");
 		}	
 	
 #bezierCurveButton{
-    background-image:url("../pages/images/linea.png");
+    background-image:url("../images/linea.png");
 	}
 #squareButton{
-	background-image:url("../pages/images/quadrato.png");
+	background-image:url("../images/quadrato.png");
 }
 #circleButton{
-	background-image:url("../pages/images/cerchio.png");
+	background-image:url("../images/cerchio.png");
 }
 #polygonButton{
-	background-image:url("../pages/images/poligono.png");
+	background-image:url("../images/poligono.png");
 }
 #freeLineButton{
-	background-image:url("../pages/images/freeline.png");
+	background-image:url("../images/freeline.png");
 }
 #textButton{
-	background-image:url("../pages/images/testo.png");
+	background-image:url("../images/testo.png");
 }
+
+
+
+/*Tavolozza*/
+.paletteComponent{
+	width:6px;
+	height:4em;
+	margin-right:-0.35em;
+	cursor:pointer;
+	border-top:solid;
+	border-bottom:solid;
+	border-width:thin;
+	}
+	
+#firstPalette{
+	border-left:solid;
+	border-width:thin;
+	
+}
+#lastPalette{
+	border-right:solid;
+	border-width:thin;
+	
+}
+	
+#palette{
+	margin-left: 5em;
+	margin-top: 0.1em;
+}
+
 
 /*zona salva/carica SVG */
 #saveLoadZone{
-	display: inline-block;	
-}
-
-#opBorder,#opFill{
-  margin-top:0.5em;
-  
-}
-
-#changeBorderCol, #changeFillCol{
-	margin-top: -0.5em;
+	display: inline-block;
 	
+}
+
+* Dialog colori e proprietà */
+#divBorderCol,#divFillCol{
+margin-top: -0.6em;
+}
+#polygonTitle,#textTitle{
+text-align: center;
+text-transform: uppercase;
+text-decoration: underline;
+}
+#colorx,#colory{
+width: 400px;display: none;
+}
+
+
+#toTopButton{
+	background-image:url("../images/go-top.png");
+	width: 3em;
+	height:2.6em;
+	background-color:#F4F3F2;
+	background-repeat: no-repeat;
+	background-position: center;
+	margin-top:0.4em;	
+}
+
+
+#toBottomButton{
+	background-image:url("../images/go-bottom.png");
+	width: 3em;
+	height:2.6em;
+	background-color:#F4F3F2;
+	background-repeat: no-repeat;
+	background-position: center;
+	margin-top:0.4em;
 }
 /* This file skins dialog */
 

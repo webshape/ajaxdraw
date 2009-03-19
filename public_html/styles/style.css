@@ -1,73 +1,18 @@
-/* CSS da applicare a Apple Safari */
 body{
 	background-color: #efefef;
 }
 
 canvas {
- 	background-color: #ffffff;
+	background-color: #ffffff;
 	margin-left: 7em;
   	margin-top:0.1em;
   	border-style: solid;
   	border-width: 2px 2px 2px 2px ;
 }
-/*Toolbar */
-
-#tool{
-	margin-left: 0.5em;
-	position: fixed;
-	}
-
-.toolbarButton{
-	width: 4em;
-	height:3em;
-	cursor:pointer;
-	background-color:#F4F3F2;
-	background-repeat: no-repeat;
-	background-position: center;
-	margin-left:1em;
-}
-
-#selectionButton{
-	background-image:url("../pages/images/selezione.png");
-	}
-#zoomInButton{
-	background-image:url("../pages/images/zoomIn.png");
-		}
-#zoomOutButton{
-	background-image:url("../pages/images/zoomOut.png");
-		}	
-#moveViewButton{
-	background-image:url("../pages/images/move.png");
-		}	
-		
-#straightLineButton{
-	background-image:url("../pages/images/lineaDritta.png");
-		}	
-	
-#bezierCurveButton{
-    background-image:url("../pages/images/linea.png");
-	}
-#squareButton{
-	background-image:url("../pages/images/quadrato.png");
-}
-#circleButton{
-	background-image:url("../pages/images/cerchio.png");
-}
-#polygonButton{
-	background-image:url("../pages/images/poligono.png");
-}
-#freeLineButton{
-	background-image:url("../pages/images/freeline.png");
-}
-#textButton{
-	background-image:url("../pages/images/testo.png");
-}
-
 
 
 /*Tavolozza*/
 .paletteComponent{
-	width:6px;
 	height:4em;
 	margin-right:-0.35em;
 	cursor:pointer;
@@ -84,23 +29,100 @@ canvas {
 #lastPalette{
 	border-right:solid;
 	border-width:thin;
-	
 }
 	
-#palette{
-	margin-left: 5em;
+#palette{	
+	margin-left: 7em;
 	margin-top: 0.1em;
 }
 
-
-/*zona salva/carica SVG */
-#saveLoadZone{
-	display: inline-block;
-	
+#comboColor{
+margin-left:0.5em;
 }
 
 
-/* Dialog colori e proprietà */
+
+#fillColorNow{
+	border:solid;	
+}
+
+#borderColorNow{
+	border:solid;	
+}
+
+#opBorder,#opFill{
+  margin-top:-0.5em; 
+}
+
+/* Caratteristiche generiche  toolbar */
+#tool{
+	margin-top:0.5em;
+	margin-left: 0.5em;
+	position: fixed;
+	}
+
+.toolbarButton{
+	width: 3em;
+	height:2em;
+	cursor:pointer;
+	background-color:#F4F3F2;
+	background-repeat: no-repeat;
+	background-position: center;
+	margin-left:1em;
+	
+	
+}
+
+.toolbarButton:hover{
+	background-color:#E8E8E8;
+}
+
+
+#selectionButton{
+	background-image:url("../images/selezione.png");
+	}
+#zoomInButton{
+	background-image:url("../images/zoomIn.png");
+		}
+#zoomOutButton{
+	background-image:url("../images/zoomOut.png");
+		}	
+#moveViewButton{
+	background-image:url("../images/move.png");
+		}	
+		
+#straightLineButton{
+	background-image:url("../images/lineaDritta.png");
+		}	
+	
+#bezierCurveButton{
+    background-image:url("../images/linea.png");
+	}
+#squareButton{
+	background-image:url("../images/quadrato.png");
+}
+#circleButton{
+	background-image:url("../images/cerchio.png");
+}
+#polygonButton{
+	background-image:url("../images/poligono.png");
+}
+#freeLineButton{
+	background-image:url("../images/freeline.png");
+}
+#textButton{
+	background-image:url("../images/testo.png");
+}
+#cloneButton{
+margin-left:0.5em;
+
+}
+/*zona salva/carica SVG */
+#saveLoadZone{
+	display: inline-block;	
+}
+
+
 #divBorderCol,#divFillCol{
 margin-top: -0.6em;
 }
@@ -112,6 +134,52 @@ text-decoration: underline;
 #colorx,#colory{
 width: 400px;display: none;
 }
+
+#toTopButton{
+	
+	background-image:url("../images/go-top.png");
+	width: 3em;
+	height:2.6em;
+	background-color:#F4F3F2;
+	background-repeat: no-repeat;
+	background-position: center;
+	margin-top:0.4em;
+	
+}
+
+
+#toBottomButton{
+	background-image:url("../images/go-bottom.png");
+	width: 3em;
+	height:2.6em;
+	background-color:#F4F3F2;
+	background-repeat: no-repeat;
+	background-position: center;
+	margin-top:0.4em;
+}
+
+/********************AVANZATE******************/
+
+/*Tooltip CSS*/
+span.tooltip{ 
+	position:relative; /*questa è fondamentale*/
+    z-index:24; 
+    text-decoration: none
+    }
+
+span.tooltip:hover{ 
+	z-index: 25; 
+	}
+span.tooltip span{
+	display: none}
+
+span.tooltip:hover span{ /*lo span verrý mostrato solo sullo stato :hover */
+    display: block; position:absolute;
+    top: 2em; left: 2em; width: 15em;
+    border: 1px solid #0cf; background-color: #cff; color:#000;
+    font-size: 80%;text-align: center
+    }
+
 
 /* This file skins dialog */
 

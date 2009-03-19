@@ -81,7 +81,7 @@
 	width:12px;	/* Width of item */
 	background-repeat:no-repeat;	/* No background repeat for the arrow */
 	background-position:center center;	/* Position of the arrow. at the center of this div */
-	background-image: url('../../pages/images/menu_bar/menu_strip_down_arrow.png');	/* Relative path to the arrow */
+	background-image: url('../../images/menu_bar/menu_strip_down_arrow.png');	/* Relative path to the arrow */
 	margin:0px;	
 	margin-right:-1px;	/* -1 pixel is added to get the arrow a little bit more to the right. this is because of the right padding of top level items */
 	padding:0px;
@@ -107,7 +107,7 @@
 	padding-left:3px;
 	padding-right:3px;
 	background-repeat:repeat-y;
-	background-image:url('../../pages/images/menu_bar/menu_strip_separator.png');
+	background-image:url('../../images/menu_bar/menu_strip_separator.png');
 	
 }
 
@@ -161,7 +161,7 @@
 }
 .DHTMLSuite_menuItem_sub_arrowShowSub{	/* Arrow div for sub elements (Right pointing arrow ) */
 	position:absolute;	/* Never change this one */
-	background-image:url('../../pages/images/menu_bar/menu-bar-right-arrow.png');	/* Path relative to the css file */
+	background-image:url('../../images/menu_bar/menu-bar-right-arrow.png');	/* Path relative to the css file */
 	width:18px;
 	height:18px;
 	text-align:right;	

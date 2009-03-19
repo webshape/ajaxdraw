@@ -1,84 +1,33 @@
-/* CSS da applicare a Konqueror */
+/* CSS per IE7, in modalità non standard */
 
-cbody{
+body{
 	background-color: #efefef;
 }
-
 canvas {
- 	background-color: #ffffff;
-	margin-left: 7em;
-  	margin-top:0.1em;
-  	border-style: solid;
-  	border-width: 2px 2px 2px 2px ;
+  background-color: #ffffff;
+  margin-left: 5.5em;
+  margin-top: -23em;
 }
-/* Toolbar */
+
 #tool{
 	margin-left: 0.5em;
 	position: fixed;
-	}
-	
-.toolbarButton{
-	width: 3.5em;
-	height:2.5em;
-	cursor:pointer;
-	background-color:#F4F3F2;
-	background-repeat: no-repeat;
-	background-position: center;
-	margin-left:1em;
-}
-
-#selectionButton{
-	background-image:url("../pages/images/selezione.png");
-	}
-#zoomInButton{
-	background-image:url("../pages/images/zoomIn.png");
-		}
-#zoomOutButton{
-	background-image:url("../pages/images/zoomOut.png");
-		}	
-#moveViewButton{
-	background-image:url("../pages/images/move.png");
-		}	
-		
-#straightLineButton{
-	background-image:url("../pages/images/lineaDritta.png");
-		}	
-	
-#bezierCurveButton{
-    background-image:url("../pages/images/linea.png");
-	}
-#squareButton{
-	background-image:url("../pages/images/quadrato.png");
-}
-#circleButton{
-	background-image:url("../pages/images/cerchio.png");
-}
-#polygonButton{
-	background-image:url("../pages/images/poligono.png");
-}
-#freeLineButton{
-	background-image:url("../pages/images/freeline.png");
-}
-#textButton{
-	background-image:url("../pages/images/testo.png");
 }
 
 
 /*Tavolozza*/
 .paletteComponent{
-	width:6px;
-	height:4em;
+	height:1em;
 	margin-right:-0.35em;
 	cursor:pointer;
 	border-top:solid;
 	border-bottom:solid;
 	border-width:thin;
-	}
+}
 	
 #firstPalette{
 	border-left:solid;
-	border-width:thin;
-	
+	border-width:thin;	
 }
 #lastPalette{
 	border-right:solid;
@@ -87,53 +36,135 @@ canvas {
 }
 	
 #palette{
-	margin-left: 5em;
+	margin-left: 5.5em;
 	margin-top: 0.1em;
 }
 
 
+#fillColorNow{
+	border:solid;	
+}
+
+#borderColorNow{
+	margin-top:0.2em;	
+	border:solid;	
+}
+
+#divBorderCol,#divFillCol{
+margin-top: 0.5em;
+}
+
+#polygonTitle,#textTitle{
+text-align: center;
+text-transform: uppercase;
+text-decoration: underline;
+}
+
+#colorx,#colory{
+width: 400px;display: none;
+}
+
+
+.toolbarButton{
+	width: 3em;
+	height:2em;
+	cursor:pointer;
+	background-color:#F4F3F2;
+	background-repeat: no-repeat;
+	background-position: center;
+	margin-left:1em;
+}
+
+#selectionButton{
+	background-image:url("../images/selezione.png");
+	}
+#zoomInButton{
+	background-image:url("../images/zoomIn.png");
+		}
+#zoomOutButton{
+	background-image:url("../images/zoomOut.png");
+		}	
+#moveViewButton{
+	background-image:url("../images/move.png");
+		}	
+		
+#straightLineButton{
+	background-image:url("../images/lineaDritta.png");
+		}	
+	
+#bezierCurveButton{
+    background-image:url("../images/linea.png");
+	}
+#squareButton{
+	background-image:url("../images/quadrato.png");
+}
+#circleButton{
+	background-image:url("../images/cerchio.png");
+}
+#polygonButton{
+	background-image:url("../images/poligono.png");
+}
+#freeLineButton{
+	background-image:url("../images/freeline.png");
+}
+#textButton{
+	background-image:url("../images/testo.png");
+}
+
 /*zona salva/carica SVG */
 #saveLoadZone{
-	display: inline-block;
+	display: inline-block;	
+}
+
+#opBorder,#opFill{
+  margin-top:0.5em;
+  
+}
+
+#changeBorderCol, #changeFillCol{
+	margin-top: -0.5em;
 	
 }
 
 
-/*tooltip CSS avanzato */
-span.tooltip{ 
-	position:relative; /*questa è fondamentale*/
-    z-index:24; 
-    text-decoration: none
-    }
-
-span.tooltip:hover{ 
-	z-index: 25; 
-	}
-span.tooltip span{
-	display: none}
-
-span.tooltip:hover span{ /*lo span verrý mostrato solo sullo stato :hover */
-    display: block; position:absolute;
-    top: 2em; left: 2em; width: 15em;
-    border: 1px solid #0cf; background-color: #cff; color:#000;
-    font-size: 80%;text-align: center
-    }
+#toTopButton{
+	
+	background-image:url("../images/go-top.png");
+	width: 3em;
+	height:2.6em;
+	background-color:#F4F3F2;
+	background-repeat: no-repeat;
+	background-position: center;
+	margin-top:0.4em;
+	
+}
 
 
+#toBottomButton{
+	background-image:url("../images/go-bottom.png");
+	width: 3em;
+	height:2.6em;
+	background-color:#F4F3F2;
+	background-repeat: no-repeat;
+	background-position: center;
+	margin-top:0.4em;
+}
 /* This file skins dialog */
 
 .flora .ui-dialog,
 .flora.ui-dialog {
-	background-color: #e6f7d4;
+	//background-color: #e6f7d4;
+	background-color: #e5e5e5;
+
 }
 
 .flora .ui-dialog .ui-dialog-titlebar,
 .flora.ui-dialog .ui-dialog-titlebar {
 	border-bottom: 1px solid #d8d2aa;
-	background: #60E068 url(i/dialog-title.gif) repeat-x;
+	background: #008000 url(i/dialog-title.png) repeat-x;
 	padding: 0px;
 	height: 28px;
-/*	_height: 29px;*/
+/*	_height: 29px; */
 }
 
 .flora .ui-draggable .ui-dialog-titlebar,
@@ -220,3 +251,4 @@ span.tooltip:hover span{ /*lo span verrý mostrato solo sullo stato :hover */
 
 .flora .ui-dialog .ui-resizable-ne,
 .flora.ui-dialog .ui-resizable-ne { cursor: ne-resize; width: 9px; height: 29px; right: 0px; top: 0px; background: transparent url(i/dialog-ne.gif); }
+
