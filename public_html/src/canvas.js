@@ -419,7 +419,7 @@ function ClearCanvasButton () {
     visual.getFigureSet().rem(f);
   });
   visual.refresh();
-};
+}
 
 
 /**
@@ -431,7 +431,7 @@ function SaveButton () {
    var svg = s.write(visual.getFigureSet());
    alert(svg);
    $("#saveDestination").text(svg);
-};
+}
 
 
 /**

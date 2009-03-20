@@ -7,7 +7,7 @@ function runLoadTest () {
   test("Load Test", function () {
 
             var s = new SVGReader();
-	    var fs = new Array();
+	    var fs = [];
 
 			// rectangle
             var doc = "<svg width=\"1000\" height=\"1000\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\">";
