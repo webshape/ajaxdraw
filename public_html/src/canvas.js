@@ -164,7 +164,7 @@ Visualization.prototype.deselectAll = function (figureSet) {
   $("#toBottomButton").unbind('click');
   $("#submitEdge").unbind('click');
   $("#submitRect").unbind('click');
-  $("#submitFont").unbind('click');
+  $("#submitFont").unbind('mousedown mouseup click');
   $('#cloneButton').unbind('click');
   figureSet.each(function (f){
     f.setSelection(false);
