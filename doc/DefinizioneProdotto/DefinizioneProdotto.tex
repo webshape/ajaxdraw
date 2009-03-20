@@ -178,6 +178,8 @@ Il presente documento descrive in modo dettagliato le classi e i relativi metodi
 %%%%%%%%%%%%%%FINE INTESTAZIONE COLONNE%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 		 \hline
 %%%%%%%%%%% PARTE DA MODIFICARE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
+        2.0 &    22$\slash$03$\slash$2009 Modifiche per rilascio RA & Dissegna Stefano \\
+		\hline
         1.4 &    19$\slash$03$\slash$2009 Diagrammi delle Classi suddivisi per GuiLogic & Bizzotto Piero \\
 		\hline
         1.3 &    19$\slash$03$\slash$2009 Ulteriori dettagli sull'implementazione dei metodi del sottosistema ApplicationLogic & Dissegna Stefano \\
@@ -258,13 +260,13 @@ La progettazione verr\`a presentata tramite una descrizione testuale delle compo
 \end{elencopuntato}
 
 \subsezione{Standard di documentazione del codice}
-Si vedano le \textit{NormeDiprogetto}, versione 4.0.
+Si vedano le \textit{NormeDiprogetto}, versione 3.0.
 \subsezione{Standard di denominazione di entit\`a e relazioni}
-Si vedano le \textit{NormeDiprogetto}, versione 4.0.
+Si vedano le \textit{NormeDiprogetto}, versione 3.0.
 \subsezione{Standard di programmazione}
-Si vedano le \textit{NormeDiprogetto}, versione 4.0.
+Si vedano le \textit{NormeDiprogetto}, versione 3.0.
 \subsezione{Strumenti di lavoro}
-Si vedano le \textit{NormeDiprogetto}, versione 4.0.
+Si vedano le \textit{NormeDiprogetto}, versione 3.0.
 \newpage
 \sezione{Specifica delle componenti - GUI }
 Si occupa di gestire l'interazione tra l'utente e la logica interna dell'applicazione, descritta in seguito.
@@ -1205,6 +1207,8 @@ Nessuna.
 \begin{elencopuntato}[\subsubsecindent]
 \item[-]  \textit{read(doc)} ottiene un modello \underline{DOM} dalla stringa \textit{doc} attraverso il metodo \textit{parsing} di \textit{XMLParser} e lancia un errore se l'operazione non ha successo. Itera il DOM per accedere ai tag; per ognuno controlla che sia presente nella tabella della classe \textit{SVGElementRegistry} e in caso affermativo chiama il metodo \textit{fromSVG} sull'istanza della corrispondente figura. Infine aggiunge la figura all'istanza di \textit{FigureSet}.
 \end{elencopuntato}
+
+
 
 \subsezione{XMLParser}
 \subsubsezione{Tipo, obiettivo e funzione del componente}

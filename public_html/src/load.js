@@ -8,6 +8,7 @@
  * @author Mirco Geremia
  */
 
+var nf = 0; /* the number of the current parseing figure*/
 
 /**
  * SVGReader create a figureSet and an elementRegistry
@@ -54,11 +55,13 @@ ParsingError.prototype.intCheck = function (n, name){
 
 	 if ((name == "height" || name == "width" || name == "font-size" || name == "rx" || name == "ry") && n < 0){
 		// h, w and font-size can't be negative
-        if (nf == 0)
-            this.err("Errore elemento SVG \n" + name + " non puo' avere un valore negativo");
-        else
-            this.err("Figura n. " + nf + "\n" + name + " non puo' avere un valore negativo");
-		return false;
+        if (nf === 0) {
+			 this.err("Errore elemento SVG \n" + name + " non puo' avere un valore negativo");
+			 }
+        else {
+			 this.err("Figura n. " + nf + "\n" + name + " non puo' avere un valore negativo");
+			 }
+		  return false;
 	 }
   }
   else { // the attribute missed
@@ -77,12 +80,11 @@ var perr = new ParsingError();
  * @param {String} doc the name of the file SVG
  */
 // global variable used to know which figures is currently parsing
-var nf = 0;
 SVGReader.prototype.read = function (doc) {
   var fs = new FigureSet();
   var psr = new XMLParser();
   var xmlDoc = psr.parsing(doc);
-  if (xmlDoc == null) {
+  if (xmlDoc === null) {
     throw new ParsingError('Parsing Error');
   }
 
@@ -90,9 +92,13 @@ SVGReader.prototype.read = function (doc) {
 
   var w = x[0].getAttribute("width");
   var h = x[0].getAttribute("height");
-  if (!(perr.intCheck(h, "height") && perr.intCheck(w, "width")))
+  if (!(perr.intCheck(h, "height")) || !(perr.intCheck(w, "width"))){
     return 0;
+  }
 
+  if (x[0].childNodes[1].nodeName == "g"){ // inkscape plan svg
+	 x = xmlDoc.getElementsByTagName("g");
+  }
   for (var i = 0; i < x[0].childNodes.length; i++) {
     var n = x[0].childNodes[i];
     if (n.nodeName != "#text") {
@@ -177,10 +183,12 @@ function SVGElementRegistry() {
 SVGElementRegistry.prototype.makeFigureClassFromTag = function (tag) {
   var fn = this._reg[tag];
   if (fn) {
-	 if (tag == 'text')
+	 if (tag == 'text'){
 		return new fn(new TextString("canvas"));
-	 else
+	 }
+	 else {
 		return new fn();
+	 }
   }
   return null;
 };
@@ -443,11 +451,9 @@ Text.prototype.fromSVG = function (n) {
   this.setText(new TextString(txt));
   this.setFont(new TextFont(ff));
   var y2 = y1 + h;
+  var x2 = (h/2) * txt.length;
   if (w && !isNaN(w)) {
-	  var x2 = x1 + w;
-  }
-  else {
-	 var x2 = (h/2) * txt.length;
+	  x2 = x1 + w;
   }
   var p1 = new Point(x1, y1);
   var p2 = new Point(x2, y2);
