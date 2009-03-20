@@ -5,7 +5,7 @@
  
 \begin{document}
 
-\renewcommand{\insertversion}{1.0} %INSERIRE LA VERSIONE QUI DENTRO STILE x.x.xx
+\renewcommand{\insertversion}{2.0} %INSERIRE LA VERSIONE QUI DENTRO STILE x.x.xx
 \renewcommand{\TITOLODOC}{Manuale Utente} %INSERIRE IL TITOLO DEL DOCUMENTO DA FAR COMPARIRE A PIE PAGINA
 \renewcommand{\glosspath}{.\glossario} %INSERIRE PERCORSO RELATIVO
  
@@ -82,9 +82,10 @@ Il presente documento si propone di fornire la documentazione di supporto necess
         %%%%%%%%%%%%%%FINE INTESTAZIONE COLONNE%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
         \hline
         %%%%%%%%%%% PARTE DA MODIFICARE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    
-        \multirow{2}{*}{RPP-RQ} & Carollo Mirko\\
+        \multirow{2}{*}{RQ-RA} & Carollo Mirko\\
                     & Dal Bosco Davide\\
                     & Rizzo Maurizio\\
+        
         \hline
         %%%%%%%%%%% FINE PARTE DA MODIFICARE %%%%%%%%%%%%%%%%%%%%%%%%%%%
       \end{tabular}
@@ -106,7 +107,7 @@ Il presente documento si propone di fornire la documentazione di supporto necess
 			%%%%%%%%%%%%%%FINE INTESTAZIONE COLONNE%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 			\hline
 			%%%%%%%%%%% PARTE DA MODIFICARE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%		
-			\multirow{1}{*}{RPP-RQ} &  Bizzotto Piero \\
+			\multirow{1}{*}{RQ-RA} &  Bizzotto Piero \\
 				\hline
 			%%%%%%%%%%% FINE PARTE DA MODIFICARE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 		\end{tabular}
@@ -130,7 +131,7 @@ Il presente documento si propone di fornire la documentazione di supporto necess
       %%%%%%%%%%%%%%FINE INTESTAZIONE COLONNE%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
       \hline
       %%%%%%%%%%% PARTE DA MODIFICARE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    
-      \multirow{1}{*}{RPP-RQ} & Dissegna Stefano \\
+      \multirow{1}{*}{RQ-RA} & Dissegna Stefano \\
                   
       \hline
       %%%%%%%%%%% FINE PARTE DA MODIFICARE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -147,6 +148,7 @@ Il presente documento si propone di fornire la documentazione di supporto necess
   \begin{elenconumerato}{\normindent}
     \item WebShape
     \item I committenti Conte Renato e Vardanega Tullio in rappresentanza \\ dell'azienda proponente Zucchetti SPA
+    \item Gli utenti finali del software AJAXDRAW
   \end{elenconumerato}
  
  
@@ -166,6 +168,8 @@ Il presente documento si propone di fornire la documentazione di supporto necess
 %%%%%%%%%%%%%%FINE INTESTAZIONE COLONNE%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
      \hline
 %%%%%%%%%%% PARTE DA MODIFICARE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+          2.0 & 20/03/09 Preparazione in vista RA & Carollo Mirko \\
+          \hline
           1.0 & 07/03/09 Preparazione in vista rilascio RQ & Dal Bosco Davide \\
           \hline
           0.4 & 05/03/09 Inserimento manuale di Tomcat per sistemi Linux & Dal Bosco Davide \\
@@ -196,9 +200,6 @@ Il presente documento si propone di fornire la documentazione di supporto necess
  
 \sezione{Introduzione}
  
-\subsezione{Definizione dell'utente del prodotto}
-Il prodotto \`e pensato per tutti gli utenti che hanno conoscenze minime in ambiente di grafica vettoriale e che possiedono una connessione ad internet. Il sistema potr\`a essere modificato da chiunque voglia estendere l'applicazione, secondo le norme che regolano la licenza d'utilizzo.\\
- 
 \subsezione{Come leggere il manuale}
 Il presente Manuale Utente \`e suddiviso in varie sezioni. Nella sezione ''Introduzione'' il lettore pu\`o trovare riferimenti a documenti utili per l'uso del prodotto e informazioni riguardo eventuali segnalazioni di problemi riscontrati nel suo utilizzo.
 Nella sezione ''Descrizione generale'' viene descritto il prodotto illustrandone lo scopo, le modalit\`a di utilizzo, le caratteristiche salienti, i requisiti tecnici. Nella sezione ''Istruzioni d'uso'' sono presenti le operazioni da effettuare per utilizzare il software, a partire dall'installazione fino al termine di una sessione di utilizzo.\\ %integrate anche mediante vari screenshot
@@ -221,6 +222,9 @@ Nel caso durante l'utilizzo del prodotto sorgano problemi o malfunzionamenti non
 \end{elencopuntato}
  
 \sezione{Descrizione Generale}
+
+\subsezione{Definizione dell'utente del prodotto}
+Il prodotto \`e pensato per tutti gli utenti che hanno conoscenze minime in ambiente di grafica vettoriale e che possiedono una connessione ad internet. Il sistema potr\`a essere modificato da chiunque voglia estendere l'applicazione, secondo le norme che regolano la licenza d'utilizzo.\\
  
 \subsezione{Caratteristiche del Prodotto}
 Il prodotto \`e stato sviluppato come un'applicazione web. \`E possibile utilizzarlo, dopo aver effettuato l'installazione sul \underline{server}, semplicemente accedendovi tramite un browser. Una volta effettuato l'accesso alla pagina \`e possibile accedere a tutte le funzionalit\`a. Il sistema permette un salvataggio dei disegni che potranno essere ricaricati e aggiornati.
@@ -254,60 +258,10 @@ Il prodotto \`e stato sviluppato come un'applicazione web. \`E possibile utilizz
 Il programma non necessita di installazione.
  
 \subsubsezione{Lato server}
-Per permettere il funzionamento del sistema, \`e necessario installare un Web Server: \textit{Apache Tomcat}. Oltre a essere un Web Server, Tomcat \`e anche un
-Application Server, cio\`e una piattaforma per l'esecuzione di applicazioni web sviluppate nel linguaggio Java.\\
-Prima di tutto \`e necessario disporre di una Java Virtual Machine. Per il download visitare il link del sito ufficiale della Sun Microsystem:\\
-\href{http://java.com/download/index.jsp}{http://java.com/download/index.jsp}\\
-\\
-Per effettuare il download di Apache Tomcat 6.0 andare al link del sito ufficiale \href{http://tomcat.apache.org/download-60.cgi}{http://tomcat.apache.org/download-60.cgi}\\
-Nella sezione \textit{Binary Distribution} della pagina web, \`e possibile effettuare il download sia per sistemi Windows che per sistemi Linux.\\
-\\\\
-\indent{\underline{\textbf{Installazione su sistemi Windows}}}\\
-\\
-Terminato il download, fare doppio click sul file scaricato per iniziare l'installazione.\\
-La schermata \`e la seguente:
- 
-\begin{figure}[!ht]
-\centering
-\includegraphics[scale=0.7]{images/InstallTomcat1.png}
-\caption{Setup Wizard Apache Tomcat}
-
-\end{figure} 
+Per permettere il funzionamento del sistema, \`e necessario installare un Web Server: \textit{Apache Tomcat}. 
+Si vedano i manuali di Apache Tomcat per problemi con l'installazione.
 
 
-Premere \textit{Next} per andare avanti e accettare la licenza.
-Giunti alla schermata per la scelta della cartella di installazione, mantenere quella indicata di default.
- 
-\begin{figure}[!ht]
-\centering
-\includegraphics[scale=0.7]{images/InstallTomcat2.png}
-\caption{Choose Install Location}
-\end{figure}
-\newpage
- 
-Premere \textit{Next}, e si presenter\`a la finestra di configurazione di Tomcat:
-Alla voce \textit{http/1.1 Connector Port} lasciare il valore di default (di solito 8080), quindi impostare Username e Password a scelta, necessarie per accedere alla configurazione di Tomcat. Quindi proseguire.
-
-\begin{figure}[!ht]
-\centering
-\includegraphics[scale=0.7]{images/InstallTomcat3.png}
-\caption{Configuration}
-\end{figure} 
-
-Nella schermata successiva, \`e necessario indicare il percorso d'installazione della Java Virtual Machine (J2SE). Nel caso sia gi\` a installata, mantenere il percorso di default indicato.
-Per completare l'installazione, premere su \textit{Install}.
-
-\begin{figure}[!ht]
-\centering
-\includegraphics[scale=0.7]{images/InstallTomcat4.png}
-\caption{Java Virtual Machine}
-\end{figure} 
-
-\indent{\underline{\textbf{Installazione su sistemi Linux}}}\\
-\\
-Scaricato il file \textit{.tar.gz}, estrarre il suo contenuto in una cartella.
-Non \`e necessaria un'installazione vera e propria e per la sua esecuzione si rimanda al paragrafo \textit{Avvio del programma} sezione \textit{Linux}.
-\newpage
 \subsezione{Avvio del programma}
 \subsubsezione{Lato client}
 \`E sufficiente aprire la pagina web con un browser supportato. L'indirizzo dipende dall'host in cui viene installato il server.
@@ -405,7 +359,7 @@ Infine la sezione \textit{Guida} contiene il link al manuale consultabile in lin
 \newpage
  
 \subsubsezione{La Toolbar}
-Le funzioni di disegno del programma sono accessibili attraverso i bottoni presenti nel lato sinistro dell'interfaccia grafica. Cliccando su un pulsante si attiva la funzione desiderata. Il puntatore del mouse cambia a seconda della funzione di disegno scelta, nei browser che lo supportano. \\
+Le funzioni di disegno del programma sono accessibili attraverso i bottoni presenti nel lato sinistro dell'interfaccia grafica. Cliccando su un pulsante si attiva la funzione desiderata. Il puntatore del mouse cambia a seconda della funzione di disegno scelta, nei browser che lo supportano. Se il mouse esce dal canvas mentre si disegna, il disegno di una qualsiasi figura viene concluso. \\
  
 \textbf{Selezione}:\\
 \begin{figure}[!ht]
