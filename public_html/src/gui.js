@@ -267,17 +267,26 @@ $(document).ready(function(){
  });
 
  $("#loadButton2").click(function () {
-   $("#loadDialog").dialog( 'close' );
-   ClearCanvasButton();
-   doc = $("#my_iframe").contents().find('body').html();alert(doc);
-   var b = [];
-   var  r = new SVGReader();
-   b = (r.read(doc));
-   b.each(function (f) {
-     visual.getFigureSet().add(f);
-     f.draw(canvas);});
- });
-
+                           $("#loadDialog").dialog( 'close' );
+                         });                     
+                    
+ $('#MyForm').submit(function () {
+   $('#my_iframe').bind('load', function () {
+                          $("#loadDialog").dialog( 'close' );
+                          doc = $("#my_iframe").contents().find('body').html();
+                          var  r = new SVGReader();
+                          try {
+                            var fs = r.read(doc);
+                            visual.setFigureSet(fs);
+                          }
+                          catch (err) {
+                            alert('Errore durante il caricamento: ' + err);
+                          }
+                          canvasObj.clear();
+                          visual.refresh();
+                          $('#my_iframe').unbind('load');
+                        });
+   });
 
  // Advanced functions disabled for older browsers
  if((page.getBrowserName()=="firefox" && page.getBrowserVersion()<3.1) ||

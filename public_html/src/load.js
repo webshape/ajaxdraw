@@ -84,9 +84,6 @@ SVGReader.prototype.read = function (doc) {
   var fs = new FigureSet();
   var psr = new XMLParser();
   var xmlDoc = psr.parsing(doc);
-  if (xmlDoc === null) {
-    throw new ParsingError('Parsing Error');
-  }
 
   var x = xmlDoc.getElementsByTagName("svg");
 
@@ -130,6 +127,7 @@ function XMLParser() {}
  */
 XMLParser.prototype.parsing = function (doc) {
   var xmlDoc = null;
+  var errstr = null;
   try { //Internet Explorer
 	 xmlDoc = new ActiveXObject("Microsoft.XMLDOM");
 	 xmlDoc.async = false;
@@ -137,33 +135,29 @@ XMLParser.prototype.parsing = function (doc) {
 	 xmlDoc.loadXML(doc);
 
 	 if (xmlDoc.parseError.errorCode !== 0) {
-		alert("Error in line " + xmlDoc.parseError.line +
+		errstr = ("Error in line " + xmlDoc.parseError.line +
 				" position " + xmlDoc.parseError.linePos +
 				"\nError Code: " + xmlDoc.parseError.errorCode +
 				"\nError Reason: " + xmlDoc.parseError.reason +
 				"Error Line: " + xmlDoc.parseError.srcText);
-		return(null);
     }
   }
   catch(e) {
 	 try { //Firefox
 		var parser = new DOMParser();
 		xmlDoc = parser.parseFromString(doc, "text/xml");
-/*        xmlDoc=document.implementation.createDocument("","",null);
-        xmlDoc.async="false";
-        xmlDoc.load(doc);*/
 		if (xmlDoc.documentElement.nodeName == "parsererror") {
-		  alert(xmlDoc.documentElement.childNodes[0].nodeValue);
-        return(null);
-      }
+		  errstr = xmlDoc.documentElement.childNodes[0].nodeValue;
+                }
     }
-	 catch(e2) {alert(e2.message);}
+    catch(e2) {errstr = e2.message;}
   }
-  try {
-	 return (xmlDoc);
+
+  if (errstr !== null) {
+    throw errstr;
+  } else {
+    return xmlDoc;
   }
-  catch(e3) {alert(e3.message);}
-  return (null);
 };
 
 
