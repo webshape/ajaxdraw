@@ -566,6 +566,7 @@ SelectionButton.prototype.bindCanvas = function (toolbar,canvas,canvasObj,visual
   //throw 'No figure found';
       }
       else {
+        visual.deselectAll(figureSet); // only one selection a time
 	/*gestione livelli */
 	$("#toTopButton").click(function () {
 	  figureSet.toTop(actualFigure);
@@ -585,7 +586,6 @@ SelectionButton.prototype.bindCanvas = function (toolbar,canvas,canvasObj,visual
 	  visual.cloneElement(actualFigure,canvasObj);
 	});
 
-	visual.deselectAll(figureSet); // only one selection a time
 	$("*").unbind('keypress');
 	$("*").bind('keypress',function(e){
 	  if(e.keyCode==46){
