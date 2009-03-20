@@ -228,7 +228,7 @@ Questo documento definisce le linee guida da seguire per la stesura della docume
   \end{elencopuntato}
   
 \sezione{Modifiche}
-  Le modifica pu\`o essere effettuata solamente dai redattori del documento, che avranno anche l'obbligo di aggiornare la tabella delle modifiche. Ogni voce di questa tabella deve comprendere il numero di versione, la data, un breve commento che indichi i principali cambiamenti e l'autore della modifica.
+  Le modifiche possono essere effettuate solamente dai redattori del documento, che avranno anche l'obbligo di aggiornare la tabella delle modifiche. Ogni voce di questa tabella deve comprendere il numero di versione, la data, un breve commento che indichi i principali cambiamenti e l'autore della modifica.
   Gli approvatori possono segnalare gli eventuali cambiamenti da apportare al documento tramite i sistemi di comunicazione interni all'azienda.
   
 \sezione{Versionamento}
@@ -239,10 +239,10 @@ Il gruppo si incontra settimanalmente per aggiornarsi e verificare lo stato di a
 L'azienda si serve del sistema di mailing-list offerto da Google (\href{http://groups.google.it/}{http://groups.google.it/}) per discutere le diverse problematiche inerenti al progetto e per aggiornamenti di ogni tipo.
  
 \sezione{Strumenti di sviluppo}
-L'azienda sceglie di utilizzare software con licenze \underline{Open Source} poich\`e rispecchiano le linee di pensiero dei componenti del gruppo. Inoltre tutto il software utilizzato \`e disponibile gratuitamente, per non gravare sui costi finali del prodotto.
+L'azienda ha scelto di utilizzare software con licenze \underline{Open Source} poich\`e rispecchiano le linee di pensiero dei componenti del gruppo. Inoltre tutto il software utilizzato \`e disponibile gratuitamente, per non gravare sui costi finali del prodotto.
  
 \subsezione{Sistema di versionamento}
-Per il versionamento si usa il sistema Git (\href{http://git.or.cz/}{http://git.or.cz/}) nella sua ultima versione disponibile (1.6.0.4) e come repository comune GitHub (\href{http://github.com}{http://github.com}) poich\`e offre una comoda interfaccia grafica per visualizzare le modifiche effettuate, e non aggiunge costi in quanto gratuito nella sua versione base. GitHub offre inoltre un \underline{wiki} utilizzabile all'occorrenza.\\
+Per il versionamento l'azienda utilizza il sistema Git (\href{http://git.or.cz/}{http://git.or.cz/}) nella sua ultima versione disponibile (1.6.0.4) e come repository comune GitHub (\href{http://github.com}{http://github.com}) poich\`e offre una comoda interfaccia grafica per visualizzare le modifiche effettuate e non aggiunge costi in quanto gratuito nella sua versione base. GitHub offre inoltre un \underline{wiki} utilizzabile all'occorrenza.\\
 Git \`e preferito ad Svn o ad altri sistemi in quanto \`e decentralizzato, quindi nel caso in cui il repository comune non fosse pi\`u raggiungibile per qualsiasi motivo, ogni membro disporr\`a comunque di una copia totale del progetto e di tutta la storia in ogni sua parte.\\
 Git \`e un sistema di comprovata qualit\`a, utilizzato da progetti del calibro del kernel Linux.
  
@@ -256,7 +256,7 @@ Per la creazione di diagrammi UML l'azienda si serve del software ArgoUML v0.26.
 Per pianificare le attivit\`a il gruppo ha deciso di adottare i diagrammi di Gantt perch\`e ritenuti pi\`u immediati; pertanto si \`e scelto di usare il software GanttProject (\href{http://ganttproject.biz/}{http://ganttproject.biz/}) nella versione 2.0.8.
  
 \subsezione{Editor \LaTeX}
-L'ambiente di sviluppo \LaTeX \ non \`e definito poich\`e non influisce nel risultato finale, e perch\`e si preferisce lasciare i membri del gruppo liberi di utilizzare l'editor che ritengono pi\`u adatto alle loro caratteristiche.
+L'ambiente di sviluppo \LaTeX \ non \`e definito poich\`e non influisce nel risultato finale e inoltre si preferisce lasciare i membri del gruppo liberi di utilizzare l'editor che ritengono pi\`u adatto alle loro caratteristiche.
  
 \subsezione{Editor di testo}
 L'editor utilizzato per la scrittura del codice JavaScript \`e Emacs con js2-mode; quest'ultimo permette di catturare la maggior parte degli errori di battitura e suggerisce la sintassi corretta mentre il codice viene digitato. 
@@ -275,13 +275,13 @@ Oltre alle utili funzionalit\`a di js2-mode, l'azienda utilizza il programma JSL
 Si utilizza lo strumento JSCoverage, che offre informazioni utili per la construzione di un test di copertura, ed \`e compatibile con tutti i moderni browser. Grazie ad esso sar\`a possibile determinare quali righe di codice non saranno eseguite dai test di unit\`a.
 
 \subsezione{Test di unit\`a}
-L'azienda utilizza il software QUnit. \`E molto stabile e, avendo una completa copertura di unit\`a,  \`e possibile eseguire i test di regressione dopo ogni piccolo passo. Ci\`o comporta un notevole risparmio di tempo.
+L'azienda utilizza il software QUnit. \`E molto stabile e avendo una completa copertura di unit\`a,  \`e possibile eseguire i test di regressione dopo ogni piccolo passo. Ci\`o comporta un notevole risparmio di tempo.
 
 \subsezione{Debug codice tramite browser}
 Si utilizza Firebug, un estensione di Firefox che consente di effettuare il debug di codice HTML e JavaScript direttamente dal browser.
 
 \subsezione{Librerie Javascript}
-Si \` e scelto di utilizzare jQuery (\href{http://jquery.com/}{http://jquery.com/}) nella sua ultima versione (1.3.1), una libreria JavaScript veloce e concisa che semplifica l'attraversamento del documento HTML, la gestione degli eventi, le animazioni, e le interazioni Ajax per un rapido sviluppo web. Oltre alla libreria base, si utilizzano anche i seguenti plugins:
+Si \` e scelto di utilizzare jQuery (\href{http://jquery.com/}{http://jquery.com/}) nella sua ultima versione (1.3.1), una libreria JavaScript veloce e concisa che semplifica l'attraversamento del documento HTML, la gestione degli eventi, le animazioni e le interazioni Ajax per un rapido sviluppo web. Oltre alla libreria base, si utilizzano anche i seguenti plugins:
  \begin{elencopuntato}[\normindent]
     \item[-] \textit{jquery.tooltip}  (\href{http://bassistance.de/jquery-plugins/jquery-plugin-tooltip/}{http://bassistance.de/jquery-plugins/jquery-plugin-tooltip/}) per visualizzare un tooltip a comparsa descrittivo della funzione effettuata dall'oggetto grafico sul quale \` e posizionato il cursore;
     \item[-]\textit{jquery.browser}  (\href{http://jquery.thewikies.com/browser/}{http://jquery.thewikies.com/browser/}) per aiutare nel riconoscimento dei dettagli del broswser utilizzato, consentendo al programma di adattarsi quindi al client cambiando foglio di stile adottato e funzionalit\` a disponibili;
