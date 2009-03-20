@@ -70,6 +70,7 @@ $(document).ready(function(){
   $("#selectionButton").click(function () {
     $("#edgeSetterZone").css({"display":"block"});
     $("#fontSetterZone").css({"display":"block"});
+    $("#rotationSetterZone").css({"display":"block"});
     toolbar.deselectAll();
     selectionButton.bindCursor("selection");
     selectionButton.bindCanvas(toolbar,canvas,canvasObj,visual,figureSet);

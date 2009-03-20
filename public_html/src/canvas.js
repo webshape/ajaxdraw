@@ -1299,36 +1299,24 @@ function TextStringSetter(text){
      visual.refresh();
    });
 }
-function RotationSetter(){}
-/*function RotationSetter(angle){
-   $('#RotationString').get(0).value = angle.getAngle();
-   $('#x').get(0).value = bounds.start().x;
-   $('#y').get(0).value = bounds.start().y;
-   $('#DialogHeight').get(0).value = bounds.h();
-   $('#DialogWidth').get(0).value = bounds.w();
-   $('#submitAngle').click(function (e) {
-     			angle.setAngle($('#RotationString').get(0).value);
-     			var x = parseFloat($('#x').get(0).value);
-     			var y = parseFloat($('#y').get(0).value);
-			var h = parseFloat($('#DialogHeight').get(0).value);
-                        var w = parseFloat($('#DialogWidth').get(0).value);
+
+function RotationSetter(angle){
+   $('#rotationNumber').get(0).value = angle.getAngle();
+   $('#submitRotation').click(function (e) {
+     			angle.setAngle($('#rotationNumber').get(0).value);
                         if (angle >= 0) {
 		            var rotation = Math.PI * angle / 180;
 	                                }
                         else {
 			    var rotation = Math.PI * (360+angle) / 180;
 					}
-			var costheta = Math.cos(rotation);
-			var sintheta = Math.sin(rotation);
-                        var d = x.dist(this.centre());
-			bounds.start().x = x+(d-(d*costheta));
-                        bounds.start().y = y+(d*sintheta);
-                        bounds.end().x = x-(d*sintheta);
-                        bounds.end().y = y+(d-(d*costheta));
+                        var ctx = canvas.getContext("2d");
+                        ctx.rotate(rotation);
+			
      canvasObj.clear();
      visual.refresh();
    });
-}*/
+}
 
 function BoundingRectangleSetter(bounds){
   $('#submitRect').unbind('click');
