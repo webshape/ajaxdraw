@@ -517,37 +517,51 @@ FigureSet.prototype.selectFigure = function (where, scale, offset) {
   }
 
   c.getContext('2d').lineWidth = 10; // easier selection of lines
+  var textSelected = null;
+  var textPos = 0;
+  var pos = 0;
   this.each(function (f) {
               if (f instanceof Text) {
-                // using a different lineWidth moves the text
-                // use lineWidth 1 only for text
-                c.getContext('2d').lineWidth = 1;
+                // standard method doesn't seem to work with text
+                var b = f.getBounds();
+                var s = b.start();
+                var e = b.end();
+                if (((s.x < where.x && where.x < e.x) ||
+                  (e.x < where.x && where.x < s.x)) &&
+                  ((s.y < where.y && where.y < e.y) ||
+                  (e.y < where.y && where.y < s.y))) {
+                  textSelected = f;
+                  textPos = pos;
+                }
+              } else {
+                var col = next();
+                fs[col[0].toCSS()] = [f, pos];
+                // momentarily change the colour
+                // !! straight access to private attributes
+                var old1 = f._borderColour;
+                var old2 = f._fillColour;
+                f._borderColour = col[0];
+                // figure may not have a fillColour
+                // this won't raise any error
+                f._fillColour = col[1];
+                f.draw(c);
+                f._borderColour = old1;
+                f._fillColour = old2;
               }
-              var col = next();
-              fs[col[0].toCSS()] = f;
-              // momentarily change the colour
-              // !! straight access to private attributes
-              var old1 = f._borderColour;
-              var old2 = f._fillColour;
-              f._borderColour = col[0];
-              // figure may not have a fillColour
-              // this won't raise any error
-              f._fillColour = col[1];
-              f.draw(c);
-              f._borderColour = old1;
-              f._fillColour = old2;
-              if (f instanceof Text) {
-                c.getContext('2d').lineWidth = 10;
-              }
+              pos++;
             });
   // get the selected pixel
   var selection = c.getContext('2d').getImageData(absWhere.x, absWhere.y, 1, 1).data;
   var col = new Colour(selection[0], selection[1], selection[2], o);
   var res = fs[col.toCSS()]; // is it associated with a figure?
   if (!res) { // no figure selected
-    return null;
+    return textSelected; //  may be null
   }
-  return res;
+  if (textSelected && res[1] < textPos ) {
+    return textSelected;
+  } else {
+    return res[0];
+  }
 };
 
 /**
