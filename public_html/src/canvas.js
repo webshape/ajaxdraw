@@ -157,8 +157,15 @@ Visualization.accessors('_figureSet', 'getFigureSet', 'setFigureSet');
 * @param {FigureSet} figureSet the actual figureset
 */
 Visualization.prototype.deselectAll = function (figureSet) {
-  $("#submitEdge").unbind("click");
-  $("#submitRect").unbind("click");
+  $('#setBorderCol').unbind('click');
+  $('#setFillCol').unbind('click');
+  $("#eraseButton").unbind('click');
+  $("#toTopButton").unbind('click');
+  $("#toBottomButton").unbind('click');
+  $("#submitEdge").unbind('click');
+  $("#submitRect").unbind('click');
+  $("#submitFont").unbind('click');
+  $('#cloneButton').unbind('click');
   figureSet.each(function (f){
     f.setSelection(false);
   });
@@ -442,9 +449,14 @@ SelectionButton.prototype = new Button();
 
 
 /**
-* @return true if a point was handled, false otherwise
-*/
-SelectionButton.prototype._handleCtrlPoint = function (pt, f) {
+ * Handle the movement of control points
+ * When oneSelected is true, also handles properties dialogs
+ * @param {Point} pt point clicked 
+ * @param {Figure} f currently selected figure
+ * @param {Boolean} oneSelected is the point on a figure?
+ * @return true if a point was handled, false otherwise
+ */
+SelectionButton.prototype._handleCtrlPoint = function (pt, f, oneSelected) {
   var setter = null;
   var onPoint = function (p) {
     return p.dist(pt) < 10;
@@ -490,9 +502,11 @@ SelectionButton.prototype._handleCtrlPoint = function (pt, f) {
   $('#cv').unbind('mouseup');
   $('#cv').bind('mouseup', function (e) {
                   $('#cv').unbind('mousemove mouseup');
-                  f.eachProperty(function (p) {
-                                   p.createWidget();
-                                 });
+                  if (oneSelected) {
+                    f.eachProperty(function (p) {
+                                     p.createWidget();
+                                   });
+                  }
                 });
 
   return setter ? true : false;
@@ -511,11 +525,6 @@ SelectionButton.prototype.bindCanvas = function (toolbar,canvas,canvasObj,visual
   $(".Dialog2").height(390); //per far vedere le parti di poligono e testo
   $("#cloneButton").unbind('click'); //unbind clonazione
   $("#cv").unbind(' mousedown mousemove click mouseup');
-  $("#eraseButton").unbind('click');
-  $("#toTopButton").unbind('click');
-  $("#toBottomButton").unbind('click');
-  $("#submitEdge").unbind('click');
-  $("#submitRect").unbind('click');
   $("*").unbind('keypress');
   $("*").bind('keypress',function(e){
     if(e.keyCode==46){
@@ -529,11 +538,6 @@ SelectionButton.prototype.bindCanvas = function (toolbar,canvas,canvasObj,visual
       if(actualFigure===null){
 	//visual.deselectAll(figureSet);
         // is there an already selected figure?
-	$("#cloneButton").unbind('click');
-	$("#toTopButton").unbind('click');
-	$("#toBottomButton").unbind('click');
-	$("#submitEdge").unbind('click');
-
 	$("*").unbind('keypress');
 	/*zona gestione cancellazione*/
 	$("*").bind('keypress',function(e){
@@ -551,7 +555,7 @@ SelectionButton.prototype.bindCanvas = function (toolbar,canvas,canvasObj,visual
         });
         var keepSelection = false;
         if (actualFigure) {
-          keepSelection = self._handleCtrlPoint(coord, actualFigure);
+          keepSelection = self._handleCtrlPoint(coord, actualFigure, false);
         }
         if (!keepSelection) {
           visual.deselectAll(figureSet);
@@ -651,7 +655,7 @@ SelectionButton.prototype.bindCanvas = function (toolbar,canvas,canvasObj,visual
 	   }
 	});
 
-	self._handleCtrlPoint(coord, actualFigure);
+	self._handleCtrlPoint(coord, actualFigure, true);
         $('#cv').bind('mouseleave', function (e) {
           $('#cv').trigger('mouseup');
           $('#cv').unbind('mouseleave');
