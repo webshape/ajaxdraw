@@ -96,7 +96,7 @@ SVGReader.prototype.read = function (doc) {
     return 0;
   }
 
-  if (x[0].childNodes[1].nodeName == "g"){ // inkscape plan svg
+  if (x[0].childNodes[1].childNodes[1].nodeName == "g"){ // inkscape plan svg
 	 x = xmlDoc.getElementsByTagName("g");
   }
   for (var i = 0; i < x[0].childNodes.length; i++) {
