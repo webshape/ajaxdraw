@@ -265,11 +265,7 @@ $(document).ready(function(){
  $("#loadButton").click(function () {
   doc = $("#my_iframe").contents().find('body').html();//alert(doc);
  });
-
- $("#loadButton2").click(function () {
-                           $("#loadDialog").dialog( 'close' );
-                         });                     
-                    
+                  
  $('#MyForm').submit(function () {
    $('#my_iframe').bind('load', function () {
                           $("#loadDialog").dialog( 'close' );
