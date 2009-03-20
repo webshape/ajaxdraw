@@ -653,6 +653,10 @@ SelectionButton.prototype.bindCanvas = function (toolbar,canvas,canvasObj,visual
 	 });
 
 	self._handleCtrlPoint(coord, actualFigure);
+        $('#cv').bind('mouseleave', function (e) {
+                        $('#cv').trigger('mouseup');
+                        $('#cv').unbind('mouseleave');
+                      });
       }
   });
 };
@@ -760,7 +764,10 @@ MoveViewButton.prototype.bindCanvas = function (toolbar,canvas,canvasObj,visual)
                                   visual.refresh();
                                 });
                   $('#cv').bind('mouseup', function (e) {
-                                  $("#cv").unbind('mousemove mouseup');
+                                  $("#cv").unbind('mousemove mouseup mouseleave');
+                                });
+                  $('#cv').bind('mouseleave', function (e) {
+                                  $("#cv").unbind('mousemove mouseup mouseleave');
                                 });
                 });
 };
@@ -978,17 +985,21 @@ FreeLineButton.prototype.bindCanvas = function (toolbar,canvas,canvasObj,visual,
       canvasObj.clear();
       visual.refresh();
       f.draw(canvas);
-    });
-
     }).bind("mouseup",function(e){  //jQuery mouseup event bind
-      $("#cv").unbind('mousemove');
+      $("#cv").unbind('mousemove mouseup mouseleave');
       var coords1 = visual.getClickCoordsWithinTarget(e);
       var f = s[0];
       f.extend(new Point(coords1.x, coords1.y));
       visual.getFigureSet().add(f);
       canvasObj.clear();
       visual.refresh();
-    });
+    }).bind('mouseleave', function (e) {
+              $("#cv").unbind('mousemove mouseup mouseleave');
+              visual.getFigureSet().add(f);
+              canvasObj.clear();
+              visual.refresh();
+            });
+ });
 };
 
 
@@ -1043,17 +1054,21 @@ TextButton.prototype.bindCanvas = function (toolbar,canvas,canvasObj,visual,figu
 	canvasObj.clear();
 	visual.refresh();
 	f.draw(canvas);
-    });
-
     }).bind("mouseup",function(e){  //jQuery mouseup event bind
-      $("#cv").unbind('mousemove');
+      $("#cv").unbind('mousemove mouseup mouseleave');
       var coords1 = visual.getClickCoordsWithinTarget(e);
       var f = s[0];
       f.getBounds().setEnd(new Point(coords1.x, coords1.y));
       visual.getFigureSet().add(f);
       canvasObj.clear();
       visual.refresh();
+    }).bind('mouseleave', function (e) {
+      $("#cv").unbind('mousemove mouseup mouseleave');
+      visual.getFigureSet().add(f);
+      canvasObj.clear();
+      visual.refresh();
     });
+});
 };
 
 
