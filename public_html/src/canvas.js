@@ -153,13 +153,7 @@ Visualization.prototype.refresh = function(){
 
 };
 
-/**
- * Get the actual figureset
- * @return the actual figureset
- */
-Visualization.prototype.getFigureSet = function(){
-  return this._figureSet;
-};
+Visualization.accessors('_figureSet', 'getFigureSet', 'setFigureSet');
 
 /**
  * Deselect all the figures in the figureset
