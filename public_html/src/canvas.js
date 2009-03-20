@@ -224,13 +224,18 @@ Visualization.prototype.getClickCoordsWithinTarget = function(event){
  * @param {Numeric} width the width of user screen resolution
  */
 Visualization.prototype.setCanvasDimension = function(canvasObj,height,width){
-  if(width == 1280 && height==800){
-    canvasObj.setWidth(760);
-    canvasObj.setHeight(480);
+  if(width == 800 && height==600){
+    canvasObj.setWidth(560);
+    canvasObj.setHeight(310);
   }
   else if(width == 1024 && height==768){
-    canvasObj.setWidth(620);
-    canvasObj.setHeight(448);
+    canvasObj.setWidth(670);
+    canvasObj.setHeight(470);
+  }
+
+  else if(width == 1280 && height==800){
+    canvasObj.setWidth(800);
+    canvasObj.setHeight(500);
   }
   else if(width == 1440 && height==900){
     canvasObj.setWidth(1000);
@@ -419,7 +424,7 @@ function ClearCanvasButton () {
     visual.getFigureSet().rem(f);
   });
   visual.refresh();
-};
+}
 
 
 /**
@@ -431,7 +436,7 @@ function SaveButton () {
    var svg = s.write(visual.getFigureSet());
    alert(svg);
    $("#saveDestination").text(svg);
-};
+}
 
 
 /**

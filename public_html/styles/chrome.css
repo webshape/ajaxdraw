@@ -6,7 +6,7 @@ body{
 
 canvas {
  	background-color: #ffffff;
-	margin-left: 7em;
+	margin-left: 5.5em;
   	margin-top:0.1em;
   	border-style: solid;
   	border-width: 2px 2px 2px 2px ;
@@ -88,7 +88,7 @@ canvas {
 }
 	
 #palette{
-	margin-left: 5em;
+	margin-left: 5.5em;
 	margin-top: 0.1em;
 }
 

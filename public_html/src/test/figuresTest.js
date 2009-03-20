@@ -49,7 +49,7 @@ test('Colour & Opacity', function () {
        e = false;
        try {
          c.fromCSS('#01abf67');
-       } catch (ex) {
+       } catch (ex2) {
          e = true;
        }
        ok(e, 'illegal CSS value (2)');
@@ -106,7 +106,7 @@ test('FigureSet', function () {
        i = 0;
        res = false;
        fs.each(function (f) {
-                 if (i == 0) {
+                 if (i === 0) {
                    res = f instanceof Rectangle;
                  }
                  i++;
