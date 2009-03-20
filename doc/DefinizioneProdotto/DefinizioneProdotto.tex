@@ -315,9 +315,9 @@ Utilizza istanze di \textit{Scale} e \textit{BoundingRectangle}.
 \item[-] \textit{refresh()} ridisegna il set di figure sul canvas, utilizzando il metodo\textit{draw} per ogni \textit{Figure};
 \item[-] \textit{getFigureSet()} ritorna \textit{{\_}figureSet};
 \item[-] \textit{deselectAll(figureSet)} deseleziona tutte le figure presenti nel figure set.
-\item[-] \textit{getClickCoordsWithinTarget(event)} ritorna il punto esatto del canvas sul quale \`  e avvenuto il click  del mouse, differenziando le diverse interpretazioni che fa ciascun browser per uniformarle in un unico metodo funzionante universalmente.
+\item[-] \textit{getClickCoordsWithinTarget(event)} ritorna il punto esatto del canvas sul quale \`e avvenuto il click del mouse, differenziando le diverse interpretazioni che fa ciascun browser di tale evento per uniformarle in un unico metodo funzionante universalmente, e nella fattispecie utilizzando gli attributi clientX/Y, pageX/Y oppure layerX/Y di \textit{event}. 
 Le coordinate vengono poi adattate allo spostamento corrente della visualizzazione sommandogli \textit{{\_}offset}, e allo zoom corrente, moltiplicandole per \textit{{\_}scale.getFactor()}.
-\item[-] \textit{setCanvasDimension(canvasObj,height,width)} regola le dimensioni del canvas al caricamento della pagina in proporzione alla risoluzione del monitor dell'utente.
+\item[-] \textit{setCanvasDimension(canvasObj,height,width)} regola le dimensioni del canvas al caricamento della pagina in proporzione alla risoluzione del monitor dell'utente, che viene passata alla funzione tramite i due parametri \textit{height} e \textit{width}.
 \item[-] \textit{eraseElement(figureSet,canvasObj)} cancella l'elemento attualmente selezionato sul canvas tramite la pressione del pulsante apposito oppure con il tasto "canc" della tastiera;
 \item[-] \textit{cloneElement(actualFigure,canvasObj)} clona l'elemento attualmente selezionato tramite la pressione dell'apposito pulsante.
 \end{elencopuntato}
@@ -395,7 +395,7 @@ Viene estesa da tutti i pulsanti creati.
 \begin{elencopuntato}[\subsubsecindent]
 \item[-]  \textit{setSelection(value)} permette di selezionare/deselezionare il pulsante. Modifica \textit{{\_}selected}.
 \item[-]  \textit{isSelected()} dice se il pulsante \`e correntemente selezionato. Ritorna \textit{{\_}selected}.
-\item[-]  \textit{bindCanvas(toolbar,canvas,canvasObj,visual,figureSet,BorderColor,FillColor)} collega l'azione della toolbar selezionata al canvas;
+\item[-]  \textit{bindCanvas(toolbar,canvas,canvasObj,visual,figureSet,BorderColor,FillColor)} collega l'azione del pulsante selezionato al canvas. Questo metodo viene utilizzato dalla figure fondamentali che non richiedono codice aggiuntivo particolare,come un rettangolo o una linea diritta, utilizzando il metodo \textit{getBuilder}, che permette il riconoscimento della figura da disegnare a seconda di quale funzione \` e al momento selezionata dall'utente, e di conseguenza imposta tutti gli attributi (colore di bordo e/o riempimento, numero di lati se necessario) per consentirne il disegno corretto. Utilizza inoltre del codice jQuery per gestire tutte le interazioni del mouse(click, movimento, uscita dal canvas). 
 \item[-]  \textit{bindCursor(type)} collega ad ogni tool un cursore visibile sopra al canvas per capire che tipo di azione si sta compiendo.
 \end{elencopuntato}
 
@@ -430,7 +430,8 @@ Estende \textit{Button}.
 \subsubsezione{Attivit\`a svolte e dati trattati}
 \paragrafo{Metodi pubblici:}
 \begin{elencopuntato}[\subsubsecindent]
-\item[-]  \textit{bindCanvas(toolbar,canvas,canvasObj,visual,figureSet)} overriding del metodo ereditato da \textit{Button}, collega il canvas all'azione di selezione di una figura disegnata sul canvas.
+\item[-]  \textit{bindCanvas(toolbar,canvas,canvasObj,visual,figureSet)} overriding del metodo ereditato da \textit{Button}, collega il canvas all'azione di selezione di una figura disegnata sul canvas, e consente quindi di attivare le funzionalit\` a di spostamento della figura stessa, del suo ridimensionamento (tramite \{_}handleCtrlPoint), di clonazione ed eliminazione, tramite i metodi descritti in \textit{Visualization} e dell'impostazione del  livello di  profondit\`a, tramite gli appositi metodi \textit{toTop} e \textit{toBottom}  
+\item[-] \textit{\{_}handleCtrlPoint} 
 \end{elencopuntato}
 
 \subsezione{ZoomButton}
@@ -692,7 +693,7 @@ Legge e modifica \textit{TextFont}.
 \subsubsezione{Attivit\`a svolte e dati trattati}
 \paragrafo{Metodi pubblici:}
 \begin{elencopuntato}[\subsubsecindent]
-\item[-] \textit{FontSetter(font)} costruttore. Prende un \textit{TextFont} e setta il valore di un campo a scelta multipla di un dialog statico implementato in HTML. Il campo contiene il tipo di carattere attuale di \textit{font}. Collega un evento al pulsante di conferma del dialog, e se l'utente ha modificato il tipo di carattere, modifica \textit{en} ed esegue un refresh.
+\item[-] \textit{FontSetter(font)} costruttore. Prende un \textit{TextFont} e setta il valore di un campo a scelta multipla di un dialog statico implementato in HTML. Il campo contiene il tipo di carattere attuale di \textit{font}. Collega un evento al pulsante di conferma del dialog, e se l'utente ha modificato il tipo di carattere, modifica \textit{font} ed esegue un refresh.
 \end{elencopuntato}
 
 \subsezione{TextStringSetter}

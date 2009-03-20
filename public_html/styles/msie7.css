@@ -6,12 +6,12 @@ body{
 canvas {
   background-color: #ffffff;
   margin-left: 5.5em;
-  margin-top: -23em;
+  /*margin-top: -23em; */
 }
 
 #tool{
-	margin-left: 0.5em;
-	position: fixed;
+  margin-left: 0.5em;
+  position: fixed;
 }
 
 
