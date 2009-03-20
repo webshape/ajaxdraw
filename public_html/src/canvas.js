@@ -346,16 +346,20 @@ Button.prototype.bindCanvas = function (toolbar,canvas,canvasObj,visual,figureSe
     canvasObj.clear();
     visual.refresh();
     f.draw(canvas);
-  });
-
   }).bind("mouseup",function(e){  //jQuery mouseup event bind
-    $("#cv").unbind('mousemove');
+    $("#cv").unbind('mousemove mouseup mouseleave');
     var coords1 = visual.getClickCoordsWithinTarget(e);
     var f = s[0];
     f.getBounds().setEnd(new Point(coords1.x, coords1.y));
     visual.getFigureSet().add(f);
     canvasObj.clear();
     visual.refresh();
+  }).bind('mouseleave', function (e) {
+    $("#cv").unbind('mousemove mouseup mouseleave');
+    visual.getFigureSet().add(s[0]);
+    canvasObj.clear();
+    visual.refresh();
+    });
   });
 };
 
