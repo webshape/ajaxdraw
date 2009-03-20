@@ -93,12 +93,12 @@ function runSaveTest () {
 	  fs.add(c);
 	  var w = new SVGWriter();
 	  var svg = w.write(fs);
-	  svgValue = "<?xml version=\"1.0\" standalone=\"no\"?>\n"
-	  + "<!DOCTYPE svg PUBLIC \"-//W3C//DTD SVG 1.1//EN\" \"http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd\">\n"
-	  + "<svg width=\"1000\" height=\"1000\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\">\n"
-	  +  "<rect x=\"10\" y=\"20\" width=\"40\" height=\"20\" fill=\"#000000\" fill-opacity=\"1\" stroke=\"#ff0000\" stroke-opacity=\"1\"></rect>\n"
-	  +  "<ellipse cx=\"500\" cy=\"400\" rx=\"50\" ry=\"50\" fill=\"#000000\" fill-opacity=\"1\" stroke=\"#7d00ff\" stroke-opacity=\"1\"></ellipse>\n"
-	  +  "</svg>";
+	  svgValue = "<?xml version=\"1.0\" standalone=\"no\"?>\n" +
+	  "<!DOCTYPE svg PUBLIC \"-//W3C//DTD SVG 1.1//EN\" \"http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd\">\n" +
+	  "<svg width=\"1000\" height=\"1000\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\">\n" +
+	  "<rect x=\"10\" y=\"20\" width=\"40\" height=\"20\" fill=\"#000000\" fill-opacity=\"1\" stroke=\"#ff0000\" stroke-opacity=\"1\"></rect>\n" +
+	  "<ellipse cx=\"500\" cy=\"400\" rx=\"50\" ry=\"50\" fill=\"#000000\" fill-opacity=\"1\" stroke=\"#7d00ff\" stroke-opacity=\"1\"></ellipse>\n" +
+	  "</svg>";
 	  equals(svg, svgValue, 'Svg document');
 
      });
