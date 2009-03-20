@@ -215,6 +215,9 @@ Rotation.accessors('_rad', 'getAngle', 'setAngle');
 
 Rotation.prototype.createWidget = function (){
   return new RotationSetter(this, true);
+
+//Rotation.prototype.applyToContext = function (ctx) {
+  //ctx.rotate(this._rad);
 };
 
 /**

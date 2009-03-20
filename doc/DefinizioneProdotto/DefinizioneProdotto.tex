@@ -1256,7 +1256,7 @@ Permette l'accesso all'applicazione ed al manuale utente, gestisce il salvataggi
 
 \subsezione{Request}
 \subsubsezione{Tipo, obiettivo e funzione del componente}
-Classe che accetta le richieste dal \underline{client} e le inoltra alla classe \textit{Server}. Permette la comunicazione tra il client e il server.
+Classe che accetta una richiesta di salvataggio o di caricamento dal \underline{client} e la inoltra alla classe \textit{Server}. Permette la comunicazione tra il client e il server.
 \subsubsezione{Relazioni d'uso di altre componenti}
 Utilizza istanze di \textit{Server} e di \textit{ConnectionError}.
 \subsubsezione{Interfacce e relazioni di uso da altre componenti}
@@ -1264,7 +1264,7 @@ Utilizza istanze di \textit{Server} e di \textit{ConnectionError}.
 \subsubsezione{Attivit\`a svolte e dati trattati}
 \paragrafo{Metodi pubblici:}
 \begin{elencopuntato}[\subsubsecindent]
-\item[-] \textit{service(HttpServletRequest,HttpServletResponse)} \`e il metodo proprio della servlet che comunica con il client, gestendo le richieste e le risposte. 
+\item[-] \textit{service(HttpServletRequest,HttpServletResponse)} \`e il metodo proprio della servlet che comunica con il client. Utilizza la classe Java non standard \textit{MultipartRequest} per ricevere i dati inviati dal client. Questi dati vengono poi inoltrati alla classe \textit{Server} chiamando i corrispondenti metodi \textit{getSave} e \textit{getLoad}. Riceve come parametri un oggetto di tipo \textit{HttpServletRequest} e un oggetto di tipo \textit{HttpServletResponse} per gestire rispettivamente una richiesta proveniente dal client e la risposta del server.
 \end{elencopuntato}[\subsubsecindent]
 
 \subsezione{Server}
@@ -1283,8 +1283,8 @@ Utilizza istanze di \textit{File}, \textit{ServerError} e \textit{Clean}.
 \end{elencopuntato}
 \paragrafo{Metodi pubblici:}
 \begin{elencopuntato}[\subsubsecindent]
-\item[-] \textit{getSave()} richiede il salvataggio del file rappresentato da \textit{nameFile} con il contenuto \textit{content} e ritorna il nome del file salvato. Questo file viene poi scaricato in locale dal client.
-\item[-] \textit{getLoad()} richiede il caricamento del file rappresentato da \textit{target} e ritorna il file da caricare.
+\item[-] \textit{getSave()} Utilizza un oggetto \textit{File} con il metodo \textit{getFile} per effettuare il salvataggio del file rappresentato da \textit{nameFile} con il contenuto \textit{content} e ritorna il nome del file salvato. Questo file viene poi scaricato in locale dal client. Inoltre utilizza la classe \textit{Clean} con il metodo \textit{sweeper} per controllare i file temporanei presenti sul server.
+\item[-] \textit{getLoad()} Utilizza un oggetto \textit{File} con il metodo \textit{getFile} per effettuare il caricamento del file rappresentato da \textit{target} e ritorna il contenuto del file caricato.
 \end{elencopuntato}
 
 
@@ -1305,14 +1305,14 @@ Utilizza istanze di \textit{FileNotFound}.
 \end{elencopuntato}
 \paragrafo{Metodi pubblici:}
 \begin{elencopuntato}[\subsubsecindent]
-\item[-] \textit{getFile()} ritorna un file salvato o da caricare.
+\item[-] \textit{getFile()} riceve un file e il contenuto da salvare o un file da caricare. Nel caso di un salvataggio, crea il nuovo file e lo restituisce. Nel caso di caricamento, legge il contenuto del file da caricare e lo restituisce.
 \item[-] \textit{deleteFile(File)} elimina il file passato come parametro.
 \end{elencopuntato}
 
 
 \subsezione{Clean}
 \subsubsezione{Tipo, obiettivo e funzione del componente}
-Classe che permette di verificare la presenza nel server di file non utilizzati e provvedere alla loro rimozione.
+Classe che permette di verificare la presenza nel server di file SVG non utilizzati e provvedere alla loro rimozione.
 \subsubsezione{Relazioni d'uso di altre componenti}
 Mantiene un'istanza di \textit{File}.
 \subsubsezione{Interfacce e relazioni di uso da altre componenti}
@@ -1320,7 +1320,7 @@ Mantiene un'istanza di \textit{File}.
 \subsubsezione{Attivit\`a svolte e dati trattati}
 \paragrafo{Metodi pubblici:}
 \begin{elencopuntato}[\subsubsecindent]
-\item[-] \textit{sweeper()} controlla tramite una classe filtro se esistono dei file sul server inutilizzati da un determinato periodo di tempo, e li rimuove usando la classe \textit{File}.
+\item[-] \textit{sweeper()} controlla tramite una classe filtro se esistono dei file sul server inutilizzati da un determinato periodo di tempo (fissato in 15 minuti), e li rimuove usando la classe \textit{File}. Il controllo viene effettuato confrontando la data e l'ora attuale del server con la data e l'ora di ultima modifica dei files presenti sul server. Questo controllo viene effettuato esclusivamente sui files SVG, grazie all'utilizzo della classe filtro a ad una lista contenente tutti i files SVG presenti sul server.
 \end{elencopuntato}
 
 \subsezione{CommunicationError}
@@ -1333,7 +1333,7 @@ Implementata da \textit{ConnectionServer} e da \textit{ServerError}.
 \subsubsezione{Attivit\`a svolte e dati trattati}
 \paragrafo{Metodi pubblici:}
 \begin{elencopuntato}[\subsubsecindent]
-\item[-] \textit{getError} ritorna l'errore di comunicazione.
+\item[-] \textit{getError} ritorna l'errore di comunicazione riscontrato come stringa.
 \end{elencopuntato}
 
 
@@ -1347,7 +1347,7 @@ Implementa \textit{CommunicationError}.
 \subsubsezione{Attivit\`a svolte e dati trattati}
 \paragrafo{Metodi pubblici:}
 \begin{elencopuntato}[\subsubsecindent]
-\item[-] \textit{getError()} ritorna l'errore di connessione riscontrato.
+\item[-] \textit{getError()} ritorna l'errore di connessione riscontrato come stringa.
 \end{elencopuntato}
 
 \subsezione{ServerError}
@@ -1360,7 +1360,7 @@ Implementa \textit{CommunicationError}.
 \subsubsezione{Attivit\`a svolte e dati trattati}
 \paragrafo{Metodi pubblici:}
 \begin{elencopuntato}[\subsubsecindent]
-\item[-] \textit{getError()} ritorna l'errore del server riscontrato.
+\item[-] \textit{getError()} ritorna l'errore del server riscontrato come stringa.
 \end{elencopuntato}
 
 
@@ -1374,7 +1374,7 @@ Nessuna.
 \subsubsezione{Attivit\`a svolte e dati trattati}
 \paragrafo{Metodi pubblici:}
 \begin{elencopuntato}[\subsubsecindent]
-\item[-] \textit{getFileNotFound()} ritorna l'errore di file non trovato.
+\item[-] \textit{getFileNotFound()} ritorna l'errore di file non trovato come stringa.
 \end{elencopuntato}
 
 
