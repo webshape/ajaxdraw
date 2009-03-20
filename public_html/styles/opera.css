@@ -99,15 +99,18 @@ canvas {
 
 /* Dialog colori e proprietà */
 #divBorderCol,#divFillCol{
-margin-top: -0.6em;
+	margin-top: -0.6em;
 }
+
 #polygonTitle,#textTitle{
-text-align: center;
-text-transform: uppercase;
-text-decoration: underline;
+	text-align: center;
+	text-transform: uppercase;
+	text-decoration: underline;
 }
+
 #colorx,#colory{
-width: 400px;display: none;
+	width: 400px;
+/*	display: none;*/
 }
 
 
@@ -132,7 +135,7 @@ width: 400px;display: none;
 	background-position: center;
 	margin-top:0.4em;
 }
-/* This file skins dialog */
+* This file skins dialog */
 
 .flora .ui-dialog,
 .flora.ui-dialog {

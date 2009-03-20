@@ -14,7 +14,7 @@ $(document).ready(function(){
   var page = new Page();
   var screenWidth = window.screen.width;
   var screenHeight = window.screen.height;
-  page.loadStylesheet();
+  //page.loadStylesheet();
   canvasObj = new Canvas();
   var canvas = canvasObj.getId();
   var ctx = canvas.getContext("2d"); // take the context
@@ -195,11 +195,10 @@ $(document).ready(function(){
   // Change colour on click on farbstastic
   var openBorder = false;
   var openFill = false;
-  $("#changeBorderCol").toggle(
+    $("#changeBorderCol").toggle(
     function () {
       $("#colorx").show("slow");
       $("#colory").css({"display":"none"});
-
       if(openFill === false){
 	$(".Dialog1").height(500);
       }
@@ -242,10 +241,8 @@ $(document).ready(function(){
       $("#colory").hide("slow");
       $.farbtastic("#color2").setColor(document.getElementById("color2").value);
       color.FillColor = $.farbtastic("#color2").color;
-      document.getElementById("fillColorNow").style.backgroundColor =
-        color.FillColor;
-      toolbar.rebind(canvas,canvasObj,visual,figureSet,
-                     color.BorderColor,color.FillColor);
+      document.getElementById("fillColorNow").style.backgroundColor = color.FillColor;
+      toolbar.rebind(canvas,canvasObj,visual,figureSet,color.BorderColor,color.FillColor);
       if(openBorder === false){
 	$(".Dialog1").height(260);
       }
@@ -255,6 +252,9 @@ $(document).ready(function(){
       openFill = false;
     }
   );
+
+
+
 
   // Save & Load Dialogs handlers
  $("#saveButton").click(function () {
@@ -266,7 +266,7 @@ $(document).ready(function(){
  $("#loadButton").click(function () {
   doc = $("#my_iframe").contents().find('body').html();//alert(doc);
  });
-                  
+
  $('#MyForm').submit(function () {
    $('#my_iframe').bind('load', function () {
                           $("#loadDialog").dialog( 'close' );
