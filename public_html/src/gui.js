@@ -63,7 +63,7 @@ $(document).ready(function(){
       hex2 = palette.rgbToHex($(this).css("background-color"));
     }
     color = palette.setColour(hex2,color.BorderColor,color.FillColor);
-    toolbar.rebind(canvas,canvasObj,visual,figureSet,color.BorderColor,color.FillColor);
+    toolbar.rebind(canvas,canvasObj,visual,color.BorderColor,color.FillColor);
   });
 
 
@@ -72,7 +72,7 @@ $(document).ready(function(){
     $("#fontSetterZone").css({"display":"block"});
     toolbar.deselectAll();
     selectionButton.bindCursor("selection");
-    selectionButton.bindCanvas(toolbar,canvas,canvasObj,visual,figureSet);
+    selectionButton.bindCanvas(toolbar,canvas,canvasObj,visual);
   });
 
   $("#zoomInButton").click(function () {
@@ -81,7 +81,7 @@ $(document).ready(function(){
     zoomInButton.bindCursor("zoomIn");
     $("#fontSetterZone").css({"display":"none"});
     $("#edgeSetterZone").css({"display":"none"});
-    zoomInButton.bindCanvas(toolbar,canvas,canvasObj,visual,figureSet);
+    zoomInButton.bindCanvas(toolbar,canvas,canvasObj,visual);
   });
     $("#zoomOutButton").click(function () {
     $(".Dialog2").height(210);
@@ -89,7 +89,7 @@ $(document).ready(function(){
     zoomInButton.bindCursor("zoomOut");
     $("#fontSetterZone").css({"display":"none"});
     $("#edgeSetterZone").css({"display":"none"});
-    zoomOutButton.bindCanvas(toolbar,canvas,canvasObj,visual,figureSet);
+    zoomOutButton.bindCanvas(toolbar,canvas,canvasObj,visual);
   });
 
   $("#moveViewButton").click(function () {
@@ -107,7 +107,7 @@ $(document).ready(function(){
     $("#fontSetterZone").css({"display":"none"});
     toolbar.deselectAll();
     straightLineButton.bindCursor("line");
-    straightLineButton.bindCanvas(toolbar,canvas,canvasObj,visual,figureSet,color.BorderColor,color.FillColor);
+    straightLineButton.bindCanvas(toolbar,canvas,canvasObj,visual,color.BorderColor,color.FillColor);
   });
 
   $("#bezierCurveButton").click(function () {
@@ -117,7 +117,7 @@ $(document).ready(function(){
     $("#fontSetterZone").css({"display":"none"});
     toolbar.deselectAll();
     bezierCurveButton.bindCursor("bezier");
-    bezierCurveButton.bindCanvas(toolbar,canvas,canvasObj,visual,figureSet,color.BorderColor,color.FillColor);
+    bezierCurveButton.bindCanvas(toolbar,canvas,canvasObj,visual,color.BorderColor,color.FillColor);
   });
 
   $("#squareButton").click(function () {
@@ -127,7 +127,7 @@ $(document).ready(function(){
     $("#fontSetterZone").css({"display":"none"});
     toolbar.deselectAll();
     squareButton.bindCursor("square");
-    squareButton.bindCanvas(toolbar,canvas,canvasObj,visual,figureSet,color.BorderColor,color.FillColor);
+    squareButton.bindCanvas(toolbar,canvas,canvasObj,visual,color.BorderColor,color.FillColor);
   });
 
   $("#circleButton").click(function () {
@@ -137,7 +137,7 @@ $(document).ready(function(){
     $("#fontSetterZone").css({"display":"none"});
     circleButton.bindCursor("circle");
     toolbar.deselectAll();
-    circleButton.bindCanvas(toolbar,canvas,canvasObj,visual,figureSet,color.BorderColor,color.FillColor);
+    circleButton.bindCanvas(toolbar,canvas,canvasObj,visual,color.BorderColor,color.FillColor);
   });
 
   $("#polygonButton").click(function () {
@@ -147,7 +147,7 @@ $(document).ready(function(){
     $("#fontSetterZone").css({"display":"none"});
     circleButton.bindCursor("polygon");
     toolbar.deselectAll();
-    polygonButton.bindCanvas(toolbar,canvas,canvasObj,visual,figureSet,color.BorderColor,color.FillColor);
+    polygonButton.bindCanvas(toolbar,canvas,canvasObj,visual,color.BorderColor,color.FillColor);
   });
 
   $("#freeLineButton").click(function () {
@@ -157,7 +157,7 @@ $(document).ready(function(){
     $("#fontSetterZone").css({"display":"none"});
     toolbar.deselectAll();
     freeLineButton.bindCursor("freeline");
-    freeLineButton.bindCanvas(toolbar,canvas,canvasObj,visual,figureSet,color.BorderColor,color.FillColor);
+    freeLineButton.bindCanvas(toolbar,canvas,canvasObj,visual,color.BorderColor,color.FillColor);
   });
 
   $("#textButton").click(function () {
@@ -167,7 +167,7 @@ $(document).ready(function(){
     $(".Dialog2").height(300);
     toolbar.deselectAll();
     textButton.bindCursor("text");
-    textButton.bindCanvas(toolbar,canvas,canvasObj,visual,figureSet,color.BorderColor,color.FillColor);
+    textButton.bindCanvas(toolbar,canvas,canvasObj,visual,color.BorderColor,color.FillColor);
 
   });
 
@@ -214,7 +214,7 @@ $(document).ready(function(){
       color.BorderColor=$.farbtastic("#color1").color;
       document.getElementById("borderColorNow").style.backgroundColor =
         color.BorderColor;
-      toolbar.rebind(canvas,canvasObj,visual,figureSet,
+      toolbar.rebind(canvas,canvasObj,visual,
                      color.BorderColor,color.FillColor);
       if(openFill === false){
 	$(".Dialog1").height(260);
@@ -243,7 +243,7 @@ $(document).ready(function(){
       color.FillColor = $.farbtastic("#color2").color;
       document.getElementById("fillColorNow").style.backgroundColor =
         color.FillColor;
-      toolbar.rebind(canvas,canvasObj,visual,figureSet,
+      toolbar.rebind(canvas,canvasObj,visual,
                      color.BorderColor,color.FillColor);
       if(openBorder === false){
 	$(".Dialog1").height(260);
