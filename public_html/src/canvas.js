@@ -226,8 +226,8 @@ Visualization.prototype.setCanvasDimension = function(canvasObj,height,width){
     canvasObj.setHeight(470);
   }
   else if(width == 1280 && height==800){
-    canvasObj.setWidth(800);
-    canvasObj.setHeight(500);
+    canvasObj.setWidth(780);
+    canvasObj.setHeight(480);
   }
   else if(width == 1440 && height==900){
     canvasObj.setWidth(1000);
@@ -525,11 +525,10 @@ SelectionButton.prototype.bindCanvas = function (toolbar,canvas,canvasObj,visual
   });
   $("#cv").bind("mousedown", function(e){
       var coords = visual.getClickCoordsWithinTarget(e);
-      //alert(coords.x+" "+coords.y);
       var coord = new Point(coords.x,coords.y);
       var actualFigure = figureSet.selectFigure(coord, visual.getScale(), visual.getOffset());
       if(actualFigure===null){
-	visual.deselectAll(figureSet);
+	//visual.deselectAll(figureSet);
         // is there an already selected figure?
 	$("#cloneButton").unbind('click');
 	$("#toTopButton").unbind('click');
@@ -537,7 +536,7 @@ SelectionButton.prototype.bindCanvas = function (toolbar,canvas,canvasObj,visual
 	$("#submitEdge").unbind('click');
 
 	$("*").unbind('keypress');
-      /*zona gestione cancellazione*/
+	/*zona gestione cancellazione*/
 	$("*").bind('keypress',function(e){
 	  if(e.keyCode==46){
 	    visual.eraseElement(figureSet,canvasObj);

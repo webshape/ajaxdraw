@@ -14,7 +14,7 @@ $(document).ready(function(){
   var page = new Page();
   var screenWidth = window.screen.width;
   var screenHeight = window.screen.height;
-  //page.loadStylesheet();
+  page.loadStylesheet();
   canvasObj = new Canvas();
   var canvas = canvasObj.getId();
   var ctx = canvas.getContext("2d"); // take the context
@@ -178,9 +178,10 @@ $(document).ready(function(){
   });
 
   // Tooltip animation
-  $("*").tooltip(
-  {delay: 750} // 0.75 secs
- );
+  $("*").tooltip({
+    delay: 750
+  }); // 0.75 secs
+
   $(".toolbarButton").hover(
     function(){
       $(this).fadeOut(100);
@@ -195,7 +196,7 @@ $(document).ready(function(){
   // Change colour on click on farbstastic
   var openBorder = false;
   var openFill = false;
-    $("#changeBorderCol").toggle(
+  $("#changeBorderCol").toggle(
     function () {
       $("#colorx").show("slow");
       $("#colory").css({"display":"none"});
