@@ -211,7 +211,7 @@ Nella sezione ''Descrizione generale'' viene descritto il prodotto illustrandone
 \end{elencopuntato}
  
 \subsezione{Come riportare problemi e malfunzionamenti}
-Nel caso durante l'utilizzo del prodotto sorgano problemi o malfunzionamenti non descritti nel seguente documento, l'utente \`e invitato a contattare WebShape all'indirizzo \href{mailto:webshape.contact@gmail.com}{webshape.contact@gmail.com} riportando i seguenti dati:\\
+Nel caso durante l'utilizzo del prodotto sorgano problemi o malfunzionamenti non descritti nel seguente documento, l'utente \`e invitato a contattare la WebShape all'indirizzo \href{mailto:webshape.contact@gmail.com}{webshape.contact@gmail.com} riportando i seguenti dati:\\
 \begin{elencopuntato}[\normindent]
   \item[-] Versione del prodotto;
   \item[-] Sistema operativo in uso;
@@ -259,7 +259,9 @@ Il programma non necessita di installazione.
  
 \subsubsezione{Lato server}
 Per permettere il funzionamento del sistema, \`e necessario installare un Web Server: \textit{Apache Tomcat}. 
-Si vedano i manuali di Apache Tomcat per problemi con l'installazione.
+Su sistemi Unix deve essere installato sulla directory /opt
+. Si vedano i manuali di Apache Tomcat per problemi con l'installazione.
+http://www.mbaworld.com/docs/setup.html
 
 
 \subsezione{Avvio del programma}
@@ -352,10 +354,10 @@ Il programma dispone di un menu a tendina nella parte alta dell'interfaccia graf
  
 Nella sezione \textit{File} \`e possibile salvare il lavoro svolto fino a quel momento sul proprio computer in formato \underline{svg}, oppure caricare un lavoro realizzato in precedenza.
 Per aprire un file si deve selezionare \textit{File -$ > $Carica} e inserire il percorso del file nel dialog che si aprir\`a oppure selezionarlo cliccando sul pulsante \textit{Sfoglia}.
-Per salvare un file si deve selezionare \textit{File -$ > $Salva} e inserire un nome nel dialog che si aprir\`a in seguito poi confermare la scelta. Comparir\`a un link che permette di scaricare il file.
-La sezione \textit{Modifica} contiene il pulsante \textit{Svuota Canvas} che permette di eliminare tutte le figure disegnate sul canvas e ricominciare dall'inizio.
-La sezione \textit{Visualizza} permette di visualizzare i dialog delle propriet\`a nel caso fossero stati chiusi tramite il tasto di chiusura in alto a destra (la classica X). \textit{Colori} si riferisce alla finestra che modifica i colori di una figura mentre \textit{Propriet\`a} gestisce la posizione, la dimensione di una figura e altre opzioni dipendenti dallo strumento in uso.
-Infine la sezione \textit{Guida} contiene il link al manuale consultabile in linea e permette di visualizzare informazioni sul prodotto e sull'azienda sviluppatrice.
+Per salvare un file si deve selezionare \textit{File -$ > $Salva} e inserire un nome nel dialog che si aprir\`a in seguito e confermare la scelta. Comparir\`a un link che permette di scaricare il file.
+La sezione \textit{Modifica} contiene il pulsante \textit{Svuota Canvas}, che permette di eliminare tutte le figure disegnate sul canvas e ricominciare dall'inizio.
+La sezione \textit{Visualizza} permette di visualizzare i dialog delle propriet\`a nel caso fossero stati chiusi tramite il tasto di chiusura in alto a destra (la classica X). \textit{Colori} si riferisce alla finestra che modifica i colori di una figura mentre \textit{Propriet\`a} gestisce la posizione e la dimensione di una figura, e altre opzioni dipendenti dallo strumento in uso.
+Infine la sezione \textit{Guida} contiene il link al manuale consultabile in linea, e permette di visualizzare informazioni sul prodotto e sull'azienda sviluppatrice.
 \newpage
  
 \subsubsezione{La Toolbar}
@@ -368,7 +370,7 @@ Le funzioni di disegno del programma sono accessibili attraverso i bottoni prese
 \caption{Selezione}
 \end{figure}
  
-Qui \`e stata usata la funzione di \textit{selezione}. Una volta selezionata una figura, tutti i suoi parametri sono visualizzati nel dialog delle propriet\` a sulla destra. \`E possibile spostare i punti evidenziati cliccando su di essi e trascinando il mouse. Rilasciare il pulsante per fermare lo spostamento. Modificando questi punti \`e possibile regolare la dimensione delle figure, nel caso specifico delle linee a mano libera e delle curve di Bezier si possono spostare i punti per cui passano le tangenti alle curve. Cliccando e mantenendo la pressione del pulsante sinistro del mouse all'interno di una figura, \`e possibile spostarla all'interno dell'area di disegno, azione effettuabile anche tramite le frecce direzionali della tastiera.
+Qui \`e stata usata la funzione di \textit{selezione}. Una volta selezionata una figura, tutti i suoi parametri sono visualizzati nel dialog delle propriet\` a sulla destra. \`E possibile spostare i punti evidenziati cliccando su di essi e trascinando il mouse. Rilasciare il pulsante per fermare lo spostamento. Modificando questi punti \`e possibile regolare la dimensione delle figure, e nel caso specifico delle linee a mano libera e delle curve di Bezier si possono spostare i punti per cui passano le tangenti alle curve. Cliccando e mantenendo la pressione del pulsante sinistro del mouse all'interno di una figura, \`e possibile spostarla all'interno dell'area di disegno, azione effettuabile anche tramite le frecce direzionali della tastiera.
  \newpage
  \textbf{Disegno di un ellisse:}\\
 \begin{figure}[!ht]
@@ -378,7 +380,7 @@ Qui \`e stata usata la funzione di \textit{selezione}. Una volta selezionata una
 \end{figure}
  
 \vspace{50pt}
-In questo caso \`e stata selezionata la funzione per il disegno di un'\textit{ellisse}. Cliccando e spostando il mouse sopra all'area disegnabile, si ha la possibilit\` a di creare una figura di dimensioni arbitrarie che verr\` a effettivamente disegnata al rilascio del pulsante sinistro del mouse. Per il disegno di un \textit{rettangolo}, valgono le stesse considerazioni.
+In questo caso \`e stata selezionata la funzione per il disegno di un'\textit{ellisse}. Cliccando e spostando il mouse sopra all'area disegnabile, si ha la possibilit\` a di creare una figura di dimensioni arbitrarie, che verr\` a effettivamente disegnata al rilascio del pulsante sinistro del mouse. Per il disegno di un \textit{rettangolo}, valgono le stesse considerazioni.
 \newpage
 
 
@@ -392,7 +394,7 @@ In questo caso \`e stata selezionata la funzione per il disegno di un'\textit{el
  
  
 \vspace{50pt}
-Qui \`e stato disegnato un \textit{poligono regolare}. L'unica differenza rispetto ad ellissi e rettangoli, consiste nella composizione della finestra delle propriet\`a, alla quale si aggiunge una casella che permette di modificare il numero di lati del poligono da disegnare o disegnato, inserendo il valore desiderato a fianco dell'etichettta \textit{N. di lati} e confermando tale scelta cliccando sul pulsante \textit{Cambia}.
+Qui \`e stato disegnato un \textit{poligono regolare}. L'unica differenza rispetto ad ellissi e rettangoli consiste nella composizione della finestra delle propriet\`a, alla quale si aggiunge una casella che permette di modificare il numero di lati del poligono da disegnare o disegnato, inserendo il valore desiderato a fianco dell'etichettta \textit{N. di lati} e confermando tale scelta cliccando sul pulsante \textit{Cambia}.
  
 \newpage
  
@@ -438,7 +440,7 @@ Qui \`e stata selezionata la funzione \textit{Disegno di una retta}. Si deve pre
  
  
 \vspace{100pt}
-In questo caso \`e stata scelta la funzione per la creazione di una \textit{casella di testo}. Si deve cliccare sull'area di disegno come per le altre figure, per stabilire posizione e dimensioni della casella, utilizzando a piacere il dialog delle propriet\`a per cambiare la stringa contenuta all'interno ed il tipo di carattere. (quest'ultimo paramento, come detto precedentemente solo per i browser che supportano tale funzionalit\` a).
+In questo caso \`e stata scelta la funzione per la creazione di una \textit{casella di testo}. Si deve cliccare sull'area di disegno come per le altre figure, per stabilire posizione e dimensioni della casella, ed utilizzare il dialog delle propriet\`a per cambiare la stringa contenuta all'interno ed il tipo di carattere (quest'ultimo paramento, come detto precedentemente solo per i browser che supportano tale funzionalit\` a).
 \newpage
  
 \textbf{Zoom:}
