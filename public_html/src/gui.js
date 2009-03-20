@@ -70,6 +70,7 @@ $(document).ready(function(){
   $("#selectionButton").click(function () {
     $("#edgeSetterZone").css({"display":"block"});
     $("#fontSetterZone").css({"display":"block"});
+    $("#rotationSetterZone").css({"display":"block"});
     toolbar.deselectAll();
     selectionButton.bindCursor("selection");
     selectionButton.bindCanvas(toolbar,canvas,canvasObj,visual);
@@ -177,9 +178,10 @@ $(document).ready(function(){
   });
 
   // Tooltip animation
-  $("*").tooltip(
-  {delay: 750} // 0.75 secs
- );
+  $("*").tooltip({
+    delay: 750
+  }); // 0.75 secs
+
   $(".toolbarButton").hover(
     function(){
       $(this).fadeOut(100);
@@ -198,7 +200,6 @@ $(document).ready(function(){
     function () {
       $("#colorx").show("slow");
       $("#colory").css({"display":"none"});
-
       if(openFill === false){
 	$(".Dialog1").height(500);
       }
@@ -255,6 +256,9 @@ $(document).ready(function(){
     }
   );
 
+
+
+
   // Save & Load Dialogs handlers
  $("#saveButton").click(function () {
    $("#saveDialog").dialog( 'close' );
@@ -265,7 +269,7 @@ $(document).ready(function(){
  $("#loadButton").click(function () {
   doc = $("#my_iframe").contents().find('body').html();//alert(doc);
  });
-                  
+
  $('#MyForm').submit(function () {
    $('#my_iframe').bind('load', function () {
                           $("#loadDialog").dialog( 'close' );

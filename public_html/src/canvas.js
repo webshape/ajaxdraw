@@ -15,7 +15,6 @@
 function Page(){
   this._browserName = $.browser.name;
   this._browserVersion = $.browser.versionNumber;
- // this._widgets = [];
 }
 
 Page.prototype.getBrowserName = function (){
@@ -32,27 +31,27 @@ Page.prototype.getBrowserVersion = function (){
  * */
 Page.prototype.activateStylesheet = function (sheetref){
         var ss = null;
-	if(document.getElementsByTagName) {
-		ss = document.getElementsByTagName('link');}
-	else if (document.styleSheets){
-		ss = document.styleSheets;}
-	for(var i=0;ss[i];i++){
-		if(ss[i].href.indexOf(sheetref) != -1){
-			ss[i].disabled = true;
-			ss[i].disabled = false;
-		}
-	}
+  if(document.getElementsByTagName) {
+    ss = document.getElementsByTagName('link');}
+  else if (document.styleSheets){
+    ss = document.styleSheets;}
+  for(var i=0;ss[i];i++){
+    if(ss[i].href.indexOf(sheetref) != -1){
+      ss[i].disabled = true;
+      ss[i].disabled = false;
+    }
+  }
 };
 
 /*
- * Loads a specified stylesheet depending to the browser
- * */
+* Loads a specified stylesheet depending to the browser
+* */
 Page.prototype.loadStylesheet = function (){
   var name = this._browserName;
   var nameComp;
   if (name=="msie"){
     nameComp = $.browser.className +".css";
-   // alert(nameComp);    //msie7 mod.non standard, msie8 mod.standard IE8
+    alert(nameComp); //msie7 mod.non standard, msie8 mod.standard IE8
   }
   else{
     nameComp = name+".css";
@@ -63,9 +62,9 @@ Page.prototype.loadStylesheet = function (){
 
 
 /**
- * @constructor
- * The Canvas
- */
+* @constructor
+* The Canvas
+*/
 function Canvas(){
   this._height = document.getElementById("cv").getAttribute('height');
   this._width = document.getElementById("cv").getAttribute('width');
@@ -74,10 +73,10 @@ function Canvas(){
 
 
 /**
- * Get id name of the canvas element
- * @return the canvas id
- *
- */
+* Get id name of the canvas element
+* @return the canvas id
+*
+*/
 Canvas.prototype.getId = function (){
   if ($.browser.name=="msie") { // hack for internet explorer
      return window.G_vmlCanvasManager.initElement(this._id);
@@ -86,8 +85,8 @@ Canvas.prototype.getId = function (){
 };
 
 /**
- * Clear the canvas element
- */
+* Clear the canvas element
+*/
 Canvas.prototype.clear = function () {
   if ($.browser.name=="msie") { // hack for internet explorer
     var canvas= window.G_vmlCanvasManager.initElement(this._id);
@@ -101,13 +100,13 @@ Canvas.reader('_height','getHeight');
 Canvas.reader('_width','getWidth');
 
 Canvas.prototype.setHeight = function(val){
-	this._height = val;
-	document.getElementById("cv").setAttribute('height', val);
+  this._height = val;
+  document.getElementById("cv").setAttribute('height', val);
 };
 
 Canvas.prototype.setWidth = function(val){
-	this._width = val;
-	document.getElementById("cv").setAttribute('width', val);
+  this._width = val;
+  document.getElementById("cv").setAttribute('width', val);
 };
 /**
  * @constructor
@@ -141,8 +140,6 @@ Visualization.prototype.refresh = function(){
   quad.getBounds().setStart(new Point(0, 0));
   quad.getBounds().setEnd(new Point(1000, 1000));
   quad.draw(c);
-
-
   this._figureSet.each(function (f) {
     f.draw(c);
     if (f.isSelected()) {
@@ -156,57 +153,59 @@ Visualization.prototype.refresh = function(){
 Visualization.accessors('_figureSet', 'getFigureSet', 'setFigureSet');
 
 /**
- * Deselect all the figures in the figureset
- * @param {FigureSet} figureSet the actual figureset
- */
+* Deselect all the figures in the figureset
+* @param {FigureSet} figureSet the actual figureset
+*/
 Visualization.prototype.deselectAll = function (figureSet) {
-   figureSet.each(function (f){
-     f.setSelection(false);
+  $("#submitEdge").unbind("click");
+  $("#submitRect").unbind("click");
+  figureSet.each(function (f){
+    f.setSelection(false);
   });
 };
 /**
- * Get the accurate coordinates of the user click on the canvas for every browser
- * @param {Event} event the click event
- * @return the coordinates of the click
- */
+* Get the accurate coordinates of the user click on the canvas for every browser
+* @param {Event} event the click event
+* @return the coordinates of the click
+*/
 Visualization.prototype.getClickCoordsWithinTarget = function(event){
   var coords = new Point(0, 0);
 
-	if(!event) // then we're in a non-DOM (probably IE) browser
-	{
-		event = window.event;
-		coords.x = event.offsetX;
-		coords.y = event.offsetY;
-	}
-	else		// we assume DOM modeled javascript
-	{
-		var Element = event.target ;
-		var CalculatedTotalOffsetLeft = 0;
-		var CalculatedTotalOffsetTop = 0 ;
+  if(!event) // then we're in a non-DOM (probably IE) browser
+  {
+    event = window.event;
+    coords.x = event.offsetX;
+    coords.y = event.offsetY;
+  }
+  else    // we assume DOM modeled javascript
+  {
+    var Element = event.target ;
+    var CalculatedTotalOffsetLeft = 0;
+    var CalculatedTotalOffsetTop = 0 ;
 
-		while (Element.offsetParent)
- 		{
- 			CalculatedTotalOffsetLeft += Element.offsetLeft ;
-			CalculatedTotalOffsetTop += Element.offsetTop ;
- 			Element = Element.offsetParent ;
- 		}
+    while (Element.offsetParent)
+     {
+       CalculatedTotalOffsetLeft += Element.offsetLeft ;
+      CalculatedTotalOffsetTop += Element.offsetTop ;
+       Element = Element.offsetParent ;
+     }
 
-		coords.x = event.pageX - CalculatedTotalOffsetLeft ;
-		coords.y = event.pageY - CalculatedTotalOffsetTop ;
-	}
+    coords.x = event.pageX - CalculatedTotalOffsetLeft ;
+    coords.y = event.pageY - CalculatedTotalOffsetTop ;
+  }
 
         // adapt to scale & offset
 
   return this.getScale().scalePoint(coords, this.getOffset());
-/*  var f = this._scale.getFactor();
-  coords.x /= f;
-  coords.y /= f;
-  coords.x += this._offset.x;
-  coords.y += this._offset.y;
+/* var f = this._scale.getFactor();
+coords.x /= f;
+coords.y /= f;
+coords.x += this._offset.x;
+coords.y += this._offset.y;
 
 
 
-	return coords;*/
+  return coords;*/
 };
 
 
@@ -216,7 +215,7 @@ Visualization.prototype.getClickCoordsWithinTarget = function(event){
  * @param {Canvas} canvasObj the canvas element
  * @param {Numeric} height the height of user screen resolution
  * @param {Numeric} width the width of user screen resolution
- */
+*/
 Visualization.prototype.setCanvasDimension = function(canvasObj,height,width){
   if(width == 800 && height==600){
     canvasObj.setWidth(560);
@@ -226,10 +225,9 @@ Visualization.prototype.setCanvasDimension = function(canvasObj,height,width){
     canvasObj.setWidth(670);
     canvasObj.setHeight(470);
   }
-
   else if(width == 1280 && height==800){
-    canvasObj.setWidth(800);
-    canvasObj.setHeight(500);
+    canvasObj.setWidth(780);
+    canvasObj.setHeight(480);
   }
   else if(width == 1440 && height==900){
     canvasObj.setWidth(1000);
@@ -239,7 +237,6 @@ Visualization.prototype.setCanvasDimension = function(canvasObj,height,width){
     canvasObj.setWidth(1000);
     canvasObj.setHeight(750);
   }
-
 };
 
 /**
@@ -267,7 +264,8 @@ Visualization.prototype.cloneElement = function(actualFigure,canvasObj){
   var clonedFigure = actualFigure.clone();
   clonedFigure.draw(canvasObj.getId());
   visual.getFigureSet().add(clonedFigure);
-  actualFigure.setSelection(false);
+  //actualFigure.setSelection(false);
+  visual.deselectAll(visual.getFigureSet());
   clonedFigure.setSelection(true);
   canvasObj.clear();
   visual.refresh();
@@ -337,14 +335,14 @@ Button.prototype.bindCanvas = function (toolbar,canvas,canvasObj,visual,BorderCo
       f.getBounds().setEnd(new Point(coords2.x, coords2.y));
       if(builder==Polygon){
         var edgeNumber = parseInt(document.getElementById('edgeNumber').value, 10);
-	if (!isNaN(edgeNumber) && edgeNumber >= 2) {
+  if (!isNaN(edgeNumber) && edgeNumber >= 2) {
           f.edgeNumber().setVal(edgeNumber);
         }
       }
     canvasObj.clear();
     visual.refresh();
     f.draw(canvas);
-  }).bind("mouseup",function(e){  //jQuery mouseup event bind
+  }).bind("mouseup",function(e){ //jQuery mouseup event bind
     $("#cv").unbind('mousemove mouseup mouseleave');
     var coords1 = visual.getClickCoordsWithinTarget(e);
     var f = s[0];
@@ -369,22 +367,22 @@ Button.prototype.bindCursor = function(type){
   if(($.browser.name!="opera")){
     switch(type){
       case "selection":
-	$("#cv").css({'cursor' : 'url("images/selectDraw.png"),auto'});
+  $("#cv").css({'cursor' : 'url("images/selectDraw.png"),auto'});
       break;
       case "zoomIn":
-	$("#cv").css({'cursor' : 'url("images/zoomIn.png"),auto'});
+  $("#cv").css({'cursor' : 'url("images/zoomIn.png"),auto'});
       break;
       case "zoomOut":
-	$("#cv").css({'cursor' : 'url("images/zoomOut.png"),auto'});
+  $("#cv").css({'cursor' : 'url("images/zoomOut.png"),auto'});
       break;
       case "move":
-	$("#cv").css({'cursor' : 'url("images/move.png"),auto'});
+  $("#cv").css({'cursor' : 'url("images/move.png"),auto'});
       break;
      case "line":
-	$("#cv").css({'cursor' : 'url("images/lineDraw.png"),auto'});
+  $("#cv").css({'cursor' : 'url("images/lineDraw.png"),auto'});
       break;
        case "bezier":
-	$("#cv").css({'cursor' : 'url("images/bezierDraw.png"),auto'});
+  $("#cv").css({'cursor' : 'url("images/bezierDraw.png"),auto'});
       break;
     case "square":
        $("#cv").css({'cursor' : 'url("images/squareDraw.png"),auto'});
@@ -408,9 +406,9 @@ Button.prototype.bindCursor = function(type){
 
 
 /**
- * @constructor
- * The Clear Canvas Button
- */
+* @constructor
+* The Clear Canvas Button
+*/
 function ClearCanvasButton () {
   canvasObj.clear();
   visual.getFigureSet().each(function(f){
@@ -433,9 +431,9 @@ function SaveButton () {
 
 
 /**
- * @constructor
- * The Figure Selection button
- */
+* @constructor
+* The Figure Selection button
+*/
 function SelectionButton () {
   Button.call(this);
 }
@@ -444,8 +442,8 @@ SelectionButton.prototype = new Button();
 
 
 /**
- * @return true if a point was handled, false otherwise
- */
+* @return true if a point was handled, false otherwise
+*/
 SelectionButton.prototype._handleCtrlPoint = function (pt, f) {
   var setter = null;
   var onPoint = function (p) {
@@ -459,24 +457,24 @@ SelectionButton.prototype._handleCtrlPoint = function (pt, f) {
   else {
     if (onPoint(f.getBounds().end())) {
       setter = function (newPt) {
-	f.getBounds().setEnd(newPt);
+  f.getBounds().setEnd(newPt);
       };
     }
     else {
       if (f instanceof FreeLine) {
-	var pts = f.getPoints();
-	var found = null;
-	pts.each(function (p) {
-		   if (onPoint(p)) {
-		     found = p;
-		   }
-		 });
-	if (found) {
-	  setter = function (newPt) {
-	    f.move(found, newPt);
+  var pts = f.getPoints();
+  var found = null;
+  pts.each(function (p) {
+     if (onPoint(p)) {
+     found = p;
+     }
+     });
+  if (found) {
+   setter = function (newPt) {
+   f.move(found, newPt);
             found = newPt;
-	  };
-	}
+   };
+  }
       }
     }
   }
@@ -484,10 +482,10 @@ SelectionButton.prototype._handleCtrlPoint = function (pt, f) {
   if (setter) {
     $('#cv').unbind('mousemove');
     $('#cv').bind('mousemove', function (e) {
-		    setter(visual.getClickCoordsWithinTarget(e));
+     setter(visual.getClickCoordsWithinTarget(e));
                     canvasObj.clear();
                     visual.refresh();
-		  });
+     });
   }
   $('#cv').unbind('mouseup');
   $('#cv').bind('mouseup', function (e) {
@@ -516,6 +514,8 @@ SelectionButton.prototype.bindCanvas = function (toolbar,canvas,canvasObj,visual
   $("#eraseButton").unbind('click');
   $("#toTopButton").unbind('click');
   $("#toBottomButton").unbind('click');
+  $("#submitEdge").unbind('click');
+  $("#submitRect").unbind('click');
   $("*").unbind('keypress');
   $("*").bind('keypress',function(e){
     if(e.keyCode==46){
@@ -524,16 +524,18 @@ SelectionButton.prototype.bindCanvas = function (toolbar,canvas,canvasObj,visual
   });
   $("#cv").bind("mousedown", function(e){
       var coords = visual.getClickCoordsWithinTarget(e);
-      //alert(coords.x+" "+coords.y);
       var coord = new Point(coords.x,coords.y);
       var actualFigure = figureSet.selectFigure(coord, visual.getScale(), visual.getOffset());
       if(actualFigure===null){
+	//visual.deselectAll(figureSet);
         // is there an already selected figure?
 	$("#cloneButton").unbind('click');
 	$("#toTopButton").unbind('click');
 	$("#toBottomButton").unbind('click');
+	$("#submitEdge").unbind('click');
+
 	$("*").unbind('keypress');
-      /*zona gestione cancellazione*/
+	/*zona gestione cancellazione*/
 	$("*").bind('keypress',function(e){
 	  if(e.keyCode==46){
 	    visual.eraseElement(figureSet,canvasObj);
@@ -557,7 +559,7 @@ SelectionButton.prototype.bindCanvas = function (toolbar,canvas,canvasObj,visual
 	  visual.refresh();
         }
         // don't throw: no one will catch it
-	//throw 'No figure found';
+  //throw 'No figure found';
       }
       else {
 	/*gestione livelli */
@@ -579,7 +581,7 @@ SelectionButton.prototype.bindCanvas = function (toolbar,canvas,canvasObj,visual
 	  visual.cloneElement(actualFigure,canvasObj);
 	});
 
-        visual.deselectAll(figureSet); // only one selection a time
+	visual.deselectAll(figureSet); // only one selection a time
 	$("*").unbind('keypress');
 	$("*").bind('keypress',function(e){
 	  if(e.keyCode==46){
@@ -588,80 +590,79 @@ SelectionButton.prototype.bindCanvas = function (toolbar,canvas,canvasObj,visual
 	});
 	$("#eraseButton").click(function () {
 	  visual.eraseElement(figureSet,canvasObj);
-	  // eraseButton.eraseElement(figureSet);
 	});
 	actualFigure.setSelection(true);
 	canvasObj.clear();
         visual.refresh();
         var prec = coord;
         $('#cv').bind('mousemove', function (e) {
-                        var pt = visual.getClickCoordsWithinTarget(e);
-                        var start = actualFigure.getBounds().start();
-                        var end = actualFigure.getBounds().end();
-                        var dx = pt.x - prec.x;
-                        var dy = pt.y - prec.y;
-                        start.x += dx;
-                        start.y += dy;
-                        end.x += dx;
-                        end.y += dy;
-                        prec = pt;
-                        canvasObj.clear();
-	                visual.refresh();
-                     });
+          var pt = visual.getClickCoordsWithinTarget(e);
+          var start = actualFigure.getBounds().start();
+          var end = actualFigure.getBounds().end();
+          var dx = pt.x - prec.x;
+          var dy = pt.y - prec.y;
+          start.x += dx;
+	  start.y += dy;
+	  end.x += dx;
+	  end.y += dy;
+          prec = pt;
+          canvasObj.clear();
+	  visual.refresh();
+        });
 	/*spostamento tramite tastierino numerico */
 	$("*").bind('keypress',function (e){
            var start = null;
            var end = null;
 	   if(e.keyCode==37){ //left
-	       start = actualFigure.getBounds().start();
-               end = actualFigure.getBounds().end();
-	       start.x -= 5;
-	       end.x -= 5;
-	       prec.x-=5;
-	       canvasObj.clear();
-	       visual.refresh();
+	     start = actualFigure.getBounds().start();
+             end = actualFigure.getBounds().end();
+	     start.x -= 5;
+	     end.x -= 5;
+	     prec.x-=5;
+	     canvasObj.clear();
+	     visual.refresh();
 	   }
 	   else if(e.keyCode==38){ //up
-	       start = actualFigure.getBounds().start();
-               end = actualFigure.getBounds().end();
-	       start.y -= 5;
-	       end.y -= 5;
-	       prec.y-=5;
-	       canvasObj.clear();
-	       visual.refresh();
+	     start = actualFigure.getBounds().start();
+	     end = actualFigure.getBounds().end();
+	     start.y -= 5;
+	     end.y -= 5;
+	     prec.y-=5;
+	     canvasObj.clear();
+	     visual.refresh();
 	   }
 	   else if(e.keyCode==39){ //right
-	       start = actualFigure.getBounds().start();
-               end = actualFigure.getBounds().end();
-	       start.x += 5;
-	       end.x += 5;
-	       prec.x+=5;
-	       canvasObj.clear();
-	       visual.refresh();
+	     start = actualFigure.getBounds().start();
+             end = actualFigure.getBounds().end();
+	     start.x += 5;
+	     end.x += 5;
+	     prec.x+=5;
+	     canvasObj.clear();
+	     visual.refresh();
 	   }
 	   else if(e.keyCode==40){ //down
-	       start = actualFigure.getBounds().start();
-               end = actualFigure.getBounds().end();
-	       start.y += 5;
-	       end.y += 5;
-	       prec.y+=5;
-	       canvasObj.clear();
-	       visual.refresh();
+	     start = actualFigure.getBounds().start();
+             end = actualFigure.getBounds().end();
+	     start.y += 5;
+	     end.y += 5;
+	     prec.y+=5;
+	     canvasObj.clear();
+	     visual.refresh();
 	   }
-	 });
+	});
 
 	self._handleCtrlPoint(coord, actualFigure);
         $('#cv').bind('mouseleave', function (e) {
-                        $('#cv').trigger('mouseup');
-                        $('#cv').unbind('mouseleave');
-                      });
+          $('#cv').trigger('mouseup');
+          $('#cv').unbind('mouseleave');
+        });
       }
   });
 };
 
 /**
  * @constructor
- * The Zoom  button
+ * The Zoom button
  */
 function ZoomButton () {
   Button.call(this);
@@ -673,7 +674,7 @@ ZoomButton.prototype = new Button();
 
 /**
  * @constructor
- * The Zoom In  button
+ * The Zoom In button
  */
 function ZoomInButton () {
   ZoomButton.call(this);
@@ -686,24 +687,24 @@ ZoomInButton.prototype.bindCanvas = function (toolbar,canvas,canvasObj,visual) {
   $("#cloneButton").unbind('click');
   $("#cv").unbind('mousedown click mouseup');
   $("#cv").bind("click", function(e){
-	 var factor = visual.getScale().getFactor();
-	 var oldw = canvas.width/(factor*2);
-	 var oldh = canvas.height/(factor*2);
- 	 factor += 0.5;
-	 var w = canvas.width/(factor*2);
-	 var h = canvas.height/(factor*2);
-	 visual.getOffset().x += oldw - w;
-	 visual.getOffset().y += oldh - h;
-	 visual.setScale(new Scale(factor));
-//	 alert(oldw + ", " + canvas.width/2 + ", " + visual.getOffset().x + ", " + factor);
-	 canvasObj.clear();
-	 visual.refresh();
+    var factor = visual.getScale().getFactor();
+    var oldw = canvas.width/(factor*2);
+    var oldh = canvas.height/(factor*2);
+    factor += 0.5;
+    var w = canvas.width/(factor*2);
+    var h = canvas.height/(factor*2);
+    visual.getOffset().x += oldw - w;
+    visual.getOffset().y += oldh - h;
+    visual.setScale(new Scale(factor));
+    //   alert(oldw + ", " + canvas.width/2 + ", " + visual.getOffset().x + ", " + factor);
+    canvasObj.clear();
+    visual.refresh();
   });
 };
 
 /**
  * @constructor
- * The Zoom Out  button
+ * The Zoom Out button
  */
 function ZoomOutButton () {
   ZoomButton.call(this);
@@ -716,17 +717,17 @@ ZoomOutButton.prototype.bindCanvas = function (toolbar,canvas,canvasObj,visual,f
   $("#cloneButton").unbind('click');
   $("#cv").unbind('mousedown click mouseup');
   $("#cv").bind("click", function(e){
-	 var factor = visual.getScale().getFactor();
-	 var oldw = canvas.width/(factor*2);
-	 var oldh = canvas.height/(factor*2);
-	 if (factor > 0.5) {
-		factor -= 0.5;
-		var w = canvas.width/(factor*2);
-		var h = canvas.height/(factor*2);
-		visual.getOffset().x -= w - oldw;
-		visual.getOffset().y -= h - oldh;
-		visual.setScale(new Scale(factor));
-	}
+    var factor = visual.getScale().getFactor();
+    var oldw = canvas.width/(factor*2);
+    var oldh = canvas.height/(factor*2);
+    if (factor > 0.5) {
+      factor -= 0.5;
+      var w = canvas.width/(factor*2);
+      var h = canvas.height/(factor*2);
+      visual.getOffset().x -= w - oldw;
+      visual.getOffset().y -= h - oldh;
+      visual.setScale(new Scale(factor));
+    }
     canvasObj.clear();
     visual.refresh();
   });
@@ -853,46 +854,46 @@ BezierCurveButton.prototype.bindCanvas = function (toolbar,canvas,canvasObj,visu
   $("*").unbind('keypress');
   toolbar.deselectAll();
   this.setSelection(true);
-   $("#cv").unbind('mousedown click mouseup');
-   canvasObj.clear();
-   visual.refresh();//per togliere un'eventuale selezione
-   var s = [];
-   //var f;
-   var f = new BezierCurve();
-   var self = this;
-   var pointcounter = 4;
-   var squareList = [];
+  $("#cv").unbind('mousedown click mouseup');
+  canvasObj.clear();
+  visual.refresh();//per togliere un'eventuale selezione
+  var s = [];
+  //var f;
+  var f = new BezierCurve();
+  var self = this;
+  var pointcounter = 4;
+  var squareList = [];
 
-   $("#cv").bind("mousedown", function(e){
-	f.getBorderColour().getOpacity().setVal(document.getElementById("borderOp").value);
-	f.getBorderColour().fromCSS(borderColour);
-	var coords = visual.getClickCoordsWithinTarget(e);
-	f.extend(new Point(coords.x, coords.y));
-	canvasObj.clear();
-	visual.refresh();
-	f.draw(canvas);
-	var rect = new Rectangle();
-	rect.getFillColour().getOpacity().setVal(0);
-	rect.getFillColour().fromCSS("#FFFFFF");
-	rect.getBorderColour().getOpacity().setVal(0.7);
-	rect.getBorderColour().fromCSS("#0000FF");
-	rect.getBounds().setStart(new Point(coords.x-5, coords.y-5));
-	rect.getBounds().setEnd(new Point(coords.x+5, coords.y+5));
-	squareList.push(rect);
-	for(var i=0;i< squareList.length;i++){
-	  squareList[i].draw(canvas);
-	}
-	pointcounter--;
-	if( pointcounter === 0 ){
-	  f.draw(canvas);
-	  visual.getFigureSet().add(f);
-	  canvasObj.clear();
-	  visual.refresh();
-	  pointcounter = 4;
-	  f = new BezierCurve();
-	  toolbar.rebind(canvas,canvasObj,visual,borderColour,fillColour);
-	}
-   });
+  $("#cv").bind("mousedown", function(e){
+    f.getBorderColour().getOpacity().setVal(document.getElementById("borderOp").value);
+    f.getBorderColour().fromCSS(borderColour);
+    var coords = visual.getClickCoordsWithinTarget(e);
+    f.extend(new Point(coords.x, coords.y));
+    canvasObj.clear();
+    visual.refresh();
+    f.draw(canvas);
+    var rect = new Rectangle();
+    rect.getFillColour().getOpacity().setVal(0);
+    rect.getFillColour().fromCSS("#FFFFFF");
+    rect.getBorderColour().getOpacity().setVal(0.7);
+    rect.getBorderColour().fromCSS("#0000FF");
+    rect.getBounds().setStart(new Point(coords.x-5, coords.y-5));
+    rect.getBounds().setEnd(new Point(coords.x+5, coords.y+5));
+    squareList.push(rect);
+    for(var i=0;i< squareList.length;i++){
+      squareList[i].draw(canvas);
+    }
+    pointcounter--;
+    if( pointcounter === 0 ){
+      f.draw(canvas);
+      visual.getFigureSet().add(f);
+      canvasObj.clear();
+      visual.refresh();
+      pointcounter = 4;
+      f = new BezierCurve();
+      toolbar.rebind(canvas,canvasObj,visual,borderColour,fillColour);
+    }
+  });
 };
 
 
@@ -977,13 +978,13 @@ FreeLineButton.prototype.bindCanvas = function (toolbar,canvas,canvasObj,visual,
       var minDist = 10;
       var dist = coords.dist(coords2);
       if (dist >= minDist) {
-	f.extend(new Point(coords2.x, coords2.y));
-	coords = coords2;
+  f.extend(new Point(coords2.x, coords2.y));
+  coords = coords2;
       }
       canvasObj.clear();
       visual.refresh();
       f.draw(canvas);
-    }).bind("mouseup",function(e){  //jQuery mouseup event bind
+    }).bind("mouseup",function(e){ //jQuery mouseup event bind
       $("#cv").unbind('mousemove mouseup mouseleave');
       var coords1 = visual.getClickCoordsWithinTarget(e);
       var f = s[0];
@@ -1010,14 +1011,10 @@ FreeLineButton.prototype.bindCanvas = function (toolbar,canvas,canvasObj,visual,
  */
 function TextButton () {
   Button.call(this);
- // this._id = document.getElementById("textButton");
 }
 
 TextButton.prototype = new Button();
 
-//TextButton.prototype.getId = function (){
-//  return this._id;
-//};
 
 TextButton.prototype.getBuilder = function () {
   return Text;
@@ -1047,12 +1044,12 @@ TextButton.prototype.bindCanvas = function (toolbar,canvas,canvasObj,visual,Bord
      f.getBounds().setStart(new Point(coords.x, coords.y));
 
     $("#cv").bind("mousemove",function(e){
-        var coords2 = visual.getClickCoordsWithinTarget(e);
-	f.getBounds().setEnd(new Point(coords2.x, coords2.y));
-	canvasObj.clear();
-	visual.refresh();
-	f.draw(canvas);
-    }).bind("mouseup",function(e){  //jQuery mouseup event bind
+      var coords2 = visual.getClickCoordsWithinTarget(e);
+      f.getBounds().setEnd(new Point(coords2.x, coords2.y));
+      canvasObj.clear();
+      visual.refresh();
+      f.draw(canvas);
+    }).bind("mouseup",function(e){ //jQuery mouseup event bind
       $("#cv").unbind('mousemove mouseup mouseleave');
       var coords1 = visual.getClickCoordsWithinTarget(e);
       var f = s[0];
@@ -1089,8 +1086,8 @@ Toolbar.prototype.add = function (b) {
  * Set the selected flag of every button to false
  */
 Toolbar.prototype.deselectAll = function () {
-   this._buttonList.each(function (f){
-     f.setSelection(false);
+  this._buttonList.each(function (f){
+    f.setSelection(false);
   });
 };
 
@@ -1144,7 +1141,7 @@ function Palette(){}
  * @param {String} col with hex color representation
  * @param {String} prec1 previously BorderColor
  * @param {String} prec2 previously FillColor
- * @return  null
+ * @return null
  */
 Palette.prototype.setColour = function (col,prec1,prec2){
   var colore = { BorderColor: prec1, FillColor: prec2};
@@ -1168,7 +1165,7 @@ Palette.prototype.setColour = function (col,prec1,prec2){
 /**
  * Convert from RGB(x,x,x) format to hex format
  * @param {String} rgb with rgb color representation
- * @return  the hex value
+ * @return the hex value
  */
 Palette.prototype.rgbToHex= function (rgb){
   var rgbsplit = rgb.split(",");
@@ -1238,11 +1235,11 @@ function ColourDialog(col, border){
 
 ColourDialog.prototype.create= function(){
      $("#colorDialog").dialog({
-    	position: ["right","top"],
-    	height: 260,
-    	width: 230,
-	resizable: false,
-    	dialogClass: "Dialog1"
+      position: ["right","top"],
+      height: 260,
+      width: 230,
+  resizable: false,
+      dialogClass: "Dialog1"
 
     });
 
@@ -1257,11 +1254,11 @@ function PropertiesDialog(){}
 
 PropertiesDialog.prototype.create= function(){
    $("#propertiesDialog").dialog({
-    	position: "right",
-	resizable: false,
-    	width: 230,
-	height: 210,
-	dialogClass: "Dialog2"
+      position: "right",
+  resizable: false,
+      width: 230,
+  height: 210,
+  dialogClass: "Dialog2"
     });
 };
 
@@ -1274,7 +1271,6 @@ PropertiesDialog.prototype.create= function(){
 function EdgeNumberSetter(en) {
   $('#edgeNumber').get(0).value = en.getVal();
   $("#edgeSetterZone").css({"display":"block"});
-//  $('#edgeSetterZone').get(0).style = '';
   $('#submitEdge').unbind('click');
   $('#submitEdge').click(function (e) {
                            var n = parseInt($('#edgeNumber').get(0).value, 10);
@@ -1311,36 +1307,24 @@ function TextStringSetter(text){
      visual.refresh();
    });
 }
-function RotationSetter(){}
-/*function RotationSetter(angle){
-   $('#RotationString').get(0).value = angle.getAngle();
-   $('#x').get(0).value = bounds.start().x;
-   $('#y').get(0).value = bounds.start().y;
-   $('#DialogHeight').get(0).value = bounds.h();
-   $('#DialogWidth').get(0).value = bounds.w();
-   $('#submitAngle').click(function (e) {
-     			angle.setAngle($('#RotationString').get(0).value);
-     			var x = parseFloat($('#x').get(0).value);
-     			var y = parseFloat($('#y').get(0).value);
-			var h = parseFloat($('#DialogHeight').get(0).value);
-                        var w = parseFloat($('#DialogWidth').get(0).value);
+
+function RotationSetter(angle){
+   $('#rotationNumber').get(0).value = angle.getAngle();
+   $('#submitRotation').click(function (e) {
+           angle.setAngle($('#rotationNumber').get(0).value);
                         if (angle >= 0) {
-		            var rotation = Math.PI * angle / 180;
-	                                }
+     var rotation = Math.PI * angle / 180;
+   }
                         else {
-			    var rotation = Math.PI * (360+angle) / 180;
-					}
-			var costheta = Math.cos(rotation);
-			var sintheta = Math.sin(rotation);
-                        var d = x.dist(this.centre());
-			bounds.start().x = x+(d-(d*costheta));
-                        bounds.start().y = y+(d*sintheta);
-                        bounds.end().x = x-(d*sintheta);
-                        bounds.end().y = y+(d-(d*costheta));
+       var rotation = Math.PI * (360+angle) / 180;
+          }
+
+                        //canvasObj.rotate(rotation);
+
      canvasObj.clear();
      visual.refresh();
    });
-}*/
+}
 
 function BoundingRectangleSetter(bounds){
   $('#submitRect').unbind('click');

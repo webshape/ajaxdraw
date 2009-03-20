@@ -99,10 +99,11 @@ canvas {
 	
 }
 
-* Dialog colori e proprietà */
+/* Dialog colori e proprietà */
 #divBorderCol,#divFillCol{
-margin-top: -0.6em;
+	margin-top: -0.6em;
 }
+
 #polygonTitle,#textTitle{
 text-align: center;
 text-transform: uppercase;
@@ -137,7 +138,6 @@ width: 400px;display: none;
 
 .flora .ui-dialog,
 .flora.ui-dialog {
-	//background-color: #e6f7d4;
 	background-color: #e5e5e5;
 
 }
@@ -148,7 +148,6 @@ width: 400px;display: none;
 	background: #008000 url(i/dialog-title.png) repeat-x;
 	padding: 0px;
 	height: 28px;
-/*	_height: 29px; */
 }
 
 .flora .ui-draggable .ui-dialog-titlebar,
