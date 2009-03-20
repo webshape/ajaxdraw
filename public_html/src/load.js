@@ -93,18 +93,24 @@ SVGReader.prototype.read = function (doc) {
     return 0;
   }
 
-  if (x[0].childNodes[1].nodeName == "g"){ // inkscape plan svg
+/*  if (x[0].childNodes[1].nodeName == "g"){ // inkscape plan svg
 	 x = xmlDoc.getElementsByTagName("g");
-  }
+  }*/
   for (var i = 0; i < x[0].childNodes.length; i++) {
-    var n = x[0].childNodes[i];
-    if (n.nodeName != "#text") {
-		nf++;
-      var f = registry.makeFigureClassFromTag(n.nodeName); // returns an instance of a figure
-      // ignore unknow tags
-      if (f !== null) {
-		  if (f.fromSVG(n)){
-			 fs.add(f);
+	 var n = x[0].childNodes[i];
+	 if (n.nodeName == "g"){ // inkscape plan svg use g tag
+		x = xmlDoc.getElementsByTagName("g");
+		i = 0;
+	 }
+	 else {
+		if (n.nodeName != "#text") {
+		  nf++;
+		  var f = registry.makeFigureClassFromTag(n.nodeName); // returns an instance of a figure
+        // ignore unknow tags
+        if (f !== null) {
+			 if (f.fromSVG(n)){
+				fs.add(f);
+			 }
 		  }
       }
     }
