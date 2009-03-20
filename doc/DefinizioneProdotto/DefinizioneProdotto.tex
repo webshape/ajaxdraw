@@ -982,7 +982,7 @@ Ogni istanza di una classe derivante da \textit{Figure} ha uno e un solo \textit
 \subsubsezione{Tipo, obiettivo e funzione del componente}
 Rappresenta un cerchio o un'ellisse, a seconda che il proprio \textit{BoundingRectangle} sia un quadrato oppure un rettangolo. Viene disegnato in modo da essere inscritto al \textit{BoundingRectangle}.
 \subsubsezione{Relazioni d'uso di altre componenti}
-Deriva da \textit{Figure} e ne implementa i metodi astratti. Mantiene un'istanza di \textit{FillColour}. Implementa il metodo \textit{toSVG} dell'interfaccia \textit{SVGWritable} e il metodo \textit{fromSVG} dell'interfaccia \textit{SVGReadable}, si serve dei metodi della classe \textit{SVGGenerator}.
+Deriva da \textit{Figure} e ne implementa i metodi astratti. Mantiene un'istanza di \textit{FillColour}. Implementa il metodo \textit{toSVG} dell'interfaccia \textit{SVGWritable} e il metodo \textit{fromSVG} dell'interfaccia \textit{SVGReadable}, si serve dei metodi della classe \textit{SVGGenerator}. Si serve della classe \textit{ParsingError} per la gestione degli errori del metodo \textit{fromSVG()}.
 \subsubsezione{Interfacce e relazioni di uso da altre componenti}
 Creato dalla lettura di un file SVG oppure dall'interfaccia utente. Manipolato dall'interfaccia utente. Chiamato da \textit{SVGWriter} per trasformare la figura in formato SVG, e da \textit{SVGReader} per creare un'istanza da un file SVG.
 \subsubsezione{Attivit\`a svolte e dati trattati}
@@ -996,15 +996,14 @@ Creato dalla lettura di un file SVG oppure dall'interfaccia utente. Manipolato d
 \item[-] \textit{eachProperty(fn)} richiama \textit{eachProperty} di \textit{Figure} ed applica la funzione fn a \textit{{\_}fillColour}.
 \item[-] \textit{draw(canvas)} disegna il cerchio/ellisse usando quattro curve di bezier. Viene disegnato due volte: la prima per il riempimento, la seconda per il bordo. Prima di disegnarsi richiama \textit{applyToContext} sulle proprie propriet\`a.
 \item[-] \textit{toSVG(gen)} crea un tag \textit{ellipse} con il metodo \textit{startCommand} e aggiunge gli attributi secondo lo standard SVG1.1 con il metodo \textit{attr}. Entrambi questi metodi appartengono alla classe \textit{SVGGenerator}. Per le coordinate \textit{x} e \textit{y} che indicano la posizione della figura, controlla se il punto indicato dal metodo \textit{start} di \textit{BoundingRectangle} sia effettivamente il punto in alto a sinistra, poich\`e il cerchio/ellisse potrebbe essere rovesciato. Infine scrive il tag di chiusura con il metodo \textit{endCommand} di \textit{SVGGenerator}.
-\item[-] \textit{fromSVG(n)} ottiene il valore degli attributi del nodo \textit{n} come stringhe, li trasforma in interi quando necessario, e scrive i nuovi valori nelle propriet\`a della figura. 
-%Infine ottiene l'elemento canvas e chiama il metodo \textit{draw} per far si che la figura si disegni.
+\item[-] \textit{fromSVG(n)} ottiene il valore degli attributi del nodo \textit{n} come stringhe e li trasforma in interi quando necessario. Prima di scrivere i nuovi valori nelle propriet\`a della figura, li controlla con i metodi della classe \textit{ParsingError}: \textit{intCheck()} se l'attributo \`e di tipo numerico, \textit{opCheck()} se l'attributo riguarda l'opacit\`a, \textit{hexCheck()} se l'attributo riguarda il colore.
 \end{elencopuntato}
 
 \subsezione{Rectangle}
 \subsubsezione{Tipo, obiettivo e funzione del componente}
 Rappresenta un rettangolo od un quadrato.
 \subsubsezione{Relazioni d'uso di altre componenti}
-Deriva da \textit{Figure} e ne implementa i metodi astratti. Mantiene un'istanza di \textit{FillColour}. Implementa il metodo \textit{toSVG} dell'interfaccia \textit{SVGWritable} e il metodo \textit{fromSVG} dell'interfaccia \textit{SVGReadable}, si serve dei metodi della classe \textit{SVGGenerator}.
+Deriva da \textit{Figure} e ne implementa i metodi astratti. Mantiene un'istanza di \textit{FillColour}. Implementa il metodo \textit{toSVG} dell'interfaccia \textit{SVGWritable} e il metodo \textit{fromSVG} dell'interfaccia \textit{SVGReadable}, si serve dei metodi della classe \textit{SVGGenerator}. Si serve della classe \textit{ParsingError} per la gestione degli errori del metodo \textit{fromSVG()}.
 \subsubsezione{Interfacce e relazioni di uso da altre componenti}
 Creato dalla lettura di un file SVG oppure dall'interfaccia utente. Manipolato dall'interfaccia utente. Chiamato da \textit{SVGWriter} per trasformare la figura in formato SVG, e da \textit{SVGReader} per creare un'istanza da un file SVG.
 \subsubsezione{Attivit\`a svolte e dati trattati}
@@ -1018,8 +1017,7 @@ Creato dalla lettura di un file SVG oppure dall'interfaccia utente. Manipolato d
 \item[-] \textit{eachProperty(fn)} richiama \textit{eachProperty} di \textit{Figure} ed applica la funzione fn a \textit{{\_}fillColour}.
 \item[-] \textit{draw(canvas)} disegna il rettangolo usando le API per i path del contesto grafico, tracciando un path chiuso che contiene i quattro angoli ricavabili dal \textit{BoundingRectangle}. Viene disegnato due volte: la prima per il riempimento, la seconda per il bordo. Prima di disegnarsi richiama \textit{applyToContext} sulle proprie propriet\`a.
 \item[-] \textit{toSVG(gen)} crea un tag \textit{rect} con il metodo \textit{startCommand} e aggiunge gli attributi secondo lo standard SVG1.1 con il metodo \textit{attr}. Entrambi questi metodi appartengono alla classe \textit{SVGGenerator}. Per le coordinate \textit{x} e \textit{y} che indicano la posizione della figura, controlla se il punto indicato dal metodo \textit{start} di \textit{BoundingRectangle} sia effettivamente il punto in alto a sinistra, poich\`e il cerchio/ellisse potrebbe essere rovesciato. Infine scrive il tag di chiusura con il metodo \textit{endCommand} di \textit{SVGGenerator}.
-\item[-] \textit{fromSVG(n)} ottiene il valore degli attributi del nodo \textit{n} come stringhe, li trasforma in interi quando necessario, e scrive i nuovi valori nelle propriet\`a della figura. 
-%Infine ottiene l'elemento canvas e chiama il metodo \textit{draw} per far si che la figura si disegni.
+\item[-] \textit{fromSVG(n)} ottiene il valore degli attributi del nodo \textit{n} come stringhe e li trasforma in interi quando necessario. Prima di scrivere i nuovi valori nelle propriet\`a della figura, li controlla con i metodi della classe \textit{ParsingError}: \textit{intCheck()} se l'attributo \`e di tipo numerico, \textit{opCheck()} se l'attributo riguarda l'opacit\`a, \textit{hexCheck()} se l'attributo riguarda il colore.
 \end{elencopuntato}
 
 \subsezione{Line}
@@ -1030,7 +1028,7 @@ Rappresenta una linea generica. Non viene implementata in JavaScript, in quanto 
 \subsubsezione{Tipo, obiettivo e funzione del componente}
 Rappresenta una linea diritta. La linea v\`a dall'angolo in alto a sinistra all'angolo in basso a destra del \textit{BoundingRectangle}.
 \subsubsezione{Relazioni d'uso di altre componenti}
-Deriva da \textit{Line} e ne implementa i metodi astratti. Implementa il metodo \textit{toSVG} dell'interfaccia \textit{SVGWritable} e il metodo \textit{fromSVG} dell'interfaccia \textit{SVGReadable}, si serve dei metodi della classe \textit{SVGGenerator}.
+Deriva da \textit{Line} e ne implementa i metodi astratti. Implementa il metodo \textit{toSVG} dell'interfaccia \textit{SVGWritable} e il metodo \textit{fromSVG} dell'interfaccia \textit{SVGReadable}, si serve dei metodi della classe \textit{SVGGenerator}. Si serve della classe \textit{ParsingError} per la gestione degli errori del metodo \textit{fromSVG()}.
 \subsubsezione{Interfacce e relazioni di uso da altre componenti}
 Creato dalla lettura di un file SVG oppure dall'interfaccia utente. Manipolato dall'interfaccia utente. Chiamato da \textit{SVGWriter} per trasformare la figura in formato SVG, e da \textit{SVGReader} per creare un'istanza da un file SVG.
 \subsubsezione{Attivit\`a svolte e dati trattati}
@@ -1038,8 +1036,7 @@ Creato dalla lettura di un file SVG oppure dall'interfaccia utente. Manipolato d
 \begin{elencopuntato}[\subsubsecindent]
 \item[-] \textit{draw(canvas)} disegna una linea diritta usando le API per i path del contesto grafico, tracciando un path da \textit{BoundingRectangle.start()} a \textit{BoundingRectangle.end()}. Prima di disegnarsi richiama \textit{applyToContext} sul colore del bordo.
 \item[-] \textit{toSVG(gen)} crea un tag \textit{line} con il metodo \textit{startCommand} e aggiunge gli attributi secondo lo standard SVG1.1 con il metodo \textit{attr}. Entrambi questi metodi appartengono alla classe \textit{SVGGenerator}. Infine scrive il tag di chiusura con il metodo \textit{endCommand} di \textit{SVGGenerator}.
-\item[-] \textit{fromSVG(n)} ottiene il valore degli attributi del nodo \textit{n} come stringhe, li trasforma in interi quando necessario, e scrive i nuovi valori nelle propriet\`a della figura. 
-%Infine ottiene l'elemento canvas e chiama il metodo \textit{draw} per far si che la figura si disegni.
+\item[-] \textit{fromSVG(n)} ottiene il valore degli attributi del nodo \textit{n} come stringhe e li trasforma in interi quando necessario. Prima di scrivere i nuovi valori nelle propriet\`a della figura, li controlla con i metodi della classe \textit{ParsingError}: \textit{intCheck()} se l'attributo \`e di tipo numerico, \textit{opCheck()} per l'attributo "stroke-opacity",  \textit{hexCheck()} per l'attributo "stroke".
 \end{elencopuntato}
 
 \subsezione{FreeLine}
@@ -1070,15 +1067,15 @@ punti al loro valore relativo.
 \subsubsezione{Tipo, obiettivo e funzione del componente}
 Rappresenta una linea curva, disegnata tramite curve di bezier.
 \subsubsezione{Relazioni d'uso di altre componenti}
-Deriva da \textit{FreeLine}. A differenza di \textit{FreeLine} la lista di punti interni contiene un numero ridotto di punti. Implementa il metodo \textit{fromSVG} dell'interfaccia \textit{SVGReadable}.
+Deriva da \textit{FreeLine}. A differenza di \textit{FreeLine} la lista di punti interni contiene un numero ridotto di punti. Implementa il metodo \textit{fromSVG} dell'interfaccia \textit{SVGReadable}. Si serve della classe \textit{ParsingError} per la gestione degli errori del metodo \textit{fromSVG()}.
 \subsubsezione{Interfacce e relazioni di uso da altre componenti}
 Creato dalla lettura di un file SVG oppure dall'interfaccia utente. Manipolato dall'interfaccia utente. Chiamato da \textit{SVGReader} per creare un'istanza da un file SVG.
 \subsubsezione{Attivit\`a svolte e dati trattati}
 Nessuna oltre a quelle ereditate da \textit{FreeLine}.
 \paragraph{Metodi pubblici:}
 \begin{elencopuntato}[\subsubsecindent]
-\item[-] \textit{fromSVG(n)} ottiene il valore degli attributi del nodo \textit{n} come stringhe e scrive i nuovi valori nelle propriet\`a della figura. Per gestire l'attributo SVG \textit{d}, spezza la stringa in coppie di coordinate, le trasforma in interi, e chiama la funzione \textit{extend} passandogli uno a uno i punti ottenuti per ricostruire la figura. 
-%Infine ottiene l'elemento canvas e chiama il metodo \textit{draw} per far si che la figura si disegni.
+\item[-] \textit{fromSVG(n)} ottiene il valore degli attributi del nodo \textit{n} come stringhe. Per gestire l'attributo SVG \textit{d}, spezza la stringa in coppie di coordinate, le trasforma in interi, e chiama la funzione \textit{extend} passandogli uno a uno i punti ottenuti per ricostruire la figura. Prima di scrivere i nuovi valori nelle propriet\`a della figura, li controlla con i metodi della classe \textit{ParsingError}: \textit{opCheck()} se l'attributo "stroke-opacity" e \textit{hexCheck()} per l'attributo "stroke".
+
 \end{elencopuntato}
 
 
@@ -1086,7 +1083,7 @@ Nessuna oltre a quelle ereditate da \textit{FreeLine}.
 \subsubsezione{Tipo, obiettivo e funzione del componente}
 Rappresenta un poligono regolare.
 \subsubsezione{Relazioni d'uso di altre componenti}
-Deriva da \textit{Figure} e ne implementa i metodi astratti. Mantiene un'istanza di \textit{FillColour} e di \textit{EdgeNumber} che ne identifica il numero di lati. Implementa il metodo \textit{toSVG} dell'interfaccia \textit{SVGWritable} e il metodo \textit{fromSVG} dell'interfaccia \textit{SVGReadable}, si serve dei metodi della classe \textit{SVGGenerator}.
+Deriva da \textit{Figure} e ne implementa i metodi astratti. Mantiene un'istanza di \textit{FillColour} e di \textit{EdgeNumber} che ne identifica il numero di lati. Implementa il metodo \textit{toSVG} dell'interfaccia \textit{SVGWritable} e il metodo \textit{fromSVG} dell'interfaccia \textit{SVGReadable}, si serve dei metodi della classe \textit{SVGGenerator}. Si serve della classe \textit{ParsingError} per la gestione degli errori del metodo \textit{fromSVG()}.
 \subsubsezione{Interfacce e relazioni di uso da altre componenti}
 Creato dalla lettura di un file SVG oppure dall'interfaccia utente. Manipolato dall'interfaccia utente. Chiamato da \textit{SVGWriter} per trasformare la figura in formato SVG, e da \textit{SVGReader} per creare un'istanza da un file SVG.
 \subsubsezione{Attivit\`a svolte e dati trattati}
@@ -1100,7 +1097,7 @@ Creato dalla lettura di un file SVG oppure dall'interfaccia utente. Manipolato d
 \item[-] \textit{getFillColour()} ritorna \textit{{\_}fillColour}.
 \item[-] \textit{edgeNumber()} ritorna \textit{{\_}en}.
 \item[-] \textit{eachProperty(fn)} richiama \textit{eachProperty} di \textit{Figure} ed applica la funzione fn a \textit{{\_}fillColour} e a \textit{{\_en}}.
-\item[-] \textit{getPoints()} ritorna un'array di punti, considerando come origine \textit{BoundingRectangle.start()}, che rappresentano i vertici del poligono. Come si vede nel diagramma di attivit\`a in figura 2, si calcolano i punti usando le formule x = cos(angolo*i)*w+xs e y = sin(angolo*i)*h+ys dove \textit{angolo} \`e l'angolo giro diviso per il numero di lati, i \`e il numero del punto attuale (da 0 al numero di lati meno uno) e la coppia (xs, ys) \`e \textit{BoundingRectangle.start()}.
+\item[-] \textit{getPoints()} ritorna un'array di punti, considerando come origine \textit{BoundingRectangle.start()}, che rappresentano i vertici del poligono. Come si vede nel diagramma di attivit\`a in figura 2, si calcolano i punti usando le formule x = cos(angolo*i)*w+xs e y = sin(angolo*i)*h+ys dove \textit{angolo} \`e l'angolo giro diviso per il numero di lati, i \`e il numero del punto attuale (da 0 al numero di lati meno uno) e la coppia (xs, ys) \`e \textit{BoundingRectangle.start()}. 
 
 \begin{figure}[!ht]
 \centering
@@ -1110,15 +1107,14 @@ Creato dalla lettura di un file SVG oppure dall'interfaccia utente. Manipolato d
 
 \item[-] \textit{draw(canvas)} disegna il poligono usando le API per i path del contesto grafico tracciando  un path che congiunge i punti ottenuti con \textit{getPoints}. Viene disegnato due volte: la prima per il riempimento, la seconda per il bordo. Prima di disegnarsi richiama \textit{applyToContext} sulle proprie propriet\`a.
 \item[-] \textit{toSVG(gen)} crea un tag \textit{polygon} con il metodo \textit{startCommand} e aggiunge gli attributi secondo lo standard SVG1.1 con il metodo \textit{attr}. Entrambi questi metodi appartengono alla classe \textit{SVGGenerator}. Per quel che riguarda l'attributo \textit{points} si prendono i punti relativi al \textit{BoundingRectangle} con il metodo \textit{getPoints} e si sommano al punto di coordinate iniziali ottenuto con il metodo \textit{start} di \textit{BoundingRectangle}, per ottenere le coordinate relative al canvas. Infine scrive il tag di chiusura con il metodo \textit{endCommand} di \textit{SVGGenerator}.
-\item[-] \textit{fromSVG(n)} ottiene il valore degli attributi del nodo \textit{n} come stringhe e scrive i nuovi valori nelle propriet\`a della figura. Dall'attributo SVG \textit{points} ottiene i punti, li converte in interi, e calcola in base a questi i vertici in alto a sinistra e in basso a destra della figura, per ricavare il \textit{BoundingRectangle} con cui costruire il poligono. 
-%Infine ottiene l'elemento canvas e chiama il metodo \textit{draw} per far si che la figura si disegni.
+\item[-] \textit{fromSVG(n)} ottiene il valore degli attributi del nodo \textit{n} come stringhe.. Dall'attributo SVG \textit{points} ottiene i punti, li converte in interi, e calcola in base a questi i vertici in alto a sinistra e in basso a destra della figura, per ricavare il \textit{BoundingRectangle} con cui costruire il poligono. Prima di scrivere i nuovi valori nelle propriet\`a della figura, li controlla con i metodi della classe \textit{ParsingError}: \textit{opCheck()} se l'attributo riguarda l'opacit\`a, \textit{hexCheck()} se l'attributo riguarda il colore.
 \end{elencopuntato}
 
 \subsezione{Text}
 \subsubsezione{Tipo, obiettivo e funzione del componente}
 Rappresenta un testo.
 \subsubsezione{Relazioni d'uso di altre componenti}
-Deriva da \textit{Figure} e ne implementa i metodi astratti. Mantiene un'istanza di \textit{FillColour} e di \textit{TextFont} che identifica il font del testo. Implementa il metodo \textit{toSVG} dell'interfaccia \textit{SVGWritable} e il metodo \textit{fromSVG} dell'interfaccia \textit{SVGReadable}, si serve dei metodi della classe \textit{SVGGenerator}.
+Deriva da \textit{Figure} e ne implementa i metodi astratti. Mantiene un'istanza di \textit{FillColour} e di \textit{TextFont} che identifica il font del testo. Implementa il metodo \textit{toSVG} dell'interfaccia \textit{SVGWritable} e il metodo \textit{fromSVG} dell'interfaccia \textit{SVGReadable}, si serve dei metodi della classe \textit{SVGGenerator}. Si serve della classe \textit{ParsingError} per la gestione degli errori del metodo \textit{fromSVG()}.
 \subsubsezione{Interfacce e relazioni di uso da altre componenti}
 Creato dalla lettura di un file SVG oppure dall'interfaccia utente. Manipolato dall'interfaccia utente. Chiamato da \textit{SVGWriter} per trasformare la figura in formato SVG, e da \textit{SVGReader} per creare un'istanza da un file SVG.
 \subsubsezione{Attivit\`a svolte e dati trattati}
@@ -1138,7 +1134,7 @@ Nel costruttorte viene controllato se il browser supporta le API per il disegno 
 \item[-] \textit{draw(canvas)} disegna il \textit{{\_}txt} usando le API del contesto grafico. L'altezza del testo \`e uguale all'altezza del \textit{BoundingRectangle}, mentre la larghezza del \textit{BoundingRectangle} definisce la larghezza massima del testo. Viene disegnato due volte: la prima per il riempimento, la seconda per il bordo. Prima di disegnarsi richiama \textit{applyToContext} sui colori del bordo e di riempimento, e setta l'attributo \textit{font} del contesto grafico all'altezza assoluta del \textit{BoundingRectangle} in pixel, seguita dalla rappresentazione CSS di \textit{{\_}font}.
 \item[-] \textit{fallbackDraw(canvas)} metodo usato al posto di \textit{draw} quando il browser non ha il supporto per il testo. Disegna il testo usando i metodi della libreria \textit{canvastext.js}. Visti i limiti della libreria, ignora il colore di riempimento ed il font.
 \item[-] \textit{toSVG(gen)} crea un tag \textit{text} con il metodo \textit{startCommand} e aggiunge gli attributi secondo lo standard SVG1.1 con il metodo \textit{attr}. Entrambi questi metodi appartengono alla classe \textit{SVGGenerator}. Come coordinate di riferimento per la figura si ricava il punto in basso a sinistra, e si serve del metodo \textit{text} di \textit{SVGGenerator} per scrivere il testo dell'elemento. Infine scrive il tag di chiusura con il metodo \textit{endCommand} di \textit{SVGGenerator}.
-\item[-] \textit{fromSVG(n)} ottiene il valore degli attributi del nodo \textit{n} come stringhe, li trasforma in interi quando necessario, aggiorna il \textit{BoundingRectangle} su cui si basa il costruttore per disegnare il testo e scrive i nuovi valori nelle propriet\`a della figura.  
+\item[-] \textit{fromSVG(n)} ottiene il valore degli attributi del nodo \textit{n} come stringhe, li trasforma in interi quando necessario e aggiorna il \textit{BoundingRectangle} su cui si basa il costruttore per disegnare il testo: la larghezza del BoundingRectangle sar\`a il valore dell'attributo "textLength" quando \`e presente, altrimenti sar\`a un approssimazione in funzione dell'altezza. Prima di scrivere i nuovi valori nelle propriet\`a della figura, li controlla con i metodi della classe \textit{ParsingError}: \textit{intCheck()} se l'attributo \`e di tipo numerico, \textit{opCheck()} se l'attributo riguarda l'opacit\`a, \textit{hexCheck()} se l'attributo riguarda il colore.
 \end{elencopuntato}
 
 \sezione{Specifica delle componenti - ApplicationLogic, conversione SVG}
@@ -1205,10 +1201,25 @@ Nessuna.
 \subsubsezione{Attivit\`a svolte e dati trattati}
 \paragrafo{Metodi pubblici:}
 \begin{elencopuntato}[\subsubsecindent]
-\item[-]  \textit{read(doc)} ottiene un modello \underline{DOM} dalla stringa \textit{doc} attraverso il metodo \textit{parsing} di \textit{XMLParser} e lancia un errore se l'operazione non ha successo. Itera il DOM per accedere ai tag; per ognuno controlla che sia presente nella tabella della classe \textit{SVGElementRegistry} e in caso affermativo chiama il metodo \textit{fromSVG} sull'istanza della corrispondente figura. Infine aggiunge la figura all'istanza di \textit{FigureSet}.
+\item[-]  \textit{read(doc)} ottiene un modello \underline{DOM} dalla stringa \textit{doc} attraverso il metodo \textit{parsing} di \textit{XMLParser} e lancia un errore se l'operazione non ha successo. Ottiene gli attributi "height" e "width" dell'elemento SVG e li controlla chiamando \textit{intCheck()}. Successivamente itera il DOM per accedere ai tag; se incontra un tag "g" (usato per raggruppare altri tag) itera sui suoi figli. Questo serve in particolare per poter accedere ai file SVG salvati dal programma Inkscape, che racchiude tutte le figure dentro questo tag. Per ogni tag controlla che sia presente nella tabella della classe \textit{SVGElementRegistry} e in caso affermativo chiama il metodo \textit{fromSVG} sull'istanza della corrispondente figura. Se tale metodo non ritorna il valore 0 (che sta a significare che si \`e verificato un errore) aggiunge la figura all'istanza di \textit{FigureSet}.
 \end{elencopuntato}
 
-
+\subsezione{ParsingError}
+\subsubsezione{Tipo, obiettivo e funzione del componente}
+Si occupa dei controlli sulla presenza degli attributi e sui loro valori, avvisando in caso di errore.
+\subsubsezione{Relazioni d'uso di altre componenti}
+Nessuna.
+\subsubsezione{Interfacce e relazioni di uso da altre componenti}
+Chiamati dai metodi \textit{fromSVG()} delle varie figure.
+\subsubsezione{Attivit\`a svolte e dati trattati}
+I metodi si servono della variabile globale \textit{nf} per sapere la posizione nel file SVG della figura che si sta correntemente controllando.
+\paragrafo{Metodi pubblici:}
+\begin{elencopuntato}[\subsubsecindent]
+\item[-] \textit{err(msg)} avvisa l'utente mostrando la stringa \textit{msg} che illustra il luogo e il tipo dell'errore verificatosi.
+\item[-] \textit{hexCheck(str, fs)} controlla se la stringa \textit{str} \`e un valore esadecimale RGB valido oppure \`e "none". Se non \`e un valore valido chiama \textit{err()} per visualizzare un messaggio di errore indicando il nome dell'attributo (fill o stroke) presente nella stringa \textit{fs}, e restituisce il valore booleano false.
+\item[-] \textit{opCheck(op, fs)} controlla se il valore contenuto in \textit{op} \`e un numero e in tal caso se \`e compreso tra 0 e 1. Se non \`e un valore valido chiama \textit{err()} per visualizzare un messaggio di errore indicando il nome dell'attributo (fill o stroke) presente nella stringa \textit{fs}, e restituisce il valore booleano false.
+\item[-] \textit{intCheck(n, name)} controlla in primo luogo se \textit{n} esiste, altrimenti avvisa che l'attributo indicato da \textit{name} non \`e presente e ritorna il valore false. Poi controlla se \textit{n} \`e un valore numerico e in caso contrario mostra un errore chiamando \textit{err} e ritorna. Se l'attributo indicato da \textit{name} \`e "height", "width", "rx", "ry" o "font-size", controlla che \textit{n} sia un valore non negativo. In caso contrario avvisa l'utente dell'errore e ritorna false.
+\end{elencopuntato}
 
 \subsezione{XMLParser}
 \subsubsezione{Tipo, obiettivo e funzione del componente}
@@ -1246,7 +1257,7 @@ Permette l'accesso all'applicazione ed al manuale utente, gestisce il salvataggi
 
 \subsezione{Request}
 \subsubsezione{Tipo, obiettivo e funzione del componente}
-Classe che accetta le richieste dal \underline{client} e le inoltra alla classe \textit{Server}. Permette la comunicazione tra il client e il server.
+Classe che accetta una richiesta di salvataggio o di caricamento dal \underline{client} e la inoltra alla classe \textit{Server}. Permette la comunicazione tra il client e il server.
 \subsubsezione{Relazioni d'uso di altre componenti}
 Utilizza istanze di \textit{Server} e di \textit{ConnectionError}.
 \subsubsezione{Interfacce e relazioni di uso da altre componenti}
@@ -1254,7 +1265,7 @@ Utilizza istanze di \textit{Server} e di \textit{ConnectionError}.
 \subsubsezione{Attivit\`a svolte e dati trattati}
 \paragrafo{Metodi pubblici:}
 \begin{elencopuntato}[\subsubsecindent]
-\item[-] \textit{service(HttpServletRequest,HttpServletResponse)} \`e il metodo proprio della servlet che comunica con il client, gestendo le richieste e le risposte. 
+\item[-] \textit{service(HttpServletRequest,HttpServletResponse)} \`e il metodo proprio della servlet che comunica con il client. Utilizza la classe Java non standard \textit{MultipartRequest} per ricevere i dati inviati dal client. Questi dati vengono poi inoltrati alla classe \textit{Server} chiamando i corrispondenti metodi \textit{getSave} e \textit{getLoad}. Riceve come parametri un oggetto di tipo \textit{HttpServletRequest} e un oggetto di tipo \textit{HttpServletResponse} per gestire rispettivamente una richiesta proveniente dal client e la risposta del server.
 \end{elencopuntato}[\subsubsecindent]
 
 \subsezione{Server}
@@ -1273,8 +1284,8 @@ Utilizza istanze di \textit{File}, \textit{ServerError} e \textit{Clean}.
 \end{elencopuntato}
 \paragrafo{Metodi pubblici:}
 \begin{elencopuntato}[\subsubsecindent]
-\item[-] \textit{getSave()} richiede il salvataggio del file rappresentato da \textit{nameFile} con il contenuto \textit{content} e ritorna il nome del file salvato. Questo file viene poi scaricato in locale dal client.
-\item[-] \textit{getLoad()} richiede il caricamento del file rappresentato da \textit{target} e ritorna il file da caricare.
+\item[-] \textit{getSave()} Utilizza un oggetto \textit{File} con il metodo \textit{getFile} per effettuare il salvataggio del file rappresentato da \textit{nameFile} con il contenuto \textit{content} e ritorna il nome del file salvato. Questo file viene poi scaricato in locale dal client. Inoltre utilizza la classe \textit{Clean} con il metodo \textit{sweeper} per controllare i file temporanei presenti sul server.
+\item[-] \textit{getLoad()} Utilizza un oggetto \textit{File} con il metodo \textit{getFile} per effettuare il caricamento del file rappresentato da \textit{target} e ritorna il contenuto del file caricato.
 \end{elencopuntato}
 
 
@@ -1295,14 +1306,14 @@ Utilizza istanze di \textit{FileNotFound}.
 \end{elencopuntato}
 \paragrafo{Metodi pubblici:}
 \begin{elencopuntato}[\subsubsecindent]
-\item[-] \textit{getFile()} ritorna un file salvato o da caricare.
+\item[-] \textit{getFile()} riceve un file e il contenuto da salvare o un file da caricare. Nel caso di un salvataggio, crea il nuovo file e lo restituisce. Nel caso di caricamento, legge il contenuto del file da caricare e lo restituisce.
 \item[-] \textit{deleteFile(File)} elimina il file passato come parametro.
 \end{elencopuntato}
 
 
 \subsezione{Clean}
 \subsubsezione{Tipo, obiettivo e funzione del componente}
-Classe che permette di verificare la presenza nel server di file non utilizzati e provvedere alla loro rimozione.
+Classe che permette di verificare la presenza nel server di file SVG non utilizzati e provvedere alla loro rimozione.
 \subsubsezione{Relazioni d'uso di altre componenti}
 Mantiene un'istanza di \textit{File}.
 \subsubsezione{Interfacce e relazioni di uso da altre componenti}
@@ -1310,7 +1321,7 @@ Mantiene un'istanza di \textit{File}.
 \subsubsezione{Attivit\`a svolte e dati trattati}
 \paragrafo{Metodi pubblici:}
 \begin{elencopuntato}[\subsubsecindent]
-\item[-] \textit{sweeper()} controlla tramite una classe filtro se esistono dei file sul server inutilizzati da un determinato periodo di tempo, e li rimuove usando la classe \textit{File}.
+\item[-] \textit{sweeper()} controlla tramite una classe filtro se esistono dei file sul server inutilizzati da un determinato periodo di tempo (fissato in 15 minuti), e li rimuove usando la classe \textit{File}. Il controllo viene effettuato confrontando la data e l'ora attuale del server con la data e l'ora di ultima modifica dei files presenti sul server. Questo controllo viene effettuato esclusivamente sui files SVG, grazie all'utilizzo della classe filtro a ad una lista contenente tutti i files SVG presenti sul server.
 \end{elencopuntato}
 
 \subsezione{CommunicationError}
@@ -1323,7 +1334,7 @@ Implementata da \textit{ConnectionServer} e da \textit{ServerError}.
 \subsubsezione{Attivit\`a svolte e dati trattati}
 \paragrafo{Metodi pubblici:}
 \begin{elencopuntato}[\subsubsecindent]
-\item[-] \textit{getError} ritorna l'errore di comunicazione.
+\item[-] \textit{getError} ritorna l'errore di comunicazione riscontrato come stringa.
 \end{elencopuntato}
 
 
@@ -1337,7 +1348,7 @@ Implementa \textit{CommunicationError}.
 \subsubsezione{Attivit\`a svolte e dati trattati}
 \paragrafo{Metodi pubblici:}
 \begin{elencopuntato}[\subsubsecindent]
-\item[-] \textit{getError()} ritorna l'errore di connessione riscontrato.
+\item[-] \textit{getError()} ritorna l'errore di connessione riscontrato come stringa.
 \end{elencopuntato}
 
 \subsezione{ServerError}
@@ -1350,7 +1361,7 @@ Implementa \textit{CommunicationError}.
 \subsubsezione{Attivit\`a svolte e dati trattati}
 \paragrafo{Metodi pubblici:}
 \begin{elencopuntato}[\subsubsecindent]
-\item[-] \textit{getError()} ritorna l'errore del server riscontrato.
+\item[-] \textit{getError()} ritorna l'errore del server riscontrato come stringa.
 \end{elencopuntato}
 
 
@@ -1364,7 +1375,7 @@ Nessuna.
 \subsubsezione{Attivit\`a svolte e dati trattati}
 \paragrafo{Metodi pubblici:}
 \begin{elencopuntato}[\subsubsecindent]
-\item[-] \textit{getFileNotFound()} ritorna l'errore di file non trovato.
+\item[-] \textit{getFileNotFound()} ritorna l'errore di file non trovato come stringa.
 \end{elencopuntato}
 
 

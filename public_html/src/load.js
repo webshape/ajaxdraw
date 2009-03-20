@@ -8,7 +8,7 @@
  * @author Mirco Geremia
  */
 
-var nf = 0; /* the number of the current parseing figure*/
+var nf = 0; /* the number of the current parsing figure*/
 
 /**
  * SVGReader create a figureSet and an elementRegistry
@@ -18,7 +18,6 @@ function SVGReader() {}
 
 /**
  * Error manager
- * @param {String} msg the description of the error
  */
 function ParsingError () {}
 
@@ -56,7 +55,7 @@ ParsingError.prototype.intCheck = function (n, name){
 	 if ((name == "height" || name == "width" || name == "font-size" || name == "rx" || name == "ry") && n < 0){
 		// h, w and font-size can't be negative
         if (nf === 0) {
-			 this.err("Errore elemento SVG \n" + name + " non puo' avere un valore negativo");
+			 this.err("Lattributo \n" + name + " dell\'elemento SVG non puo' avere un valore negativo");
 			 }
         else {
 			 this.err("Figura n. " + nf + "\n" + name + " non puo' avere un valore negativo");
