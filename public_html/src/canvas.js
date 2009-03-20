@@ -1325,7 +1325,7 @@ function RotationSetter(angle){
 			    var rotation = Math.PI * (360+angle) / 180;
 					}
                         //var ctx = canvas.getContext("2d");
-                        this.rotate(rotation);
+                        //this.rotate(rotation);
 			
      canvasObj.clear();
      visual.refresh();
