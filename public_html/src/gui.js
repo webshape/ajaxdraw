@@ -336,17 +336,23 @@ $(document).ready(function(){
    $('#my_iframe').bind('load', function () {
                           $("#loadDialog").dialog( 'close' );
                           doc = $("#my_iframe").contents().find('body').html();
-                          var  r = new SVGReader();
-                          try {
-                            var fs = r.read(doc);
-                            visual.setFigureSet(fs);
+                          
+                          if (doc.indexOf("Errore:")==0) {
+                            // server error
+                            alert(doc);
+                          } else {
+                            var  r = new SVGReader();
+                            try {
+                              var fs = r.read(doc);
+                              visual.setFigureSet(fs);
+                            }
+                            catch (err) {
+                              alert('Errore durante il caricamento: ' + err);
+                            }
+                            canvasObj.clear();
+                            visual.refresh();
+                            $('#my_iframe').unbind('load');
                           }
-                          catch (err) {
-                            alert('Errore durante il caricamento: ' + err);
-                          }
-                          canvasObj.clear();
-                          visual.refresh();
-                          $('#my_iframe').unbind('load');
                         });
    });
 
