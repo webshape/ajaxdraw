@@ -432,7 +432,7 @@ function ClearCanvasButton () {
 function SaveButton () {
    var s = new SVGWriter();
    var svg = s.write(visual.getFigureSet());
-   alert(svg);
+   //alert(svg);
    $("#saveDestination").text(svg);
 }
 
