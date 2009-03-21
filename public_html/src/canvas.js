@@ -244,6 +244,7 @@ Visualization.prototype.setCanvasDimension = function(canvasObj,height,width){
  */
 Visualization.prototype.eraseElement = function(figureSet,canvasObj){
    figureSet.each(function (f) {
+     // check if a figure is selected, if so remove it
      if (f.isSelected()) {
        figureSet.rem(f);
      }
@@ -409,6 +410,7 @@ Button.prototype.bindCursor = function(type){
 */
 function ClearCanvasButton () { //action called from index.html, clears che canvas at button click
   canvasObj.clear();
+  // remove all figures
   visual.getFigureSet().each(function(f){
     visual.getFigureSet().rem(f);
   });
@@ -424,6 +426,7 @@ function SaveButton () { //called from index.html, saves the figureset in a file
    var s = new SVGWriter();
    var svg = s.write(visual.getFigureSet());
    //alert(svg);
+  // #saveDestination will be sent by the form
    $("#saveDestination").text(svg);
 }
 
@@ -557,8 +560,6 @@ SelectionButton.prototype.bindCanvas = function (toolbar,canvas,canvasObj,visual
 	  canvasObj.clear();
 	  visual.refresh();
         }
-        // don't throw: no one will catch it
-  //throw 'No figure found';
       }
       else {
         visual.deselectAll(figureSet); // only one selection a time
@@ -652,6 +653,7 @@ SelectionButton.prototype.bindCanvas = function (toolbar,canvas,canvasObj,visual
 
 	self._handleCtrlPoint(coord, actualFigure, true); //control points
         $('#cv').bind('mouseleave', function (e) {
+          // stop operations when the mouse goes out of the canvas
           $('#cv').trigger('mouseup');
           $('#cv').unbind('mouseleave');
         });
@@ -818,8 +820,10 @@ Scale.prototype.scalePoint = function (p, offset) {
 Scale.prototype.toAbs = function (p, offset) {
   var f = this.getFactor();
   var pt = new Point(p.x, p.y);
+  // apply offset
   pt.x -= offset.x;
   pt.y -= offset.y;
+  // apply scaling factor
   pt.x *= f;
   pt.y *= f;
   return pt;
@@ -1279,7 +1283,8 @@ function EdgeNumberSetter(en) {
   $('#submitEdge').unbind('click');
   $('#submitEdge').click(function (e) {
     var n = parseInt($('#edgeNumber').get(0).value, 10);
-    if (!isNaN(n)) {
+    // change only if valid
+    if (!isNaN(n) && n > 2) {
       en.setVal(n);
     }
     canvasObj.clear();
@@ -1335,6 +1340,7 @@ function BoundingRectangleSetter(bounds){
                            var y = parseFloat($('#y').get(0).value);
                            var h = parseFloat($('#DialogHeight').get(0).value);
                            var w = parseFloat($('#DialogWidth').get(0).value);
+                           // change only valid values
                            if (!isNaN(x)) {
                              bounds.start().x = x;
                            }
