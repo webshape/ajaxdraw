@@ -75,11 +75,15 @@
 	</li>
 	<li id="50002"><a href="#">Visualizza</a>
 		<ul style="width:130px">
-			<li itemIcon="images/menu_bar/colorDialog.gif" jsFunction='$("#colorDialog").dialog( "close" );
+			<li itemIcon="images/menu_bar/colorDialog.gif" 
+				 jsFunction='$("#colorDialog").dialog( "close" );
+								 var h;
+								 if($.browser.name=="opera"){h=310;}
+								 else{h=260;}
 								$("#colorDialog").dialog({
 									position: ["right","top"],
 									title: "Modifica Colori",
-    								height: 260,
+    								height: h,    					
     								width: 230,
 									resizable: false,
     								dialogClass: "Dialog1"
