@@ -451,7 +451,7 @@ SelectionButton.prototype = new Button();
 /**
  * Handle the movement of control points
  * When oneSelected is true, also handles properties dialogs
- * @param {Point} pt point clicked 
+ * @param {Point} pt point clicked
  * @param {Figure} f currently selected figure
  * @param {Boolean} oneSelected is the point on a figure?
  * @return true if a point was handled, false otherwise
@@ -1242,7 +1242,7 @@ ColourDialog.prototype.create= function(){
       position: ["right","top"],
       height: 260,
       width: 230,
-  resizable: false,
+      resizable: false,
       dialogClass: "Dialog1"
 
     });

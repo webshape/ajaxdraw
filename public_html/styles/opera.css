@@ -110,11 +110,11 @@ canvas {
 
 #colorx,#colory{
 	width: 400px;
-/*	display: none;*/
+	display: none;
 }
-
-
-
+#color2{
+	margin-top: 1em;
+	}
 #toTopButton{
 	background-image:url("../images/go-top.png");
 	width: 3em;
