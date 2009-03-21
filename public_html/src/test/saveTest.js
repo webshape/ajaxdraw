@@ -87,6 +87,17 @@ function runSaveTest () {
 	  b.toSVG(s);
 	  equals(s._doc, svgValue, 'BezierCurve');
 
+         // text
+         var t = new Text(new TextString('Aloha!'));
+         t.getBounds().setStart(new Point(10, 10));
+         t.getBounds().setEnd(new Point(100, 40));
+         svgValue = '<text x="10" y="40" font-family="sans-serif" font-size="30" textLength="90" fill="#000000" fill-opacity="1" stroke="#000000" stroke-opacity="1">'+"\nAloha!\n</text>\n";
+     	 s = new SVGGenerator(1000, 1000);
+	 s._doc = "";
+	 t.toSVG(s);
+	 equals(s._doc, svgValue, 'Text');
+    
+         
 	  // general
 	  var fs = new FigureSet();
 	  fs.add(r);
