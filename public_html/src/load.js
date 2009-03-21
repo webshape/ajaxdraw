@@ -150,6 +150,9 @@ XMLParser.prototype.parsing = function (doc) {
   catch(e) {
 	 try { //Firefox
 		var parser = new DOMParser();
+                if($.browser.name == "opera") {
+                  doc = doc.replace(/<\?.*?\?>/g, '');
+                }
 		xmlDoc = parser.parseFromString(doc, "text/xml");
 		if (xmlDoc.documentElement.nodeName == "parsererror") {
 		  errstr = xmlDoc.documentElement.childNodes[0].nodeValue;
@@ -159,7 +162,7 @@ XMLParser.prototype.parsing = function (doc) {
   }
 
   if (errstr !== null) {
-    throw errstr;
+   throw errstr;
   } else {
     return xmlDoc;
   }
