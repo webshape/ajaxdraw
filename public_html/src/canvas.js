@@ -51,7 +51,7 @@ Page.prototype.loadStylesheet = function (){
   var nameComp;
   if (name=="msie"){
     nameComp = $.browser.className +".css";
-    alert(nameComp); //msie7 mod.non standard, msie8 mod.standard IE8
+    //alert(nameComp); //msie7 mod.non standard, msie8 mod.standard IE8
   }
   else{
     nameComp = name+".css";
@@ -1302,6 +1302,11 @@ function FontSetter(font){
    });
 }
 
+/**
+ * @constructor
+ * Text String Setter
+ * @param {TextString} text the string that will be draw
+ */
 function TextStringSetter(text){
    $('#textString').get(0).value = text.getName();
    $('#submitFont').unbind('mouseup');
@@ -1312,24 +1317,12 @@ function TextStringSetter(text){
    });
 }
 
-function RotationSetter(angle){
-   $('#rotationNumber').get(0).value = angle.getAngle();
-   $('#submitRotation').click(function (e) {
-           angle.setAngle($('#rotationNumber').get(0).value);
-                        if (angle >= 0) {
-     var rotation = Math.PI * angle / 180;
-   }
-                        else {
-       var rotation = Math.PI * (360+angle) / 180;
-          }
 
-                        //canvasObj.rotate(rotation);
-
-     canvasObj.clear();
-     visual.refresh();
-   });
-}
-
+/**
+ * @constructor
+ * Bounding Rectangle Setter
+ * @param {BoundingRectangle} bound the bounds of the figure
+ */
 function BoundingRectangleSetter(bounds){
   $('#submitRect').unbind('click');
   $('#x').get(0).value = bounds.start().x;
@@ -1357,3 +1350,22 @@ function BoundingRectangleSetter(bounds){
                            visual.refresh();
                          });
 }
+
+
+/*function RotationSetter(angle){
+   $('#rotationNumber').get(0).value = angle.getAngle();
+   $('#submitRotation').click(function (e) {
+           angle.setAngle($('#rotationNumber').get(0).value);
+                        if (angle >= 0) {
+     var rotation = Math.PI * angle / 180;
+   }
+                        else {
+       var rotation = Math.PI * (360+angle) / 180;
+          }
+
+                        //canvasObj.rotate(rotation);
+
+     canvasObj.clear();
+     visual.refresh();
+   });
+}*/
