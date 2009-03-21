@@ -50,6 +50,10 @@ margin-left:0.5em;
 	border:solid;	
 }
 
+#color2,#color1{
+	margin-top: 0.5em;
+	}
+	
 #opBorder,#opFill{
   margin-top:-0.5em; 
 }
@@ -59,7 +63,7 @@ margin-left:0.5em;
 	margin-top:0.5em;
 	margin-left: 0.5em;
 	position: fixed;
-	}
+}
 
 .toolbarButton{
 	width: 3em;
@@ -68,9 +72,7 @@ margin-left:0.5em;
 	background-color:#F4F3F2;
 	background-repeat: no-repeat;
 	background-position: center;
-	margin-left:1em;
-	
-	
+	margin-left:1em;	
 }
 
 .toolbarButton:hover{
@@ -80,20 +82,23 @@ margin-left:0.5em;
 
 #selectionButton{
 	background-image:url("../images/selezione.png");
-	}
+}
+
 #zoomInButton{
 	background-image:url("../images/zoomIn.png");
-		}
+}
+
 #zoomOutButton{
 	background-image:url("../images/zoomOut.png");
-		}	
+}	
+
 #moveViewButton{
 	background-image:url("../images/move.png");
-		}	
+}	
 		
 #straightLineButton{
 	background-image:url("../images/lineaDritta.png");
-		}	
+}	
 	
 #bezierCurveButton{
     background-image:url("../images/linea.png");
@@ -114,8 +119,7 @@ margin-left:0.5em;
 	background-image:url("../images/testo.png");
 }
 #cloneButton{
-margin-left:0.5em;
-
+	margin-left:0.5em;
 }
 /*zona salva/carica SVG */
 #saveLoadZone{
@@ -124,15 +128,16 @@ margin-left:0.5em;
 
 
 #divBorderCol,#divFillCol{
-margin-top: -0.6em;
+	margin-top: -0.6em;
 }
 #polygonTitle,#textTitle{
-text-align: center;
-text-transform: uppercase;
-text-decoration: underline;
+	text-align: center;
+	text-transform: uppercase;
+	text-decoration: underline;
 }
+
 #colorx,#colory{
-width: 400px;display: none;
+	width: 400px;display: none;
 }
 
 #toTopButton{

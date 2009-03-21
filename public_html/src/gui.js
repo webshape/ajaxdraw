@@ -63,17 +63,16 @@ $(document).ready(function(){
       hex2 = palette.rgbToHex($(this).css("background-color"));
     }
     color = palette.setColour(hex2,color.BorderColor,color.FillColor);
-    toolbar.rebind(canvas,canvasObj,visual,figureSet,color.BorderColor,color.FillColor);
+    toolbar.rebind(canvas,canvasObj,visual,color.BorderColor,color.FillColor);
   });
 
 
   $("#selectionButton").click(function () {
     $("#edgeSetterZone").css({"display":"block"});
     $("#fontSetterZone").css({"display":"block"});
-    $("#rotationSetterZone").css({"display":"block"});
     toolbar.deselectAll();
     selectionButton.bindCursor("selection");
-    selectionButton.bindCanvas(toolbar,canvas,canvasObj,visual,figureSet);
+    selectionButton.bindCanvas(toolbar,canvas,canvasObj,visual);
   });
 
   $("#zoomInButton").click(function () {
@@ -82,7 +81,7 @@ $(document).ready(function(){
     zoomInButton.bindCursor("zoomIn");
     $("#fontSetterZone").css({"display":"none"});
     $("#edgeSetterZone").css({"display":"none"});
-    zoomInButton.bindCanvas(toolbar,canvas,canvasObj,visual,figureSet);
+    zoomInButton.bindCanvas(toolbar,canvas,canvasObj,visual);
   });
     $("#zoomOutButton").click(function () {
     $(".Dialog2").height(210);
@@ -90,7 +89,7 @@ $(document).ready(function(){
     zoomInButton.bindCursor("zoomOut");
     $("#fontSetterZone").css({"display":"none"});
     $("#edgeSetterZone").css({"display":"none"});
-    zoomOutButton.bindCanvas(toolbar,canvas,canvasObj,visual,figureSet);
+    zoomOutButton.bindCanvas(toolbar,canvas,canvasObj,visual);
   });
 
   $("#moveViewButton").click(function () {
@@ -108,7 +107,7 @@ $(document).ready(function(){
     $("#fontSetterZone").css({"display":"none"});
     toolbar.deselectAll();
     straightLineButton.bindCursor("line");
-    straightLineButton.bindCanvas(toolbar,canvas,canvasObj,visual,figureSet,color.BorderColor,color.FillColor);
+    straightLineButton.bindCanvas(toolbar,canvas,canvasObj,visual,color.BorderColor,color.FillColor);
   });
 
   $("#bezierCurveButton").click(function () {
@@ -118,7 +117,7 @@ $(document).ready(function(){
     $("#fontSetterZone").css({"display":"none"});
     toolbar.deselectAll();
     bezierCurveButton.bindCursor("bezier");
-    bezierCurveButton.bindCanvas(toolbar,canvas,canvasObj,visual,figureSet,color.BorderColor,color.FillColor);
+    bezierCurveButton.bindCanvas(toolbar,canvas,canvasObj,visual,color.BorderColor,color.FillColor);
   });
 
   $("#squareButton").click(function () {
@@ -128,7 +127,7 @@ $(document).ready(function(){
     $("#fontSetterZone").css({"display":"none"});
     toolbar.deselectAll();
     squareButton.bindCursor("square");
-    squareButton.bindCanvas(toolbar,canvas,canvasObj,visual,figureSet,color.BorderColor,color.FillColor);
+    squareButton.bindCanvas(toolbar,canvas,canvasObj,visual,color.BorderColor,color.FillColor);
   });
 
   $("#circleButton").click(function () {
@@ -138,7 +137,7 @@ $(document).ready(function(){
     $("#fontSetterZone").css({"display":"none"});
     circleButton.bindCursor("circle");
     toolbar.deselectAll();
-    circleButton.bindCanvas(toolbar,canvas,canvasObj,visual,figureSet,color.BorderColor,color.FillColor);
+    circleButton.bindCanvas(toolbar,canvas,canvasObj,visual,color.BorderColor,color.FillColor);
   });
 
   $("#polygonButton").click(function () {
@@ -148,7 +147,7 @@ $(document).ready(function(){
     $("#fontSetterZone").css({"display":"none"});
     circleButton.bindCursor("polygon");
     toolbar.deselectAll();
-    polygonButton.bindCanvas(toolbar,canvas,canvasObj,visual,figureSet,color.BorderColor,color.FillColor);
+    polygonButton.bindCanvas(toolbar,canvas,canvasObj,visual,color.BorderColor,color.FillColor);
   });
 
   $("#freeLineButton").click(function () {
@@ -158,7 +157,7 @@ $(document).ready(function(){
     $("#fontSetterZone").css({"display":"none"});
     toolbar.deselectAll();
     freeLineButton.bindCursor("freeline");
-    freeLineButton.bindCanvas(toolbar,canvas,canvasObj,visual,figureSet,color.BorderColor,color.FillColor);
+    freeLineButton.bindCanvas(toolbar,canvas,canvasObj,visual,color.BorderColor,color.FillColor);
   });
 
   $("#textButton").click(function () {
@@ -168,7 +167,7 @@ $(document).ready(function(){
     $(".Dialog2").height(300);
     toolbar.deselectAll();
     textButton.bindCursor("text");
-    textButton.bindCanvas(toolbar,canvas,canvasObj,visual,figureSet,color.BorderColor,color.FillColor);
+    textButton.bindCanvas(toolbar,canvas,canvasObj,visual,color.BorderColor,color.FillColor);
 
   });
 
@@ -192,68 +191,134 @@ $(document).ready(function(){
   // Colour wheel
   $("#picker1").farbtastic("#color1");
   $("#picker2").farbtastic("#color2");
-
   // Change colour on click on farbstastic
   var openBorder = false;
   var openFill = false;
-  $("#changeBorderCol").toggle(
-    function () {
-      $("#colorx").show("slow");
-      $("#colory").css({"display":"none"});
-      if(openFill === false){
-	$(".Dialog1").height(500);
+
+  if(page.getBrowserName()!="opera"){ //workaround for Opera graphics issues
+    $("#changeBorderCol").toggle(
+      function () {
+	$("#colorx").show("slow");
+	if(openFill === false){
+	  if(page.getBrowserName()=="msie"){ //dimension changed because of IE farb incompatibility
+	    $(".Dialog1").height(310);
+	  }
+	  else{
+	     $(".Dialog1").height(500);
+	  }
+	}
+	else {
+	   if(page.getBrowserName()=="msie"){
+	     $(".Dialog1").height(370);
+	   }
+	   else{
+	     $(".Dialog1").height(770);
+	   }
+	}
+	openBorder = true;
+      },
+      function() {
+	$(".Dialog1").height(260);
+	$("#colorx").hide("slow");
+	$.farbtastic("#color1").setColor(document.getElementById("color1").value);
+	color.BorderColor=$.farbtastic("#color1").color;
+	document.getElementById("borderColorNow").style.backgroundColor = color.BorderColor;
+	toolbar.rebind(canvas,canvasObj,visual,color.BorderColor,color.FillColor);
+	if(openFill === false){
+	  if(page.getBrowserName()=="msie"){ //dimension changed because of IE farb incompatibility
+	    $(".Dialog1").height(260);
+	  }
+	  else{
+	     $(".Dialog1").height(260);
+	  }
+	}
+	else {
+	   if(page.getBrowserName()=="msie"){
+	     $(".Dialog1").height(340);
+	   }
+	   else{
+	     $(".Dialog1").height(500);
+	   }
+	}
+	openBorder = false;
       }
-      else {
-        $(".Dialog1").height(770);
+    );
+    $("#changeFillCol").toggle(
+      function () {
+	$("#colory").show("slow");
+	if(openBorder === false){
+	  if(page.getBrowserName()=="msie"){
+	     $(".Dialog1").height(340);
+	  }
+	  else{
+	    $(".Dialog1").height(500);
+	  }
+	}
+	else {
+	  if(page.getBrowserName()=="msie"){
+	    $(".Dialog1").height(370);
+	  }
+	  else{
+	    $(".Dialog1").height(740);
+	  }
+	}
+	openFill = true;
+      },
+      function() {
+	$(".Dialog1").height(260);
+	$("#colory").hide("slow");
+	$.farbtastic("#color2").setColor(document.getElementById("color2").value);
+	color.FillColor = $.farbtastic("#color2").color;
+	document.getElementById("fillColorNow").style.backgroundColor = color.FillColor;
+	toolbar.rebind(canvas,canvasObj,visual, color.BorderColor,color.FillColor);
+	if(openBorder === false){
+	  if(page.getBrowserName()=="msie"){
+	    $(".Dialog1").height(260);
+	  }
+	  else{
+	    $(".Dialog1").height(260);
+	  }
+	}
+	else {
+	  if(page.getBrowserName()=="msie"){
+	    $(".Dialog1").height(310);
+	  }
+	  else{
+	  $(".Dialog1").height(500);
+	  }
+	}
+	openFill = false;
       }
-      openBorder = true;
-    },
-    function() {
-      $(".Dialog1").height(260);
-      $("#colorx").hide("slow");
+    );
+  }
+  else{
+    $(".Dialog1").height(310);
+    $(".farbtastic").hide();
+    $("#picker1").hide();
+    $("#picker2").hide();
+    $("#picker1").css({"display":"none"});
+    $("#picker2").css({"display":"none"});
+    $("#colorx").css({"display":"block"});
+    $("#colory").css({"display":"block"});
+    //border
+    $("#changeBorderCol").click(function(){
       $.farbtastic("#color1").setColor(document.getElementById("color1").value);
       color.BorderColor=$.farbtastic("#color1").color;
-      document.getElementById("borderColorNow").style.backgroundColor =
-        color.BorderColor;
-      toolbar.rebind(canvas,canvasObj,visual,figureSet,
-                     color.BorderColor,color.FillColor);
-      if(openFill === false){
-	$(".Dialog1").height(260);
-      }
-      else {
-        $(".Dialog1").height(500);
-      }
-      openBorder = false;
-    }
-  );
-  $("#changeFillCol").toggle(
-    function () {
-      $("#colory").show("slow");
-      if(openBorder === false){
-	$(".Dialog1").height(500);
-     }
-      else {
-        $(".Dialog1").height(740);
-      }
-      openFill = true;
-    },
-    function() {
-      $(".Dialog1").height(260);
-      $("#colory").hide("slow");
+      document.getElementById("borderColorNow").style.backgroundColor = color.BorderColor;
+      toolbar.rebind(canvas,canvasObj,visual,color.BorderColor,color.FillColor);
+    });
+    //fill
+    $("#changeFillCol").unbind("click");
+    $("#changeFillCol").click(function(){
+      $(".farbtastic").hide();
+      $("#picker1").hide();
+      $("#picker2").hide();
       $.farbtastic("#color2").setColor(document.getElementById("color2").value);
-      color.FillColor = $.farbtastic("#color2").color;
+      color.FillColor=$.farbtastic("#color2").color;
       document.getElementById("fillColorNow").style.backgroundColor = color.FillColor;
-      toolbar.rebind(canvas,canvasObj,visual,figureSet,color.BorderColor,color.FillColor);
-      if(openBorder === false){
-	$(".Dialog1").height(260);
-      }
-      else {
-        $(".Dialog1").height(500);
-      }
-      openFill = false;
-    }
-  );
-
+      toolbar.rebind(canvas,canvasObj,visual,color.BorderColor,color.FillColor);
+    });
+}
 
 
 
@@ -261,7 +326,6 @@ $(document).ready(function(){
  $("#saveButton").click(function () {
    $("#saveDialog").dialog( 'close' );
  });
-
 
  var doc;
  $("#loadButton").click(function () {

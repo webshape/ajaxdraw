@@ -122,6 +122,9 @@ Il presente documento descrive le strategie per la verifica della correttezza de
       RPP-RQ & Bizzotto Piero \\
                   
       \hline
+      RQ-RA & Rizzo Maurizio \\
+                  
+      \hline
       %%%%%%%%%%% FINE PARTE DA MODIFICARE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     \end{tabular}
     \caption{Lista Verificatori} %INSERIRE DIDASCALIA - SE NECESSARIA -
@@ -152,6 +155,10 @@ Il presente documento descrive le strategie per la verifica della correttezza de
       RPP-RQ & Dal Bosco Davide \\
                   
       \hline
+      RQ-RA & Geremia Mirco \\
+                  
+      \hline
+
       %%%%%%%%%%% FINE PARTE DA MODIFICARE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     \end{tabular}
     \caption{Lista Approvatori} %INSERIRE DIDASCALIA - SE NECESSARIA -
@@ -185,6 +192,8 @@ Il presente documento descrive le strategie per la verifica della correttezza de
      \hline
 %%%%%%%%%%% PARTE DA MODIFICARE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
      4.0 &   22$\slash$03$\slash$2009 Modifiche per rilascio RQ & Dissegna Stefano\\
+      \hline
+     3.7 &   21$\slash$03$\slash$2009 Metriche, valutazione e resoconto per la fase RQ-RA & Dissegna Stefano\\
       \hline
      3.6 &    19$\slash$03$\slash$2009 Aggiunta sezione sulle azioni da intraprendere dopo un errore & Dissegna Stefano\\
       \hline
@@ -438,6 +447,37 @@ Gli errori di stile trovati dal software \textit{JSLint} sono:
 \end{elencopuntato}
 
 \paragrafo{Resoconto} Lo stile adottato durante la programmazione \`e buono, considerati i pochi errori (1) trovati dal software \textit{JSLint}. Mettendo insieme i dati sulla copertura e sull'esito positivo dei test, si evince che i test controllano in modo adeguato la correttezza delle diverse funzionalit\`a del prodotto finora. Inoltre, tutti i requisiti obbligatori sono stati soddisfatti, quindi i risultati positivi dei test e della copertura non dipendono dal fatto che ci sia poco da controllare. Da questo segue che i test sono abbastanza completi. Il server invece \`e completamente privo di test. 
+
+\subsubsezione{Fase RA}
+Vengono ora riassunti i risultati raggiunti per la fase RA, usando le metriche precedentemente descritte.
+\paragrafo{Copertura dei test}
+I risultati sono stati ottenuti usando il tool \textit{JSCoverage}, precedentemente descritto.
+\begin{elencopuntato}[\subsubsecindent]
+\item[-] GUI: 17\%. 96\% con i test manuali.
+\item[-] Application Logic: 91\% su un singolo browser.
+\item[-] Server: 0\%.
+\end{elencopuntato}
+Dai dati si evince che la copertura \`e molto buona per quanto riguarda la logica interna ed \`e migliorata rispetto alla fase RQ, mentre \`e ancora nei limiti previsti per l'interfaccia. Per quanto riguarda il lato server non sono tuttora presenti test.
+
+\paragrafo{Numero di test superati}
+Eseguendo i test usando il tool \textit{QUnit}, vengono superati 164 test su 164 su tutti i browser supportati. Per maggiori dettagli, si apra il file \textit{public{\_}html/src/test/allTests.html} con un browser supportato.
+
+\paragrafo{Numero di requisiti soddisfatti}
+Sono stati soddisfatti tutti i requisiti obbligatori e i requisiti desiderabili RFD-1 ed RFD-2. Si faccia riferimento al documento \textit{AnalisiDeiRequisiti} in versione 3.0 per vedere la descrizione di questi requisiti.
+
+\paragrafo{Numero di errori di stile}
+Gli errori di stile trovati dal software \textit{JSLint} sono:
+\begin{elencopuntato}[\subsubsecindent]
+\item[-] gui.js: nessun warning.
+\item[-] canvas.js: nessun warning.
+\item[-] figures.js: nessun warning.
+\item[-] save.js: nessun warning.
+\item[-] load.js: nessun warning.
+\item[-] utils.js: nessun warning.
+\item[-] file di test: nessun warning
+\end{elencopuntato}
+
+\paragrafo{Resoconto} Lo stile adottato durante la programmazione \`e molto buono, in quanto non sono presenti errori di stile. Mettendo insieme i dati sulla copertura e sull'esito positivo dei test, si evince che i test automatici controllano in modo adeguato la logica interna dell'applicazione, ed i test manuali il corretto funzionamento dell'interfaccia. Tutti i requisiti obbligatori sono stati soddisfatti, come deve essere per la fase RA. Sono stati anche soddisfatti due requisiti desiderabili.
 
 \subsezione{Dettaglio dell'esito delle revisioni}
  

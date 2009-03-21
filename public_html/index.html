@@ -75,11 +75,15 @@
 	</li>
 	<li id="50002"><a href="#">Visualizza</a>
 		<ul style="width:130px">
-			<li itemIcon="images/menu_bar/colorDialog.gif" jsFunction='$("#colorDialog").dialog( "close" );
+			<li itemIcon="images/menu_bar/colorDialog.gif" 
+				 jsFunction='$("#colorDialog").dialog( "close" );
+								 var h;
+								 if($.browser.name=="opera"){h=310;}
+								 else{h=260;}
 								$("#colorDialog").dialog({
 									position: ["right","top"],
 									title: "Modifica Colori",
-    								height: 260,
+    								height: h,    					
     								width: 230,
 									resizable: false,
     								dialogClass: "Dialog1"
@@ -100,7 +104,7 @@
 	<li id="50003"><a href="#">Guida</a> 
 			<ul style="width:160px">
 				<li id="40000" itemIcon="images/menu_bar/guida.gif" 
-				jsFunction="window.open('../doc/ManualeUtente/help/index.html')"><a href="#">Manuale</a>				
+				jsFunction="window.open('help/index.html')"><a href="#">Manuale</a>				
 				<li itemIcon="images/menu_bar/info.gif" jsFunction='$("#aboutDialog").css({"display" : "block"});
 							$("#aboutSpan").css({"display" : "block"});
 										$("#aboutDialog").dialog({
@@ -207,9 +211,9 @@ menuBar5.init();
 <!-- Fine interfaccia -->
 <!-- Inizio Parte Dialog Colori-->
 <div id="colorDialog" class="flora" title="Modifica colori">  
-	<p>Bordo:   
+	<p id="borderPart">Bordo:   
 		<span id="borderColorNow" style="background-color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-		<input type="button" id="setBorderCol" value="Cambia" />
+		<span><input type="button" id="setBorderCol" value="Cambia" /></span>
 		<p id="opBorder"> Opacit&agrave;: <input type="text" id="borderOp" size="5" value="1"/> </p>
 		<div id="divBorderCol" >
 			<input type="button" id="changeBorderCol" name="ChangeCol" value="Cambia Colore Bordo"/>
@@ -218,13 +222,13 @@ menuBar5.init();
 	<!-- Farbtastic $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ -->
 	<form id="colorx" >
   		<div class="form-item" >
-  			<label for="color">Color:</label>
+  			<label for="color">Colore:</label>
   			<input type="text" id="color1" name="color1" value="#123456" />
   		</div>
   		<div id="picker1"></div>               
 	</form>	
 	<!-- Seconda ruota -->      
-	<p>Riemp.:  
+	<p id="fillPart" >Riemp.:  
 		<span id="fillColorNow" style="background-color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> 
 		<span><input type="button" id="setFillCol" value="Cambia" /></span>
 		 <p id="opFill"> Opacit&agrave;: <input type="text" id="fillOp" size="5" value="1" /> </p>
@@ -234,7 +238,7 @@ menuBar5.init();
 	</p>
 	<form id="colory">
   		<div class="form-item" >
-  			<label for="color">Color:</label>
+  			<label for="color">Colore:</label>
   			<input type="text" id="color2" name="color2" value="#123456" />
   		</div>
   		<div id="picker2"></div>
@@ -266,24 +270,17 @@ menuBar5.init();
       <input id="submitEdge" type="button" value="Cambia" />
 	</p>
 	<p id="fontSetterZone" style="display:none">
-<span id="textTitle">Testo:</span> 
+	<span id="textTitle">Testo:</span> 
 	<input id="textString" type="text" value="canvas"/>		
 		<select id="fontTypeButton">
  			 <option value="sans-serif" >sans-serif</option>
  			 <option value="serif" >serif</option>  
- 			 <option value="cursive" >cursive</option>  
+			 <option value="cursive" >cursive</option>  
  			 <option value="monospace" >monospace</option>  
  			 <option value="fantasy" >fantasy</option>  
 		</select>
 		<input id="submitFont" type="button" value="Cambia" />
 	</p>
-       <p id="rotationSetterZone" style="display:none">
-      <span id="rotationTitle"> Rotazione:</span>	<br/>
-	Gradi:
-		<input id="rotationNumber" type="text" maxlength="3" size="6" value="0"/>
-      <input id="submitRotation" type="button" value="Ruota" />
-	</p>
-	
 </div>
 <!-- Dialog di salvataggio -->
 <div id="saveDialog" style="display:none" class="flora" title="Salva su file SVG:">
