@@ -182,6 +182,8 @@ Il presente documento descrive in modo dettagliato le classi e i relativi metodi
 		 \hline
 %%%%%%%%%%% PARTE DA MODIFICARE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
         2.0 &    22$\slash$03$\slash$2009 Modifiche per rilascio RA & Dissegna Stefano \\
+        \hline
+		1.6 &    21$\slash$03$\slash$2009 Inserito diagramma delle classi della parte Server & Dal Bosco Davide \\
 		\hline
 		1.5 &    21$\slash$03$\slash$2009 Correzioni varie per metodi elementi GUILogic & Bizzotto Piero \\
 		\hline	
@@ -1256,6 +1258,13 @@ Usato da \textit{SVGReader} per ottenere una figura da un tag SVG.
 \item[-] \textit{register(tagName, constructor)} aggiunge un elemento alla tabella di hash, usando come indice \textit{tagName} e come valore \textit{constructor}, che sar\`a un costruttore di una figura.
 \item[-] \textit{makeFigureClassFromTag(tag)} controlla se nella tabella di hash esiste un indice \textit{tag}: se \`e presente crea una figura corrispondente utilizzando il cotruttore ottenuto dalla tabella, altrimenti ritorna \textit{null}.
 \end{elencopuntato}
+
+\begin{figure}[!ht]
+\centering
+\includegraphics[scale=0.5]{ServerClasses.png}
+\caption{Classi e loro relazioni - Server}
+\end{figure}
+
 
 \sezione{Specifica delle componenti - \underline{Server}}
 Permette l'accesso all'applicazione ed al manuale utente, gestisce il salvataggio ed il caricamento di file.

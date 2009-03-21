@@ -13,7 +13,7 @@
  * The Page
  */
 function Page(){
-  this._browserName = $.browser.name;
+  this._browserName = $.browser.name; //use of jquery plugin to get browser data
   this._browserVersion = $.browser.versionNumber;
 }
 
@@ -32,13 +32,13 @@ Page.prototype.getBrowserVersion = function (){
 Page.prototype.activateStylesheet = function (sheetref){
         var ss = null;
   if(document.getElementsByTagName) {
-    ss = document.getElementsByTagName('link');}
+    ss = document.getElementsByTagName('link');} //scan of the "link" elements
   else if (document.styleSheets){
     ss = document.styleSheets;}
   for(var i=0;ss[i];i++){
     if(ss[i].href.indexOf(sheetref) != -1){
       ss[i].disabled = true;
-      ss[i].disabled = false;
+      ss[i].disabled = false; //hack for IE
     }
   }
 };
@@ -50,7 +50,7 @@ Page.prototype.loadStylesheet = function (){
   var name = this._browserName;
   var nameComp;
   if (name=="msie"){
-    nameComp = $.browser.className +".css";
+    nameComp = $.browser.className +".css";//loads "browsername".css Stylesheet
     //alert(nameComp); //msie7 mod.non standard, msie8 mod.standard IE8
   }
   else{
@@ -78,7 +78,7 @@ function Canvas(){
 *
 */
 Canvas.prototype.getId = function (){
-  if ($.browser.name=="msie") { // hack for internet explorer
+  if ($.browser.name=="msie") { // hack for internet explorer and excanvas
      return window.G_vmlCanvasManager.initElement(this._id);
   }
   return this._id;
@@ -99,7 +99,7 @@ Canvas.prototype.clear = function () {
 Canvas.reader('_height','getHeight');
 Canvas.reader('_width','getWidth');
 
-Canvas.prototype.setHeight = function(val){
+Canvas.prototype.setHeight = function(val){ //resize of canvas element
   this._height = val;
   document.getElementById("cv").setAttribute('height', val);
 };
@@ -127,20 +127,20 @@ Visualization.accessors('_scale', 'getScale', 'setScale');
  */
 Visualization.prototype.refresh = function(){
   var c = document.getElementById('cv');
-  if ($.browser.name=="msie") { // hack for internet explorer
+  if ($.browser.name=="msie") { // hack for internet explorer to et canvas element
     c = window.G_vmlCanvasManager.initElement(c);
   }
   var ctx = c.getContext('2d');
   this._scale.applyToContext(ctx, this._offset);
 
   /* Quadrato di salvataggio */
-  var quad = new Rectangle();
+  var quad = new Rectangle();//drawing of the save area delimited zone
   quad.getBorderColour().set(100, 100, 100, new Opacity(0.5));
   quad.getFillColour().set(255, 255, 255, new Opacity(1));
   quad.getBounds().setStart(new Point(0, 0));
   quad.getBounds().setEnd(new Point(1000, 1000));
   quad.draw(c);
-  this._figureSet.each(function (f) {
+  this._figureSet.each(function (f) {//draw Bounding to the figure actually selected
     f.draw(c);
     if (f.isSelected()) {
       f.drawSelection(c);
@@ -156,7 +156,7 @@ Visualization.accessors('_figureSet', 'getFigureSet', 'setFigureSet');
 * Deselect all the figures in the figureset
 * @param {FigureSet} figureSet the actual figureset
 */
-Visualization.prototype.deselectAll = function (figureSet) {
+Visualization.prototype.deselectAll = function (figureSet) { //deselect & unbind of all the buttons
   $('#setBorderCol').unbind('click');
   $('#setFillCol').unbind('click');
   $("#eraseButton").unbind('click');
@@ -204,15 +204,6 @@ Visualization.prototype.getClickCoordsWithinTarget = function(event){
         // adapt to scale & offset
 
   return this.getScale().scalePoint(coords, this.getOffset());
-/* var f = this._scale.getFactor();
-coords.x /= f;
-coords.y /= f;
-coords.x += this._offset.x;
-coords.y += this._offset.y;
-
-
-
-  return coords;*/
 };
 
 
@@ -224,9 +215,9 @@ coords.y += this._offset.y;
  * @param {Numeric} width the width of user screen resolution
 */
 Visualization.prototype.setCanvasDimension = function(canvasObj,height,width){
-  if(width == 800 && height==600){
+  if(width == 800 && height==600){ //monitor resolution
     canvasObj.setWidth(560);
-    canvasObj.setHeight(310);
+    canvasObj.setHeight(310); //canvas dimensions
   }
   else if(width == 1024 && height==768){
     canvasObj.setWidth(670);
@@ -278,7 +269,7 @@ Visualization.prototype.cloneElement = function(actualFigure,canvasObj){
   visual.refresh();
   $("#cloneButton").unbind('click');
   $("#cloneButton").bind('click',function(e){
-    visual.cloneElement(clonedFigure,canvasObj); //se riclona clona l'ultima
+    visual.cloneElement(clonedFigure,canvasObj); //if clone is pressed twice, reclone the last figure cloned
   });
 
 };
@@ -321,7 +312,7 @@ Button.prototype.bindCanvas = function (toolbar,canvas,canvasObj,visual,BorderCo
   $("*").unbind('keypress');
   $("#cv").unbind('mousedown click mouseup');
   canvasObj.clear();
-  visual.refresh();//per togliere un'eventuale selezione
+  visual.refresh();//to remove a previously selection
   var s = [];
   var f;
   var self = this;
@@ -341,14 +332,14 @@ Button.prototype.bindCanvas = function (toolbar,canvas,canvasObj,visual,BorderCo
       var coords2 = visual.getClickCoordsWithinTarget(e);
       f.getBounds().setEnd(new Point(coords2.x, coords2.y));
       if(builder==Polygon){
-        var edgeNumber = parseInt(document.getElementById('edgeNumber').value, 10);
-  if (!isNaN(edgeNumber) && edgeNumber >= 2) {
+        var edgeNumber = parseInt(document.getElementById('edgeNumber').value, 10);// for polygons
+	if (!isNaN(edgeNumber) && edgeNumber >= 2) {
           f.edgeNumber().setVal(edgeNumber);
         }
       }
     canvasObj.clear();
     visual.refresh();
-    f.draw(canvas);
+    f.draw(canvas); //draw actual figure to show animation until the mouse is released
   }).bind("mouseup",function(e){ //jQuery mouseup event bind
     $("#cv").unbind('mousemove mouseup mouseleave');
     var coords1 = visual.getClickCoordsWithinTarget(e);
@@ -371,7 +362,7 @@ Button.prototype.bindCanvas = function (toolbar,canvas,canvasObj,visual,BorderCo
  * @param {String} type the figure for the cursor selection
  */
 Button.prototype.bindCursor = function(type){
-  if(($.browser.name!="opera")){
+  if(($.browser.name!="opera")){//opera doesn't support cursors from src
     switch(type){
       case "selection":
   $("#cv").css({'cursor' : 'url("images/selectDraw.png"),auto'});
@@ -416,7 +407,7 @@ Button.prototype.bindCursor = function(type){
 * @constructor
 * The Clear Canvas Button
 */
-function ClearCanvasButton () {
+function ClearCanvasButton () { //action called from index.html, clears che canvas at button click
   canvasObj.clear();
   visual.getFigureSet().each(function(f){
     visual.getFigureSet().rem(f);
@@ -429,7 +420,7 @@ function ClearCanvasButton () {
  * @constructor
  * The Save Button
  */
-function SaveButton () {
+function SaveButton () { //called from index.html, saves the figureset in a file
    var s = new SVGWriter();
    var svg = s.write(visual.getFigureSet());
    //alert(svg);
@@ -532,7 +523,7 @@ SelectionButton.prototype.bindCanvas = function (toolbar,canvas,canvasObj,visual
   $("#cv").unbind(' mousedown mousemove click mouseup');
   $("*").unbind('keypress');
   $("*").bind('keypress',function(e){
-    if(e.keyCode==46){
+    if(e.keyCode==46){ //canc button on keyboard
       visual.eraseElement(figureSet,canvasObj);
     }
   });
@@ -541,10 +532,9 @@ SelectionButton.prototype.bindCanvas = function (toolbar,canvas,canvasObj,visual
       var coord = new Point(coords.x,coords.y);
       var actualFigure = figureSet.selectFigure(coord, visual.getScale(), visual.getOffset());
       if(actualFigure===null){
-	//visual.deselectAll(figureSet);
         // is there an already selected figure?
 	$("*").unbind('keypress');
-	/*zona gestione cancellazione*/
+	/*delete zone */
 	$("*").bind('keypress',function(e){
 	  if(e.keyCode==46){
 	    visual.eraseElement(figureSet,canvasObj);
@@ -585,7 +575,7 @@ SelectionButton.prototype.bindCanvas = function (toolbar,canvas,canvasObj,visual
 	  visual.refresh();
 	});
 
-	/*clonazione*/
+	/*clone zone*/
 	$("#cloneButton").unbind('click');
 	$("#cloneButton").bind('click',function(e){
 	  visual.cloneElement(actualFigure,canvasObj);
@@ -604,7 +594,7 @@ SelectionButton.prototype.bindCanvas = function (toolbar,canvas,canvasObj,visual
 	canvasObj.clear();
         visual.refresh();
         var prec = coord;
-        $('#cv').bind('mousemove', function (e) {
+        $('#cv').bind('mousemove', function (e) { //move selected figure with mouse
           var pt = visual.getClickCoordsWithinTarget(e);
           var start = actualFigure.getBounds().start();
           var end = actualFigure.getBounds().end();
@@ -618,7 +608,7 @@ SelectionButton.prototype.bindCanvas = function (toolbar,canvas,canvasObj,visual
           canvasObj.clear();
 	  visual.refresh();
         });
-	/*spostamento tramite tastierino numerico */
+	/*use arrow keys to move selected figures */
 	$("*").bind('keypress',function (e){
            var start = null;
            var end = null;
@@ -660,7 +650,7 @@ SelectionButton.prototype.bindCanvas = function (toolbar,canvas,canvasObj,visual
 	   }
 	});
 
-	self._handleCtrlPoint(coord, actualFigure, true);
+	self._handleCtrlPoint(coord, actualFigure, true); //control points
         $('#cv').bind('mouseleave', function (e) {
           $('#cv').trigger('mouseup');
           $('#cv').unbind('mouseleave');
@@ -697,15 +687,14 @@ ZoomInButton.prototype.bindCanvas = function (toolbar,canvas,canvasObj,visual) {
   $("#cv").unbind('mousedown click mouseup');
   $("#cv").bind("click", function(e){
     var factor = visual.getScale().getFactor();
-    var oldw = canvas.width/(factor*2);
+    var oldw = canvas.width/(factor*2); //decrease zoom factor
     var oldh = canvas.height/(factor*2);
     factor += 0.5;
     var w = canvas.width/(factor*2);
     var h = canvas.height/(factor*2);
     visual.getOffset().x += oldw - w;
     visual.getOffset().y += oldh - h;
-    visual.setScale(new Scale(factor));
-    //   alert(oldw + ", " + canvas.width/2 + ", " + visual.getOffset().x + ", " + factor);
+    visual.setScale(new Scale(factor)); //set the new scale factor
     canvasObj.clear();
     visual.refresh();
   });
@@ -729,9 +718,9 @@ ZoomOutButton.prototype.bindCanvas = function (toolbar,canvas,canvasObj,visual,f
     var factor = visual.getScale().getFactor();
     var oldw = canvas.width/(factor*2);
     var oldh = canvas.height/(factor*2);
-    if (factor > 0.5) {
+    if (factor > 0.5) { //control for <=0 values
       factor -= 0.5;
-      var w = canvas.width/(factor*2);
+      var w = canvas.width/(factor*2);  // increase visualized area
       var h = canvas.height/(factor*2);
       visual.getOffset().x -= w - oldw;
       visual.getOffset().y -= h - oldh;
@@ -755,6 +744,13 @@ function MoveViewButton () {
 
 MoveViewButton.prototype = new Button();
 
+/**
+ * Handle the move of the visualization
+ * @param {Toolbar} toolbar
+ * @param {HTMLCanvasElement} canvas the canvas html element
+ * @param {Canvas} canvasObj the Canvas Object
+ * @param {Visualization} visual the visualization object
+ */
 MoveViewButton.prototype.bindCanvas = function (toolbar,canvas,canvasObj,visual) {
   $("*").unbind('keypress');
   toolbar.deselectAll();
@@ -981,14 +977,14 @@ FreeLineButton.prototype.bindCanvas = function (toolbar,canvas,canvasObj,visual,
     var coords = visual.getClickCoordsWithinTarget(e);
     f.getBorderColour().getOpacity().setVal(document.getElementById("borderOp").value);
     f.getBorderColour().fromCSS(borderColour);
-    f.extend(new Point(coords.x, coords.y));
+    f.extend(new Point(coords.x, coords.y)); //create one by one little bezier curves
     $("#cv").bind("mousemove",function(e){
       var coords2 = visual.getClickCoordsWithinTarget(e);
       var minDist = 10;
       var dist = coords.dist(coords2);
-      if (dist >= minDist) {
-  f.extend(new Point(coords2.x, coords2.y));
-  coords = coords2;
+      if (dist >= minDist) {//10 pixel distance control
+	f.extend(new Point(coords2.x, coords2.y));
+	coords = coords2;
       }
       canvasObj.clear();
       visual.refresh();
@@ -1042,9 +1038,9 @@ TextButton.prototype.bindCanvas = function (toolbar,canvas,canvasObj,visual,Bord
    var f;
    var self = this;
    $("#cv").bind("mousedown", function(e){
-     s[0] = new Text(new TextString(document.getElementById("textString").value));
+     s[0] = new Text(new TextString(document.getElementById("textString").value));//the string
      var f = s[0];
-     f.setFont(new TextFont(document.getElementById("fontTypeButton").value));
+     f.setFont(new TextFont(document.getElementById("fontTypeButton").value));//font type
      var coords = visual.getClickCoordsWithinTarget(e);
      f.getBorderColour().getOpacity().setVal(document.getElementById("borderOp").value);
      f.getBorderColour().fromCSS(BorderColor);
@@ -1066,7 +1062,7 @@ TextButton.prototype.bindCanvas = function (toolbar,canvas,canvasObj,visual,Bord
       visual.getFigureSet().add(f);
       canvasObj.clear();
       visual.refresh();
-    }).bind('mouseleave', function (e) {
+    }).bind('mouseleave', function (e) { //out of canvas gesture
       $("#cv").unbind('mousemove mouseup mouseleave');
       visual.getFigureSet().add(f);
       canvasObj.clear();
@@ -1157,7 +1153,7 @@ Palette.prototype.setColour = function (col,prec1,prec2){
 
   if( document.getElementById("comboColor").value=="border"){
     $.farbtastic("#color1").setColor(col);
-   document.getElementById("color1").value=$.farbtastic("#color1").color;
+    document.getElementById("color1").value=$.farbtastic("#color1").color;
     document.getElementById("borderColorNow").style.backgroundColor=col;
     colore.BorderColor=col;
   }
@@ -1264,10 +1260,10 @@ function PropertiesDialog(){}
 PropertiesDialog.prototype.create= function(){
    $("#propertiesDialog").dialog({
       position: "right",
-  resizable: false,
+      resizable: false,
       width: 230,
-  height: 210,
-  dialogClass: "Dialog2"
+      height: 210,
+      dialogClass: "Dialog2"
     });
 };
 
@@ -1282,13 +1278,13 @@ function EdgeNumberSetter(en) {
   $("#edgeSetterZone").css({"display":"block"});
   $('#submitEdge').unbind('click');
   $('#submitEdge').click(function (e) {
-                           var n = parseInt($('#edgeNumber').get(0).value, 10);
-                           if (!isNaN(n)) {
-                             en.setVal(n);
-                           }
-                           canvasObj.clear();
-                           visual.refresh();
-                         });
+    var n = parseInt($('#edgeNumber').get(0).value, 10);
+    if (!isNaN(n)) {
+      en.setVal(n);
+    }
+    canvasObj.clear();
+    visual.refresh();
+  });
 }
 
 /**
