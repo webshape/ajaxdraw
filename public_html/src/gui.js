@@ -337,7 +337,7 @@ $(document).ready(function(){
                           $("#loadDialog").dialog( 'close' );
                           doc = $("#my_iframe").contents().find('body').html();
                           
-                          if (doc.indexOf("Errore:")==0) {
+                          if (doc.indexOf("Errore:")===0) {
                             // server error
                             alert(doc);
                           } else {
