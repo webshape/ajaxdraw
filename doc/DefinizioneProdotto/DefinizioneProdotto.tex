@@ -769,7 +769,7 @@ Il costruttore controlla se il browser supporta il metodo \textit{getImageData} 
 \end{elencopuntato}
 \paragrafo{Metodi pubblici:}
 \begin{elencopuntato}[\subsubsecindent]
-\item[-]  \textit{selectFigure(where)} permette di selezionare una figura contenente il punto passato come argomento, se tale figura esiste. Come si vede nel diagramma di attivit\`a in figura 1, si crea un canvas non visibile all'utente sul quale verranno disegnate tutte le figure. Ogni figura viene disegnata usando un solo colore, ed ognuna ha un colore diverso da tutte le altre figure. Durante questo processo, si costruisce una tabella di hash che associa il colore alla figura. Finito di disegnare, si usa il metodo \textit{getImageData} del contesto grafico per ottenere il colore del pixel nel punto selezionato. Questo colore viene usato come indice nella tabella di hash per ottenere la figura selezionata. Se il colore non \`e presente nella tabella, allora nessuna figura \`e stata selezionata.
+\item[-]  \textit{selectFigure(where)} permette di selezionare una figura contenente il punto passato come argomento, se tale figura esiste. Come si vede nel diagramma di attivit\`a in figura 6, si crea un canvas non visibile all'utente sul quale verranno disegnate tutte le figure. Ogni figura viene disegnata usando un solo colore, ed ognuna ha un colore diverso da tutte le altre figure. Durante questo processo, si costruisce una tabella di hash che associa il colore alla figura. Finito di disegnare, si usa il metodo \textit{getImageData} del contesto grafico per ottenere il colore del pixel nel punto selezionato. Questo colore viene usato come indice nella tabella di hash per ottenere la figura selezionata. Se il colore non \`e presente nella tabella, allora nessuna figura \`e stata selezionata.
 
 \begin{figure}[!ht]
 \centering
@@ -1102,7 +1102,7 @@ Creato dalla lettura di un file SVG oppure dall'interfaccia utente. Manipolato d
 \item[-] \textit{getFillColour()} ritorna \textit{{\_}fillColour}.
 \item[-] \textit{edgeNumber()} ritorna \textit{{\_}en}.
 \item[-] \textit{eachProperty(fn)} richiama \textit{eachProperty} di \textit{Figure} ed applica la funzione fn a \textit{{\_}fillColour} e a \textit{{\_en}}.
-\item[-] \textit{getPoints()} ritorna un'array di punti, considerando come origine \textit{BoundingRectangle.start()}, che rappresentano i vertici del poligono. Come si vede nel diagramma di attivit\`a in figura 2, si calcolano i punti usando le formule x = cos(angolo*i)*w+xs e y = sin(angolo*i)*h+ys dove \textit{angolo} \`e l'angolo giro diviso per il numero di lati, i \`e il numero del punto attuale (da 0 al numero di lati meno uno) e la coppia (xs, ys) \`e \textit{BoundingRectangle.start()}. 
+\item[-] \textit{getPoints()} ritorna un'array di punti, considerando come origine \textit{BoundingRectangle.start()}, che rappresentano i vertici del poligono. Come si vede nel diagramma di attivit\`a in figura 7, si calcolano i punti usando le formule x = cos(angolo*i)*w+xs e y = sin(angolo*i)*h+ys dove \textit{angolo} \`e l'angolo giro diviso per il numero di lati, i \`e il numero del punto attuale (da 0 al numero di lati meno uno) e la coppia (xs, ys) \`e \textit{BoundingRectangle.start()}. 
 
 \begin{figure}[!ht]
 \centering
