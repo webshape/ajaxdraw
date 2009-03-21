@@ -461,6 +461,8 @@ SelectionButton.prototype._handleCtrlPoint = function (pt, f, oneSelected) {
   var onPoint = function (p) {
     return p.dist(pt) < 10;
   };
+  // choose the right function to call when a control point is moved
+  // or null if no point was selected
   if (onPoint(f.getBounds().start())) {
     setter = function (newPt) {
       f.getBounds().setStart(newPt);
@@ -474,6 +476,7 @@ SelectionButton.prototype._handleCtrlPoint = function (pt, f, oneSelected) {
     }
     else {
       if (f instanceof FreeLine) {
+        // look if one point along the FreeLine was clicked
   var pts = f.getPoints();
   var found = null;
   pts.each(function (p) {
@@ -494,6 +497,7 @@ SelectionButton.prototype._handleCtrlPoint = function (pt, f, oneSelected) {
   if (setter) {
     $('#cv').unbind('mousemove');
     $('#cv').bind('mousemove', function (e) {
+      // modify the point at every mouse move
      setter(visual.getClickCoordsWithinTarget(e));
                     canvasObj.clear();
                     visual.refresh();
@@ -503,6 +507,7 @@ SelectionButton.prototype._handleCtrlPoint = function (pt, f, oneSelected) {
   $('#cv').bind('mouseup', function (e) {
                   $('#cv').unbind('mousemove mouseup');
                   if (oneSelected) {
+                    // update the properties dialogs for the selected figure
                     f.eachProperty(function (p) {
                                      p.createWidget();
                                    });
