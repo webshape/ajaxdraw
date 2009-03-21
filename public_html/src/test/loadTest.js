@@ -126,5 +126,21 @@ function runLoadTest () {
             equals(pointsb[6].y, "700", 'BezierCurve: point7 y');
 	    equals(b.getBorderColour().toCSS(), "#0a1428", 'BezierCurve: border colour');
 	    equals(b.getBorderColour().getOpacity().getVal(), "1", 'BezierCurve: border opacity');
+         
+              
+            // text
+            doc = "<svg width=\"1000\" height=\"1000\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\">";
+	    doc += '<text x="0" y="600" font-family="sans-serif" font-size="150" textLength="200" fill="#000000" stroke="#ff0000">Aloha!</text></svg>';
+	    fs = s.read(doc);
+	    f = fs._figures[0];
+	    equals(f.getBounds().start().x, "0", 'Text: starting x');
+	    equals(f.getBounds().start().y, "600", 'Text: starting y');
+	    equals(f.getBounds().end().x, "200", 'Text: ending x');
+	    equals(f.getBounds().end().y, "750", 'Text: ending y');
+            equals(f.getFont().toCSS(), 'sans-serif', 'Text: font');
+            equals(f.getText().getName(), 'Aloha!', 'Text: text');
+            equals(f.getTextColour().toCSS(), '#000000', 'Text: colour');
+            equals(f.getBorderColour().toCSS(), '#ff0000', 
+                   'Text: border colour');
        });
 }
