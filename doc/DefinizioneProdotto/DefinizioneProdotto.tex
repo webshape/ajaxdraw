@@ -183,6 +183,8 @@ Il presente documento descrive in modo dettagliato le classi e i relativi metodi
 %%%%%%%%%%% PARTE DA MODIFICARE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
         2.0 &    22$\slash$03$\slash$2009 Modifiche per rilascio RA & Dissegna Stefano \\
 		\hline
+		1.5 &    21$\slash$03$\slash$2009 Correzioni varie per metodi elementi GUILogic & Bizzotto Piero \\
+		\hline	
         1.4 &    19$\slash$03$\slash$2009 Diagrammi delle Classi suddivisi per GuiLogic & Bizzotto Piero \\
 		\hline
         1.3 &    19$\slash$03$\slash$2009 Ulteriori dettagli sull'implementazione dei metodi del sottosistema ApplicationLogic & Dissegna Stefano \\
@@ -414,7 +416,6 @@ Nessuna.
 \subsubsezione{Attivit\`a svolte e dati trattati}
 \leftskip=36pt Nessuna.
 
-
 \subsezione{SaveButton}
 \subsubsezione{Tipo, obiettivo e funzione del componente}
 Classe concreta che rappresenta lo specifico pulsante che si occupa di salvare il set di figure attualemente disegnato sul canvas, integrato nella sezione "File" della barra in alto.
@@ -436,7 +437,7 @@ Estende \textit{Button}.
 \paragrafo{Metodi pubblici:}
 \begin{elencopuntato}[\subsubsecindent]
 \item[-]  \textit{bindCanvas(toolbar,canvas,canvasObj,visual,figureSet)} overriding del metodo ereditato da \textit{Button}, collega il canvas all'azione di selezione di una figura disegnata sul canvas, e consente quindi di attivare le funzionalit\` a di spostamento della figura stessa, del suo ridimensionamento (tramite {\_}handleCtrlPoint), di clonazione ed eliminazione, tramite i metodi descritti in \textit{Visualization} e dell'impostazione del  livello di  profondit\`a, tramite gli appositi metodi \textit{toTop} e \textit{toBottom}  
-\item[-] \textit{{\_}handleCtrlPoints} metodo privato, che gestisce il click del mouse verificando dove questo avvenga: nel caso l'area cliccata sia un punto di controllo di una figura disegnata, collega il trascinamento del mouse (con il pulsante sinistro premuto) al ridimensionamento di quest'ultima, e nel caso delle linee a mano libera consente di spostare i punti che le compongono.
+\item[-] \textit{{\_}handleCtrlPoints} metodo privato, che gestisce il click del mouse verificando dove questo avvenga: nel caso l'area cliccata sia un punto di controllo di una figura disegnata, collega il trascinamento del mouse (con il pulsante sinistro premuto) al ridimensionamento di quest'ultima, e nel caso delle linee a mano libera consente di spostare anche i punti che le compongono.
 \end{elencopuntato}
 
 \subsezione{ZoomButton}
@@ -451,28 +452,28 @@ Viene estasa da \textit{ZoomInButton} e \textit{ZoomOutButton}.
 
 \subsezione{ZoomInButton}
 \subsubsezione{Tipo, obiettivo e funzione del componente}
-Classe concreta che rappresenta pulsante che attiva le funzionalit\` a di ingrandimento dell'area di visualizzazione del canvas.
+Classe concreta che rappresenta un pulsante che attiva le funzionalit\` a di ingrandimento dell'area di visualizzazione del canvas.
 \subsubsezione{Relazioni d'uso di altre componenti}
 Estende \textit{ZoomButton}.
 \subsubsezione{Interfacce e relazioni di uso da altre componenti}
-\textit{Toolbar} ne mantiene un' istanza.
+\textit{Toolbar} ne mantiene un' istanza, e utilizza \textit{Scale} per ottenere e reimpostare il valore del fattore di riscalamento.
 \subsubsezione{Attivit\`a svolte e dati trattati}
 \paragrafo{Metodi pubblici:}
 \begin{elencopuntato}[\subsubsecindent]
-\item[-] \textit{bindCanvas(toolbar,canvas,canvasObj,visual,figureSet)} collega il canvas all'azione di ingrandimento dell'area visualizzata. Collega l'evento click per prendere il punto che diventer\`a la nuova origine delle coordinate, e setta lo zoom di \textit{visual} in base al valore corrente di \textit{scaleButton}.
+\item[-] \textit{bindCanvas(toolbar,canvas,canvasObj,visual,figureSet)} collega l'azione di ingrandimento dell'area visualizzata al canvas. L'evento click prende il punto al centro dell'area mostrata, e in base al fattore di riscalamento attuale aumenta il livello zoom del 50 per cento mantenendo tale punto come riferimento.
 \end{elencopuntato}
 
 \subsezione{ZoomOutButton}
 \subsubsezione{Tipo, obiettivo e funzione del componente}
 Classe concreta che rappresenta pulsante che attiva le funzionalit\` a di rimpicciolimento dell'area di visualizzazione del canvas.
 \subsubsezione{Relazioni d'uso di altre componenti}
-Estende \textit{ZoomButton}.
+Estende \textit{ZoomButton}, e utilizza \textit{Scale} per ottenere e reimpostare il valore del fattore di riscalamento.
 \subsubsezione{Interfacce e relazioni di uso da altre componenti}
 \textit{Toolbar} ne mantiene un' istanza.
 \subsubsezione{Attivit\`a svolte e dati trattati}
 \paragrafo{Metodi pubblici:}
 \begin{elencopuntato}[\subsubsecindent]
-\item[-] \textit{bindCanvas(toolbar,canvas,canvasObj,visual,figureSet)} collega il canvas all'azione di rimpicciolimento della'area visualizzata. Collega l'evento click per prendere il punto che diventer\`a la nuova origine delle coordinate, e setta lo zoom di \textit{visual} in base al valore corrente di \textit{scaleButton}.
+\item[-] \textit{bindCanvas(toolbar,canvas,canvasObj,visual,figureSet)} collega l'azione di rimpicciolimento dell'area visualizzata al canvas. L'evento click prende il punto al centro dell'area mostrata, ed in base al fattore di riscalamento attuale diminuisce il livello zoom del 50 per cento, mantenendo tale punto come riferimento. Ovviamente il livello \`e limitato al doppio dell'ingrandimento iniziale, sia per evitare numeri minori o uguali a 0, sia perch\` e una volta che tutta l'area di disegno \` e visualizzata non sono necessari ultieriori rimpicciolimenti. 
 \end{elencopuntato}
 
 \subsezione{Scale}
@@ -481,7 +482,7 @@ Classe concreta che si occupa delle operazioni di riscalamento del \underline{ca
 \subsubsezione{Relazioni d'uso di altre componenti}
 Usa il contesto grafico per applicare lo spostamento e il riscalamento della parte di canvas visualizzata.
 \subsubsezione{Interfacce e relazioni di uso da altre componenti}
-\textit{Visualization} ne utilizza un'istanza.
+\textit{Visualization}, \textit{ZoomInButton} e \textit{ZoomOutButton} ne utilizzano un'istanza.
 \subsubsezione{Attivit\`a svolte e dati trattati}
 \paragrafo{Attributi privati:}
 \begin{elencopuntato}[\subsubsecindent]
@@ -532,7 +533,7 @@ Estende \textit{Button}.
 \paragrafo{Metodi pubblici:}
 \begin{elencopuntato}[\subsubsecindent]
 \item[-] \textit{getBuilder()} ritorna il tipo di oggetto disegnato tramite la pressione di questo pulsante, per permetterne il riconoscimento al metodo \textit{bindCanvas} in modo da associare correttamente la figura da disegnare al suo pulsante.
-\item[-]  \textit{bindCanvas(toolbar,canvas,canvasObj,visual,figureSet,borderColor)} overriding del metodo ereditato da \textit{Button}, collega il canvas all'azione di disegno di una curva di Bezier cubica,  chiedendo all'utente di cliccare su 4 punti diversi dell'area di disegno per ottenere infine la curva voluta.
+\item[-]  \textit{bindCanvas(toolbar,canvas,canvasObj,visual,figureSet,borderColor)} overriding del metodo ereditato da \textit{Button}, collega il canvas all'azione di disegno di una curva di Bezier cubica, chiedendo all'utente di cliccare su 4 punti diversi dell'area di disegno per ottenere infine la curva voluta, con la possibilit\` a comunque di poter visualizzare la curva parziale disegnata ad ogni click del mouse, per avere un'idea della figura che si otterr\` a alla fine.
 \end{elencopuntato}
 
 \subsezione{SquareButton}
@@ -571,7 +572,7 @@ Estende \textit{Button}.
 \subsubsezione{Attivit\`a svolte e dati trattati}
 \paragrafo{Metodi pubblici:}
 \begin{elencopuntato}[\subsubsecindent]
-\item[-] \textit{getBuilder()} ritorna il tipo di oggetto disegnato tramite la pressione di questo pulsante, per permetterne il riconoscimento al metodo \textit{bindCanvas} in modo da associare correttamente la figura da disegnare al suo pulsante.
+\item[-] \textit{getBuilder()} ritorna il tipo di oggetto disegnato tramite la pressione di questo pulsante, per permetterne il riconoscimento al metodo \textit{bindCanvas} in modo da associare correttamente la figura da disegnare al suo pulsante. Quest'ultimo metodo citato contiene un controllo che imposter\` a, visto che la figura da disegnare sar\` a un poligono, il numero di lati ricavandolo dall'apposito campo del dialog delle propriet\` a. 
 \end{elencopuntato}
 
 \subsezione{FreeLineButton}
@@ -585,9 +586,8 @@ Estende \textit{Button}.
 \paragrafo{Metodi pubblici:}
 \begin{elencopuntato}[\subsubsecindent]
 \item[-] \textit{getBuilder()} ritorna il tipo di oggetto disegnato tramite la pressione di questo pulsante, per permetterne il riconoscimento al metodo \textit{bindCanvas} in modo da associare correttamente la figura da disegnare al suo pulsante.
-\item[-]  \textit{bindCanvas(toolbar,canvas,canvasObj,visual,figureSet,borderColor)} overriding del metodo ereditato da \textit{Button}, collega il canvas all'azione di disegno di una linea a mano libera.
+\item[-]  \textit{bindCanvas(toolbar,canvas,canvasObj,visual,figureSet,borderColor)} overriding del metodo ereditato da \textit{Button}, collega il canvas all'azione di disegno di una linea a mano libera. Il principio di funzionamento consiste nel creare di seguito una serie di piccole curve di Bezier ogniqualvolta il cursore del mouse si sposti (con il pulsante sinistro in pressione) verso una posizione sul canvas distante 10 pixel (sia in verticale che in orizzontale) dal precedente punto di controllo, in modo da garantire una certa fluidit\` a nel disegno.
 \end{elencopuntato}
-
 
 \subsezione{TextButton}
 \subsubsezione{Tipo, obiettivo e funzione del componente}
@@ -600,9 +600,11 @@ Estende \textit{Button}.
 \paragrafo{Metodi pubblici:}
 \begin{elencopuntato}[\subsubsecindent]
 \item[-] \textit{getBuilder()} ritorna il tipo di oggetto disegnato tramite la pressione di questo pulsante, per permetterne il riconoscimento al metodo \textit{bindCanvas} in modo da associare correttamente la figura da disegnare al suo pulsante.
-\item[-]  \textit{bindCanvas(toolbar,canvas,canvasObj,visual,figureSet,borderColour,fillColor)} overriding del metodo ereditato da \textit{Button}, collega il canvas all'azione di disegno di una casella di testo. 
+\item[-]  \textit{bindCanvas(toolbar,canvas,canvasObj,visual,figureSet,borderColour,fillColor)} overriding del metodo ereditato da \textit{Button}, collega il canvas all'azione di disegno di una casella di testo. L'overriding \` e reso necessario dai parametri specifici da impostare per il disegno della casella, quali la stringa, il colore e il tipo di carattere da utilizzare.
 \end{elencopuntato}
+
 \newpage
+
 \begin{figure}[!ht]
 \centering
 \includegraphics[scale=0.7]{dialogs.jpg}
@@ -655,7 +657,7 @@ Classe concreta che rappresenta l'oggetto che si occupa di impostare e modificar
 \subsubsezione{Relazioni d'uso di altre componenti}
 Legge e modifica \textit{BoundingRectagle}.
 \subsubsezione{Interfacce e relazioni di uso da altre componenti}
-\textit{PropertiesDialog} ne mantiene un'istanza.
+Nessuna.
 \subsubsezione{Attivit\`a svolte e dati trattati}
 \paragrafo{Metodi pubblici:}
 \begin{elencopuntato}[\subsubsecindent]
@@ -668,25 +670,25 @@ Classe concreta che rappresenta l'oggetto che si occupa di modificare il numero 
 \subsubsezione{Relazioni d'uso di altre componenti}
 Legge e modifica \textit{EdgeNumber}.
 \subsubsezione{Interfacce e relazioni di uso da altre componenti}
-\textit{PropertiesDialog} ne mantiene un'istanza.
+Nessuna.
 \subsubsezione{Attivit\`a svolte e dati trattati}
 \paragrafo{Metodi pubblici:}
 \begin{elencopuntato}[\subsubsecindent]
 \item[-] \textit{EdgeNumberSetter(en)} costruttore. Prende un \textit{EdgeNumber} e setta il valore di un campo di un dialog statico implementato in HTML. Il campo contiene il valore attuale di \textit{en}. Collega un evento al pulsante di conferma del dialog, e se l'utente ha modificato il valore, e il valore inserito e' un intero maggiore o uguale a 2, modifica \textit{en} ed esegue un refresh.
 \end{elencopuntato}
 
-\subsezione{RotationSetter}
-\subsubsezione{Tipo, obiettivo e funzione del componente}
-Classe concreta che si occupa di impostare un angolo di rotazione e modificare le coordinate di una figura disegnata sul canvas ruotando la figura selezionata.
-\subsubsezione{Relazioni d'uso di altre componenti}
-Legge e modifica \textit{Rotation}.
-\subsubsezione{Interfacce e relazioni di uso da altre componenti}
-\textit{PropertiesDialog} ne mantiene un'istanza.
-\subsubsezione{Attivit\`a svolte e dati trattati}
-\paragrafo{Metodi pubblici:}
-\begin{elencopuntato}[\subsubsecindent]
-\item[-] \textit{RotationSetter(angle)} costruttore. Prende un \textit{Rotation} e setta il valore di un campo di un dialog statico implementato in HTML. Il campo contiene il valore attuale di \textit{angle}. Un evento viene collegato al pulsante di conferma \textit{Ruota} e se l'utente ha modificato l'angolo di rotazione, modifica \textit{angle} ed esegue un refresh. 
-\end{elencopuntato}
+%\subsezione{RotationSetter}
+%\subsubsezione{Tipo, obiettivo e funzione del componente}
+%Classe concreta che si occupa di impostare un angolo di rotazione e modificare le coordinate di una figura disegnata sul canvas ruotando la figura selezionata.
+%\subsubsezione{Relazioni d'uso di altre componenti}
+%Legge e modifica \textit{Rotation}.
+%\subsubsezione{Interfacce e relazioni di uso da altre componenti}
+%\textit{PropertiesDialog} ne mantiene un'istanza.
+%\subsubsezione{Attivit\`a svolte e dati trattati}
+%\paragrafo{Metodi pubblici:}
+%\begin{elencopuntato}[\subsubsecindent]
+%\item[-] \textit{RotationSetter(angle)} costruttore. Prende un \textit{Rotation} e setta il valore di un campo di un dialog statico implementato in HTML. Il campo contiene il valore attuale di \textit{angle}. Un evento viene collegato al pulsante di conferma \textit{Ruota} e se l'utente ha modificato l'angolo di rotazione, modifica \textit{angle} ed esegue un refresh. 
+%\end{elencopuntato}
 
 \subsezione{FontSetter}
 \subsubsezione{Tipo, obiettivo e funzione del componente}
@@ -694,7 +696,7 @@ Classe concreta che rappresenta l'oggetto che si occupa di modificare il tipo di
 \subsubsezione{Relazioni d'uso di altre componenti}
 Legge e modifica \textit{TextFont}.
 \subsubsezione{Interfacce e relazioni di uso da altre componenti}
-\textit{PropertiesDialog} ne mantiene un'istanza.
+Nessuna.
 \subsubsezione{Attivit\`a svolte e dati trattati}
 \paragrafo{Metodi pubblici:}
 \begin{elencopuntato}[\subsubsecindent]
@@ -707,7 +709,7 @@ Classe concreta che rappresenta l'oggetto che si occupa di modificare la stringa
 \subsubsezione{Relazioni d'uso di altre componenti}
 Legge e modifica \textit{TextString}.
 \subsubsezione{Interfacce e relazioni di uso da altre componenti}
-\textit{PropertiesDialog} ne mantiene un'istanza.
+Nessuna.
 \subsubsezione{Attivit\`a svolte e dati trattati}
 \paragrafo{Metodi pubblici:}
 \begin{elencopuntato}[\subsubsecindent]
@@ -848,24 +850,24 @@ Implementa \textit{Property}.
 \item[-] \textit{createWidget} crea e ritorna un'istanza di \textit{EdgeNumberSetter} passando se stesso come parametro al costruttore.
 \end{elencopuntato}
 
-\subsezione{Rotation}
-\subsubsezione{Tipo, obiettivo e funzione del componente}
-Rappresenta la propriet\`a di una figura di essere ruotata.
-\subsubsezione{Relazioni d'uso di altre componenti}
-Implementa \textit{Property}.
-\subsubsezione{Interfacce e relazioni di uso da altre componenti}
-\textit{Figure} ne mantiene un'istanza.
-\subsubsezione{Attivit\`a svolte e dati trattati}
-\paragrafo{Attributi privati:}
-\begin{elencopuntato}[\subsubsecindent]
-\item[-] \textit{\_rad} un numero contenente il valore dell'angolo espresso in radianti.
-\end{elencopuntato}
-\paragraph{Metodi pubblici:}
-\begin{elencopuntato}[\subsubsecindent]
-\item[-] \textit{get/setAngle} permette di ottenere, o di modificare l'angolo di rotazione.
-\item[-] \textit{applyToContext(context)} invoca il metodo \textit{rotate(angle)} del contesto grafico alla propria rappresentazione e richiama il metodo \textit{applyToContext} su \textit{{\_}rad} passando \textit{context} come argomento.
-\item[-] \textit{createWidget} crea e ritorna un'istanza di \textit{RotationSetter} passando se stesso come parametro al costruttore.
-\end{elencopuntato}
+%\subsezione{Rotation}
+%\subsubsezione{Tipo, obiettivo e funzione del componente}
+%Rappresenta la propriet\`a di una figura di essere ruotata.
+%\subsubsezione{Relazioni d'uso di altre componenti}
+%Implementa \textit{Property}.
+%\subsubsezione{Interfacce e relazioni di uso da altre componenti}
+%\textit{Figure} ne mantiene un'istanza.
+%\subsubsezione{Attivit\`a svolte e dati trattati}
+%\paragrafo{Attributi privati:}
+%\begin{elencopuntato}[\subsubsecindent]
+%\item[-] \textit{\_rad} un numero contenente il valore dell'angolo espresso in radianti.
+%\end{elencopuntato}
+%\paragraph{Metodi pubblici:}
+%\begin{elencopuntato}[\subsubsecindent]
+%\item[-] \textit{get/setAngle} permette di ottenere, o di modificare l'angolo di rotazione.
+%\item[-] \textit{applyToContext(context)} invoca il metodo \textit{rotate(angle)} del contesto grafico alla propria rappresentazione e richiama il metodo %\textit{applyToContext} su \textit{{\_}rad} passando \textit{context} come argomento.
+%\item[-] \textit{createWidget} crea e ritorna un'istanza di \textit{RotationSetter} passando se stesso come parametro al costruttore.
+%\end{elencopuntato}
 
 \subsezione{Colour}
 \subsubsezione{Tipo, obiettivo e funzione del componente}
@@ -1410,6 +1412,8 @@ Nessuna.
      Button & RIO-1\\
      \hline
      ClearCanvasButton & RFO-17\\
+     \hline
+     SaveButton & RFO-15\\
      \hline     
      SelectionButton & RFO-8, RFO-10\\
      \hline     
@@ -1448,8 +1452,8 @@ Nessuna.
      BoundingRectangleSetter & RFO-10 \\
      \hline     	              
 	 EdgeNumberSetter & RFO-12\\
-	 \hline
-	 RotationSetter & RFF-3 \\
+	 %\hline
+	 %RotationSetter & RFF-3 \\
 %%%%%%%%%%% FINE PARTE DA MODIFICARE %%%%%%%%%%%%%%%%
     \hline %%FINE RIGA
 %%%%%%%%%%% FINE PARTE DA MODIFICARE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1508,8 +1512,8 @@ Nessuna.
      Colour & RFO-9 \\
      \hline
      FillColour & RFO-9 \\
-     \hline
-     Rotation & RFF-3 \\
+     %\hline
+     %Rotation & RFF-3 \\
      \hline
      TextColour & RFO-9 \\
      \hline
