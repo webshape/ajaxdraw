@@ -196,16 +196,25 @@ $(document).ready(function(){
   var openBorder = false;
   var openFill = false;
 
-  if(page.getBrowserName()!="opera"){
+  if(page.getBrowserName()!="opera"){ //workaround for Opera graphics issues
     $("#changeBorderCol").toggle(
       function () {
 	$("#colorx").show("slow");
-	$("#colory").css({"display":"none"});
 	if(openFill === false){
-	  $(".Dialog1").height(500);
+	  if(page.getBrowserName()=="msie"){ //dimension changed because of IE farb incompatibility
+	    $(".Dialog1").height(310);
+	  }
+	  else{
+	     $(".Dialog1").height(500);
+	  }
 	}
 	else {
-	  $(".Dialog1").height(770);
+	   if(page.getBrowserName()=="msie"){
+	     $(".Dialog1").height(370);
+	   }
+	   else{
+	     $(".Dialog1").height(770);
+	   }
 	}
 	openBorder = true;
       },
@@ -217,10 +226,20 @@ $(document).ready(function(){
 	document.getElementById("borderColorNow").style.backgroundColor = color.BorderColor;
 	toolbar.rebind(canvas,canvasObj,visual,color.BorderColor,color.FillColor);
 	if(openFill === false){
-	  $(".Dialog1").height(260);
+	  if(page.getBrowserName()=="msie"){ //dimension changed because of IE farb incompatibility
+	    $(".Dialog1").height(260);
+	  }
+	  else{
+	     $(".Dialog1").height(260);
+	  }
 	}
 	else {
-	  $(".Dialog1").height(500);
+	   if(page.getBrowserName()=="msie"){
+	     $(".Dialog1").height(340);
+	   }
+	   else{
+	     $(".Dialog1").height(500);
+	   }
 	}
 	openBorder = false;
       }
@@ -229,10 +248,20 @@ $(document).ready(function(){
       function () {
 	$("#colory").show("slow");
 	if(openBorder === false){
-	  $(".Dialog1").height(500);
+	  if(page.getBrowserName()=="msie"){
+	     $(".Dialog1").height(340);
+	  }
+	  else{
+	    $(".Dialog1").height(500);
+	  }
 	}
 	else {
-	  $(".Dialog1").height(740);
+	  if(page.getBrowserName()=="msie"){
+	    $(".Dialog1").height(370);
+	  }
+	  else{
+	    $(".Dialog1").height(740);
+	  }
 	}
 	openFill = true;
       },
@@ -244,10 +273,20 @@ $(document).ready(function(){
 	document.getElementById("fillColorNow").style.backgroundColor = color.FillColor;
 	toolbar.rebind(canvas,canvasObj,visual, color.BorderColor,color.FillColor);
 	if(openBorder === false){
-	  $(".Dialog1").height(260);
+	  if(page.getBrowserName()=="msie"){
+	    $(".Dialog1").height(260);
+	  }
+	  else{
+	    $(".Dialog1").height(260);
+	  }
 	}
 	else {
+	  if(page.getBrowserName()=="msie"){
+	    $(".Dialog1").height(310);
+	  }
+	  else{
 	  $(".Dialog1").height(500);
+	  }
 	}
 	openFill = false;
       }
