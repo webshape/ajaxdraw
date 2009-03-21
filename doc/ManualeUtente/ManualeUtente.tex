@@ -170,6 +170,8 @@ Il presente documento si propone di fornire la documentazione di supporto necess
 %%%%%%%%%%% PARTE DA MODIFICARE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
           2.0 & 20/03/09 Preparazione in vista RA & Carollo Mirko \\
           \hline
+          1.1 & 20/03/09 Aggiunta funzione cambiamento di livello & Rizzo Maurizio \\
+          \hline
           1.0 & 07/03/09 Preparazione in vista rilascio RQ & Dal Bosco Davide \\
           \hline
           0.4 & 05/03/09 Inserimento manuale di Tomcat per sistemi Linux & Dal Bosco Davide \\
@@ -236,12 +238,12 @@ Il prodotto \`e stato sviluppato come un'applicazione web. \`E possibile utilizz
 \begin{elencopuntato}[\normindent]
  \item[-]   Firefox 3.0.x o superiore;
  \item[-]   Opera 9.5 o superiore; 
- \item[-]   Google Chrome 1.0; 
+ \item[-]   Google Chrome 1.0 o superiore; 
  \item[-]   Safari 3.2 o superiore; 
-% \item[-]   Internet Explorer: tutto tranne il testo e la selezione che risulta non essere ottimale.\\
-  \item[-]    Risoluzione minima consigliata: 1024x768 pixels.
+ \item[-]   Internet Explorer 7 o superiore;
+ \item[-]   Risoluzione minima consigliata: 1024x768 pixels.
 \end{elencopuntato}
-\textbf{N.B.} Alcune funzionalit\`a avanzate, come il cambiamento del tipo di carattere di una casella di testo, sono attualmente supportate solamente dalle versioni non stabili dei succitati browsers; saranno pertanto disabilitate dove non sono disponibili.
+\textbf{N.B.} Alcune funzionalit\`a avanzate, come il cambiamento del tipo di carattere di una casella di testo, sono attualmente supportate solamente dalle versioni non stabili dei succitati browsers; saranno pertanto disabilitate nel caso non siano disponibili.
     \item[-] Requisiti hardware: Processore Intel 2GHz o equivalente; 512MB memoria RAM.
 
 \end{elencopuntato}
@@ -255,14 +257,22 @@ Il prodotto \`e stato sviluppato come un'applicazione web. \`E possibile utilizz
  
 \subsezione{Installazione del programma}
 \subsubsezione{Lato client}
-Il programma non necessita di installazione.
+\` E necessario il chiarimento di qualche dettaglio prima di utilizzare tutte le potenzialità del sistema. Alcuni browsers necessitano infatti di alcuni accorgimenti per permettere all'utente di usufruire in pieno dell'esperienza AJAXDRAW. In particolare:
+\begin{elencopuntato}[\normindent]
+ \item[-] Opera, non supportando in pieno le funzionalit\` a offerte dalla ruota dei colori, questi possono essere cambiati agendo a mano sul codice esadecimale presente nel dialog apposito. Per facilitare comunque l'utente e sopperire a questa mancanza esiste la possibilit\` a di scaricare il widget \href{http://widgets.opera.com/widget/11822/}{Color Picker}, disponibile online per lo scaricamento rapido. L'utilizzo di questo selezionatore consente di impostare il colore voluto, per poi copiare il valore esadecimale nel campo del Color Dialog che si vuole modificare.
  
+ \begin{figure}[!ht]
+\centering
+\includegraphics[scale=0.5]{images/opera.png}
+\caption{Color Picker per Opera}
+\end{figure} 
+
+\item[-]  Internet Explorer richiede invece l'installazione del plugin Microsoft\textcopyright   \href{http://silverlight.net/GetStarted/}{Silverlight \texttrademark} 
+per funzionare. Il programma \`e compatibile con le versioni 7 e 8 del browser, salvo alcuni problemi con lo spostamento dell'area di visualizzazione e lo zoom, e altri di piccola entit\` a. 
+\end{elencopuntato}
 \subsubsezione{Lato server}
 Per permettere il funzionamento del sistema, \`e necessario installare un Web Server: \textit{Apache Tomcat}. 
-Su sistemi Unix deve essere installato sulla directory /opt
-. Si vedano i manuali di Apache Tomcat per problemi con l'installazione.
-http://www.mbaworld.com/docs/setup.html
-
+Su sistemi Unix deve essere installato nella  directory /opt. Si vedano i manuali di Apache Tomcat in caso di problemi, ad esempio \href{http://www.mbaworld.com/docs/setup.html}{http://www.mbaworld.com/docs/setup.html}.
 
 \subsezione{Avvio del programma}
 \subsubsezione{Lato client}
@@ -591,6 +601,24 @@ Qui \`e stata selezionata la funzione di clonazione di un oggetto presente sul p
 \vspace{50pt}
 In quest'immagine \` e stata utilizzata la funzione di cambiamento delle coordinate spaziali all'interno dell'area di disegno, e allo stesso tempo sono state cambiate anche la dimensione di altezza e larghezza della figura. Tutte le modifiche suddette sono effettuabili tramite la finestra di dialogo \textit{Modifica Attributi} cambiando i parametri appositi, rispettivamente X e Y per la posizione sul piano, e H e L per altezza e larghezza della figura.
 \newpage
+
+\textbf{Cambiamento del livello di profondit\`a di una figura:}\\
+\begin{figure}[!ht]
+\centering
+\includegraphics[scale=0.4]{images/livello.png}
+\caption{Cambio del livello di profondit\` a}
+\end{figure}
+ 
+%\begin{figure}[!ht]
+%\centering
+%\includegraphics[scale=0.4]{images/dim_pos_dopo.png}
+%\caption{cambio coordinate e dimensioni manuale - DOPO}
+%\end{figure}
+ 
+\vspace{50pt}
+Come ultima, la possibilit\` a di cambiare la profondit\` a di una figura selezionata, spostandola al di sopra di tutte le altre, oppure al di sotto. Semplicemente tali azioni si possono compiere cliccando sui due pulsanti con una freccia colorata (verde e rossa) come sfondo. 
+\newpage
+
  
 %\begin{figure}[!ht]
 %\centering
