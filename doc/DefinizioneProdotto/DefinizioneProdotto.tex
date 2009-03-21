@@ -435,8 +435,8 @@ Estende \textit{Button}.
 \subsubsezione{Attivit\`a svolte e dati trattati}
 \paragrafo{Metodi pubblici:}
 \begin{elencopuntato}[\subsubsecindent]
-\item[-]  \textit{bindCanvas(toolbar,canvas,canvasObj,visual,figureSet)} overriding del metodo ereditato da \textit{Button}, collega il canvas all'azione di selezione di una figura disegnata sul canvas, e consente quindi di attivare le funzionalit\` a di spostamento della figura stessa, del suo ridimensionamento (tramite \{_}handleCtrlPoint), di clonazione ed eliminazione, tramite i metodi descritti in \textit{Visualization} e dell'impostazione del  livello di  profondit\`a, tramite gli appositi metodi \textit{toTop} e \textit{toBottom}  
-\item[-] \textit{\{_}handleCtrlPoint} 
+\item[-]  \textit{bindCanvas(toolbar,canvas,canvasObj,visual,figureSet)} overriding del metodo ereditato da \textit{Button}, collega il canvas all'azione di selezione di una figura disegnata sul canvas, e consente quindi di attivare le funzionalit\` a di spostamento della figura stessa, del suo ridimensionamento (tramite {\_}handleCtrlPoint), di clonazione ed eliminazione, tramite i metodi descritti in \textit{Visualization} e dell'impostazione del  livello di  profondit\`a, tramite gli appositi metodi \textit{toTop} e \textit{toBottom}  
+\item[-] \textit{{\_}handleCtrlPoints} metodo privato, che gestisce il click del mouse verificando dove questo avvenga: nel caso l'area cliccata sia un punto di controllo di una figura disegnata, collega il trascinamento del mouse (con il pulsante sinistro premuto) al ridimensionamento di quest'ultima, e nel caso delle linee a mano libera consente di spostare i punti che le compongono.
 \end{elencopuntato}
 
 \subsezione{ZoomButton}
