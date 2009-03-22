@@ -266,6 +266,10 @@ Visualization.prototype.cloneElement = function(actualFigure,canvasObj){
   //actualFigure.setSelection(false);
   visual.deselectAll(visual.getFigureSet());
   clonedFigure.setSelection(true);
+  // update the properties dialogs for the cloned figure
+  clonedFigure.eachProperty(function (p) {
+                              p.createWidget();
+                            });
   canvasObj.clear();
   visual.refresh();
   $("#cloneButton").unbind('click');
