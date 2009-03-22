@@ -239,10 +239,10 @@ Il prodotto \`e stato sviluppato come un'applicazione web. \`E possibile utilizz
     \item[-] Requisiti software: 
 \begin{elencopuntato}[\normindent]
  \item[-]   Firefox 3.0.x o superiore;
- \item[-]   Opera 9.5 o superiore; 
+ \item[-]   Opera 9.5 o superiore (vedi \hyperlink{Opera}{\textit{istruzioni}} a seguito);
  \item[-]   Google Chrome 1.0 o superiore; 
  \item[-]   Safari 3.2 o superiore; 
- \item[-]   Internet Explorer 8;
+ \item[-]   Internet Explorer 8 (vedi \hyperlink{IEx}{\textit{istruzioni}} a seguito);
  \item[-]   Risoluzione minima consigliata: 1024x768 pixels.
 \end{elencopuntato}
 \textbf{N.B.} Alcune funzionalit\`a avanzate, come il cambiamento del tipo di carattere di una casella di testo, sono attualmente supportate solamente dalle versioni non stabili dei succitati browsers; saranno pertanto disabilitate nel caso non siano disponibili.
@@ -254,14 +254,14 @@ Il prodotto \`e stato sviluppato come un'applicazione web. \`E possibile utilizz
     \item[-] Requisiti software: \underline{JVM} 1.5 o superiore, Apache \underline{Tomcat} 6.0 o superiore;
     \item[-] Requisiti hardware: Processore Intel 1GHz o equivalente; 1GB memoria RAM.
 \end{elencopuntato}
- 
+ \newpage
 \sezione{Istruzioni per l'uso}
  
 \subsezione{Installazione del programma}
 \subsubsezione{Lato client}
-\` E necessario il chiarimento di qualche dettaglio prima di utilizzare tutte le potenzialità del sistema. Alcuni browsers necessitano infatti di alcuni accorgimenti per permettere all'utente di usufruire in pieno dell'esperienza AJAXDRAW. In particolare:
+\` E necessario il chiarimento di qualche dettaglio prima di utilizzare tutte le potenzialit\` a del sistema. Alcuni browsers necessitano infatti di alcuni accorgimenti per permettere all'utente di usufruire in pieno dell'esperienza AJAXDRAW. In particolare:
 \begin{elencopuntato}[\normindent]
- \item[-] Opera, non supportando in pieno le funzionalit\` a offerte dalla ruota dei colori, questi possono essere cambiati agendo a mano sul codice esadecimale presente nel dialog apposito. Per facilitare comunque l'utente e sopperire a questa mancanza esiste la possibilit\` a di scaricare il widget \href{http://widgets.opera.com/widget/11822/}{Color Picker}, disponibile online per lo scaricamento rapido. L'utilizzo di questo selezionatore consente di impostare il colore voluto, per poi copiare il valore esadecimale nel campo del Color Dialog che si vuole modificare.
+ \item[-] \hypertarget{Opera}{} \textit{Opera}, non supportando in pieno le funzionalit\` a offerte dalla ruota dei colori, questi possono essere cambiati agendo a mano sul codice esadecimale presente nel dialog apposito. Per facilitare comunque l'utente e sopperire a questa mancanza esiste la possibilit\` a di scaricare il widget \href{http://widgets.opera.com/widget/11822/}{Color Picker}, disponibile online per lo scaricamento rapido. L'utilizzo di questo selezionatore consente di impostare il colore voluto, per poi copiare il valore esadecimale nel campo del Color Dialog che si vuole modificare.
  
  \begin{figure}[!ht]
 \centering
@@ -269,8 +269,8 @@ Il prodotto \`e stato sviluppato come un'applicazione web. \`E possibile utilizz
 \caption{Color Picker per Opera}
 \end{figure} 
 
-\item[-]  Internet Explorer richiede invece l'installazione del plugin Microsoft\textcopyright   \href{http://silverlight.net/GetStarted/}{Silverlight \texttrademark} 
-per funzionare. Il programma \`e compatibile con la versione 8 del browser (in modalit\` a browser \textit{IE8} e documento \textit{standard IE8}, oppure in modalit\` a browser \textit{IE7} e documento \textit{standard IE7}, tutto attivabile tramite la pressione del tasto F12 per l'accesso agli strumenti di sviluppo integrati nella nuova versione), salvo alcuni problemi con lo spostamento dell'area di visualizzazione e lo zoom, e altri di piccola entit\` a, dovuti principalmente allo stato preliminare della libreria utilizzata da Explorer per la resa del canvas in oggetto.
+\item[-] \hypertarget{IEx}{} \textit{Internet Explorer} richiede invece l'installazione del plugin Microsoft\textcopyright   \href{http://silverlight.net/GetStarted/}{Silverlight \texttrademark} 
+per funzionare. Il programma \`e compatibile con la versione 8 del browser (in modalit\` a browser \textit{IE8} e documento \textit{standard IE8}, oppure in modalit\` a browser \textit{IE7} e documento \textit{standard IE7}, tutto attivabile tramite la pressione del tasto F12 per l'accesso agli strumenti di sviluppo integrati nella nuova versione), salvo alcuni problemi con lo spostamento dell'area di visualizzazione e lo zoom, il caricamento di un file e altri di minore entit\` a, dovuti principalmente allo stato preliminare della libreria utilizzata da Explorer per la resa del canvas in oggetto.
 \end{elencopuntato}
 \subsubsezione{Lato server}
 Per permettere il funzionamento del sistema, \`e necessario installare un Web Server: \textit{Apache Tomcat}. 
@@ -293,7 +293,7 @@ Andare nella sezione \textit{WAR file to deploy} della pagina.\\
 \begin{figure}[!ht]
 \centering
 \includegraphics[scale=0.7]{images/DeployTomcat.png}
-\caption{Deploy}
+\caption{Deployment}
 \end{figure} 
 
 Selezionare il file .war dell'applicazione e quindi premere su Deploy.\\
@@ -335,14 +335,14 @@ Sostituire il file aperto, con il seguente codice:\\
 \\
 In questo modo \`e sono stati impostati uno Username  \textit{admin} e una Password  \textit{admin}. Queste credenziali serviranno per accedere al Tomcat Manager.\\
 A questo punto avviare un browser e digitare il seguente indirizzo\\ \href{http://localhost:8080/manager/html}{http://localhost:8080/manager/html}\\
-Dopo aver inserito User Name e Password richiesti, si entrer\`a nel manager di Tomcat.\\
+Dopo aver inserito Username e Password richiesti, si entrer\`a nel manager di Tomcat.\\
 Andare nella sezione \textit{WAR file to deploy} della pagina.\\
 
-\newpage
+
 \begin{figure}[!ht]
 \centering
 \includegraphics[scale=0.7]{images/DeployTomcat.png}
-\caption{Deploy}
+\caption{Deployment}
 \end{figure}
  
 Selezionare il file .war dell'applicazione e quindi premere su Deploy.\\
