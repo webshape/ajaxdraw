@@ -455,12 +455,12 @@ I risultati sono stati ottenuti usando il tool \textit{JSCoverage}, precedenteme
 \begin{elencopuntato}[\subsubsecindent]
 \item[-] GUI: 17\%. 96\% con i test manuali.
 \item[-] Application Logic: 91\% su un singolo browser.
-\item[-] Server: 0\%.
+\item[-] Server: non \`e stato usato uno strumento per misurare la copertura.
 \end{elencopuntato}
 Dai dati si evince che la copertura \`e molto buona per quanto riguarda la logica interna ed \`e migliorata rispetto alla fase RQ, mentre \`e ancora nei limiti previsti per l'interfaccia. Per quanto riguarda il lato server non sono tuttora presenti test.
 
 \paragrafo{Numero di test superati}
-Eseguendo i test usando il tool \textit{QUnit}, vengono superati 164 test su 164 su tutti i browser supportati. Per maggiori dettagli, si apra il file \textit{public{\_}html/src/test/allTests.html} con un browser supportato.
+Eseguendo i test usando il tool \textit{QUnit}, vengono superati 164 test su 164 su tutti i browser supportati. Per maggiori dettagli, si apra il file \textit{public{\_}html/src/test/allTests.html} con un browser supportato. Il server supera due test su due.
 
 \paragrafo{Numero di requisiti soddisfatti}
 Sono stati soddisfatti tutti i requisiti obbligatori e i requisiti desiderabili RFD-1 ed RFD-2. Si faccia riferimento al documento \textit{AnalisiDeiRequisiti} in versione 3.0 per vedere la descrizione di questi requisiti.
@@ -477,7 +477,7 @@ Gli errori di stile trovati dal software \textit{JSLint} sono:
 \item[-] file di test: nessun warning
 \end{elencopuntato}
 
-\paragrafo{Resoconto} Lo stile adottato durante la programmazione \`e molto buono, in quanto non sono presenti errori di stile. Mettendo insieme i dati sulla copertura e sull'esito positivo dei test, si evince che i test automatici controllano in modo adeguato la logica interna dell'applicazione, ed i test manuali il corretto funzionamento dell'interfaccia. Tutti i requisiti obbligatori sono stati soddisfatti, come deve essere per la fase RA. Sono stati anche soddisfatti due requisiti desiderabili.
+\paragrafo{Resoconto} Lo stile adottato durante la programmazione \`e molto buono, in quanto non sono presenti errori di stile. Mettendo insieme i dati sulla copertura e sull'esito positivo dei test, si evince che i test automatici controllano in modo adeguato la logica interna dell'applicazione, ed i test manuali il corretto funzionamento dell'interfaccia. Due test controllano le funzionalit\`a del server, ma non c'\`e nessun dato sulla copertura perch\`e il costo di introdurre uno strumento per misurarla sembrava superiore ai vantaggi, considerato che il server rapppresenta una frazione minima del codice totale. Tutti i requisiti obbligatori sono stati soddisfatti, come deve essere per la fase RA. Sono stati anche soddisfatti due requisiti desiderabili.
 
 \subsezione{Dettaglio dell'esito delle revisioni}
  
