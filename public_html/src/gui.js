@@ -12,7 +12,7 @@ var canvasObj = null; // global
 $(document).ready(function(){
   // GUI creation
   var page = new Page();
-  var screenWidth = window.screen.width;
+  var screenWidth = window.screen.width; //take the screen resolution
   var screenHeight = window.screen.height;
   page.loadStylesheet();
   canvasObj = new Canvas();
@@ -22,7 +22,7 @@ $(document).ready(function(){
   visual = new Visualization(figureSet);
   visual.setCanvasDimension(canvasObj,screenHeight,screenWidth);
   // Toolbar Creation
-  var toolbar = new Toolbar();
+  var toolbar = new Toolbar();  //creation of the buttons & their add to the toolbar
   var selectionButton = new SelectionButton();toolbar.add(selectionButton); // 0
   var zoomInButton = new ZoomInButton();toolbar.add(zoomInButton);//1
   var moveViewButton = new MoveViewButton(); toolbar.add(moveViewButton);//2
@@ -57,26 +57,26 @@ $(document).ready(function(){
   $(".paletteComponent").click(function () {
     var hex2;
     if(page.getBrowserName()=="opera" || page.getBrowserName()=="msie"){
-      hex2 = $(this).css("background-color");
+      hex2 = $(this).css("background-color"); //workaround: opera & IE return hex values, while others RGB values
     }
     else{
-      hex2 = palette.rgbToHex($(this).css("background-color"));
+      hex2 = palette.rgbToHex($(this).css("background-color"));//converts RGB value to hex value
     }
     color = palette.setColour(hex2,color.BorderColor,color.FillColor);
     toolbar.rebind(canvas,canvasObj,visual,color.BorderColor,color.FillColor);
   });
 
-
+//Buttons bindings
   $("#selectionButton").click(function () {
-    $("#edgeSetterZone").css({"display":"block"});
+    $("#edgeSetterZone").css({"display":"block"}); //show modificators in the Prop.Dialog
     $("#fontSetterZone").css({"display":"block"});
     toolbar.deselectAll();
-    selectionButton.bindCursor("selection");
+    selectionButton.bindCursor("selection"); //bind cursor images
     selectionButton.bindCanvas(toolbar,canvas,canvasObj,visual);
   });
 
   $("#zoomInButton").click(function () {
-    $(".Dialog2").height(210);
+    $(".Dialog2").height(210); //change Properties Dialog dimension to hide inutilities
     visual.deselectAll(figureSet);
     zoomInButton.bindCursor("zoomIn");
     $("#fontSetterZone").css({"display":"none"});
@@ -188,11 +188,11 @@ $(document).ready(function(){
     }
   );
 
-  // Colour wheel
+  // Colour wheel implementation
   $("#picker1").farbtastic("#color1");
   $("#picker2").farbtastic("#color2");
   // Change colour on click on farbstastic
-  var openBorder = false;
+  var openBorder = false; //booleans for wheels open/close animation control,
   var openFill = false;
 
   if(page.getBrowserName()!="opera"){ //workaround for Opera graphics issues
@@ -201,7 +201,7 @@ $(document).ready(function(){
 	$("#colorx").show("slow");
 	if(openFill === false){
 	  if(page.getBrowserName()=="msie"){ //dimension changed because of IE farb incompatibility
-	    $(".Dialog1").height(310);
+	    $(".Dialog1").height(310);//applied for all resizings
 	  }
 	  else{
 	     $(".Dialog1").height(500);
@@ -220,9 +220,11 @@ $(document).ready(function(){
       function() {
 	$(".Dialog1").height(260);
 	$("#colorx").hide("slow");
-	$.farbtastic("#color1").setColor(document.getElementById("color1").value);
+	$.farbtastic("#color1").setColor(document.getElementById("color1").value);//set the border color to use
 	color.BorderColor=$.farbtastic("#color1").color;
+	//change the square in the ColourDialog to show to the user the actual setted color
 	document.getElementById("borderColorNow").style.backgroundColor = color.BorderColor;
+	//rebinds the tool in use with the canvas for color changing
 	toolbar.rebind(canvas,canvasObj,visual,color.BorderColor,color.FillColor);
 	if(openFill === false){
 	  if(page.getBrowserName()=="msie"){ //dimension changed because of IE farb incompatibility
@@ -291,7 +293,7 @@ $(document).ready(function(){
       }
     );
   }
-  else{
+  else{ //Opera workaround applied, graphics glitches
     $(".Dialog1").height(310);
     $(".farbtastic").hide();
     $("#picker1").hide();
@@ -324,20 +326,22 @@ $(document).ready(function(){
 
   // Save & Load Dialogs handlers
  $("#saveButton").click(function () {
-   $("#saveDialog").dialog( 'close' );
+   $("#saveDialog").dialog( 'close' ); //close the save dialog
  });
 
+
+ //Load zone
  var doc;
  $("#loadButton").click(function () {
   doc = $("#my_iframe").contents().find('body').html();//alert(doc);
  });
-
+ //Server/client communication for loading
  $('#MyForm').submit(function () {
    $('#my_iframe').bind('load', function () {
                           $("#loadDialog").dialog( 'close' );
                           doc = $("#my_iframe").contents().find('body').html();
-                          
-                          if (doc.indexOf("Errore:")==0) {
+
+                          if (doc.indexOf("Errore:")===0) {
                             // server error
                             alert(doc);
                           } else {
@@ -358,7 +362,7 @@ $(document).ready(function(){
 
  // Advanced functions disabled for older browsers
  if((page.getBrowserName()=="firefox" && page.getBrowserVersion()<3.1) ||
-   page.getBrowserName()=="opera" ||
+   page.getBrowserName()=="opera" || page.getBrowserName()=="msie" ||
    (page.getBrowserName()=="chrome" &&  page.getBrowserVersion()<2)||
    (page.getBrowserName()=="safari" &&  page.getBrowserVersion()<4)) {
      $("#fontTypeButton").css({"display":"none"});
