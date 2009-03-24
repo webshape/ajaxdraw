@@ -63,8 +63,9 @@ canvas {
 	background-image:url("../images/testo.png");
 }
 
-
-
+#borderPart,#fillPart,#opBorder,#opFill,#prova,#prova5,#fontSetterZone,#edgeSetterZone{
+	background-color:#e5e5e5;
+	}
 /*Tavolozza*/
 .paletteComponent{
 	width:6px;

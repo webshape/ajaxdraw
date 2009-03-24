@@ -114,7 +114,7 @@ SVGReader.prototype.read = function (doc) {
       }
     }
   }
-
+  nf = 0;
   return fs;
 };
 
@@ -431,10 +431,10 @@ Polygon.prototype.fromSVG = function (n) {
 Text.prototype.fromSVG = function (n) {
   //get all the attributes
   var x1 = parseInt(n.getAttribute("x"), 10);
-  var y1 = parseInt(n.getAttribute("y"), 10);
+  var y2 = parseInt(n.getAttribute("y"), 10);
   var txt = n.childNodes[0].nodeValue;
   var h = parseInt(n.getAttribute("font-size"), 10);
-  if (!(perr.intCheck(x1, "x") && perr.intCheck(y1, "y") && perr.intCheck(h, "font-size"))){
+  if (!(perr.intCheck(x1, "x") && perr.intCheck(y2, "y") && perr.intCheck(h, "font-size"))){
 	 // something goes wrong
 	 return 0;
   }
@@ -444,7 +444,7 @@ Text.prototype.fromSVG = function (n) {
 	 return 0;
   }
   // following are optional attributes
-  var w = parseInt(n.getAttribute("textLength"), 10);
+  var w = parseInt(n.getAttribute("textlength"), 10);
   var fc = n.getAttribute("fill");
   var fo = parseFloat(n.getAttribute("fill-opacity"));
   var sc = n.getAttribute("stroke");
@@ -452,9 +452,9 @@ Text.prototype.fromSVG = function (n) {
 
   this.setText(new TextString(txt));
   this.setFont(new TextFont(ff));
-  var y2 = y1 + h;
+  var y1 = y2 - h;
   var x2 = (h/2) * txt.length;
-  if (w && !isNaN(w)) {
+  if (w && !(isNaN(w))) {
 	  x2 = x1 + w;
   }
   var p1 = new Point(x1, y1);

@@ -252,7 +252,7 @@ Text.prototype.toSVG = function(gen) {
   gen.attr("font-family", this.getFont().toCSS(), false);
   gen.attr("font-size", Math.abs(this.getBounds().h()), false);
 
-  gen.attr("textLength", Math.abs(this.getBounds().w()), false);
+  gen.attr("textlength", Math.abs(this.getBounds().w()), false);
   gen.attr("fill", this.getTextColour().toCSS(), false);
   gen.attr("fill-opacity", this.getTextColour().getOpacity().getVal(), false);
   gen.attr("stroke", this.getBorderColour().toCSS(), false);
