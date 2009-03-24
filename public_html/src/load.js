@@ -114,7 +114,7 @@ SVGReader.prototype.read = function (doc) {
       }
     }
   }
-
+  nf = 0;
   return fs;
 };
 
