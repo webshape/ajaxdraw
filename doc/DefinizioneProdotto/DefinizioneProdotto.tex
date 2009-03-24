@@ -1172,7 +1172,7 @@ Contiene la stringa rappresentante il documento SVG in costruzione e i metodi pe
 \subsubsezione{Relazioni d'uso di altre componenti}
 Nessuna.
 \subsubsezione{Interfacce e relazioni di uso da altre componenti}
-Usato da \textit{SVGWriter} per ottenere e ritornare la stringa rappresentateil documento SVG.
+Usato da \textit{SVGWriter} per ottenere e ritornare la stringa rappresentate il documento SVG.
 \subsubsezione{Attivit\`a svolte e dati trattati}
 \paragrafo{Attributi privati:}
 \begin{elencopuntato}[\subsubsecindent]
@@ -1192,7 +1192,7 @@ Per maggiori dettagli si veda il diagramma di stato: \newpage
 \item[-]  \textit{attr(name, value, last)} aggiunge un attributo \textit{name} con valore \textit{value}. Se il valore booleano \textit{last} \`e \textit{true} chiude il tag di apertura.
 \item[-]  \textit{text(t)} scrive il testo contenuto nella stringa \textit{t} tra un tag di apertura e il corrispondente di chiusura.
 \item[-]  \textit{endCommand(name)} aggiunge un tag SVG di chiusura con il valore \textit{name}.
-\item[-]  \textit{flush()} aggiunge il tag di chiusura \textit{</svg>} e ritorna la stringa rappresentante il documento SVG.
+\item[-]  \textit{flush()} aggiunge il tag di chiusura \textit{/svg} e ritorna la stringa rappresentante il documento SVG.
 \end{elencopuntato}
 
 
@@ -1280,7 +1280,7 @@ Utilizza istanze di \textit{Server} e di \textit{ConnectionError}.
 \paragrafo{Metodi pubblici:}
 \begin{elencopuntato}[\subsubsecindent]
 \item[-] \textit{service(HttpServletRequest,HttpServletResponse)} \`e il metodo proprio della servlet che comunica con il client. Utilizza la classe Java non standard \textit{MultipartRequest} per ricevere i dati inviati dal client. Questi dati vengono poi inoltrati alla classe \textit{Server} chiamando i corrispondenti metodi \textit{getSave} e \textit{getLoad}. Riceve come parametri un oggetto di tipo \textit{HttpServletRequest} e un oggetto di tipo \textit{HttpServletResponse} per gestire rispettivamente una richiesta proveniente dal client e la risposta del server.
-\end{elencopuntato}[\subsubsecindent]
+\end{elencopuntato}
 
 \subsezione{Server}
 \subsubsezione{Tipo, obiettivo e funzione del componente}
