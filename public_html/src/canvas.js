@@ -157,6 +157,7 @@ Visualization.accessors('_figureSet', 'getFigureSet', 'setFigureSet');
 * @param {FigureSet} figureSet the actual figureset
 */
 Visualization.prototype.deselectAll = function (figureSet) { //deselect & unbind of all the buttons
+  $("*").unbind('keypress');
   $('#setBorderCol').unbind('click');
   $('#setFillCol').unbind('click');
   $("#eraseButton").unbind('click');
@@ -427,7 +428,10 @@ function ClearCanvasButton () { //action called from index.html, clears che canv
  * The Save Button
  */
 function SaveButton () { //called from index.html, saves the figureset in a file
-   var s = new SVGWriter();
+  visual.deselectAll(visual.getFigureSet());
+  canvasObj.clear();
+  visual.refresh();
+  var s = new SVGWriter();
    var svg = s.write(visual.getFigureSet());
    //alert(svg);
   // #saveDestination will be sent by the form

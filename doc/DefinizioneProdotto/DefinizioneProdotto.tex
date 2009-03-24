@@ -273,7 +273,7 @@ Si vedano le \textit{NormeDiprogetto}, versione 3.0.
 \subsezione{Standard di programmazione}
 Si vedano le \textit{NormeDiprogetto}, versione 3.0.
 \subsezione{Strumenti di lavoro}
-Si vedano le \textit{NormeDiprogetto}, versione 3.0.
+\leftskip=20pt Si vedano le \textit{NormeDiprogetto}, versione 3.0.
 \newpage
 \sezione{Specifica delle componenti - GUI }
 Si occupa di gestire l'interazione tra l'utente e la logica interna dell'applicazione, descritta in seguito.
@@ -321,12 +321,12 @@ Utilizza istanze di \textit{Scale} e \textit{BoundingRectangle}.
 \end{elencopuntato}
 \paragrafo{Metodi pubblici:}
 \begin{elencopuntato}[\subsubsecindent]
-\item[-] \textit{refresh()} ridisegna il set di figure sul canvas, utilizzando il metodo\textit{draw} per ogni \textit{Figure};
+\item[-] \textit{refresh()} ridisegna il set di figure sul canvas, utilizzando il metodo \textit{draw} per ogni \textit{Figure};
 \item[-] \textit{getFigureSet()} ritorna \textit{{\_}figureSet};
-\item[-] \textit{deselectAll(figureSet)} deseleziona tutte le figure presenti nel figure set.
-\item[-] \textit{getClickCoordsWithinTarget(event)} ritorna il punto esatto del canvas sul quale \`e avvenuto il click del mouse, differenziando le diverse interpretazioni che fa ciascun browser di tale evento per uniformarle in un unico metodo funzionante universalmente, e nella fattispecie utilizzando gli attributi clientX/Y, pageX/Y oppure layerX/Y di \textit{event}. 
-Le coordinate vengono poi adattate allo spostamento corrente della visualizzazione sommandogli \textit{{\_}offset}, e allo zoom corrente, moltiplicandole per \textit{{\_}scale.getFactor()}.
-\item[-] \textit{setCanvasDimension(canvasObj,height,width)} regola le dimensioni del canvas al caricamento della pagina in proporzione alla risoluzione del monitor dell'utente, che viene passata alla funzione tramite i due parametri \textit{height} e \textit{width}.
+\item[-] \textit{deselectAll(figureSet)} deseleziona tutte le figure presenti nel figure set;
+\item[-] \textit{getClickCoordsWithinTarget(event)} ritorna il punto esatto del canvas sul quale \`e avvenuto il click del mouse, differenziando le diverse interpretazioni che fa ciascun browser di tale evento per uniformarle in un unico metodo funzionante universalmente, e nella fattispecie utilizzando gli attributi clientX/Y, pageX/Y oppure layerX/Y di \textit{event}; 
+Le coordinate vengono poi adattate allo spostamento corrente della visualizzazione sommandogli \textit{{\_}offset}, e allo zoom corrente, moltiplicandole per \textit{{\_}scale.getFactor()};
+\item[-] \textit{setCanvasDimension(canvasObj,height,width)} regola le dimensioni del canvas al caricamento della pagina in proporzione alla risoluzione del monitor dell'utente, che viene passata alla funzione tramite i due parametri \textit{height} e \textit{width};
 \item[-] \textit{eraseElement(figureSet,canvasObj)} cancella l'elemento attualmente selezionato sul canvas tramite la pressione del pulsante apposito oppure con il tasto "canc" della tastiera;
 \item[-] \textit{cloneElement(actualFigure,canvasObj)} clona l'elemento attualmente selezionato tramite la pressione dell'apposito pulsante.
 \end{elencopuntato}
@@ -343,7 +343,7 @@ Nessuna.
 \begin{elencopuntato}[\subsubsecindent]
 \item[-] \textit{{\_}height} l'altezza in pixel del canvas;
 \item[-] \textit{{\_}width} la larghezza in pixel del canvas;
-\item[-] \textit{{\_}id} il riferimento all'oggetto HTML <canvas>.
+\item[-] \textit{{\_}id} il riferimento all'oggetto HTML canvas.
 \end{elencopuntato}
 \paragrafo{Metodi pubblici:}
 \begin{elencopuntato}[\subsubsecindent]
@@ -404,7 +404,7 @@ Viene estesa da tutti i pulsanti creati.
 \begin{elencopuntato}[\subsubsecindent]
 \item[-]  \textit{setSelection(value)} permette di selezionare/deselezionare il pulsante. Modifica \textit{{\_}selected}.
 \item[-]  \textit{isSelected()} dice se il pulsante \`e correntemente selezionato. Ritorna \textit{{\_}selected}.
-\item[-]  \textit{bindCanvas(toolbar,canvas,canvasObj,visual,figureSet,BorderColor,FillColor)} collega l'azione del pulsante selezionato al canvas. Questo metodo viene utilizzato dalla figure fondamentali che non richiedono codice aggiuntivo particolare,come un rettangolo o una linea diritta, utilizzando il metodo \textit{getBuilder}, che permette il riconoscimento della figura da disegnare a seconda di quale funzione \` e al momento selezionata dall'utente, e di conseguenza imposta tutti gli attributi (colore di bordo e/o riempimento, numero di lati se necessario) per consentirne il disegno corretto. Utilizza inoltre del codice jQuery per gestire tutte le interazioni del mouse(click, movimento, uscita dal canvas). 
+\item[-]  \textit{bindCanvas(toolbar,canvas,canvasObj,visual,figureSet,BorderColor,FillColor)} collega l'azione del pulsante selezionato al canvas. Questo metodo viene utilizzato dalle figure fondamentali che non richiedono codice aggiuntivo particolare,come un rettangolo o una linea diritta, utilizzando il metodo \textit{getBuilder}, che permette il riconoscimento della figura da disegnare a seconda di quale funzione \` e al momento selezionata dall'utente, e di conseguenza imposta tutti gli attributi (colore di bordo e/o riempimento, numero di lati se necessario) per consentirne il disegno corretto. Utilizza inoltre del codice jQuery per gestire tutte le interazioni del mouse(click, movimento, uscita dal canvas). 
 \item[-]  \textit{bindCursor(type)} collega ad ogni tool un cursore visibile sopra al canvas per capire che tipo di azione si sta compiendo.
 \end{elencopuntato}
 
@@ -420,7 +420,7 @@ Nessuna.
 
 \subsezione{SaveButton}
 \subsubsezione{Tipo, obiettivo e funzione del componente}
-Classe concreta che rappresenta lo specifico pulsante che si occupa di salvare il set di figure attualemente disegnato sul canvas, integrato nella sezione "File" della barra in alto.
+Classe concreta che rappresenta lo specifico pulsante che si occupa di salvare il set di figure attualmente disegnato sul canvas, integrato nella sezione "File" della barra in alto.
 \subsubsezione{Relazioni d'uso di altre componenti}
 Nessuna.
 \subsubsezione{Interfacce e relazioni di uso da altre componenti}
@@ -438,7 +438,7 @@ Estende \textit{Button}.
 \subsubsezione{Attivit\`a svolte e dati trattati}
 \paragrafo{Metodi pubblici:}
 \begin{elencopuntato}[\subsubsecindent]
-\item[-]  \textit{bindCanvas(toolbar,canvas,canvasObj,visual,figureSet)} overriding del metodo ereditato da \textit{Button}, collega il canvas all'azione di selezione di una figura disegnata sul canvas, e consente quindi di attivare le funzionalit\` a di spostamento della figura stessa, del suo ridimensionamento (tramite {\_}handleCtrlPoint), di clonazione ed eliminazione, tramite i metodi descritti in \textit{Visualization} e dell'impostazione del  livello di  profondit\`a, tramite gli appositi metodi \textit{toTop} e \textit{toBottom}  
+\item[-]  \textit{bindCanvas(toolbar,canvas,canvasObj,visual,figureSet)} overriding del metodo ereditato da \textit{Button}, collega il canvas all'azione di selezione di una figura disegnata sul canvas, e consente quindi di attivare le funzionalit\` a di spostamento della figura stessa, del suo ridimensionamento (tramite \textit{{\_}handleCtrlPoint}), di clonazione ed eliminazione, tramite i metodi descritti in \textit{Visualization} e dell'impostazione del  livello di  profondit\`a, tramite gli appositi metodi \textit{toTop} e \textit{toBottom};
 \item[-] \textit{{\_}handleCtrlPoints} metodo privato, che gestisce il click del mouse verificando dove questo avvenga: nel caso l'area cliccata sia un punto di controllo di una figura disegnata, collega il trascinamento del mouse (con il pulsante sinistro premuto) al ridimensionamento di quest'ultima, e nel caso delle linee a mano libera consente di spostare anche i punti che le compongono.
 \end{elencopuntato}
 
@@ -448,7 +448,7 @@ Classe astratta che rappresenta un pulsante che attiva le funzionalit\` a di zoo
 \subsubsezione{Relazioni d'uso di altre componenti}
 Estende \textit{Button}.
 \subsubsezione{Interfacce e relazioni di uso da altre componenti}
-Viene estasa da \textit{ZoomInButton} e \textit{ZoomOutButton}.
+Viene estesa da \textit{ZoomInButton} e \textit{ZoomOutButton}.
 \subsubsezione{Attivit\`a svolte e dati trattati}
 \leftskip=36pt Nessuna.
 
@@ -657,13 +657,13 @@ Nessuna.
 \subsubsezione{Tipo, obiettivo e funzione del componente}
 Classe concreta che rappresenta l'oggetto che si occupa di impostare e modificare le coordinate del rettangolo contenente la figura disegnata sul canvas.
 \subsubsezione{Relazioni d'uso di altre componenti}
-Legge e modifica \textit{BoundingRectagle}.
+Legge e modifica \textit{BoundingRectangle}.
 \subsubsezione{Interfacce e relazioni di uso da altre componenti}
 Nessuna.
 \subsubsezione{Attivit\`a svolte e dati trattati}
 \paragrafo{Metodi pubblici:}
 \begin{elencopuntato}[\subsubsecindent]
-\item[-] \textit{BoundingRectagleSetter(bounds)} costruttore. Prende un \textit{BoundingRectagle} e setta il valore dei campi di un dialog statico implementato in HTML. I campi contengono: i valori x ed y dell'inizio di \textit{bounds} e i valori di altezza e larghezza. Collega un evento al pulsante di conferma del dialog, e se l'utente ha modificato i valori, e i valori inseriti sono dei numeri, modifica le corrispondenti propriet\`a di \textit{bounds} ed esegue un refresh.
+\item[-] \textit{BoundingRectangleSetter(bounds)} costruttore. Prende un \textit{BoundingRectangle} e setta il valore dei campi di un dialog statico implementato in HTML. I campi contengono: i valori x ed y dell'inizio di \textit{bounds} e i valori di altezza e larghezza. Collega un evento al pulsante di conferma del dialog, e se l'utente ha modificato i valori, e i valori inseriti sono dei numeri, modifica le corrispondenti propriet\`a di \textit{bounds} ed esegue un refresh.
 \end{elencopuntato}
 
 \subsezione{EdgeNumberSetter}
@@ -733,7 +733,7 @@ Gestisce completamente le figure: il disegno, la conversione da e verso \underli
 \subsubsezione{Tipo, obiettivo e funzione del componente}
 Classe astratta che rappresenta una figura generica nel sistema, ovvero un oggetto disegnabile nel canvas.
 \subsubsezione{Relazioni d'uso di altre componenti}
-Mantiene un'istanza della classe \textit{BoundingRectangle} per rappresentare i limiti della figura. Contiene anche un'istanza di \textit{Colour} che rappresenta il colore del bordo. Deriva, ma non implementa, l'interfaccia \textit{SVGReadable} e l'interfaccia \textit{SVGWritable}, in quanto le sue sottoclassi dovranno essere serializzabili e deserializabili in file SVG.
+Mantiene un'istanza della classe \textit{BoundingRectangle} per rappresentare i limiti della figura. Contiene anche un'istanza di \textit{Colour} che rappresenta il colore del bordo. Deriva, ma non implementa, l'interfaccia \textit{SVGReadable} e l'interfaccia \textit{SVGWritable}, in quanto le sue sottoclassi dovranno essere serializzabili e deserializzabili in file SVG.
 \subsubsezione{Interfacce e relazioni di uso da altre componenti}
 Viene aggregata dalla classe \textit{FigureSet}.
 \subsubsezione{Attivit\`a svolte e dati trattati}
@@ -745,14 +745,14 @@ Viene aggregata dalla classe \textit{FigureSet}.
 \end{elencopuntato}
 \paragrafo{Metodi pubblici:}
 \begin{elencopuntato}[\subsubsecindent]
-\item[-] \textit{getBounds()} ritorna \textit{{\_}bounds}
-\item[-] \textit{getBorderColour()} ritorna \textit{{\_}borderColour}
-\item[-]  \textit{draw(canvas)} metodo astratto per disegnare la figura sul canvas.
-\item[-]  \textit{getMainPoints} ottiene i punti della figura manipolabili dall'utente. Ritorna un array contenente copie del punto di inizio e del punto di fine del \textit{BoundingRectangle} ottenuti con i metodi \textit{start()} e \textit{end()}.
-\item[-]  \textit{setSelection(value)} permette di selezionare/deselezionare la figura. Setta \textit{{\_}selected} a \textit{value}.
-\item[-]  \textit{isSelected()} dice se la figura \`e correntemente selezionata. Ritorna \textit{{\_}selected}.
-\item[-]  \textit{eachProperty(fn)} applica la funzione fn ad ogni propriet\`a della figura, ovvero a \textit{{\_}bounds} e \textit{{\_}borderColour}.
-\item[-] \textit{drawSelection(canvas)} disegna dei quadratini di colore blu e con opacit\`a 0.8 intorno ai punti principali della figura, ottenuti tramite \textit{getMainPoints} e traccia i bordi del \textit{BoundingRectangle} di colore grigio con opacit\`a 0.8, solo se la figura \`e selezionata. Sia per disegnare i quadrati, si per disegnare i bordi, utilizza il metodo \textit{strokeRect} del contesto grafico.
+\item[-] \textit{getBounds()} ritorna \textit{{\_}bounds};
+\item[-] \textit{getBorderColour()} ritorna \textit{{\_}borderColour};
+\item[-]  \textit{draw(canvas)} metodo astratto per disegnare la figura sul canvas;
+\item[-]  \textit{getMainPoints()} ottiene i punti della figura manipolabili dall'utente. Ritorna un array contenente copie del punto di inizio e del punto di fine del \textit{BoundingRectangle} ottenuti con i metodi \textit{start()} e \textit{end()};
+\item[-]  \textit{setSelection(value)} permette di selezionare/deselezionare la figura. Setta \textit{{\_}selected} a \textit{value};
+\item[-]  \textit{isSelected()} dice se la figura \`e correntemente selezionata. Ritorna \textit{{\_}selected};
+\item[-]  \textit{eachProperty(fn)} applica la funzione fn ad ogni propriet\`a della figura, ovvero a \textit{{\_}bounds} e \textit{{\_}borderColour};
+\item[-] \textit{drawSelection(canvas)} disegna dei quadratini di colore blu e con opacit\`a 0.8 intorno ai punti principali della figura, ottenuti tramite \textit{getMainPoints} e traccia i bordi del \textit{BoundingRectangle} di colore grigio con opacit\`a 0.8, solo se la figura \`e selezionata. Sia per disegnare i quadrati, sia per disegnare i bordi, utilizza il metodo \textit{strokeRect} del contesto grafico;
 \item[-] \textit{clone()} esegue una copia profonda di se stesso utilizzando il metodo \textit{jQuery.extend()}. Sposta il \textit{BoundingRectangle} della copia di 10px verso l'alto sottraendo questo valore alle componenti y dei punti di inizio e di fine, e ritorna la copia.
 \end{elencopuntato}
 
@@ -873,7 +873,7 @@ Implementa \textit{Property}.
 
 \subsezione{Colour}
 \subsubsezione{Tipo, obiettivo e funzione del componente}
-Rappresenta un colore come una terna RGB pi\`u l'opacit\`a del colore stesso. Questa rappresentazione trova una corrispondenza diretta sia nel tag <canvas>, sia nel formato SVG.
+Rappresenta un colore come una terna RGB pi\`u l'opacit\`a del colore stesso. Questa rappresentazione trova una corrispondenza diretta sia nel tag canvas, sia nel formato SVG.
 \subsubsezione{Relazioni d'uso di altre componenti}
 Implementa \textit{Property} e \textit{CSSProperty}. Mantiene un'istanza di \textit{Opacity} che rappresenta l'opacit\`a del colore.
 \subsubsezione{Interfacce e relazioni di uso da altre componenti}
