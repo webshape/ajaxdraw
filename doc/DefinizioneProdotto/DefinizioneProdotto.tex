@@ -1114,7 +1114,7 @@ Creato dalla lettura di un file SVG oppure dall'interfaccia utente. Manipolato d
 
 \item[-] \textit{draw(canvas)} disegna il poligono usando le API per i path del contesto grafico tracciando  un path che congiunge i punti ottenuti con \textit{getPoints}. Viene disegnato due volte: la prima per il riempimento, la seconda per il bordo. Prima di disegnarsi richiama \textit{applyToContext} sulle proprie propriet\`a.
 \item[-] \textit{toSVG(gen)} crea un tag \textit{polygon} con il metodo \textit{startCommand} e aggiunge gli attributi secondo lo standard SVG1.1 con il metodo \textit{attr}. Entrambi questi metodi appartengono alla classe \textit{SVGGenerator}. Per quel che riguarda l'attributo \textit{points} si prendono i punti relativi al \textit{BoundingRectangle} con il metodo \textit{getPoints} e si sommano al punto di coordinate iniziali ottenuto con il metodo \textit{start} di \textit{BoundingRectangle}, per ottenere le coordinate relative al canvas. Infine scrive il tag di chiusura con il metodo \textit{endCommand} di \textit{SVGGenerator}.
-\item[-] \textit{fromSVG(n)} ottiene il valore degli attributi del nodo \textit{n} come stringhe.. Dall'attributo SVG \textit{points} ottiene i punti, li converte in interi, e calcola in base a questi i vertici in alto a sinistra e in basso a destra della figura, per ricavare il \textit{BoundingRectangle} con cui costruire il poligono. Prima di scrivere i nuovi valori nelle propriet\`a della figura, li controlla con i metodi della classe \textit{ParsingError}: \textit{opCheck()} se l'attributo riguarda l'opacit\`a, \textit{hexCheck()} se l'attributo riguarda il colore.
+\item[-] \textit{fromSVG(n)} ottiene il valore degli attributi del nodo \textit{n} come stringhe. Dall'attributo SVG \textit{points} ottiene i punti, li converte in interi, e calcola in base a questi i vertici in alto a sinistra e in basso a destra della figura, per ricavare il \textit{BoundingRectangle} con cui costruire il poligono. Prima di scrivere i nuovi valori nelle propriet\`a della figura, li controlla con i metodi della classe \textit{ParsingError}: \textit{opCheck()} se l'attributo riguarda l'opacit\`a, \textit{hexCheck()} se l'attributo riguarda il colore.
 \end{elencopuntato}
 
 \subsezione{Text}
@@ -1125,7 +1125,7 @@ Deriva da \textit{Figure} e ne implementa i metodi astratti. Mantiene un'istanza
 \subsubsezione{Interfacce e relazioni di uso da altre componenti}
 Creato dalla lettura di un file SVG oppure dall'interfaccia utente. Manipolato dall'interfaccia utente. Chiamato da \textit{SVGWriter} per trasformare la figura in formato SVG, e da \textit{SVGReader} per creare un'istanza da un file SVG.
 \subsubsezione{Attivit\`a svolte e dati trattati}
-Nel costruttorte viene controllato se il browser supporta le API per il disegno del testo. In caso contrario, il metodo \textit{draw} viene settato a \textit{fallbackDraw}.
+Nel costruttore viene controllato se il browser supporta le API per il disegno del testo. In caso contrario, il metodo \textit{draw} viene settato a \textit{fallbackDraw}.
 \paragrafo{Attributi privati:}
 \begin{elencopuntato}[\subsubsecindent]
 \item[-] \textit{{\_}fillColour} colore di riempimento, di tipo \textit{FillColour}.
