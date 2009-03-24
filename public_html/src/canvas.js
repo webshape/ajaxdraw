@@ -1057,7 +1057,7 @@ TextButton.prototype.bindCanvas = function (toolbar,canvas,canvasObj,visual,Bord
      f.getBorderColour().getOpacity().setVal(document.getElementById("borderOp").value);
      f.getBorderColour().fromCSS(BorderColor);
      f.getTextColour().getOpacity().setVal(document.getElementById("borderOp").value);
-     f.getTextColour().fromCSS(BorderColor);
+     f.getTextColour().fromCSS(FillColor);
      f.getBounds().setStart(new Point(coords.x, coords.y));
 
     $("#cv").bind("mousemove",function(e){
